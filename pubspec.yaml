@@ -1,0 +1,34 @@
+name: toy_swapp
+description: A Very Good Project created by Very Good CLI.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: "^3.3.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Business Logic
+  bloc: ^8.1.3
+  flutter_bloc: ^8.1.4
+
+  # Localization
+  flutter_localizations:
+    sdk: flutter
+
+dev_dependencies:
+
+  # Tests
+  bloc_test: ^9.1.6
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.3
+
+  # Linting
+  very_good_analysis: ^5.1.0
+
+flutter:
+  uses-material-design: true
+  generate: true
