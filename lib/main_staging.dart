@@ -1,6 +1,21 @@
-import 'package:toy_swapp/app/app.dart';
-import 'package:toy_swapp/bootstrap.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:toy_swapp/app/view/app_screen.dart';
+import 'package:toy_swapp/l10n/l10n.dart';
+import 'package:toy_swapp/router/app_router.dart';
+
 
 void main() {
-  bootstrap(() => const App());
+  runApp(
+    AppScreen(
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
+      appRouter: AppRouter.instance.router(),
+    ),
+  );
 }

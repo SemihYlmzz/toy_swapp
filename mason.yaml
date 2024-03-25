@@ -1,0 +1,13 @@
+bricks:
+  new_presentation:
+    git:
+      url: https://github.com/SemihYlmzz/bricks.git
+      path: new_presentation
+  new_widget:
+    git:
+      url: https://github.com/SemihYlmzz/bricks.git
+      path: new_widget
+  new_api:
+    git:
+      url: https://github.com/SemihYlmzz/bricks.git
+      path: new_api
