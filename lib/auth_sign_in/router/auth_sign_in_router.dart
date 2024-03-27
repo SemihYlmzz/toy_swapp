@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+// TODO:
+import '../../router/app_router.dart';
 import '../auth_sign_in.dart';
+
 
 class AuthSignInRouter {
   factory AuthSignInRouter() {
@@ -18,7 +21,7 @@ class AuthSignInRouter {
   GoRoute get route => GoRoute(
         path: _path,
         name: _name,
-        // parentNavigatorKey: RouterMixin.parentNavigatorKey,
+        parentNavigatorKey: AppRouter.instance.parentNavigatorKey,
         pageBuilder: (context, state) => const NoTransitionPage(
           child: AuthSignInScreen(),
         ),

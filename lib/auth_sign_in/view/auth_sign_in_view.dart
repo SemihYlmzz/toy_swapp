@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toy_swapp/l10n/l10n.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../auth_sign_in.dart';
 
 class AuthSignInView extends StatelessWidget {
@@ -7,17 +7,22 @@ class AuthSignInView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    context.select(
+      (AppBloc bloc) => bloc.state.currentDevicePreferences!.language,
+    );
+
+    return BaseScaffold(
       appBar: const AuthSignInAppBar(),
-      body: Column(
+      body: const BaseColumn(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(
-            child: TextButton(
-              onPressed: () {},
-              child: Text(context.l10n.counterAppBarTitle),
-            ),
-          ),
+          SignInEmailTextField(),
+          SignInPasswordTextField(),
+          ForgotPasswordNavigationButton(),
+          SignUpNavigationButton(),
+          SignInButton(),
+          SignInWithGoogleButton(),
+          // SignInWithAppleButton(),
         ],
       ),
     );

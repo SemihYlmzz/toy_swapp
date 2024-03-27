@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../auth_sign_in.dart';
 
 class AuthSignInScreen extends StatelessWidget {
@@ -8,8 +9,11 @@ class AuthSignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authSignInBlocListeners = AuthSignInBlocListeners();
+
     return BlocProvider(
-      create: (context) => AuthSignInBloc(),
+      create: (context) => AuthSignInBloc(
+        // authRepository: context.read<AuthRepository>(),
+      ),
       child: MultiBlocListener(
         listeners: [
           authSignInBlocListeners.errorDisplayer(),

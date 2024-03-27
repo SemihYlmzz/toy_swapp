@@ -18,33 +18,54 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthSignInEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() signInWithEmailAndPassword,
+    required TResult Function() signInWithGoogle,
+    required TResult Function(String password) changePassword,
+    required TResult Function(String email) changeEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? signInWithEmailAndPassword,
+    TResult? Function()? signInWithGoogle,
+    TResult? Function(String password)? changePassword,
+    TResult? Function(String email)? changeEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? signInWithEmailAndPassword,
+    TResult Function()? signInWithGoogle,
+    TResult Function(String password)? changePassword,
+    TResult Function(String email)? changeEmail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthSignInFetch value) fetch,
+    required TResult Function(AuthSignInWithEmailAndPassword value)
+        signInWithEmailAndPassword,
+    required TResult Function(AuthSignInWithGoogle value) signInWithGoogle,
+    required TResult Function(AuthSignInChangePassword value) changePassword,
+    required TResult Function(AuthSignInChangeEmail value) changeEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthSignInFetch value)? fetch,
+    TResult? Function(AuthSignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult? Function(AuthSignInWithGoogle value)? signInWithGoogle,
+    TResult? Function(AuthSignInChangePassword value)? changePassword,
+    TResult? Function(AuthSignInChangeEmail value)? changeEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthSignInFetch value)? fetch,
+    TResult Function(AuthSignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult Function(AuthSignInWithGoogle value)? signInWithGoogle,
+    TResult Function(AuthSignInChangePassword value)? changePassword,
+    TResult Function(AuthSignInChangeEmail value)? changeEmail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,35 +90,40 @@ class _$AuthSignInEventCopyWithImpl<$Res, $Val extends AuthSignInEvent>
 }
 
 /// @nodoc
-abstract class _$$AuthSignInFetchImplCopyWith<$Res> {
-  factory _$$AuthSignInFetchImplCopyWith(_$AuthSignInFetchImpl value,
-          $Res Function(_$AuthSignInFetchImpl) then) =
-      __$$AuthSignInFetchImplCopyWithImpl<$Res>;
+abstract class _$$AuthSignInWithEmailAndPasswordImplCopyWith<$Res> {
+  factory _$$AuthSignInWithEmailAndPasswordImplCopyWith(
+          _$AuthSignInWithEmailAndPasswordImpl value,
+          $Res Function(_$AuthSignInWithEmailAndPasswordImpl) then) =
+      __$$AuthSignInWithEmailAndPasswordImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuthSignInFetchImplCopyWithImpl<$Res>
-    extends _$AuthSignInEventCopyWithImpl<$Res, _$AuthSignInFetchImpl>
-    implements _$$AuthSignInFetchImplCopyWith<$Res> {
-  __$$AuthSignInFetchImplCopyWithImpl(
-      _$AuthSignInFetchImpl _value, $Res Function(_$AuthSignInFetchImpl) _then)
+class __$$AuthSignInWithEmailAndPasswordImplCopyWithImpl<$Res>
+    extends _$AuthSignInEventCopyWithImpl<$Res,
+        _$AuthSignInWithEmailAndPasswordImpl>
+    implements _$$AuthSignInWithEmailAndPasswordImplCopyWith<$Res> {
+  __$$AuthSignInWithEmailAndPasswordImplCopyWithImpl(
+      _$AuthSignInWithEmailAndPasswordImpl _value,
+      $Res Function(_$AuthSignInWithEmailAndPasswordImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AuthSignInFetchImpl implements AuthSignInFetch {
-  const _$AuthSignInFetchImpl();
+class _$AuthSignInWithEmailAndPasswordImpl
+    implements AuthSignInWithEmailAndPassword {
+  const _$AuthSignInWithEmailAndPasswordImpl();
 
   @override
   String toString() {
-    return 'AuthSignInEvent.fetch()';
+    return 'AuthSignInEvent.signInWithEmailAndPassword()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AuthSignInFetchImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$AuthSignInWithEmailAndPasswordImpl);
   }
 
   @override
@@ -106,27 +132,36 @@ class _$AuthSignInFetchImpl implements AuthSignInFetch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() signInWithEmailAndPassword,
+    required TResult Function() signInWithGoogle,
+    required TResult Function(String password) changePassword,
+    required TResult Function(String email) changeEmail,
   }) {
-    return fetch();
+    return signInWithEmailAndPassword();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? signInWithEmailAndPassword,
+    TResult? Function()? signInWithGoogle,
+    TResult? Function(String password)? changePassword,
+    TResult? Function(String email)? changeEmail,
   }) {
-    return fetch?.call();
+    return signInWithEmailAndPassword?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? signInWithEmailAndPassword,
+    TResult Function()? signInWithGoogle,
+    TResult Function(String password)? changePassword,
+    TResult Function(String email)? changeEmail,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch();
+    if (signInWithEmailAndPassword != null) {
+      return signInWithEmailAndPassword();
     }
     return orElse();
   }
@@ -134,40 +169,478 @@ class _$AuthSignInFetchImpl implements AuthSignInFetch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthSignInFetch value) fetch,
+    required TResult Function(AuthSignInWithEmailAndPassword value)
+        signInWithEmailAndPassword,
+    required TResult Function(AuthSignInWithGoogle value) signInWithGoogle,
+    required TResult Function(AuthSignInChangePassword value) changePassword,
+    required TResult Function(AuthSignInChangeEmail value) changeEmail,
   }) {
-    return fetch(this);
+    return signInWithEmailAndPassword(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthSignInFetch value)? fetch,
+    TResult? Function(AuthSignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult? Function(AuthSignInWithGoogle value)? signInWithGoogle,
+    TResult? Function(AuthSignInChangePassword value)? changePassword,
+    TResult? Function(AuthSignInChangeEmail value)? changeEmail,
   }) {
-    return fetch?.call(this);
+    return signInWithEmailAndPassword?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthSignInFetch value)? fetch,
+    TResult Function(AuthSignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult Function(AuthSignInWithGoogle value)? signInWithGoogle,
+    TResult Function(AuthSignInChangePassword value)? changePassword,
+    TResult Function(AuthSignInChangeEmail value)? changeEmail,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch(this);
+    if (signInWithEmailAndPassword != null) {
+      return signInWithEmailAndPassword(this);
     }
     return orElse();
   }
 }
 
-abstract class AuthSignInFetch implements AuthSignInEvent {
-  const factory AuthSignInFetch() = _$AuthSignInFetchImpl;
+abstract class AuthSignInWithEmailAndPassword implements AuthSignInEvent {
+  const factory AuthSignInWithEmailAndPassword() =
+      _$AuthSignInWithEmailAndPasswordImpl;
+}
+
+/// @nodoc
+abstract class _$$AuthSignInWithGoogleImplCopyWith<$Res> {
+  factory _$$AuthSignInWithGoogleImplCopyWith(_$AuthSignInWithGoogleImpl value,
+          $Res Function(_$AuthSignInWithGoogleImpl) then) =
+      __$$AuthSignInWithGoogleImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AuthSignInWithGoogleImplCopyWithImpl<$Res>
+    extends _$AuthSignInEventCopyWithImpl<$Res, _$AuthSignInWithGoogleImpl>
+    implements _$$AuthSignInWithGoogleImplCopyWith<$Res> {
+  __$$AuthSignInWithGoogleImplCopyWithImpl(_$AuthSignInWithGoogleImpl _value,
+      $Res Function(_$AuthSignInWithGoogleImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AuthSignInWithGoogleImpl implements AuthSignInWithGoogle {
+  const _$AuthSignInWithGoogleImpl();
+
+  @override
+  String toString() {
+    return 'AuthSignInEvent.signInWithGoogle()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthSignInWithGoogleImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() signInWithEmailAndPassword,
+    required TResult Function() signInWithGoogle,
+    required TResult Function(String password) changePassword,
+    required TResult Function(String email) changeEmail,
+  }) {
+    return signInWithGoogle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? signInWithEmailAndPassword,
+    TResult? Function()? signInWithGoogle,
+    TResult? Function(String password)? changePassword,
+    TResult? Function(String email)? changeEmail,
+  }) {
+    return signInWithGoogle?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? signInWithEmailAndPassword,
+    TResult Function()? signInWithGoogle,
+    TResult Function(String password)? changePassword,
+    TResult Function(String email)? changeEmail,
+    required TResult orElse(),
+  }) {
+    if (signInWithGoogle != null) {
+      return signInWithGoogle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthSignInWithEmailAndPassword value)
+        signInWithEmailAndPassword,
+    required TResult Function(AuthSignInWithGoogle value) signInWithGoogle,
+    required TResult Function(AuthSignInChangePassword value) changePassword,
+    required TResult Function(AuthSignInChangeEmail value) changeEmail,
+  }) {
+    return signInWithGoogle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthSignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult? Function(AuthSignInWithGoogle value)? signInWithGoogle,
+    TResult? Function(AuthSignInChangePassword value)? changePassword,
+    TResult? Function(AuthSignInChangeEmail value)? changeEmail,
+  }) {
+    return signInWithGoogle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthSignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult Function(AuthSignInWithGoogle value)? signInWithGoogle,
+    TResult Function(AuthSignInChangePassword value)? changePassword,
+    TResult Function(AuthSignInChangeEmail value)? changeEmail,
+    required TResult orElse(),
+  }) {
+    if (signInWithGoogle != null) {
+      return signInWithGoogle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthSignInWithGoogle implements AuthSignInEvent {
+  const factory AuthSignInWithGoogle() = _$AuthSignInWithGoogleImpl;
+}
+
+/// @nodoc
+abstract class _$$AuthSignInChangePasswordImplCopyWith<$Res> {
+  factory _$$AuthSignInChangePasswordImplCopyWith(
+          _$AuthSignInChangePasswordImpl value,
+          $Res Function(_$AuthSignInChangePasswordImpl) then) =
+      __$$AuthSignInChangePasswordImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String password});
+}
+
+/// @nodoc
+class __$$AuthSignInChangePasswordImplCopyWithImpl<$Res>
+    extends _$AuthSignInEventCopyWithImpl<$Res, _$AuthSignInChangePasswordImpl>
+    implements _$$AuthSignInChangePasswordImplCopyWith<$Res> {
+  __$$AuthSignInChangePasswordImplCopyWithImpl(
+      _$AuthSignInChangePasswordImpl _value,
+      $Res Function(_$AuthSignInChangePasswordImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? password = null,
+  }) {
+    return _then(_$AuthSignInChangePasswordImpl(
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AuthSignInChangePasswordImpl implements AuthSignInChangePassword {
+  const _$AuthSignInChangePasswordImpl({required this.password});
+
+  @override
+  final String password;
+
+  @override
+  String toString() {
+    return 'AuthSignInEvent.changePassword(password: $password)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthSignInChangePasswordImpl &&
+            (identical(other.password, password) ||
+                other.password == password));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, password);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthSignInChangePasswordImplCopyWith<_$AuthSignInChangePasswordImpl>
+      get copyWith => __$$AuthSignInChangePasswordImplCopyWithImpl<
+          _$AuthSignInChangePasswordImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() signInWithEmailAndPassword,
+    required TResult Function() signInWithGoogle,
+    required TResult Function(String password) changePassword,
+    required TResult Function(String email) changeEmail,
+  }) {
+    return changePassword(password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? signInWithEmailAndPassword,
+    TResult? Function()? signInWithGoogle,
+    TResult? Function(String password)? changePassword,
+    TResult? Function(String email)? changeEmail,
+  }) {
+    return changePassword?.call(password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? signInWithEmailAndPassword,
+    TResult Function()? signInWithGoogle,
+    TResult Function(String password)? changePassword,
+    TResult Function(String email)? changeEmail,
+    required TResult orElse(),
+  }) {
+    if (changePassword != null) {
+      return changePassword(password);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthSignInWithEmailAndPassword value)
+        signInWithEmailAndPassword,
+    required TResult Function(AuthSignInWithGoogle value) signInWithGoogle,
+    required TResult Function(AuthSignInChangePassword value) changePassword,
+    required TResult Function(AuthSignInChangeEmail value) changeEmail,
+  }) {
+    return changePassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthSignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult? Function(AuthSignInWithGoogle value)? signInWithGoogle,
+    TResult? Function(AuthSignInChangePassword value)? changePassword,
+    TResult? Function(AuthSignInChangeEmail value)? changeEmail,
+  }) {
+    return changePassword?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthSignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult Function(AuthSignInWithGoogle value)? signInWithGoogle,
+    TResult Function(AuthSignInChangePassword value)? changePassword,
+    TResult Function(AuthSignInChangeEmail value)? changeEmail,
+    required TResult orElse(),
+  }) {
+    if (changePassword != null) {
+      return changePassword(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthSignInChangePassword implements AuthSignInEvent {
+  const factory AuthSignInChangePassword({required final String password}) =
+      _$AuthSignInChangePasswordImpl;
+
+  String get password;
+  @JsonKey(ignore: true)
+  _$$AuthSignInChangePasswordImplCopyWith<_$AuthSignInChangePasswordImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AuthSignInChangeEmailImplCopyWith<$Res> {
+  factory _$$AuthSignInChangeEmailImplCopyWith(
+          _$AuthSignInChangeEmailImpl value,
+          $Res Function(_$AuthSignInChangeEmailImpl) then) =
+      __$$AuthSignInChangeEmailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String email});
+}
+
+/// @nodoc
+class __$$AuthSignInChangeEmailImplCopyWithImpl<$Res>
+    extends _$AuthSignInEventCopyWithImpl<$Res, _$AuthSignInChangeEmailImpl>
+    implements _$$AuthSignInChangeEmailImplCopyWith<$Res> {
+  __$$AuthSignInChangeEmailImplCopyWithImpl(_$AuthSignInChangeEmailImpl _value,
+      $Res Function(_$AuthSignInChangeEmailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+  }) {
+    return _then(_$AuthSignInChangeEmailImpl(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AuthSignInChangeEmailImpl implements AuthSignInChangeEmail {
+  const _$AuthSignInChangeEmailImpl({required this.email});
+
+  @override
+  final String email;
+
+  @override
+  String toString() {
+    return 'AuthSignInEvent.changeEmail(email: $email)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthSignInChangeEmailImpl &&
+            (identical(other.email, email) || other.email == email));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, email);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthSignInChangeEmailImplCopyWith<_$AuthSignInChangeEmailImpl>
+      get copyWith => __$$AuthSignInChangeEmailImplCopyWithImpl<
+          _$AuthSignInChangeEmailImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() signInWithEmailAndPassword,
+    required TResult Function() signInWithGoogle,
+    required TResult Function(String password) changePassword,
+    required TResult Function(String email) changeEmail,
+  }) {
+    return changeEmail(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? signInWithEmailAndPassword,
+    TResult? Function()? signInWithGoogle,
+    TResult? Function(String password)? changePassword,
+    TResult? Function(String email)? changeEmail,
+  }) {
+    return changeEmail?.call(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? signInWithEmailAndPassword,
+    TResult Function()? signInWithGoogle,
+    TResult Function(String password)? changePassword,
+    TResult Function(String email)? changeEmail,
+    required TResult orElse(),
+  }) {
+    if (changeEmail != null) {
+      return changeEmail(email);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthSignInWithEmailAndPassword value)
+        signInWithEmailAndPassword,
+    required TResult Function(AuthSignInWithGoogle value) signInWithGoogle,
+    required TResult Function(AuthSignInChangePassword value) changePassword,
+    required TResult Function(AuthSignInChangeEmail value) changeEmail,
+  }) {
+    return changeEmail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthSignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult? Function(AuthSignInWithGoogle value)? signInWithGoogle,
+    TResult? Function(AuthSignInChangePassword value)? changePassword,
+    TResult? Function(AuthSignInChangeEmail value)? changeEmail,
+  }) {
+    return changeEmail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthSignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult Function(AuthSignInWithGoogle value)? signInWithGoogle,
+    TResult Function(AuthSignInChangePassword value)? changePassword,
+    TResult Function(AuthSignInChangeEmail value)? changeEmail,
+    required TResult orElse(),
+  }) {
+    if (changeEmail != null) {
+      return changeEmail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthSignInChangeEmail implements AuthSignInEvent {
+  const factory AuthSignInChangeEmail({required final String email}) =
+      _$AuthSignInChangeEmailImpl;
+
+  String get email;
+  @JsonKey(ignore: true)
+  _$$AuthSignInChangeEmailImplCopyWith<_$AuthSignInChangeEmailImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$AuthSignInState {
+  FocusNode get passwordFocusNode => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthSignInStateCopyWith<AuthSignInState> get copyWith =>
@@ -180,7 +653,12 @@ abstract class $AuthSignInStateCopyWith<$Res> {
           AuthSignInState value, $Res Function(AuthSignInState) then) =
       _$AuthSignInStateCopyWithImpl<$Res, AuthSignInState>;
   @useResult
-  $Res call({bool isLoading, String? errorMessage});
+  $Res call(
+      {FocusNode passwordFocusNode,
+      bool isLoading,
+      String? errorMessage,
+      String email,
+      String password});
 }
 
 /// @nodoc
@@ -196,10 +674,17 @@ class _$AuthSignInStateCopyWithImpl<$Res, $Val extends AuthSignInState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? passwordFocusNode = null,
     Object? isLoading = null,
     Object? errorMessage = freezed,
+    Object? email = null,
+    Object? password = null,
   }) {
     return _then(_value.copyWith(
+      passwordFocusNode: null == passwordFocusNode
+          ? _value.passwordFocusNode
+          : passwordFocusNode // ignore: cast_nullable_to_non_nullable
+              as FocusNode,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -208,6 +693,14 @@ class _$AuthSignInStateCopyWithImpl<$Res, $Val extends AuthSignInState>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -220,7 +713,12 @@ abstract class _$$AuthSignInStateImplCopyWith<$Res>
       __$$AuthSignInStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, String? errorMessage});
+  $Res call(
+      {FocusNode passwordFocusNode,
+      bool isLoading,
+      String? errorMessage,
+      String email,
+      String password});
 }
 
 /// @nodoc
@@ -234,10 +732,17 @@ class __$$AuthSignInStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? passwordFocusNode = null,
     Object? isLoading = null,
     Object? errorMessage = freezed,
+    Object? email = null,
+    Object? password = null,
   }) {
     return _then(_$AuthSignInStateImpl(
+      passwordFocusNode: null == passwordFocusNode
+          ? _value.passwordFocusNode
+          : passwordFocusNode // ignore: cast_nullable_to_non_nullable
+              as FocusNode,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -246,6 +751,14 @@ class __$$AuthSignInStateImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -254,18 +767,30 @@ class __$$AuthSignInStateImplCopyWithImpl<$Res>
 
 class _$AuthSignInStateImpl implements _AuthSignInState {
   const _$AuthSignInStateImpl(
-      {this.isLoading = false, this.errorMessage = null});
+      {required this.passwordFocusNode,
+      this.isLoading = false,
+      this.errorMessage = null,
+      this.email = '',
+      this.password = ''});
 
+  @override
+  final FocusNode passwordFocusNode;
   @override
   @JsonKey()
   final bool isLoading;
   @override
   @JsonKey()
   final String? errorMessage;
+  @override
+  @JsonKey()
+  final String email;
+  @override
+  @JsonKey()
+  final String password;
 
   @override
   String toString() {
-    return 'AuthSignInState(isLoading: $isLoading, errorMessage: $errorMessage)';
+    return 'AuthSignInState(passwordFocusNode: $passwordFocusNode, isLoading: $isLoading, errorMessage: $errorMessage, email: $email, password: $password)';
   }
 
   @override
@@ -273,14 +798,20 @@ class _$AuthSignInStateImpl implements _AuthSignInState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthSignInStateImpl &&
+            (identical(other.passwordFocusNode, passwordFocusNode) ||
+                other.passwordFocusNode == passwordFocusNode) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+                other.errorMessage == errorMessage) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType, passwordFocusNode, isLoading, errorMessage, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -292,13 +823,22 @@ class _$AuthSignInStateImpl implements _AuthSignInState {
 
 abstract class _AuthSignInState implements AuthSignInState {
   const factory _AuthSignInState(
-      {final bool isLoading,
-      final String? errorMessage}) = _$AuthSignInStateImpl;
+      {required final FocusNode passwordFocusNode,
+      final bool isLoading,
+      final String? errorMessage,
+      final String email,
+      final String password}) = _$AuthSignInStateImpl;
 
+  @override
+  FocusNode get passwordFocusNode;
   @override
   bool get isLoading;
   @override
   String? get errorMessage;
+  @override
+  String get email;
+  @override
+  String get password;
   @override
   @JsonKey(ignore: true)
   _$$AuthSignInStateImplCopyWith<_$AuthSignInStateImpl> get copyWith =>

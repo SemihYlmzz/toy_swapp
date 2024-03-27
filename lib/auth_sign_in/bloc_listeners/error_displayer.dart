@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../auth_sign_in.dart';
 
-extension AuthSignInErrorDisplayer on AuthSignInBlocListeners {
+extension ErrorDisplayer on AuthSignInBlocListeners {
   BlocListener<AuthSignInBloc, AuthSignInState> errorDisplayer() {
     return BlocListener(
       listener: (context, state) {
@@ -9,7 +9,7 @@ extension AuthSignInErrorDisplayer on AuthSignInBlocListeners {
         if (errorMessage == null) {
           return;
         }
-        print('Error: $errorMessage');
+        print(errorMessage);
         // ErrorSnackbars.showSnackBar(context, errorMessage);
       },
     );
