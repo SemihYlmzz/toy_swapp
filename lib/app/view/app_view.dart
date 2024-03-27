@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../themes/themes.dart';
+
 class AppView extends StatelessWidget {
   const AppView({
     required this.localizationsDelegates,
@@ -14,23 +16,23 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+
       // Configurations
       debugShowCheckedModeBanner: false,
 
       // Theme
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        ),
-        useMaterial3: true,
-      ),
+      theme: ThemeData(),
+      darkTheme: CustomThemeData.themeData(const DefaultDarkPalette()),
+      //* themeMode: widget.currentDevicePreferences.themeMode,
 
       // Localization
       localizationsDelegates: localizationsDelegates,
       supportedLocales: supportedLocales,
+      //* locale: currentLocale,
 
       // Router
       routerConfig: appRouter,
+
     );
   }
 }

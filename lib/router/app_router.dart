@@ -15,8 +15,7 @@ class AppRouter {
   final GlobalKey<NavigatorState> parentNavigatorKey =
       GlobalKey<NavigatorState>();
 
-  GoRouter router(
-          // Stream<dynamic> authStream
+  GoRouter router(// Stream<dynamic> authStream
           ) =>
       GoRouter(
         initialLocation: AuthSignInRouter.instance.path,
