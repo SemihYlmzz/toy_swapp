@@ -10,6 +10,14 @@ dependencies:
   flutter:
     sdk: flutter
 
+  shared_widgets: 
+    git:
+      url: https://github.com/SemihYlmzz/shared_widgets.git
+      ref: main
+  shared_constants: 
+    git:
+      url: https://github.com/SemihYlmzz/shared_constants.git
+      ref: main
   # Annotations
   json_annotation: ^4.8.1
   freezed_annotation: ^2.4.1
