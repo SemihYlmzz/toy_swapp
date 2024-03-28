@@ -1,25 +1,63 @@
-import 'package:flutter/widgets.dart';
+import 'package:current_user_preferences_repository/current_user_preferences_repository_api.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_widgets/shared_widgets.dart';
 
-import 'view.dart';
+import '../app.dart';
 
 class AppScreen extends StatelessWidget {
   const AppScreen({
     required this.localizationsDelegates,
     required this.supportedLocales,
     required this.appRouter,
+    required CurrentUserPreferencesRepository currentUserPreferencesRepository,
     super.key,
-  });
+  }) : _currentUserPreferencesRepository = currentUserPreferencesRepository;
 
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
   final Iterable<Locale> supportedLocales;
   final RouterConfig<Object>? appRouter;
+  // Repos
+  final CurrentUserPreferencesRepository _currentUserPreferencesRepository;
 
   @override
   Widget build(BuildContext context) {
-    return AppView(
-      localizationsDelegates: localizationsDelegates,
-      appRouter: appRouter,
-      supportedLocales: supportedLocales,
+    return MultiBlocProvider(
+      providers: [
+        // Repositories
+        Provider.value(value: _currentUserPreferencesRepository),
+        // APP Bloc
+        BlocProvider(
+          create: (context) => AppBloc(
+            currentUserPreferencesRepository: _currentUserPreferencesRepository,
+          )..add(AppEvent.initializeCurrentUserPreferences()),
+        ),
+      ],
+      child: BlocBuilder<AppBloc, AppState>(
+        builder: (context, state) {
+          if (state.currentUserPreferences != null) {
+            return AppView(
+              localizationsDelegates: localizationsDelegates,
+              appRouter: appRouter,
+              supportedLocales: supportedLocales,
+            );
+          }
+          if (state.isInitError) {
+            return const Scaffold();
+          }
+          return const MaterialApp(
+            home: Material(
+              child: BaseColumn(
+                children: [
+                  Text('Loading...'),
+                  CircularProgressIndicator(),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

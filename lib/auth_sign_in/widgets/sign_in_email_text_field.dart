@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 import 'package:toy_swapp/l10n/l10n.dart';
+import '../../app/app.dart';
 import '../auth_sign_in.dart';
 
 
@@ -13,7 +14,7 @@ class SignInEmailTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.select(
-      (AppBloc bloc) => bloc.state.currentDevicePreferences!.language,
+      (AppBloc bloc) => bloc.state.currentUserPreferences!.language,
     );
     return GradientTextField(
       hintText: context.l10n.email,

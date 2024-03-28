@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toy_swapp/l10n/l10n.dart';
 
 class ForgotPasswordNavigationButton extends StatelessWidget {
   const ForgotPasswordNavigationButton({
@@ -11,7 +12,7 @@ class ForgotPasswordNavigationButton extends StatelessWidget {
       onPressed: () {
         // AuthForgotPasswordRouter.instance.push(context);
       },
-      child: const Text('context.l10n.forgot_password'),
+      child: Text(context.l10n.forgotPassword),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_widgets/shared_widgets.dart';
+import 'package:toy_swapp/app/app.dart';
 import '../auth_sign_in.dart';
 
 class AuthSignInView extends StatelessWidget {
@@ -9,7 +10,7 @@ class AuthSignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.select(
-      (AppBloc bloc) => bloc.state.currentDevicePreferences!.language,
+      (AppBloc bloc) => bloc.state.currentUserPreferences!.language,
     );
 
     return const BaseScaffold(
