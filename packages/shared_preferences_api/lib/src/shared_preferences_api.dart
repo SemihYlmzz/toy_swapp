@@ -15,24 +15,41 @@ class SharedPreferencesApi extends LocalDatabaseApi {
     String key, {
     required Map<String, dynamic> data,
   }) async {
-    final encodedPreferences = jsonEncode(data);
-    await _sharedPreferences.setString(key, encodedPreferences);
+    try {
+      final dataJsonString = jsonEncode(data);
+      await _sharedPreferences.setString(key, dataJsonString);
+    } catch (exception) {
+      throw Exception('Error creating data in SharedPreferences');
+    }
   }
 
   @override
   Future<Map<String, dynamic>?> read(
     String key,
   ) async {
-    final encodedPreferencesModel = _sharedPreferences.getString(key);
+    try {
+      final dataJsonString = _sharedPreferences.getString(key);
+      if (dataJsonString == null) {
+        return null;
+      }
 
-    if (encodedPreferencesModel == null) {
-      return null;
+      final dataJson = jsonDecode(dataJsonString) as Map<String, dynamic>;
+      print(dataJson);
+      return dataJson;
+    } catch (exception) {
+      throw Exception('Error reading data from SharedPreferences');
     }
-    return jsonDecode(encodedPreferencesModel) as Map<String, dynamic>;
   }
 
   @override
-  Future<void> update() async {}
+  Future<void> update(
+    String key, {
+    required Map<String, dynamic> data,
+  }) async {
+    final encodedData = jsonEncode(data);
+    await _sharedPreferences.setString(key, encodedData);
+  }
+
   @override
   Future<void> delete() async {}
 }

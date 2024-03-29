@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:current_user_preferences_repository/src/constants/strings.dart';
+import 'package:flutter/material.dart';
 import 'package:local_database_api/local_database_api.dart';
 
+import 'enums/enums.dart';
 import 'models/current_user_preferences.dart';
 
 class CurrentUserPreferencesRepository {
@@ -39,8 +41,49 @@ class CurrentUserPreferencesRepository {
     final currentUserPreferences = CurrentUserPreferences.fromJson(
       currentUserPreferencesJson,
     );
-
     _currentUserStreamController.sink.add(currentUserPreferences);
+  }
+
+  Future<void> updateTheme({required ThemeMode updatedThemeMode}) async {
+    if (currentUserPreferences == null) {
+      // Exception: Need to read the current user preferences before updating
+      return;
+    }
+    final updatedPreferences =
+        currentUserPreferences!.copyWith(themeMode: updatedThemeMode);
+    await localDatabaseApi.update(
+      CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
+      data: updatedPreferences.toJson(),
+    );
+    _currentUserStreamController.sink.add(updatedPreferences);
+  }
+
+  Future<void> updateLanguage({required Language updatedLanguage}) async {
+    if (currentUserPreferences == null) {
+      // Exception: Need to read the current user preferences before updating
+      return;
+    }
+    final updatedPreferences =
+        currentUserPreferences!.copyWith(language: updatedLanguage);
+    await localDatabaseApi.update(
+      CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
+      data: updatedPreferences.toJson(),
+    );
+    _currentUserStreamController.sink.add(updatedPreferences);
+  }
+
+  Future<void> updateIsVibratable({required bool updatedIsVibratable}) async {
+    if (currentUserPreferences == null) {
+      // Exception: Need to read the current user preferences before updating
+      return;
+    }
+    final updatedPreferences =
+        currentUserPreferences!.copyWith(isVibratable: updatedIsVibratable);
+    await localDatabaseApi.update(
+      CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
+      data: updatedPreferences.toJson(),
+    );
+    _currentUserStreamController.sink.add(updatedPreferences);
   }
 
   // Data Manipulation

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
-
-import '../auth_sign_in/auth_sign_in.dart';
+import 'package:toy_swapp/example_settings/example_settings.dart';
 
 class AppRouter {
   factory AppRouter() {
@@ -18,10 +17,10 @@ class AppRouter {
   GoRouter router(// Stream<dynamic> authStream
           ) =>
       GoRouter(
-        initialLocation: AuthSignInRouter.instance.path,
+        initialLocation: ExampleSettingsRouter.instance.path,
         navigatorKey: parentNavigatorKey,
         routes: [
-          AuthSignInRouter.instance.route,
+          ExampleSettingsRouter.instance.route,
           // AuthSignUpRouter.instance.route,
           // UserInitializerRouter.instance.route,
         ],

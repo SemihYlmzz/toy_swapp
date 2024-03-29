@@ -21,7 +21,7 @@ CurrentUserPreferences _$CurrentUserPreferencesFromJson(
 
 /// @nodoc
 mixin _$CurrentUserPreferences {
-  bool get isVibrationEnabled => throw _privateConstructorUsedError;
+  bool get isVibratable => throw _privateConstructorUsedError;
   Language get language => throw _privateConstructorUsedError;
   ThemeMode get themeMode => throw _privateConstructorUsedError;
 
@@ -37,7 +37,7 @@ abstract class $CurrentUserPreferencesCopyWith<$Res> {
           $Res Function(CurrentUserPreferences) then) =
       _$CurrentUserPreferencesCopyWithImpl<$Res, CurrentUserPreferences>;
   @useResult
-  $Res call({bool isVibrationEnabled, Language language, ThemeMode themeMode});
+  $Res call({bool isVibratable, Language language, ThemeMode themeMode});
 }
 
 /// @nodoc
@@ -54,14 +54,14 @@ class _$CurrentUserPreferencesCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isVibrationEnabled = null,
+    Object? isVibratable = null,
     Object? language = null,
     Object? themeMode = null,
   }) {
     return _then(_value.copyWith(
-      isVibrationEnabled: null == isVibrationEnabled
-          ? _value.isVibrationEnabled
-          : isVibrationEnabled // ignore: cast_nullable_to_non_nullable
+      isVibratable: null == isVibratable
+          ? _value.isVibratable
+          : isVibratable // ignore: cast_nullable_to_non_nullable
               as bool,
       language: null == language
           ? _value.language
@@ -84,7 +84,7 @@ abstract class _$$CurrentUserPreferencesImplCopyWith<$Res>
       __$$CurrentUserPreferencesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isVibrationEnabled, Language language, ThemeMode themeMode});
+  $Res call({bool isVibratable, Language language, ThemeMode themeMode});
 }
 
 /// @nodoc
@@ -100,14 +100,14 @@ class __$$CurrentUserPreferencesImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isVibrationEnabled = null,
+    Object? isVibratable = null,
     Object? language = null,
     Object? themeMode = null,
   }) {
     return _then(_$CurrentUserPreferencesImpl(
-      isVibrationEnabled: null == isVibrationEnabled
-          ? _value.isVibrationEnabled
-          : isVibrationEnabled // ignore: cast_nullable_to_non_nullable
+      isVibratable: null == isVibratable
+          ? _value.isVibratable
+          : isVibratable // ignore: cast_nullable_to_non_nullable
               as bool,
       language: null == language
           ? _value.language
@@ -125,7 +125,7 @@ class __$$CurrentUserPreferencesImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CurrentUserPreferencesImpl implements _CurrentUserPreferences {
   const _$CurrentUserPreferencesImpl(
-      {this.isVibrationEnabled = true,
+      {this.isVibratable = true,
       this.language = Language.deviceLanguage,
       this.themeMode = ThemeMode.system});
 
@@ -134,7 +134,7 @@ class _$CurrentUserPreferencesImpl implements _CurrentUserPreferences {
 
   @override
   @JsonKey()
-  final bool isVibrationEnabled;
+  final bool isVibratable;
   @override
   @JsonKey()
   final Language language;
@@ -144,7 +144,7 @@ class _$CurrentUserPreferencesImpl implements _CurrentUserPreferences {
 
   @override
   String toString() {
-    return 'CurrentUserPreferences(isVibrationEnabled: $isVibrationEnabled, language: $language, themeMode: $themeMode)';
+    return 'CurrentUserPreferences(isVibratable: $isVibratable, language: $language, themeMode: $themeMode)';
   }
 
   @override
@@ -152,8 +152,8 @@ class _$CurrentUserPreferencesImpl implements _CurrentUserPreferences {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CurrentUserPreferencesImpl &&
-            (identical(other.isVibrationEnabled, isVibrationEnabled) ||
-                other.isVibrationEnabled == isVibrationEnabled) &&
+            (identical(other.isVibratable, isVibratable) ||
+                other.isVibratable == isVibratable) &&
             (identical(other.language, language) ||
                 other.language == language) &&
             (identical(other.themeMode, themeMode) ||
@@ -163,7 +163,7 @@ class _$CurrentUserPreferencesImpl implements _CurrentUserPreferences {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, isVibrationEnabled, language, themeMode);
+      Object.hash(runtimeType, isVibratable, language, themeMode);
 
   @JsonKey(ignore: true)
   @override
@@ -182,7 +182,7 @@ class _$CurrentUserPreferencesImpl implements _CurrentUserPreferences {
 
 abstract class _CurrentUserPreferences implements CurrentUserPreferences {
   const factory _CurrentUserPreferences(
-      {final bool isVibrationEnabled,
+      {final bool isVibratable,
       final Language language,
       final ThemeMode themeMode}) = _$CurrentUserPreferencesImpl;
 
@@ -190,7 +190,7 @@ abstract class _CurrentUserPreferences implements CurrentUserPreferences {
       _$CurrentUserPreferencesImpl.fromJson;
 
   @override
-  bool get isVibrationEnabled;
+  bool get isVibratable;
   @override
   Language get language;
   @override

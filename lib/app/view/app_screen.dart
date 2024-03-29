@@ -27,7 +27,8 @@ class AppScreen extends StatelessWidget {
       providers: [
         // Repositories
         Provider.value(value: _currentUserPreferencesRepository),
-        // APP Bloc
+
+        // Bloc
         BlocProvider(
           create: (context) => AppBloc(
             currentUserPreferencesRepository: _currentUserPreferencesRepository,
@@ -41,6 +42,7 @@ class AppScreen extends StatelessWidget {
               localizationsDelegates: localizationsDelegates,
               appRouter: appRouter,
               supportedLocales: supportedLocales,
+              currentUserPreferences: state.currentUserPreferences!,
             );
           }
           if (state.isInitError) {

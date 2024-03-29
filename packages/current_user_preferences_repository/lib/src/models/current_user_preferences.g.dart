@@ -9,7 +9,7 @@ part of 'current_user_preferences.dart';
 _$CurrentUserPreferencesImpl _$$CurrentUserPreferencesImplFromJson(
         Map<String, dynamic> json) =>
     _$CurrentUserPreferencesImpl(
-      isVibrationEnabled: json['isVibrationEnabled'] as bool? ?? true,
+      isVibratable: json['isVibratable'] as bool? ?? true,
       language: $enumDecodeNullable(_$LanguageEnumMap, json['language']) ??
           Language.deviceLanguage,
       themeMode: $enumDecodeNullable(_$ThemeModeEnumMap, json['themeMode']) ??
@@ -19,7 +19,7 @@ _$CurrentUserPreferencesImpl _$$CurrentUserPreferencesImplFromJson(
 Map<String, dynamic> _$$CurrentUserPreferencesImplToJson(
         _$CurrentUserPreferencesImpl instance) =>
     <String, dynamic>{
-      'isVibrationEnabled': instance.isVibrationEnabled,
+      'isVibratable': instance.isVibratable,
       'language': _$LanguageEnumMap[instance.language]!,
       'themeMode': _$ThemeModeEnumMap[instance.themeMode]!,
     };
