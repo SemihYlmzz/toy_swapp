@@ -1,4 +1,4 @@
-name: current_user_preferences_repository
+name: shared_preferences_api
 description: description
 version: 0.1.0+1
 publish_to: none
@@ -17,6 +17,9 @@ dependencies:
   # Annotations
   json_annotation: ^4.8.1
   freezed_annotation: ^2.4.1
+
+  # Shared Preferences
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   very_good_analysis: ^5.1.0

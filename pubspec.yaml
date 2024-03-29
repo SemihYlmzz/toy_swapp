@@ -19,9 +19,19 @@ dependencies:
     git:
       url: https://github.com/SemihYlmzz/shared_constants.git
       ref: main
+  
+
   # Current User Preferences Repository
   current_user_preferences_repository:
     path: packages/current_user_preferences_repository
+
+  # Local Database API
+  local_database_api:
+    path: packages/local_database_api
+    
+  # Shared Preferences API
+  shared_preferences_api:
+    path: packages/shared_preferences_api
 
   # Annotations
   json_annotation: ^4.8.1

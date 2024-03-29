@@ -1,13 +1,48 @@
 import 'dart:async';
 
+import 'package:current_user_preferences_repository/src/constants/strings.dart';
+import 'package:local_database_api/local_database_api.dart';
+
 import 'models/current_user_preferences.dart';
 
 class CurrentUserPreferencesRepository {
-  CurrentUserPreferencesRepository() {
+  CurrentUserPreferencesRepository({
+    required this.localDatabaseApi,
+  }) {
     currentUserPreferencesStream.listen((event) {
       currentUserPreferences = event;
     });
   }
+
+  // Data Bases
+  final LocalDatabaseApi localDatabaseApi;
+
+  // Functions
+  Future<void> create() async {
+    const creatableUserPreferences = CurrentUserPreferences();
+    await localDatabaseApi.create(
+      CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
+      data: creatableUserPreferences.toJson(),
+    );
+    _currentUserStreamController.sink.add(creatableUserPreferences);
+  }
+
+  Future<void> read() async {
+    final currentUserPreferencesJson = await localDatabaseApi.read(
+      CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
+    );
+
+    if (currentUserPreferencesJson == null) {
+      return create();
+    }
+
+    final currentUserPreferences = CurrentUserPreferences.fromJson(
+      currentUserPreferencesJson,
+    );
+
+    _currentUserStreamController.sink.add(currentUserPreferences);
+  }
+
   // Data Manipulation
   final _currentUserStreamController =
       StreamController<CurrentUserPreferences>.broadcast();
@@ -16,16 +51,4 @@ class CurrentUserPreferencesRepository {
       _currentUserStreamController.stream;
 
   CurrentUserPreferences? currentUserPreferences;
-
-  // Functions
-  Future<void> create() async {
-    await Future<void>.delayed(const Duration(seconds: 2));
-    _currentUserStreamController.sink.add(const CurrentUserPreferences());
-  }
-
-  Future<CurrentUserPreferences?> read() async {
-    await Future<void>.delayed(const Duration(seconds: 2));
-    _currentUserStreamController.sink.add(const CurrentUserPreferences());
-    return const CurrentUserPreferences();
-  }
 }
