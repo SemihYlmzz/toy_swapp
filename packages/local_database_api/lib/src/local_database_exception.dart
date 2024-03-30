@@ -1,5 +1,11 @@
-sealed class LocalDatabaseException implements Exception {
-  const LocalDatabaseException();
-}
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class LocalDatabaseUnknown extends LocalDatabaseException {}
+part 'local_database_exception.freezed.dart';
+
+@freezed
+sealed class LocalDatabaseException
+    with _$LocalDatabaseException
+    implements Exception {
+  const factory LocalDatabaseException.unknown() =
+      LocalDatabaseExceptionUnknown;
+}

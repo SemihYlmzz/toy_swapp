@@ -50,7 +50,10 @@ dependencies:
   # Localization
   flutter_localizations:
     sdk: flutter
-
+  
+  # Loggers
+  logging: ^1.2.0
+  
 dev_dependencies:
 
   # Tests

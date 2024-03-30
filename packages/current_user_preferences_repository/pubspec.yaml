@@ -9,6 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  # App For Failure
+  toy_swapp:
+    path: ../../
 
   # Local Database API
   local_database_api:
@@ -17,6 +21,9 @@ dependencies:
   # Annotations
   json_annotation: ^4.8.1
   freezed_annotation: ^2.4.1
+  
+  # Dart Specific
+  fpdart: ^1.1.0
 
 dev_dependencies:
   very_good_analysis: ^5.1.0

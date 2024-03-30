@@ -34,7 +34,6 @@ class SharedPreferencesApi extends LocalDatabaseApi {
       }
 
       final dataJson = jsonDecode(dataJsonString) as Map<String, dynamic>;
-      print(dataJson);
       return dataJson;
     } catch (exception) {
       throw Exception('Error reading data from SharedPreferences');
@@ -46,8 +45,12 @@ class SharedPreferencesApi extends LocalDatabaseApi {
     String key, {
     required Map<String, dynamic> data,
   }) async {
-    final encodedData = jsonEncode(data);
-    await _sharedPreferences.setString(key, encodedData);
+    try {
+      final encodedData = jsonEncode(data);
+      await _sharedPreferences.setString(key, encodedData);
+    } catch (exception) {
+      throw const LocalDatabaseException.unknown();
+    }
   }
 
   @override

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ExampleSettingsAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const ExampleSettingsAppBar({
+class StartupAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const StartupAppBar({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Example Settings Screen'),
+      title: const Text('Startup Screen'),
     );
   }
 

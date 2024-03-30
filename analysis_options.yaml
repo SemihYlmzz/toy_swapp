@@ -1,4 +1,12 @@
-include: package:very_good_analysis/analysis_options.5.1.0.yaml
+include: package:very_good_analysis/analysis_options.yaml
+analyzer: 
+  exclude:
+    - lib/common/gen/l10n/intl/messages_all.dart
+    - lib/common/gen/l10n/intl/messages_en.dart
+    - lib/common/gen/l10n/intl/messages_tr.dart
+    - lib/common/gen/l10n/l10n.dart
+    - lib/**/*.g.dart
+    
 linter:
   rules:
     public_member_api_docs: false

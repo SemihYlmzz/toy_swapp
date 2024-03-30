@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:current_user_preferences_repository/src/constants/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:local_database_api/local_database_api.dart';
 
-import 'enums/enums.dart';
-import 'models/current_user_preferences.dart';
+import '../current_user_preferences_repository_api.dart';
 
 class CurrentUserPreferencesRepository {
   CurrentUserPreferencesRepository({
@@ -72,18 +72,31 @@ class CurrentUserPreferencesRepository {
     _currentUserStreamController.sink.add(updatedPreferences);
   }
 
-  Future<void> updateIsVibratable({required bool updatedIsVibratable}) async {
-    if (currentUserPreferences == null) {
-      // Exception: Need to read the current user preferences before updating
-      return;
+  Future<Either<CurrentUserPreferencesRepositoryFailure, Unit>>
+      updateIsVibratable({required bool updatedIsVibratable}) async {
+    try {
+      if (currentUserPreferences == null) {
+        // Exception: Need to read the current user preferences before updating
+        return const Left(
+          CurrentUserPreferencesRepositoryFailure.initRequired(),
+        );
+      }
+      final updatedPreferences = currentUserPreferences!.copyWith(
+        isVibratable: updatedIsVibratable,
+      );
+      await localDatabaseApi.update(
+        CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
+        data: updatedPreferences.toJson(),
+      );
+      _currentUserStreamController.sink.add(updatedPreferences);
+      return const Right(unit);
+    } on LocalDatabaseException catch (exception) {
+      return exception.map(
+        unknown: (value) => const Left(
+          CurrentUserPreferencesRepositoryFailure.unknown(),
+        ),
+      );
     }
-    final updatedPreferences =
-        currentUserPreferences!.copyWith(isVibratable: updatedIsVibratable);
-    await localDatabaseApi.update(
-      CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
-      data: updatedPreferences.toJson(),
-    );
-    _currentUserStreamController.sink.add(updatedPreferences);
   }
 
   // Data Manipulation
