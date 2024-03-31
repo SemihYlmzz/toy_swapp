@@ -11,27 +11,7 @@ extension StartupInitializedNavigator on StartupBlocListeners {
         application,
   }) {
     return BlocListener(
-      listener: (context, state) async {
-        if (state.isInitializing) {
-          return;
-        }
-        if (state.isInitializeError) {
-          return;
-        }
-        if (state.localDatabaseApis == null) {
-          return;
-        }
-
-        final app = await application(
-          state.localDatabaseApis!,
-        );
-        if (!context.mounted) {
-          return;
-        }
-        await Navigator.of(context).push(
-          MaterialPageRoute<void>(builder: (_) => app),
-        );
-      },
+      listener: (context, state) async {},
     );
   }
 }

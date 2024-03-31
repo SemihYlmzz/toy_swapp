@@ -47,7 +47,16 @@ class StartupScreen extends StatelessWidget {
               application: _application,
             ),
           ],
-          child: const StartupView(),
+          child: BlocBuilder<StartupBloc, StartupState>(
+            builder: (context, state) {
+              // if(state.isInitializeError){
+              //   return StartupErrorView();
+              // }
+              return StartupView(
+                application: _application,
+              );
+            },
+          ),
         ),
       ),
     );

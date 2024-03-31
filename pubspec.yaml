@@ -33,6 +33,9 @@ dependencies:
   shared_preferences_api:
     path: packages/shared_preferences_api
 
+  # Animation
+  flutter_animate: ^4.5.0
+
   # Annotations
   json_annotation: ^4.8.1
   freezed_annotation: ^2.4.1

@@ -12,25 +12,34 @@ import 'app/app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  final initializeConfigs = InitializeConfigs();
+  final initializeLocalDatabaseApis = InitializeLocalDatabaseApis();
+  final initializeLoggers = InitializeLoggers();
+  const localizationsDelegates = [
+    AppLocalizations.delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
+
+  const supportedLocales = AppLocalizations.supportedLocales;
+  final appRouter = AppRouter.instance.router();
+
+  Widget appScreen(LocalDatabaseApis localDatabase) => AppScreen(
+        localizationsDelegates: localizationsDelegates,
+        supportedLocales: supportedLocales,
+        appRouter: appRouter,
+        currentUserPreferencesRepository: CurrentUserPreferencesRepository(
+          localDatabaseApi: localDatabase.sharedPreferencesApi,
+        ),
+      );
+
   runApp(
     StartupScreen(
-      initializeConfigs: InitializeConfigs(),
-      initializeLocalDatabaseApis: InitializeLocalDatabaseApis(),
-      initializeLoggers: InitializeLoggers(),
-      application: (localDatabaseApis) => AppScreen(
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        supportedLocales: AppLocalizations.supportedLocales,
-        appRouter: AppRouter.instance.router(),
-        // Repositories
-        currentUserPreferencesRepository: CurrentUserPreferencesRepository(
-          localDatabaseApi: localDatabaseApis.sharedPreferencesApi,
-        ),
-      ),
+      initializeConfigs: initializeConfigs,
+      initializeLocalDatabaseApis: initializeLocalDatabaseApis,
+      initializeLoggers: initializeLoggers,
+      application: appScreen,
     ),
   );
 }

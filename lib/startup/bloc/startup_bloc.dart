@@ -30,6 +30,7 @@ class StartupBloc extends Bloc<StartupEvent, StartupState> {
       initializeAll: (e) async {
         emit(state.copyWith(isInitializing: true));
         try {
+          // await Future<void>.delayed(const Duration(seconds: 15));
           _initializeLoggers.initializeAll();
           await _initializeConfigs.initializeAll();
           final localDatabase = await _initializeLocalDatabaseApis.initialize();
