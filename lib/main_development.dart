@@ -1,45 +1,43 @@
-import 'package:current_user_preferences_repository/current_user_preferences_repository_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:toy_swapp/app/view/app_screen.dart';
-import 'package:toy_swapp/initializers/initializers.dart';
-import 'package:toy_swapp/l10n/l10n.dart';
-import 'package:toy_swapp/router/app_router.dart';
-import 'package:toy_swapp/startup/startup.dart';
+import 'package:shared_preferences_api/shared_preferences_api.dart';
 
 import 'app/app.dart';
+import 'initializers/initializers.dart';
+import 'l10n/l10n.dart';
+import 'router/router.dart';
+import 'startup/startup.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final initializeConfigs = InitializeConfigs();
-  final initializeLocalDatabaseApis = InitializeLocalDatabaseApis();
-  final initializeLoggers = InitializeLoggers();
-  const localizationsDelegates = [
-    AppLocalizations.delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
-
-  const supportedLocales = AppLocalizations.supportedLocales;
-  final appRouter = AppRouter.instance.router();
-
-  Widget appScreen(LocalDatabaseApis localDatabase) => AppScreen(
-        localizationsDelegates: localizationsDelegates,
-        supportedLocales: supportedLocales,
-        appRouter: appRouter,
-        currentUserPreferencesRepository: CurrentUserPreferencesRepository(
-          localDatabaseApi: localDatabase.sharedPreferencesApi,
-        ),
-      );
-
   runApp(
     StartupScreen(
-      initializeConfigs: initializeConfigs,
-      initializeLocalDatabaseApis: initializeLocalDatabaseApis,
-      initializeLoggers: initializeLoggers,
-      application: appScreen,
+      appInitializer: AppInitializer(
+        // Configs Initializers
+        initializeConfigs: InitializeConfigs(),
+        // Logger Initializers
+        initializeLoggers: InitializeLoggers(),
+        // Repository Initializers
+        initializeRepositories: InitializeRepositories(
+          // APIS
+          sharedPreferencesInitializer: SharedPreferencesInitializer(),
+        ),
+      ),
+      application: (repositories) => AppScreen(
+        // Localizations
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
+        // Router
+        appRouter: AppRouter.instance.router(),
+        // Repositories
+        currentUserPreferencesRepository: repositories.currentUserPreferences,
+      ),
     ),
   );
 }

@@ -1,6 +1,6 @@
+import 'package:current_user_preferences_repository/current_user_preferences_repository_api.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shared_preferences_api/shared_preferences_api.dart';
 import 'package:toy_swapp/initializers/initializers.dart';
 
 part 'startup_bloc.freezed.dart';
@@ -9,18 +9,12 @@ part 'startup_state.dart';
 
 class StartupBloc extends Bloc<StartupEvent, StartupState> {
   StartupBloc({
-    required InitializeLocalDatabaseApis initializeLocalDatabaseApis,
-    required InitializeLoggers initializeLoggers,
-    required InitializeConfigs initializeConfigs,
-  })  : _initializeLocalDatabaseApis = initializeLocalDatabaseApis,
-        _initializeLoggers = initializeLoggers,
-        _initializeConfigs = initializeConfigs,
+    required AppInitializer appInitializer,
+  })  : _appInitializer = appInitializer,
         super(const StartupState()) {
     on<StartupEvent>(_onStartupEvent);
   }
-  final InitializeLocalDatabaseApis _initializeLocalDatabaseApis;
-  final InitializeLoggers _initializeLoggers;
-  final InitializeConfigs _initializeConfigs;
+  final AppInitializer _appInitializer;
 
   Future<void> _onStartupEvent(
     StartupEvent event,
@@ -28,18 +22,25 @@ class StartupBloc extends Bloc<StartupEvent, StartupState> {
   ) async {
     await event.map(
       initializeAll: (e) async {
-        emit(state.copyWith(isInitializing: true));
+        emit(
+          state.copyWith(
+            isInitializing: true,
+            displayErrorScreen: false,
+            isInitializeError: false,
+          ),
+        );
         try {
-          // await Future<void>.delayed(const Duration(seconds: 15));
-          _initializeLoggers.initializeAll();
-          await _initializeConfigs.initializeAll();
-          final localDatabase = await _initializeLocalDatabaseApis.initialize();
+          await Future<void>.delayed(const Duration(milliseconds: 300));
+          final appRepositories = await _appInitializer.setupRequirements();
 
-          emit(state.copyWith(localDatabaseApis: localDatabase));
+          emit(state.copyWith(appRepositories: appRepositories));
         } catch (exception) {
           emit(state.copyWith(isInitializeError: true));
         }
         emit(state.copyWith(isInitializing: false));
+      },
+      displayErrorScreen: (e) {
+        emit(state.copyWith(displayErrorScreen: true));
       },
     );
   }

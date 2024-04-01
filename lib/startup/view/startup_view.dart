@@ -12,17 +12,18 @@ class StartupView extends StatelessWidget {
     required this.application,
     super.key,
   });
-  final FutureOr<Widget> Function(LocalDatabaseApis localDatabaseApis)
-      application;
+  final FutureOr<Widget> Function(Repositories repositories) application;
+
   @override
   Widget build(BuildContext context) {
     final hasError = context.select(
       (StartupBloc bloc) => bloc.state.isInitializeError,
     );
-    final localDatabaseApis = context.select(
-      (StartupBloc bloc) => bloc.state.localDatabaseApis,
+    final appRepositories = context.select(
+      (StartupBloc bloc) => bloc.state.appRepositories,
     );
-    final isInitialized = localDatabaseApis != null;
+    final isInitialized = appRepositories != null;
+    
     return Scaffold(
       appBar: const StartupAppBar(),
       body: Column(
@@ -35,12 +36,10 @@ class StartupView extends StatelessWidget {
                 if (hasError) {
                   context
                       .read<StartupBloc>()
-                      .add(const StartupEvent.initializeAll());
+                      .add(const StartupEvent.displayErrorScreen());
                 }
                 if (isInitialized) {
-                  final app = await application(
-                    localDatabaseApis,
-                  );
+                  final app = await application(appRepositories);
                   if (!context.mounted) {
                     return;
                   }

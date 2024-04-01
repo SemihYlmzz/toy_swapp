@@ -10,53 +10,34 @@ import '../startup.dart';
 class StartupScreen extends StatelessWidget {
   const StartupScreen({
     required FutureOr<Widget> Function(
-      LocalDatabaseApis localDatabaseApis,
+      Repositories repositories,
     ) application,
-    required InitializeConfigs initializeConfigs,
-    required InitializeLocalDatabaseApis initializeLocalDatabaseApis,
-    required InitializeLoggers initializeLoggers,
+    required AppInitializer appInitializer,
     super.key,
   })  : _application = application,
-        _initializeConfigs = initializeConfigs,
-        _initializeLocalDatabaseApis = initializeLocalDatabaseApis,
-        _initializeLoggers = initializeLoggers;
+        _appInitializer = appInitializer;
 
-  final FutureOr<Widget> Function(
-    LocalDatabaseApis localDatabaseApis,
-  ) _application;
-  final InitializeConfigs _initializeConfigs;
-  final InitializeLocalDatabaseApis _initializeLocalDatabaseApis;
-  final InitializeLoggers _initializeLoggers;
+  final FutureOr<Widget> Function(Repositories repositories) _application;
+  final AppInitializer _appInitializer;
 
   @override
   Widget build(BuildContext context) {
-    final startupBlocListeners = StartupBlocListeners();
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       darkTheme: CustomThemeData.themeData(const DefaultDarkPalette()),
       home: BlocProvider(
         create: (context) => StartupBloc(
-          initializeConfigs: _initializeConfigs,
-          initializeLocalDatabaseApis: _initializeLocalDatabaseApis,
-          initializeLoggers: _initializeLoggers,
+          appInitializer: _appInitializer,
         )..add(const StartupEvent.initializeAll()),
-        child: MultiBlocListener(
-          listeners: [
-            startupBlocListeners.initializedNavigator(
+        child: BlocBuilder<StartupBloc, StartupState>(
+          builder: (context, state) {
+            if (state.isInitializeError && state.displayErrorScreen) {
+              return const StartupErrorView();
+            }
+            return StartupView(
               application: _application,
-            ),
-          ],
-          child: BlocBuilder<StartupBloc, StartupState>(
-            builder: (context, state) {
-              // if(state.isInitializeError){
-              //   return StartupErrorView();
-              // }
-              return StartupView(
-                application: _application,
-              );
-            },
-          ),
+            );
+          },
         ),
       ),
     );

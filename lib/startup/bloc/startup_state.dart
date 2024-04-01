@@ -5,6 +5,7 @@ class StartupState with _$StartupState {
   const factory StartupState({
     @Default(false) bool isInitializing,
     @Default(false) bool isInitializeError,
-    LocalDatabaseApis? localDatabaseApis,
+    @Default(false) bool displayErrorScreen,
+    Repositories? appRepositories,
   }) = _StartupState;
 }

@@ -1,5 +1,5 @@
-import 'package:shared_preferences_api/shared_preferences_api.dart';
+import 'package:current_user_preferences_repository/current_user_preferences_repository_api.dart';
 
-typedef LocalDatabaseApis = ({
-  SharedPreferencesApi sharedPreferencesApi,
+typedef Repositories = ({
+  CurrentUserPreferencesRepository currentUserPreferences,
 });

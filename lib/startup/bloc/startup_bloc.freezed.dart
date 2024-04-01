@@ -19,32 +19,39 @@ mixin _$StartupEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initializeAll,
+    required TResult Function() displayErrorScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initializeAll,
+    TResult? Function()? displayErrorScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initializeAll,
+    TResult Function()? displayErrorScreen,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(StartupInitializeAll value) initializeAll,
+    required TResult Function(StartupDisplayErrorScreen value)
+        displayErrorScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(StartupInitializeAll value)? initializeAll,
+    TResult? Function(StartupDisplayErrorScreen value)? displayErrorScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(StartupInitializeAll value)? initializeAll,
+    TResult Function(StartupDisplayErrorScreen value)? displayErrorScreen,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -108,6 +115,7 @@ class _$StartupInitializeAllImpl implements StartupInitializeAll {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initializeAll,
+    required TResult Function() displayErrorScreen,
   }) {
     return initializeAll();
   }
@@ -116,6 +124,7 @@ class _$StartupInitializeAllImpl implements StartupInitializeAll {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initializeAll,
+    TResult? Function()? displayErrorScreen,
   }) {
     return initializeAll?.call();
   }
@@ -124,6 +133,7 @@ class _$StartupInitializeAllImpl implements StartupInitializeAll {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initializeAll,
+    TResult Function()? displayErrorScreen,
     required TResult orElse(),
   }) {
     if (initializeAll != null) {
@@ -136,6 +146,8 @@ class _$StartupInitializeAllImpl implements StartupInitializeAll {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(StartupInitializeAll value) initializeAll,
+    required TResult Function(StartupDisplayErrorScreen value)
+        displayErrorScreen,
   }) {
     return initializeAll(this);
   }
@@ -144,6 +156,7 @@ class _$StartupInitializeAllImpl implements StartupInitializeAll {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(StartupInitializeAll value)? initializeAll,
+    TResult? Function(StartupDisplayErrorScreen value)? displayErrorScreen,
   }) {
     return initializeAll?.call(this);
   }
@@ -152,6 +165,7 @@ class _$StartupInitializeAllImpl implements StartupInitializeAll {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(StartupInitializeAll value)? initializeAll,
+    TResult Function(StartupDisplayErrorScreen value)? displayErrorScreen,
     required TResult orElse(),
   }) {
     if (initializeAll != null) {
@@ -166,11 +180,118 @@ abstract class StartupInitializeAll implements StartupEvent {
 }
 
 /// @nodoc
+abstract class _$$StartupDisplayErrorScreenImplCopyWith<$Res> {
+  factory _$$StartupDisplayErrorScreenImplCopyWith(
+          _$StartupDisplayErrorScreenImpl value,
+          $Res Function(_$StartupDisplayErrorScreenImpl) then) =
+      __$$StartupDisplayErrorScreenImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$StartupDisplayErrorScreenImplCopyWithImpl<$Res>
+    extends _$StartupEventCopyWithImpl<$Res, _$StartupDisplayErrorScreenImpl>
+    implements _$$StartupDisplayErrorScreenImplCopyWith<$Res> {
+  __$$StartupDisplayErrorScreenImplCopyWithImpl(
+      _$StartupDisplayErrorScreenImpl _value,
+      $Res Function(_$StartupDisplayErrorScreenImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$StartupDisplayErrorScreenImpl implements StartupDisplayErrorScreen {
+  const _$StartupDisplayErrorScreenImpl();
+
+  @override
+  String toString() {
+    return 'StartupEvent.displayErrorScreen()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StartupDisplayErrorScreenImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeAll,
+    required TResult Function() displayErrorScreen,
+  }) {
+    return displayErrorScreen();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initializeAll,
+    TResult? Function()? displayErrorScreen,
+  }) {
+    return displayErrorScreen?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeAll,
+    TResult Function()? displayErrorScreen,
+    required TResult orElse(),
+  }) {
+    if (displayErrorScreen != null) {
+      return displayErrorScreen();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StartupInitializeAll value) initializeAll,
+    required TResult Function(StartupDisplayErrorScreen value)
+        displayErrorScreen,
+  }) {
+    return displayErrorScreen(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(StartupInitializeAll value)? initializeAll,
+    TResult? Function(StartupDisplayErrorScreen value)? displayErrorScreen,
+  }) {
+    return displayErrorScreen?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StartupInitializeAll value)? initializeAll,
+    TResult Function(StartupDisplayErrorScreen value)? displayErrorScreen,
+    required TResult orElse(),
+  }) {
+    if (displayErrorScreen != null) {
+      return displayErrorScreen(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class StartupDisplayErrorScreen implements StartupEvent {
+  const factory StartupDisplayErrorScreen() = _$StartupDisplayErrorScreenImpl;
+}
+
+/// @nodoc
 mixin _$StartupState {
   bool get isInitializing => throw _privateConstructorUsedError;
   bool get isInitializeError => throw _privateConstructorUsedError;
-  ({SharedPreferencesApi sharedPreferencesApi})? get localDatabaseApis =>
-      throw _privateConstructorUsedError;
+  bool get displayErrorScreen => throw _privateConstructorUsedError;
+  ({CurrentUserPreferencesRepository currentUserPreferences})?
+      get appRepositories => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $StartupStateCopyWith<StartupState> get copyWith =>
@@ -186,7 +307,10 @@ abstract class $StartupStateCopyWith<$Res> {
   $Res call(
       {bool isInitializing,
       bool isInitializeError,
-      ({SharedPreferencesApi sharedPreferencesApi})? localDatabaseApis});
+      bool displayErrorScreen,
+      ({
+        CurrentUserPreferencesRepository currentUserPreferences
+      })? appRepositories});
 }
 
 /// @nodoc
@@ -204,7 +328,8 @@ class _$StartupStateCopyWithImpl<$Res, $Val extends StartupState>
   $Res call({
     Object? isInitializing = null,
     Object? isInitializeError = null,
-    Object? localDatabaseApis = freezed,
+    Object? displayErrorScreen = null,
+    Object? appRepositories = freezed,
   }) {
     return _then(_value.copyWith(
       isInitializing: null == isInitializing
@@ -215,10 +340,14 @@ class _$StartupStateCopyWithImpl<$Res, $Val extends StartupState>
           ? _value.isInitializeError
           : isInitializeError // ignore: cast_nullable_to_non_nullable
               as bool,
-      localDatabaseApis: freezed == localDatabaseApis
-          ? _value.localDatabaseApis
-          : localDatabaseApis // ignore: cast_nullable_to_non_nullable
-              as ({SharedPreferencesApi sharedPreferencesApi})?,
+      displayErrorScreen: null == displayErrorScreen
+          ? _value.displayErrorScreen
+          : displayErrorScreen // ignore: cast_nullable_to_non_nullable
+              as bool,
+      appRepositories: freezed == appRepositories
+          ? _value.appRepositories
+          : appRepositories // ignore: cast_nullable_to_non_nullable
+              as ({CurrentUserPreferencesRepository currentUserPreferences})?,
     ) as $Val);
   }
 }
@@ -234,7 +363,10 @@ abstract class _$$StartupStateImplCopyWith<$Res>
   $Res call(
       {bool isInitializing,
       bool isInitializeError,
-      ({SharedPreferencesApi sharedPreferencesApi})? localDatabaseApis});
+      bool displayErrorScreen,
+      ({
+        CurrentUserPreferencesRepository currentUserPreferences
+      })? appRepositories});
 }
 
 /// @nodoc
@@ -250,7 +382,8 @@ class __$$StartupStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isInitializing = null,
     Object? isInitializeError = null,
-    Object? localDatabaseApis = freezed,
+    Object? displayErrorScreen = null,
+    Object? appRepositories = freezed,
   }) {
     return _then(_$StartupStateImpl(
       isInitializing: null == isInitializing
@@ -261,10 +394,14 @@ class __$$StartupStateImplCopyWithImpl<$Res>
           ? _value.isInitializeError
           : isInitializeError // ignore: cast_nullable_to_non_nullable
               as bool,
-      localDatabaseApis: freezed == localDatabaseApis
-          ? _value.localDatabaseApis
-          : localDatabaseApis // ignore: cast_nullable_to_non_nullable
-              as ({SharedPreferencesApi sharedPreferencesApi})?,
+      displayErrorScreen: null == displayErrorScreen
+          ? _value.displayErrorScreen
+          : displayErrorScreen // ignore: cast_nullable_to_non_nullable
+              as bool,
+      appRepositories: freezed == appRepositories
+          ? _value.appRepositories
+          : appRepositories // ignore: cast_nullable_to_non_nullable
+              as ({CurrentUserPreferencesRepository currentUserPreferences})?,
     ));
   }
 }
@@ -275,7 +412,8 @@ class _$StartupStateImpl implements _StartupState {
   const _$StartupStateImpl(
       {this.isInitializing = false,
       this.isInitializeError = false,
-      this.localDatabaseApis});
+      this.displayErrorScreen = false,
+      this.appRepositories});
 
   @override
   @JsonKey()
@@ -284,11 +422,16 @@ class _$StartupStateImpl implements _StartupState {
   @JsonKey()
   final bool isInitializeError;
   @override
-  final ({SharedPreferencesApi sharedPreferencesApi})? localDatabaseApis;
+  @JsonKey()
+  final bool displayErrorScreen;
+  @override
+  final ({
+    CurrentUserPreferencesRepository currentUserPreferences
+  })? appRepositories;
 
   @override
   String toString() {
-    return 'StartupState(isInitializing: $isInitializing, isInitializeError: $isInitializeError, localDatabaseApis: $localDatabaseApis)';
+    return 'StartupState(isInitializing: $isInitializing, isInitializeError: $isInitializeError, displayErrorScreen: $displayErrorScreen, appRepositories: $appRepositories)';
   }
 
   @override
@@ -300,13 +443,15 @@ class _$StartupStateImpl implements _StartupState {
                 other.isInitializing == isInitializing) &&
             (identical(other.isInitializeError, isInitializeError) ||
                 other.isInitializeError == isInitializeError) &&
-            (identical(other.localDatabaseApis, localDatabaseApis) ||
-                other.localDatabaseApis == localDatabaseApis));
+            (identical(other.displayErrorScreen, displayErrorScreen) ||
+                other.displayErrorScreen == displayErrorScreen) &&
+            (identical(other.appRepositories, appRepositories) ||
+                other.appRepositories == appRepositories));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isInitializing, isInitializeError, localDatabaseApis);
+  int get hashCode => Object.hash(runtimeType, isInitializing,
+      isInitializeError, displayErrorScreen, appRepositories);
 
   @JsonKey(ignore: true)
   @override
@@ -319,16 +464,20 @@ abstract class _StartupState implements StartupState {
   const factory _StartupState(
       {final bool isInitializing,
       final bool isInitializeError,
+      final bool displayErrorScreen,
       final ({
-        SharedPreferencesApi sharedPreferencesApi
-      })? localDatabaseApis}) = _$StartupStateImpl;
+        CurrentUserPreferencesRepository currentUserPreferences
+      })? appRepositories}) = _$StartupStateImpl;
 
   @override
   bool get isInitializing;
   @override
   bool get isInitializeError;
   @override
-  ({SharedPreferencesApi sharedPreferencesApi})? get localDatabaseApis;
+  bool get displayErrorScreen;
+  @override
+  ({CurrentUserPreferencesRepository currentUserPreferences})?
+      get appRepositories;
   @override
   @JsonKey(ignore: true)
   _$$StartupStateImplCopyWith<_$StartupStateImpl> get copyWith =>
