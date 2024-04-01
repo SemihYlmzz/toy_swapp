@@ -1,17 +1,18 @@
+import 'package:current_user_preferences_repository/current_user_preferences_repository_api.dart';
 import 'package:toy_swapp/initializers/initializers.dart';
 
 class AppInitializer {
   const AppInitializer({
     required InitializeConfigs initializeConfigs,
-    required InitializeRepositories initializeRepositories,
+    required InitializeLocalDatabase initializeLocalDatabase,
     required InitializeLoggers initializeLoggers,
   })  : _initializeConfigs = initializeConfigs,
-        _initializeRepositories = initializeRepositories,
+        _initializeLocalDatabase = initializeLocalDatabase,
         _initializeLoggers = initializeLoggers;
 
   // Initializers
   final InitializeConfigs _initializeConfigs;
-  final InitializeRepositories _initializeRepositories;
+  final InitializeLocalDatabase _initializeLocalDatabase;
   final InitializeLoggers _initializeLoggers;
 
   // TODO: Return AppRequirements(repositories: repositories,services: services,)
@@ -23,10 +24,14 @@ class AppInitializer {
     // Setup Loggers
     _initializeLoggers.initializeAll();
 
-    // Setup Repositories
-    final currentUserPreferencesRepository =
-        await _initializeRepositories.initCurrentUserPreferences();
+    // Setup Local Database Apis
+    final sharedPreferencesApi =
+        await _initializeLocalDatabase.initSharedPreferences();
 
-    return (currentUserPreferences: currentUserPreferencesRepository,);
+    return (
+      currentUserPreferences: CurrentUserPreferencesRepository(
+        localDatabaseApi: sharedPreferencesApi,
+      ),
+    );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:shared_preferences_api/shared_preferences_api.dart';
 
 import 'app/app.dart';
 import 'initializers/initializers.dart';
@@ -19,10 +18,7 @@ void main() async {
         // Logger Initializers
         initializeLoggers: InitializeLoggers(),
         // Repository Initializers
-        initializeRepositories: InitializeRepositories(
-          // APIS
-          sharedPreferencesInitializer: SharedPreferencesInitializer(),
-        ),
+        initializeLocalDatabase: InitializeLocalDatabase(),
       ),
       application: (repositories) => AppScreen(
         // Localizations
