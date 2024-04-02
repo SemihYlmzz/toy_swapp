@@ -6,6 +6,6 @@ class StartupState with _$StartupState {
     @Default(false) bool isInitializing,
     @Default(false) bool isInitializeError,
     @Default(false) bool displayErrorScreen,
-    Repositories? appRepositories,
+    AppRequirements? appRequirements,
   }) = _StartupState;
 }

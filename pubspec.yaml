@@ -41,14 +41,14 @@ dependencies:
   freezed_annotation: ^2.4.1
 
   # Business Logic
-  bloc: ^8.1.3
+  bloc: ^8.1.4
   flutter_bloc: ^8.1.5
   
   # Dependency Injection
   provider: 6.1.2
 
   # Navigation
-  go_router: ^13.2.0
+  go_router: ^13.2.2
 
   # Localization
   flutter_localizations:
@@ -60,7 +60,7 @@ dependencies:
 dev_dependencies:
 
   # Tests
-  bloc_test: ^9.1.6
+  bloc_test: ^9.1.7
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.3
@@ -69,7 +69,7 @@ dev_dependencies:
   very_good_analysis: ^5.1.0
 
   # Code Generation
-  build_runner: ^2.4.8
+  build_runner: ^2.4.9
   freezed: ^2.4.7
   json_serializable: ^6.7.1
 

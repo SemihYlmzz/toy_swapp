@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-// TODO: AppRouter.signUpScreen.path
 import '../../router/app_router.dart';
 import '../auth_sign_in.dart';
 

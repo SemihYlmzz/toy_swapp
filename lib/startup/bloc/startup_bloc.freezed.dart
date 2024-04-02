@@ -290,8 +290,7 @@ mixin _$StartupState {
   bool get isInitializing => throw _privateConstructorUsedError;
   bool get isInitializeError => throw _privateConstructorUsedError;
   bool get displayErrorScreen => throw _privateConstructorUsedError;
-  ({CurrentUserPreferencesRepository currentUserPreferences})?
-      get appRepositories => throw _privateConstructorUsedError;
+  AppRequirements? get appRequirements => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $StartupStateCopyWith<StartupState> get copyWith =>
@@ -308,9 +307,7 @@ abstract class $StartupStateCopyWith<$Res> {
       {bool isInitializing,
       bool isInitializeError,
       bool displayErrorScreen,
-      ({
-        CurrentUserPreferencesRepository currentUserPreferences
-      })? appRepositories});
+      AppRequirements? appRequirements});
 }
 
 /// @nodoc
@@ -329,7 +326,7 @@ class _$StartupStateCopyWithImpl<$Res, $Val extends StartupState>
     Object? isInitializing = null,
     Object? isInitializeError = null,
     Object? displayErrorScreen = null,
-    Object? appRepositories = freezed,
+    Object? appRequirements = freezed,
   }) {
     return _then(_value.copyWith(
       isInitializing: null == isInitializing
@@ -344,10 +341,10 @@ class _$StartupStateCopyWithImpl<$Res, $Val extends StartupState>
           ? _value.displayErrorScreen
           : displayErrorScreen // ignore: cast_nullable_to_non_nullable
               as bool,
-      appRepositories: freezed == appRepositories
-          ? _value.appRepositories
-          : appRepositories // ignore: cast_nullable_to_non_nullable
-              as ({CurrentUserPreferencesRepository currentUserPreferences})?,
+      appRequirements: freezed == appRequirements
+          ? _value.appRequirements
+          : appRequirements // ignore: cast_nullable_to_non_nullable
+              as AppRequirements?,
     ) as $Val);
   }
 }
@@ -364,9 +361,7 @@ abstract class _$$StartupStateImplCopyWith<$Res>
       {bool isInitializing,
       bool isInitializeError,
       bool displayErrorScreen,
-      ({
-        CurrentUserPreferencesRepository currentUserPreferences
-      })? appRepositories});
+      AppRequirements? appRequirements});
 }
 
 /// @nodoc
@@ -383,7 +378,7 @@ class __$$StartupStateImplCopyWithImpl<$Res>
     Object? isInitializing = null,
     Object? isInitializeError = null,
     Object? displayErrorScreen = null,
-    Object? appRepositories = freezed,
+    Object? appRequirements = freezed,
   }) {
     return _then(_$StartupStateImpl(
       isInitializing: null == isInitializing
@@ -398,10 +393,10 @@ class __$$StartupStateImplCopyWithImpl<$Res>
           ? _value.displayErrorScreen
           : displayErrorScreen // ignore: cast_nullable_to_non_nullable
               as bool,
-      appRepositories: freezed == appRepositories
-          ? _value.appRepositories
-          : appRepositories // ignore: cast_nullable_to_non_nullable
-              as ({CurrentUserPreferencesRepository currentUserPreferences})?,
+      appRequirements: freezed == appRequirements
+          ? _value.appRequirements
+          : appRequirements // ignore: cast_nullable_to_non_nullable
+              as AppRequirements?,
     ));
   }
 }
@@ -413,7 +408,7 @@ class _$StartupStateImpl implements _StartupState {
       {this.isInitializing = false,
       this.isInitializeError = false,
       this.displayErrorScreen = false,
-      this.appRepositories});
+      this.appRequirements});
 
   @override
   @JsonKey()
@@ -425,13 +420,11 @@ class _$StartupStateImpl implements _StartupState {
   @JsonKey()
   final bool displayErrorScreen;
   @override
-  final ({
-    CurrentUserPreferencesRepository currentUserPreferences
-  })? appRepositories;
+  final AppRequirements? appRequirements;
 
   @override
   String toString() {
-    return 'StartupState(isInitializing: $isInitializing, isInitializeError: $isInitializeError, displayErrorScreen: $displayErrorScreen, appRepositories: $appRepositories)';
+    return 'StartupState(isInitializing: $isInitializing, isInitializeError: $isInitializeError, displayErrorScreen: $displayErrorScreen, appRequirements: $appRequirements)';
   }
 
   @override
@@ -445,13 +438,13 @@ class _$StartupStateImpl implements _StartupState {
                 other.isInitializeError == isInitializeError) &&
             (identical(other.displayErrorScreen, displayErrorScreen) ||
                 other.displayErrorScreen == displayErrorScreen) &&
-            (identical(other.appRepositories, appRepositories) ||
-                other.appRepositories == appRepositories));
+            (identical(other.appRequirements, appRequirements) ||
+                other.appRequirements == appRequirements));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, isInitializing,
-      isInitializeError, displayErrorScreen, appRepositories);
+      isInitializeError, displayErrorScreen, appRequirements);
 
   @JsonKey(ignore: true)
   @override
@@ -465,9 +458,7 @@ abstract class _StartupState implements StartupState {
       {final bool isInitializing,
       final bool isInitializeError,
       final bool displayErrorScreen,
-      final ({
-        CurrentUserPreferencesRepository currentUserPreferences
-      })? appRepositories}) = _$StartupStateImpl;
+      final AppRequirements? appRequirements}) = _$StartupStateImpl;
 
   @override
   bool get isInitializing;
@@ -476,8 +467,7 @@ abstract class _StartupState implements StartupState {
   @override
   bool get displayErrorScreen;
   @override
-  ({CurrentUserPreferencesRepository currentUserPreferences})?
-      get appRepositories;
+  AppRequirements? get appRequirements;
   @override
   @JsonKey(ignore: true)
   _$$StartupStateImplCopyWith<_$StartupStateImpl> get copyWith =>

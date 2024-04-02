@@ -13,12 +13,14 @@ void main() async {
   runApp(
     StartupScreen(
       appInitializer: AppInitializer(
-        // Initializers
+        // Configs Initializers
         initializeConfigs: InitializeConfigs(),
+        // Logger Initializers
         initializeLoggers: InitializeLoggers(),
-        initializeLocalDatabase: InitializeLocalDatabase(),
+        // Repository Initializers
+        initializeApis: InitializeApis(),
       ),
-      application: (repositories) => AppScreen(
+      application: (appRequirements) => AppScreen(
         // Localizations
         localizationsDelegates: const [
           AppLocalizations.delegate,
@@ -30,7 +32,8 @@ void main() async {
         // Router
         appRouter: AppRouter.instance.router(),
         // Repositories
-        currentUserPreferencesRepository: repositories.currentUserPreferences,
+        currentUserPreferencesRepository:
+            appRequirements.repositories.currentUserPreferences,
       ),
     ),
   );

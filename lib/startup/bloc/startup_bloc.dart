@@ -1,4 +1,3 @@
-import 'package:current_user_preferences_repository/current_user_preferences_repository_api.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:toy_swapp/initializers/initializers.dart';
@@ -31,9 +30,9 @@ class StartupBloc extends Bloc<StartupEvent, StartupState> {
         );
         try {
           await Future<void>.delayed(const Duration(milliseconds: 300));
-          final appRepositories = await _appInitializer.setupRequirements();
+          final appRequirements = await _appInitializer.setupRequirements();
 
-          emit(state.copyWith(appRepositories: appRepositories));
+          emit(state.copyWith(appRequirements: appRequirements));
         } catch (exception) {
           emit(state.copyWith(isInitializeError: true));
         }

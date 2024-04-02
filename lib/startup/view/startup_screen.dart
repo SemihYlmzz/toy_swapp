@@ -10,14 +10,14 @@ import '../startup.dart';
 class StartupScreen extends StatelessWidget {
   const StartupScreen({
     required FutureOr<Widget> Function(
-      Repositories repositories,
+      AppRequirements appRequirements,
     ) application,
     required AppInitializer appInitializer,
     super.key,
   })  : _application = application,
         _appInitializer = appInitializer;
 
-  final FutureOr<Widget> Function(Repositories repositories) _application;
+  final FutureOr<Widget> Function(AppRequirements appRequirements) _application;
   final AppInitializer _appInitializer;
 
   @override

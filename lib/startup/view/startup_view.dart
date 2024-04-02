@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toy_swapp/initializers/typedefs.dart';
+import 'package:toy_swapp/initializers/app_requirements.dart';
+import 'package:toy_swapp/initializers/initializers.dart';
 
 import '../startup.dart';
 
@@ -12,18 +13,18 @@ class StartupView extends StatelessWidget {
     required this.application,
     super.key,
   });
-  final FutureOr<Widget> Function(Repositories repositories) application;
+  final FutureOr<Widget> Function(AppRequirements appRequirements) application;
 
   @override
   Widget build(BuildContext context) {
     final hasError = context.select(
       (StartupBloc bloc) => bloc.state.isInitializeError,
     );
-    final appRepositories = context.select(
-      (StartupBloc bloc) => bloc.state.appRepositories,
+    final appRequirements = context.select(
+      (StartupBloc bloc) => bloc.state.appRequirements,
     );
-    final isInitialized = appRepositories != null;
-    
+    final isInitialized = appRequirements != null;
+
     return Scaffold(
       appBar: const StartupAppBar(),
       body: Column(
@@ -39,7 +40,7 @@ class StartupView extends StatelessWidget {
                       .add(const StartupEvent.displayErrorScreen());
                 }
                 if (isInitialized) {
-                  final app = await application(appRepositories);
+                  final app = await application(appRequirements);
                   if (!context.mounted) {
                     return;
                   }

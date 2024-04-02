@@ -18,9 +18,9 @@ void main() async {
         // Logger Initializers
         initializeLoggers: InitializeLoggers(),
         // Repository Initializers
-        initializeLocalDatabase: InitializeLocalDatabase(),
+        initializeApis: InitializeApis(),
       ),
-      application: (repositories) => AppScreen(
+      application: (appRequirements) => AppScreen(
         // Localizations
         localizationsDelegates: const [
           AppLocalizations.delegate,
@@ -32,7 +32,8 @@ void main() async {
         // Router
         appRouter: AppRouter.instance.router(),
         // Repositories
-        currentUserPreferencesRepository: repositories.currentUserPreferences,
+        currentUserPreferencesRepository:
+            appRequirements.repositories.currentUserPreferences,
       ),
     ),
   );
