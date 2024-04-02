@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toy_swapp/l10n/l10n.dart';
+import '../../l10n/l10n.dart';
 
 extension AuthSignInLocalizationExtension on BuildContext {
   AuthSignInLocalization get authSignInLocalization {

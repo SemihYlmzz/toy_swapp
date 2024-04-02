@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toy_swapp/initializers/app_requirements.dart';
 import 'package:toy_swapp/initializers/initializers.dart';
 
 import '../startup.dart';

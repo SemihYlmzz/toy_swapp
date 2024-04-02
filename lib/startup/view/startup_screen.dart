@@ -12,13 +12,13 @@ class StartupScreen extends StatelessWidget {
     required FutureOr<Widget> Function(
       AppRequirements appRequirements,
     ) application,
-    required AppInitializer appInitializer,
+    required AppRequirementsInitializer appRequirementsInitializer,
     super.key,
   })  : _application = application,
-        _appInitializer = appInitializer;
+        _appRequirementsInitializer = appRequirementsInitializer;
 
   final FutureOr<Widget> Function(AppRequirements appRequirements) _application;
-  final AppInitializer _appInitializer;
+  final AppRequirementsInitializer _appRequirementsInitializer;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class StartupScreen extends StatelessWidget {
       darkTheme: CustomThemeData.themeData(const DefaultDarkPalette()),
       home: BlocProvider(
         create: (context) => StartupBloc(
-          appInitializer: _appInitializer,
+          appRequirementsInitializer: _appRequirementsInitializer,
         )..add(const StartupEvent.initializeAll()),
         child: BlocBuilder<StartupBloc, StartupState>(
           builder: (context, state) {

@@ -51,7 +51,6 @@
     "confirmNewPassword": "Yeni Şifreyi Onayla",
     "checkYourNewEmailDetail": "Güncelleme işlemini tamamlamak için yeni e-postanı kontrol et.",
     "changeYourName": "Adını Değiştir",
-
     "@_CONSUMER_CREATE_TOY": {},
     "@_CONSUMER_DEMANDS": {},
     "@_CONSUMER_MATCHES": {},
@@ -89,7 +88,6 @@
     "profileText": "Profil",
     "toysText": "Oyuncaklar",
     "save": "Kaydet",
-
     "@_CONSUMER_REGISTRATION": {},
     "register": "Kayıt Ol",
     "firstName": "Ad",
@@ -112,7 +110,6 @@
     "@_USER_INITIALIZER": {},
     "tryAgain": "Tekrar Dene",
     "initializationErrorInfo": "Hata! Bir şeyler ters gitti.\nLütfen tekrar deneyin.",
-    
     "@_MODALS": {},
     "weNeedPermission": "İznine ihtiyacımız var",
     "openAppSettings": "Uygulama Ayarlarını Aç"

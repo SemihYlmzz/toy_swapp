@@ -2,10 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
 
-import 'initializers.dart';
+import '../initializers.dart';
 
-final class InitializeLoggers {
-  void initializeAll() {
+final class LoggerRequirements {
+  bool initialize() {
     // Configure Logger
     if (kReleaseMode) {
       Logger.root.level = Level.WARNING;
@@ -19,5 +19,6 @@ final class InitializeLoggers {
 
     // Initialize Bloc Observer
     Bloc.observer = AppBlocObserver();
+    return true;
   }
 }

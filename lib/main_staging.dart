@@ -12,13 +12,11 @@ void main() async {
 
   runApp(
     StartupScreen(
-      appInitializer: AppInitializer(
-        // Configs Initializers
-        initializeConfigs: InitializeConfigs(),
-        // Logger Initializers
-        initializeLoggers: InitializeLoggers(),
-        // Repository Initializers
-        initializeApis: InitializeApis(),
+      appRequirementsInitializer: AppRequirementsInitializer(
+        // Requirements
+        configRequirements: ConfigRequirements(),
+        loggerRequirements: LoggerRequirements(),
+        apiRequirements: ApiRequirements(),
       ),
       application: (appRequirements) => AppScreen(
         // Localizations

@@ -8,12 +8,12 @@ part 'startup_state.dart';
 
 class StartupBloc extends Bloc<StartupEvent, StartupState> {
   StartupBloc({
-    required AppInitializer appInitializer,
-  })  : _appInitializer = appInitializer,
+    required AppRequirementsInitializer appRequirementsInitializer,
+  })  : _appRequirementsInitializer = appRequirementsInitializer,
         super(const StartupState()) {
     on<StartupEvent>(_onStartupEvent);
   }
-  final AppInitializer _appInitializer;
+  final AppRequirementsInitializer _appRequirementsInitializer;
 
   Future<void> _onStartupEvent(
     StartupEvent event,
@@ -30,7 +30,8 @@ class StartupBloc extends Bloc<StartupEvent, StartupState> {
         );
         try {
           await Future<void>.delayed(const Duration(milliseconds: 300));
-          final appRequirements = await _appInitializer.setupRequirements();
+          final appRequirements =
+              await _appRequirementsInitializer.setupRequirements();
 
           emit(state.copyWith(appRequirements: appRequirements));
         } catch (exception) {

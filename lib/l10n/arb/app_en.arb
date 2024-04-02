@@ -4,11 +4,9 @@
     "@_AUTH_EMAIL_VERIFICATION": {},
     "sendVerificationMail": "Send Verification Mail ",
     "signOut": "Sign Out",
-    
     "@_AUTH_FORGOT_PASSWORD": {},
     "email": "E-Mail",
     "sendResetPasswordMail": "Send Reset Password Mail",
-
     "@_AUTH_SIGN_IN": {},
     "forgotPassword": "Forgot Password ?",
     "signIn": "Sign In",
@@ -16,14 +14,12 @@
     "password": "Password",
     "signInWithGoogle": "Sign In With Google",
     "signUpNow": "Sign Up Now",
-
     "@_AUTH_SIGN_UP": {},
     "signUp": "Sign Up",
     "done": "Done",
     "enterYourPassword": "Enter Your Password",
     "email": "E-Mail",
     "password": "Password",
-
     "@_CONSUMER_ACCOUNT_DELETATION": {},
     "cancel": "Cancel",
     "deleteAccount": "Delete Account",
@@ -35,7 +31,6 @@
     "accountDeletationStarted": "Account Deletation started.",
     "errorOccuredWhileSigningOut": "But an error occured while signing out.",
     "stopDeleteErrorInformationText": "Ooops! Seems like your account is in delete process.\nWe could not save it. Maybe you can!",
-    
     "@_CONSUMER_ACCOUNT_SETTINGS": {},
     "email": "E-Mail",   
     "signInMethod": "Sign In Method",
@@ -56,20 +51,15 @@
     "confirmNewPassword": "Confirm New Password",
     "checkYourNewEmailDetail": "Check your new mail to complete update process.",
     "changeYourName": "Change Your Name",
-
     "@_CONSUMER_CREATE_TOY": {},
-
     "@_CONSUMER_DEMANDS": {},
-
     "@_CONSUMER_MATCHES": {},
-
     "@_CONSUMER_NAVIGATOR": {},
     "toysText": "Toys",
     "switchText": "Switch",
     "addToyText": "Add Toy",
     "messagesText": "Messages",
     "profileText": "Profile",
-
     "@_CONSUMER_NOTIFICATION_SETTINGS": {},
     "notifications": "Notifications",
     "yourToyMatched": "Your Toy Matched",
@@ -80,7 +70,6 @@
     "newDecideRequest": "New Decide Request",
     "weeklyReminders": "Weekly Reminders",
     "notificationSettings": "Notification Settings",
-
     "@_CONSUMER_PROFILE": {},
     "aboutUsDescription": "Discover our story.",
     "history": "History",
@@ -99,12 +88,10 @@
     "profileText": "Profile",
     "toysText": "Toys",
     "save": "Save",
-
     "@_CONSUMER_REGISTRATION": {},
     "register": "Register",
     "firstName": "First Name",
     "lastName": "Last Name",
-
     "@_CONSUMER_SETTINGS": {},
     "signOutInfo": "Click to leave from account.",
     "notificationSettings": "Notification Settings",
@@ -119,13 +106,10 @@
     "deviceLanguage": "Device Language",
     "appThemeInfo": "Switch Between Themes",
     "languageInfo": "Choose App Language",
-
     "@_CONSUMER_TOYS": {},
-
     "@_USER_INITIALIZER": {},
     "tryAgain": "Try Again",
     "initializationErrorInfo": "Oops! Something went wrong.\nPlease try again.",
-    
     "@_MODALS": {},
     "weNeedPermission": "We need your permission",
     "openAppSettings": "Open App Settings"
