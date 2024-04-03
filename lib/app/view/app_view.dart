@@ -20,12 +20,11 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      // Configurations
-      debugShowCheckedModeBanner: false,
-
       // Theme
       theme: ThemeData(),
-      darkTheme: CustomThemeData.themeData(const DefaultDarkPalette()),
+      darkTheme: CustomThemeData.themeData(
+        const DarkThemePalette(),
+      ),
       themeMode: currentUserPreferences.themeMode,
 
       // Localization

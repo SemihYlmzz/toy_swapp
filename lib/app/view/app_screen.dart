@@ -23,6 +23,7 @@ class AppScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MultiBlocProvider(
       providers: [
         // Repositories
@@ -45,8 +46,9 @@ class AppScreen extends StatelessWidget {
               currentUserPreferences: state.currentUserPreferences!,
             );
           }
+      
           if (state.isInitError) {
-            return const Scaffold();
+            return const AppPreferencesLoadError();
           }
           return const MaterialApp(
             home: Material(

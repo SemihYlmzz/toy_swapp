@@ -20,28 +20,39 @@ class CurrentUserPreferencesRepository {
   final LocalDatabaseApi localDatabaseApi;
 
   // Functions
-  Future<void> create() async {
-    const creatableUserPreferences = CurrentUserPreferences();
-    await localDatabaseApi.create(
-      CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
-      data: creatableUserPreferences.toJson(),
-    );
-    _currentUserStreamController.sink.add(creatableUserPreferences);
+  Future<Either<CurrentUserPreferencesRepositoryFailure, Unit>> create() async {
+    try {
+      const creatableUserPreferences = CurrentUserPreferences();
+      await localDatabaseApi.create(
+        CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
+        data: creatableUserPreferences.toJson(),
+      );
+      _currentUserStreamController.sink.add(creatableUserPreferences);
+      return const Right(unit);
+    } catch (exception) {
+      return const Left(CurrentUserPreferencesRepositoryFailure.unknown());
+    }
   }
 
-  Future<void> read() async {
-    final currentUserPreferencesJson = await localDatabaseApi.read(
-      CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
-    );
+  Future<Either<CurrentUserPreferencesRepositoryFailure, Unit>> read() async {
+    try {
+      return const Left(CurrentUserPreferencesRepositoryFailure.unknown());
+      final currentUserPreferencesJson = await localDatabaseApi.read(
+        CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
+      );
 
-    if (currentUserPreferencesJson == null) {
-      return create();
+      if (currentUserPreferencesJson == null) {
+        return create();
+      }
+
+      final currentUserPreferences = CurrentUserPreferences.fromJson(
+        currentUserPreferencesJson,
+      );
+      _currentUserStreamController.sink.add(currentUserPreferences);
+      return const Right(unit);
+    } catch (exception) {
+      return const Left(CurrentUserPreferencesRepositoryFailure.unknown());
     }
-
-    final currentUserPreferences = CurrentUserPreferences.fromJson(
-      currentUserPreferencesJson,
-    );
-    _currentUserStreamController.sink.add(currentUserPreferences);
   }
 
   Future<void> updateTheme({required ThemeMode updatedThemeMode}) async {

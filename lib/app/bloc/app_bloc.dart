@@ -2,6 +2,8 @@ import 'package:current_user_preferences_repository/current_user_preferences_rep
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../errors/errors.dart';
+
 part 'app_bloc.freezed.dart';
 part 'app_event.dart';
 part 'app_state.dart';
@@ -45,10 +47,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         );
       },
       initializeCurrentUserPreferences: (event) async {
-        await _currentUserPreferencesRepository.read();
+        final tryRead = await _currentUserPreferencesRepository.read();
+        tryRead.fold(
+          (f) => emit(state.copyWith(isInitError: true, failure: f)),
+          (r) => null,
+        );
       },
     );
 
-    emit(state.copyWith(isLoading: false, errorMessage: null));
+    emit(state.copyWith(isLoading: false, failure: null));
   }
 }

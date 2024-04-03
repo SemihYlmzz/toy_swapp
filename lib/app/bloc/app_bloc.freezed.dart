@@ -371,7 +371,7 @@ abstract class AppCurrentDevicePreferencesUpdated implements AppEvent {
 mixin _$AppState {
   CurrentUserPreferences? get currentUserPreferences =>
       throw _privateConstructorUsedError;
-  String? get errorMessage => throw _privateConstructorUsedError;
+  Failure? get failure => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isInitError => throw _privateConstructorUsedError;
 
@@ -387,7 +387,7 @@ abstract class $AppStateCopyWith<$Res> {
   @useResult
   $Res call(
       {CurrentUserPreferences? currentUserPreferences,
-      String? errorMessage,
+      Failure? failure,
       bool isLoading,
       bool isInitError});
 
@@ -408,7 +408,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   @override
   $Res call({
     Object? currentUserPreferences = freezed,
-    Object? errorMessage = freezed,
+    Object? failure = freezed,
     Object? isLoading = null,
     Object? isInitError = null,
   }) {
@@ -417,10 +417,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.currentUserPreferences
           : currentUserPreferences // ignore: cast_nullable_to_non_nullable
               as CurrentUserPreferences?,
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -456,7 +456,7 @@ abstract class _$$AppStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {CurrentUserPreferences? currentUserPreferences,
-      String? errorMessage,
+      Failure? failure,
       bool isLoading,
       bool isInitError});
 
@@ -476,7 +476,7 @@ class __$$AppStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? currentUserPreferences = freezed,
-    Object? errorMessage = freezed,
+    Object? failure = freezed,
     Object? isLoading = null,
     Object? isInitError = null,
   }) {
@@ -485,10 +485,10 @@ class __$$AppStateImplCopyWithImpl<$Res>
           ? _value.currentUserPreferences
           : currentUserPreferences // ignore: cast_nullable_to_non_nullable
               as CurrentUserPreferences?,
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -506,14 +506,14 @@ class __$$AppStateImplCopyWithImpl<$Res>
 class _$AppStateImpl implements _AppState {
   const _$AppStateImpl(
       {this.currentUserPreferences,
-      this.errorMessage,
+      this.failure,
       this.isLoading = false,
       this.isInitError = false});
 
   @override
   final CurrentUserPreferences? currentUserPreferences;
   @override
-  final String? errorMessage;
+  final Failure? failure;
   @override
   @JsonKey()
   final bool isLoading;
@@ -523,7 +523,7 @@ class _$AppStateImpl implements _AppState {
 
   @override
   String toString() {
-    return 'AppState(currentUserPreferences: $currentUserPreferences, errorMessage: $errorMessage, isLoading: $isLoading, isInitError: $isInitError)';
+    return 'AppState(currentUserPreferences: $currentUserPreferences, failure: $failure, isLoading: $isLoading, isInitError: $isInitError)';
   }
 
   @override
@@ -533,8 +533,7 @@ class _$AppStateImpl implements _AppState {
             other is _$AppStateImpl &&
             (identical(other.currentUserPreferences, currentUserPreferences) ||
                 other.currentUserPreferences == currentUserPreferences) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage) &&
+            (identical(other.failure, failure) || other.failure == failure) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isInitError, isInitError) ||
@@ -542,8 +541,8 @@ class _$AppStateImpl implements _AppState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currentUserPreferences,
-      errorMessage, isLoading, isInitError);
+  int get hashCode => Object.hash(
+      runtimeType, currentUserPreferences, failure, isLoading, isInitError);
 
   @JsonKey(ignore: true)
   @override
@@ -555,14 +554,14 @@ class _$AppStateImpl implements _AppState {
 abstract class _AppState implements AppState {
   const factory _AppState(
       {final CurrentUserPreferences? currentUserPreferences,
-      final String? errorMessage,
+      final Failure? failure,
       final bool isLoading,
       final bool isInitError}) = _$AppStateImpl;
 
   @override
   CurrentUserPreferences? get currentUserPreferences;
   @override
-  String? get errorMessage;
+  Failure? get failure;
   @override
   bool get isLoading;
   @override
