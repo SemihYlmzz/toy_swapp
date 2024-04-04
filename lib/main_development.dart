@@ -21,16 +21,21 @@ void main() async {
           loggerRequirements: LoggerRequirements(),
           apiRequirements: ApiRequirements(),
         ),
-        application: (appRequirements) => AppScreen(
-          // Localizations
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          // Router
-          appRouter: AppRouter.instance.router(),
-          // Repositories
-          currentUserPreferencesRepository:
-              appRequirements.repositories.currentUserPreferences,
-        ),
+        application: (appRequirements) {
+          final appPreferencesRepository =
+              appRequirements.repositories.currentUserPreferences;
+          return AppScreen(
+            // Localizations
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            // Router
+            appRouter: AppRouter.instance.router(
+              appPreferencesRepository.currentUserPreferencesStream,
+            ),
+            // Repositories
+            currentUserPreferencesRepository: appPreferencesRepository,
+          );
+        },
       ),
     ),
   );

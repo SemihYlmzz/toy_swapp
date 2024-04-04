@@ -46,6 +46,9 @@ dependencies:
   
   # Dependency Injection
   provider: 6.1.2
+  
+  # Fonts
+  google_fonts: ^6.2.1
 
   # Navigation
   go_router: ^13.2.2

@@ -28,7 +28,10 @@ void main() async {
         ],
         supportedLocales: AppLocalizations.supportedLocales,
         // Router
-        appRouter: AppRouter.instance.router(),
+        appRouter: AppRouter.instance.router(
+          appRequirements
+              .repositories.currentUserPreferences.currentUserPreferencesStream,
+        ),
         // Repositories
         currentUserPreferencesRepository:
             appRequirements.repositories.currentUserPreferences,

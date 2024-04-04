@@ -36,7 +36,6 @@ class CurrentUserPreferencesRepository {
 
   Future<Either<CurrentUserPreferencesRepositoryFailure, Unit>> read() async {
     try {
-      return const Left(CurrentUserPreferencesRepositoryFailure.unknown());
       final currentUserPreferencesJson = await localDatabaseApi.read(
         CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
       );
@@ -76,6 +75,20 @@ class CurrentUserPreferencesRepository {
     }
     final updatedPreferences =
         currentUserPreferences!.copyWith(language: updatedLanguage);
+    await localDatabaseApi.update(
+      CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
+      data: updatedPreferences.toJson(),
+    );
+    _currentUserStreamController.sink.add(updatedPreferences);
+  }
+
+  Future<void> acceptTermsOfUse() async {
+    if (currentUserPreferences == null) {
+      return;
+    }
+    final updatedPreferences = currentUserPreferences!.copyWith(
+      isTermsOfUseAccepted: true,
+    );
     await localDatabaseApi.update(
       CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
       data: updatedPreferences.toJson(),

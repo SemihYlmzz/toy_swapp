@@ -15,13 +15,29 @@ class AppPreferencesLoadError extends StatelessWidget {
       body: BaseColumn(
         children: [
           const Text('Something went wrong while loading app preferences'),
-          ElevatedButton(
-            onPressed: () {
-              context.read<AppBloc>().add(
-                    AppEvent.initializeCurrentUserPreferences(),
-                  );
-            },
-            child: const Text('Retry'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  context.read<AppBloc>().add(
+                        AppEvent.initializeCurrentUserPreferences(),
+                      );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.error,
+                ),
+                child: const Text('Reset App Preferences'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  context.read<AppBloc>().add(
+                        AppEvent.resetAppPreferences(),
+                      );
+                },
+                child: const Text('Retry'),
+              ),
+            ],
           ),
         ],
       ),

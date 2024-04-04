@@ -23,7 +23,6 @@ class AppScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MultiBlocProvider(
       providers: [
         // Repositories
@@ -46,19 +45,15 @@ class AppScreen extends StatelessWidget {
               currentUserPreferences: state.currentUserPreferences!,
             );
           }
-      
+
           if (state.isInitError) {
             return const AppPreferencesLoadError();
           }
-          return const MaterialApp(
-            home: Material(
-              child: BaseColumn(
-                children: [
-                  Text('Loading...'),
-                  CircularProgressIndicator(),
-                ],
-              ),
-            ),
+          return const BaseColumn(
+            children: [
+              Text('Loading...'),
+              CircularProgressIndicator(),
+            ],
           );
         },
       ),

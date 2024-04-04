@@ -14,6 +14,7 @@ _$CurrentUserPreferencesImpl _$$CurrentUserPreferencesImplFromJson(
           Language.deviceLanguage,
       themeMode: $enumDecodeNullable(_$ThemeModeEnumMap, json['themeMode']) ??
           ThemeMode.system,
+      isTermsOfUseAccepted: json['isTermsOfUseAccepted'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$CurrentUserPreferencesImplToJson(
@@ -22,6 +23,7 @@ Map<String, dynamic> _$$CurrentUserPreferencesImplToJson(
       'isVibratable': instance.isVibratable,
       'language': _$LanguageEnumMap[instance.language]!,
       'themeMode': _$ThemeModeEnumMap[instance.themeMode]!,
+      'isTermsOfUseAccepted': instance.isTermsOfUseAccepted,
     };
 
 const _$LanguageEnumMap = {

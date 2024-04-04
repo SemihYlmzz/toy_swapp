@@ -54,6 +54,12 @@ class CustomThemeData {
             size: palette.bottomNavigationBarIconSize,
           ),
         ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: palette.colorSchemePrimary,
+            foregroundColor: palette.colorSchemeOnBackground,
+          ),
+        ),
         snackBarTheme: SnackBarThemeData(
           contentTextStyle: TextStyle(
             color: palette.snackBarContentTextColor,

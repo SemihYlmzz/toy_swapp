@@ -53,6 +53,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           (r) => null,
         );
       },
+      resetAppPreferences: (value) => (event) async {
+        // await _currentUserPreferencesRepository.reset();
+        // emit(state.copyWith(currentUserPreferences: null));
+      },
     );
 
     emit(state.copyWith(isLoading: false, failure: null));

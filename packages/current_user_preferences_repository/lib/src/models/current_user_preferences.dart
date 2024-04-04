@@ -11,6 +11,7 @@ class CurrentUserPreferences with _$CurrentUserPreferences {
     @Default(true) bool isVibratable,
     @Default(Language.deviceLanguage) Language language,
     @Default(ThemeMode.system) ThemeMode themeMode,
+    @Default(false) bool isTermsOfUseAccepted,
   }) = _CurrentUserPreferences;
 
   factory CurrentUserPreferences.fromJson(Map<String, Object?> json) =>

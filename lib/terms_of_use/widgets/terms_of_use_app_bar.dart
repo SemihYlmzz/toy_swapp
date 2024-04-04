@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import '../terms_of_use.dart';
 
-class StartupAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const StartupAppBar({
+class TermsOfUseAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const TermsOfUseAppBar({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Startup Screen'),
+      title: Text(context.termsOfUseLocalization.appBarTitle),
     );
   }
 

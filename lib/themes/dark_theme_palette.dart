@@ -25,7 +25,7 @@ class DarkThemePalette implements Palette {
   @override
   Color get colorSchemeOnSurface => Colors.white;
   @override
-  Color get colorSchemePrimary => Colors.white;
+  Color get colorSchemePrimary => Colors.deepPurpleAccent;
   @override
   Color get colorSchemeSurface => Colors.deepPurple.shade800;
   @override

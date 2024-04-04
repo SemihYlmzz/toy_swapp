@@ -19,6 +19,7 @@ mixin _$AppEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initializeCurrentUserPreferences,
+    required TResult Function() resetAppPreferences,
     required TResult Function(
             CurrentUserPreferences updatedCurrentUserPreferences)
         currentDevicePreferencesUpdated,
@@ -27,6 +28,7 @@ mixin _$AppEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initializeCurrentUserPreferences,
+    TResult? Function()? resetAppPreferences,
     TResult? Function(CurrentUserPreferences updatedCurrentUserPreferences)?
         currentDevicePreferencesUpdated,
   }) =>
@@ -34,6 +36,7 @@ mixin _$AppEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initializeCurrentUserPreferences,
+    TResult Function()? resetAppPreferences,
     TResult Function(CurrentUserPreferences updatedCurrentUserPreferences)?
         currentDevicePreferencesUpdated,
     required TResult orElse(),
@@ -43,6 +46,7 @@ mixin _$AppEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AppInitializeCurrentUserPreferences value)
         initializeCurrentUserPreferences,
+    required TResult Function(AppResetAppPreferences value) resetAppPreferences,
     required TResult Function(AppCurrentDevicePreferencesUpdated value)
         currentDevicePreferencesUpdated,
   }) =>
@@ -51,6 +55,7 @@ mixin _$AppEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AppInitializeCurrentUserPreferences value)?
         initializeCurrentUserPreferences,
+    TResult? Function(AppResetAppPreferences value)? resetAppPreferences,
     TResult? Function(AppCurrentDevicePreferencesUpdated value)?
         currentDevicePreferencesUpdated,
   }) =>
@@ -59,6 +64,7 @@ mixin _$AppEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppInitializeCurrentUserPreferences value)?
         initializeCurrentUserPreferences,
+    TResult Function(AppResetAppPreferences value)? resetAppPreferences,
     TResult Function(AppCurrentDevicePreferencesUpdated value)?
         currentDevicePreferencesUpdated,
     required TResult orElse(),
@@ -127,6 +133,7 @@ class _$AppInitializeCurrentUserPreferencesImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initializeCurrentUserPreferences,
+    required TResult Function() resetAppPreferences,
     required TResult Function(
             CurrentUserPreferences updatedCurrentUserPreferences)
         currentDevicePreferencesUpdated,
@@ -138,6 +145,7 @@ class _$AppInitializeCurrentUserPreferencesImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initializeCurrentUserPreferences,
+    TResult? Function()? resetAppPreferences,
     TResult? Function(CurrentUserPreferences updatedCurrentUserPreferences)?
         currentDevicePreferencesUpdated,
   }) {
@@ -148,6 +156,7 @@ class _$AppInitializeCurrentUserPreferencesImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initializeCurrentUserPreferences,
+    TResult Function()? resetAppPreferences,
     TResult Function(CurrentUserPreferences updatedCurrentUserPreferences)?
         currentDevicePreferencesUpdated,
     required TResult orElse(),
@@ -163,6 +172,7 @@ class _$AppInitializeCurrentUserPreferencesImpl
   TResult map<TResult extends Object?>({
     required TResult Function(AppInitializeCurrentUserPreferences value)
         initializeCurrentUserPreferences,
+    required TResult Function(AppResetAppPreferences value) resetAppPreferences,
     required TResult Function(AppCurrentDevicePreferencesUpdated value)
         currentDevicePreferencesUpdated,
   }) {
@@ -174,6 +184,7 @@ class _$AppInitializeCurrentUserPreferencesImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AppInitializeCurrentUserPreferences value)?
         initializeCurrentUserPreferences,
+    TResult? Function(AppResetAppPreferences value)? resetAppPreferences,
     TResult? Function(AppCurrentDevicePreferencesUpdated value)?
         currentDevicePreferencesUpdated,
   }) {
@@ -185,6 +196,7 @@ class _$AppInitializeCurrentUserPreferencesImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppInitializeCurrentUserPreferences value)?
         initializeCurrentUserPreferences,
+    TResult Function(AppResetAppPreferences value)? resetAppPreferences,
     TResult Function(AppCurrentDevicePreferencesUpdated value)?
         currentDevicePreferencesUpdated,
     required TResult orElse(),
@@ -199,6 +211,127 @@ class _$AppInitializeCurrentUserPreferencesImpl
 abstract class AppInitializeCurrentUserPreferences implements AppEvent {
   factory AppInitializeCurrentUserPreferences() =
       _$AppInitializeCurrentUserPreferencesImpl;
+}
+
+/// @nodoc
+abstract class _$$AppResetAppPreferencesImplCopyWith<$Res> {
+  factory _$$AppResetAppPreferencesImplCopyWith(
+          _$AppResetAppPreferencesImpl value,
+          $Res Function(_$AppResetAppPreferencesImpl) then) =
+      __$$AppResetAppPreferencesImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AppResetAppPreferencesImplCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res, _$AppResetAppPreferencesImpl>
+    implements _$$AppResetAppPreferencesImplCopyWith<$Res> {
+  __$$AppResetAppPreferencesImplCopyWithImpl(
+      _$AppResetAppPreferencesImpl _value,
+      $Res Function(_$AppResetAppPreferencesImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AppResetAppPreferencesImpl implements AppResetAppPreferences {
+  _$AppResetAppPreferencesImpl();
+
+  @override
+  String toString() {
+    return 'AppEvent.resetAppPreferences()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AppResetAppPreferencesImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeCurrentUserPreferences,
+    required TResult Function() resetAppPreferences,
+    required TResult Function(
+            CurrentUserPreferences updatedCurrentUserPreferences)
+        currentDevicePreferencesUpdated,
+  }) {
+    return resetAppPreferences();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initializeCurrentUserPreferences,
+    TResult? Function()? resetAppPreferences,
+    TResult? Function(CurrentUserPreferences updatedCurrentUserPreferences)?
+        currentDevicePreferencesUpdated,
+  }) {
+    return resetAppPreferences?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeCurrentUserPreferences,
+    TResult Function()? resetAppPreferences,
+    TResult Function(CurrentUserPreferences updatedCurrentUserPreferences)?
+        currentDevicePreferencesUpdated,
+    required TResult orElse(),
+  }) {
+    if (resetAppPreferences != null) {
+      return resetAppPreferences();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AppInitializeCurrentUserPreferences value)
+        initializeCurrentUserPreferences,
+    required TResult Function(AppResetAppPreferences value) resetAppPreferences,
+    required TResult Function(AppCurrentDevicePreferencesUpdated value)
+        currentDevicePreferencesUpdated,
+  }) {
+    return resetAppPreferences(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AppInitializeCurrentUserPreferences value)?
+        initializeCurrentUserPreferences,
+    TResult? Function(AppResetAppPreferences value)? resetAppPreferences,
+    TResult? Function(AppCurrentDevicePreferencesUpdated value)?
+        currentDevicePreferencesUpdated,
+  }) {
+    return resetAppPreferences?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AppInitializeCurrentUserPreferences value)?
+        initializeCurrentUserPreferences,
+    TResult Function(AppResetAppPreferences value)? resetAppPreferences,
+    TResult Function(AppCurrentDevicePreferencesUpdated value)?
+        currentDevicePreferencesUpdated,
+    required TResult orElse(),
+  }) {
+    if (resetAppPreferences != null) {
+      return resetAppPreferences(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AppResetAppPreferences implements AppEvent {
+  factory AppResetAppPreferences() = _$AppResetAppPreferencesImpl;
 }
 
 /// @nodoc
@@ -286,6 +419,7 @@ class _$AppCurrentDevicePreferencesUpdatedImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initializeCurrentUserPreferences,
+    required TResult Function() resetAppPreferences,
     required TResult Function(
             CurrentUserPreferences updatedCurrentUserPreferences)
         currentDevicePreferencesUpdated,
@@ -297,6 +431,7 @@ class _$AppCurrentDevicePreferencesUpdatedImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initializeCurrentUserPreferences,
+    TResult? Function()? resetAppPreferences,
     TResult? Function(CurrentUserPreferences updatedCurrentUserPreferences)?
         currentDevicePreferencesUpdated,
   }) {
@@ -307,6 +442,7 @@ class _$AppCurrentDevicePreferencesUpdatedImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initializeCurrentUserPreferences,
+    TResult Function()? resetAppPreferences,
     TResult Function(CurrentUserPreferences updatedCurrentUserPreferences)?
         currentDevicePreferencesUpdated,
     required TResult orElse(),
@@ -322,6 +458,7 @@ class _$AppCurrentDevicePreferencesUpdatedImpl
   TResult map<TResult extends Object?>({
     required TResult Function(AppInitializeCurrentUserPreferences value)
         initializeCurrentUserPreferences,
+    required TResult Function(AppResetAppPreferences value) resetAppPreferences,
     required TResult Function(AppCurrentDevicePreferencesUpdated value)
         currentDevicePreferencesUpdated,
   }) {
@@ -333,6 +470,7 @@ class _$AppCurrentDevicePreferencesUpdatedImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AppInitializeCurrentUserPreferences value)?
         initializeCurrentUserPreferences,
+    TResult? Function(AppResetAppPreferences value)? resetAppPreferences,
     TResult? Function(AppCurrentDevicePreferencesUpdated value)?
         currentDevicePreferencesUpdated,
   }) {
@@ -344,6 +482,7 @@ class _$AppCurrentDevicePreferencesUpdatedImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppInitializeCurrentUserPreferences value)?
         initializeCurrentUserPreferences,
+    TResult Function(AppResetAppPreferences value)? resetAppPreferences,
     TResult Function(AppCurrentDevicePreferencesUpdated value)?
         currentDevicePreferencesUpdated,
     required TResult orElse(),
