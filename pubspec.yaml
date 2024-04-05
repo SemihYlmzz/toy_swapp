@@ -21,9 +21,9 @@ dependencies:
       ref: main
   
 
-  # Current User Preferences Repository
-  current_user_preferences_repository:
-    path: packages/current_user_preferences_repository
+  # Repositories
+  app_preferences_repository:
+    path: packages/app_preferences_repository
 
   # Local Database API
   local_database_api:

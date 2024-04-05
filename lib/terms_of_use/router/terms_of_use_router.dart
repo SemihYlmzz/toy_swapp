@@ -19,8 +19,10 @@ class TermsOfUseRouter {
         path: _path,
         name: _name,
         // parentNavigatorKey: RouterMixin.parentNavigatorKey,
-        pageBuilder: (context, state) => const NoTransitionPage(
-          child: TermsOfUseScreen(),
+        pageBuilder: (context, state) => NoTransitionPage(
+          child: TermsOfUseScreen(
+            lastUpdatedTermsDate: DateTime(2025, 02, 02),
+          ),
         ),
       );
   void go(BuildContext context) {

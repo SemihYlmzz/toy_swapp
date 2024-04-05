@@ -17,6 +17,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.4.1"
+  app_preferences_repository:
+    dependency: "direct main"
+    description:
+      path: "packages/app_preferences_repository"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   archive:
     dependency: transitive
     description:
@@ -193,13 +200,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
-  current_user_preferences_repository:
-    dependency: "direct main"
-    description:
-      path: "packages/current_user_preferences_repository"
-      relative: true
-    source: path
-    version: "0.1.0+1"
   dart_style:
     dependency: transitive
     description:

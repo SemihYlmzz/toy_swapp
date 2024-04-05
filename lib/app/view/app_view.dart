@@ -18,9 +18,10 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentUserPreferences = context.select(
-      (AppBloc bloc) => bloc.state.currentUserPreferences,
+    final appPreferences = context.select(
+      (AppBloc bloc) => bloc.state.appPreferences,
     );
+
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       // Theme
@@ -28,17 +29,22 @@ class AppView extends StatelessWidget {
       darkTheme: CustomThemeData.themeData(
         const DarkThemePalette(),
       ),
-      themeMode: currentUserPreferences.themeMode,
+      themeMode: appPreferences.themeMode,
 
       // Localization
       localizationsDelegates: localizationsDelegates,
       supportedLocales: supportedLocales,
-      locale: const Locale.fromSubtags(
-        languageCode: 'tr',
-      ),
+      locale: localeFromLanguageCode(appPreferences.languageCode),
 
       // Router
       routerConfig: appRouter,
     );
+  }
+
+  Locale? localeFromLanguageCode(String? languageCode) {
+    if (languageCode == null) {
+      return null;
+    }
+    return Locale.fromSubtags(languageCode: languageCode);
   }
 }

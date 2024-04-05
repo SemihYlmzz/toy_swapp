@@ -1,4 +1,3 @@
-import 'package:current_user_preferences_repository/current_user_preferences_repository_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_widgets/shared_widgets.dart';
@@ -15,8 +14,7 @@ class SignInScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => SignInBloc(
         // authRepository: context.read<AuthRepository>(),
-        currentUserPreferencesRepository:
-            context.read<CurrentUserPreferencesRepository>(),
+        appPreferencesRepository: context.read(),
       ),
       child: MultiBlocListener(
         listeners: [

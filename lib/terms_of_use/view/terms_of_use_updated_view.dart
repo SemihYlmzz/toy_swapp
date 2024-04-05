@@ -6,8 +6,8 @@ import 'package:styled_text/styled_text.dart';
 
 import '../terms_of_use.dart';
 
-class TermsOfUseView extends StatelessWidget {
-  const TermsOfUseView({
+class TermsOfUseUpdatedView extends StatelessWidget {
+  const TermsOfUseUpdatedView({
     required this.openTermsOfService,
     required this.openDevangsPrivacyPolicy,
     required this.openToySwappPrivacyPolicy,
@@ -16,12 +16,14 @@ class TermsOfUseView extends StatelessWidget {
   final VoidCallback openTermsOfService;
   final VoidCallback openDevangsPrivacyPolicy;
   final VoidCallback openToySwappPrivacyPolicy;
-
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
       safeArea: true,
-      appBar: const TermsOfUseAppBar(),
+      appBar: AppBar(
+        title: const Text('Terms of Use Updated'),
+        centerTitle: true,
+      ),
       body: BaseColumn(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -32,7 +34,7 @@ class TermsOfUseView extends StatelessWidget {
                 child: StyledText(
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyLarge,
-                  text: context.termsOfUseLocalization.termsOfUseText(
+                  text: context.termsOfUseLocalization.termsOfUseUpdatedText(
                     TermsOfUseStrings.termsOfUseTag,
                     TermsOfUseStrings.devangsTag,
                     TermsOfUseStrings.toySwappTag,

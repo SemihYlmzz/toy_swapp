@@ -10,7 +10,7 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.select(
-      (AppBloc bloc) => bloc.state.currentUserPreferences.languageCode,
+      (AppBloc bloc) => bloc.state.appPreferences.languageCode,
     );
 
     return const BaseScaffold(

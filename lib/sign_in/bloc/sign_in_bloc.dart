@@ -1,4 +1,4 @@
-import 'package:current_user_preferences_repository/current_user_preferences_repository_api.dart';
+import 'package:app_preferences_repository/app_preferences_repository_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -9,14 +9,14 @@ part 'sign_in_state.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc({
-    required CurrentUserPreferencesRepository currentUserPreferencesRepository,
+    required AppPreferencesRepository appPreferencesRepository,
   })  : //_authRepository = authRepository,
-        _currentUserPreferencesRepository = currentUserPreferencesRepository,
+        _appPreferencesRepository = appPreferencesRepository,
         super(SignInState(passwordFocusNode: FocusNode())) {
     on<SignInEvent>(_onAuthSignInEvent);
   }
   // final AuthRepository _authRepository;
-  final CurrentUserPreferencesRepository _currentUserPreferencesRepository;
+  final AppPreferencesRepository _appPreferencesRepository;
   Future<void> _onAuthSignInEvent(
     SignInEvent event,
     Emitter<SignInState> emit,
@@ -24,7 +24,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     emit(state.copyWith(isLoading: true));
     await event.map(
       signInWithEmailAndPassword: (e) async {
-        await _currentUserPreferencesRepository.updateTheme(
+        await _appPreferencesRepository.updateTheme(
           updatedThemeMode: ThemeMode.dark,
         );
         // final tryEvent = await _authRepository.signInWithEmailAndPassword(
@@ -37,7 +37,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         // );
       },
       signInWithGoogle: (e) async {
-        await _currentUserPreferencesRepository.updateTheme(
+        await _appPreferencesRepository.updateTheme(
           updatedThemeMode: ThemeMode.light,
         );
         // final trySignIn = await _authRepository.signInWithGoogle();

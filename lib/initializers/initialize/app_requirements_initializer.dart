@@ -1,4 +1,4 @@
-import 'package:current_user_preferences_repository/current_user_preferences_repository_api.dart';
+import 'package:app_preferences_repository/app_preferences_repository_api.dart';
 import 'package:toy_swapp/initializers/initializers.dart';
 
 class AppRequirementsInitializer {
@@ -27,19 +27,18 @@ class AppRequirementsInitializer {
     final sharedPreferencesApi = await _apiRequirements.initSharedPreferences();
 
     // Set Each Repository
-    final currentUserPreferencesRepository = CurrentUserPreferencesRepository(
+    final appPreferencesRepository = AppPreferencesRepository(
       localDatabaseApi: sharedPreferencesApi,
     );
 
     // Get User Preferences
-    final currentUserPreferences =
-        await currentUserPreferencesRepository.read();
+    final appPreferences = await appPreferencesRepository.read();
 
     return AppRequirements(
       repositories: Repositories(
-        currentUserPreferences: currentUserPreferencesRepository,
+        appPreferences: appPreferencesRepository,
       ),
-      currentUserPreferences: currentUserPreferences,
+      appPreferences: appPreferences,
       isConfigsInitialized: isConfigsInitialized,
       isLoggersInitialized: isLoggersInitialized,
     );

@@ -16,6 +16,20 @@
             }
         }
     },
+    "termsOfUseUpdatedText": "I Agree to the <{termsOfService}>Terms of Service</{termsOfService}> and have read the Privacy Notices for <{devangs}>Devangs</{devangs}> and <{toySwapp}>Toy Swapp</{toySwapp}>.",
+    "@termsOfUseUpdatedText": {
+        "placeholders": {
+            "termsOfService": {
+                "type": "String"
+            },
+            "devangs": {
+                "type": "String"
+            },
+            "toySwapp": {
+                "type": "String"
+            }
+        }
+    },
     "requiredToContinueText": "This is required to continue.",
     "accept": "Accept",
     "termsOfUse": "Terms Of Use",

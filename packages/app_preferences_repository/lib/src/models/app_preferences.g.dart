@@ -1,27 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'current_user_preferences.dart';
+part of 'app_preferences.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CurrentUserPreferencesImpl _$$CurrentUserPreferencesImplFromJson(
-        Map<String, dynamic> json) =>
-    _$CurrentUserPreferencesImpl(
+_$AppPreferencesImpl _$$AppPreferencesImplFromJson(Map<String, dynamic> json) =>
+    _$AppPreferencesImpl(
       isVibratable: json['isVibratable'] as bool? ?? true,
       themeMode: $enumDecodeNullable(_$ThemeModeEnumMap, json['themeMode']) ??
           ThemeMode.system,
-      isTermsOfUseAccepted: json['isTermsOfUseAccepted'] as bool? ?? false,
+      termsOfUseAcceptedDate: json['termsOfUseAcceptedDate'] == null
+          ? null
+          : DateTime.parse(json['termsOfUseAcceptedDate'] as String),
       languageCode: json['languageCode'] as String?,
     );
 
-Map<String, dynamic> _$$CurrentUserPreferencesImplToJson(
-        _$CurrentUserPreferencesImpl instance) =>
+Map<String, dynamic> _$$AppPreferencesImplToJson(
+        _$AppPreferencesImpl instance) =>
     <String, dynamic>{
       'isVibratable': instance.isVibratable,
       'themeMode': _$ThemeModeEnumMap[instance.themeMode]!,
-      'isTermsOfUseAccepted': instance.isTermsOfUseAccepted,
+      'termsOfUseAcceptedDate':
+          instance.termsOfUseAcceptedDate?.toIso8601String(),
       'languageCode': instance.languageCode,
     };
 

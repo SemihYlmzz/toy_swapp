@@ -1,4 +1,4 @@
-import 'package:current_user_preferences_repository/current_user_preferences_repository_api.dart';
+import 'package:app_preferences_repository/app_preferences_repository_api.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../errors/errors.dart';
@@ -9,13 +9,13 @@ part 'terms_of_use_state.dart';
 
 class TermsOfUseBloc extends Bloc<TermsOfUseEvent, TermsOfUseState> {
   TermsOfUseBloc({
-    required CurrentUserPreferencesRepository currentUserPreferencesRepository,
-  })  : _currentUserPreferencesRepository = currentUserPreferencesRepository,
+    required AppPreferencesRepository appPreferencesRepository,
+  })  : _appPreferencesRepository = appPreferencesRepository,
         super(const TermsOfUseState()) {
     on<TermsOfUseEvent>(_onTermsOfUseEvent);
   }
 
-  final CurrentUserPreferencesRepository _currentUserPreferencesRepository;
+  final AppPreferencesRepository _appPreferencesRepository;
 
   Future<void> _onTermsOfUseEvent(
     TermsOfUseEvent event,
@@ -25,7 +25,7 @@ class TermsOfUseBloc extends Bloc<TermsOfUseEvent, TermsOfUseState> {
 
     await event.map(
       acceptTerms: (e) async {
-        await _currentUserPreferencesRepository.acceptTermsOfUse();
+        await _appPreferencesRepository.acceptTermsOfUse();
       },
     );
 

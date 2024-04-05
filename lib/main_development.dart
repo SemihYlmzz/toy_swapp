@@ -14,6 +14,8 @@ void main() async {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       darkTheme: CustomThemeData.themeData(const DarkThemePalette()),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: StartupScreen(
         appRequirementsInitializer: AppRequirementsInitializer(
           // Requirements
@@ -23,14 +25,14 @@ void main() async {
         ),
         application: (appRequirements) {
           final appPreferencesRepository =
-              appRequirements.repositories.currentUserPreferences;
+              appRequirements.repositories.appPreferences;
           return AppScreen(
             // Localizations
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             // Router
             appRouter: AppRouter.instance.router(
-              appPreferencesRepository.currentUserPreferencesStream,
+              appPreferencesRepository.appPreferencesStream,
             ),
             // Requirements Injection
             appRequirements: appRequirements,

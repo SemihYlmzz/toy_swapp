@@ -1,41 +1,89 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_widgets/shared_widgets.dart';
-import 'package:toy_swapp/app/app.dart';
-import 'package:toy_swapp/sign_in/sign_in.dart';
 
+import '../../app/app.dart';
 import '../terms_of_use.dart';
 
 class TermsOfUseScreen extends StatelessWidget {
-  const TermsOfUseScreen({super.key});
+  const TermsOfUseScreen({
+    required this.lastUpdatedTermsDate,
+    super.key,
+  });
+
+  final DateTime lastUpdatedTermsDate;
 
   @override
   Widget build(BuildContext context) {
     final termsOfUseBlocListeners = TermsOfUseBlocListeners();
-    final isTermsOfUseAccepted = context.select(
-      (AppBloc bloc) => bloc.state.currentUserPreferences!.isTermsOfUseAccepted,
+    final termsOfUseAcceptedDate = context.select(
+      (AppBloc bloc) => bloc.state.appPreferences.termsOfUseAcceptedDate,
     );
-    if (isTermsOfUseAccepted) {
-      SignInRouter.instance.go(context);
-    }
+
     return BlocProvider(
       create: (context) => TermsOfUseBloc(
-        currentUserPreferencesRepository: context.read(),
+        appPreferencesRepository: context.read(),
       ),
       child: MultiBlocListener(
         listeners: [
           termsOfUseBlocListeners.errorDisplayer(),
+          termsOfUseBlocListeners.termsAcceptedNavigator(
+            context,
+            lastUpdatedTermsDate: lastUpdatedTermsDate,
+          ),
         ],
         child: BlocSelector<TermsOfUseBloc, TermsOfUseState, bool>(
           selector: (state) => state.isLoading,
           builder: (context, isLoading) {
+            if (termsOfUseAcceptedDate != null) {
+              return TermsOfUseUpdatedView(
+                openDevangsPrivacyPolicy: () =>
+                    openDevangsPrivacyPolicy(context),
+                openTermsOfService: () => openTermsOfService(context),
+                openToySwappPrivacyPolicy: () =>
+                    openToySwappPrivacyPolicy(context),
+              );
+            }
             return LoadingScreen(
               isLoading: isLoading,
               size: MediaQuery.sizeOf(context),
-              child: const TermsOfUseView(),
+              child: TermsOfUseView(
+                openDevangsPrivacyPolicy: () =>
+                    openDevangsPrivacyPolicy(context),
+                openTermsOfService: () => openTermsOfService(context),
+                openToySwappPrivacyPolicy: () =>
+                    openToySwappPrivacyPolicy(context),
+              ),
             );
           },
         ),
+      ),
+    );
+  }
+
+  void openTermsOfService(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+        builder: (_) => const DisplayTermsOfServiceView(),
+      ),
+    );
+  }
+
+  void openDevangsPrivacyPolicy(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+        builder: (_) => const DisplayDevangsPrivacyNoticesView(),
+      ),
+    );
+  }
+
+  void openToySwappPrivacyPolicy(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+        builder: (_) => const DisplayToySwappPrivacyNoticesView(),
       ),
     );
   }

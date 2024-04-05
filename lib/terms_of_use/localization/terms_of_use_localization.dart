@@ -27,4 +27,12 @@ class TermsOfUseLocalization {
     String toySwapp,
   ) =>
       context.l10n.termsOfUseText(termsOfService, devangs, toySwapp);
+
+  // "termsOfUseUpdatedText": "I Agree to the <termsOfService>Terms of Service</termsOfService>, have read the Privacy Notices for <devangs>Devangs</devangs> and <toySwapp>Toy Swapp</toySwapp>.",
+  String termsOfUseUpdatedText(
+    String termsOfService,
+    String devangs,
+    String toySwapp,
+  ) =>
+      context.l10n.termsOfUseUpdatedText(termsOfService, devangs, toySwapp);
 }

@@ -16,44 +16,41 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AppEvent {
-  CurrentUserPreferences get updatedCurrentUserPreferences =>
+  AppPreferences get updatedAppPreferences =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            CurrentUserPreferences updatedCurrentUserPreferences)
-        currentDevicePreferencesUpdated,
+    required TResult Function(AppPreferences updatedAppPreferences)
+        appPreferencesUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(CurrentUserPreferences updatedCurrentUserPreferences)?
-        currentDevicePreferencesUpdated,
+    TResult? Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CurrentUserPreferences updatedCurrentUserPreferences)?
-        currentDevicePreferencesUpdated,
+    TResult Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AppCurrentDevicePreferencesUpdated value)
-        currentDevicePreferencesUpdated,
+    required TResult Function(AppPreferencesUpdated value)
+        appPreferencesUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AppCurrentDevicePreferencesUpdated value)?
-        currentDevicePreferencesUpdated,
+    TResult? Function(AppPreferencesUpdated value)? appPreferencesUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AppCurrentDevicePreferencesUpdated value)?
-        currentDevicePreferencesUpdated,
+    TResult Function(AppPreferencesUpdated value)? appPreferencesUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,9 +65,9 @@ abstract class $AppEventCopyWith<$Res> {
   factory $AppEventCopyWith(AppEvent value, $Res Function(AppEvent) then) =
       _$AppEventCopyWithImpl<$Res, AppEvent>;
   @useResult
-  $Res call({CurrentUserPreferences updatedCurrentUserPreferences});
+  $Res call({AppPreferences updatedAppPreferences});
 
-  $CurrentUserPreferencesCopyWith<$Res> get updatedCurrentUserPreferences;
+  $AppPreferencesCopyWith<$Res> get updatedAppPreferences;
 }
 
 /// @nodoc
@@ -86,130 +83,121 @@ class _$AppEventCopyWithImpl<$Res, $Val extends AppEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? updatedCurrentUserPreferences = null,
+    Object? updatedAppPreferences = null,
   }) {
     return _then(_value.copyWith(
-      updatedCurrentUserPreferences: null == updatedCurrentUserPreferences
-          ? _value.updatedCurrentUserPreferences
-          : updatedCurrentUserPreferences // ignore: cast_nullable_to_non_nullable
-              as CurrentUserPreferences,
+      updatedAppPreferences: null == updatedAppPreferences
+          ? _value.updatedAppPreferences
+          : updatedAppPreferences // ignore: cast_nullable_to_non_nullable
+              as AppPreferences,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $CurrentUserPreferencesCopyWith<$Res> get updatedCurrentUserPreferences {
-    return $CurrentUserPreferencesCopyWith<$Res>(
-        _value.updatedCurrentUserPreferences, (value) {
-      return _then(
-          _value.copyWith(updatedCurrentUserPreferences: value) as $Val);
+  $AppPreferencesCopyWith<$Res> get updatedAppPreferences {
+    return $AppPreferencesCopyWith<$Res>(_value.updatedAppPreferences, (value) {
+      return _then(_value.copyWith(updatedAppPreferences: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$AppCurrentDevicePreferencesUpdatedImplCopyWith<$Res>
+abstract class _$$AppPreferencesUpdatedImplCopyWith<$Res>
     implements $AppEventCopyWith<$Res> {
-  factory _$$AppCurrentDevicePreferencesUpdatedImplCopyWith(
-          _$AppCurrentDevicePreferencesUpdatedImpl value,
-          $Res Function(_$AppCurrentDevicePreferencesUpdatedImpl) then) =
-      __$$AppCurrentDevicePreferencesUpdatedImplCopyWithImpl<$Res>;
+  factory _$$AppPreferencesUpdatedImplCopyWith(
+          _$AppPreferencesUpdatedImpl value,
+          $Res Function(_$AppPreferencesUpdatedImpl) then) =
+      __$$AppPreferencesUpdatedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({CurrentUserPreferences updatedCurrentUserPreferences});
+  $Res call({AppPreferences updatedAppPreferences});
 
   @override
-  $CurrentUserPreferencesCopyWith<$Res> get updatedCurrentUserPreferences;
+  $AppPreferencesCopyWith<$Res> get updatedAppPreferences;
 }
 
 /// @nodoc
-class __$$AppCurrentDevicePreferencesUpdatedImplCopyWithImpl<$Res>
-    extends _$AppEventCopyWithImpl<$Res,
-        _$AppCurrentDevicePreferencesUpdatedImpl>
-    implements _$$AppCurrentDevicePreferencesUpdatedImplCopyWith<$Res> {
-  __$$AppCurrentDevicePreferencesUpdatedImplCopyWithImpl(
-      _$AppCurrentDevicePreferencesUpdatedImpl _value,
-      $Res Function(_$AppCurrentDevicePreferencesUpdatedImpl) _then)
+class __$$AppPreferencesUpdatedImplCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res, _$AppPreferencesUpdatedImpl>
+    implements _$$AppPreferencesUpdatedImplCopyWith<$Res> {
+  __$$AppPreferencesUpdatedImplCopyWithImpl(_$AppPreferencesUpdatedImpl _value,
+      $Res Function(_$AppPreferencesUpdatedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? updatedCurrentUserPreferences = null,
+    Object? updatedAppPreferences = null,
   }) {
-    return _then(_$AppCurrentDevicePreferencesUpdatedImpl(
-      null == updatedCurrentUserPreferences
-          ? _value.updatedCurrentUserPreferences
-          : updatedCurrentUserPreferences // ignore: cast_nullable_to_non_nullable
-              as CurrentUserPreferences,
+    return _then(_$AppPreferencesUpdatedImpl(
+      null == updatedAppPreferences
+          ? _value.updatedAppPreferences
+          : updatedAppPreferences // ignore: cast_nullable_to_non_nullable
+              as AppPreferences,
     ));
   }
 }
 
 /// @nodoc
 
-class _$AppCurrentDevicePreferencesUpdatedImpl
-    implements AppCurrentDevicePreferencesUpdated {
-  _$AppCurrentDevicePreferencesUpdatedImpl(this.updatedCurrentUserPreferences);
+class _$AppPreferencesUpdatedImpl implements AppPreferencesUpdated {
+  _$AppPreferencesUpdatedImpl(this.updatedAppPreferences);
 
   @override
-  final CurrentUserPreferences updatedCurrentUserPreferences;
+  final AppPreferences updatedAppPreferences;
 
   @override
   String toString() {
-    return 'AppEvent.currentDevicePreferencesUpdated(updatedCurrentUserPreferences: $updatedCurrentUserPreferences)';
+    return 'AppEvent.appPreferencesUpdated(updatedAppPreferences: $updatedAppPreferences)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AppCurrentDevicePreferencesUpdatedImpl &&
-            (identical(other.updatedCurrentUserPreferences,
-                    updatedCurrentUserPreferences) ||
-                other.updatedCurrentUserPreferences ==
-                    updatedCurrentUserPreferences));
+            other is _$AppPreferencesUpdatedImpl &&
+            (identical(other.updatedAppPreferences, updatedAppPreferences) ||
+                other.updatedAppPreferences == updatedAppPreferences));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, updatedCurrentUserPreferences);
+  int get hashCode => Object.hash(runtimeType, updatedAppPreferences);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AppCurrentDevicePreferencesUpdatedImplCopyWith<
-          _$AppCurrentDevicePreferencesUpdatedImpl>
-      get copyWith => __$$AppCurrentDevicePreferencesUpdatedImplCopyWithImpl<
-          _$AppCurrentDevicePreferencesUpdatedImpl>(this, _$identity);
+  _$$AppPreferencesUpdatedImplCopyWith<_$AppPreferencesUpdatedImpl>
+      get copyWith => __$$AppPreferencesUpdatedImplCopyWithImpl<
+          _$AppPreferencesUpdatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            CurrentUserPreferences updatedCurrentUserPreferences)
-        currentDevicePreferencesUpdated,
+    required TResult Function(AppPreferences updatedAppPreferences)
+        appPreferencesUpdated,
   }) {
-    return currentDevicePreferencesUpdated(updatedCurrentUserPreferences);
+    return appPreferencesUpdated(updatedAppPreferences);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(CurrentUserPreferences updatedCurrentUserPreferences)?
-        currentDevicePreferencesUpdated,
+    TResult? Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
   }) {
-    return currentDevicePreferencesUpdated?.call(updatedCurrentUserPreferences);
+    return appPreferencesUpdated?.call(updatedAppPreferences);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CurrentUserPreferences updatedCurrentUserPreferences)?
-        currentDevicePreferencesUpdated,
+    TResult Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
     required TResult orElse(),
   }) {
-    if (currentDevicePreferencesUpdated != null) {
-      return currentDevicePreferencesUpdated(updatedCurrentUserPreferences);
+    if (appPreferencesUpdated != null) {
+      return appPreferencesUpdated(updatedAppPreferences);
     }
     return orElse();
   }
@@ -217,53 +205,48 @@ class _$AppCurrentDevicePreferencesUpdatedImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AppCurrentDevicePreferencesUpdated value)
-        currentDevicePreferencesUpdated,
+    required TResult Function(AppPreferencesUpdated value)
+        appPreferencesUpdated,
   }) {
-    return currentDevicePreferencesUpdated(this);
+    return appPreferencesUpdated(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AppCurrentDevicePreferencesUpdated value)?
-        currentDevicePreferencesUpdated,
+    TResult? Function(AppPreferencesUpdated value)? appPreferencesUpdated,
   }) {
-    return currentDevicePreferencesUpdated?.call(this);
+    return appPreferencesUpdated?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AppCurrentDevicePreferencesUpdated value)?
-        currentDevicePreferencesUpdated,
+    TResult Function(AppPreferencesUpdated value)? appPreferencesUpdated,
     required TResult orElse(),
   }) {
-    if (currentDevicePreferencesUpdated != null) {
-      return currentDevicePreferencesUpdated(this);
+    if (appPreferencesUpdated != null) {
+      return appPreferencesUpdated(this);
     }
     return orElse();
   }
 }
 
-abstract class AppCurrentDevicePreferencesUpdated implements AppEvent {
-  factory AppCurrentDevicePreferencesUpdated(
-          final CurrentUserPreferences updatedCurrentUserPreferences) =
-      _$AppCurrentDevicePreferencesUpdatedImpl;
+abstract class AppPreferencesUpdated implements AppEvent {
+  factory AppPreferencesUpdated(final AppPreferences updatedAppPreferences) =
+      _$AppPreferencesUpdatedImpl;
 
   @override
-  CurrentUserPreferences get updatedCurrentUserPreferences;
+  AppPreferences get updatedAppPreferences;
   @override
   @JsonKey(ignore: true)
-  _$$AppCurrentDevicePreferencesUpdatedImplCopyWith<
-          _$AppCurrentDevicePreferencesUpdatedImpl>
+  _$$AppPreferencesUpdatedImplCopyWith<_$AppPreferencesUpdatedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$AppState {
-  CurrentUserPreferences get currentUserPreferences =>
-      throw _privateConstructorUsedError;
+  AppPreferences get appPreferences => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
@@ -277,12 +260,9 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
-  $Res call(
-      {CurrentUserPreferences currentUserPreferences,
-      Failure? failure,
-      bool isLoading});
+  $Res call({AppPreferences appPreferences, Failure? failure, bool isLoading});
 
-  $CurrentUserPreferencesCopyWith<$Res> get currentUserPreferences;
+  $AppPreferencesCopyWith<$Res> get appPreferences;
 }
 
 /// @nodoc
@@ -298,15 +278,15 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentUserPreferences = null,
+    Object? appPreferences = null,
     Object? failure = freezed,
     Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
-      currentUserPreferences: null == currentUserPreferences
-          ? _value.currentUserPreferences
-          : currentUserPreferences // ignore: cast_nullable_to_non_nullable
-              as CurrentUserPreferences,
+      appPreferences: null == appPreferences
+          ? _value.appPreferences
+          : appPreferences // ignore: cast_nullable_to_non_nullable
+              as AppPreferences,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -320,10 +300,9 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
 
   @override
   @pragma('vm:prefer-inline')
-  $CurrentUserPreferencesCopyWith<$Res> get currentUserPreferences {
-    return $CurrentUserPreferencesCopyWith<$Res>(_value.currentUserPreferences,
-        (value) {
-      return _then(_value.copyWith(currentUserPreferences: value) as $Val);
+  $AppPreferencesCopyWith<$Res> get appPreferences {
+    return $AppPreferencesCopyWith<$Res>(_value.appPreferences, (value) {
+      return _then(_value.copyWith(appPreferences: value) as $Val);
     });
   }
 }
@@ -336,13 +315,10 @@ abstract class _$$AppStateImplCopyWith<$Res>
       __$$AppStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {CurrentUserPreferences currentUserPreferences,
-      Failure? failure,
-      bool isLoading});
+  $Res call({AppPreferences appPreferences, Failure? failure, bool isLoading});
 
   @override
-  $CurrentUserPreferencesCopyWith<$Res> get currentUserPreferences;
+  $AppPreferencesCopyWith<$Res> get appPreferences;
 }
 
 /// @nodoc
@@ -356,15 +332,15 @@ class __$$AppStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentUserPreferences = null,
+    Object? appPreferences = null,
     Object? failure = freezed,
     Object? isLoading = null,
   }) {
     return _then(_$AppStateImpl(
-      currentUserPreferences: null == currentUserPreferences
-          ? _value.currentUserPreferences
-          : currentUserPreferences // ignore: cast_nullable_to_non_nullable
-              as CurrentUserPreferences,
+      appPreferences: null == appPreferences
+          ? _value.appPreferences
+          : appPreferences // ignore: cast_nullable_to_non_nullable
+              as AppPreferences,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -381,12 +357,10 @@ class __$$AppStateImplCopyWithImpl<$Res>
 
 class _$AppStateImpl implements _AppState {
   const _$AppStateImpl(
-      {required this.currentUserPreferences,
-      this.failure,
-      this.isLoading = false});
+      {required this.appPreferences, this.failure, this.isLoading = false});
 
   @override
-  final CurrentUserPreferences currentUserPreferences;
+  final AppPreferences appPreferences;
   @override
   final Failure? failure;
   @override
@@ -395,7 +369,7 @@ class _$AppStateImpl implements _AppState {
 
   @override
   String toString() {
-    return 'AppState(currentUserPreferences: $currentUserPreferences, failure: $failure, isLoading: $isLoading)';
+    return 'AppState(appPreferences: $appPreferences, failure: $failure, isLoading: $isLoading)';
   }
 
   @override
@@ -403,8 +377,8 @@ class _$AppStateImpl implements _AppState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppStateImpl &&
-            (identical(other.currentUserPreferences, currentUserPreferences) ||
-                other.currentUserPreferences == currentUserPreferences) &&
+            (identical(other.appPreferences, appPreferences) ||
+                other.appPreferences == appPreferences) &&
             (identical(other.failure, failure) || other.failure == failure) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading));
@@ -412,7 +386,7 @@ class _$AppStateImpl implements _AppState {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, currentUserPreferences, failure, isLoading);
+      Object.hash(runtimeType, appPreferences, failure, isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -423,12 +397,12 @@ class _$AppStateImpl implements _AppState {
 
 abstract class _AppState implements AppState {
   const factory _AppState(
-      {required final CurrentUserPreferences currentUserPreferences,
+      {required final AppPreferences appPreferences,
       final Failure? failure,
       final bool isLoading}) = _$AppStateImpl;
 
   @override
-  CurrentUserPreferences get currentUserPreferences;
+  AppPreferences get appPreferences;
   @override
   Failure? get failure;
   @override

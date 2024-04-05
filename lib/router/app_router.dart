@@ -32,13 +32,14 @@ class AppRouter {
           // UserInitializerRouter.instance.route,
         ],
         redirect: (BuildContext context, GoRouterState state) async {
-          final isTermsOfUseAccepted = context
+          final termsOfUseAcceptedDate = context
               .read<AppBloc>()
               .state
-              .currentUserPreferences!
-              .isTermsOfUseAccepted;
+              .appPreferences
+              .termsOfUseAcceptedDate;
 
-          if (!isTermsOfUseAccepted) {
+          if (termsOfUseAcceptedDate == null ||
+              termsOfUseAcceptedDate.isBefore(DateTime(2025, 02, 02))) {
             return TermsOfUseRouter.instance.path;
           }
           return null;

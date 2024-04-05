@@ -1,4 +1,4 @@
-import 'package:current_user_preferences_repository/current_user_preferences_repository_api.dart';
+import 'package:app_preferences_repository/app_preferences_repository_api.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -10,22 +10,22 @@ part 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
-    required CurrentUserPreferencesRepository currentUserPreferencesRepository,
-    required CurrentUserPreferences currentUserPreferences,
-  })  : _currentUserPreferencesRepository = currentUserPreferencesRepository,
-        super(AppState(currentUserPreferences: currentUserPreferences)) {
+    required AppPreferencesRepository appPreferencesRepository,
+    required AppPreferences appPreferences,
+  })  : _appPreferencesRepository = appPreferencesRepository,
+        super(AppState(appPreferences: appPreferences)) {
     // Handle AppEvents
     on<AppEvent>(_onAppEvent);
-    // CurrentUserPreferences Updated Listener
-    _currentUserPreferencesRepository.currentUserPreferencesStream.listen(
+    // AppPreferences Updated Listener
+    _appPreferencesRepository.appPreferencesStream.listen(
       (value) {
-        add(AppEvent.currentDevicePreferencesUpdated(value));
+        add(AppEvent.appPreferencesUpdated(value));
       },
     );
   }
 
   // Initialize Repositories
-  final CurrentUserPreferencesRepository _currentUserPreferencesRepository;
+  final AppPreferencesRepository _appPreferencesRepository;
 
   // Events
   Future<void> _onAppEvent(
@@ -35,12 +35,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     emit(state.copyWith(isLoading: true));
 
     await event.map(
-      currentDevicePreferencesUpdated: (event) async {
-        emit(
-          state.copyWith(
-            currentUserPreferences: event.updatedCurrentUserPreferences,
-          ),
-        );
+      appPreferencesUpdated: (event) async {
+        emit(state.copyWith(appPreferences: event.updatedAppPreferences));
       },
     );
 

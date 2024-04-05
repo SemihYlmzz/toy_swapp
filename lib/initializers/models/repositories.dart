@@ -1,9 +1,9 @@
-import 'package:current_user_preferences_repository/current_user_preferences_repository_api.dart';
+import 'package:app_preferences_repository/app_preferences_repository_api.dart';
 
 class Repositories {
   Repositories({
-    required this.currentUserPreferences,
+    required this.appPreferences,
   });
 
-  final CurrentUserPreferencesRepository currentUserPreferences;
+  final AppPreferencesRepository appPreferences;
 }

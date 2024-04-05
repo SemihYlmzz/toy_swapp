@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_widgets/shared_widgets.dart';
-import 'package:toy_swapp/startup/bloc/startup_bloc.dart';
-import 'package:toy_swapp/startup/constants/startup_constant_strings.dart';
+
+import '../../startup/startup.dart';
 
 class StartupErrorView extends StatelessWidget {
   const StartupErrorView({super.key});

@@ -16,6 +16,20 @@
             }
         }
     },
+    "termsOfUseUpdatedText": "<{termsOfService}>Kullanım Şartları</{termsOfService}>'nı ve <{devangs}>Devangs</{devangs}> ve <{toySwapp}>Toy Swapp</{toySwapp}> için olan Gizlilik Bildirimlerini okuduğumu kabul ediyorum.",
+    "@termsOfUseUpdatedText": {
+        "placeholders": {
+            "termsOfService": {
+                "type": "String"
+            },
+            "devangs": {
+                "type": "String"
+            },
+            "toySwapp": {
+                "type": "String"
+            }
+        }
+    },
     "requiredToContinueText": "Devam etmek için gerekli.",
     "accept": "Kabul Et",
     "termsOfUse": "Kullanım Koşulları",

@@ -26,15 +26,15 @@ class AppScreen extends StatelessWidget {
       providers: [
         // Repositories
         Provider.value(
-          value: _appRequirements.repositories.currentUserPreferences,
+          value: _appRequirements.repositories.appPreferences,
         ),
 
         // Bloc
         BlocProvider(
           create: (context) => AppBloc(
-            currentUserPreferencesRepository:
-                _appRequirements.repositories.currentUserPreferences,
-            currentUserPreferences: _appRequirements.currentUserPreferences,
+            appPreferencesRepository:
+                _appRequirements.repositories.appPreferences,
+            appPreferences: _appRequirements.appPreferences,
           ),
         ),
       ],
