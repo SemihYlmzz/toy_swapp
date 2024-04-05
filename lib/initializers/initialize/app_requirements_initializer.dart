@@ -27,14 +27,19 @@ class AppRequirementsInitializer {
     final sharedPreferencesApi = await _apiRequirements.initSharedPreferences();
 
     // Set Each Repository
-    final currentUserPreferences = CurrentUserPreferencesRepository(
+    final currentUserPreferencesRepository = CurrentUserPreferencesRepository(
       localDatabaseApi: sharedPreferencesApi,
     );
 
+    // Get User Preferences
+    final currentUserPreferences =
+        await currentUserPreferencesRepository.read();
+
     return AppRequirements(
       repositories: Repositories(
-        currentUserPreferences: currentUserPreferences,
+        currentUserPreferences: currentUserPreferencesRepository,
       ),
+      currentUserPreferences: currentUserPreferences,
       isConfigsInitialized: isConfigsInitialized,
       isLoggersInitialized: isLoggersInitialized,
     );

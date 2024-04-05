@@ -15,43 +15,43 @@ class CurrentUserPreferencesRepository {
       currentUserPreferences = event;
     });
   }
+  // Data Manipulation
+  final _currentUserStreamController =
+      StreamController<CurrentUserPreferences>.broadcast();
+
+  Stream<CurrentUserPreferences> get currentUserPreferencesStream =>
+      _currentUserStreamController.stream;
+
+  CurrentUserPreferences? currentUserPreferences;
 
   // Data Bases
   final LocalDatabaseApi localDatabaseApi;
 
   // Functions
-  Future<Either<CurrentUserPreferencesRepositoryFailure, Unit>> create() async {
-    try {
-      const creatableUserPreferences = CurrentUserPreferences();
-      await localDatabaseApi.create(
-        CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
-        data: creatableUserPreferences.toJson(),
-      );
-      _currentUserStreamController.sink.add(creatableUserPreferences);
-      return const Right(unit);
-    } catch (exception) {
-      return const Left(CurrentUserPreferencesRepositoryFailure.unknown());
-    }
+  Future<CurrentUserPreferences> create() async {
+    const creatableUserPreferences = CurrentUserPreferences();
+    await localDatabaseApi.create(
+      CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
+      data: creatableUserPreferences.toJson(),
+    );
+    _currentUserStreamController.sink.add(creatableUserPreferences);
+    return creatableUserPreferences;
   }
 
-  Future<Either<CurrentUserPreferencesRepositoryFailure, Unit>> read() async {
-    try {
-      final currentUserPreferencesJson = await localDatabaseApi.read(
-        CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
-      );
+  Future<CurrentUserPreferences> read() async {
+    final currentUserPreferencesJson = await localDatabaseApi.read(
+      CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
+    );
 
-      if (currentUserPreferencesJson == null) {
-        return create();
-      }
-
-      final currentUserPreferences = CurrentUserPreferences.fromJson(
-        currentUserPreferencesJson,
-      );
-      _currentUserStreamController.sink.add(currentUserPreferences);
-      return const Right(unit);
-    } catch (exception) {
-      return const Left(CurrentUserPreferencesRepositoryFailure.unknown());
+    if (currentUserPreferencesJson == null) {
+      return create();
     }
+
+    final currentUserPreferences = CurrentUserPreferences.fromJson(
+      currentUserPreferencesJson,
+    );
+    _currentUserStreamController.sink.add(currentUserPreferences);
+    return currentUserPreferences;
   }
 
   Future<void> updateTheme({required ThemeMode updatedThemeMode}) async {
@@ -68,13 +68,14 @@ class CurrentUserPreferencesRepository {
     _currentUserStreamController.sink.add(updatedPreferences);
   }
 
-  Future<void> updateLanguage({required Language updatedLanguage}) async {
+  Future<void> updateLanguageCode({required String newLanguageCode}) async {
     if (currentUserPreferences == null) {
       // Exception: Need to read the current user preferences before updating
       return;
     }
-    final updatedPreferences =
-        currentUserPreferences!.copyWith(language: updatedLanguage);
+    final updatedPreferences = currentUserPreferences!.copyWith(
+      languageCode: newLanguageCode,
+    );
     await localDatabaseApi.update(
       CurrentUserPreferencesRepositoryStrings.localDatabaseKey,
       data: updatedPreferences.toJson(),
@@ -122,13 +123,4 @@ class CurrentUserPreferencesRepository {
       );
     }
   }
-
-  // Data Manipulation
-  final _currentUserStreamController =
-      StreamController<CurrentUserPreferences>.broadcast();
-
-  Stream<CurrentUserPreferences> get currentUserPreferencesStream =>
-      _currentUserStreamController.stream;
-
-  CurrentUserPreferences? currentUserPreferences;
 }

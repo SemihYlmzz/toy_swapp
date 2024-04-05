@@ -12,7 +12,7 @@ class SignInEmailTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.select(
-      (AppBloc bloc) => bloc.state.currentUserPreferences!.language,
+      (AppBloc bloc) => bloc.state.currentUserPreferences.languageCode,
     );
     return GradientTextField(
       hintText: context.signInLocalization.email,

@@ -11,13 +11,9 @@ part 'app_state.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
     required CurrentUserPreferencesRepository currentUserPreferencesRepository,
+    required CurrentUserPreferences currentUserPreferences,
   })  : _currentUserPreferencesRepository = currentUserPreferencesRepository,
-        super(
-          AppState(
-            currentUserPreferences:
-                currentUserPreferencesRepository.currentUserPreferences,
-          ),
-        ) {
+        super(AppState(currentUserPreferences: currentUserPreferences)) {
     // Handle AppEvents
     on<AppEvent>(_onAppEvent);
     // CurrentUserPreferences Updated Listener
@@ -36,7 +32,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     AppEvent event,
     Emitter<AppState> emit,
   ) async {
-    emit(state.copyWith(isLoading: true, isInitError: false));
+    emit(state.copyWith(isLoading: true));
 
     await event.map(
       currentDevicePreferencesUpdated: (event) async {
@@ -45,17 +41,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
             currentUserPreferences: event.updatedCurrentUserPreferences,
           ),
         );
-      },
-      initializeCurrentUserPreferences: (event) async {
-        final tryRead = await _currentUserPreferencesRepository.read();
-        tryRead.fold(
-          (f) => emit(state.copyWith(isInitError: true, failure: f)),
-          (r) => null,
-        );
-      },
-      resetAppPreferences: (value) => (event) async {
-        // await _currentUserPreferencesRepository.reset();
-        // emit(state.copyWith(currentUserPreferences: null));
       },
     );
 

@@ -1,24 +1,26 @@
-import 'package:current_user_preferences_repository/current_user_preferences_repository_api.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../themes/themes.dart';
+import '../app.dart';
 
 class AppView extends StatelessWidget {
   const AppView({
     required this.localizationsDelegates,
     required this.supportedLocales,
     required this.appRouter,
-    required this.currentUserPreferences,
     super.key,
   });
 
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
   final Iterable<Locale> supportedLocales;
   final RouterConfig<Object>? appRouter;
-  final CurrentUserPreferences currentUserPreferences;
 
   @override
   Widget build(BuildContext context) {
+    final currentUserPreferences = context.select(
+      (AppBloc bloc) => bloc.state.currentUserPreferences,
+    );
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       // Theme
@@ -31,18 +33,12 @@ class AppView extends StatelessWidget {
       // Localization
       localizationsDelegates: localizationsDelegates,
       supportedLocales: supportedLocales,
-      locale: _localeFromLanguage(currentUserPreferences.language),
+      locale: const Locale.fromSubtags(
+        languageCode: 'tr',
+      ),
 
       // Router
       routerConfig: appRouter,
     );
-  }
-
-  Locale? _localeFromLanguage(Language language) {
-    return switch (language) {
-      Language.turkish => const Locale('tr'),
-      Language.english => const Locale('en'),
-      _ => null,
-    };
   }
 }

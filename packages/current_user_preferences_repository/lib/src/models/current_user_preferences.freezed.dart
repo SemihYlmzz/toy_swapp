@@ -22,9 +22,9 @@ CurrentUserPreferences _$CurrentUserPreferencesFromJson(
 /// @nodoc
 mixin _$CurrentUserPreferences {
   bool get isVibratable => throw _privateConstructorUsedError;
-  Language get language => throw _privateConstructorUsedError;
   ThemeMode get themeMode => throw _privateConstructorUsedError;
   bool get isTermsOfUseAccepted => throw _privateConstructorUsedError;
+  String? get languageCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,9 +40,9 @@ abstract class $CurrentUserPreferencesCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isVibratable,
-      Language language,
       ThemeMode themeMode,
-      bool isTermsOfUseAccepted});
+      bool isTermsOfUseAccepted,
+      String? languageCode});
 }
 
 /// @nodoc
@@ -60,19 +60,15 @@ class _$CurrentUserPreferencesCopyWithImpl<$Res,
   @override
   $Res call({
     Object? isVibratable = null,
-    Object? language = null,
     Object? themeMode = null,
     Object? isTermsOfUseAccepted = null,
+    Object? languageCode = freezed,
   }) {
     return _then(_value.copyWith(
       isVibratable: null == isVibratable
           ? _value.isVibratable
           : isVibratable // ignore: cast_nullable_to_non_nullable
               as bool,
-      language: null == language
-          ? _value.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as Language,
       themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
@@ -81,6 +77,10 @@ class _$CurrentUserPreferencesCopyWithImpl<$Res,
           ? _value.isTermsOfUseAccepted
           : isTermsOfUseAccepted // ignore: cast_nullable_to_non_nullable
               as bool,
+      languageCode: freezed == languageCode
+          ? _value.languageCode
+          : languageCode // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -96,9 +96,9 @@ abstract class _$$CurrentUserPreferencesImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool isVibratable,
-      Language language,
       ThemeMode themeMode,
-      bool isTermsOfUseAccepted});
+      bool isTermsOfUseAccepted,
+      String? languageCode});
 }
 
 /// @nodoc
@@ -115,19 +115,15 @@ class __$$CurrentUserPreferencesImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isVibratable = null,
-    Object? language = null,
     Object? themeMode = null,
     Object? isTermsOfUseAccepted = null,
+    Object? languageCode = freezed,
   }) {
     return _then(_$CurrentUserPreferencesImpl(
       isVibratable: null == isVibratable
           ? _value.isVibratable
           : isVibratable // ignore: cast_nullable_to_non_nullable
               as bool,
-      language: null == language
-          ? _value.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as Language,
       themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
@@ -136,6 +132,10 @@ class __$$CurrentUserPreferencesImplCopyWithImpl<$Res>
           ? _value.isTermsOfUseAccepted
           : isTermsOfUseAccepted // ignore: cast_nullable_to_non_nullable
               as bool,
+      languageCode: freezed == languageCode
+          ? _value.languageCode
+          : languageCode // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -145,9 +145,9 @@ class __$$CurrentUserPreferencesImplCopyWithImpl<$Res>
 class _$CurrentUserPreferencesImpl implements _CurrentUserPreferences {
   const _$CurrentUserPreferencesImpl(
       {this.isVibratable = true,
-      this.language = Language.deviceLanguage,
       this.themeMode = ThemeMode.system,
-      this.isTermsOfUseAccepted = false});
+      this.isTermsOfUseAccepted = false,
+      this.languageCode});
 
   factory _$CurrentUserPreferencesImpl.fromJson(Map<String, dynamic> json) =>
       _$$CurrentUserPreferencesImplFromJson(json);
@@ -157,17 +157,16 @@ class _$CurrentUserPreferencesImpl implements _CurrentUserPreferences {
   final bool isVibratable;
   @override
   @JsonKey()
-  final Language language;
-  @override
-  @JsonKey()
   final ThemeMode themeMode;
   @override
   @JsonKey()
   final bool isTermsOfUseAccepted;
+  @override
+  final String? languageCode;
 
   @override
   String toString() {
-    return 'CurrentUserPreferences(isVibratable: $isVibratable, language: $language, themeMode: $themeMode, isTermsOfUseAccepted: $isTermsOfUseAccepted)';
+    return 'CurrentUserPreferences(isVibratable: $isVibratable, themeMode: $themeMode, isTermsOfUseAccepted: $isTermsOfUseAccepted, languageCode: $languageCode)';
   }
 
   @override
@@ -177,18 +176,18 @@ class _$CurrentUserPreferencesImpl implements _CurrentUserPreferences {
             other is _$CurrentUserPreferencesImpl &&
             (identical(other.isVibratable, isVibratable) ||
                 other.isVibratable == isVibratable) &&
-            (identical(other.language, language) ||
-                other.language == language) &&
             (identical(other.themeMode, themeMode) ||
                 other.themeMode == themeMode) &&
             (identical(other.isTermsOfUseAccepted, isTermsOfUseAccepted) ||
-                other.isTermsOfUseAccepted == isTermsOfUseAccepted));
+                other.isTermsOfUseAccepted == isTermsOfUseAccepted) &&
+            (identical(other.languageCode, languageCode) ||
+                other.languageCode == languageCode));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, isVibratable, language, themeMode, isTermsOfUseAccepted);
+      runtimeType, isVibratable, themeMode, isTermsOfUseAccepted, languageCode);
 
   @JsonKey(ignore: true)
   @override
@@ -208,9 +207,9 @@ class _$CurrentUserPreferencesImpl implements _CurrentUserPreferences {
 abstract class _CurrentUserPreferences implements CurrentUserPreferences {
   const factory _CurrentUserPreferences(
       {final bool isVibratable,
-      final Language language,
       final ThemeMode themeMode,
-      final bool isTermsOfUseAccepted}) = _$CurrentUserPreferencesImpl;
+      final bool isTermsOfUseAccepted,
+      final String? languageCode}) = _$CurrentUserPreferencesImpl;
 
   factory _CurrentUserPreferences.fromJson(Map<String, dynamic> json) =
       _$CurrentUserPreferencesImpl.fromJson;
@@ -218,11 +217,11 @@ abstract class _CurrentUserPreferences implements CurrentUserPreferences {
   @override
   bool get isVibratable;
   @override
-  Language get language;
-  @override
   ThemeMode get themeMode;
   @override
   bool get isTermsOfUseAccepted;
+  @override
+  String? get languageCode;
   @override
   @JsonKey(ignore: true)
   _$$CurrentUserPreferencesImplCopyWith<_$CurrentUserPreferencesImpl>

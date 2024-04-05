@@ -32,8 +32,8 @@ void main() async {
             appRouter: AppRouter.instance.router(
               appPreferencesRepository.currentUserPreferencesStream,
             ),
-            // Repositories
-            currentUserPreferencesRepository: appPreferencesRepository,
+            // Requirements Injection
+            appRequirements: appRequirements,
           );
         },
       ),
