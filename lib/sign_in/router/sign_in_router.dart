@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../router/app_router.dart';
-import '../auth_sign_in.dart';
+import '../sign_in.dart';
 
-
-class AuthSignInRouter {
-  factory AuthSignInRouter() {
+class SignInRouter {
+  factory SignInRouter() {
     return instance;
   }
-  AuthSignInRouter._();
-  static final AuthSignInRouter instance = AuthSignInRouter._();
+  SignInRouter._();
+  static final SignInRouter instance = SignInRouter._();
 
-  static const String _path = '/auth_sign_in';
-  static const String _name = 'auth_sign_in';
+  static const String _path = '/sign_in';
+  static const String _name = 'sign_in';
 
   String get path => _path;
   String get name => _name;
@@ -22,7 +21,7 @@ class AuthSignInRouter {
         name: _name,
         parentNavigatorKey: AppRouter.instance.parentNavigatorKey,
         pageBuilder: (context, state) => const NoTransitionPage(
-          child: AuthSignInScreen(),
+          child: SignInScreen(),
         ),
       );
   void go(BuildContext context) {

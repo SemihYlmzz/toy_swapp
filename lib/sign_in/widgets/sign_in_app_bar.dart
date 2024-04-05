@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:toy_swapp/l10n/l10n.dart';
 
-class AuthSignInAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const AuthSignInAppBar({
+class SignInAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const SignInAppBar({
     super.key,
   });
 

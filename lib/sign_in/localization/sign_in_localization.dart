@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import '../../l10n/l10n.dart';
 
-extension AuthSignInLocalizationExtension on BuildContext {
-  AuthSignInLocalization get authSignInLocalization {
-    return AuthSignInLocalization(this);
+extension SignInLocalizationExtension on BuildContext {
+  SignInLocalization get signInLocalization {
+    return SignInLocalization(this);
   }
 }
 
-class AuthSignInLocalization {
-  const AuthSignInLocalization(this.context);
+class SignInLocalization {
+  const SignInLocalization(this.context);
   final BuildContext context;
 
   // "forgotPassword": "Forgot Password ?",

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 import 'package:toy_swapp/app/app.dart';
-import '../auth_sign_in.dart';
+import '../sign_in.dart';
 
-class AuthSignInView extends StatelessWidget {
-  const AuthSignInView({super.key});
+class SignInView extends StatelessWidget {
+  const SignInView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class AuthSignInView extends StatelessWidget {
     );
 
     return const BaseScaffold(
-      appBar: AuthSignInAppBar(),
+      appBar: SignInAppBar(),
       body: BaseColumn(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

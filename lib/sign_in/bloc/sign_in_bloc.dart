@@ -3,23 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'auth_sign_in_bloc.freezed.dart';
-part 'auth_sign_in_event.dart';
-part 'auth_sign_in_state.dart';
+part 'sign_in_bloc.freezed.dart';
+part 'sign_in_event.dart';
+part 'sign_in_state.dart';
 
-class AuthSignInBloc extends Bloc<AuthSignInEvent, AuthSignInState> {
-  AuthSignInBloc({
+class SignInBloc extends Bloc<SignInEvent, SignInState> {
+  SignInBloc({
     required CurrentUserPreferencesRepository currentUserPreferencesRepository,
   })  : //_authRepository = authRepository,
         _currentUserPreferencesRepository = currentUserPreferencesRepository,
-        super(AuthSignInState(passwordFocusNode: FocusNode())) {
-    on<AuthSignInEvent>(_onAuthSignInEvent);
+        super(SignInState(passwordFocusNode: FocusNode())) {
+    on<SignInEvent>(_onAuthSignInEvent);
   }
   // final AuthRepository _authRepository;
   final CurrentUserPreferencesRepository _currentUserPreferencesRepository;
   Future<void> _onAuthSignInEvent(
-    AuthSignInEvent event,
-    Emitter<AuthSignInState> emit,
+    SignInEvent event,
+    Emitter<SignInState> emit,
   ) async {
     emit(state.copyWith(isLoading: true));
     await event.map(

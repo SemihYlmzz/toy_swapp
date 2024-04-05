@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:toy_swapp/app/app.dart';
-import 'package:toy_swapp/auth_sign_in/auth_sign_in.dart';
+import 'package:toy_swapp/sign_in/sign_in.dart';
 import 'package:toy_swapp/sign_up/sign_up.dart';
 import 'package:toy_swapp/terms_of_use/terms_of_use.dart';
 
@@ -19,13 +19,13 @@ class AppRouter {
   static final AppRouter instance = AppRouter._internal();
 
   static final String signUpPath = SignUpRouter.instance.path;
-  static final String authSignInPath = AuthSignInRouter.instance.path;
+  static final String authSignInPath = SignInRouter.instance.path;
 
   GoRouter router(Stream<dynamic> authStream) => GoRouter(
-        initialLocation: AuthSignInRouter.instance.path,
+        initialLocation: SignInRouter.instance.path,
         navigatorKey: parentNavigatorKey,
         routes: [
-          AuthSignInRouter.instance.route,
+          SignInRouter.instance.route,
           SignUpRouter.instance.route,
           TermsOfUseRouter.instance.route,
           // AuthSignUpRouter.instance.route,

@@ -3,34 +3,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 
-import '../auth_sign_in.dart';
+import '../sign_in.dart';
 
-class AuthSignInScreen extends StatelessWidget {
-  const AuthSignInScreen({super.key});
+class SignInScreen extends StatelessWidget {
+  const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final authSignInBlocListeners = AuthSignInBlocListeners();
+    final signInBlocListeners = SignInBlocListeners();
 
     return BlocProvider(
-      create: (context) => AuthSignInBloc(
+      create: (context) => SignInBloc(
         // authRepository: context.read<AuthRepository>(),
         currentUserPreferencesRepository:
             context.read<CurrentUserPreferencesRepository>(),
       ),
       child: MultiBlocListener(
         listeners: [
-          authSignInBlocListeners.errorDisplayer(),
+          signInBlocListeners.errorDisplayer(),
         ],
         child: Builder(
           builder: (context) {
             final isLoading = context.select(
-              (AuthSignInBloc bloc) => bloc.state.isLoading,
+              (SignInBloc bloc) => bloc.state.isLoading,
             );
             return LoadingScreen(
               isLoading: isLoading,
               size: MediaQuery.sizeOf(context),
-              child: const AuthSignInView(),
+              child: const SignInView(),
             );
           },
         ),

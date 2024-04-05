@@ -1,4 +1,4 @@
-export 'auth_sign_in_app_bar.dart';
+export 'sign_in_app_bar.dart';
 export 'forgot_password_navigation_button.dart';
 export 'sign_in_button.dart';
 export 'sign_in_email_text_field.dart';

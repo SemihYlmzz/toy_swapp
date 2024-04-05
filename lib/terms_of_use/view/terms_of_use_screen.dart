@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 import 'package:toy_swapp/app/app.dart';
-import 'package:toy_swapp/auth_sign_in/auth_sign_in.dart';
+import 'package:toy_swapp/sign_in/sign_in.dart';
 
 import '../terms_of_use.dart';
 
@@ -16,7 +16,7 @@ class TermsOfUseScreen extends StatelessWidget {
       (AppBloc bloc) => bloc.state.currentUserPreferences!.isTermsOfUseAccepted,
     );
     if (isTermsOfUseAccepted) {
-      AuthSignInRouter.instance.go(context);
+      SignInRouter.instance.go(context);
     }
     return BlocProvider(
       create: (context) => TermsOfUseBloc(

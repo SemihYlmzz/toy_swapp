@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 import '../../app/app.dart';
-import '../auth_sign_in.dart';
+import '../sign_in.dart';
 
 class SignInEmailTextField extends StatelessWidget {
   const SignInEmailTextField({
@@ -15,15 +15,13 @@ class SignInEmailTextField extends StatelessWidget {
       (AppBloc bloc) => bloc.state.currentUserPreferences!.language,
     );
     return GradientTextField(
-      hintText: context.authSignInLocalization.email,
+      hintText: context.signInLocalization.email,
       keyboardType: TextInputType.emailAddress,
       onChanged: (value) {
-        context
-            .read<AuthSignInBloc>()
-            .add(AuthSignInEvent.changeEmail(email: value));
+        context.read<SignInBloc>().add(SignInEvent.changeEmail(email: value));
       },
       onSubmitted: (value) {
-        context.read<AuthSignInBloc>().state.passwordFocusNode.requestFocus();
+        context.read<SignInBloc>().state.passwordFocusNode.requestFocus();
       },
     );
   }

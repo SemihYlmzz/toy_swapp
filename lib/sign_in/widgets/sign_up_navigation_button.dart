@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../sign_up/sign_up.dart';
-import '../auth_sign_in.dart';
+import '../sign_in.dart';
 
 class SignUpNavigationButton extends StatelessWidget {
   const SignUpNavigationButton({
@@ -14,7 +14,7 @@ class SignUpNavigationButton extends StatelessWidget {
       onPressed: () {
         SignUpRouter.instance.push(context);
       },
-      child: Text(context.authSignInLocalization.signUpNow),
+      child: Text(context.signInLocalization.signUpNow),
     );
   }
 }
