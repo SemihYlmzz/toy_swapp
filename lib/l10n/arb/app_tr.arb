@@ -1,6 +1,24 @@
 {
     "@@locale": "tr",
     "@_PRESENTATIONS": {},
+    "@_TERMS_OF_USE": {},
+    "termsOfUseText": "<{termsOfService}>Kullanım Şartları</{termsOfService}>'nı, <{devangs}>Devangs</{devangs}> ve <{toySwapp}>Toy Swapp</{toySwapp}> için olan Gizlilik Bildirimlerini okuduğumu ve 12 yaşından büyük olduğumu kabul ediyorum.",
+    "@termsOfUseText": {
+        "placeholders": {
+            "termsOfService": {
+                "type": "String"
+            },
+            "devangs": {
+                "type": "String"
+            },
+            "toySwapp": {
+                "type": "String"
+            }
+        }
+    },
+    "requiredToContinueText": "Devam etmek için gerekli.",
+    "accept": "Kabul Et",
+    "termsOfUse": "Kullanım Koşulları",
     "@_AUTH_EMAIL_VERIFICATION": {},
     "sendVerificationMail": "Doğrulama E-postası Gönder",
     "signOut": "Oturumu Kapat",

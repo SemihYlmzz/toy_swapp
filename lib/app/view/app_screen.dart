@@ -47,7 +47,7 @@ class AppScreen extends StatelessWidget {
           }
 
           if (state.isInitError) {
-            return const AppPreferencesLoadError();
+            return const AppPreferencesInitError();
           }
           return const BaseColumn(
             children: [

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_widgets/shared_widgets.dart';
+
 import '../app.dart';
 
-class AppPreferencesLoadError extends StatelessWidget {
-  const AppPreferencesLoadError({super.key});
+class AppPreferencesInitError extends StatelessWidget {
+  const AppPreferencesInitError({super.key});
 
   @override
   Widget build(BuildContext context) {

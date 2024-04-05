@@ -1,6 +1,24 @@
 {
     "@@locale": "en",
     "@_PRESENTATIONS": {},
+    "@_TERMS_OF_USE": {},
+    "termsOfUseText": "I Agree to the <{termsOfService}>Terms of Service</{termsOfService}> have read the Privacy Notices for <{devangs}>Devangs</{devangs}> and <{toySwapp}>Toy Swapp</{toySwapp}>, and confirm that I am at least 13 years old.",
+    "@termsOfUseText": {
+        "placeholders": {
+            "termsOfService": {
+                "type": "String"
+            },
+            "devangs": {
+                "type": "String"
+            },
+            "toySwapp": {
+                "type": "String"
+            }
+        }
+    },
+    "requiredToContinueText": "This is required to continue.",
+    "accept": "Accept",
+    "termsOfUse": "Terms Of Use",
     "@_AUTH_EMAIL_VERIFICATION": {},
     "sendVerificationMail": "Send Verification Mail ",
     "signOut": "Sign Out",

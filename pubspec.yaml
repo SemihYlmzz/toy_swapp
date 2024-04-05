@@ -59,7 +59,10 @@ dependencies:
   
   # Loggers
   logging: ^1.2.0
-  
+
+  # Widgets
+  styled_text: ^8.1.0
+
 dev_dependencies:
 
   # Tests
