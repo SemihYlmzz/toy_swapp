@@ -9,8 +9,8 @@ import '../app_preferences_repository_api.dart';
 
 class AppPreferencesRepository {
   AppPreferencesRepository({
-    required this.localDatabaseApi,
-  }) {
+    required LocalDatabaseApi localDatabaseApi,
+  }) : _localDatabaseApi = localDatabaseApi {
     appPreferencesStream.listen((event) {
       appPreferences = event;
     });
@@ -23,12 +23,12 @@ class AppPreferencesRepository {
   AppPreferences? appPreferences;
 
   // Data Bases
-  final LocalDatabaseApi localDatabaseApi;
+  final LocalDatabaseApi _localDatabaseApi;
 
   // Functions
   Future<AppPreferences> create() async {
     const creatableAppPreferences = AppPreferences();
-    await localDatabaseApi.create(
+    await _localDatabaseApi.create(
       AppPreferencesRepositoryStrings.localDatabaseKey,
       data: creatableAppPreferences.toJson(),
     );
@@ -37,7 +37,7 @@ class AppPreferencesRepository {
   }
 
   Future<AppPreferences> read() async {
-    final appPreferencesJson = await localDatabaseApi.read(
+    final appPreferencesJson = await _localDatabaseApi.read(
       AppPreferencesRepositoryStrings.localDatabaseKey,
     );
 
@@ -59,7 +59,7 @@ class AppPreferencesRepository {
     }
     final updatedPreferences =
         appPreferences!.copyWith(themeMode: updatedThemeMode);
-    await localDatabaseApi.update(
+    await _localDatabaseApi.update(
       AppPreferencesRepositoryStrings.localDatabaseKey,
       data: updatedPreferences.toJson(),
     );
@@ -74,7 +74,7 @@ class AppPreferencesRepository {
     final updatedPreferences = appPreferences!.copyWith(
       languageCode: newLanguageCode,
     );
-    await localDatabaseApi.update(
+    await _localDatabaseApi.update(
       AppPreferencesRepositoryStrings.localDatabaseKey,
       data: updatedPreferences.toJson(),
     );
@@ -88,7 +88,7 @@ class AppPreferencesRepository {
     final updatedPreferences = appPreferences!.copyWith(
       termsOfUseAcceptedDate: DateTime.now(),
     );
-    await localDatabaseApi.update(
+    await _localDatabaseApi.update(
       AppPreferencesRepositoryStrings.localDatabaseKey,
       data: updatedPreferences.toJson(),
     );
@@ -108,7 +108,7 @@ class AppPreferencesRepository {
       final updatedPreferences = appPreferences!.copyWith(
         isVibratable: updatedIsVibratable,
       );
-      await localDatabaseApi.update(
+      await _localDatabaseApi.update(
         AppPreferencesRepositoryStrings.localDatabaseKey,
         data: updatedPreferences.toJson(),
       );

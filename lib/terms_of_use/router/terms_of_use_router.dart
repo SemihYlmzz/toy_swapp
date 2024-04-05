@@ -20,9 +20,7 @@ class TermsOfUseRouter {
         name: _name,
         // parentNavigatorKey: RouterMixin.parentNavigatorKey,
         pageBuilder: (context, state) => NoTransitionPage(
-          child: TermsOfUseScreen(
-            lastUpdatedTermsDate: DateTime(2025, 02, 02),
-          ),
+          child: TermsOfUseScreen(),
         ),
       );
   void go(BuildContext context) {

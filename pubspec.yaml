@@ -22,6 +22,8 @@ dependencies:
   
 
   # Repositories
+  app_metadata_repository:
+    path: packages/app_metadata_repository
   app_preferences_repository:
     path: packages/app_preferences_repository
 

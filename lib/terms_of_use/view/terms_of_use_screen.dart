@@ -7,14 +7,14 @@ import '../terms_of_use.dart';
 
 class TermsOfUseScreen extends StatelessWidget {
   const TermsOfUseScreen({
-    required this.lastUpdatedTermsDate,
     super.key,
   });
 
-  final DateTime lastUpdatedTermsDate;
-
   @override
   Widget build(BuildContext context) {
+    // Temporary
+    final lastUpdatedTermsDate = DateTime(2025, 02, 02);
+
     final termsOfUseBlocListeners = TermsOfUseBlocListeners();
     final termsOfUseAcceptedDate = context.select(
       (AppBloc bloc) => bloc.state.appPreferences.termsOfUseAcceptedDate,

@@ -17,6 +17,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.4.1"
+  app_metadata_repository:
+    dependency: "direct main"
+    description:
+      path: "packages/app_metadata_repository"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   app_preferences_repository:
     dependency: "direct main"
     description:
@@ -675,6 +682,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
+  remote_database_api:
+    dependency: transitive
+    description:
+      path: "packages/remote_database_api"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   shared_constants:
     dependency: "direct main"
     description:
