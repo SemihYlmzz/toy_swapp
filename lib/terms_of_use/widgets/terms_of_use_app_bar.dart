@@ -10,10 +10,13 @@ class TermsOfUseAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final termsVersion = context.select(
-      (TermsOfUseBloc bloc) => bloc.state.appMetadata?.termsVersion,
+      (TermsOfUseBloc bloc) => bloc.state.appMetadata?.termsVersions,
     );
     return AppBar(
-      title: Text('${context.termsOfUseLocalization.termsOfUse} $termsVersion'),
+      title: Text(
+        '${context.termsOfUseLocalization.termsOfUse}'
+        ' ${termsVersion?.termsVersionNumber}',
+      ),
     );
   }
 

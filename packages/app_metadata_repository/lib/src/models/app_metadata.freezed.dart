@@ -20,8 +20,8 @@ AppMetadata _$AppMetadataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AppMetadata {
-  double get termsVersion => throw _privateConstructorUsedError;
-  String get appVersion => throw _privateConstructorUsedError;
+  TermsVersions get termsVersions => throw _privateConstructorUsedError;
+  AppVersion get appVersion => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,10 @@ abstract class $AppMetadataCopyWith<$Res> {
           AppMetadata value, $Res Function(AppMetadata) then) =
       _$AppMetadataCopyWithImpl<$Res, AppMetadata>;
   @useResult
-  $Res call({double termsVersion, String appVersion});
+  $Res call({TermsVersions termsVersions, AppVersion appVersion});
+
+  $TermsVersionsCopyWith<$Res> get termsVersions;
+  $AppVersionCopyWith<$Res> get appVersion;
 }
 
 /// @nodoc
@@ -51,19 +54,35 @@ class _$AppMetadataCopyWithImpl<$Res, $Val extends AppMetadata>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? termsVersion = null,
+    Object? termsVersions = null,
     Object? appVersion = null,
   }) {
     return _then(_value.copyWith(
-      termsVersion: null == termsVersion
-          ? _value.termsVersion
-          : termsVersion // ignore: cast_nullable_to_non_nullable
-              as double,
+      termsVersions: null == termsVersions
+          ? _value.termsVersions
+          : termsVersions // ignore: cast_nullable_to_non_nullable
+              as TermsVersions,
       appVersion: null == appVersion
           ? _value.appVersion
           : appVersion // ignore: cast_nullable_to_non_nullable
-              as String,
+              as AppVersion,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TermsVersionsCopyWith<$Res> get termsVersions {
+    return $TermsVersionsCopyWith<$Res>(_value.termsVersions, (value) {
+      return _then(_value.copyWith(termsVersions: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AppVersionCopyWith<$Res> get appVersion {
+    return $AppVersionCopyWith<$Res>(_value.appVersion, (value) {
+      return _then(_value.copyWith(appVersion: value) as $Val);
+    });
   }
 }
 
@@ -75,7 +94,12 @@ abstract class _$$AppMetadataImplCopyWith<$Res>
       __$$AppMetadataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double termsVersion, String appVersion});
+  $Res call({TermsVersions termsVersions, AppVersion appVersion});
+
+  @override
+  $TermsVersionsCopyWith<$Res> get termsVersions;
+  @override
+  $AppVersionCopyWith<$Res> get appVersion;
 }
 
 /// @nodoc
@@ -89,18 +113,18 @@ class __$$AppMetadataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? termsVersion = null,
+    Object? termsVersions = null,
     Object? appVersion = null,
   }) {
     return _then(_$AppMetadataImpl(
-      termsVersion: null == termsVersion
-          ? _value.termsVersion
-          : termsVersion // ignore: cast_nullable_to_non_nullable
-              as double,
+      termsVersions: null == termsVersions
+          ? _value.termsVersions
+          : termsVersions // ignore: cast_nullable_to_non_nullable
+              as TermsVersions,
       appVersion: null == appVersion
           ? _value.appVersion
           : appVersion // ignore: cast_nullable_to_non_nullable
-              as String,
+              as AppVersion,
     ));
   }
 }
@@ -108,19 +132,19 @@ class __$$AppMetadataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AppMetadataImpl implements _AppMetadata {
-  _$AppMetadataImpl({required this.termsVersion, required this.appVersion});
+  _$AppMetadataImpl({required this.termsVersions, required this.appVersion});
 
   factory _$AppMetadataImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppMetadataImplFromJson(json);
 
   @override
-  final double termsVersion;
+  final TermsVersions termsVersions;
   @override
-  final String appVersion;
+  final AppVersion appVersion;
 
   @override
   String toString() {
-    return 'AppMetadata(termsVersion: $termsVersion, appVersion: $appVersion)';
+    return 'AppMetadata(termsVersions: $termsVersions, appVersion: $appVersion)';
   }
 
   @override
@@ -128,15 +152,15 @@ class _$AppMetadataImpl implements _AppMetadata {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppMetadataImpl &&
-            (identical(other.termsVersion, termsVersion) ||
-                other.termsVersion == termsVersion) &&
+            (identical(other.termsVersions, termsVersions) ||
+                other.termsVersions == termsVersions) &&
             (identical(other.appVersion, appVersion) ||
                 other.appVersion == appVersion));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, termsVersion, appVersion);
+  int get hashCode => Object.hash(runtimeType, termsVersions, appVersion);
 
   @JsonKey(ignore: true)
   @override
@@ -154,16 +178,16 @@ class _$AppMetadataImpl implements _AppMetadata {
 
 abstract class _AppMetadata implements AppMetadata {
   factory _AppMetadata(
-      {required final double termsVersion,
-      required final String appVersion}) = _$AppMetadataImpl;
+      {required final TermsVersions termsVersions,
+      required final AppVersion appVersion}) = _$AppMetadataImpl;
 
   factory _AppMetadata.fromJson(Map<String, dynamic> json) =
       _$AppMetadataImpl.fromJson;
 
   @override
-  double get termsVersion;
+  TermsVersions get termsVersions;
   @override
-  String get appVersion;
+  AppVersion get appVersion;
   @override
   @JsonKey(ignore: true)
   _$$AppMetadataImplCopyWith<_$AppMetadataImpl> get copyWith =>

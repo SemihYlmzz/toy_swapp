@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:remote_config_api/remote_config_api.dart';
 
@@ -10,25 +12,11 @@ class FirebaseRemoteConfigApi extends RemoteConfigApi {
   final FirebaseRemoteConfig _firebaseRemoteConfig;
 
   @override
-  String getString(String key) {
-    return _firebaseRemoteConfig.getString(key);
+  Map<String,dynamic> getJson(String key) {
+    final encodedJson = _firebaseRemoteConfig.getString(key);
+    return jsonDecode(encodedJson) as Map<String, dynamic>;
   }
-
-  @override
-  double getDouble(String key) {
-    return _firebaseRemoteConfig.getDouble(key);
-  }
-
-  @override
-  int getInt(String key) {
-    return _firebaseRemoteConfig.getInt(key);
-  }
-
-  @override
-  bool getBool(String key) {
-    return _firebaseRemoteConfig.getBool(key);
-  }
-
+  
   @override
   Stream<void> onChangeStream() {
     return _firebaseRemoteConfig.onConfigUpdated;

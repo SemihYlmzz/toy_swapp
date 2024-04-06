@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:app_metadata_repository/app_metadata_repository.dart';
 import 'package:remote_config_api/remote_config_api.dart';
 
@@ -28,10 +27,14 @@ class AppMetadataRepository {
   // Functions
   Future<void> getValues() async {
     try {
-      final appVersion = _remoteConfigApi.getString('app_version');
-      final termsVersion = _remoteConfigApi.getDouble('terms_version');
+      final jsonAppVersion = _remoteConfigApi.getJson('app_version');
+      final jsonTermsVersions = _remoteConfigApi.getJson('terms_versions');
+
       _streamController.sink.add(
-        AppMetadata(termsVersion: termsVersion, appVersion: appVersion),
+        AppMetadata(
+          termsVersions: TermsVersions.fromJson(jsonTermsVersions),
+          appVersion: AppVersion.fromJson(jsonAppVersion),
+        ),
       );
       return;
     } catch (exception) {
