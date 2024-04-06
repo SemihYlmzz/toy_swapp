@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "541529185073",
+    "project_id": "toy-swapp-dev",
+    "storage_bucket": "toy-swapp-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541529185073:android:82a6bbe090087d52a9ae10",
+        "android_client_info": {
+          "package_name": "com.example.verygoodcore.toy_swapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCugSBHux-mWAFN5vgaeKv5BVW3QYb5ZvU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

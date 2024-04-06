@@ -19,7 +19,7 @@ class TermsOfUseRouter {
         path: _path,
         name: _name,
         // parentNavigatorKey: RouterMixin.parentNavigatorKey,
-        pageBuilder: (context, state) => NoTransitionPage(
+        pageBuilder: (context, state) => const NoTransitionPage(
           child: TermsOfUseScreen(),
         ),
       );

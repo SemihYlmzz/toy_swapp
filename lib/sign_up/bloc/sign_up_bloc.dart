@@ -10,19 +10,19 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SignUpBloc() : super(const SignUpState()) {
     on<SignUpEvent>(_onSignUpEvent);
   }
-  
+
   Future<void> _onSignUpEvent(
     SignUpEvent event,
     Emitter<SignUpState> emit,
-    ) async {
+  ) async {
     emit(state.copyWith(isLoading: true));
-    
+
     await event.map(
       fetch: (e) async {
         print('Fetching data...');
       },
     );
-    
+
     emit(state.copyWith(isLoading: false, failure: null));
   }
 }

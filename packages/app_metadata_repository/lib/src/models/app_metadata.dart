@@ -6,7 +6,7 @@ part 'app_metadata.g.dart';
 @freezed
 class AppMetadata with _$AppMetadata {
   factory AppMetadata({
-    required DateTime termsLastUpdatedDate,
+    required double termsVersion,
     required String appVersion,
   }) = _AppMetadata;
 

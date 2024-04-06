@@ -1,3 +1,4 @@
+import 'package:app_metadata_repository/app_metadata_repository.dart';
 import 'package:app_preferences_repository/app_preferences_repository_api.dart';
 import 'package:toy_swapp/initializers/initializers.dart';
 
@@ -26,9 +27,15 @@ class AppRequirementsInitializer {
     // Setup Apis
     final sharedPreferencesApi = await _apiRequirements.initSharedPreferences();
 
+    final firebaseRemoteConfigApi =
+        await _apiRequirements.initFirebaseRemoteConfigApi();
+
     // Set Each Repository
     final appPreferencesRepository = AppPreferencesRepository(
       localDatabaseApi: sharedPreferencesApi,
+    );
+    final appMetadataRepository = AppMetadataRepository(
+      remoteConfigApi: firebaseRemoteConfigApi,
     );
 
     // Get User Preferences
@@ -37,6 +44,7 @@ class AppRequirementsInitializer {
     return AppRequirements(
       repositories: Repositories(
         appPreferences: appPreferencesRepository,
+        appMetadata: appMetadataRepository,
       ),
       appPreferences: appPreferences,
       isConfigsInitialized: isConfigsInitialized,

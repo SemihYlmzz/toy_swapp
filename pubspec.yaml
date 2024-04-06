@@ -27,13 +27,17 @@ dependencies:
   app_preferences_repository:
     path: packages/app_preferences_repository
 
-  # Local Database API
+  # Interfaces
   local_database_api:
     path: packages/local_database_api
-    
-  # Shared Preferences API
+  remote_config_api:
+    path: packages/remote_config_api
+
+  # Apis
   shared_preferences_api:
     path: packages/shared_preferences_api
+  firebase_remote_config_api:
+    path: packages/firebase_remote_config_api
 
   # Animation
   flutter_animate: ^4.5.0
@@ -46,6 +50,9 @@ dependencies:
   bloc: ^8.1.4
   flutter_bloc: ^8.1.5
   
+  # Core APIS
+  firebase_core: ^2.28.0
+
   # Dependency Injection
   provider: 6.1.2
   

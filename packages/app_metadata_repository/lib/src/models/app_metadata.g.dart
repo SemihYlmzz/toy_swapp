@@ -8,13 +8,12 @@ part of 'app_metadata.dart';
 
 _$AppMetadataImpl _$$AppMetadataImplFromJson(Map<String, dynamic> json) =>
     _$AppMetadataImpl(
-      termsLastUpdatedDate:
-          DateTime.parse(json['termsLastUpdatedDate'] as String),
+      termsVersion: (json['termsVersion'] as num).toDouble(),
       appVersion: json['appVersion'] as String,
     );
 
 Map<String, dynamic> _$$AppMetadataImplToJson(_$AppMetadataImpl instance) =>
     <String, dynamic>{
-      'termsLastUpdatedDate': instance.termsLastUpdatedDate.toIso8601String(),
+      'termsVersion': instance.termsVersion,
       'appVersion': instance.appVersion,
     };

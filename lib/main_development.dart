@@ -9,7 +9,7 @@ import 'themes/themes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,

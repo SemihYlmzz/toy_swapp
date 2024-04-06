@@ -18,32 +18,48 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TermsOfUseEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() loadTermsOfUseVersion,
+    required TResult Function(AppMetadata appMetadata) appMetadataUpdated,
     required TResult Function() acceptTerms,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadTermsOfUseVersion,
+    TResult? Function(AppMetadata appMetadata)? appMetadataUpdated,
     TResult? Function()? acceptTerms,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadTermsOfUseVersion,
+    TResult Function(AppMetadata appMetadata)? appMetadataUpdated,
     TResult Function()? acceptTerms,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(TermsOfUseLoadTermsOfUseVersion value)
+        loadTermsOfUseVersion,
+    required TResult Function(TermsOfUseAppMetadataUpdated value)
+        appMetadataUpdated,
     required TResult Function(TermsOfUseAcceptTerms value) acceptTerms,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TermsOfUseLoadTermsOfUseVersion value)?
+        loadTermsOfUseVersion,
+    TResult? Function(TermsOfUseAppMetadataUpdated value)? appMetadataUpdated,
     TResult? Function(TermsOfUseAcceptTerms value)? acceptTerms,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(TermsOfUseLoadTermsOfUseVersion value)?
+        loadTermsOfUseVersion,
+    TResult Function(TermsOfUseAppMetadataUpdated value)? appMetadataUpdated,
     TResult Function(TermsOfUseAcceptTerms value)? acceptTerms,
     required TResult orElse(),
   }) =>
@@ -66,6 +82,287 @@ class _$TermsOfUseEventCopyWithImpl<$Res, $Val extends TermsOfUseEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$TermsOfUseLoadTermsOfUseVersionImplCopyWith<$Res> {
+  factory _$$TermsOfUseLoadTermsOfUseVersionImplCopyWith(
+          _$TermsOfUseLoadTermsOfUseVersionImpl value,
+          $Res Function(_$TermsOfUseLoadTermsOfUseVersionImpl) then) =
+      __$$TermsOfUseLoadTermsOfUseVersionImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$TermsOfUseLoadTermsOfUseVersionImplCopyWithImpl<$Res>
+    extends _$TermsOfUseEventCopyWithImpl<$Res,
+        _$TermsOfUseLoadTermsOfUseVersionImpl>
+    implements _$$TermsOfUseLoadTermsOfUseVersionImplCopyWith<$Res> {
+  __$$TermsOfUseLoadTermsOfUseVersionImplCopyWithImpl(
+      _$TermsOfUseLoadTermsOfUseVersionImpl _value,
+      $Res Function(_$TermsOfUseLoadTermsOfUseVersionImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$TermsOfUseLoadTermsOfUseVersionImpl
+    implements TermsOfUseLoadTermsOfUseVersion {
+  const _$TermsOfUseLoadTermsOfUseVersionImpl();
+
+  @override
+  String toString() {
+    return 'TermsOfUseEvent.loadTermsOfUseVersion()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TermsOfUseLoadTermsOfUseVersionImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadTermsOfUseVersion,
+    required TResult Function(AppMetadata appMetadata) appMetadataUpdated,
+    required TResult Function() acceptTerms,
+  }) {
+    return loadTermsOfUseVersion();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadTermsOfUseVersion,
+    TResult? Function(AppMetadata appMetadata)? appMetadataUpdated,
+    TResult? Function()? acceptTerms,
+  }) {
+    return loadTermsOfUseVersion?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadTermsOfUseVersion,
+    TResult Function(AppMetadata appMetadata)? appMetadataUpdated,
+    TResult Function()? acceptTerms,
+    required TResult orElse(),
+  }) {
+    if (loadTermsOfUseVersion != null) {
+      return loadTermsOfUseVersion();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TermsOfUseLoadTermsOfUseVersion value)
+        loadTermsOfUseVersion,
+    required TResult Function(TermsOfUseAppMetadataUpdated value)
+        appMetadataUpdated,
+    required TResult Function(TermsOfUseAcceptTerms value) acceptTerms,
+  }) {
+    return loadTermsOfUseVersion(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TermsOfUseLoadTermsOfUseVersion value)?
+        loadTermsOfUseVersion,
+    TResult? Function(TermsOfUseAppMetadataUpdated value)? appMetadataUpdated,
+    TResult? Function(TermsOfUseAcceptTerms value)? acceptTerms,
+  }) {
+    return loadTermsOfUseVersion?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TermsOfUseLoadTermsOfUseVersion value)?
+        loadTermsOfUseVersion,
+    TResult Function(TermsOfUseAppMetadataUpdated value)? appMetadataUpdated,
+    TResult Function(TermsOfUseAcceptTerms value)? acceptTerms,
+    required TResult orElse(),
+  }) {
+    if (loadTermsOfUseVersion != null) {
+      return loadTermsOfUseVersion(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TermsOfUseLoadTermsOfUseVersion implements TermsOfUseEvent {
+  const factory TermsOfUseLoadTermsOfUseVersion() =
+      _$TermsOfUseLoadTermsOfUseVersionImpl;
+}
+
+/// @nodoc
+abstract class _$$TermsOfUseAppMetadataUpdatedImplCopyWith<$Res> {
+  factory _$$TermsOfUseAppMetadataUpdatedImplCopyWith(
+          _$TermsOfUseAppMetadataUpdatedImpl value,
+          $Res Function(_$TermsOfUseAppMetadataUpdatedImpl) then) =
+      __$$TermsOfUseAppMetadataUpdatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AppMetadata appMetadata});
+
+  $AppMetadataCopyWith<$Res> get appMetadata;
+}
+
+/// @nodoc
+class __$$TermsOfUseAppMetadataUpdatedImplCopyWithImpl<$Res>
+    extends _$TermsOfUseEventCopyWithImpl<$Res,
+        _$TermsOfUseAppMetadataUpdatedImpl>
+    implements _$$TermsOfUseAppMetadataUpdatedImplCopyWith<$Res> {
+  __$$TermsOfUseAppMetadataUpdatedImplCopyWithImpl(
+      _$TermsOfUseAppMetadataUpdatedImpl _value,
+      $Res Function(_$TermsOfUseAppMetadataUpdatedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? appMetadata = null,
+  }) {
+    return _then(_$TermsOfUseAppMetadataUpdatedImpl(
+      appMetadata: null == appMetadata
+          ? _value.appMetadata
+          : appMetadata // ignore: cast_nullable_to_non_nullable
+              as AppMetadata,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AppMetadataCopyWith<$Res> get appMetadata {
+    return $AppMetadataCopyWith<$Res>(_value.appMetadata, (value) {
+      return _then(_value.copyWith(appMetadata: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$TermsOfUseAppMetadataUpdatedImpl
+    implements TermsOfUseAppMetadataUpdated {
+  const _$TermsOfUseAppMetadataUpdatedImpl({required this.appMetadata});
+
+  @override
+  final AppMetadata appMetadata;
+
+  @override
+  String toString() {
+    return 'TermsOfUseEvent.appMetadataUpdated(appMetadata: $appMetadata)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TermsOfUseAppMetadataUpdatedImpl &&
+            (identical(other.appMetadata, appMetadata) ||
+                other.appMetadata == appMetadata));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, appMetadata);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TermsOfUseAppMetadataUpdatedImplCopyWith<
+          _$TermsOfUseAppMetadataUpdatedImpl>
+      get copyWith => __$$TermsOfUseAppMetadataUpdatedImplCopyWithImpl<
+          _$TermsOfUseAppMetadataUpdatedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadTermsOfUseVersion,
+    required TResult Function(AppMetadata appMetadata) appMetadataUpdated,
+    required TResult Function() acceptTerms,
+  }) {
+    return appMetadataUpdated(appMetadata);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadTermsOfUseVersion,
+    TResult? Function(AppMetadata appMetadata)? appMetadataUpdated,
+    TResult? Function()? acceptTerms,
+  }) {
+    return appMetadataUpdated?.call(appMetadata);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadTermsOfUseVersion,
+    TResult Function(AppMetadata appMetadata)? appMetadataUpdated,
+    TResult Function()? acceptTerms,
+    required TResult orElse(),
+  }) {
+    if (appMetadataUpdated != null) {
+      return appMetadataUpdated(appMetadata);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TermsOfUseLoadTermsOfUseVersion value)
+        loadTermsOfUseVersion,
+    required TResult Function(TermsOfUseAppMetadataUpdated value)
+        appMetadataUpdated,
+    required TResult Function(TermsOfUseAcceptTerms value) acceptTerms,
+  }) {
+    return appMetadataUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TermsOfUseLoadTermsOfUseVersion value)?
+        loadTermsOfUseVersion,
+    TResult? Function(TermsOfUseAppMetadataUpdated value)? appMetadataUpdated,
+    TResult? Function(TermsOfUseAcceptTerms value)? acceptTerms,
+  }) {
+    return appMetadataUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TermsOfUseLoadTermsOfUseVersion value)?
+        loadTermsOfUseVersion,
+    TResult Function(TermsOfUseAppMetadataUpdated value)? appMetadataUpdated,
+    TResult Function(TermsOfUseAcceptTerms value)? acceptTerms,
+    required TResult orElse(),
+  }) {
+    if (appMetadataUpdated != null) {
+      return appMetadataUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TermsOfUseAppMetadataUpdated implements TermsOfUseEvent {
+  const factory TermsOfUseAppMetadataUpdated(
+          {required final AppMetadata appMetadata}) =
+      _$TermsOfUseAppMetadataUpdatedImpl;
+
+  AppMetadata get appMetadata;
+  @JsonKey(ignore: true)
+  _$$TermsOfUseAppMetadataUpdatedImplCopyWith<
+          _$TermsOfUseAppMetadataUpdatedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -108,6 +405,8 @@ class _$TermsOfUseAcceptTermsImpl implements TermsOfUseAcceptTerms {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() loadTermsOfUseVersion,
+    required TResult Function(AppMetadata appMetadata) appMetadataUpdated,
     required TResult Function() acceptTerms,
   }) {
     return acceptTerms();
@@ -116,6 +415,8 @@ class _$TermsOfUseAcceptTermsImpl implements TermsOfUseAcceptTerms {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadTermsOfUseVersion,
+    TResult? Function(AppMetadata appMetadata)? appMetadataUpdated,
     TResult? Function()? acceptTerms,
   }) {
     return acceptTerms?.call();
@@ -124,6 +425,8 @@ class _$TermsOfUseAcceptTermsImpl implements TermsOfUseAcceptTerms {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadTermsOfUseVersion,
+    TResult Function(AppMetadata appMetadata)? appMetadataUpdated,
     TResult Function()? acceptTerms,
     required TResult orElse(),
   }) {
@@ -136,6 +439,10 @@ class _$TermsOfUseAcceptTermsImpl implements TermsOfUseAcceptTerms {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(TermsOfUseLoadTermsOfUseVersion value)
+        loadTermsOfUseVersion,
+    required TResult Function(TermsOfUseAppMetadataUpdated value)
+        appMetadataUpdated,
     required TResult Function(TermsOfUseAcceptTerms value) acceptTerms,
   }) {
     return acceptTerms(this);
@@ -144,6 +451,9 @@ class _$TermsOfUseAcceptTermsImpl implements TermsOfUseAcceptTerms {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TermsOfUseLoadTermsOfUseVersion value)?
+        loadTermsOfUseVersion,
+    TResult? Function(TermsOfUseAppMetadataUpdated value)? appMetadataUpdated,
     TResult? Function(TermsOfUseAcceptTerms value)? acceptTerms,
   }) {
     return acceptTerms?.call(this);
@@ -152,6 +462,9 @@ class _$TermsOfUseAcceptTermsImpl implements TermsOfUseAcceptTerms {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(TermsOfUseLoadTermsOfUseVersion value)?
+        loadTermsOfUseVersion,
+    TResult Function(TermsOfUseAppMetadataUpdated value)? appMetadataUpdated,
     TResult Function(TermsOfUseAcceptTerms value)? acceptTerms,
     required TResult orElse(),
   }) {
@@ -169,6 +482,7 @@ abstract class TermsOfUseAcceptTerms implements TermsOfUseEvent {
 /// @nodoc
 mixin _$TermsOfUseState {
   bool get isLoading => throw _privateConstructorUsedError;
+  AppMetadata? get appMetadata => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -182,7 +496,9 @@ abstract class $TermsOfUseStateCopyWith<$Res> {
           TermsOfUseState value, $Res Function(TermsOfUseState) then) =
       _$TermsOfUseStateCopyWithImpl<$Res, TermsOfUseState>;
   @useResult
-  $Res call({bool isLoading, Failure? failure});
+  $Res call({bool isLoading, AppMetadata? appMetadata, Failure? failure});
+
+  $AppMetadataCopyWith<$Res>? get appMetadata;
 }
 
 /// @nodoc
@@ -199,6 +515,7 @@ class _$TermsOfUseStateCopyWithImpl<$Res, $Val extends TermsOfUseState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? appMetadata = freezed,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
@@ -206,11 +523,27 @@ class _$TermsOfUseStateCopyWithImpl<$Res, $Val extends TermsOfUseState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      appMetadata: freezed == appMetadata
+          ? _value.appMetadata
+          : appMetadata // ignore: cast_nullable_to_non_nullable
+              as AppMetadata?,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AppMetadataCopyWith<$Res>? get appMetadata {
+    if (_value.appMetadata == null) {
+      return null;
+    }
+
+    return $AppMetadataCopyWith<$Res>(_value.appMetadata!, (value) {
+      return _then(_value.copyWith(appMetadata: value) as $Val);
+    });
   }
 }
 
@@ -222,7 +555,10 @@ abstract class _$$TermsOfUseStateImplCopyWith<$Res>
       __$$TermsOfUseStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, Failure? failure});
+  $Res call({bool isLoading, AppMetadata? appMetadata, Failure? failure});
+
+  @override
+  $AppMetadataCopyWith<$Res>? get appMetadata;
 }
 
 /// @nodoc
@@ -237,6 +573,7 @@ class __$$TermsOfUseStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? appMetadata = freezed,
     Object? failure = freezed,
   }) {
     return _then(_$TermsOfUseStateImpl(
@@ -244,6 +581,10 @@ class __$$TermsOfUseStateImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      appMetadata: freezed == appMetadata
+          ? _value.appMetadata
+          : appMetadata // ignore: cast_nullable_to_non_nullable
+              as AppMetadata?,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -255,17 +596,20 @@ class __$$TermsOfUseStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TermsOfUseStateImpl implements _TermsOfUseState {
-  const _$TermsOfUseStateImpl({this.isLoading = false, this.failure});
+  const _$TermsOfUseStateImpl(
+      {this.isLoading = false, this.appMetadata, this.failure});
 
   @override
   @JsonKey()
   final bool isLoading;
   @override
+  final AppMetadata? appMetadata;
+  @override
   final Failure? failure;
 
   @override
   String toString() {
-    return 'TermsOfUseState(isLoading: $isLoading, failure: $failure)';
+    return 'TermsOfUseState(isLoading: $isLoading, appMetadata: $appMetadata, failure: $failure)';
   }
 
   @override
@@ -275,11 +619,13 @@ class _$TermsOfUseStateImpl implements _TermsOfUseState {
             other is _$TermsOfUseStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.appMetadata, appMetadata) ||
+                other.appMetadata == appMetadata) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, failure);
+  int get hashCode => Object.hash(runtimeType, isLoading, appMetadata, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -291,10 +637,14 @@ class _$TermsOfUseStateImpl implements _TermsOfUseState {
 
 abstract class _TermsOfUseState implements TermsOfUseState {
   const factory _TermsOfUseState(
-      {final bool isLoading, final Failure? failure}) = _$TermsOfUseStateImpl;
+      {final bool isLoading,
+      final AppMetadata? appMetadata,
+      final Failure? failure}) = _$TermsOfUseStateImpl;
 
   @override
   bool get isLoading;
+  @override
+  AppMetadata? get appMetadata;
   @override
   Failure? get failure;
   @override

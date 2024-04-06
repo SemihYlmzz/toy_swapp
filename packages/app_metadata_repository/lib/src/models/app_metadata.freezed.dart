@@ -20,7 +20,7 @@ AppMetadata _$AppMetadataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AppMetadata {
-  DateTime get termsLastUpdatedDate => throw _privateConstructorUsedError;
+  double get termsVersion => throw _privateConstructorUsedError;
   String get appVersion => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $AppMetadataCopyWith<$Res> {
           AppMetadata value, $Res Function(AppMetadata) then) =
       _$AppMetadataCopyWithImpl<$Res, AppMetadata>;
   @useResult
-  $Res call({DateTime termsLastUpdatedDate, String appVersion});
+  $Res call({double termsVersion, String appVersion});
 }
 
 /// @nodoc
@@ -51,14 +51,14 @@ class _$AppMetadataCopyWithImpl<$Res, $Val extends AppMetadata>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? termsLastUpdatedDate = null,
+    Object? termsVersion = null,
     Object? appVersion = null,
   }) {
     return _then(_value.copyWith(
-      termsLastUpdatedDate: null == termsLastUpdatedDate
-          ? _value.termsLastUpdatedDate
-          : termsLastUpdatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      termsVersion: null == termsVersion
+          ? _value.termsVersion
+          : termsVersion // ignore: cast_nullable_to_non_nullable
+              as double,
       appVersion: null == appVersion
           ? _value.appVersion
           : appVersion // ignore: cast_nullable_to_non_nullable
@@ -75,7 +75,7 @@ abstract class _$$AppMetadataImplCopyWith<$Res>
       __$$AppMetadataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DateTime termsLastUpdatedDate, String appVersion});
+  $Res call({double termsVersion, String appVersion});
 }
 
 /// @nodoc
@@ -89,14 +89,14 @@ class __$$AppMetadataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? termsLastUpdatedDate = null,
+    Object? termsVersion = null,
     Object? appVersion = null,
   }) {
     return _then(_$AppMetadataImpl(
-      termsLastUpdatedDate: null == termsLastUpdatedDate
-          ? _value.termsLastUpdatedDate
-          : termsLastUpdatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      termsVersion: null == termsVersion
+          ? _value.termsVersion
+          : termsVersion // ignore: cast_nullable_to_non_nullable
+              as double,
       appVersion: null == appVersion
           ? _value.appVersion
           : appVersion // ignore: cast_nullable_to_non_nullable
@@ -108,20 +108,19 @@ class __$$AppMetadataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AppMetadataImpl implements _AppMetadata {
-  _$AppMetadataImpl(
-      {required this.termsLastUpdatedDate, required this.appVersion});
+  _$AppMetadataImpl({required this.termsVersion, required this.appVersion});
 
   factory _$AppMetadataImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppMetadataImplFromJson(json);
 
   @override
-  final DateTime termsLastUpdatedDate;
+  final double termsVersion;
   @override
   final String appVersion;
 
   @override
   String toString() {
-    return 'AppMetadata(termsLastUpdatedDate: $termsLastUpdatedDate, appVersion: $appVersion)';
+    return 'AppMetadata(termsVersion: $termsVersion, appVersion: $appVersion)';
   }
 
   @override
@@ -129,16 +128,15 @@ class _$AppMetadataImpl implements _AppMetadata {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppMetadataImpl &&
-            (identical(other.termsLastUpdatedDate, termsLastUpdatedDate) ||
-                other.termsLastUpdatedDate == termsLastUpdatedDate) &&
+            (identical(other.termsVersion, termsVersion) ||
+                other.termsVersion == termsVersion) &&
             (identical(other.appVersion, appVersion) ||
                 other.appVersion == appVersion));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, termsLastUpdatedDate, appVersion);
+  int get hashCode => Object.hash(runtimeType, termsVersion, appVersion);
 
   @JsonKey(ignore: true)
   @override
@@ -156,14 +154,14 @@ class _$AppMetadataImpl implements _AppMetadata {
 
 abstract class _AppMetadata implements AppMetadata {
   factory _AppMetadata(
-      {required final DateTime termsLastUpdatedDate,
+      {required final double termsVersion,
       required final String appVersion}) = _$AppMetadataImpl;
 
   factory _AppMetadata.fromJson(Map<String, dynamic> json) =
       _$AppMetadataImpl.fromJson;
 
   @override
-  DateTime get termsLastUpdatedDate;
+  double get termsVersion;
   @override
   String get appVersion;
   @override
