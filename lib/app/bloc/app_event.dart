@@ -5,4 +5,8 @@ sealed class AppEvent with _$AppEvent {
   factory AppEvent.appPreferencesUpdated(
     AppPreferences updatedAppPreferences,
   ) = AppPreferencesUpdated;
+
+  factory AppEvent.appMetadataUpdated(
+    AppMetadata updatedAppMetadata,
+  ) = AppMetadataUpdated;
 }

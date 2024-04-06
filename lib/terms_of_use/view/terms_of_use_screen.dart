@@ -23,8 +23,7 @@ class TermsOfUseScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => TermsOfUseBloc(
         appPreferencesRepository: context.read(),
-        appMetadataRepository: context.read(),
-      )..add(const TermsOfUseEvent.loadTermsOfUseVersion()),
+      ),
       child: MultiBlocListener(
         listeners: [
           termsOfUseBlocListeners.errorDisplayer(),

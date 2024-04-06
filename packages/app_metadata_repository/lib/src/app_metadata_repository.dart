@@ -25,18 +25,17 @@ class AppMetadataRepository {
   final RemoteConfigApi _remoteConfigApi;
 
   // Functions
-  Future<void> getValues() async {
+  Future<AppMetadata> getValues() async {
     try {
       final jsonAppVersion = _remoteConfigApi.getJson('app_version');
       final jsonTermsVersions = _remoteConfigApi.getJson('terms_versions');
 
-      _streamController.sink.add(
-        AppMetadata(
-          termsVersions: TermsVersions.fromJson(jsonTermsVersions),
-          appVersion: AppVersion.fromJson(jsonAppVersion),
-        ),
+      final currentAppMetadata = AppMetadata(
+        termsVersions: TermsVersions.fromJson(jsonTermsVersions),
+        appVersion: AppVersion.fromJson(jsonAppVersion),
       );
-      return;
+      _streamController.sink.add(currentAppMetadata);
+      return currentAppMetadata;
     } catch (exception) {
       throw Exception(exception);
     }

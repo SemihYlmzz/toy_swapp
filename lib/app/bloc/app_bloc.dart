@@ -1,3 +1,4 @@
+import 'package:app_metadata_repository/app_metadata_repository.dart';
 import 'package:app_preferences_repository/app_preferences_repository_api.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -11,9 +12,16 @@ part 'app_state.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
     required AppPreferencesRepository appPreferencesRepository,
+    required AppMetadataRepository appMetadataRepository,
     required AppPreferences appPreferences,
+    required AppMetadata appMetadata,
   })  : _appPreferencesRepository = appPreferencesRepository,
-        super(AppState(appPreferences: appPreferences)) {
+        super(
+          AppState(
+            appPreferences: appPreferences,
+            appMetadata: appMetadata,
+          ),
+        ) {
     // Handle AppEvents
     on<AppEvent>(_onAppEvent);
     // AppPreferences Updated Listener
@@ -22,6 +30,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         add(AppEvent.appPreferencesUpdated(value));
       },
     );
+    appMetadataRepository.appMetadataStream.listen((event) {
+      add(AppEvent.appMetadataUpdated(event));
+    });
   }
 
   // Initialize Repositories
@@ -34,10 +45,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   ) async {
     emit(state.copyWith(isLoading: true));
 
-    await event.map(
+    event.map(
       appPreferencesUpdated: (event) async {
         emit(state.copyWith(appPreferences: event.updatedAppPreferences));
       },
+      appMetadataUpdated: (e) =>
+          emit(state.copyWith(appMetadata: e.updatedAppMetadata)),
     );
 
     emit(state.copyWith(isLoading: false, failure: null));

@@ -40,13 +40,14 @@ class AppRequirementsInitializer {
 
     // Get User Preferences
     final appPreferences = await appPreferencesRepository.read();
-
+    final appMetadata = await appMetadataRepository.getValues();
     return AppRequirements(
       repositories: Repositories(
         appPreferences: appPreferencesRepository,
         appMetadata: appMetadataRepository,
       ),
       appPreferences: appPreferences,
+      appMetadata: appMetadata,
       isConfigsInitialized: isConfigsInitialized,
       isLoggersInitialized: isLoggersInitialized,
     );

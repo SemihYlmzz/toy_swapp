@@ -36,7 +36,9 @@ class AppScreen extends StatelessWidget {
           create: (context) => AppBloc(
             appPreferencesRepository:
                 _appRequirements.repositories.appPreferences,
+            appMetadataRepository: _appRequirements.repositories.appMetadata,
             appPreferences: _appRequirements.appPreferences,
+            appMetadata: _appRequirements.appMetadata,
           ),
         ),
       ],
