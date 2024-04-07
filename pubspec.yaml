@@ -21,23 +21,23 @@ dependencies:
       ref: main
   
 
-  # Repositories
-  app_metadata_repository:
-    path: packages/app_metadata_repository
-  app_preferences_repository:
-    path: packages/app_preferences_repository
+  # # Repositories
+  # app_metadata_repository:
+  #   path: packages/app_metadata_repository
+  # app_preferences_repository:
+  #   path: packages/app_preferences_repository
 
-  # Interfaces
-  local_database_api:
-    path: packages/local_database_api
-  remote_config_api:
-    path: packages/remote_config_api
+  # # Interfaces
+  # local_database_api:
+  #   path: packages/local_database_api
+  # remote_config_api:
+  #   path: packages/remote_config_api
 
-  # Apis
-  shared_preferences_api:
-    path: packages/shared_preferences_api
-  firebase_remote_config_api:
-    path: packages/firebase_remote_config_api
+  # # Apis
+  # shared_preferences_api:
+  #   path: packages/shared_preferences_api
+  # firebase_remote_config_api:
+  #   path: packages/firebase_remote_config_api
 
   # Animation
   flutter_animate: ^4.5.0
@@ -62,9 +62,9 @@ dependencies:
   # Informations
   package_info_plus: ^6.0.0
 
-  # Localization
-  flutter_localizations:
-    sdk: flutter
+  # # Localization
+  # flutter_localizations:
+  #   sdk: flutter
 
   # Loggers
   logging: ^1.2.0  

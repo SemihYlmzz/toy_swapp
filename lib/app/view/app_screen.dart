@@ -1,55 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
-import 'package:toy_swapp/initializers/initializers.dart';
-
-import '../app.dart';
 
 class AppScreen extends StatelessWidget {
-  const AppScreen({
-    required this.localizationsDelegates,
-    required this.supportedLocales,
-    required this.appRouter,
-    required AppRequirements appRequirements,
-    super.key,
-  }) : _appRequirements = appRequirements;
-
-  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
-  final Iterable<Locale> supportedLocales;
-  final RouterConfig<Object>? appRouter;
-  // Repos
-  final AppRequirements _appRequirements;
+  const AppScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        // Repositories
-        Provider.value(
-          value: _appRequirements.repositories.appPreferences,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      // themeMode: ThemeMode.system,
+      title: 'App',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('App Screen'),
         ),
-        Provider.value(
-          value: _appRequirements.repositories.appMetadata,
+        body: const Center(
+          child: Text('Hoş Geldin'),
         ),
-        // Bloc
-        BlocProvider(
-          create: (context) => AppBloc(
-            appPreferencesRepository:
-                _appRequirements.repositories.appPreferences,
-            appMetadataRepository: _appRequirements.repositories.appMetadata,
-            appPreferences: _appRequirements.appPreferences,
-            appMetadata: _appRequirements.appMetadata,
-          ),
-        ),
-      ],
-      child: BlocBuilder<AppBloc, AppState>(
-        builder: (context, state) {
-          return AppView(
-            localizationsDelegates: localizationsDelegates,
-            appRouter: appRouter,
-            supportedLocales: supportedLocales,
-          );
-        },
       ),
     );
   }
