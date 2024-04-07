@@ -16,37 +16,50 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TermsOfUseEvent {
+  int get acceptedAppBuildNumber => throw _privateConstructorUsedError;
+  int get acceptedTermsReleaseNumber => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() acceptTerms,
+    required TResult Function(
+            int acceptedAppBuildNumber, int acceptedTermsReleaseNumber)
+        acceptTermsOfUse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? acceptTerms,
+    TResult? Function(
+            int acceptedAppBuildNumber, int acceptedTermsReleaseNumber)?
+        acceptTermsOfUse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? acceptTerms,
+    TResult Function(
+            int acceptedAppBuildNumber, int acceptedTermsReleaseNumber)?
+        acceptTermsOfUse,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TermsOfUseAcceptTerms value) acceptTerms,
+    required TResult Function(TermsOfUseAcceptTermsOfUse value)
+        acceptTermsOfUse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TermsOfUseAcceptTerms value)? acceptTerms,
+    TResult? Function(TermsOfUseAcceptTermsOfUse value)? acceptTermsOfUse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TermsOfUseAcceptTerms value)? acceptTerms,
+    TResult Function(TermsOfUseAcceptTermsOfUse value)? acceptTermsOfUse,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TermsOfUseEventCopyWith<TermsOfUseEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -55,6 +68,8 @@ abstract class $TermsOfUseEventCopyWith<$Res> {
   factory $TermsOfUseEventCopyWith(
           TermsOfUseEvent value, $Res Function(TermsOfUseEvent) then) =
       _$TermsOfUseEventCopyWithImpl<$Res, TermsOfUseEvent>;
+  @useResult
+  $Res call({int acceptedAppBuildNumber, int acceptedTermsReleaseNumber});
 }
 
 /// @nodoc
@@ -66,69 +81,140 @@ class _$TermsOfUseEventCopyWithImpl<$Res, $Val extends TermsOfUseEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? acceptedAppBuildNumber = null,
+    Object? acceptedTermsReleaseNumber = null,
+  }) {
+    return _then(_value.copyWith(
+      acceptedAppBuildNumber: null == acceptedAppBuildNumber
+          ? _value.acceptedAppBuildNumber
+          : acceptedAppBuildNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+      acceptedTermsReleaseNumber: null == acceptedTermsReleaseNumber
+          ? _value.acceptedTermsReleaseNumber
+          : acceptedTermsReleaseNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$TermsOfUseAcceptTermsImplCopyWith<$Res> {
-  factory _$$TermsOfUseAcceptTermsImplCopyWith(
-          _$TermsOfUseAcceptTermsImpl value,
-          $Res Function(_$TermsOfUseAcceptTermsImpl) then) =
-      __$$TermsOfUseAcceptTermsImplCopyWithImpl<$Res>;
+abstract class _$$TermsOfUseAcceptTermsOfUseImplCopyWith<$Res>
+    implements $TermsOfUseEventCopyWith<$Res> {
+  factory _$$TermsOfUseAcceptTermsOfUseImplCopyWith(
+          _$TermsOfUseAcceptTermsOfUseImpl value,
+          $Res Function(_$TermsOfUseAcceptTermsOfUseImpl) then) =
+      __$$TermsOfUseAcceptTermsOfUseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int acceptedAppBuildNumber, int acceptedTermsReleaseNumber});
 }
 
 /// @nodoc
-class __$$TermsOfUseAcceptTermsImplCopyWithImpl<$Res>
-    extends _$TermsOfUseEventCopyWithImpl<$Res, _$TermsOfUseAcceptTermsImpl>
-    implements _$$TermsOfUseAcceptTermsImplCopyWith<$Res> {
-  __$$TermsOfUseAcceptTermsImplCopyWithImpl(_$TermsOfUseAcceptTermsImpl _value,
-      $Res Function(_$TermsOfUseAcceptTermsImpl) _then)
+class __$$TermsOfUseAcceptTermsOfUseImplCopyWithImpl<$Res>
+    extends _$TermsOfUseEventCopyWithImpl<$Res,
+        _$TermsOfUseAcceptTermsOfUseImpl>
+    implements _$$TermsOfUseAcceptTermsOfUseImplCopyWith<$Res> {
+  __$$TermsOfUseAcceptTermsOfUseImplCopyWithImpl(
+      _$TermsOfUseAcceptTermsOfUseImpl _value,
+      $Res Function(_$TermsOfUseAcceptTermsOfUseImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? acceptedAppBuildNumber = null,
+    Object? acceptedTermsReleaseNumber = null,
+  }) {
+    return _then(_$TermsOfUseAcceptTermsOfUseImpl(
+      acceptedAppBuildNumber: null == acceptedAppBuildNumber
+          ? _value.acceptedAppBuildNumber
+          : acceptedAppBuildNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+      acceptedTermsReleaseNumber: null == acceptedTermsReleaseNumber
+          ? _value.acceptedTermsReleaseNumber
+          : acceptedTermsReleaseNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$TermsOfUseAcceptTermsImpl implements TermsOfUseAcceptTerms {
-  const _$TermsOfUseAcceptTermsImpl();
+class _$TermsOfUseAcceptTermsOfUseImpl implements TermsOfUseAcceptTermsOfUse {
+  const _$TermsOfUseAcceptTermsOfUseImpl(
+      {required this.acceptedAppBuildNumber,
+      required this.acceptedTermsReleaseNumber});
+
+  @override
+  final int acceptedAppBuildNumber;
+  @override
+  final int acceptedTermsReleaseNumber;
 
   @override
   String toString() {
-    return 'TermsOfUseEvent.acceptTerms()';
+    return 'TermsOfUseEvent.acceptTermsOfUse(acceptedAppBuildNumber: $acceptedAppBuildNumber, acceptedTermsReleaseNumber: $acceptedTermsReleaseNumber)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TermsOfUseAcceptTermsImpl);
+            other is _$TermsOfUseAcceptTermsOfUseImpl &&
+            (identical(other.acceptedAppBuildNumber, acceptedAppBuildNumber) ||
+                other.acceptedAppBuildNumber == acceptedAppBuildNumber) &&
+            (identical(other.acceptedTermsReleaseNumber,
+                    acceptedTermsReleaseNumber) ||
+                other.acceptedTermsReleaseNumber ==
+                    acceptedTermsReleaseNumber));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, acceptedAppBuildNumber, acceptedTermsReleaseNumber);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TermsOfUseAcceptTermsOfUseImplCopyWith<_$TermsOfUseAcceptTermsOfUseImpl>
+      get copyWith => __$$TermsOfUseAcceptTermsOfUseImplCopyWithImpl<
+          _$TermsOfUseAcceptTermsOfUseImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() acceptTerms,
+    required TResult Function(
+            int acceptedAppBuildNumber, int acceptedTermsReleaseNumber)
+        acceptTermsOfUse,
   }) {
-    return acceptTerms();
+    return acceptTermsOfUse(acceptedAppBuildNumber, acceptedTermsReleaseNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? acceptTerms,
+    TResult? Function(
+            int acceptedAppBuildNumber, int acceptedTermsReleaseNumber)?
+        acceptTermsOfUse,
   }) {
-    return acceptTerms?.call();
+    return acceptTermsOfUse?.call(
+        acceptedAppBuildNumber, acceptedTermsReleaseNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? acceptTerms,
+    TResult Function(
+            int acceptedAppBuildNumber, int acceptedTermsReleaseNumber)?
+        acceptTermsOfUse,
     required TResult orElse(),
   }) {
-    if (acceptTerms != null) {
-      return acceptTerms();
+    if (acceptTermsOfUse != null) {
+      return acceptTermsOfUse(
+          acceptedAppBuildNumber, acceptedTermsReleaseNumber);
     }
     return orElse();
   }
@@ -136,34 +222,47 @@ class _$TermsOfUseAcceptTermsImpl implements TermsOfUseAcceptTerms {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TermsOfUseAcceptTerms value) acceptTerms,
+    required TResult Function(TermsOfUseAcceptTermsOfUse value)
+        acceptTermsOfUse,
   }) {
-    return acceptTerms(this);
+    return acceptTermsOfUse(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TermsOfUseAcceptTerms value)? acceptTerms,
+    TResult? Function(TermsOfUseAcceptTermsOfUse value)? acceptTermsOfUse,
   }) {
-    return acceptTerms?.call(this);
+    return acceptTermsOfUse?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TermsOfUseAcceptTerms value)? acceptTerms,
+    TResult Function(TermsOfUseAcceptTermsOfUse value)? acceptTermsOfUse,
     required TResult orElse(),
   }) {
-    if (acceptTerms != null) {
-      return acceptTerms(this);
+    if (acceptTermsOfUse != null) {
+      return acceptTermsOfUse(this);
     }
     return orElse();
   }
 }
 
-abstract class TermsOfUseAcceptTerms implements TermsOfUseEvent {
-  const factory TermsOfUseAcceptTerms() = _$TermsOfUseAcceptTermsImpl;
+abstract class TermsOfUseAcceptTermsOfUse implements TermsOfUseEvent {
+  const factory TermsOfUseAcceptTermsOfUse(
+          {required final int acceptedAppBuildNumber,
+          required final int acceptedTermsReleaseNumber}) =
+      _$TermsOfUseAcceptTermsOfUseImpl;
+
+  @override
+  int get acceptedAppBuildNumber;
+  @override
+  int get acceptedTermsReleaseNumber;
+  @override
+  @JsonKey(ignore: true)
+  _$$TermsOfUseAcceptTermsOfUseImplCopyWith<_$TermsOfUseAcceptTermsOfUseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

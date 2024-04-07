@@ -1,3 +1,4 @@
+import 'package:app_preferences_repository/src/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -9,7 +10,7 @@ class AppPreferences with _$AppPreferences {
   const factory AppPreferences({
     @Default(true) bool isVibratable,
     @Default(ThemeMode.system) ThemeMode themeMode,
-    DateTime? termsOfUseAcceptedDate,
+    TermsOfUseAcceptance? termsOfUseAcceptance,
     String? languageCode,
   }) = _AppPreferences;
 

@@ -5,6 +5,7 @@ import 'package:remote_config_api/remote_config_api.dart';
 class AppMetadataRepository {
   AppMetadataRepository({
     required RemoteConfigApi remoteConfigApi,
+    // required ApplicationInfo applicationInfo,
   }) : _remoteConfigApi = remoteConfigApi {
     _remoteConfigApi.onChangeStream().listen((event) async {
       await _remoteConfigApi.saveChanges();

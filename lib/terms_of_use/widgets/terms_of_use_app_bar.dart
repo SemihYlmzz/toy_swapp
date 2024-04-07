@@ -9,7 +9,7 @@ class TermsOfUseAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(context.termsOfUseLocalization.termsOfUse),
+      title: Text(context.termsOfUseL10n.termsOfUse),
     );
   }
 

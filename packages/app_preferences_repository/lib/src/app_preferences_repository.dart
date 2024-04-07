@@ -81,12 +81,18 @@ class AppPreferencesRepository {
     _streamController.sink.add(updatedPreferences);
   }
 
-  Future<void> acceptTermsOfUse() async {
+  Future<void> acceptTermsOfUse({
+    required int acceptedTermsReleaseNumber,
+    required int acceptedAppBuildNumber,
+  }) async {
     if (appPreferences == null) {
       return;
     }
     final updatedPreferences = appPreferences!.copyWith(
-      termsOfUseAcceptedDate: DateTime.now(),
+      termsOfUseAcceptance: TermsOfUseAcceptance(
+        acceptedTermsReleaseNumber: acceptedTermsReleaseNumber,
+        acceptedAppBuildNumber: acceptedAppBuildNumber,
+      ),
     );
     await _localDatabaseApi.update(
       AppPreferencesRepositoryStrings.localDatabaseKey,

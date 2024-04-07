@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../l10n/l10n.dart';
 
 extension TermsOfUseLocalizationExtension on BuildContext {
-  TermsOfUseLocalization get termsOfUseLocalization {
+  TermsOfUseLocalization get termsOfUseL10n {
     return TermsOfUseLocalization(this);
   }
 }

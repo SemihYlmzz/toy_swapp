@@ -22,7 +22,8 @@ AppPreferences _$AppPreferencesFromJson(Map<String, dynamic> json) {
 mixin _$AppPreferences {
   bool get isVibratable => throw _privateConstructorUsedError;
   ThemeMode get themeMode => throw _privateConstructorUsedError;
-  DateTime? get termsOfUseAcceptedDate => throw _privateConstructorUsedError;
+  TermsOfUseAcceptance? get termsOfUseAcceptance =>
+      throw _privateConstructorUsedError;
   String? get languageCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,8 +41,10 @@ abstract class $AppPreferencesCopyWith<$Res> {
   $Res call(
       {bool isVibratable,
       ThemeMode themeMode,
-      DateTime? termsOfUseAcceptedDate,
+      TermsOfUseAcceptance? termsOfUseAcceptance,
       String? languageCode});
+
+  $TermsOfUseAcceptanceCopyWith<$Res>? get termsOfUseAcceptance;
 }
 
 /// @nodoc
@@ -59,7 +62,7 @@ class _$AppPreferencesCopyWithImpl<$Res, $Val extends AppPreferences>
   $Res call({
     Object? isVibratable = null,
     Object? themeMode = null,
-    Object? termsOfUseAcceptedDate = freezed,
+    Object? termsOfUseAcceptance = freezed,
     Object? languageCode = freezed,
   }) {
     return _then(_value.copyWith(
@@ -71,15 +74,28 @@ class _$AppPreferencesCopyWithImpl<$Res, $Val extends AppPreferences>
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
-      termsOfUseAcceptedDate: freezed == termsOfUseAcceptedDate
-          ? _value.termsOfUseAcceptedDate
-          : termsOfUseAcceptedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      termsOfUseAcceptance: freezed == termsOfUseAcceptance
+          ? _value.termsOfUseAcceptance
+          : termsOfUseAcceptance // ignore: cast_nullable_to_non_nullable
+              as TermsOfUseAcceptance?,
       languageCode: freezed == languageCode
           ? _value.languageCode
           : languageCode // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TermsOfUseAcceptanceCopyWith<$Res>? get termsOfUseAcceptance {
+    if (_value.termsOfUseAcceptance == null) {
+      return null;
+    }
+
+    return $TermsOfUseAcceptanceCopyWith<$Res>(_value.termsOfUseAcceptance!,
+        (value) {
+      return _then(_value.copyWith(termsOfUseAcceptance: value) as $Val);
+    });
   }
 }
 
@@ -94,8 +110,11 @@ abstract class _$$AppPreferencesImplCopyWith<$Res>
   $Res call(
       {bool isVibratable,
       ThemeMode themeMode,
-      DateTime? termsOfUseAcceptedDate,
+      TermsOfUseAcceptance? termsOfUseAcceptance,
       String? languageCode});
+
+  @override
+  $TermsOfUseAcceptanceCopyWith<$Res>? get termsOfUseAcceptance;
 }
 
 /// @nodoc
@@ -111,7 +130,7 @@ class __$$AppPreferencesImplCopyWithImpl<$Res>
   $Res call({
     Object? isVibratable = null,
     Object? themeMode = null,
-    Object? termsOfUseAcceptedDate = freezed,
+    Object? termsOfUseAcceptance = freezed,
     Object? languageCode = freezed,
   }) {
     return _then(_$AppPreferencesImpl(
@@ -123,10 +142,10 @@ class __$$AppPreferencesImplCopyWithImpl<$Res>
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
-      termsOfUseAcceptedDate: freezed == termsOfUseAcceptedDate
-          ? _value.termsOfUseAcceptedDate
-          : termsOfUseAcceptedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      termsOfUseAcceptance: freezed == termsOfUseAcceptance
+          ? _value.termsOfUseAcceptance
+          : termsOfUseAcceptance // ignore: cast_nullable_to_non_nullable
+              as TermsOfUseAcceptance?,
       languageCode: freezed == languageCode
           ? _value.languageCode
           : languageCode // ignore: cast_nullable_to_non_nullable
@@ -141,7 +160,7 @@ class _$AppPreferencesImpl implements _AppPreferences {
   const _$AppPreferencesImpl(
       {this.isVibratable = true,
       this.themeMode = ThemeMode.system,
-      this.termsOfUseAcceptedDate,
+      this.termsOfUseAcceptance,
       this.languageCode});
 
   factory _$AppPreferencesImpl.fromJson(Map<String, dynamic> json) =>
@@ -154,13 +173,13 @@ class _$AppPreferencesImpl implements _AppPreferences {
   @JsonKey()
   final ThemeMode themeMode;
   @override
-  final DateTime? termsOfUseAcceptedDate;
+  final TermsOfUseAcceptance? termsOfUseAcceptance;
   @override
   final String? languageCode;
 
   @override
   String toString() {
-    return 'AppPreferences(isVibratable: $isVibratable, themeMode: $themeMode, termsOfUseAcceptedDate: $termsOfUseAcceptedDate, languageCode: $languageCode)';
+    return 'AppPreferences(isVibratable: $isVibratable, themeMode: $themeMode, termsOfUseAcceptance: $termsOfUseAcceptance, languageCode: $languageCode)';
   }
 
   @override
@@ -172,16 +191,16 @@ class _$AppPreferencesImpl implements _AppPreferences {
                 other.isVibratable == isVibratable) &&
             (identical(other.themeMode, themeMode) ||
                 other.themeMode == themeMode) &&
-            (identical(other.termsOfUseAcceptedDate, termsOfUseAcceptedDate) ||
-                other.termsOfUseAcceptedDate == termsOfUseAcceptedDate) &&
+            (identical(other.termsOfUseAcceptance, termsOfUseAcceptance) ||
+                other.termsOfUseAcceptance == termsOfUseAcceptance) &&
             (identical(other.languageCode, languageCode) ||
                 other.languageCode == languageCode));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, isVibratable, themeMode,
-      termsOfUseAcceptedDate, languageCode);
+  int get hashCode => Object.hash(
+      runtimeType, isVibratable, themeMode, termsOfUseAcceptance, languageCode);
 
   @JsonKey(ignore: true)
   @override
@@ -202,7 +221,7 @@ abstract class _AppPreferences implements AppPreferences {
   const factory _AppPreferences(
       {final bool isVibratable,
       final ThemeMode themeMode,
-      final DateTime? termsOfUseAcceptedDate,
+      final TermsOfUseAcceptance? termsOfUseAcceptance,
       final String? languageCode}) = _$AppPreferencesImpl;
 
   factory _AppPreferences.fromJson(Map<String, dynamic> json) =
@@ -213,7 +232,7 @@ abstract class _AppPreferences implements AppPreferences {
   @override
   ThemeMode get themeMode;
   @override
-  DateTime? get termsOfUseAcceptedDate;
+  TermsOfUseAcceptance? get termsOfUseAcceptance;
   @override
   String? get languageCode;
   @override

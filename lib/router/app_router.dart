@@ -27,21 +27,10 @@ class AppRouter {
         routes: [
           SignInRouter.instance.route,
           SignUpRouter.instance.route,
-          TermsOfUseRouter.instance.route,
           // AuthSignUpRouter.instance.route,
           // UserInitializerRouter.instance.route,
         ],
         redirect: (BuildContext context, GoRouterState state) async {
-          final termsOfUseAcceptedDate = context
-              .read<AppBloc>()
-              .state
-              .appPreferences
-              .termsOfUseAcceptedDate;
-
-          if (termsOfUseAcceptedDate == null ||
-              termsOfUseAcceptedDate.isBefore(DateTime(2025, 02, 02))) {
-            return TermsOfUseRouter.instance.path;
-          }
           return null;
         },
         refreshListenable: GoRouterRefreshStream(

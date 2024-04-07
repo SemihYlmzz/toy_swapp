@@ -11,9 +11,10 @@ _$AppPreferencesImpl _$$AppPreferencesImplFromJson(Map<String, dynamic> json) =>
       isVibratable: json['isVibratable'] as bool? ?? true,
       themeMode: $enumDecodeNullable(_$ThemeModeEnumMap, json['themeMode']) ??
           ThemeMode.system,
-      termsOfUseAcceptedDate: json['termsOfUseAcceptedDate'] == null
+      termsOfUseAcceptance: json['termsOfUseAcceptance'] == null
           ? null
-          : DateTime.parse(json['termsOfUseAcceptedDate'] as String),
+          : TermsOfUseAcceptance.fromJson(
+              json['termsOfUseAcceptance'] as Map<String, dynamic>),
       languageCode: json['languageCode'] as String?,
     );
 
@@ -22,8 +23,7 @@ Map<String, dynamic> _$$AppPreferencesImplToJson(
     <String, dynamic>{
       'isVibratable': instance.isVibratable,
       'themeMode': _$ThemeModeEnumMap[instance.themeMode]!,
-      'termsOfUseAcceptedDate':
-          instance.termsOfUseAcceptedDate?.toIso8601String(),
+      'termsOfUseAcceptance': instance.termsOfUseAcceptance,
       'languageCode': instance.languageCode,
     };
 
