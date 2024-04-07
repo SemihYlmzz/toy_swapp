@@ -1,0 +1,35 @@
+name: auth_repository
+description: description
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # App For Failure Instance
+  toy_swapp:
+    path: ../../
+
+  # Annotations
+  json_annotation: ^4.8.1
+  freezed_annotation: ^2.4.1
+  
+  # Dart
+  fpdart: ^1.1.0
+  
+  # Firebase
+  firebase_auth: ^4.19.0
+  firebase_core: ^2.28.0
+
+dev_dependencies:
+  very_good_analysis: ^5.1.0
+  mocktail: ^1.0.0
+
+  # Code Generation
+  build_runner: ^2.4.8
+  freezed: ^2.4.6
+  json_serializable: ^6.7.1

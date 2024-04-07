@@ -21,9 +21,9 @@ dependencies:
       ref: main
   
 
-  # # Repositories
-  # app_metadata_repository:
-  #   path: packages/app_metadata_repository
+  # Repositories
+  auth_repository:
+    path: packages/auth_repository
   # app_preferences_repository:
   #   path: packages/app_preferences_repository
 
@@ -94,4 +94,4 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  generate: true
+  # generate: true

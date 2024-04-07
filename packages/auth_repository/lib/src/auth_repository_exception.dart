@@ -1,0 +1,7 @@
+import 'package:toy_swapp/errors/errors.dart';
+
+sealed class AuthRepositoryException implements Failure {
+  const AuthRepositoryException();
+}
+
+class AuthRepositoryUnknown extends AuthRepositoryException {}

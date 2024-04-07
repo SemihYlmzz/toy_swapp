@@ -1,10 +1,13 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:auth_repository/auth_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:toy_swapp/router/app_router.dart';
 
 import 'app/app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const AppScreen());
+  final authRepository = await AuthRepositoryInitializer.initialize();
+  final routerConfig = AppRouter().router(authRepository.isSignedInStream());
+
+  runApp(AppScreen(authRepository: authRepository, routerConfig: routerConfig));
 }
