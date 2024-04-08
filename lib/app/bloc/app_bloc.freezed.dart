@@ -337,9 +337,10 @@ abstract class AppPreferencesUpdated implements AppEvent {
 
 /// @nodoc
 mixin _$AppState {
+  AppMetadata get appMetadata => throw _privateConstructorUsedError;
   AppPreferences get appPreferences => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
-  bool? get isTermsAcceptedBefore => throw _privateConstructorUsedError;
+  bool get needTermAcceptance => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -353,11 +354,13 @@ abstract class $AppStateCopyWith<$Res> {
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
   $Res call(
-      {AppPreferences appPreferences,
+      {AppMetadata appMetadata,
+      AppPreferences appPreferences,
       bool isLoading,
-      bool? isTermsAcceptedBefore,
+      bool needTermAcceptance,
       Failure? failure});
 
+  $AppMetadataCopyWith<$Res> get appMetadata;
   $AppPreferencesCopyWith<$Res> get appPreferences;
 }
 
@@ -374,12 +377,17 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? appMetadata = null,
     Object? appPreferences = null,
     Object? isLoading = null,
-    Object? isTermsAcceptedBefore = freezed,
+    Object? needTermAcceptance = null,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
+      appMetadata: null == appMetadata
+          ? _value.appMetadata
+          : appMetadata // ignore: cast_nullable_to_non_nullable
+              as AppMetadata,
       appPreferences: null == appPreferences
           ? _value.appPreferences
           : appPreferences // ignore: cast_nullable_to_non_nullable
@@ -388,15 +396,23 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      isTermsAcceptedBefore: freezed == isTermsAcceptedBefore
-          ? _value.isTermsAcceptedBefore
-          : isTermsAcceptedBefore // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      needTermAcceptance: null == needTermAcceptance
+          ? _value.needTermAcceptance
+          : needTermAcceptance // ignore: cast_nullable_to_non_nullable
+              as bool,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AppMetadataCopyWith<$Res> get appMetadata {
+    return $AppMetadataCopyWith<$Res>(_value.appMetadata, (value) {
+      return _then(_value.copyWith(appMetadata: value) as $Val);
+    });
   }
 
   @override
@@ -417,11 +433,14 @@ abstract class _$$AppStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {AppPreferences appPreferences,
+      {AppMetadata appMetadata,
+      AppPreferences appPreferences,
       bool isLoading,
-      bool? isTermsAcceptedBefore,
+      bool needTermAcceptance,
       Failure? failure});
 
+  @override
+  $AppMetadataCopyWith<$Res> get appMetadata;
   @override
   $AppPreferencesCopyWith<$Res> get appPreferences;
 }
@@ -437,12 +456,17 @@ class __$$AppStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? appMetadata = null,
     Object? appPreferences = null,
     Object? isLoading = null,
-    Object? isTermsAcceptedBefore = freezed,
+    Object? needTermAcceptance = null,
     Object? failure = freezed,
   }) {
     return _then(_$AppStateImpl(
+      appMetadata: null == appMetadata
+          ? _value.appMetadata
+          : appMetadata // ignore: cast_nullable_to_non_nullable
+              as AppMetadata,
       appPreferences: null == appPreferences
           ? _value.appPreferences
           : appPreferences // ignore: cast_nullable_to_non_nullable
@@ -451,10 +475,10 @@ class __$$AppStateImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      isTermsAcceptedBefore: freezed == isTermsAcceptedBefore
-          ? _value.isTermsAcceptedBefore
-          : isTermsAcceptedBefore // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      needTermAcceptance: null == needTermAcceptance
+          ? _value.needTermAcceptance
+          : needTermAcceptance // ignore: cast_nullable_to_non_nullable
+              as bool,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -467,24 +491,28 @@ class __$$AppStateImplCopyWithImpl<$Res>
 
 class _$AppStateImpl implements _AppState {
   const _$AppStateImpl(
-      {required this.appPreferences,
+      {required this.appMetadata,
+      required this.appPreferences,
       this.isLoading = false,
-      this.isTermsAcceptedBefore,
+      this.needTermAcceptance = false,
       this.failure});
 
+  @override
+  final AppMetadata appMetadata;
   @override
   final AppPreferences appPreferences;
   @override
   @JsonKey()
   final bool isLoading;
   @override
-  final bool? isTermsAcceptedBefore;
+  @JsonKey()
+  final bool needTermAcceptance;
   @override
   final Failure? failure;
 
   @override
   String toString() {
-    return 'AppState(appPreferences: $appPreferences, isLoading: $isLoading, isTermsAcceptedBefore: $isTermsAcceptedBefore, failure: $failure)';
+    return 'AppState(appMetadata: $appMetadata, appPreferences: $appPreferences, isLoading: $isLoading, needTermAcceptance: $needTermAcceptance, failure: $failure)';
   }
 
   @override
@@ -492,18 +520,20 @@ class _$AppStateImpl implements _AppState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppStateImpl &&
+            (identical(other.appMetadata, appMetadata) ||
+                other.appMetadata == appMetadata) &&
             (identical(other.appPreferences, appPreferences) ||
                 other.appPreferences == appPreferences) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            (identical(other.isTermsAcceptedBefore, isTermsAcceptedBefore) ||
-                other.isTermsAcceptedBefore == isTermsAcceptedBefore) &&
+            (identical(other.needTermAcceptance, needTermAcceptance) ||
+                other.needTermAcceptance == needTermAcceptance) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, appPreferences, isLoading, isTermsAcceptedBefore, failure);
+  int get hashCode => Object.hash(runtimeType, appMetadata, appPreferences,
+      isLoading, needTermAcceptance, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -514,17 +544,20 @@ class _$AppStateImpl implements _AppState {
 
 abstract class _AppState implements AppState {
   const factory _AppState(
-      {required final AppPreferences appPreferences,
+      {required final AppMetadata appMetadata,
+      required final AppPreferences appPreferences,
       final bool isLoading,
-      final bool? isTermsAcceptedBefore,
+      final bool needTermAcceptance,
       final Failure? failure}) = _$AppStateImpl;
 
+  @override
+  AppMetadata get appMetadata;
   @override
   AppPreferences get appPreferences;
   @override
   bool get isLoading;
   @override
-  bool? get isTermsAcceptedBefore;
+  bool get needTermAcceptance;
   @override
   Failure? get failure;
   @override

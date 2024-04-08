@@ -1,3 +1,4 @@
+import 'package:app_metadata_repository/app_metadata_repository.dart';
 import 'package:app_preferences_repository/app_preferences_repository.dart';
 import 'package:auth_repository/auth_repository.dart';
 import 'package:flutter/material.dart';
@@ -11,16 +12,24 @@ void main() async {
   final authRepository = await AuthRepositoryInitializer.initialize();
   final appPreferencesRepository =
       await AppPreferencesRepositoryInitializer.initialize();
-
+  final appMetadataRepository =
+      await AppMetadataRepositoryInitializer.initialize();
   // Instances
   final routerConfig = AppRouter().router(authRepository.isSignedInStream());
   final appPreferences = await appPreferencesRepository.read();
+  final appMetadata = await appMetadataRepository.read();
+
   runApp(
-    AppScreen(
-      appPreferences: appPreferences,
-      appPreferencesRepository: appPreferencesRepository,
-      authRepository: authRepository,
-      routerConfig: routerConfig,
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: AppScreen(
+        appPreferences: appPreferences,
+        appMetadata: appMetadata,
+        appMetadataRepository: appMetadataRepository,
+        appPreferencesRepository: appPreferencesRepository,
+        authRepository: authRepository,
+        routerConfig: routerConfig,
+      ),
     ),
   );
 }

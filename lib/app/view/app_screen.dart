@@ -1,3 +1,4 @@
+import 'package:app_metadata_repository/app_metadata_repository.dart';
 import 'package:app_preferences_repository/app_preferences_repository.dart';
 import 'package:auth_repository/auth_repository.dart';
 import 'package:flutter/material.dart';
@@ -9,19 +10,25 @@ class AppScreen extends StatelessWidget {
   const AppScreen({
     required AuthRepository authRepository,
     required AppPreferencesRepository appPreferencesRepository,
+    required AppMetadataRepository appMetadataRepository,
+    required AppMetadata appMetadata,
     required AppPreferences appPreferences,
     required RouterConfig<Object> routerConfig,
     super.key,
   })  : _authRepository = authRepository,
         _appPreferencesRepository = appPreferencesRepository,
         _appPreferences = appPreferences,
+        _appMetadataRepository = appMetadataRepository,
+        _appMetadata = appMetadata,
         _routerConfig = routerConfig;
   // Repositories
   final AuthRepository _authRepository;
   final AppPreferencesRepository _appPreferencesRepository;
+  final AppMetadataRepository _appMetadataRepository;
 
   // Instances
   final AppPreferences _appPreferences;
+  final AppMetadata _appMetadata;
   final RouterConfig<Object> _routerConfig;
 
   @override
@@ -31,16 +38,20 @@ class AppScreen extends StatelessWidget {
         // Repos
         RepositoryProvider(create: (context) => _authRepository),
         RepositoryProvider(create: (context) => _appPreferencesRepository),
+        RepositoryProvider(create: (context) => _appMetadataRepository),
 
         // Bloc
         BlocProvider(
           create: (context) => AppBloc(
             appPreferencesRepository: _appPreferencesRepository,
             appPreferences: _appPreferences,
+            appMetadata: _appMetadata,
           )..add(const AppEvent.checkIsTermsAccepted()),
         ),
       ],
-      child: AppView(routerConfig: _routerConfig),
+      child: AppView(
+        routerConfig: _routerConfig,
+      ),
     );
   }
 }

@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:fpdart/fpdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toy_swapp/errors/errors.dart';
 
 import '../app_preferences_repository.dart';
 import 'constants/constants.dart';
@@ -9,7 +11,11 @@ import 'constants/constants.dart';
 class AppPreferencesRepository {
   AppPreferencesRepository({
     required SharedPreferences sharedPreferences,
-  }) : _sharedPreferences = sharedPreferences;
+  }) : _sharedPreferences = sharedPreferences {
+    _streamController.stream.listen((event) {
+      appPreferences = event;
+    });
+  }
 
   // Instances
   final SharedPreferences _sharedPreferences;
@@ -44,6 +50,7 @@ class AppPreferencesRepository {
 
   Future<AppPreferences> create() async {
     const creatableAppPreferences = AppPreferences();
+
     await _sharedPreferences.setString(
       AppPreferencesRepositoryStrings.localDatabaseKey,
       jsonEncode(creatableAppPreferences.toJson()),
@@ -52,24 +59,28 @@ class AppPreferencesRepository {
     return creatableAppPreferences;
   }
 
-  Future<void> acceptTermsOfUse({
-    required int acceptedTermsReleaseNumber,
-    required int acceptedAppBuildNumber,
+  FutureUnit acceptTermsOfUse({
+    required int appCoreVersionNumber,
+    required int termsReleaseNumber,
   }) async {
     if (appPreferences == null) {
-      return;
+      return Left(AppPreferencesRepositoryUnknown());
     }
-    final updatedPreferences = appPreferences!.copyWith(
-      termsOfUseAcceptance: TermsOfUseAcceptance(
-        acceptedTermsReleaseNumber: acceptedTermsReleaseNumber,
-        acceptedAppBuildNumber: acceptedAppBuildNumber,
-      ),
-    );
-    await _sharedPreferences.setString(
-      AppPreferencesRepositoryStrings.localDatabaseKey,
-      jsonEncode(updatedPreferences.toJson()),
-    );
-    _streamController.sink.add(updatedPreferences);
-    return;
+    try {
+      final updatedPreferences = appPreferences!.copyWith(
+        termsAcceptance: TermsAcceptance(
+          appCoreVersionNumber: appCoreVersionNumber,
+          termsReleaseNumber: termsReleaseNumber,
+        ),
+      );
+      await _sharedPreferences.setString(
+        AppPreferencesRepositoryStrings.localDatabaseKey,
+        jsonEncode(updatedPreferences.toJson()),
+      );
+      _streamController.sink.add(updatedPreferences);
+      return const Right(unit);
+    } catch (exception) {
+      return Left(AppPreferencesRepositoryUnknown());
+    }
   }
 }

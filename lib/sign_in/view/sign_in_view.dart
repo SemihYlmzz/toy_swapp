@@ -5,7 +5,6 @@ import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 
 import '../../sign_up/sign_up.dart';
-import '../../terms_of_use/terms_of_use.dart';
 import '../sign_in.dart';
 
 class SignInView extends StatelessWidget {
@@ -77,12 +76,6 @@ class SignInView extends StatelessWidget {
                   child: const Text('Sign Up'),
                 ),
               ],
-            ),
-            ElevatedButton(
-              child: const Text('Accept Terms of Use'),
-              onPressed: () {
-                TermsOfUsePopUps.showTermsOfUseAcceptance(context);
-              },
             ),
           ],
         ),

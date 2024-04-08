@@ -20,8 +20,7 @@ AppPreferences _$AppPreferencesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AppPreferences {
-  TermsOfUseAcceptance? get termsOfUseAcceptance =>
-      throw _privateConstructorUsedError;
+  TermsAcceptance? get termsAcceptance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,9 +34,9 @@ abstract class $AppPreferencesCopyWith<$Res> {
           AppPreferences value, $Res Function(AppPreferences) then) =
       _$AppPreferencesCopyWithImpl<$Res, AppPreferences>;
   @useResult
-  $Res call({TermsOfUseAcceptance? termsOfUseAcceptance});
+  $Res call({TermsAcceptance? termsAcceptance});
 
-  $TermsOfUseAcceptanceCopyWith<$Res>? get termsOfUseAcceptance;
+  $TermsAcceptanceCopyWith<$Res>? get termsAcceptance;
 }
 
 /// @nodoc
@@ -53,26 +52,25 @@ class _$AppPreferencesCopyWithImpl<$Res, $Val extends AppPreferences>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? termsOfUseAcceptance = freezed,
+    Object? termsAcceptance = freezed,
   }) {
     return _then(_value.copyWith(
-      termsOfUseAcceptance: freezed == termsOfUseAcceptance
-          ? _value.termsOfUseAcceptance
-          : termsOfUseAcceptance // ignore: cast_nullable_to_non_nullable
-              as TermsOfUseAcceptance?,
+      termsAcceptance: freezed == termsAcceptance
+          ? _value.termsAcceptance
+          : termsAcceptance // ignore: cast_nullable_to_non_nullable
+              as TermsAcceptance?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $TermsOfUseAcceptanceCopyWith<$Res>? get termsOfUseAcceptance {
-    if (_value.termsOfUseAcceptance == null) {
+  $TermsAcceptanceCopyWith<$Res>? get termsAcceptance {
+    if (_value.termsAcceptance == null) {
       return null;
     }
 
-    return $TermsOfUseAcceptanceCopyWith<$Res>(_value.termsOfUseAcceptance!,
-        (value) {
-      return _then(_value.copyWith(termsOfUseAcceptance: value) as $Val);
+    return $TermsAcceptanceCopyWith<$Res>(_value.termsAcceptance!, (value) {
+      return _then(_value.copyWith(termsAcceptance: value) as $Val);
     });
   }
 }
@@ -85,10 +83,10 @@ abstract class _$$AppPreferencesImplCopyWith<$Res>
       __$$AppPreferencesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TermsOfUseAcceptance? termsOfUseAcceptance});
+  $Res call({TermsAcceptance? termsAcceptance});
 
   @override
-  $TermsOfUseAcceptanceCopyWith<$Res>? get termsOfUseAcceptance;
+  $TermsAcceptanceCopyWith<$Res>? get termsAcceptance;
 }
 
 /// @nodoc
@@ -102,13 +100,13 @@ class __$$AppPreferencesImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? termsOfUseAcceptance = freezed,
+    Object? termsAcceptance = freezed,
   }) {
     return _then(_$AppPreferencesImpl(
-      termsOfUseAcceptance: freezed == termsOfUseAcceptance
-          ? _value.termsOfUseAcceptance
-          : termsOfUseAcceptance // ignore: cast_nullable_to_non_nullable
-              as TermsOfUseAcceptance?,
+      termsAcceptance: freezed == termsAcceptance
+          ? _value.termsAcceptance
+          : termsAcceptance // ignore: cast_nullable_to_non_nullable
+              as TermsAcceptance?,
     ));
   }
 }
@@ -116,17 +114,17 @@ class __$$AppPreferencesImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AppPreferencesImpl implements _AppPreferences {
-  const _$AppPreferencesImpl({this.termsOfUseAcceptance});
+  const _$AppPreferencesImpl({this.termsAcceptance});
 
   factory _$AppPreferencesImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppPreferencesImplFromJson(json);
 
   @override
-  final TermsOfUseAcceptance? termsOfUseAcceptance;
+  final TermsAcceptance? termsAcceptance;
 
   @override
   String toString() {
-    return 'AppPreferences(termsOfUseAcceptance: $termsOfUseAcceptance)';
+    return 'AppPreferences(termsAcceptance: $termsAcceptance)';
   }
 
   @override
@@ -134,13 +132,13 @@ class _$AppPreferencesImpl implements _AppPreferences {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppPreferencesImpl &&
-            (identical(other.termsOfUseAcceptance, termsOfUseAcceptance) ||
-                other.termsOfUseAcceptance == termsOfUseAcceptance));
+            (identical(other.termsAcceptance, termsAcceptance) ||
+                other.termsAcceptance == termsAcceptance));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, termsOfUseAcceptance);
+  int get hashCode => Object.hash(runtimeType, termsAcceptance);
 
   @JsonKey(ignore: true)
   @override
@@ -158,15 +156,14 @@ class _$AppPreferencesImpl implements _AppPreferences {
 }
 
 abstract class _AppPreferences implements AppPreferences {
-  const factory _AppPreferences(
-          {final TermsOfUseAcceptance? termsOfUseAcceptance}) =
+  const factory _AppPreferences({final TermsAcceptance? termsAcceptance}) =
       _$AppPreferencesImpl;
 
   factory _AppPreferences.fromJson(Map<String, dynamic> json) =
       _$AppPreferencesImpl.fromJson;
 
   @override
-  TermsOfUseAcceptance? get termsOfUseAcceptance;
+  TermsAcceptance? get termsAcceptance;
   @override
   @JsonKey(ignore: true)
   _$$AppPreferencesImplCopyWith<_$AppPreferencesImpl> get copyWith =>

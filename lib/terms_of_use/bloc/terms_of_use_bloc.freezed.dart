@@ -18,33 +18,34 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TermsOfUseEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() acceptTermsOfUse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? acceptTermsOfUse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? acceptTermsOfUse,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TermsOfUseFetch value) fetch,
+    required TResult Function(TermsOfUseAcceptTermsOfUse value)
+        acceptTermsOfUse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TermsOfUseFetch value)? fetch,
+    TResult? Function(TermsOfUseAcceptTermsOfUse value)? acceptTermsOfUse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TermsOfUseFetch value)? fetch,
+    TResult Function(TermsOfUseAcceptTermsOfUse value)? acceptTermsOfUse,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,35 +70,39 @@ class _$TermsOfUseEventCopyWithImpl<$Res, $Val extends TermsOfUseEvent>
 }
 
 /// @nodoc
-abstract class _$$TermsOfUseFetchImplCopyWith<$Res> {
-  factory _$$TermsOfUseFetchImplCopyWith(_$TermsOfUseFetchImpl value,
-          $Res Function(_$TermsOfUseFetchImpl) then) =
-      __$$TermsOfUseFetchImplCopyWithImpl<$Res>;
+abstract class _$$TermsOfUseAcceptTermsOfUseImplCopyWith<$Res> {
+  factory _$$TermsOfUseAcceptTermsOfUseImplCopyWith(
+          _$TermsOfUseAcceptTermsOfUseImpl value,
+          $Res Function(_$TermsOfUseAcceptTermsOfUseImpl) then) =
+      __$$TermsOfUseAcceptTermsOfUseImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$TermsOfUseFetchImplCopyWithImpl<$Res>
-    extends _$TermsOfUseEventCopyWithImpl<$Res, _$TermsOfUseFetchImpl>
-    implements _$$TermsOfUseFetchImplCopyWith<$Res> {
-  __$$TermsOfUseFetchImplCopyWithImpl(
-      _$TermsOfUseFetchImpl _value, $Res Function(_$TermsOfUseFetchImpl) _then)
+class __$$TermsOfUseAcceptTermsOfUseImplCopyWithImpl<$Res>
+    extends _$TermsOfUseEventCopyWithImpl<$Res,
+        _$TermsOfUseAcceptTermsOfUseImpl>
+    implements _$$TermsOfUseAcceptTermsOfUseImplCopyWith<$Res> {
+  __$$TermsOfUseAcceptTermsOfUseImplCopyWithImpl(
+      _$TermsOfUseAcceptTermsOfUseImpl _value,
+      $Res Function(_$TermsOfUseAcceptTermsOfUseImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$TermsOfUseFetchImpl implements TermsOfUseFetch {
-  const _$TermsOfUseFetchImpl();
+class _$TermsOfUseAcceptTermsOfUseImpl implements TermsOfUseAcceptTermsOfUse {
+  const _$TermsOfUseAcceptTermsOfUseImpl();
 
   @override
   String toString() {
-    return 'TermsOfUseEvent.fetch()';
+    return 'TermsOfUseEvent.acceptTermsOfUse()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$TermsOfUseFetchImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$TermsOfUseAcceptTermsOfUseImpl);
   }
 
   @override
@@ -106,27 +111,27 @@ class _$TermsOfUseFetchImpl implements TermsOfUseFetch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() acceptTermsOfUse,
   }) {
-    return fetch();
+    return acceptTermsOfUse();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? acceptTermsOfUse,
   }) {
-    return fetch?.call();
+    return acceptTermsOfUse?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? acceptTermsOfUse,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch();
+    if (acceptTermsOfUse != null) {
+      return acceptTermsOfUse();
     }
     return orElse();
   }
@@ -134,39 +139,42 @@ class _$TermsOfUseFetchImpl implements TermsOfUseFetch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TermsOfUseFetch value) fetch,
+    required TResult Function(TermsOfUseAcceptTermsOfUse value)
+        acceptTermsOfUse,
   }) {
-    return fetch(this);
+    return acceptTermsOfUse(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TermsOfUseFetch value)? fetch,
+    TResult? Function(TermsOfUseAcceptTermsOfUse value)? acceptTermsOfUse,
   }) {
-    return fetch?.call(this);
+    return acceptTermsOfUse?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TermsOfUseFetch value)? fetch,
+    TResult Function(TermsOfUseAcceptTermsOfUse value)? acceptTermsOfUse,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch(this);
+    if (acceptTermsOfUse != null) {
+      return acceptTermsOfUse(this);
     }
     return orElse();
   }
 }
 
-abstract class TermsOfUseFetch implements TermsOfUseEvent {
-  const factory TermsOfUseFetch() = _$TermsOfUseFetchImpl;
+abstract class TermsOfUseAcceptTermsOfUse implements TermsOfUseEvent {
+  const factory TermsOfUseAcceptTermsOfUse() = _$TermsOfUseAcceptTermsOfUseImpl;
 }
 
 /// @nodoc
 mixin _$TermsOfUseState {
+  AppMetadata get appMetadata => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isTermsOfUseAccepted => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -180,7 +188,13 @@ abstract class $TermsOfUseStateCopyWith<$Res> {
           TermsOfUseState value, $Res Function(TermsOfUseState) then) =
       _$TermsOfUseStateCopyWithImpl<$Res, TermsOfUseState>;
   @useResult
-  $Res call({bool isLoading, Failure? failure});
+  $Res call(
+      {AppMetadata appMetadata,
+      bool isLoading,
+      bool isTermsOfUseAccepted,
+      Failure? failure});
+
+  $AppMetadataCopyWith<$Res> get appMetadata;
 }
 
 /// @nodoc
@@ -196,19 +210,37 @@ class _$TermsOfUseStateCopyWithImpl<$Res, $Val extends TermsOfUseState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? appMetadata = null,
     Object? isLoading = null,
+    Object? isTermsOfUseAccepted = null,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
+      appMetadata: null == appMetadata
+          ? _value.appMetadata
+          : appMetadata // ignore: cast_nullable_to_non_nullable
+              as AppMetadata,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isTermsOfUseAccepted: null == isTermsOfUseAccepted
+          ? _value.isTermsOfUseAccepted
+          : isTermsOfUseAccepted // ignore: cast_nullable_to_non_nullable
               as bool,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AppMetadataCopyWith<$Res> get appMetadata {
+    return $AppMetadataCopyWith<$Res>(_value.appMetadata, (value) {
+      return _then(_value.copyWith(appMetadata: value) as $Val);
+    });
   }
 }
 
@@ -220,7 +252,14 @@ abstract class _$$TermsOfUseStateImplCopyWith<$Res>
       __$$TermsOfUseStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, Failure? failure});
+  $Res call(
+      {AppMetadata appMetadata,
+      bool isLoading,
+      bool isTermsOfUseAccepted,
+      Failure? failure});
+
+  @override
+  $AppMetadataCopyWith<$Res> get appMetadata;
 }
 
 /// @nodoc
@@ -234,13 +273,23 @@ class __$$TermsOfUseStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? appMetadata = null,
     Object? isLoading = null,
+    Object? isTermsOfUseAccepted = null,
     Object? failure = freezed,
   }) {
     return _then(_$TermsOfUseStateImpl(
+      appMetadata: null == appMetadata
+          ? _value.appMetadata
+          : appMetadata // ignore: cast_nullable_to_non_nullable
+              as AppMetadata,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isTermsOfUseAccepted: null == isTermsOfUseAccepted
+          ? _value.isTermsOfUseAccepted
+          : isTermsOfUseAccepted // ignore: cast_nullable_to_non_nullable
               as bool,
       failure: freezed == failure
           ? _value.failure
@@ -253,17 +302,26 @@ class __$$TermsOfUseStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TermsOfUseStateImpl implements _TermsOfUseState {
-  const _$TermsOfUseStateImpl({this.isLoading = false, this.failure});
+  const _$TermsOfUseStateImpl(
+      {required this.appMetadata,
+      this.isLoading = false,
+      this.isTermsOfUseAccepted = false,
+      this.failure});
 
+  @override
+  final AppMetadata appMetadata;
   @override
   @JsonKey()
   final bool isLoading;
+  @override
+  @JsonKey()
+  final bool isTermsOfUseAccepted;
   @override
   final Failure? failure;
 
   @override
   String toString() {
-    return 'TermsOfUseState(isLoading: $isLoading, failure: $failure)';
+    return 'TermsOfUseState(appMetadata: $appMetadata, isLoading: $isLoading, isTermsOfUseAccepted: $isTermsOfUseAccepted, failure: $failure)';
   }
 
   @override
@@ -271,13 +329,18 @@ class _$TermsOfUseStateImpl implements _TermsOfUseState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TermsOfUseStateImpl &&
+            (identical(other.appMetadata, appMetadata) ||
+                other.appMetadata == appMetadata) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.isTermsOfUseAccepted, isTermsOfUseAccepted) ||
+                other.isTermsOfUseAccepted == isTermsOfUseAccepted) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, failure);
+  int get hashCode => Object.hash(
+      runtimeType, appMetadata, isLoading, isTermsOfUseAccepted, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -289,10 +352,17 @@ class _$TermsOfUseStateImpl implements _TermsOfUseState {
 
 abstract class _TermsOfUseState implements TermsOfUseState {
   const factory _TermsOfUseState(
-      {final bool isLoading, final Failure? failure}) = _$TermsOfUseStateImpl;
+      {required final AppMetadata appMetadata,
+      final bool isLoading,
+      final bool isTermsOfUseAccepted,
+      final Failure? failure}) = _$TermsOfUseStateImpl;
 
   @override
+  AppMetadata get appMetadata;
+  @override
   bool get isLoading;
+  @override
+  bool get isTermsOfUseAccepted;
   @override
   Failure? get failure;
   @override

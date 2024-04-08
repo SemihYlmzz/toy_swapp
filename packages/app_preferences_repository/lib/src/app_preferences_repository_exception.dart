@@ -1,5 +1,8 @@
-sealed class AppPreferencesRepositoryException implements Exception {
+import 'package:toy_swapp/errors/errors.dart';
+
+sealed class AppPreferencesRepositoryException implements Failure {
   const AppPreferencesRepositoryException();
 }
 
-class AppPreferencesRepositoryUnknown extends AppPreferencesRepositoryException {}
+class AppPreferencesRepositoryUnknown
+    extends AppPreferencesRepositoryException {}

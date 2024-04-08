@@ -8,14 +8,14 @@ part of 'app_preferences.dart';
 
 _$AppPreferencesImpl _$$AppPreferencesImplFromJson(Map<String, dynamic> json) =>
     _$AppPreferencesImpl(
-      termsOfUseAcceptance: json['termsOfUseAcceptance'] == null
+      termsAcceptance: json['termsAcceptance'] == null
           ? null
-          : TermsOfUseAcceptance.fromJson(
-              json['termsOfUseAcceptance'] as Map<String, dynamic>),
+          : TermsAcceptance.fromJson(
+              json['termsAcceptance'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AppPreferencesImplToJson(
         _$AppPreferencesImpl instance) =>
     <String, dynamic>{
-      'termsOfUseAcceptance': instance.termsOfUseAcceptance,
+      'termsAcceptance': instance.termsAcceptance,
     };
