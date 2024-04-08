@@ -24,8 +24,8 @@ dependencies:
   # Repositories
   auth_repository:
     path: packages/auth_repository
-  # app_preferences_repository:
-  #   path: packages/app_preferences_repository
+  app_preferences_repository:
+    path: packages/app_preferences_repository
 
   # # Interfaces
   # local_database_api:
@@ -52,6 +52,9 @@ dependencies:
   
   # Core APIS
   firebase_core: ^2.28.0
+
+  # Dart
+  fpdart: ^1.1.0
 
   # Dependency Injection
   provider: 6.1.2

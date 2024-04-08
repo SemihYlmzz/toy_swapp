@@ -16,42 +16,46 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AppEvent {
-  bool get isSignedInValue => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isSignedInValue) isSignedInUpdated,
+    required TResult Function() checkIsTermsAccepted,
+    required TResult Function(AppPreferences updatedValue)
+        appPreferencesUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isSignedInValue)? isSignedInUpdated,
+    TResult? Function()? checkIsTermsAccepted,
+    TResult? Function(AppPreferences updatedValue)? appPreferencesUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isSignedInValue)? isSignedInUpdated,
+    TResult Function()? checkIsTermsAccepted,
+    TResult Function(AppPreferences updatedValue)? appPreferencesUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AppIsSignedInUpdated value) isSignedInUpdated,
+    required TResult Function(AppCheckIsTermsAccepted value)
+        checkIsTermsAccepted,
+    required TResult Function(AppPreferencesUpdated value)
+        appPreferencesUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AppIsSignedInUpdated value)? isSignedInUpdated,
+    TResult? Function(AppCheckIsTermsAccepted value)? checkIsTermsAccepted,
+    TResult? Function(AppPreferencesUpdated value)? appPreferencesUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AppIsSignedInUpdated value)? isSignedInUpdated,
+    TResult Function(AppCheckIsTermsAccepted value)? checkIsTermsAccepted,
+    TResult Function(AppPreferencesUpdated value)? appPreferencesUpdated,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $AppEventCopyWith<AppEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -59,8 +63,6 @@ mixin _$AppEvent {
 abstract class $AppEventCopyWith<$Res> {
   factory $AppEventCopyWith(AppEvent value, $Res Function(AppEvent) then) =
       _$AppEventCopyWithImpl<$Res, AppEvent>;
-  @useResult
-  $Res call({bool isSignedInValue});
 }
 
 /// @nodoc
@@ -72,111 +74,74 @@ class _$AppEventCopyWithImpl<$Res, $Val extends AppEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isSignedInValue = null,
-  }) {
-    return _then(_value.copyWith(
-      isSignedInValue: null == isSignedInValue
-          ? _value.isSignedInValue
-          : isSignedInValue // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$AppIsSignedInUpdatedImplCopyWith<$Res>
-    implements $AppEventCopyWith<$Res> {
-  factory _$$AppIsSignedInUpdatedImplCopyWith(_$AppIsSignedInUpdatedImpl value,
-          $Res Function(_$AppIsSignedInUpdatedImpl) then) =
-      __$$AppIsSignedInUpdatedImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool isSignedInValue});
+abstract class _$$AppCheckIsTermsAcceptedImplCopyWith<$Res> {
+  factory _$$AppCheckIsTermsAcceptedImplCopyWith(
+          _$AppCheckIsTermsAcceptedImpl value,
+          $Res Function(_$AppCheckIsTermsAcceptedImpl) then) =
+      __$$AppCheckIsTermsAcceptedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AppIsSignedInUpdatedImplCopyWithImpl<$Res>
-    extends _$AppEventCopyWithImpl<$Res, _$AppIsSignedInUpdatedImpl>
-    implements _$$AppIsSignedInUpdatedImplCopyWith<$Res> {
-  __$$AppIsSignedInUpdatedImplCopyWithImpl(_$AppIsSignedInUpdatedImpl _value,
-      $Res Function(_$AppIsSignedInUpdatedImpl) _then)
+class __$$AppCheckIsTermsAcceptedImplCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res, _$AppCheckIsTermsAcceptedImpl>
+    implements _$$AppCheckIsTermsAcceptedImplCopyWith<$Res> {
+  __$$AppCheckIsTermsAcceptedImplCopyWithImpl(
+      _$AppCheckIsTermsAcceptedImpl _value,
+      $Res Function(_$AppCheckIsTermsAcceptedImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isSignedInValue = null,
-  }) {
-    return _then(_$AppIsSignedInUpdatedImpl(
-      isSignedInValue: null == isSignedInValue
-          ? _value.isSignedInValue
-          : isSignedInValue // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$AppIsSignedInUpdatedImpl implements AppIsSignedInUpdated {
-  const _$AppIsSignedInUpdatedImpl({required this.isSignedInValue});
-
-  @override
-  final bool isSignedInValue;
+class _$AppCheckIsTermsAcceptedImpl implements AppCheckIsTermsAccepted {
+  const _$AppCheckIsTermsAcceptedImpl();
 
   @override
   String toString() {
-    return 'AppEvent.isSignedInUpdated(isSignedInValue: $isSignedInValue)';
+    return 'AppEvent.checkIsTermsAccepted()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AppIsSignedInUpdatedImpl &&
-            (identical(other.isSignedInValue, isSignedInValue) ||
-                other.isSignedInValue == isSignedInValue));
+            other is _$AppCheckIsTermsAcceptedImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isSignedInValue);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AppIsSignedInUpdatedImplCopyWith<_$AppIsSignedInUpdatedImpl>
-      get copyWith =>
-          __$$AppIsSignedInUpdatedImplCopyWithImpl<_$AppIsSignedInUpdatedImpl>(
-              this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isSignedInValue) isSignedInUpdated,
+    required TResult Function() checkIsTermsAccepted,
+    required TResult Function(AppPreferences updatedValue)
+        appPreferencesUpdated,
   }) {
-    return isSignedInUpdated(isSignedInValue);
+    return checkIsTermsAccepted();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isSignedInValue)? isSignedInUpdated,
+    TResult? Function()? checkIsTermsAccepted,
+    TResult? Function(AppPreferences updatedValue)? appPreferencesUpdated,
   }) {
-    return isSignedInUpdated?.call(isSignedInValue);
+    return checkIsTermsAccepted?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isSignedInValue)? isSignedInUpdated,
+    TResult Function()? checkIsTermsAccepted,
+    TResult Function(AppPreferences updatedValue)? appPreferencesUpdated,
     required TResult orElse(),
   }) {
-    if (isSignedInUpdated != null) {
-      return isSignedInUpdated(isSignedInValue);
+    if (checkIsTermsAccepted != null) {
+      return checkIsTermsAccepted();
     }
     return orElse();
   }
@@ -184,47 +149,197 @@ class _$AppIsSignedInUpdatedImpl implements AppIsSignedInUpdated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AppIsSignedInUpdated value) isSignedInUpdated,
+    required TResult Function(AppCheckIsTermsAccepted value)
+        checkIsTermsAccepted,
+    required TResult Function(AppPreferencesUpdated value)
+        appPreferencesUpdated,
   }) {
-    return isSignedInUpdated(this);
+    return checkIsTermsAccepted(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AppIsSignedInUpdated value)? isSignedInUpdated,
+    TResult? Function(AppCheckIsTermsAccepted value)? checkIsTermsAccepted,
+    TResult? Function(AppPreferencesUpdated value)? appPreferencesUpdated,
   }) {
-    return isSignedInUpdated?.call(this);
+    return checkIsTermsAccepted?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AppIsSignedInUpdated value)? isSignedInUpdated,
+    TResult Function(AppCheckIsTermsAccepted value)? checkIsTermsAccepted,
+    TResult Function(AppPreferencesUpdated value)? appPreferencesUpdated,
     required TResult orElse(),
   }) {
-    if (isSignedInUpdated != null) {
-      return isSignedInUpdated(this);
+    if (checkIsTermsAccepted != null) {
+      return checkIsTermsAccepted(this);
     }
     return orElse();
   }
 }
 
-abstract class AppIsSignedInUpdated implements AppEvent {
-  const factory AppIsSignedInUpdated({required final bool isSignedInValue}) =
-      _$AppIsSignedInUpdatedImpl;
+abstract class AppCheckIsTermsAccepted implements AppEvent {
+  const factory AppCheckIsTermsAccepted() = _$AppCheckIsTermsAcceptedImpl;
+}
+
+/// @nodoc
+abstract class _$$AppPreferencesUpdatedImplCopyWith<$Res> {
+  factory _$$AppPreferencesUpdatedImplCopyWith(
+          _$AppPreferencesUpdatedImpl value,
+          $Res Function(_$AppPreferencesUpdatedImpl) then) =
+      __$$AppPreferencesUpdatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AppPreferences updatedValue});
+
+  $AppPreferencesCopyWith<$Res> get updatedValue;
+}
+
+/// @nodoc
+class __$$AppPreferencesUpdatedImplCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res, _$AppPreferencesUpdatedImpl>
+    implements _$$AppPreferencesUpdatedImplCopyWith<$Res> {
+  __$$AppPreferencesUpdatedImplCopyWithImpl(_$AppPreferencesUpdatedImpl _value,
+      $Res Function(_$AppPreferencesUpdatedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? updatedValue = null,
+  }) {
+    return _then(_$AppPreferencesUpdatedImpl(
+      updatedValue: null == updatedValue
+          ? _value.updatedValue
+          : updatedValue // ignore: cast_nullable_to_non_nullable
+              as AppPreferences,
+    ));
+  }
 
   @override
-  bool get isSignedInValue;
+  @pragma('vm:prefer-inline')
+  $AppPreferencesCopyWith<$Res> get updatedValue {
+    return $AppPreferencesCopyWith<$Res>(_value.updatedValue, (value) {
+      return _then(_value.copyWith(updatedValue: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$AppPreferencesUpdatedImpl implements AppPreferencesUpdated {
+  const _$AppPreferencesUpdatedImpl({required this.updatedValue});
+
   @override
+  final AppPreferences updatedValue;
+
+  @override
+  String toString() {
+    return 'AppEvent.appPreferencesUpdated(updatedValue: $updatedValue)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AppPreferencesUpdatedImpl &&
+            (identical(other.updatedValue, updatedValue) ||
+                other.updatedValue == updatedValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, updatedValue);
+
   @JsonKey(ignore: true)
-  _$$AppIsSignedInUpdatedImplCopyWith<_$AppIsSignedInUpdatedImpl>
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AppPreferencesUpdatedImplCopyWith<_$AppPreferencesUpdatedImpl>
+      get copyWith => __$$AppPreferencesUpdatedImplCopyWithImpl<
+          _$AppPreferencesUpdatedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() checkIsTermsAccepted,
+    required TResult Function(AppPreferences updatedValue)
+        appPreferencesUpdated,
+  }) {
+    return appPreferencesUpdated(updatedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? checkIsTermsAccepted,
+    TResult? Function(AppPreferences updatedValue)? appPreferencesUpdated,
+  }) {
+    return appPreferencesUpdated?.call(updatedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? checkIsTermsAccepted,
+    TResult Function(AppPreferences updatedValue)? appPreferencesUpdated,
+    required TResult orElse(),
+  }) {
+    if (appPreferencesUpdated != null) {
+      return appPreferencesUpdated(updatedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AppCheckIsTermsAccepted value)
+        checkIsTermsAccepted,
+    required TResult Function(AppPreferencesUpdated value)
+        appPreferencesUpdated,
+  }) {
+    return appPreferencesUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AppCheckIsTermsAccepted value)? checkIsTermsAccepted,
+    TResult? Function(AppPreferencesUpdated value)? appPreferencesUpdated,
+  }) {
+    return appPreferencesUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AppCheckIsTermsAccepted value)? checkIsTermsAccepted,
+    TResult Function(AppPreferencesUpdated value)? appPreferencesUpdated,
+    required TResult orElse(),
+  }) {
+    if (appPreferencesUpdated != null) {
+      return appPreferencesUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AppPreferencesUpdated implements AppEvent {
+  const factory AppPreferencesUpdated(
+          {required final AppPreferences updatedValue}) =
+      _$AppPreferencesUpdatedImpl;
+
+  AppPreferences get updatedValue;
+  @JsonKey(ignore: true)
+  _$$AppPreferencesUpdatedImplCopyWith<_$AppPreferencesUpdatedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$AppState {
-  bool get isSignedIn => throw _privateConstructorUsedError;
+  AppPreferences get appPreferences => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+  bool? get isTermsAcceptedBefore => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -237,7 +352,13 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
-  $Res call({bool isSignedIn, Failure? failure});
+  $Res call(
+      {AppPreferences appPreferences,
+      bool isLoading,
+      bool? isTermsAcceptedBefore,
+      Failure? failure});
+
+  $AppPreferencesCopyWith<$Res> get appPreferences;
 }
 
 /// @nodoc
@@ -253,19 +374,37 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isSignedIn = null,
+    Object? appPreferences = null,
+    Object? isLoading = null,
+    Object? isTermsAcceptedBefore = freezed,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
-      isSignedIn: null == isSignedIn
-          ? _value.isSignedIn
-          : isSignedIn // ignore: cast_nullable_to_non_nullable
+      appPreferences: null == appPreferences
+          ? _value.appPreferences
+          : appPreferences // ignore: cast_nullable_to_non_nullable
+              as AppPreferences,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isTermsAcceptedBefore: freezed == isTermsAcceptedBefore
+          ? _value.isTermsAcceptedBefore
+          : isTermsAcceptedBefore // ignore: cast_nullable_to_non_nullable
+              as bool?,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AppPreferencesCopyWith<$Res> get appPreferences {
+    return $AppPreferencesCopyWith<$Res>(_value.appPreferences, (value) {
+      return _then(_value.copyWith(appPreferences: value) as $Val);
+    });
   }
 }
 
@@ -277,7 +416,14 @@ abstract class _$$AppStateImplCopyWith<$Res>
       __$$AppStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isSignedIn, Failure? failure});
+  $Res call(
+      {AppPreferences appPreferences,
+      bool isLoading,
+      bool? isTermsAcceptedBefore,
+      Failure? failure});
+
+  @override
+  $AppPreferencesCopyWith<$Res> get appPreferences;
 }
 
 /// @nodoc
@@ -291,14 +437,24 @@ class __$$AppStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isSignedIn = null,
+    Object? appPreferences = null,
+    Object? isLoading = null,
+    Object? isTermsAcceptedBefore = freezed,
     Object? failure = freezed,
   }) {
     return _then(_$AppStateImpl(
-      isSignedIn: null == isSignedIn
-          ? _value.isSignedIn
-          : isSignedIn // ignore: cast_nullable_to_non_nullable
+      appPreferences: null == appPreferences
+          ? _value.appPreferences
+          : appPreferences // ignore: cast_nullable_to_non_nullable
+              as AppPreferences,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isTermsAcceptedBefore: freezed == isTermsAcceptedBefore
+          ? _value.isTermsAcceptedBefore
+          : isTermsAcceptedBefore // ignore: cast_nullable_to_non_nullable
+              as bool?,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -310,16 +466,25 @@ class __$$AppStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AppStateImpl implements _AppState {
-  const _$AppStateImpl({required this.isSignedIn, this.failure});
+  const _$AppStateImpl(
+      {required this.appPreferences,
+      this.isLoading = false,
+      this.isTermsAcceptedBefore,
+      this.failure});
 
   @override
-  final bool isSignedIn;
+  final AppPreferences appPreferences;
+  @override
+  @JsonKey()
+  final bool isLoading;
+  @override
+  final bool? isTermsAcceptedBefore;
   @override
   final Failure? failure;
 
   @override
   String toString() {
-    return 'AppState(isSignedIn: $isSignedIn, failure: $failure)';
+    return 'AppState(appPreferences: $appPreferences, isLoading: $isLoading, isTermsAcceptedBefore: $isTermsAcceptedBefore, failure: $failure)';
   }
 
   @override
@@ -327,13 +492,18 @@ class _$AppStateImpl implements _AppState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppStateImpl &&
-            (identical(other.isSignedIn, isSignedIn) ||
-                other.isSignedIn == isSignedIn) &&
+            (identical(other.appPreferences, appPreferences) ||
+                other.appPreferences == appPreferences) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.isTermsAcceptedBefore, isTermsAcceptedBefore) ||
+                other.isTermsAcceptedBefore == isTermsAcceptedBefore) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isSignedIn, failure);
+  int get hashCode => Object.hash(
+      runtimeType, appPreferences, isLoading, isTermsAcceptedBefore, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -344,11 +514,17 @@ class _$AppStateImpl implements _AppState {
 
 abstract class _AppState implements AppState {
   const factory _AppState(
-      {required final bool isSignedIn,
+      {required final AppPreferences appPreferences,
+      final bool isLoading,
+      final bool? isTermsAcceptedBefore,
       final Failure? failure}) = _$AppStateImpl;
 
   @override
-  bool get isSignedIn;
+  AppPreferences get appPreferences;
+  @override
+  bool get isLoading;
+  @override
+  bool? get isTermsAcceptedBefore;
   @override
   Failure? get failure;
   @override

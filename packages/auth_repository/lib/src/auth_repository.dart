@@ -13,7 +13,7 @@ class AuthRepository {
   final FirebaseAuth _firebaseAuth;
 
   // Functions
-  Future<Either<Failure, Unit>> signInWithEmailAndPassword({
+  FutureUnit signInWithEmailAndPassword({
     required Email email,
     required Password password,
   }) async {
@@ -27,22 +27,20 @@ class AuthRepository {
       );
       return const Right(unit);
     } catch (exception) {
-      print(exception);
       return Left(AuthRepositoryUnknown());
     }
   }
 
-  Future<Either<Failure, Unit>> signOut() async {
+  FutureUnit signOut() async {
     try {
       await _firebaseAuth.signOut();
       return const Right(unit);
     } catch (exception) {
-      print(exception);
       return Left(AuthRepositoryUnknown());
     }
   }
 
-  Future<Either<Failure, Unit>> createUserWithEmailAndPassword({
+  FutureUnit createUserWithEmailAndPassword({
     required Email email,
     required Password password,
     required ConfirmedPassword confirmedPassword,
@@ -59,27 +57,24 @@ class AuthRepository {
       );
       return const Right(unit);
     } catch (exception) {
-      print(exception);
       return Left(AuthRepositoryUnknown());
     }
   }
 
-  Future<Either<Failure, Unit>> sendVerificationEmail() async {
+  FutureUnit sendVerificationEmail() async {
     try {
       await _firebaseAuth.currentUser?.sendEmailVerification();
       return const Right(unit);
     } catch (exception) {
-      print(exception);
       return Left(AuthRepositoryUnknown());
     }
   }
 
-  Future<Either<Failure, Unit>> reload() async {
+  FutureUnit reload() async {
     try {
       await _firebaseAuth.currentUser?.reload();
       return const Right(unit);
     } catch (exception) {
-      print(exception);
       return Left(AuthRepositoryUnknown());
     }
   }

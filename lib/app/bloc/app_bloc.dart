@@ -1,4 +1,4 @@
-import 'package:auth_repository/auth_repository.dart';
+import 'package:app_preferences_repository/app_preferences_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../errors/errors.dart';
@@ -9,31 +9,44 @@ part 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
-    required AuthRepository authRepository,
-  })  : _authRepository = authRepository,
-        super(
-          AppState(isSignedIn: authRepository.isSignedIn()),
-        ) {
+    required AppPreferencesRepository appPreferencesRepository,
+    required AppPreferences appPreferences,
+  })  : _appPreferencesRepository = appPreferencesRepository,
+        super(AppState(appPreferences: appPreferences)) {
     on<AppEvent>(_onSignInEvent);
-    _authRepository.isSignedInStream().listen((event) {
-      add(AppEvent.isSignedInUpdated(isSignedInValue: event));
+
+    // Listen AppPreferences Changes
+    _appPreferencesRepository.appPreferencesStream.listen((event) {
+      add(AppEvent.appPreferencesUpdated(updatedValue: event));
     });
   }
-  // Repositories & Services
-  final AuthRepository _authRepository;
+  // Repositories
+  final AppPreferencesRepository _appPreferencesRepository;
 
   Future<void> _onSignInEvent(
     AppEvent event,
     Emitter<AppState> emit,
   ) async {
-    // emit(state.copyWith(isLoading: true));
+    emit(state.copyWith(isLoading: true));
 
     await event.map(
-      isSignedInUpdated: (e) async {
-        emit(state.copyWith(isSignedIn: e.isSignedInValue));
+      appPreferencesUpdated: (e) {
+        emit(state.copyWith(appPreferences: e.updatedValue));
+      },
+      checkIsTermsAccepted: (e) async {
+        final isTermsAcceptedBefore =
+            state.appPreferences.termsOfUseAcceptance != null;
+
+        emit(state.copyWith(isTermsAcceptedBefore: isTermsAcceptedBefore));
       },
     );
 
-    // emit(state.copyWith(isLoading: false, failure: null));
+    emit(
+      state.copyWith(
+        isLoading: false,
+        failure: null,
+        isTermsAcceptedBefore: null,
+      ),
+    );
   }
 }

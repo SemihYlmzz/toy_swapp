@@ -3,7 +3,9 @@ part of 'app_bloc.dart';
 @freezed
 class AppState with _$AppState {
   const factory AppState({
-    required bool isSignedIn,
+    required AppPreferences appPreferences,
+    @Default(false) bool isLoading,
+    bool? isTermsAcceptedBefore,
     Failure? failure,
   }) = _AppState;
 }
