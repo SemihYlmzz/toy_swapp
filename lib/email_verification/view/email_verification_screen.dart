@@ -10,14 +10,18 @@ class EmailVerificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final emailVerificationBlocListeners = EmailVerificationBlocListeners();
-  
+
     return BlocProvider(
-      create: (context) => EmailVerificationBloc(),
+      create: (context) => EmailVerificationBloc(
+        authRepository: context.read(),
+      ),
       child: MultiBlocListener(
         listeners: [
           emailVerificationBlocListeners.errorDisplayer(),
+          emailVerificationBlocListeners.verifiedEmailNavigator(),
         ],
-        child: BlocSelector<EmailVerificationBloc, EmailVerificationState, bool>(
+        child:
+            BlocSelector<EmailVerificationBloc, EmailVerificationState, bool>(
           selector: (state) => state.isLoading,
           builder: (context, isLoading) {
             return LoadingScreen(

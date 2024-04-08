@@ -14,13 +14,16 @@ class AuthRepository {
 
   // Functions
   Future<Either<Failure, Unit>> signInWithEmailAndPassword({
-    required String email,
-    required String password,
+    required Email email,
+    required Password password,
   }) async {
+    if (email.isNotValid || password.isNotValid) {
+      return Left(AuthRepositoryInvalidInput());
+    }
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
+        email: email.value,
+        password: password.value,
       );
       return const Right(unit);
     } catch (exception) {
@@ -40,15 +43,40 @@ class AuthRepository {
   }
 
   Future<Either<Failure, Unit>> createUserWithEmailAndPassword({
-    required String email,
-    required String password,
-    required String confirmPassword,
+    required Email email,
+    required Password password,
+    required ConfirmedPassword confirmedPassword,
   }) async {
+    if (email.isNotValid ||
+        password.isNotValid ||
+        confirmedPassword.isNotValid) {
+      return Left(AuthRepositoryInvalidInput());
+    }
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+        email: email.value,
+        password: password.value,
       );
+      return const Right(unit);
+    } catch (exception) {
+      print(exception);
+      return Left(AuthRepositoryUnknown());
+    }
+  }
+
+  Future<Either<Failure, Unit>> sendVerificationEmail() async {
+    try {
+      await _firebaseAuth.currentUser?.sendEmailVerification();
+      return const Right(unit);
+    } catch (exception) {
+      print(exception);
+      return Left(AuthRepositoryUnknown());
+    }
+  }
+
+  Future<Either<Failure, Unit>> reload() async {
+    try {
+      await _firebaseAuth.currentUser?.reload();
       return const Right(unit);
     } catch (exception) {
       print(exception);
@@ -64,5 +92,4 @@ class AuthRepository {
 
   bool? isEmailVerified() => _firebaseAuth.currentUser?.emailVerified;
   bool isSignedIn() => _firebaseAuth.currentUser != null;
-
 }

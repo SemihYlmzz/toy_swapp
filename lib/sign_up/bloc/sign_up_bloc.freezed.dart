@@ -16,25 +16,27 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignUpEvent {
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-  String get confirmPassword => throw _privateConstructorUsedError;
+  Email get email => throw _privateConstructorUsedError;
+  Password get password => throw _privateConstructorUsedError;
+  ConfirmedPassword get confirmedPassword => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String email, String password, String confirmPassword)
+            Email email, Password password, ConfirmedPassword confirmedPassword)
         createUserWithEmailAndPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password, String confirmPassword)?
+    TResult? Function(Email email, Password password,
+            ConfirmedPassword confirmedPassword)?
         createUserWithEmailAndPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password, String confirmPassword)?
+    TResult Function(Email email, Password password,
+            ConfirmedPassword confirmedPassword)?
         createUserWithEmailAndPassword,
     required TResult orElse(),
   }) =>
@@ -70,7 +72,8 @@ abstract class $SignUpEventCopyWith<$Res> {
           SignUpEvent value, $Res Function(SignUpEvent) then) =
       _$SignUpEventCopyWithImpl<$Res, SignUpEvent>;
   @useResult
-  $Res call({String email, String password, String confirmPassword});
+  $Res call(
+      {Email email, Password password, ConfirmedPassword confirmedPassword});
 }
 
 /// @nodoc
@@ -88,21 +91,21 @@ class _$SignUpEventCopyWithImpl<$Res, $Val extends SignUpEvent>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? confirmPassword = null,
+    Object? confirmedPassword = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Email,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      confirmPassword: null == confirmPassword
-          ? _value.confirmPassword
-          : confirmPassword // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Password,
+      confirmedPassword: null == confirmedPassword
+          ? _value.confirmedPassword
+          : confirmedPassword // ignore: cast_nullable_to_non_nullable
+              as ConfirmedPassword,
     ) as $Val);
   }
 }
@@ -116,7 +119,8 @@ abstract class _$$SignUpCreateUserWithEmailAndPasswordImplCopyWith<$Res>
       __$$SignUpCreateUserWithEmailAndPasswordImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password, String confirmPassword});
+  $Res call(
+      {Email email, Password password, ConfirmedPassword confirmedPassword});
 }
 
 /// @nodoc
@@ -134,21 +138,21 @@ class __$$SignUpCreateUserWithEmailAndPasswordImplCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? confirmPassword = null,
+    Object? confirmedPassword = null,
   }) {
     return _then(_$SignUpCreateUserWithEmailAndPasswordImpl(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Email,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      confirmPassword: null == confirmPassword
-          ? _value.confirmPassword
-          : confirmPassword // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Password,
+      confirmedPassword: null == confirmedPassword
+          ? _value.confirmedPassword
+          : confirmedPassword // ignore: cast_nullable_to_non_nullable
+              as ConfirmedPassword,
     ));
   }
 }
@@ -160,18 +164,18 @@ class _$SignUpCreateUserWithEmailAndPasswordImpl
   const _$SignUpCreateUserWithEmailAndPasswordImpl(
       {required this.email,
       required this.password,
-      required this.confirmPassword});
+      required this.confirmedPassword});
 
   @override
-  final String email;
+  final Email email;
   @override
-  final String password;
+  final Password password;
   @override
-  final String confirmPassword;
+  final ConfirmedPassword confirmedPassword;
 
   @override
   String toString() {
-    return 'SignUpEvent.createUserWithEmailAndPassword(email: $email, password: $password, confirmPassword: $confirmPassword)';
+    return 'SignUpEvent.createUserWithEmailAndPassword(email: $email, password: $password, confirmedPassword: $confirmedPassword)';
   }
 
   @override
@@ -182,13 +186,13 @@ class _$SignUpCreateUserWithEmailAndPasswordImpl
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.confirmPassword, confirmPassword) ||
-                other.confirmPassword == confirmPassword));
+            (identical(other.confirmedPassword, confirmedPassword) ||
+                other.confirmedPassword == confirmedPassword));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, email, password, confirmPassword);
+      Object.hash(runtimeType, email, password, confirmedPassword);
 
   @JsonKey(ignore: true)
   @override
@@ -202,31 +206,33 @@ class _$SignUpCreateUserWithEmailAndPasswordImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String email, String password, String confirmPassword)
+            Email email, Password password, ConfirmedPassword confirmedPassword)
         createUserWithEmailAndPassword,
   }) {
-    return createUserWithEmailAndPassword(email, password, confirmPassword);
+    return createUserWithEmailAndPassword(email, password, confirmedPassword);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password, String confirmPassword)?
+    TResult? Function(Email email, Password password,
+            ConfirmedPassword confirmedPassword)?
         createUserWithEmailAndPassword,
   }) {
     return createUserWithEmailAndPassword?.call(
-        email, password, confirmPassword);
+        email, password, confirmedPassword);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password, String confirmPassword)?
+    TResult Function(Email email, Password password,
+            ConfirmedPassword confirmedPassword)?
         createUserWithEmailAndPassword,
     required TResult orElse(),
   }) {
     if (createUserWithEmailAndPassword != null) {
-      return createUserWithEmailAndPassword(email, password, confirmPassword);
+      return createUserWithEmailAndPassword(email, password, confirmedPassword);
     }
     return orElse();
   }
@@ -265,17 +271,17 @@ class _$SignUpCreateUserWithEmailAndPasswordImpl
 
 abstract class SignUpCreateUserWithEmailAndPassword implements SignUpEvent {
   const factory SignUpCreateUserWithEmailAndPassword(
-          {required final String email,
-          required final String password,
-          required final String confirmPassword}) =
+          {required final Email email,
+          required final Password password,
+          required final ConfirmedPassword confirmedPassword}) =
       _$SignUpCreateUserWithEmailAndPasswordImpl;
 
   @override
-  String get email;
+  Email get email;
   @override
-  String get password;
+  Password get password;
   @override
-  String get confirmPassword;
+  ConfirmedPassword get confirmedPassword;
   @override
   @JsonKey(ignore: true)
   _$$SignUpCreateUserWithEmailAndPasswordImplCopyWith<

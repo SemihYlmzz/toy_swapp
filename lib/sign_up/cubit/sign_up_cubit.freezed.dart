@@ -16,9 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignUpCubitState {
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-  String get confirmPassword => throw _privateConstructorUsedError;
+  Email get email => throw _privateConstructorUsedError;
+  Password get password => throw _privateConstructorUsedError;
+  ConfirmedPassword get confirmedPassword => throw _privateConstructorUsedError;
+  bool get displayErrors => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignUpCubitStateCopyWith<SignUpCubitState> get copyWith =>
@@ -31,7 +32,11 @@ abstract class $SignUpCubitStateCopyWith<$Res> {
           SignUpCubitState value, $Res Function(SignUpCubitState) then) =
       _$SignUpCubitStateCopyWithImpl<$Res, SignUpCubitState>;
   @useResult
-  $Res call({String email, String password, String confirmPassword});
+  $Res call(
+      {Email email,
+      Password password,
+      ConfirmedPassword confirmedPassword,
+      bool displayErrors});
 }
 
 /// @nodoc
@@ -49,21 +54,26 @@ class _$SignUpCubitStateCopyWithImpl<$Res, $Val extends SignUpCubitState>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? confirmPassword = null,
+    Object? confirmedPassword = null,
+    Object? displayErrors = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Email,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      confirmPassword: null == confirmPassword
-          ? _value.confirmPassword
-          : confirmPassword // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Password,
+      confirmedPassword: null == confirmedPassword
+          ? _value.confirmedPassword
+          : confirmedPassword // ignore: cast_nullable_to_non_nullable
+              as ConfirmedPassword,
+      displayErrors: null == displayErrors
+          ? _value.displayErrors
+          : displayErrors // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -76,7 +86,11 @@ abstract class _$$SignUpCubitStateImplCopyWith<$Res>
       __$$SignUpCubitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password, String confirmPassword});
+  $Res call(
+      {Email email,
+      Password password,
+      ConfirmedPassword confirmedPassword,
+      bool displayErrors});
 }
 
 /// @nodoc
@@ -92,21 +106,26 @@ class __$$SignUpCubitStateImplCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? confirmPassword = null,
+    Object? confirmedPassword = null,
+    Object? displayErrors = null,
   }) {
     return _then(_$SignUpCubitStateImpl(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Email,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      confirmPassword: null == confirmPassword
-          ? _value.confirmPassword
-          : confirmPassword // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Password,
+      confirmedPassword: null == confirmedPassword
+          ? _value.confirmedPassword
+          : confirmedPassword // ignore: cast_nullable_to_non_nullable
+              as ConfirmedPassword,
+      displayErrors: null == displayErrors
+          ? _value.displayErrors
+          : displayErrors // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -115,21 +134,27 @@ class __$$SignUpCubitStateImplCopyWithImpl<$Res>
 
 class _$SignUpCubitStateImpl implements _SignUpCubitState {
   const _$SignUpCubitStateImpl(
-      {this.email = '', this.password = '', this.confirmPassword = ''});
+      {this.email = const Email.pure(),
+      this.password = const Password.pure(),
+      this.confirmedPassword = const ConfirmedPassword.pure(),
+      this.displayErrors = false});
 
   @override
   @JsonKey()
-  final String email;
+  final Email email;
   @override
   @JsonKey()
-  final String password;
+  final Password password;
   @override
   @JsonKey()
-  final String confirmPassword;
+  final ConfirmedPassword confirmedPassword;
+  @override
+  @JsonKey()
+  final bool displayErrors;
 
   @override
   String toString() {
-    return 'SignUpCubitState(email: $email, password: $password, confirmPassword: $confirmPassword)';
+    return 'SignUpCubitState(email: $email, password: $password, confirmedPassword: $confirmedPassword, displayErrors: $displayErrors)';
   }
 
   @override
@@ -140,13 +165,15 @@ class _$SignUpCubitStateImpl implements _SignUpCubitState {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.confirmPassword, confirmPassword) ||
-                other.confirmPassword == confirmPassword));
+            (identical(other.confirmedPassword, confirmedPassword) ||
+                other.confirmedPassword == confirmedPassword) &&
+            (identical(other.displayErrors, displayErrors) ||
+                other.displayErrors == displayErrors));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, password, confirmPassword);
+  int get hashCode => Object.hash(
+      runtimeType, email, password, confirmedPassword, displayErrors);
 
   @JsonKey(ignore: true)
   @override
@@ -158,16 +185,19 @@ class _$SignUpCubitStateImpl implements _SignUpCubitState {
 
 abstract class _SignUpCubitState implements SignUpCubitState {
   const factory _SignUpCubitState(
-      {final String email,
-      final String password,
-      final String confirmPassword}) = _$SignUpCubitStateImpl;
+      {final Email email,
+      final Password password,
+      final ConfirmedPassword confirmedPassword,
+      final bool displayErrors}) = _$SignUpCubitStateImpl;
 
   @override
-  String get email;
+  Email get email;
   @override
-  String get password;
+  Password get password;
   @override
-  String get confirmPassword;
+  ConfirmedPassword get confirmedPassword;
+  @override
+  bool get displayErrors;
   @override
   @JsonKey(ignore: true)
   _$$SignUpCubitStateImplCopyWith<_$SignUpCubitStateImpl> get copyWith =>

@@ -5,3 +5,5 @@ sealed class AuthRepositoryException implements Failure {
 }
 
 class AuthRepositoryUnknown extends AuthRepositoryException {}
+
+class AuthRepositoryInvalidInput extends AuthRepositoryException {}

@@ -26,7 +26,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         final tryCreate = await _authRepository.createUserWithEmailAndPassword(
           email: e.email,
           password: e.password,
-          confirmPassword: e.confirmPassword,
+          confirmedPassword: e.confirmedPassword,
         );
         tryCreate.fold(
           (l) => emit(state.copyWith(failure: l)),

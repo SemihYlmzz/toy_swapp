@@ -16,8 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignInCubitState {
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
+  Email get email => throw _privateConstructorUsedError;
+  Password get password => throw _privateConstructorUsedError;
+  bool get displayErrors => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignInCubitStateCopyWith<SignInCubitState> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $SignInCubitStateCopyWith<$Res> {
           SignInCubitState value, $Res Function(SignInCubitState) then) =
       _$SignInCubitStateCopyWithImpl<$Res, SignInCubitState>;
   @useResult
-  $Res call({String email, String password});
+  $Res call({Email email, Password password, bool displayErrors});
 }
 
 /// @nodoc
@@ -48,16 +49,21 @@ class _$SignInCubitStateCopyWithImpl<$Res, $Val extends SignInCubitState>
   $Res call({
     Object? email = null,
     Object? password = null,
+    Object? displayErrors = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Email,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Password,
+      displayErrors: null == displayErrors
+          ? _value.displayErrors
+          : displayErrors // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -70,7 +76,7 @@ abstract class _$$SignInCubitStateImplCopyWith<$Res>
       __$$SignInCubitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password});
+  $Res call({Email email, Password password, bool displayErrors});
 }
 
 /// @nodoc
@@ -86,16 +92,21 @@ class __$$SignInCubitStateImplCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? password = null,
+    Object? displayErrors = null,
   }) {
     return _then(_$SignInCubitStateImpl(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Email,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Password,
+      displayErrors: null == displayErrors
+          ? _value.displayErrors
+          : displayErrors // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -103,18 +114,24 @@ class __$$SignInCubitStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SignInCubitStateImpl implements _SignInCubitState {
-  const _$SignInCubitStateImpl({this.email = '', this.password = ''});
+  const _$SignInCubitStateImpl(
+      {this.email = const Email.pure(),
+      this.password = const Password.pure(),
+      this.displayErrors = false});
 
   @override
   @JsonKey()
-  final String email;
+  final Email email;
   @override
   @JsonKey()
-  final String password;
+  final Password password;
+  @override
+  @JsonKey()
+  final bool displayErrors;
 
   @override
   String toString() {
-    return 'SignInCubitState(email: $email, password: $password)';
+    return 'SignInCubitState(email: $email, password: $password, displayErrors: $displayErrors)';
   }
 
   @override
@@ -124,11 +141,13 @@ class _$SignInCubitStateImpl implements _SignInCubitState {
             other is _$SignInCubitStateImpl &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.displayErrors, displayErrors) ||
+                other.displayErrors == displayErrors));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password);
+  int get hashCode => Object.hash(runtimeType, email, password, displayErrors);
 
   @JsonKey(ignore: true)
   @override
@@ -139,13 +158,17 @@ class _$SignInCubitStateImpl implements _SignInCubitState {
 }
 
 abstract class _SignInCubitState implements SignInCubitState {
-  const factory _SignInCubitState({final String email, final String password}) =
-      _$SignInCubitStateImpl;
+  const factory _SignInCubitState(
+      {final Email email,
+      final Password password,
+      final bool displayErrors}) = _$SignInCubitStateImpl;
 
   @override
-  String get email;
+  Email get email;
   @override
-  String get password;
+  Password get password;
+  @override
+  bool get displayErrors;
   @override
   @JsonKey(ignore: true)
   _$$SignInCubitStateImplCopyWith<_$SignInCubitStateImpl> get copyWith =>

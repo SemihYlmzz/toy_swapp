@@ -10,42 +10,67 @@ class SignUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.watch<SignUpCubit>().state;
     return BaseScaffold(
       appBar: const SignUpAppBar(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          GradientTextField(
-            hintText: 'E-Mail',
-            onChanged: (v) => context.read<SignUpCubit>().updateEmail(v),
-          ),
-          SharedGap.gap16,
-          GradientTextField(
-            hintText: 'Password',
-            obscureText: true,
-            onChanged: (v) => context.read<SignUpCubit>().updatePassword(v),
-          ),
-          SharedGap.gap16,
-          GradientTextField(
-            hintText: 'Confirm Password',
-            obscureText: true,
-            onChanged: (v) =>
-                context.read<SignUpCubit>().updateConfirmPassword(v),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.read<SignUpBloc>().add(
-                    SignUpEvent.createUserWithEmailAndPassword(
-                      email: context.read<SignUpCubit>().state.email,
-                      password: context.read<SignUpCubit>().state.password,
-                      confirmPassword:
-                          context.read<SignUpCubit>().state.confirmPassword,
-                    ),
-                  );
-            },
-            child: const Text('Sign Up'),
-          ),
-        ],
+      body: Padding(
+        padding: SharedPaddings.all12,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GradientTextField(
+              hintText: 'E-Mail',
+              onChanged: (v) => context.read<SignUpCubit>().updateEmail(v),
+              errorText: state.email.isNotValid && state.displayErrors
+                  ? 'Sorun var.'
+                  : null,
+            ),
+            SharedGap.gap16,
+            GradientTextField(
+              hintText: 'Password',
+              obscureText: true,
+              onChanged: (v) => context.read<SignUpCubit>().updatePassword(v),
+              errorText: state.password.isNotValid && state.displayErrors
+                  ? 'Sorun var.'
+                  : null,
+            ),
+            SharedGap.gap16,
+            GradientTextField(
+              hintText: 'Confirm Password',
+              obscureText: true,
+              onChanged: (v) =>
+                  context.read<SignUpCubit>().updateConfirmPassword(v),
+              errorText:
+                  state.confirmedPassword.isNotValid && state.displayErrors
+                      ? 'Passwords do not match'
+                      : null,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                final signUpState = context.read<SignUpCubit>().state;
+                final email = signUpState.email;
+                final password = signUpState.password;
+                final confirmPassword = signUpState.confirmedPassword;
+
+                if (email.isNotValid ||
+                    password.isNotValid ||
+                    confirmPassword.isNotValid) {
+                  context.read<SignUpCubit>().displayErrors();
+                  return;
+                }
+
+                context.read<SignUpBloc>().add(
+                      SignUpEvent.createUserWithEmailAndPassword(
+                        email: email,
+                        password: password,
+                        confirmedPassword: confirmPassword,
+                      ),
+                    );
+              },
+              child: const Text('Sign Up'),
+            ),
+          ],
+        ),
       ),
     );
   }

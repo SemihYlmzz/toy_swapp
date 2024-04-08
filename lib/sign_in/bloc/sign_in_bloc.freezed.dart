@@ -16,23 +16,24 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignInEvent {
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
+  Email get email => throw _privateConstructorUsedError;
+  Password get password => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
+    required TResult Function(Email email, Password password)
         signInWithEmailAndPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password)?
+    TResult? Function(Email email, Password password)?
         signInWithEmailAndPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(Email email, Password password)?
+        signInWithEmailAndPassword,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,7 +68,7 @@ abstract class $SignInEventCopyWith<$Res> {
           SignInEvent value, $Res Function(SignInEvent) then) =
       _$SignInEventCopyWithImpl<$Res, SignInEvent>;
   @useResult
-  $Res call({String email, String password});
+  $Res call({Email email, Password password});
 }
 
 /// @nodoc
@@ -90,11 +91,11 @@ class _$SignInEventCopyWithImpl<$Res, $Val extends SignInEvent>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Email,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Password,
     ) as $Val);
   }
 }
@@ -108,7 +109,7 @@ abstract class _$$SignInWithEmailAndPasswordImplCopyWith<$Res>
       __$$SignInWithEmailAndPasswordImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password});
+  $Res call({Email email, Password password});
 }
 
 /// @nodoc
@@ -130,11 +131,11 @@ class __$$SignInWithEmailAndPasswordImplCopyWithImpl<$Res>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Email,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Password,
     ));
   }
 }
@@ -146,9 +147,9 @@ class _$SignInWithEmailAndPasswordImpl implements SignInWithEmailAndPassword {
       {required this.email, required this.password});
 
   @override
-  final String email;
+  final Email email;
   @override
-  final String password;
+  final Password password;
 
   @override
   String toString() {
@@ -178,7 +179,7 @@ class _$SignInWithEmailAndPasswordImpl implements SignInWithEmailAndPassword {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
+    required TResult Function(Email email, Password password)
         signInWithEmailAndPassword,
   }) {
     return signInWithEmailAndPassword(email, password);
@@ -187,7 +188,7 @@ class _$SignInWithEmailAndPasswordImpl implements SignInWithEmailAndPassword {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password)?
+    TResult? Function(Email email, Password password)?
         signInWithEmailAndPassword,
   }) {
     return signInWithEmailAndPassword?.call(email, password);
@@ -196,7 +197,8 @@ class _$SignInWithEmailAndPasswordImpl implements SignInWithEmailAndPassword {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(Email email, Password password)?
+        signInWithEmailAndPassword,
     required TResult orElse(),
   }) {
     if (signInWithEmailAndPassword != null) {
@@ -239,13 +241,13 @@ class _$SignInWithEmailAndPasswordImpl implements SignInWithEmailAndPassword {
 
 abstract class SignInWithEmailAndPassword implements SignInEvent {
   const factory SignInWithEmailAndPassword(
-      {required final String email,
-      required final String password}) = _$SignInWithEmailAndPasswordImpl;
+      {required final Email email,
+      required final Password password}) = _$SignInWithEmailAndPasswordImpl;
 
   @override
-  String get email;
+  Email get email;
   @override
-  String get password;
+  Password get password;
   @override
   @JsonKey(ignore: true)
   _$$SignInWithEmailAndPasswordImplCopyWith<_$SignInWithEmailAndPasswordImpl>

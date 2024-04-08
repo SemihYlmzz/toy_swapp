@@ -1,28 +1,79 @@
+import 'dart:async';
+
+import 'package:auth_repository/auth_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shared_constants/shared_constants.dart';
 import '../../errors/errors.dart';
 
 part 'email_verification_bloc.freezed.dart';
 part 'email_verification_event.dart';
 part 'email_verification_state.dart';
 
-class EmailVerificationBloc extends Bloc<EmailVerificationEvent, EmailVerificationState> {
-  EmailVerificationBloc() : super(const EmailVerificationState()) {
+class EmailVerificationBloc
+    extends Bloc<EmailVerificationEvent, EmailVerificationState> {
+  EmailVerificationBloc({
+    required AuthRepository authRepository,
+  })  : _authRepository = authRepository,
+        super(const EmailVerificationState()) {
     on<EmailVerificationEvent>(_onEmailVerificationEvent);
+    _timerInAction ??= Timer.periodic(
+      SharedDurations.s1,
+      (timer) {
+        add(const EmailVerificationEvent.reloadAuthState());
+      },
+    );
   }
-  
+  // Instances
+  final AuthRepository _authRepository;
+  Timer? _timerInAction;
+
+  // Events
   Future<void> _onEmailVerificationEvent(
     EmailVerificationEvent event,
     Emitter<EmailVerificationState> emit,
-    ) async {
+  ) async {
     emit(state.copyWith(isLoading: true));
-    
+
     await event.map(
-      fetch: (e) async {
-        print('Fetching data...');
+      sendVerificationEmail: (value) async {
+        final trySend = await _authRepository.sendVerificationEmail();
+        trySend.fold(
+          (l) => emit(state.copyWith(failure: l)),
+          (r) => emit(state.copyWith(emailSendedDate: DateTime.now())),
+        );
+      },
+      signOut: (value) async {
+        final trySignOut = await _authRepository.signOut();
+        trySignOut.fold((l) => emit(state.copyWith(failure: l)), (r) => null);
+      },
+      reloadAuthState: (e) async {
+        final tryUpdate = await _authRepository.reload();
+
+        tryUpdate.fold(
+          (failure) => emit(state.copyWith(failure: failure)),
+          (success) {
+            final isEmailVerified = _authRepository.isEmailVerified();
+            emit(
+              state.copyWith(
+                isEmailVerified: isEmailVerified ?? false,
+                verificationLastCheckedDate: DateTime.now(),
+              ),
+            );
+            if (isEmailVerified ?? false) {
+              _timerInAction?.cancel();
+            }
+          },
+        );
       },
     );
-    
+
     emit(state.copyWith(isLoading: false, failure: null));
+  }
+
+  @override
+  Future<void> close() {
+    _timerInAction?.cancel();
+    return super.close();
   }
 }
