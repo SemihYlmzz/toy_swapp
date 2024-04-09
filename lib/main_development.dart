@@ -18,6 +18,7 @@ void main() async {
   final routerConfig = AppRouter().router(authRepository.isSignedInStream());
   final appPreferences = await appPreferencesRepository.read();
   final appMetadata = await appMetadataRepository.read();
+
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,

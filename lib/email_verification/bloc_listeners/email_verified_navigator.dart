@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../home/home.dart';
+import '../../account_registration/account_registration.dart';
 
 import '../email_verification.dart';
 
@@ -11,7 +11,7 @@ extension VerifiedEmailNavigator on EmailVerificationBlocListeners {
         if (!state.isEmailVerified) {
           return;
         }
-        HomeRouter.instance.go(context);
+        AccountRegistrationRouter.instance.go(context);
       },
     );
   }

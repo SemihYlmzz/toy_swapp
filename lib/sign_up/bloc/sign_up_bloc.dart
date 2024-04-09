@@ -30,7 +30,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         );
         tryCreate.fold(
           (l) => emit(state.copyWith(failure: l)),
-          (r) => emit(state.copyWith(isSignedUp: true)),
+          (r) => null,
         );
       },
     );

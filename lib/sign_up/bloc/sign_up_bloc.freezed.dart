@@ -291,7 +291,6 @@ abstract class SignUpCreateUserWithEmailAndPassword implements SignUpEvent {
 
 /// @nodoc
 mixin _$SignUpState {
-  bool get isSignedUp => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
@@ -306,7 +305,7 @@ abstract class $SignUpStateCopyWith<$Res> {
           SignUpState value, $Res Function(SignUpState) then) =
       _$SignUpStateCopyWithImpl<$Res, SignUpState>;
   @useResult
-  $Res call({bool isSignedUp, bool isLoading, Failure? failure});
+  $Res call({bool isLoading, Failure? failure});
 }
 
 /// @nodoc
@@ -322,15 +321,10 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isSignedUp = null,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
-      isSignedUp: null == isSignedUp
-          ? _value.isSignedUp
-          : isSignedUp // ignore: cast_nullable_to_non_nullable
-              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -351,7 +345,7 @@ abstract class _$$SignUpStateImplCopyWith<$Res>
       __$$SignUpStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isSignedUp, bool isLoading, Failure? failure});
+  $Res call({bool isLoading, Failure? failure});
 }
 
 /// @nodoc
@@ -365,15 +359,10 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isSignedUp = null,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
     return _then(_$SignUpStateImpl(
-      isSignedUp: null == isSignedUp
-          ? _value.isSignedUp
-          : isSignedUp // ignore: cast_nullable_to_non_nullable
-              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -389,12 +378,8 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SignUpStateImpl implements _SignUpState {
-  const _$SignUpStateImpl(
-      {this.isSignedUp = false, this.isLoading = false, this.failure});
+  const _$SignUpStateImpl({this.isLoading = false, this.failure});
 
-  @override
-  @JsonKey()
-  final bool isSignedUp;
   @override
   @JsonKey()
   final bool isLoading;
@@ -403,7 +388,7 @@ class _$SignUpStateImpl implements _SignUpState {
 
   @override
   String toString() {
-    return 'SignUpState(isSignedUp: $isSignedUp, isLoading: $isLoading, failure: $failure)';
+    return 'SignUpState(isLoading: $isLoading, failure: $failure)';
   }
 
   @override
@@ -411,15 +396,13 @@ class _$SignUpStateImpl implements _SignUpState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignUpStateImpl &&
-            (identical(other.isSignedUp, isSignedUp) ||
-                other.isSignedUp == isSignedUp) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isSignedUp, isLoading, failure);
+  int get hashCode => Object.hash(runtimeType, isLoading, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -429,13 +412,9 @@ class _$SignUpStateImpl implements _SignUpState {
 }
 
 abstract class _SignUpState implements SignUpState {
-  const factory _SignUpState(
-      {final bool isSignedUp,
-      final bool isLoading,
-      final Failure? failure}) = _$SignUpStateImpl;
+  const factory _SignUpState({final bool isLoading, final Failure? failure}) =
+      _$SignUpStateImpl;
 
-  @override
-  bool get isSignedUp;
   @override
   bool get isLoading;
   @override
