@@ -19,7 +19,7 @@ dependencies:
   freezed_annotation: ^2.4.1
 
   # Meta Datas
-  package_info_plus: ^6.0.0
+  package_info_plus: ^7.0.0
   firebase_remote_config: ^4.4.0
   firebase_core: ^2.28.0
 

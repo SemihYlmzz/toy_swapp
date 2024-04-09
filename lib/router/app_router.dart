@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:toy_swapp/email_verification/email_verification.dart';
-import 'package:toy_swapp/home/router/home_router.dart';
+import '../email_verification/email_verification.dart';
+import '../forgot_password/forgot_password.dart';
+import '../home/home.dart';
 import '../sign_in/sign_in.dart';
 import '../sign_up/sign_up.dart';
 
@@ -25,6 +26,7 @@ class AppRouter {
         routes: [
           SignInRouter.instance.route,
           SignUpRouter.instance.route,
+          ForgotPasswordRouter.instance.route,
           EmailVerificationRouter.instance.route,
           HomeRouter.instance.route,
         ],
@@ -37,6 +39,7 @@ class AppRouter {
           final isAuthScreen = [
             SignInRouter.instance.path,
             SignUpRouter.instance.path,
+            ForgotPasswordRouter.instance.path,
           ].contains(state.matchedLocation);
 
           // Auth [SignedIn] but [Email Not Verified]

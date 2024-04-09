@@ -59,13 +59,10 @@ dependencies:
   fpdart: ^1.1.0
 
   # Dependency Injection
-  provider: 6.1.2
+  provider: ^6.1.2
   
   # Fonts
   google_fonts: ^6.2.1
-
-  # Informations
-  package_info_plus: ^6.0.0
 
   # # Localization
   # flutter_localizations:

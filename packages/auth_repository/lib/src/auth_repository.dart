@@ -70,6 +70,20 @@ class AuthRepository {
     }
   }
 
+  FutureUnit sendPasswordResetEmail({
+    required Email email,
+  }) async {
+    if (email.isNotValid) {
+      return Left(AuthRepositoryInvalidInput());
+    }
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email.value);
+      return const Right(unit);
+    } catch (exception) {
+      return Left(AuthRepositoryUnknown());
+    }
+  }
+
   FutureUnit reload() async {
     try {
       await _firebaseAuth.currentUser?.reload();

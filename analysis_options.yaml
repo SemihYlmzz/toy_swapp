@@ -6,6 +6,7 @@ analyzer:
     - lib/common/gen/l10n/intl/messages_tr.dart
     - lib/common/gen/l10n/l10n.dart
     - lib/**/*.g.dart
+    - build/
     
 linter:
   rules:

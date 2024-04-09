@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 
+import '../../forgot_password/forgot_password.dart';
 import '../../sign_up/sign_up.dart';
 import '../sign_in.dart';
 
@@ -74,6 +75,18 @@ class SignInView extends StatelessWidget {
                     SignUpRouter.instance.push(context);
                   },
                   child: const Text('Sign Up'),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('Forgot your password'),
+                TextButton(
+                  onPressed: () {
+                    ForgotPasswordRouter.instance.push(context);
+                  },
+                  child: const Text('Reset Password'),
                 ),
               ],
             ),
