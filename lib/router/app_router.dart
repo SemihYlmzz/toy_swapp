@@ -35,9 +35,10 @@ class AppRouter {
           HomeRouter.instance.route,
         ],
         redirect: (BuildContext context, GoRouterState state) async {
-          final authRepository = context.read<AuthRepository>();
-          final isAuthSignedIn = authRepository.isSignedIn();
-          final isEmailVerified = authRepository.isEmailVerified();
+          final authState = context.read<AuthRepository>().currentAuth;
+
+          final isAuthSignedIn = authState != Auth.empty();
+          final isEmailVerified = authState.isEmailVerified;
 
           // Spot User if in [AuthScreen]
           final isAuthScreen = [
@@ -52,17 +53,20 @@ class AppRouter {
           ].contains(state.matchedLocation);
 
           // [SignedIn], [EmailVerified] but in [EmailVerificationScreen]
-          if (isAuthSignedIn && isEmailVerified! && isEmailVerificationScreen) {
+          if (isAuthSignedIn && isEmailVerified && isEmailVerificationScreen) {
+            print('1');
             return AccountInitializerRouter.instance.path;
           }
           // Auth [SignedIn] but [EmailNotVerified]
-          if (isAuthSignedIn && !isEmailVerified!) {
+          if (isAuthSignedIn && !isEmailVerified) {
             return EmailVerificationRouter.instance.path;
           }
           // Auth [SignedIn] but still in [AuthScreen]
           if (isAuthSignedIn && isAuthScreen) {
+            return AccountRegistrationRouter.instance.path;
+            // Todo: open
             // To detect, read and navigate [Consumer], [Support] or [Admin]
-            return AccountInitializerRouter.instance.path;
+            //return AccountInitializerRouter.instance.path;
           }
 
           // Auth [NotSignedIn] but not in [AuthScreen]

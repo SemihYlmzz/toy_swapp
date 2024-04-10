@@ -15,8 +15,13 @@ class EmailVerificationBloc
   EmailVerificationBloc({
     required AuthRepository authRepository,
   })  : _authRepository = authRepository,
-        super(const EmailVerificationState()) {
+        super(EmailVerificationState(authState: authRepository.currentAuth)) {
     on<EmailVerificationEvent>(_onEmailVerificationEvent);
+    // Update [AuthState] when it changes
+    _authRepository.currentAuthStream.listen((event) {
+      add(EmailVerificationEvent.authStateUpdated(event));
+    });
+    // [Reload] the [AuthState] every second if link tapped.
     _timerInAction ??= Timer.periodic(
       SharedDurations.s1,
       (timer) {
@@ -52,19 +57,13 @@ class EmailVerificationBloc
 
         tryUpdate.fold(
           (failure) => emit(state.copyWith(failure: failure)),
-          (success) {
-            final isEmailVerified = _authRepository.isEmailVerified();
-            emit(
-              state.copyWith(
-                isEmailVerified: isEmailVerified ?? false,
-                verificationLastCheckedDate: DateTime.now(),
-              ),
-            );
-            if (isEmailVerified ?? false) {
-              _timerInAction?.cancel();
-            }
-          },
+          (success) => emit(
+            state.copyWith(verificationLastCheckedDate: DateTime.now()),
+          ),
         );
+      },
+      authStateUpdated: (e) {
+        emit(state.copyWith(authState: _authRepository.currentAuth));
       },
     );
 

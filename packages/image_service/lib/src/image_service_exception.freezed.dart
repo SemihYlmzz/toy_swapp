@@ -19,39 +19,32 @@ mixin _$ImageServiceException {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
-    required TResult Function() userCanceled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
-    TResult? Function()? userCanceled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function()? userCanceled,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ImageServiceExceptionUnknown value) unknown,
-    required TResult Function(ImageServiceExceptionUserCanceled value)
-        userCanceled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ImageServiceExceptionUnknown value)? unknown,
-    TResult? Function(ImageServiceExceptionUserCanceled value)? userCanceled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ImageServiceExceptionUnknown value)? unknown,
-    TResult Function(ImageServiceExceptionUserCanceled value)? userCanceled,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,7 +113,6 @@ class _$ImageServiceExceptionUnknownImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
-    required TResult Function() userCanceled,
   }) {
     return unknown();
   }
@@ -129,7 +121,6 @@ class _$ImageServiceExceptionUnknownImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
-    TResult? Function()? userCanceled,
   }) {
     return unknown?.call();
   }
@@ -138,7 +129,6 @@ class _$ImageServiceExceptionUnknownImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function()? userCanceled,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -151,8 +141,6 @@ class _$ImageServiceExceptionUnknownImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ImageServiceExceptionUnknown value) unknown,
-    required TResult Function(ImageServiceExceptionUserCanceled value)
-        userCanceled,
   }) {
     return unknown(this);
   }
@@ -161,7 +149,6 @@ class _$ImageServiceExceptionUnknownImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ImageServiceExceptionUnknown value)? unknown,
-    TResult? Function(ImageServiceExceptionUserCanceled value)? userCanceled,
   }) {
     return unknown?.call(this);
   }
@@ -170,7 +157,6 @@ class _$ImageServiceExceptionUnknownImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ImageServiceExceptionUnknown value)? unknown,
-    TResult Function(ImageServiceExceptionUserCanceled value)? userCanceled,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -183,114 +169,4 @@ class _$ImageServiceExceptionUnknownImpl
 abstract class ImageServiceExceptionUnknown implements ImageServiceException {
   const factory ImageServiceExceptionUnknown() =
       _$ImageServiceExceptionUnknownImpl;
-}
-
-/// @nodoc
-abstract class _$$ImageServiceExceptionUserCanceledImplCopyWith<$Res> {
-  factory _$$ImageServiceExceptionUserCanceledImplCopyWith(
-          _$ImageServiceExceptionUserCanceledImpl value,
-          $Res Function(_$ImageServiceExceptionUserCanceledImpl) then) =
-      __$$ImageServiceExceptionUserCanceledImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ImageServiceExceptionUserCanceledImplCopyWithImpl<$Res>
-    extends _$ImageServiceExceptionCopyWithImpl<$Res,
-        _$ImageServiceExceptionUserCanceledImpl>
-    implements _$$ImageServiceExceptionUserCanceledImplCopyWith<$Res> {
-  __$$ImageServiceExceptionUserCanceledImplCopyWithImpl(
-      _$ImageServiceExceptionUserCanceledImpl _value,
-      $Res Function(_$ImageServiceExceptionUserCanceledImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ImageServiceExceptionUserCanceledImpl
-    implements ImageServiceExceptionUserCanceled {
-  const _$ImageServiceExceptionUserCanceledImpl();
-
-  @override
-  String toString() {
-    return 'ImageServiceException.userCanceled()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ImageServiceExceptionUserCanceledImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() unknown,
-    required TResult Function() userCanceled,
-  }) {
-    return userCanceled();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? unknown,
-    TResult? Function()? userCanceled,
-  }) {
-    return userCanceled?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unknown,
-    TResult Function()? userCanceled,
-    required TResult orElse(),
-  }) {
-    if (userCanceled != null) {
-      return userCanceled();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ImageServiceExceptionUnknown value) unknown,
-    required TResult Function(ImageServiceExceptionUserCanceled value)
-        userCanceled,
-  }) {
-    return userCanceled(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ImageServiceExceptionUnknown value)? unknown,
-    TResult? Function(ImageServiceExceptionUserCanceled value)? userCanceled,
-  }) {
-    return userCanceled?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ImageServiceExceptionUnknown value)? unknown,
-    TResult Function(ImageServiceExceptionUserCanceled value)? userCanceled,
-    required TResult orElse(),
-  }) {
-    if (userCanceled != null) {
-      return userCanceled(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ImageServiceExceptionUserCanceled
-    implements ImageServiceException {
-  const factory ImageServiceExceptionUserCanceled() =
-      _$ImageServiceExceptionUserCanceledImpl;
 }

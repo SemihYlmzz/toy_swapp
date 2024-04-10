@@ -8,7 +8,7 @@ extension VerifiedEmailNavigator on EmailVerificationBlocListeners {
       verifiedEmailNavigator() {
     return BlocListener(
       listener: (context, state) {
-        if (!state.isEmailVerified) {
+        if (!state.authState.isEmailVerified) {
           return;
         }
         AccountRegistrationRouter.instance.go(context);

@@ -16,6 +16,7 @@ class PermissionService {
     });
   }
   final int? androidVersionSdkNumber;
+
   // Manipulate Data
   final _streamController = StreamController<PermissionsStatus>.broadcast();
 
@@ -86,6 +87,29 @@ class PermissionService {
         }
       }
       return const Left(PermissionServiceException.unknown());
+    }
+  }
+
+  FutureEither<bool> requestLocation() async {
+    try {
+      if (permissionsStatus == null) {
+        return const Left(PermissionServiceException.unknown());
+      }
+      final status = await Permission.location.request();
+      final updatedPermissions = permissionsStatus!.copyWith(
+        location: _permissionStatusToState(status),
+      );
+      _streamController.sink.add(updatedPermissions);
+      return Right(_isPermissionGranted(updatedPermissions.location));
+    } catch (exception) {
+      // Multiple Request Same Time
+      if (exception is PlatformException) {
+        if (exception.code == 'ERROR_ALREADY_REQUESTING_PERMISSIONS') {
+          return const Left(PermissionServiceException.inProgress());
+        }
+      }
+
+      return const Left(PermissionServiceException.inProgress());
     }
   }
 

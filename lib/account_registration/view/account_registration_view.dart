@@ -38,56 +38,44 @@ class AccountRegistrationView extends StatelessWidget {
                         .updateLastName(value),
                   ),
                   SharedGap.gap20,
-                  Row(
-                    children: [
-                      Checkbox(value: false, onChanged: (value) {}),
-                      const Text('Give location permission.'),
-                    ],
-                  ),
+                  const AccountRegistrationLocationPicker(),
                 ],
               ),
             ),
             GradientButton(
               text: 'Register',
-              onPressed: () {},
+              onPressed: () {
+                final state = context.read<AccountRegistrationCubit>().state;
+                final location = state.location;
+                final avatar1024 = state.avatar1024;
+                final avatar128 = state.avatar128;
+                final avatar256 = state.avatar256;
+                final avatar512 = state.avatar512;
+                // Check Firstname and Lastname
+                if (avatar1024 == null ||
+                    avatar128 == null ||
+                    avatar256 == null ||
+                    avatar512 == null ||
+                    location == null) {
+                  return;
+                }
+                // Compress Images
+
+                context.read<AccountRegistrationBloc>().add(
+                      AccountRegistrationEvent.registerAccount(
+                        avatarImage1024: avatar1024,
+                        avatarImage128: avatar128,
+                        avatarImage256: avatar256,
+                        avatarImage512: avatar512,
+                        firstName: state.firstName,
+                        lastName: state.lastName,
+                        latitude: location.latitude,
+                        longitude: location.longitude,
+                      ),
+                    );
+              },
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class AccountRegisterationAvatarSelector extends StatelessWidget {
-  const AccountRegisterationAvatarSelector({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final avatarImage = context.select(
-      (AccountRegistrationCubit cubit) => cubit.state.avatarImage,
-    );
-    return GestureDetector(
-      onTap: () {
-        context.read<AccountRegistrationCubit>().updateAvatarFromPhotos();
-      },
-      child: Container(
-        width: 128,
-        height: 128,
-        decoration: BoxDecoration(
-          color: Colors.white10,
-          shape: BoxShape.circle,
-          image: avatarImage == null
-              ? null
-              : DecorationImage(
-                  image: ResizeImage(
-                    MemoryImage(avatarImage),
-                    width: 128,
-                    height: 128,
-                  ),
-                  fit: BoxFit.cover,
-                ),
         ),
       ),
     );

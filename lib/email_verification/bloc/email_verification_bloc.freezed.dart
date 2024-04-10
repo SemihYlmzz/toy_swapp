@@ -21,6 +21,7 @@ mixin _$EmailVerificationEvent {
     required TResult Function() sendVerificationEmail,
     required TResult Function() signOut,
     required TResult Function() reloadAuthState,
+    required TResult Function(Auth updatedAuthState) authStateUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$EmailVerificationEvent {
     TResult? Function()? sendVerificationEmail,
     TResult? Function()? signOut,
     TResult? Function()? reloadAuthState,
+    TResult? Function(Auth updatedAuthState)? authStateUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$EmailVerificationEvent {
     TResult Function()? sendVerificationEmail,
     TResult Function()? signOut,
     TResult Function()? reloadAuthState,
+    TResult Function(Auth updatedAuthState)? authStateUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,6 +48,8 @@ mixin _$EmailVerificationEvent {
     required TResult Function(EmailVerificationSignOut value) signOut,
     required TResult Function(EmailVerificationReloadAuthState value)
         reloadAuthState,
+    required TResult Function(EmailVerificationAuthStateUpdated value)
+        authStateUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +58,8 @@ mixin _$EmailVerificationEvent {
         sendVerificationEmail,
     TResult? Function(EmailVerificationSignOut value)? signOut,
     TResult? Function(EmailVerificationReloadAuthState value)? reloadAuthState,
+    TResult? Function(EmailVerificationAuthStateUpdated value)?
+        authStateUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +68,7 @@ mixin _$EmailVerificationEvent {
         sendVerificationEmail,
     TResult Function(EmailVerificationSignOut value)? signOut,
     TResult Function(EmailVerificationReloadAuthState value)? reloadAuthState,
+    TResult Function(EmailVerificationAuthStateUpdated value)? authStateUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -131,6 +139,7 @@ class _$EmailVerificationSendVerificationEmailImpl
     required TResult Function() sendVerificationEmail,
     required TResult Function() signOut,
     required TResult Function() reloadAuthState,
+    required TResult Function(Auth updatedAuthState) authStateUpdated,
   }) {
     return sendVerificationEmail();
   }
@@ -141,6 +150,7 @@ class _$EmailVerificationSendVerificationEmailImpl
     TResult? Function()? sendVerificationEmail,
     TResult? Function()? signOut,
     TResult? Function()? reloadAuthState,
+    TResult? Function(Auth updatedAuthState)? authStateUpdated,
   }) {
     return sendVerificationEmail?.call();
   }
@@ -151,6 +161,7 @@ class _$EmailVerificationSendVerificationEmailImpl
     TResult Function()? sendVerificationEmail,
     TResult Function()? signOut,
     TResult Function()? reloadAuthState,
+    TResult Function(Auth updatedAuthState)? authStateUpdated,
     required TResult orElse(),
   }) {
     if (sendVerificationEmail != null) {
@@ -167,6 +178,8 @@ class _$EmailVerificationSendVerificationEmailImpl
     required TResult Function(EmailVerificationSignOut value) signOut,
     required TResult Function(EmailVerificationReloadAuthState value)
         reloadAuthState,
+    required TResult Function(EmailVerificationAuthStateUpdated value)
+        authStateUpdated,
   }) {
     return sendVerificationEmail(this);
   }
@@ -178,6 +191,8 @@ class _$EmailVerificationSendVerificationEmailImpl
         sendVerificationEmail,
     TResult? Function(EmailVerificationSignOut value)? signOut,
     TResult? Function(EmailVerificationReloadAuthState value)? reloadAuthState,
+    TResult? Function(EmailVerificationAuthStateUpdated value)?
+        authStateUpdated,
   }) {
     return sendVerificationEmail?.call(this);
   }
@@ -189,6 +204,7 @@ class _$EmailVerificationSendVerificationEmailImpl
         sendVerificationEmail,
     TResult Function(EmailVerificationSignOut value)? signOut,
     TResult Function(EmailVerificationReloadAuthState value)? reloadAuthState,
+    TResult Function(EmailVerificationAuthStateUpdated value)? authStateUpdated,
     required TResult orElse(),
   }) {
     if (sendVerificationEmail != null) {
@@ -249,6 +265,7 @@ class _$EmailVerificationSignOutImpl implements EmailVerificationSignOut {
     required TResult Function() sendVerificationEmail,
     required TResult Function() signOut,
     required TResult Function() reloadAuthState,
+    required TResult Function(Auth updatedAuthState) authStateUpdated,
   }) {
     return signOut();
   }
@@ -259,6 +276,7 @@ class _$EmailVerificationSignOutImpl implements EmailVerificationSignOut {
     TResult? Function()? sendVerificationEmail,
     TResult? Function()? signOut,
     TResult? Function()? reloadAuthState,
+    TResult? Function(Auth updatedAuthState)? authStateUpdated,
   }) {
     return signOut?.call();
   }
@@ -269,6 +287,7 @@ class _$EmailVerificationSignOutImpl implements EmailVerificationSignOut {
     TResult Function()? sendVerificationEmail,
     TResult Function()? signOut,
     TResult Function()? reloadAuthState,
+    TResult Function(Auth updatedAuthState)? authStateUpdated,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -285,6 +304,8 @@ class _$EmailVerificationSignOutImpl implements EmailVerificationSignOut {
     required TResult Function(EmailVerificationSignOut value) signOut,
     required TResult Function(EmailVerificationReloadAuthState value)
         reloadAuthState,
+    required TResult Function(EmailVerificationAuthStateUpdated value)
+        authStateUpdated,
   }) {
     return signOut(this);
   }
@@ -296,6 +317,8 @@ class _$EmailVerificationSignOutImpl implements EmailVerificationSignOut {
         sendVerificationEmail,
     TResult? Function(EmailVerificationSignOut value)? signOut,
     TResult? Function(EmailVerificationReloadAuthState value)? reloadAuthState,
+    TResult? Function(EmailVerificationAuthStateUpdated value)?
+        authStateUpdated,
   }) {
     return signOut?.call(this);
   }
@@ -307,6 +330,7 @@ class _$EmailVerificationSignOutImpl implements EmailVerificationSignOut {
         sendVerificationEmail,
     TResult Function(EmailVerificationSignOut value)? signOut,
     TResult Function(EmailVerificationReloadAuthState value)? reloadAuthState,
+    TResult Function(EmailVerificationAuthStateUpdated value)? authStateUpdated,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -366,6 +390,7 @@ class _$EmailVerificationReloadAuthStateImpl
     required TResult Function() sendVerificationEmail,
     required TResult Function() signOut,
     required TResult Function() reloadAuthState,
+    required TResult Function(Auth updatedAuthState) authStateUpdated,
   }) {
     return reloadAuthState();
   }
@@ -376,6 +401,7 @@ class _$EmailVerificationReloadAuthStateImpl
     TResult? Function()? sendVerificationEmail,
     TResult? Function()? signOut,
     TResult? Function()? reloadAuthState,
+    TResult? Function(Auth updatedAuthState)? authStateUpdated,
   }) {
     return reloadAuthState?.call();
   }
@@ -386,6 +412,7 @@ class _$EmailVerificationReloadAuthStateImpl
     TResult Function()? sendVerificationEmail,
     TResult Function()? signOut,
     TResult Function()? reloadAuthState,
+    TResult Function(Auth updatedAuthState)? authStateUpdated,
     required TResult orElse(),
   }) {
     if (reloadAuthState != null) {
@@ -402,6 +429,8 @@ class _$EmailVerificationReloadAuthStateImpl
     required TResult Function(EmailVerificationSignOut value) signOut,
     required TResult Function(EmailVerificationReloadAuthState value)
         reloadAuthState,
+    required TResult Function(EmailVerificationAuthStateUpdated value)
+        authStateUpdated,
   }) {
     return reloadAuthState(this);
   }
@@ -413,6 +442,8 @@ class _$EmailVerificationReloadAuthStateImpl
         sendVerificationEmail,
     TResult? Function(EmailVerificationSignOut value)? signOut,
     TResult? Function(EmailVerificationReloadAuthState value)? reloadAuthState,
+    TResult? Function(EmailVerificationAuthStateUpdated value)?
+        authStateUpdated,
   }) {
     return reloadAuthState?.call(this);
   }
@@ -424,6 +455,7 @@ class _$EmailVerificationReloadAuthStateImpl
         sendVerificationEmail,
     TResult Function(EmailVerificationSignOut value)? signOut,
     TResult Function(EmailVerificationReloadAuthState value)? reloadAuthState,
+    TResult Function(EmailVerificationAuthStateUpdated value)? authStateUpdated,
     required TResult orElse(),
   }) {
     if (reloadAuthState != null) {
@@ -440,9 +472,180 @@ abstract class EmailVerificationReloadAuthState
 }
 
 /// @nodoc
+abstract class _$$EmailVerificationAuthStateUpdatedImplCopyWith<$Res> {
+  factory _$$EmailVerificationAuthStateUpdatedImplCopyWith(
+          _$EmailVerificationAuthStateUpdatedImpl value,
+          $Res Function(_$EmailVerificationAuthStateUpdatedImpl) then) =
+      __$$EmailVerificationAuthStateUpdatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Auth updatedAuthState});
+
+  $AuthCopyWith<$Res> get updatedAuthState;
+}
+
+/// @nodoc
+class __$$EmailVerificationAuthStateUpdatedImplCopyWithImpl<$Res>
+    extends _$EmailVerificationEventCopyWithImpl<$Res,
+        _$EmailVerificationAuthStateUpdatedImpl>
+    implements _$$EmailVerificationAuthStateUpdatedImplCopyWith<$Res> {
+  __$$EmailVerificationAuthStateUpdatedImplCopyWithImpl(
+      _$EmailVerificationAuthStateUpdatedImpl _value,
+      $Res Function(_$EmailVerificationAuthStateUpdatedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? updatedAuthState = null,
+  }) {
+    return _then(_$EmailVerificationAuthStateUpdatedImpl(
+      null == updatedAuthState
+          ? _value.updatedAuthState
+          : updatedAuthState // ignore: cast_nullable_to_non_nullable
+              as Auth,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AuthCopyWith<$Res> get updatedAuthState {
+    return $AuthCopyWith<$Res>(_value.updatedAuthState, (value) {
+      return _then(_value.copyWith(updatedAuthState: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$EmailVerificationAuthStateUpdatedImpl
+    implements EmailVerificationAuthStateUpdated {
+  const _$EmailVerificationAuthStateUpdatedImpl(this.updatedAuthState);
+
+  @override
+  final Auth updatedAuthState;
+
+  @override
+  String toString() {
+    return 'EmailVerificationEvent.authStateUpdated(updatedAuthState: $updatedAuthState)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EmailVerificationAuthStateUpdatedImpl &&
+            (identical(other.updatedAuthState, updatedAuthState) ||
+                other.updatedAuthState == updatedAuthState));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, updatedAuthState);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EmailVerificationAuthStateUpdatedImplCopyWith<
+          _$EmailVerificationAuthStateUpdatedImpl>
+      get copyWith => __$$EmailVerificationAuthStateUpdatedImplCopyWithImpl<
+          _$EmailVerificationAuthStateUpdatedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() sendVerificationEmail,
+    required TResult Function() signOut,
+    required TResult Function() reloadAuthState,
+    required TResult Function(Auth updatedAuthState) authStateUpdated,
+  }) {
+    return authStateUpdated(updatedAuthState);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? sendVerificationEmail,
+    TResult? Function()? signOut,
+    TResult? Function()? reloadAuthState,
+    TResult? Function(Auth updatedAuthState)? authStateUpdated,
+  }) {
+    return authStateUpdated?.call(updatedAuthState);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? sendVerificationEmail,
+    TResult Function()? signOut,
+    TResult Function()? reloadAuthState,
+    TResult Function(Auth updatedAuthState)? authStateUpdated,
+    required TResult orElse(),
+  }) {
+    if (authStateUpdated != null) {
+      return authStateUpdated(updatedAuthState);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmailVerificationSendVerificationEmail value)
+        sendVerificationEmail,
+    required TResult Function(EmailVerificationSignOut value) signOut,
+    required TResult Function(EmailVerificationReloadAuthState value)
+        reloadAuthState,
+    required TResult Function(EmailVerificationAuthStateUpdated value)
+        authStateUpdated,
+  }) {
+    return authStateUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EmailVerificationSendVerificationEmail value)?
+        sendVerificationEmail,
+    TResult? Function(EmailVerificationSignOut value)? signOut,
+    TResult? Function(EmailVerificationReloadAuthState value)? reloadAuthState,
+    TResult? Function(EmailVerificationAuthStateUpdated value)?
+        authStateUpdated,
+  }) {
+    return authStateUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmailVerificationSendVerificationEmail value)?
+        sendVerificationEmail,
+    TResult Function(EmailVerificationSignOut value)? signOut,
+    TResult Function(EmailVerificationReloadAuthState value)? reloadAuthState,
+    TResult Function(EmailVerificationAuthStateUpdated value)? authStateUpdated,
+    required TResult orElse(),
+  }) {
+    if (authStateUpdated != null) {
+      return authStateUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmailVerificationAuthStateUpdated
+    implements EmailVerificationEvent {
+  const factory EmailVerificationAuthStateUpdated(final Auth updatedAuthState) =
+      _$EmailVerificationAuthStateUpdatedImpl;
+
+  Auth get updatedAuthState;
+  @JsonKey(ignore: true)
+  _$$EmailVerificationAuthStateUpdatedImplCopyWith<
+          _$EmailVerificationAuthStateUpdatedImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$EmailVerificationState {
+  Auth get authState => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
-  bool get isEmailVerified => throw _privateConstructorUsedError;
   DateTime? get emailSendedDate => throw _privateConstructorUsedError;
   DateTime? get verificationLastCheckedDate =>
       throw _privateConstructorUsedError;
@@ -460,11 +663,13 @@ abstract class $EmailVerificationStateCopyWith<$Res> {
       _$EmailVerificationStateCopyWithImpl<$Res, EmailVerificationState>;
   @useResult
   $Res call(
-      {bool isLoading,
-      bool isEmailVerified,
+      {Auth authState,
+      bool isLoading,
       DateTime? emailSendedDate,
       DateTime? verificationLastCheckedDate,
       Failure? failure});
+
+  $AuthCopyWith<$Res> get authState;
 }
 
 /// @nodoc
@@ -481,20 +686,20 @@ class _$EmailVerificationStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? authState = null,
     Object? isLoading = null,
-    Object? isEmailVerified = null,
     Object? emailSendedDate = freezed,
     Object? verificationLastCheckedDate = freezed,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
+      authState: null == authState
+          ? _value.authState
+          : authState // ignore: cast_nullable_to_non_nullable
+              as Auth,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isEmailVerified: null == isEmailVerified
-          ? _value.isEmailVerified
-          : isEmailVerified // ignore: cast_nullable_to_non_nullable
               as bool,
       emailSendedDate: freezed == emailSendedDate
           ? _value.emailSendedDate
@@ -510,6 +715,14 @@ class _$EmailVerificationStateCopyWithImpl<$Res,
               as Failure?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AuthCopyWith<$Res> get authState {
+    return $AuthCopyWith<$Res>(_value.authState, (value) {
+      return _then(_value.copyWith(authState: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -522,11 +735,14 @@ abstract class _$$EmailVerificationStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isLoading,
-      bool isEmailVerified,
+      {Auth authState,
+      bool isLoading,
       DateTime? emailSendedDate,
       DateTime? verificationLastCheckedDate,
       Failure? failure});
+
+  @override
+  $AuthCopyWith<$Res> get authState;
 }
 
 /// @nodoc
@@ -542,20 +758,20 @@ class __$$EmailVerificationStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? authState = null,
     Object? isLoading = null,
-    Object? isEmailVerified = null,
     Object? emailSendedDate = freezed,
     Object? verificationLastCheckedDate = freezed,
     Object? failure = freezed,
   }) {
     return _then(_$EmailVerificationStateImpl(
+      authState: null == authState
+          ? _value.authState
+          : authState // ignore: cast_nullable_to_non_nullable
+              as Auth,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isEmailVerified: null == isEmailVerified
-          ? _value.isEmailVerified
-          : isEmailVerified // ignore: cast_nullable_to_non_nullable
               as bool,
       emailSendedDate: freezed == emailSendedDate
           ? _value.emailSendedDate
@@ -577,18 +793,17 @@ class __$$EmailVerificationStateImplCopyWithImpl<$Res>
 
 class _$EmailVerificationStateImpl implements _EmailVerificationState {
   const _$EmailVerificationStateImpl(
-      {this.isLoading = false,
-      this.isEmailVerified = false,
+      {required this.authState,
+      this.isLoading = false,
       this.emailSendedDate,
       this.verificationLastCheckedDate,
       this.failure});
 
   @override
-  @JsonKey()
-  final bool isLoading;
+  final Auth authState;
   @override
   @JsonKey()
-  final bool isEmailVerified;
+  final bool isLoading;
   @override
   final DateTime? emailSendedDate;
   @override
@@ -598,7 +813,7 @@ class _$EmailVerificationStateImpl implements _EmailVerificationState {
 
   @override
   String toString() {
-    return 'EmailVerificationState(isLoading: $isLoading, isEmailVerified: $isEmailVerified, emailSendedDate: $emailSendedDate, verificationLastCheckedDate: $verificationLastCheckedDate, failure: $failure)';
+    return 'EmailVerificationState(authState: $authState, isLoading: $isLoading, emailSendedDate: $emailSendedDate, verificationLastCheckedDate: $verificationLastCheckedDate, failure: $failure)';
   }
 
   @override
@@ -606,10 +821,10 @@ class _$EmailVerificationStateImpl implements _EmailVerificationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EmailVerificationStateImpl &&
+            (identical(other.authState, authState) ||
+                other.authState == authState) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            (identical(other.isEmailVerified, isEmailVerified) ||
-                other.isEmailVerified == isEmailVerified) &&
             (identical(other.emailSendedDate, emailSendedDate) ||
                 other.emailSendedDate == emailSendedDate) &&
             (identical(other.verificationLastCheckedDate,
@@ -620,7 +835,7 @@ class _$EmailVerificationStateImpl implements _EmailVerificationState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, isEmailVerified,
+  int get hashCode => Object.hash(runtimeType, authState, isLoading,
       emailSendedDate, verificationLastCheckedDate, failure);
 
   @JsonKey(ignore: true)
@@ -633,16 +848,16 @@ class _$EmailVerificationStateImpl implements _EmailVerificationState {
 
 abstract class _EmailVerificationState implements EmailVerificationState {
   const factory _EmailVerificationState(
-      {final bool isLoading,
-      final bool isEmailVerified,
+      {required final Auth authState,
+      final bool isLoading,
       final DateTime? emailSendedDate,
       final DateTime? verificationLastCheckedDate,
       final Failure? failure}) = _$EmailVerificationStateImpl;
 
   @override
-  bool get isLoading;
+  Auth get authState;
   @override
-  bool get isEmailVerified;
+  bool get isLoading;
   @override
   DateTime? get emailSendedDate;
   @override

@@ -7,4 +7,7 @@ sealed class EmailVerificationEvent with _$EmailVerificationEvent {
   const factory EmailVerificationEvent.signOut() = EmailVerificationSignOut;
   const factory EmailVerificationEvent.reloadAuthState() =
       EmailVerificationReloadAuthState;
+  const factory EmailVerificationEvent.authStateUpdated(
+    Auth updatedAuthState,
+  ) = EmailVerificationAuthStateUpdated;
 }

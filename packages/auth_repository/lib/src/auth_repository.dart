@@ -1,4 +1,6 @@
 // import 'package:auth_repository/auth_repository.dart';
+import 'dart:async';
+
 import 'package:auth_repository/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fpdart/fpdart.dart';
@@ -6,11 +8,24 @@ import 'package:toy_swapp/errors/errors.dart';
 
 class AuthRepository {
   AuthRepository({
-    FirebaseAuth? firebaseAuth,
-  }) : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
+    required FirebaseAuth firebaseAuth,
+  }) : _firebaseAuth = firebaseAuth {
+    currentAuth = _authFromFirebaseUser(_firebaseAuth.currentUser);
+    currentAuthStream.listen((event) {
+      currentAuth = event;
+    });
+    _firebaseAuth.authStateChanges().listen((event) {
+      _streamController.sink.add(_authFromFirebaseUser(event));
+    });
+  }
 
   // Instances
   final FirebaseAuth _firebaseAuth;
+
+  // Data Manipulation
+  final _streamController = StreamController<Auth>.broadcast();
+  Stream<Auth> get currentAuthStream => _streamController.stream;
+  Auth currentAuth = Auth.empty();
 
   // Functions
   FutureUnit signInWithEmailAndPassword({
@@ -87,18 +102,40 @@ class AuthRepository {
   FutureUnit reload() async {
     try {
       await _firebaseAuth.currentUser?.reload();
+      _streamController.sink.add(
+        _authFromFirebaseUser(_firebaseAuth.currentUser),
+      );
       return const Right(unit);
     } catch (exception) {
       return Left(AuthRepositoryUnknown());
     }
   }
 
-  Stream<bool> isSignedInStream() {
-    return _firebaseAuth.authStateChanges().map((firebaseUser) {
-      return firebaseUser != null;
-    });
+  // Firebase Specific Functions
+  Auth _authFromFirebaseUser(User? user) {
+    if (user == null) {
+      return Auth.empty();
+    }
+    return Auth(
+      id: user.uid,
+      isEmailVerified: user.emailVerified,
+      signInMethod: _authSignInMethodFromProviderId(
+        user.providerData.first.providerId,
+      ),
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      lastSignInTime: user.metadata.lastSignInTime,
+    );
   }
 
-  bool? isEmailVerified() => _firebaseAuth.currentUser?.emailVerified;
-  bool isSignedIn() => _firebaseAuth.currentUser != null;
+  AuthSignInMethod _authSignInMethodFromProviderId(String providerId) {
+    return switch (providerId) {
+      'password' => AuthSignInMethod.emailAndPassword,
+      'google' => AuthSignInMethod.google,
+      'apple' => AuthSignInMethod.emailAndPassword,
+      'facebook' => AuthSignInMethod.facebook,
+      _ => AuthSignInMethod.unknown,
+    };
+  }
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:toy_swapp/account_registration/account_registration.dart';
 
 import '../account_initializer.dart';
 
@@ -9,7 +7,6 @@ class AccountInitializerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.pushNamed(AccountRegistrationRouter.instance.name);
     return Scaffold(
       appBar: const AccountInitializerAppBar(),
       body: Column(

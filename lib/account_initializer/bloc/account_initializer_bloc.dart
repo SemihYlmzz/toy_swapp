@@ -20,7 +20,7 @@ class AccountInitializerBloc
 
     await event.map(
       fetch: (e) async {
-        print('Fetching data...');
+        // print('Fetching data...');
       },
     );
 

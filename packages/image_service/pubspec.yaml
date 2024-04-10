@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   # App For Failure Instance
   toy_swapp:
     path: ../../
@@ -22,6 +23,9 @@ dependencies:
 
   # Image Picker
   image_picker: ^1.0.7
+
+  # Flutter Image Compress
+  flutter_image_compress: ^2.2.0
   
 dev_dependencies:
   very_good_analysis: ^5.1.0
