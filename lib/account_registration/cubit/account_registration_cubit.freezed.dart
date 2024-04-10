@@ -21,6 +21,7 @@ mixin _$AccountRegistrationCubitState {
   String get lastName => throw _privateConstructorUsedError;
   ({double latitude, double longitude})? get location =>
       throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AccountRegistrationCubitStateCopyWith<AccountRegistrationCubitState>
@@ -39,7 +40,8 @@ abstract class $AccountRegistrationCubitStateCopyWith<$Res> {
       {Uint8List? avatarImage,
       String firstName,
       String lastName,
-      ({double latitude, double longitude})? location});
+      ({double latitude, double longitude})? location,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -60,6 +62,7 @@ class _$AccountRegistrationCubitStateCopyWithImpl<$Res,
     Object? firstName = null,
     Object? lastName = null,
     Object? location = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       avatarImage: freezed == avatarImage
@@ -78,6 +81,10 @@ class _$AccountRegistrationCubitStateCopyWithImpl<$Res,
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as ({double latitude, double longitude})?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -95,7 +102,8 @@ abstract class _$$AccountRegistrationCubitStateImplCopyWith<$Res>
       {Uint8List? avatarImage,
       String firstName,
       String lastName,
-      ({double latitude, double longitude})? location});
+      ({double latitude, double longitude})? location,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -115,6 +123,7 @@ class __$$AccountRegistrationCubitStateImplCopyWithImpl<$Res>
     Object? firstName = null,
     Object? lastName = null,
     Object? location = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$AccountRegistrationCubitStateImpl(
       avatarImage: freezed == avatarImage
@@ -133,6 +142,10 @@ class __$$AccountRegistrationCubitStateImplCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as ({double latitude, double longitude})?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -145,7 +158,8 @@ class _$AccountRegistrationCubitStateImpl
       {this.avatarImage,
       this.firstName = '',
       this.lastName = '',
-      this.location});
+      this.location,
+      this.errorMessage});
 
   @override
   final Uint8List? avatarImage;
@@ -157,10 +171,12 @@ class _$AccountRegistrationCubitStateImpl
   final String lastName;
   @override
   final ({double latitude, double longitude})? location;
+  @override
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'AccountRegistrationCubitState(avatarImage: $avatarImage, firstName: $firstName, lastName: $lastName, location: $location)';
+    return 'AccountRegistrationCubitState(avatarImage: $avatarImage, firstName: $firstName, lastName: $lastName, location: $location, errorMessage: $errorMessage)';
   }
 
   @override
@@ -175,7 +191,9 @@ class _$AccountRegistrationCubitStateImpl
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
             (identical(other.location, location) ||
-                other.location == location));
+                other.location == location) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
@@ -184,7 +202,8 @@ class _$AccountRegistrationCubitStateImpl
       const DeepCollectionEquality().hash(avatarImage),
       firstName,
       lastName,
-      location);
+      location,
+      errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -198,11 +217,11 @@ class _$AccountRegistrationCubitStateImpl
 abstract class _AccountRegistrationCubitState
     implements AccountRegistrationCubitState {
   const factory _AccountRegistrationCubitState(
-          {final Uint8List? avatarImage,
-          final String firstName,
-          final String lastName,
-          final ({double latitude, double longitude})? location}) =
-      _$AccountRegistrationCubitStateImpl;
+      {final Uint8List? avatarImage,
+      final String firstName,
+      final String lastName,
+      final ({double latitude, double longitude})? location,
+      final String? errorMessage}) = _$AccountRegistrationCubitStateImpl;
 
   @override
   Uint8List? get avatarImage;
@@ -212,6 +231,8 @@ abstract class _AccountRegistrationCubitState
   String get lastName;
   @override
   ({double latitude, double longitude})? get location;
+  @override
+  String? get errorMessage;
   @override
   @JsonKey(ignore: true)
   _$$AccountRegistrationCubitStateImplCopyWith<

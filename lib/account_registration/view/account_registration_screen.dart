@@ -14,7 +14,12 @@ class AccountRegistrationScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AccountRegistrationBloc()),
-        BlocProvider(create: (context) => AccountRegistrationCubit()),
+        BlocProvider(
+          create: (context) => AccountRegistrationCubit(
+            permissionService: context.read(),
+            imageService: context.read(),
+          ),
+        ),
       ],
       child: MultiBlocListener(
         listeners: [

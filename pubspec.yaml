@@ -28,6 +28,14 @@ dependencies:
     path: packages/app_preferences_repository
   auth_repository:
     path: packages/auth_repository
+  device_metadata_repository:
+    path: packages/device_metadata_repository
+    
+  # Services
+  permission_service:
+    path: packages/permission_service
+  image_service:
+    path: packages/image_service
 
   # # Interfaces
   # local_database_api:

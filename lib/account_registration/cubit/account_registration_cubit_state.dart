@@ -7,5 +7,6 @@ class AccountRegistrationCubitState with _$AccountRegistrationCubitState {
     @Default('') String firstName,
     @Default('') String lastName,
     ({double latitude, double longitude})? location,
+    String? errorMessage,
   }) = _AccountRegistrationCubitState;
 }

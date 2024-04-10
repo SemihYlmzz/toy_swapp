@@ -22,14 +22,7 @@ class AccountRegistrationView extends StatelessWidget {
               child: BaseColumn(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 128,
-                    height: 128,
-                    decoration: const BoxDecoration(
-                      color: Colors.white10,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
+                  const AccountRegisterationAvatarSelector(),
                   SharedGap.gap20,
                   GradientTextField(
                     hintText: 'First Name',
@@ -56,11 +49,45 @@ class AccountRegistrationView extends StatelessWidget {
             ),
             GradientButton(
               text: 'Register',
-              onPressed: () {
-                final state = context.read<AccountRegistrationCubit>().state;
-              },
+              onPressed: () {},
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class AccountRegisterationAvatarSelector extends StatelessWidget {
+  const AccountRegisterationAvatarSelector({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final avatarImage = context.select(
+      (AccountRegistrationCubit cubit) => cubit.state.avatarImage,
+    );
+    return GestureDetector(
+      onTap: () {
+        context.read<AccountRegistrationCubit>().updateAvatarFromPhotos();
+      },
+      child: Container(
+        width: 128,
+        height: 128,
+        decoration: BoxDecoration(
+          color: Colors.white10,
+          shape: BoxShape.circle,
+          image: avatarImage == null
+              ? null
+              : DecorationImage(
+                  image: ResizeImage(
+                    MemoryImage(avatarImage),
+                    width: 128,
+                    height: 128,
+                  ),
+                  fit: BoxFit.cover,
+                ),
         ),
       ),
     );

@@ -1,4 +1,3 @@
-import 'package:auth_repository/auth_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_constants/shared_constants.dart';
@@ -13,7 +12,6 @@ class SignInView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<SignInCubit>().state;
     return BaseScaffold(
       appBar: const SignInAppBar(),
       body: Padding(
@@ -21,31 +19,9 @@ class SignInView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GradientTextField(
-              hintText: 'E-Mail',
-              onChanged: (v) => context.read<SignInCubit>().updateEmail(v),
-              errorText: state.email.isValid || !state.displayErrors
-                  ? null
-                  : switch (state.email.validator(state.email.value)) {
-                      EmailObjectError.empty => 'Email cannot be empty',
-                      EmailObjectError.invalid => 'Invalid email',
-                      _ => 'Not Valid'
-                    },
-            ),
+            const SignInEmailTextField(),
             SharedGap.gap16,
-            GradientTextField(
-              hintText: 'Password',
-              obscureText: true,
-              onChanged: (v) => context.read<SignInCubit>().updatePassword(v),
-              errorText: state.password.isValid || !state.displayErrors
-                  ? null
-                  : switch (state.password.validator(state.password.value)) {
-                      PasswordObjectError.empty => 'Password cannot be empty',
-                      PasswordObjectError.weak => 'Password is too weak',
-                      PasswordObjectError.tooLong => 'Password is too long',
-                      _ => 'Not Valid'
-                    },
-            ),
+            const SignInPasswordTextField(),
             SharedGap.gap16,
             ElevatedButton(
               child: const Text('Sign In'),
