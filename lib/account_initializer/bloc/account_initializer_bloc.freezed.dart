@@ -18,33 +18,39 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AccountInitializerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchConsumer,
+    required TResult Function() fetchAccountData,
+    required TResult Function() signOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchConsumer,
+    TResult? Function()? fetchAccountData,
+    TResult? Function()? signOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchConsumer,
+    TResult Function()? fetchAccountData,
+    TResult Function()? signOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AccountInitializerFetch value) fetchConsumer,
+    required TResult Function(AccountInitializerFetch value) fetchAccountData,
+    required TResult Function(AccountInitializerSignOut value) signOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AccountInitializerFetch value)? fetchConsumer,
+    TResult? Function(AccountInitializerFetch value)? fetchAccountData,
+    TResult? Function(AccountInitializerSignOut value)? signOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AccountInitializerFetch value)? fetchConsumer,
+    TResult Function(AccountInitializerFetch value)? fetchAccountData,
+    TResult Function(AccountInitializerSignOut value)? signOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -95,7 +101,7 @@ class _$AccountInitializerFetchImpl implements AccountInitializerFetch {
 
   @override
   String toString() {
-    return 'AccountInitializerEvent.fetchConsumer()';
+    return 'AccountInitializerEvent.fetchAccountData()';
   }
 
   @override
@@ -111,27 +117,30 @@ class _$AccountInitializerFetchImpl implements AccountInitializerFetch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchConsumer,
+    required TResult Function() fetchAccountData,
+    required TResult Function() signOut,
   }) {
-    return fetchConsumer();
+    return fetchAccountData();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchConsumer,
+    TResult? Function()? fetchAccountData,
+    TResult? Function()? signOut,
   }) {
-    return fetchConsumer?.call();
+    return fetchAccountData?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchConsumer,
+    TResult Function()? fetchAccountData,
+    TResult Function()? signOut,
     required TResult orElse(),
   }) {
-    if (fetchConsumer != null) {
-      return fetchConsumer();
+    if (fetchAccountData != null) {
+      return fetchAccountData();
     }
     return orElse();
   }
@@ -139,27 +148,30 @@ class _$AccountInitializerFetchImpl implements AccountInitializerFetch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AccountInitializerFetch value) fetchConsumer,
+    required TResult Function(AccountInitializerFetch value) fetchAccountData,
+    required TResult Function(AccountInitializerSignOut value) signOut,
   }) {
-    return fetchConsumer(this);
+    return fetchAccountData(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AccountInitializerFetch value)? fetchConsumer,
+    TResult? Function(AccountInitializerFetch value)? fetchAccountData,
+    TResult? Function(AccountInitializerSignOut value)? signOut,
   }) {
-    return fetchConsumer?.call(this);
+    return fetchAccountData?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AccountInitializerFetch value)? fetchConsumer,
+    TResult Function(AccountInitializerFetch value)? fetchAccountData,
+    TResult Function(AccountInitializerSignOut value)? signOut,
     required TResult orElse(),
   }) {
-    if (fetchConsumer != null) {
-      return fetchConsumer(this);
+    if (fetchAccountData != null) {
+      return fetchAccountData(this);
     }
     return orElse();
   }
@@ -170,10 +182,117 @@ abstract class AccountInitializerFetch implements AccountInitializerEvent {
 }
 
 /// @nodoc
+abstract class _$$AccountInitializerSignOutImplCopyWith<$Res> {
+  factory _$$AccountInitializerSignOutImplCopyWith(
+          _$AccountInitializerSignOutImpl value,
+          $Res Function(_$AccountInitializerSignOutImpl) then) =
+      __$$AccountInitializerSignOutImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AccountInitializerSignOutImplCopyWithImpl<$Res>
+    extends _$AccountInitializerEventCopyWithImpl<$Res,
+        _$AccountInitializerSignOutImpl>
+    implements _$$AccountInitializerSignOutImplCopyWith<$Res> {
+  __$$AccountInitializerSignOutImplCopyWithImpl(
+      _$AccountInitializerSignOutImpl _value,
+      $Res Function(_$AccountInitializerSignOutImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AccountInitializerSignOutImpl implements AccountInitializerSignOut {
+  const _$AccountInitializerSignOutImpl();
+
+  @override
+  String toString() {
+    return 'AccountInitializerEvent.signOut()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AccountInitializerSignOutImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchAccountData,
+    required TResult Function() signOut,
+  }) {
+    return signOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchAccountData,
+    TResult? Function()? signOut,
+  }) {
+    return signOut?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchAccountData,
+    TResult Function()? signOut,
+    required TResult orElse(),
+  }) {
+    if (signOut != null) {
+      return signOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AccountInitializerFetch value) fetchAccountData,
+    required TResult Function(AccountInitializerSignOut value) signOut,
+  }) {
+    return signOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AccountInitializerFetch value)? fetchAccountData,
+    TResult? Function(AccountInitializerSignOut value)? signOut,
+  }) {
+    return signOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AccountInitializerFetch value)? fetchAccountData,
+    TResult Function(AccountInitializerSignOut value)? signOut,
+    required TResult orElse(),
+  }) {
+    if (signOut != null) {
+      return signOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AccountInitializerSignOut implements AccountInitializerEvent {
+  const factory AccountInitializerSignOut() = _$AccountInitializerSignOutImpl;
+}
+
+/// @nodoc
 mixin _$AccountInitializerState {
   Auth get currentAuth => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
+  Failure? get fetchAccountDataFailure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AccountInitializerStateCopyWith<AccountInitializerState> get copyWith =>
@@ -186,7 +305,11 @@ abstract class $AccountInitializerStateCopyWith<$Res> {
           $Res Function(AccountInitializerState) then) =
       _$AccountInitializerStateCopyWithImpl<$Res, AccountInitializerState>;
   @useResult
-  $Res call({Auth currentAuth, bool isLoading, Failure? failure});
+  $Res call(
+      {Auth currentAuth,
+      bool isLoading,
+      Failure? failure,
+      Failure? fetchAccountDataFailure});
 
   $AuthCopyWith<$Res> get currentAuth;
 }
@@ -208,6 +331,7 @@ class _$AccountInitializerStateCopyWithImpl<$Res,
     Object? currentAuth = null,
     Object? isLoading = null,
     Object? failure = freezed,
+    Object? fetchAccountDataFailure = freezed,
   }) {
     return _then(_value.copyWith(
       currentAuth: null == currentAuth
@@ -221,6 +345,10 @@ class _$AccountInitializerStateCopyWithImpl<$Res,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
+      fetchAccountDataFailure: freezed == fetchAccountDataFailure
+          ? _value.fetchAccountDataFailure
+          : fetchAccountDataFailure // ignore: cast_nullable_to_non_nullable
               as Failure?,
     ) as $Val);
   }
@@ -243,7 +371,11 @@ abstract class _$$AccountInitializerStateImplCopyWith<$Res>
       __$$AccountInitializerStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Auth currentAuth, bool isLoading, Failure? failure});
+  $Res call(
+      {Auth currentAuth,
+      bool isLoading,
+      Failure? failure,
+      Failure? fetchAccountDataFailure});
 
   @override
   $AuthCopyWith<$Res> get currentAuth;
@@ -265,6 +397,7 @@ class __$$AccountInitializerStateImplCopyWithImpl<$Res>
     Object? currentAuth = null,
     Object? isLoading = null,
     Object? failure = freezed,
+    Object? fetchAccountDataFailure = freezed,
   }) {
     return _then(_$AccountInitializerStateImpl(
       currentAuth: null == currentAuth
@@ -279,6 +412,10 @@ class __$$AccountInitializerStateImplCopyWithImpl<$Res>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
+      fetchAccountDataFailure: freezed == fetchAccountDataFailure
+          ? _value.fetchAccountDataFailure
+          : fetchAccountDataFailure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
     ));
   }
 }
@@ -287,7 +424,10 @@ class __$$AccountInitializerStateImplCopyWithImpl<$Res>
 
 class _$AccountInitializerStateImpl implements _AccountInitializerState {
   const _$AccountInitializerStateImpl(
-      {required this.currentAuth, this.isLoading = false, this.failure});
+      {required this.currentAuth,
+      this.isLoading = false,
+      this.failure,
+      this.fetchAccountDataFailure});
 
   @override
   final Auth currentAuth;
@@ -296,10 +436,12 @@ class _$AccountInitializerStateImpl implements _AccountInitializerState {
   final bool isLoading;
   @override
   final Failure? failure;
+  @override
+  final Failure? fetchAccountDataFailure;
 
   @override
   String toString() {
-    return 'AccountInitializerState(currentAuth: $currentAuth, isLoading: $isLoading, failure: $failure)';
+    return 'AccountInitializerState(currentAuth: $currentAuth, isLoading: $isLoading, failure: $failure, fetchAccountDataFailure: $fetchAccountDataFailure)';
   }
 
   @override
@@ -311,11 +453,15 @@ class _$AccountInitializerStateImpl implements _AccountInitializerState {
                 other.currentAuth == currentAuth) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            (identical(other.failure, failure) || other.failure == failure));
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(
+                    other.fetchAccountDataFailure, fetchAccountDataFailure) ||
+                other.fetchAccountDataFailure == fetchAccountDataFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currentAuth, isLoading, failure);
+  int get hashCode => Object.hash(
+      runtimeType, currentAuth, isLoading, failure, fetchAccountDataFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -329,7 +475,8 @@ abstract class _AccountInitializerState implements AccountInitializerState {
   const factory _AccountInitializerState(
       {required final Auth currentAuth,
       final bool isLoading,
-      final Failure? failure}) = _$AccountInitializerStateImpl;
+      final Failure? failure,
+      final Failure? fetchAccountDataFailure}) = _$AccountInitializerStateImpl;
 
   @override
   Auth get currentAuth;
@@ -337,6 +484,8 @@ abstract class _AccountInitializerState implements AccountInitializerState {
   bool get isLoading;
   @override
   Failure? get failure;
+  @override
+  Failure? get fetchAccountDataFailure;
   @override
   @JsonKey(ignore: true)
   _$$AccountInitializerStateImplCopyWith<_$AccountInitializerStateImpl>

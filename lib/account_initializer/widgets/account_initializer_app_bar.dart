@@ -6,10 +6,7 @@ import '../account_initializer.dart';
 
 class AccountInitializerAppBar extends StatelessWidget
     implements PreferredSizeWidget {
-  const AccountInitializerAppBar({
-    super.key,
-  });
-
+  const AccountInitializerAppBar({super.key});
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -25,9 +22,9 @@ class AccountInitializerAppBar extends StatelessWidget
           child: IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              // context.read<AccountInitializerBloc>().add(
-              //       const AccountInitializerEvent.signOut(),
-              //     );
+              context.read<AccountInitializerBloc>().add(
+                    const AccountInitializerEvent.signOut(),
+                  );
             },
           ),
         ),

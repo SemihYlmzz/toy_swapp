@@ -14,6 +14,7 @@ class AccountInitializerBloc
     required ConsumerRepository consumerRepository,
     required AuthRepository authRepository,
   })  : _consumerRepository = consumerRepository,
+        _authRepository = authRepository,
         super(
           AccountInitializerState(currentAuth: authRepository.currentAuth),
         ) {
@@ -21,6 +22,7 @@ class AccountInitializerBloc
   }
   // Repositories
   final ConsumerRepository _consumerRepository;
+  final AuthRepository _authRepository;
 
   // Events
   Future<void> _onAccountInitializerEvent(
@@ -28,16 +30,21 @@ class AccountInitializerBloc
     Emitter<AccountInitializerState> emit,
   ) async {
     emit(state.copyWith(isLoading: true));
-    await Future<void>.delayed(const Duration(seconds: 60));
+    // await Future<void>.delayed(const Duration(seconds: 8));
     await event.map(
-      fetchConsumer: (e) async {
+      fetchAccountData: (e) async {
+        emit(state.copyWith(fetchAccountDataFailure: null));
         final tryRead = await _consumerRepository.readConsumer(
           authId: state.currentAuth.id,
         );
         tryRead.fold(
-          (l) => emit(state.copyWith(failure: l)),
+          (l) => emit(state.copyWith(fetchAccountDataFailure: l)),
           (r) => null,
         );
+      },
+      signOut: (e) async {
+        final trySignOut = await _authRepository.signOut();
+        trySignOut.fold((l) => emit(state.copyWith(failure: l)), (r) => null);
       },
     );
 

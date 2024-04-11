@@ -6,5 +6,6 @@ class AccountInitializerState with _$AccountInitializerState {
     required Auth currentAuth,
     @Default(false) bool isLoading,
     Failure? failure,
+    Failure? fetchAccountDataFailure,
   }) = _AccountInitializerState;
 }

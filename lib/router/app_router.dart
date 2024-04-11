@@ -41,7 +41,8 @@ class AppRouter {
           final currentConsumer =
               context.read<ConsumerRepository>().currentConsumer;
           // [ClearConsumer] on [SignOut]
-          if (currentConsumer.state != ConsumerState.empty) {
+          if (currentConsumer.state != ConsumerState.empty &&
+              currentAuth.state == AuthState.unAuth) {
             context.read<ConsumerRepository>().clearCurrentConsumer();
           }
           // if (currentSupport.state != SupportState.empty) {
@@ -94,7 +95,11 @@ class AppRouter {
             final nullablePath = verifiedSignedInCheckConsumer();
             // nullablePath ??= checkSupport();
             // nullablePath ??= checkAdmin();
-            if (nullablePath != null) return nullablePath;
+            if (currentConsumer.state != ConsumerState.empty ||
+                (currentConsumer.state == ConsumerState.empty &&
+                    nullablePath != null)) {
+              return nullablePath;
+            }
 
             // [VerifiedSignIn] + [NoUser]
             if (!_inAccountInitializer(state)) {

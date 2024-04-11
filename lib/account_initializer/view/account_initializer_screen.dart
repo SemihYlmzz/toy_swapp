@@ -14,12 +14,22 @@ class AccountInitializerScreen extends StatelessWidget {
       create: (context) => AccountInitializerBloc(
         authRepository: context.read(),
         consumerRepository: context.read(),
-      )..add(const AccountInitializerEvent.fetchConsumer()),
+      )..add(const AccountInitializerEvent.fetchAccountData()),
       child: MultiBlocListener(
         listeners: [
           accountInitializerBlocListeners.errorDisplayer(),
         ],
-        child: const AccountInitializerView(),
+        child: Builder(
+          builder: (context) {
+            final fetchFailure = context.select(
+              (AccountInitializerBloc bloc) =>
+                  bloc.state.fetchAccountDataFailure,
+            );
+            return fetchFailure == null
+                ? const AccountInitializerView()
+                : const AccountInitializerErrorView();
+          },
+        ),
       ),
     );
   }
