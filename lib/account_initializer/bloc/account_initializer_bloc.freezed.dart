@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AccountInitializerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() fetchConsumer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? fetchConsumer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? fetchConsumer,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AccountInitializerFetch value) fetch,
+    required TResult Function(AccountInitializerFetch value) fetchConsumer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AccountInitializerFetch value)? fetch,
+    TResult? Function(AccountInitializerFetch value)? fetchConsumer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AccountInitializerFetch value)? fetch,
+    TResult Function(AccountInitializerFetch value)? fetchConsumer,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -95,7 +95,7 @@ class _$AccountInitializerFetchImpl implements AccountInitializerFetch {
 
   @override
   String toString() {
-    return 'AccountInitializerEvent.fetch()';
+    return 'AccountInitializerEvent.fetchConsumer()';
   }
 
   @override
@@ -111,27 +111,27 @@ class _$AccountInitializerFetchImpl implements AccountInitializerFetch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() fetchConsumer,
   }) {
-    return fetch();
+    return fetchConsumer();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? fetchConsumer,
   }) {
-    return fetch?.call();
+    return fetchConsumer?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? fetchConsumer,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch();
+    if (fetchConsumer != null) {
+      return fetchConsumer();
     }
     return orElse();
   }
@@ -139,27 +139,27 @@ class _$AccountInitializerFetchImpl implements AccountInitializerFetch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AccountInitializerFetch value) fetch,
+    required TResult Function(AccountInitializerFetch value) fetchConsumer,
   }) {
-    return fetch(this);
+    return fetchConsumer(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AccountInitializerFetch value)? fetch,
+    TResult? Function(AccountInitializerFetch value)? fetchConsumer,
   }) {
-    return fetch?.call(this);
+    return fetchConsumer?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AccountInitializerFetch value)? fetch,
+    TResult Function(AccountInitializerFetch value)? fetchConsumer,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch(this);
+    if (fetchConsumer != null) {
+      return fetchConsumer(this);
     }
     return orElse();
   }
@@ -171,6 +171,8 @@ abstract class AccountInitializerFetch implements AccountInitializerEvent {
 
 /// @nodoc
 mixin _$AccountInitializerState {
+  Auth get currentAuth => throw _privateConstructorUsedError;
+  bool get needAccountRegister => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
@@ -185,7 +187,13 @@ abstract class $AccountInitializerStateCopyWith<$Res> {
           $Res Function(AccountInitializerState) then) =
       _$AccountInitializerStateCopyWithImpl<$Res, AccountInitializerState>;
   @useResult
-  $Res call({bool isLoading, Failure? failure});
+  $Res call(
+      {Auth currentAuth,
+      bool needAccountRegister,
+      bool isLoading,
+      Failure? failure});
+
+  $AuthCopyWith<$Res> get currentAuth;
 }
 
 /// @nodoc
@@ -202,10 +210,20 @@ class _$AccountInitializerStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? currentAuth = null,
+    Object? needAccountRegister = null,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
+      currentAuth: null == currentAuth
+          ? _value.currentAuth
+          : currentAuth // ignore: cast_nullable_to_non_nullable
+              as Auth,
+      needAccountRegister: null == needAccountRegister
+          ? _value.needAccountRegister
+          : needAccountRegister // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -215,6 +233,14 @@ class _$AccountInitializerStateCopyWithImpl<$Res,
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AuthCopyWith<$Res> get currentAuth {
+    return $AuthCopyWith<$Res>(_value.currentAuth, (value) {
+      return _then(_value.copyWith(currentAuth: value) as $Val);
+    });
   }
 }
 
@@ -227,7 +253,14 @@ abstract class _$$AccountInitializerStateImplCopyWith<$Res>
       __$$AccountInitializerStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, Failure? failure});
+  $Res call(
+      {Auth currentAuth,
+      bool needAccountRegister,
+      bool isLoading,
+      Failure? failure});
+
+  @override
+  $AuthCopyWith<$Res> get currentAuth;
 }
 
 /// @nodoc
@@ -243,10 +276,20 @@ class __$$AccountInitializerStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? currentAuth = null,
+    Object? needAccountRegister = null,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
     return _then(_$AccountInitializerStateImpl(
+      currentAuth: null == currentAuth
+          ? _value.currentAuth
+          : currentAuth // ignore: cast_nullable_to_non_nullable
+              as Auth,
+      needAccountRegister: null == needAccountRegister
+          ? _value.needAccountRegister
+          : needAccountRegister // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -262,8 +305,17 @@ class __$$AccountInitializerStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AccountInitializerStateImpl implements _AccountInitializerState {
-  const _$AccountInitializerStateImpl({this.isLoading = false, this.failure});
+  const _$AccountInitializerStateImpl(
+      {required this.currentAuth,
+      this.needAccountRegister = false,
+      this.isLoading = false,
+      this.failure});
 
+  @override
+  final Auth currentAuth;
+  @override
+  @JsonKey()
+  final bool needAccountRegister;
   @override
   @JsonKey()
   final bool isLoading;
@@ -272,7 +324,7 @@ class _$AccountInitializerStateImpl implements _AccountInitializerState {
 
   @override
   String toString() {
-    return 'AccountInitializerState(isLoading: $isLoading, failure: $failure)';
+    return 'AccountInitializerState(currentAuth: $currentAuth, needAccountRegister: $needAccountRegister, isLoading: $isLoading, failure: $failure)';
   }
 
   @override
@@ -280,13 +332,18 @@ class _$AccountInitializerStateImpl implements _AccountInitializerState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AccountInitializerStateImpl &&
+            (identical(other.currentAuth, currentAuth) ||
+                other.currentAuth == currentAuth) &&
+            (identical(other.needAccountRegister, needAccountRegister) ||
+                other.needAccountRegister == needAccountRegister) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, failure);
+  int get hashCode => Object.hash(
+      runtimeType, currentAuth, needAccountRegister, isLoading, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -298,9 +355,15 @@ class _$AccountInitializerStateImpl implements _AccountInitializerState {
 
 abstract class _AccountInitializerState implements AccountInitializerState {
   const factory _AccountInitializerState(
-      {final bool isLoading,
+      {required final Auth currentAuth,
+      final bool needAccountRegister,
+      final bool isLoading,
       final Failure? failure}) = _$AccountInitializerStateImpl;
 
+  @override
+  Auth get currentAuth;
+  @override
+  bool get needAccountRegister;
   @override
   bool get isLoading;
   @override

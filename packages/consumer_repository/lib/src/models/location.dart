@@ -13,4 +13,8 @@ class CurrentLocation with _$CurrentLocation {
 
   factory CurrentLocation.fromJson(Map<String, Object?> json) =>
       _$CurrentLocationFromJson(json);
+  factory CurrentLocation.empty() => const CurrentLocation(
+        latitude: 0,
+        longitude: 0,
+      );
 }

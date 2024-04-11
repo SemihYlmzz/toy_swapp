@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_widgets/shared_widgets.dart';
 
 import '../account_initializer.dart';
 
@@ -12,22 +11,16 @@ class AccountInitializerScreen extends StatelessWidget {
     final accountInitializerBlocListeners = AccountInitializerBlocListeners();
 
     return BlocProvider(
-      create: (context) => AccountInitializerBloc(),
+      create: (context) => AccountInitializerBloc(
+        authRepository: context.read(),
+        consumerRepository: context.read(),
+      )..add(const AccountInitializerEvent.fetchConsumer()),
       child: MultiBlocListener(
         listeners: [
           accountInitializerBlocListeners.errorDisplayer(),
+          accountInitializerBlocListeners.needAccountRegisterNavigator(),
         ],
-        child:
-            BlocSelector<AccountInitializerBloc, AccountInitializerState, bool>(
-          selector: (state) => state.isLoading,
-          builder: (context, isLoading) {
-            return LoadingScreen(
-              isLoading: isLoading,
-              size: MediaQuery.sizeOf(context),
-              child: const AccountInitializerView(),
-            );
-          },
-        ),
+        child: const AccountInitializerView(),
       ),
     );
   }

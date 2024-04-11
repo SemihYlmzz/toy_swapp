@@ -28,7 +28,7 @@ class ConsumerRepository {
       StreamController<Consumer>.broadcast();
   Stream<Consumer> get currentConsumerStream =>
       _currentConsumerStreamController.stream;
-  Consumer? currentConsumer;
+  Consumer currentConsumer = Consumer.empty();
 
   // FUNCTIONS
   FutureUnit create({
@@ -105,7 +105,7 @@ class ConsumerRepository {
     }
   }
 
-  FutureUnit readCurrentUser({
+  FutureUnit readConsumer({
     required String authId,
   }) async {
     // CONTROL ALL INPUT VALUES
@@ -127,6 +127,10 @@ class ConsumerRepository {
       // }
       return const Left(ConsumerRepositoryException.unknown());
     }
+  }
+
+  void clearCurrentConsumer() {
+    _currentConsumerStreamController.sink.add(Consumer.empty());
   }
 
   // Special Functions

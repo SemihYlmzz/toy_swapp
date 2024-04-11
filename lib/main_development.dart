@@ -23,7 +23,10 @@ void main() async {
   final consumerRepository = await ConsumerRepositoryInitializer.initialize();
   final deviceMetadataRepository = DeviceMetadataRepository();
   // Instances
-  final routerConfig = AppRouter().router(authRepository.currentAuthStream);
+  final routerConfig = AppRouter().router(
+    authRepository.currentAuthStream,
+    consumerRepository.currentConsumerStream,
+  );
   final appPreferences = await appPreferencesRepository.read();
   final appMetadata = await appMetadataRepository.read();
   final deviceMetadata = await deviceMetadataRepository.getDeviceMetadata();

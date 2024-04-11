@@ -18,7 +18,6 @@ class EmailVerificationScreen extends StatelessWidget {
       child: MultiBlocListener(
         listeners: [
           emailVerificationBlocListeners.errorDisplayer(),
-          emailVerificationBlocListeners.verifiedEmailNavigator(),
         ],
         child:
             BlocSelector<EmailVerificationBloc, EmailVerificationState, bool>(

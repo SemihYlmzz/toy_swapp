@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:auth_repository/auth_repository.dart';
@@ -19,7 +20,7 @@ class AccountRegistrationBloc
         _authRepository = authRepository,
         super(AccountRegistrationState(authState: authRepository.currentAuth)) {
     on<AccountRegistrationEvent>(_onAccountRegistrationEvent);
-    _authRepository.currentAuthStream.listen((event) {
+    _authStreamSubscription = _authRepository.currentAuthStream.listen((event) {
       add(AccountRegistrationEvent.authStateUpdated(event));
     });
   }
@@ -27,6 +28,10 @@ class AccountRegistrationBloc
   final ConsumerRepository _consumerRepository;
   final AuthRepository _authRepository;
 
+  // Values
+  StreamSubscription<Auth>? _authStreamSubscription;
+
+  // Events
   Future<void> _onAccountRegistrationEvent(
     AccountRegistrationEvent event,
     Emitter<AccountRegistrationState> emit,
@@ -61,5 +66,11 @@ class AccountRegistrationBloc
     );
 
     emit(state.copyWith(isLoading: false, failure: null));
+  }
+
+  @override
+  Future<void> close() {
+    _authStreamSubscription?.cancel();
+    return super.close();
   }
 }

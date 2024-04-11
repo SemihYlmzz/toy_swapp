@@ -15,4 +15,10 @@ class AvatarUrls with _$AvatarUrls {
 
   factory AvatarUrls.fromJson(Map<String, Object?> json) =>
       _$AvatarUrlsFromJson(json);
+  factory AvatarUrls.empty() => const AvatarUrls(
+        url128: '',
+        url256: '',
+        url512: '',
+        url1024: '',
+      );
 }

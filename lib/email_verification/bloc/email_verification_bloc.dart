@@ -18,7 +18,7 @@ class EmailVerificationBloc
         super(EmailVerificationState(authState: authRepository.currentAuth)) {
     on<EmailVerificationEvent>(_onEmailVerificationEvent);
     // Update [AuthState] when it changes
-    _authRepository.currentAuthStream.listen((event) {
+    _authListener = _authRepository.currentAuthStream.listen((event) {
       add(EmailVerificationEvent.authStateUpdated(event));
     });
     // [Reload] the [AuthState] every second if link tapped.
@@ -31,6 +31,7 @@ class EmailVerificationBloc
   }
   // Instances
   final AuthRepository _authRepository;
+  StreamSubscription<dynamic>? _authListener;
   Timer? _timerInAction;
 
   // Events
@@ -72,6 +73,7 @@ class EmailVerificationBloc
 
   @override
   Future<void> close() {
+    _authListener?.cancel();
     _timerInAction?.cancel();
     return super.close();
   }

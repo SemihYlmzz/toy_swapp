@@ -1,4 +1,5 @@
 import 'package:auth_repository/auth_repository.dart';
+import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +23,8 @@ class AppRouter {
   final parentNavigatorKey = GlobalKey<NavigatorState>();
   static final AppRouter instance = AppRouter._internal();
 
-  GoRouter router(Stream<dynamic> authStream) => GoRouter(
+  GoRouter router(Stream<dynamic> authStream, Stream<dynamic> userStream) =>
+      GoRouter(
         initialLocation: SignInRouter.instance.path,
         navigatorKey: parentNavigatorKey,
         routes: [
@@ -36,48 +38,79 @@ class AppRouter {
         ],
         redirect: (BuildContext context, GoRouterState state) async {
           final authState = context.read<AuthRepository>().currentAuth;
+          final currentConsumer =
+              context.read<ConsumerRepository>().currentConsumer;
 
           final isAuthSignedIn = authState != Auth.empty();
           final isEmailVerified = authState.isEmailVerified;
-
-          // Spot User if in [AuthScreen]
-          final isAuthScreen = [
-            SignInRouter.instance.path,
-            SignUpRouter.instance.path,
-            ForgotPasswordRouter.instance.path,
-          ].contains(state.matchedLocation);
-
-          // Spot User if in [EmailVerificationScreen]
-          final isEmailVerificationScreen = [
-            EmailVerificationRouter.instance.path,
-          ].contains(state.matchedLocation);
-
-          // [SignedIn], [EmailVerified] but in [EmailVerificationScreen]
-          if (isAuthSignedIn && isEmailVerified && isEmailVerificationScreen) {
-            print('1');
-            return AccountInitializerRouter.instance.path;
-          }
-          // Auth [SignedIn] but [EmailNotVerified]
-          if (isAuthSignedIn && !isEmailVerified) {
-            return EmailVerificationRouter.instance.path;
-          }
-          // Auth [SignedIn] but still in [AuthScreen]
-          if (isAuthSignedIn && isAuthScreen) {
-            return AccountRegistrationRouter.instance.path;
-            // Todo: open
-            // To detect, read and navigate [Consumer], [Support] or [Admin]
-            //return AccountInitializerRouter.instance.path;
+          final hasConsumer = currentConsumer != Consumer.empty();
+          if (!isAuthSignedIn && hasConsumer) {
+            context.read<ConsumerRepository>().clearCurrentConsumer();
           }
 
-          // Auth [NotSignedIn] but not in [AuthScreen]
-          if (!isAuthScreen && !isAuthSignedIn) {
-            return SignInRouter.instance.path;
+          //  [NotSignedIn]
+          if (!isAuthSignedIn) {
+            // [Not In AuthScreen] -> Go SignIn
+            if (!_inAuthScreen(state)) {
+              return SignInRouter.instance.path;
+            }
+            return null;
           }
 
+          // [SignedIn] + [EmailNotVerified]
+          if (!isEmailVerified) {
+            // [Not In EmailVerificationScreen] -> Go EmailVerification
+            if (!_inEmailVerificationScreen(state)) {
+              return EmailVerificationRouter.instance.path;
+            }
+            return null;
+          }
+          // [SignedIn] + [EmailVerified]
+          // [NoConsumer]
+          if (!hasConsumer) {
+            // [Not In UserScreens] -> Go AccountInitializer
+            if (!_inUserScreens(state)) {
+              return AccountInitializerRouter.instance.path;
+            }
+            return null;
+          }
+
+          // [SignedIn] + [EmailVerified] + [HasConsumer]
+          if (isAuthSignedIn && isEmailVerified && hasConsumer) {
+            // [Not In ConsumerScreens] -> Go Consumer Screens
+            if (!_inConsumerScreens(state)) {
+              return HomeRouter.instance.path;
+            }
+            return null;
+          }
           return null;
         },
         refreshListenable: GoRouterRefreshStream(
-          stream: authStream,
+          stream1: authStream,
+          stream2: userStream,
         ),
       );
+
+  // [AuthScreens]
+  bool _inAuthScreen(GoRouterState state) => [
+        SignInRouter.instance.path,
+        SignUpRouter.instance.path,
+        ForgotPasswordRouter.instance.path,
+      ].contains(state.matchedLocation);
+
+  // [EmailVerificationScreen]
+  bool _inEmailVerificationScreen(GoRouterState state) => [
+        EmailVerificationRouter.instance.path,
+      ].contains(state.matchedLocation);
+
+  // [UserScreens]
+  bool _inUserScreens(GoRouterState state) => [
+        AccountInitializerRouter.instance.path,
+        AccountRegistrationRouter.instance.path,
+      ].contains(state.matchedLocation);
+
+  // [ConsumerScreens]
+  bool _inConsumerScreens(GoRouterState state) => [
+        HomeRouter.instance.path,
+      ].contains(state.matchedLocation);
 }
