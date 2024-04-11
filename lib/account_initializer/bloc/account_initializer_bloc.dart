@@ -35,10 +35,8 @@ class AccountInitializerBloc
           authId: state.currentAuth.id,
         );
         tryRead.fold(
-          (f) => f == const ConsumerRepositoryException.noConsumerFound()
-              ? emit(state.copyWith(needAccountRegister: true))
-              : emit(state.copyWith(failure: f)),
-          (success) => null,
+          (l) => emit(state.copyWith(failure: l)),
+          (r) => null,
         );
       },
     );

@@ -126,6 +126,7 @@ class AuthRepository {
       displayName: user.displayName,
       photoURL: user.photoURL,
       lastSignInTime: user.metadata.lastSignInTime,
+      state: AuthState.auth,
     );
   }
 

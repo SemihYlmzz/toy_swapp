@@ -30,4 +30,30 @@ class AccountInitializerRouter {
   void push(BuildContext context) {
     GoRouter.of(context).pushNamed(_name);
   }
+
+  String? validateNavigation({
+    required bool isSignedIn,
+    required bool isEmailVerified,
+    required bool isConsumerEmpty,
+    // required bool isSupportEmpty,
+    // required bool isAdminEmpty,
+  }) {
+    if (!isSignedIn) {
+      return null;
+    }
+    if (isEmailVerified) {
+      return null;
+    }
+
+    if (!isConsumerEmpty) {
+      return null;
+    }
+    // if (!isSupportEmpty) {
+    //   return null;
+    // }
+    // if (!isAdminEmpty) {
+    //   return null;
+    // }
+    return _path;
+  }
 }

@@ -27,6 +27,7 @@ mixin _$Consumer {
   AvatarUrls get avatarUrls => throw _privateConstructorUsedError;
   Counters get counters => throw _privateConstructorUsedError;
   bool get isDeletingAccount => throw _privateConstructorUsedError;
+  ConsumerState get state => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,6 +49,7 @@ abstract class $ConsumerCopyWith<$Res> {
       AvatarUrls avatarUrls,
       Counters counters,
       bool isDeletingAccount,
+      ConsumerState state,
       String? email});
 
   $CurrentLocationCopyWith<$Res> get currentLocation;
@@ -75,6 +77,7 @@ class _$ConsumerCopyWithImpl<$Res, $Val extends Consumer>
     Object? avatarUrls = null,
     Object? counters = null,
     Object? isDeletingAccount = null,
+    Object? state = null,
     Object? email = freezed,
   }) {
     return _then(_value.copyWith(
@@ -106,6 +109,10 @@ class _$ConsumerCopyWithImpl<$Res, $Val extends Consumer>
           ? _value.isDeletingAccount
           : isDeletingAccount // ignore: cast_nullable_to_non_nullable
               as bool,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as ConsumerState,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -154,6 +161,7 @@ abstract class _$$ConsumerImplCopyWith<$Res>
       AvatarUrls avatarUrls,
       Counters counters,
       bool isDeletingAccount,
+      ConsumerState state,
       String? email});
 
   @override
@@ -182,6 +190,7 @@ class __$$ConsumerImplCopyWithImpl<$Res>
     Object? avatarUrls = null,
     Object? counters = null,
     Object? isDeletingAccount = null,
+    Object? state = null,
     Object? email = freezed,
   }) {
     return _then(_$ConsumerImpl(
@@ -213,6 +222,10 @@ class __$$ConsumerImplCopyWithImpl<$Res>
           ? _value.isDeletingAccount
           : isDeletingAccount // ignore: cast_nullable_to_non_nullable
               as bool,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as ConsumerState,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -232,6 +245,7 @@ class _$ConsumerImpl with DiagnosticableTreeMixin implements _Consumer {
       required this.avatarUrls,
       required this.counters,
       required this.isDeletingAccount,
+      required this.state,
       this.email});
 
   factory _$ConsumerImpl.fromJson(Map<String, dynamic> json) =>
@@ -252,11 +266,13 @@ class _$ConsumerImpl with DiagnosticableTreeMixin implements _Consumer {
   @override
   final bool isDeletingAccount;
   @override
+  final ConsumerState state;
+  @override
   final String? email;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Consumer(authId: $authId, firstName: $firstName, lastName: $lastName, currentLocation: $currentLocation, avatarUrls: $avatarUrls, counters: $counters, isDeletingAccount: $isDeletingAccount, email: $email)';
+    return 'Consumer(authId: $authId, firstName: $firstName, lastName: $lastName, currentLocation: $currentLocation, avatarUrls: $avatarUrls, counters: $counters, isDeletingAccount: $isDeletingAccount, state: $state, email: $email)';
   }
 
   @override
@@ -271,6 +287,7 @@ class _$ConsumerImpl with DiagnosticableTreeMixin implements _Consumer {
       ..add(DiagnosticsProperty('avatarUrls', avatarUrls))
       ..add(DiagnosticsProperty('counters', counters))
       ..add(DiagnosticsProperty('isDeletingAccount', isDeletingAccount))
+      ..add(DiagnosticsProperty('state', state))
       ..add(DiagnosticsProperty('email', email));
   }
 
@@ -292,13 +309,14 @@ class _$ConsumerImpl with DiagnosticableTreeMixin implements _Consumer {
                 other.counters == counters) &&
             (identical(other.isDeletingAccount, isDeletingAccount) ||
                 other.isDeletingAccount == isDeletingAccount) &&
+            (identical(other.state, state) || other.state == state) &&
             (identical(other.email, email) || other.email == email));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, authId, firstName, lastName,
-      currentLocation, avatarUrls, counters, isDeletingAccount, email);
+      currentLocation, avatarUrls, counters, isDeletingAccount, state, email);
 
   @JsonKey(ignore: true)
   @override
@@ -323,6 +341,7 @@ abstract class _Consumer implements Consumer {
       required final AvatarUrls avatarUrls,
       required final Counters counters,
       required final bool isDeletingAccount,
+      required final ConsumerState state,
       final String? email}) = _$ConsumerImpl;
 
   factory _Consumer.fromJson(Map<String, dynamic> json) =
@@ -342,6 +361,8 @@ abstract class _Consumer implements Consumer {
   Counters get counters;
   @override
   bool get isDeletingAccount;
+  @override
+  ConsumerState get state;
   @override
   String? get email;
   @override

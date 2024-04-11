@@ -19,41 +19,32 @@ mixin _$ConsumerRepositoryException {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
-    required TResult Function() noConsumerFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
-    TResult? Function()? noConsumerFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function()? noConsumerFound,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ConsumerRepositoryExceptionUnknown value) unknown,
-    required TResult Function(ConsumerRepositoryExceptionNoConsumerFound value)
-        noConsumerFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ConsumerRepositoryExceptionUnknown value)? unknown,
-    TResult? Function(ConsumerRepositoryExceptionNoConsumerFound value)?
-        noConsumerFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ConsumerRepositoryExceptionUnknown value)? unknown,
-    TResult Function(ConsumerRepositoryExceptionNoConsumerFound value)?
-        noConsumerFound,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -124,7 +115,6 @@ class _$ConsumerRepositoryExceptionUnknownImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
-    required TResult Function() noConsumerFound,
   }) {
     return unknown();
   }
@@ -133,7 +123,6 @@ class _$ConsumerRepositoryExceptionUnknownImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
-    TResult? Function()? noConsumerFound,
   }) {
     return unknown?.call();
   }
@@ -142,7 +131,6 @@ class _$ConsumerRepositoryExceptionUnknownImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function()? noConsumerFound,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -155,8 +143,6 @@ class _$ConsumerRepositoryExceptionUnknownImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ConsumerRepositoryExceptionUnknown value) unknown,
-    required TResult Function(ConsumerRepositoryExceptionNoConsumerFound value)
-        noConsumerFound,
   }) {
     return unknown(this);
   }
@@ -165,8 +151,6 @@ class _$ConsumerRepositoryExceptionUnknownImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ConsumerRepositoryExceptionUnknown value)? unknown,
-    TResult? Function(ConsumerRepositoryExceptionNoConsumerFound value)?
-        noConsumerFound,
   }) {
     return unknown?.call(this);
   }
@@ -175,8 +159,6 @@ class _$ConsumerRepositoryExceptionUnknownImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ConsumerRepositoryExceptionUnknown value)? unknown,
-    TResult Function(ConsumerRepositoryExceptionNoConsumerFound value)?
-        noConsumerFound,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -190,117 +172,4 @@ abstract class ConsumerRepositoryExceptionUnknown
     implements ConsumerRepositoryException {
   const factory ConsumerRepositoryExceptionUnknown() =
       _$ConsumerRepositoryExceptionUnknownImpl;
-}
-
-/// @nodoc
-abstract class _$$ConsumerRepositoryExceptionNoConsumerFoundImplCopyWith<$Res> {
-  factory _$$ConsumerRepositoryExceptionNoConsumerFoundImplCopyWith(
-          _$ConsumerRepositoryExceptionNoConsumerFoundImpl value,
-          $Res Function(_$ConsumerRepositoryExceptionNoConsumerFoundImpl)
-              then) =
-      __$$ConsumerRepositoryExceptionNoConsumerFoundImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ConsumerRepositoryExceptionNoConsumerFoundImplCopyWithImpl<$Res>
-    extends _$ConsumerRepositoryExceptionCopyWithImpl<$Res,
-        _$ConsumerRepositoryExceptionNoConsumerFoundImpl>
-    implements _$$ConsumerRepositoryExceptionNoConsumerFoundImplCopyWith<$Res> {
-  __$$ConsumerRepositoryExceptionNoConsumerFoundImplCopyWithImpl(
-      _$ConsumerRepositoryExceptionNoConsumerFoundImpl _value,
-      $Res Function(_$ConsumerRepositoryExceptionNoConsumerFoundImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ConsumerRepositoryExceptionNoConsumerFoundImpl
-    implements ConsumerRepositoryExceptionNoConsumerFound {
-  const _$ConsumerRepositoryExceptionNoConsumerFoundImpl();
-
-  @override
-  String toString() {
-    return 'ConsumerRepositoryException.noConsumerFound()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ConsumerRepositoryExceptionNoConsumerFoundImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() unknown,
-    required TResult Function() noConsumerFound,
-  }) {
-    return noConsumerFound();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? unknown,
-    TResult? Function()? noConsumerFound,
-  }) {
-    return noConsumerFound?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unknown,
-    TResult Function()? noConsumerFound,
-    required TResult orElse(),
-  }) {
-    if (noConsumerFound != null) {
-      return noConsumerFound();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ConsumerRepositoryExceptionUnknown value) unknown,
-    required TResult Function(ConsumerRepositoryExceptionNoConsumerFound value)
-        noConsumerFound,
-  }) {
-    return noConsumerFound(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ConsumerRepositoryExceptionUnknown value)? unknown,
-    TResult? Function(ConsumerRepositoryExceptionNoConsumerFound value)?
-        noConsumerFound,
-  }) {
-    return noConsumerFound?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ConsumerRepositoryExceptionUnknown value)? unknown,
-    TResult Function(ConsumerRepositoryExceptionNoConsumerFound value)?
-        noConsumerFound,
-    required TResult orElse(),
-  }) {
-    if (noConsumerFound != null) {
-      return noConsumerFound(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ConsumerRepositoryExceptionNoConsumerFound
-    implements ConsumerRepositoryException {
-  const factory ConsumerRepositoryExceptionNoConsumerFound() =
-      _$ConsumerRepositoryExceptionNoConsumerFoundImpl;
 }

@@ -9,6 +9,4 @@ sealed class ConsumerRepositoryException
     implements Failure {
   const factory ConsumerRepositoryException.unknown() =
       ConsumerRepositoryExceptionUnknown;
-  const factory ConsumerRepositoryException.noConsumerFound() =
-      ConsumerRepositoryExceptionNoConsumerFound;
 }

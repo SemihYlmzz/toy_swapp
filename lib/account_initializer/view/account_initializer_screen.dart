@@ -18,7 +18,6 @@ class AccountInitializerScreen extends StatelessWidget {
       child: MultiBlocListener(
         listeners: [
           accountInitializerBlocListeners.errorDisplayer(),
-          accountInitializerBlocListeners.needAccountRegisterNavigator(),
         ],
         child: const AccountInitializerView(),
       ),

@@ -27,6 +27,7 @@ mixin _$Auth {
   String? get displayName => throw _privateConstructorUsedError;
   String? get photoURL => throw _privateConstructorUsedError;
   DateTime? get lastSignInTime => throw _privateConstructorUsedError;
+  AuthState get state => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,8 @@ abstract class $AuthCopyWith<$Res> {
       String? email,
       String? displayName,
       String? photoURL,
-      DateTime? lastSignInTime});
+      DateTime? lastSignInTime,
+      AuthState state});
 }
 
 /// @nodoc
@@ -68,6 +70,7 @@ class _$AuthCopyWithImpl<$Res, $Val extends Auth>
     Object? displayName = freezed,
     Object? photoURL = freezed,
     Object? lastSignInTime = freezed,
+    Object? state = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -98,6 +101,10 @@ class _$AuthCopyWithImpl<$Res, $Val extends Auth>
           ? _value.lastSignInTime
           : lastSignInTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as AuthState,
     ) as $Val);
   }
 }
@@ -116,7 +123,8 @@ abstract class _$$AuthImplCopyWith<$Res> implements $AuthCopyWith<$Res> {
       String? email,
       String? displayName,
       String? photoURL,
-      DateTime? lastSignInTime});
+      DateTime? lastSignInTime,
+      AuthState state});
 }
 
 /// @nodoc
@@ -136,6 +144,7 @@ class __$$AuthImplCopyWithImpl<$Res>
     Object? displayName = freezed,
     Object? photoURL = freezed,
     Object? lastSignInTime = freezed,
+    Object? state = null,
   }) {
     return _then(_$AuthImpl(
       id: null == id
@@ -166,6 +175,10 @@ class __$$AuthImplCopyWithImpl<$Res>
           ? _value.lastSignInTime
           : lastSignInTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as AuthState,
     ));
   }
 }
@@ -180,7 +193,8 @@ class _$AuthImpl with DiagnosticableTreeMixin implements _Auth {
       required this.email,
       required this.displayName,
       required this.photoURL,
-      required this.lastSignInTime});
+      required this.lastSignInTime,
+      required this.state});
 
   factory _$AuthImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthImplFromJson(json);
@@ -199,10 +213,12 @@ class _$AuthImpl with DiagnosticableTreeMixin implements _Auth {
   final String? photoURL;
   @override
   final DateTime? lastSignInTime;
+  @override
+  final AuthState state;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Auth(id: $id, isEmailVerified: $isEmailVerified, signInMethod: $signInMethod, email: $email, displayName: $displayName, photoURL: $photoURL, lastSignInTime: $lastSignInTime)';
+    return 'Auth(id: $id, isEmailVerified: $isEmailVerified, signInMethod: $signInMethod, email: $email, displayName: $displayName, photoURL: $photoURL, lastSignInTime: $lastSignInTime, state: $state)';
   }
 
   @override
@@ -216,7 +232,8 @@ class _$AuthImpl with DiagnosticableTreeMixin implements _Auth {
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('displayName', displayName))
       ..add(DiagnosticsProperty('photoURL', photoURL))
-      ..add(DiagnosticsProperty('lastSignInTime', lastSignInTime));
+      ..add(DiagnosticsProperty('lastSignInTime', lastSignInTime))
+      ..add(DiagnosticsProperty('state', state));
   }
 
   @override
@@ -235,13 +252,14 @@ class _$AuthImpl with DiagnosticableTreeMixin implements _Auth {
             (identical(other.photoURL, photoURL) ||
                 other.photoURL == photoURL) &&
             (identical(other.lastSignInTime, lastSignInTime) ||
-                other.lastSignInTime == lastSignInTime));
+                other.lastSignInTime == lastSignInTime) &&
+            (identical(other.state, state) || other.state == state));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, isEmailVerified,
-      signInMethod, email, displayName, photoURL, lastSignInTime);
+      signInMethod, email, displayName, photoURL, lastSignInTime, state);
 
   @JsonKey(ignore: true)
   @override
@@ -265,7 +283,8 @@ abstract class _Auth implements Auth {
       required final String? email,
       required final String? displayName,
       required final String? photoURL,
-      required final DateTime? lastSignInTime}) = _$AuthImpl;
+      required final DateTime? lastSignInTime,
+      required final AuthState state}) = _$AuthImpl;
 
   factory _Auth.fromJson(Map<String, dynamic> json) = _$AuthImpl.fromJson;
 
@@ -283,6 +302,8 @@ abstract class _Auth implements Auth {
   String? get photoURL;
   @override
   DateTime? get lastSignInTime;
+  @override
+  AuthState get state;
   @override
   @JsonKey(ignore: true)
   _$$AuthImplCopyWith<_$AuthImpl> get copyWith =>

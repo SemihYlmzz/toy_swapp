@@ -17,6 +17,7 @@ _$ConsumerImpl _$$ConsumerImplFromJson(Map<String, dynamic> json) =>
           AvatarUrls.fromJson(json['avatarUrls'] as Map<String, dynamic>),
       counters: Counters.fromJson(json['counters'] as Map<String, dynamic>),
       isDeletingAccount: json['isDeletingAccount'] as bool,
+      state: $enumDecode(_$ConsumerStateEnumMap, json['state']),
       email: json['email'] as String?,
     );
 
@@ -29,5 +30,12 @@ Map<String, dynamic> _$$ConsumerImplToJson(_$ConsumerImpl instance) =>
       'avatarUrls': instance.avatarUrls.toJson(),
       'counters': instance.counters.toJson(),
       'isDeletingAccount': instance.isDeletingAccount,
+      'state': _$ConsumerStateEnumMap[instance.state]!,
       'email': instance.email,
     };
+
+const _$ConsumerStateEnumMap = {
+  ConsumerState.empty: 'empty',
+  ConsumerState.needRegister: 'needRegister',
+  ConsumerState.hasData: 'hasData',
+};

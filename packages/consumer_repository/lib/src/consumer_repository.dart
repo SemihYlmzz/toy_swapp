@@ -88,6 +88,7 @@ class ConsumerRepository {
           switchs: 0,
         ),
         isDeletingAccount: false,
+        state: ConsumerState.hasData,
       );
 
       await _firebaseFirestore
@@ -116,7 +117,10 @@ class ConsumerRepository {
           .doc(authId)
           .get();
       if (!consumerDoc.exists || consumerDoc.data() == null) {
-        return const Left(ConsumerRepositoryException.noConsumerFound());
+        _currentConsumerStreamController.sink.add(
+          Consumer.needRegister(),
+        );
+        return const Right(unit);
       }
       final currentConsumer = Consumer.fromJson(consumerDoc.data()!);
       _currentConsumerStreamController.sink.add(currentConsumer);

@@ -172,7 +172,6 @@ abstract class AccountInitializerFetch implements AccountInitializerEvent {
 /// @nodoc
 mixin _$AccountInitializerState {
   Auth get currentAuth => throw _privateConstructorUsedError;
-  bool get needAccountRegister => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
@@ -187,11 +186,7 @@ abstract class $AccountInitializerStateCopyWith<$Res> {
           $Res Function(AccountInitializerState) then) =
       _$AccountInitializerStateCopyWithImpl<$Res, AccountInitializerState>;
   @useResult
-  $Res call(
-      {Auth currentAuth,
-      bool needAccountRegister,
-      bool isLoading,
-      Failure? failure});
+  $Res call({Auth currentAuth, bool isLoading, Failure? failure});
 
   $AuthCopyWith<$Res> get currentAuth;
 }
@@ -211,7 +206,6 @@ class _$AccountInitializerStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? currentAuth = null,
-    Object? needAccountRegister = null,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
@@ -220,10 +214,6 @@ class _$AccountInitializerStateCopyWithImpl<$Res,
           ? _value.currentAuth
           : currentAuth // ignore: cast_nullable_to_non_nullable
               as Auth,
-      needAccountRegister: null == needAccountRegister
-          ? _value.needAccountRegister
-          : needAccountRegister // ignore: cast_nullable_to_non_nullable
-              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -253,11 +243,7 @@ abstract class _$$AccountInitializerStateImplCopyWith<$Res>
       __$$AccountInitializerStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Auth currentAuth,
-      bool needAccountRegister,
-      bool isLoading,
-      Failure? failure});
+  $Res call({Auth currentAuth, bool isLoading, Failure? failure});
 
   @override
   $AuthCopyWith<$Res> get currentAuth;
@@ -277,7 +263,6 @@ class __$$AccountInitializerStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? currentAuth = null,
-    Object? needAccountRegister = null,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
@@ -286,10 +271,6 @@ class __$$AccountInitializerStateImplCopyWithImpl<$Res>
           ? _value.currentAuth
           : currentAuth // ignore: cast_nullable_to_non_nullable
               as Auth,
-      needAccountRegister: null == needAccountRegister
-          ? _value.needAccountRegister
-          : needAccountRegister // ignore: cast_nullable_to_non_nullable
-              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -306,16 +287,10 @@ class __$$AccountInitializerStateImplCopyWithImpl<$Res>
 
 class _$AccountInitializerStateImpl implements _AccountInitializerState {
   const _$AccountInitializerStateImpl(
-      {required this.currentAuth,
-      this.needAccountRegister = false,
-      this.isLoading = false,
-      this.failure});
+      {required this.currentAuth, this.isLoading = false, this.failure});
 
   @override
   final Auth currentAuth;
-  @override
-  @JsonKey()
-  final bool needAccountRegister;
   @override
   @JsonKey()
   final bool isLoading;
@@ -324,7 +299,7 @@ class _$AccountInitializerStateImpl implements _AccountInitializerState {
 
   @override
   String toString() {
-    return 'AccountInitializerState(currentAuth: $currentAuth, needAccountRegister: $needAccountRegister, isLoading: $isLoading, failure: $failure)';
+    return 'AccountInitializerState(currentAuth: $currentAuth, isLoading: $isLoading, failure: $failure)';
   }
 
   @override
@@ -334,16 +309,13 @@ class _$AccountInitializerStateImpl implements _AccountInitializerState {
             other is _$AccountInitializerStateImpl &&
             (identical(other.currentAuth, currentAuth) ||
                 other.currentAuth == currentAuth) &&
-            (identical(other.needAccountRegister, needAccountRegister) ||
-                other.needAccountRegister == needAccountRegister) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, currentAuth, needAccountRegister, isLoading, failure);
+  int get hashCode => Object.hash(runtimeType, currentAuth, isLoading, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -356,14 +328,11 @@ class _$AccountInitializerStateImpl implements _AccountInitializerState {
 abstract class _AccountInitializerState implements AccountInitializerState {
   const factory _AccountInitializerState(
       {required final Auth currentAuth,
-      final bool needAccountRegister,
       final bool isLoading,
       final Failure? failure}) = _$AccountInitializerStateImpl;
 
   @override
   Auth get currentAuth;
-  @override
-  bool get needAccountRegister;
   @override
   bool get isLoading;
   @override

@@ -17,6 +17,7 @@ _$AuthImpl _$$AuthImplFromJson(Map<String, dynamic> json) => _$AuthImpl(
       lastSignInTime: json['lastSignInTime'] == null
           ? null
           : DateTime.parse(json['lastSignInTime'] as String),
+      state: $enumDecode(_$AuthStateEnumMap, json['state']),
     );
 
 Map<String, dynamic> _$$AuthImplToJson(_$AuthImpl instance) =>
@@ -28,6 +29,7 @@ Map<String, dynamic> _$$AuthImplToJson(_$AuthImpl instance) =>
       'displayName': instance.displayName,
       'photoURL': instance.photoURL,
       'lastSignInTime': instance.lastSignInTime?.toIso8601String(),
+      'state': _$AuthStateEnumMap[instance.state]!,
     };
 
 const _$AuthSignInMethodEnumMap = {
@@ -36,4 +38,9 @@ const _$AuthSignInMethodEnumMap = {
   AuthSignInMethod.apple: 'apple',
   AuthSignInMethod.facebook: 'facebook',
   AuthSignInMethod.unknown: 'unknown',
+};
+
+const _$AuthStateEnumMap = {
+  AuthState.auth: 'auth',
+  AuthState.unAuth: 'unAuth',
 };

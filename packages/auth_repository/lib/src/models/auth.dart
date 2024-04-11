@@ -1,3 +1,4 @@
+import 'package:auth_repository/auth_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -14,6 +15,7 @@ class Auth with _$Auth {
     required String? displayName,
     required String? photoURL,
     required DateTime? lastSignInTime,
+    required AuthState state,
   }) = _Auth;
 
   factory Auth.fromJson(Map<String, Object?> json) => _$AuthFromJson(
@@ -27,6 +29,7 @@ class Auth with _$Auth {
         displayName: null,
         photoURL: null,
         lastSignInTime: null,
+        state: AuthState.unAuth,
       );
 }
 

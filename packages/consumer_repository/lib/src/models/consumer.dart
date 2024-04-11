@@ -1,5 +1,4 @@
 import 'package:consumer_repository/consumer_repository.dart';
-import 'package:consumer_repository/src/models/models.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -16,6 +15,7 @@ class Consumer with _$Consumer {
     required AvatarUrls avatarUrls,
     required Counters counters,
     required bool isDeletingAccount,
+    required ConsumerState state,
     String? email,
   }) = _Consumer;
 
@@ -34,5 +34,21 @@ class Consumer with _$Consumer {
           switchs: 0,
         ),
         isDeletingAccount: false,
+        state: ConsumerState.empty,
+      );
+  factory Consumer.needRegister() => Consumer(
+        authId: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        currentLocation: CurrentLocation.empty(),
+        avatarUrls: AvatarUrls.empty(),
+        counters: const Counters(
+          ownedToy: 0,
+          switchChance: 0,
+          switchs: 0,
+        ),
+        isDeletingAccount: false,
+        state: ConsumerState.needRegister,
       );
 }

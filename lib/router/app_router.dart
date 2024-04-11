@@ -37,53 +37,76 @@ class AppRouter {
           HomeRouter.instance.route,
         ],
         redirect: (BuildContext context, GoRouterState state) async {
-          final authState = context.read<AuthRepository>().currentAuth;
+          final currentAuth = context.read<AuthRepository>().currentAuth;
           final currentConsumer =
               context.read<ConsumerRepository>().currentConsumer;
-
-          final isAuthSignedIn = authState != Auth.empty();
-          final isEmailVerified = authState.isEmailVerified;
-          final hasConsumer = currentConsumer != Consumer.empty();
-          if (!isAuthSignedIn && hasConsumer) {
+          // [ClearConsumer] on [SignOut]
+          if (currentConsumer.state != ConsumerState.empty) {
             context.read<ConsumerRepository>().clearCurrentConsumer();
           }
+          // if (currentSupport.state != SupportState.empty) {
+          // clearSupport();
+          // }
+          // if (currentAdmin.state != AdminState.empty) {
+          // clearAdmin();
+          // }
+          String? nonVerifiedSignedIn() {
+            if (!_inEmailVerificationScreen(state)) {
+              return EmailVerificationRouter.instance.path;
+            }
+            return null;
+          }
 
-          //  [NotSignedIn]
-          if (!isAuthSignedIn) {
-            // [Not In AuthScreen] -> Go SignIn
+          String? verifiedSignedInCheckConsumer() {
+            String? consumerHasData() {
+              if (!_inConsumerScreens(state)) {
+                return HomeRouter.instance.path;
+              }
+              return null;
+            }
+
+            String? consumerNeedRegister() {
+              if (!_inAccountRegistration(state)) {
+                return AccountRegistrationRouter.instance.path;
+              }
+              return null;
+            }
+
+            return switch (currentConsumer.state) {
+              ConsumerState.hasData => consumerHasData(),
+              ConsumerState.needRegister => consumerNeedRegister(),
+              ConsumerState.empty => null,
+            };
+          }
+
+          String? authNotSignedIn() {
             if (!_inAuthScreen(state)) {
               return SignInRouter.instance.path;
             }
             return null;
           }
 
-          // [SignedIn] + [EmailNotVerified]
-          if (!isEmailVerified) {
-            // [Not In EmailVerificationScreen] -> Go EmailVerification
-            if (!_inEmailVerificationScreen(state)) {
-              return EmailVerificationRouter.instance.path;
+          String? authSignedIn() {
+            if (!currentAuth.isEmailVerified) {
+              return nonVerifiedSignedIn();
             }
-            return null;
-          }
-          // [SignedIn] + [EmailVerified]
-          // [NoConsumer]
-          if (!hasConsumer) {
-            // [Not In UserScreens] -> Go AccountInitializer
-            if (!_inUserScreens(state)) {
+            // [VerifiedSignIn]
+            final nullablePath = verifiedSignedInCheckConsumer();
+            // nullablePath ??= checkSupport();
+            // nullablePath ??= checkAdmin();
+            if (nullablePath != null) return nullablePath;
+
+            // [VerifiedSignIn] + [NoUser]
+            if (!_inAccountInitializer(state)) {
               return AccountInitializerRouter.instance.path;
             }
             return null;
           }
 
-          // [SignedIn] + [EmailVerified] + [HasConsumer]
-          if (isAuthSignedIn && isEmailVerified && hasConsumer) {
-            // [Not In ConsumerScreens] -> Go Consumer Screens
-            if (!_inConsumerScreens(state)) {
-              return HomeRouter.instance.path;
-            }
-            return null;
-          }
-          return null;
+          return switch (currentAuth.state) {
+            AuthState.unAuth => authNotSignedIn(),
+            AuthState.auth => authSignedIn()
+          };
         },
         refreshListenable: GoRouterRefreshStream(
           stream1: authStream,
@@ -103,9 +126,13 @@ class AppRouter {
         EmailVerificationRouter.instance.path,
       ].contains(state.matchedLocation);
 
-  // [UserScreens]
-  bool _inUserScreens(GoRouterState state) => [
+  // [AccountInitializerScreen]
+  bool _inAccountInitializer(GoRouterState state) => [
         AccountInitializerRouter.instance.path,
+      ].contains(state.matchedLocation);
+
+  // [AccountRegistrationScreen]
+  bool _inAccountRegistration(GoRouterState state) => [
         AccountRegistrationRouter.instance.path,
       ].contains(state.matchedLocation);
 
