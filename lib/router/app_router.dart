@@ -2,16 +2,20 @@ import 'package:auth_repository/auth_repository.dart';
 import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:go_router/go_router.dart';
+
 import '../account_initializer/account_initializer.dart';
 import '../account_registration/account_registration.dart';
+import '../demands/demands.dart';
 import '../email_verification/email_verification.dart';
 import '../forgot_password/forgot_password.dart';
-import '../home/home.dart';
+import '../matches/matches.dart';
+import '../navigator_bar/navigator_bar.dart';
+import '../profile/profile.dart';
 import '../sign_in/sign_in.dart';
 import '../sign_up/sign_up.dart';
 
+import '../toys/toys.dart';
 import 'router.dart';
 
 class AppRouter {
@@ -34,7 +38,28 @@ class AppRouter {
           EmailVerificationRouter.instance.route,
           AccountRegistrationRouter.instance.route,
           AccountInitializerRouter.instance.route,
-          HomeRouter.instance.route,
+          NavigatorBarRouter.instance.shellRoute([
+            StatefulShellBranch(
+              routes: [
+                ToysRouter.instance.route,
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                DemandsRouter.instance.route,
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                MatchesRouter.instance.route,
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                ProfileRouter.instance.route,
+              ],
+            ),
+          ]),
         ],
         redirect: (BuildContext context, GoRouterState state) async {
           final currentAuth = context.read<AuthRepository>().currentAuth;
@@ -61,7 +86,7 @@ class AppRouter {
           String? verifiedSignedInCheckConsumer() {
             String? consumerHasData() {
               if (!_inConsumerScreens(state)) {
-                return HomeRouter.instance.path;
+                return ToysRouter.instance.path;
               }
               return null;
             }
@@ -143,6 +168,9 @@ class AppRouter {
 
   // [ConsumerScreens]
   bool _inConsumerScreens(GoRouterState state) => [
-        HomeRouter.instance.path,
+        ToysRouter.instance.path,
+        DemandsRouter.instance.path,
+        MatchesRouter.instance.path,
+        ProfileRouter.instance.path,
       ].contains(state.matchedLocation);
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../themes/themes.dart';
 import '../app.dart';
 
 class AppView extends StatelessWidget {
@@ -15,7 +16,7 @@ class AppView extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
+      darkTheme: CustomThemeData.themeData(const DefaultDarkPalette()),
       // themeMode: ThemeMode.system,
       routerConfig: _routerConfig,
       builder: (context, child) {
