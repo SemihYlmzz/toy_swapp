@@ -18,13 +18,13 @@ class ProfileGoRoute extends NavigatorBarSubGoRoute {
       (context, state) => const NoTransitionPage(
             child: ProfileScreen(),
           );
-
+          
   @override
   PreferredSizeWidget? get appBar => const ProfileAppBar();
 
   @override
   Widget? get endDrawer => const Drawer();
-  
+
   void go(BuildContext context) {
     GoRouter.of(context).goNamed(_name);
   }

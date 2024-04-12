@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toy_swapp/sub_matches/sub_matches.dart';
 
 class DemandsView extends StatelessWidget {
   const DemandsView({super.key});
@@ -10,7 +11,9 @@ class DemandsView extends StatelessWidget {
       children: [
         Center(
           child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              SubMatchesGoRoute.instance.go(context);
+            },
             child: const Text('Display Demands'),
           ),
         ),

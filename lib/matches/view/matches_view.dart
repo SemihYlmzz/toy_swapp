@@ -12,7 +12,7 @@ class MatchesView extends StatelessWidget {
         Center(
           child: TextButton(
             onPressed: () {
-              SubMatchesGoRoute.instance.push(context);
+              SubMatchesGoRoute.instance.go(context);
             },
             child: const Text('Display Matches'),
           ),

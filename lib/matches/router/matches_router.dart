@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:toy_swapp/sub_matches/sub_matches.dart';
 import '../../navigator_bar/navigator_bar.dart';
 import '../matches.dart';
 
@@ -18,9 +19,14 @@ class MatchesGoRoute extends NavigatorBarSubGoRoute {
       (context, state) => const NoTransitionPage(
             child: MatchesScreen(),
           );
-          
+
   @override
   PreferredSizeWidget? get appBar => const MatchesAppBar();
+
+  @override
+  List<NavigatorBarSubGoRoute> get routes => [
+        SubMatchesGoRoute.instance,
+      ];
   
   void go(BuildContext context) {
     GoRouter.of(context).goNamed(_name);

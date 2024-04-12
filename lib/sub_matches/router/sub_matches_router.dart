@@ -12,14 +12,13 @@ class SubMatchesGoRoute extends NavigatorBarSubGoRoute {
       : super(path: _path, name: _name, pageBuilder: _pageBuilder);
   static final SubMatchesGoRoute instance = SubMatchesGoRoute._();
 
-  static const String _path = '/sub_matches';
+  static const String _path = 'sub_matches';
   static const String _name = 'sub_matches';
 
   static GoRouterPageBuilder get _pageBuilder =>
       (context, state) => const NoTransitionPage(
             child: SubMatchesScreen(),
           );
-
   @override
   PreferredSizeWidget? get appBar => const SubMatchesAppBar();
 

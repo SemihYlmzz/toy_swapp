@@ -22,4 +22,23 @@ class NavigatorBarRouter {
         ),
         branches: branches,
       );
+
+  List<NavigatorBarSubGoRoute> getSubRoutes(
+    List<List<NavigatorBarSubGoRoute>> routes,
+  ) {
+    final subRoutes = <NavigatorBarSubGoRoute>[];
+
+    void flattenRoutes(List<NavigatorBarSubGoRoute> currentRoutes) {
+      subRoutes.addAll(currentRoutes);
+      final nextTierRoutes =
+          currentRoutes.expand((route) => route.routes).toList();
+      if (nextTierRoutes.isNotEmpty) {
+        flattenRoutes(nextTierRoutes);
+      }
+    }
+
+    flattenRoutes(routes.expand((route) => route).toList());
+
+    return subRoutes;
+  }
 }

@@ -29,23 +29,22 @@ class AppRouter {
   final parentNavigatorKey = GlobalKey<NavigatorState>();
   static final AppRouter instance = AppRouter._internal();
 
-  final List<List<NavigatorBarSubGoRoute>> _navigatorBarSubRoutes = [
+  final List<List<NavigatorBarSubGoRoute>> _navigatorBarMainRoutes = [
     [ToysGoRoute.instance],
     [DemandsGoRoute.instance],
-    [MatchesGoRoute.instance, SubMatchesGoRoute.instance],
+    [MatchesGoRoute.instance],
     [ProfileGoRoute.instance],
   ];
 
-  List<StatefulShellBranch> _createNavigatorBarBranches() =>
-      _navigatorBarSubRoutes
-          .map((e) => StatefulShellBranch(routes: e))
-          .toList();
-
-  List<NavigatorBarSubGoRoute> _createNavigatorBarSubRoutes() =>
-      _navigatorBarSubRoutes.expand((e) => e).toList();
+  List<StatefulShellBranch> _createStatefulShelBranches(
+    List<List<GoRoute>> routes,
+  ) {
+    return routes.map((e) => StatefulShellBranch(routes: e)).toList();
+  }
 
   GoRouter router(Stream<dynamic> authStream, Stream<dynamic> userStream) =>
       GoRouter(
+        debugLogDiagnostics: true,
         initialLocation: SignInRouter.instance.path,
         navigatorKey: parentNavigatorKey,
         routes: [
@@ -56,8 +55,8 @@ class AppRouter {
           AccountRegistrationRouter.instance.route,
           AccountInitializerRouter.instance.route,
           NavigatorBarRouter.instance.shellRoute(
-            _createNavigatorBarBranches(),
-            _createNavigatorBarSubRoutes(),
+            _createStatefulShelBranches(_navigatorBarMainRoutes),
+            NavigatorBarRouter.instance.getSubRoutes(_navigatorBarMainRoutes),
           ),
           CreateToyGoRoute.instance,
         ],
@@ -146,33 +145,32 @@ class AppRouter {
 
   // [AuthScreens]
   bool _inAuthScreen(GoRouterState state) => [
-        SignInRouter.instance.path,
-        SignUpRouter.instance.path,
-        ForgotPasswordRouter.instance.path,
-      ].contains(state.matchedLocation);
+        SignInRouter.instance.name,
+        SignUpRouter.instance.name,
+        ForgotPasswordRouter.instance.name,
+      ].contains(state.topRoute!.name);
 
   // [EmailVerificationScreen]
   bool _inEmailVerificationScreen(GoRouterState state) => [
-        EmailVerificationRouter.instance.path,
-      ].contains(state.matchedLocation);
+        EmailVerificationRouter.instance.name,
+      ].contains(state.topRoute!.name);
 
   // [AccountInitializerScreen]
   bool _inAccountInitializer(GoRouterState state) => [
-        AccountInitializerRouter.instance.path,
-      ].contains(state.matchedLocation);
+        AccountInitializerRouter.instance.name,
+      ].contains(state.topRoute!.name);
 
   // [AccountRegistrationScreen]
   bool _inAccountRegistration(GoRouterState state) => [
-        AccountRegistrationRouter.instance.path,
-      ].contains(state.matchedLocation);
-
+        AccountRegistrationRouter.instance.name,
+      ].contains(state.topRoute!.name);
   // [ConsumerScreens]
   bool _inConsumerScreens(GoRouterState state) => [
-        ToysGoRoute.instance.path,
-        DemandsGoRoute.instance.path,
-        CreateToyGoRoute.instance.path,
-        MatchesGoRoute.instance.path,
-        ProfileGoRoute.instance.path,
-        SubMatchesGoRoute.instance.path,
-      ].contains(state.matchedLocation);
+        ToysGoRoute.instance.name,
+        DemandsGoRoute.instance.name,
+        CreateToyGoRoute.instance.name,
+        MatchesGoRoute.instance.name,
+        ProfileGoRoute.instance.name,
+        SubMatchesGoRoute.instance.name,
+      ].contains(state.topRoute!.name);
 }

@@ -12,8 +12,11 @@ abstract class NavigatorBarSubGoRoute extends GoRoute {
     this.drawer,
     this.endDrawer,
   });
+
+  @override
+  List<NavigatorBarSubGoRoute> get routes => [];
+
   final PreferredSizeWidget? appBar;
   final Widget? drawer;
   final Widget? endDrawer;
-  // NavigatorBarSubRoute navigatorBarSubRoute();
 }

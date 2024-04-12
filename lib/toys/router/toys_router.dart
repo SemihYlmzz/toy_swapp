@@ -17,7 +17,7 @@ class ToysGoRoute extends NavigatorBarSubGoRoute {
       (context, state) => const NoTransitionPage(
             child: ToysScreen(),
           );
-
+  
   @override
   PreferredSizeWidget? get appBar => const ToysAppBar();
 

@@ -20,7 +20,7 @@ class NavigatorBarCubit extends Cubit<NavigatorBarCubitState> {
 
   void updateGoRouterState(GoRouterState goRouterState) {
     final subRoute = state.subRoutes
-        .where((element) => element.path == goRouterState.fullPath)
+        .where((element) => element.name == goRouterState.topRoute!.name)
         .firstOrNull;
     emit(
       state.copyWith(goRouterState: goRouterState, selectedSubRoute: subRoute),
