@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_widgets/shared_widgets.dart';
+import 'package:toy_swapp/navigator_bar/navigator_bar.dart';
 
 class NavigatorBarView extends StatelessWidget {
   const NavigatorBarView({
@@ -11,8 +13,14 @@ class NavigatorBarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final subRoute = context.select(
+      (NavigatorBarCubit bloc) => bloc.state.selectedSubRoute,
+    );
     return BaseScaffold(
+      appBar: subRoute?.appBar,
       body: navigationShell,
+      drawer: subRoute?.drawer,
+      endDrawer: subRoute?.endDrawer,
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.green,
         currentIndex: navigationShell.currentIndex < 2

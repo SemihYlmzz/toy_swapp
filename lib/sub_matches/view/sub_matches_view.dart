@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+class SubMatchesView extends StatelessWidget {
+  const SubMatchesView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +10,8 @@ class ProfileView extends StatelessWidget {
       children: [
         Center(
           child: TextButton(
-            onPressed: () {
-            },
-            child: const Text('Display Profile'),
+            onPressed: () {},
+            child: const Text('Sub Matches'),
           ),
         ),
       ],

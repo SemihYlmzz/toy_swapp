@@ -7,30 +7,51 @@ import '../navigator_bar.dart';
 
 class NavigatorBarScreen extends StatelessWidget {
   const NavigatorBarScreen({
+    required this.goRouterState,
     required this.navigationShell,
+    required this.subRoutes,
     super.key,
   });
+  final GoRouterState goRouterState;
   final StatefulNavigationShell navigationShell;
+  final List<NavigatorBarSubGoRoute> subRoutes;
 
   @override
   Widget build(BuildContext context) {
     final navigatorBarBlocListeners = NavigatorBarBlocListeners();
 
-    return BlocProvider(
-      create: (context) => NavigatorBarBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<NavigatorBarBloc>(
+          create: (context) => NavigatorBarBloc(),
+        ),
+        BlocProvider(
+          create: (context) => NavigatorBarCubit(
+            goRouterState: goRouterState,
+            subRoutes: subRoutes,
+          ),
+        ),
+      ],
       child: MultiBlocListener(
         listeners: [
           navigatorBarBlocListeners.errorDisplayer(),
         ],
-        child: BlocSelector<NavigatorBarBloc, NavigatorBarState, bool>(
-          selector: (state) => state.isLoading,
-          builder: (context, isLoading) {
-            return LoadingScreen(
-              isLoading: isLoading,
-              size: MediaQuery.sizeOf(context),
-              child: NavigatorBarView(
-                navigationShell: navigationShell,
-              ),
+        child: Builder(
+          builder: (context) {
+            context
+                .read<NavigatorBarCubit>()
+                .updateGoRouterState(goRouterState);
+            return BlocSelector<NavigatorBarBloc, NavigatorBarState, bool>(
+              selector: (state) => state.isLoading,
+              builder: (context, isLoading) {
+                return LoadingScreen(
+                  isLoading: isLoading,
+                  size: MediaQuery.sizeOf(context),
+                  child: NavigatorBarView(
+                    navigationShell: navigationShell,
+                  ),
+                );
+              },
             );
           },
         ),

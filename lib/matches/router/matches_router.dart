@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../navigator_bar/navigator_bar.dart';
 import '../matches.dart';
 
-class MatchesRouter {
-  factory MatchesRouter() {
+class MatchesGoRoute extends NavigatorBarSubGoRoute {
+  factory MatchesGoRoute() {
     return instance;
   }
-  MatchesRouter._();
-  static final MatchesRouter instance = MatchesRouter._();
+  MatchesGoRoute._()
+      : super(path: _path, name: _name, pageBuilder: _pageBuilder);
+  static final MatchesGoRoute instance = MatchesGoRoute._();
 
   static const String _path = '/matches';
   static const String _name = 'matches';
 
-  String get path => _path;
-  String get name => _name;
-
-  GoRoute get route => GoRoute(
-        path: _path,
-        name: _name,
-        // parentNavigatorKey: RouterMixin.parentNavigatorKey,
-        pageBuilder: (context, state) => const NoTransitionPage(
-          child: MatchesScreen(),
-        ),
-      );
+  static GoRouterPageBuilder get _pageBuilder =>
+      (context, state) => const NoTransitionPage(
+            child: MatchesScreen(),
+          );
+          
+  @override
+  PreferredSizeWidget? get appBar => const MatchesAppBar();
+  
   void go(BuildContext context) {
     GoRouter.of(context).goNamed(_name);
   }

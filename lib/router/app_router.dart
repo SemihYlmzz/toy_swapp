@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import '../account_initializer/account_initializer.dart';
 import '../account_registration/account_registration.dart';
+import '../create_toy/create_toy.dart';
 import '../demands/demands.dart';
 import '../email_verification/email_verification.dart';
 import '../forgot_password/forgot_password.dart';
@@ -15,6 +16,7 @@ import '../profile/profile.dart';
 import '../sign_in/sign_in.dart';
 import '../sign_up/sign_up.dart';
 
+import '../sub_matches/sub_matches.dart';
 import '../toys/toys.dart';
 import 'router.dart';
 
@@ -27,6 +29,21 @@ class AppRouter {
   final parentNavigatorKey = GlobalKey<NavigatorState>();
   static final AppRouter instance = AppRouter._internal();
 
+  final List<List<NavigatorBarSubGoRoute>> _navigatorBarSubRoutes = [
+    [ToysGoRoute.instance],
+    [DemandsGoRoute.instance],
+    [MatchesGoRoute.instance, SubMatchesGoRoute.instance],
+    [ProfileGoRoute.instance],
+  ];
+
+  List<StatefulShellBranch> _createNavigatorBarBranches() =>
+      _navigatorBarSubRoutes
+          .map((e) => StatefulShellBranch(routes: e))
+          .toList();
+
+  List<NavigatorBarSubGoRoute> _createNavigatorBarSubRoutes() =>
+      _navigatorBarSubRoutes.expand((e) => e).toList();
+
   GoRouter router(Stream<dynamic> authStream, Stream<dynamic> userStream) =>
       GoRouter(
         initialLocation: SignInRouter.instance.path,
@@ -38,28 +55,11 @@ class AppRouter {
           EmailVerificationRouter.instance.route,
           AccountRegistrationRouter.instance.route,
           AccountInitializerRouter.instance.route,
-          NavigatorBarRouter.instance.shellRoute([
-            StatefulShellBranch(
-              routes: [
-                ToysRouter.instance.route,
-              ],
-            ),
-            StatefulShellBranch(
-              routes: [
-                DemandsRouter.instance.route,
-              ],
-            ),
-            StatefulShellBranch(
-              routes: [
-                MatchesRouter.instance.route,
-              ],
-            ),
-            StatefulShellBranch(
-              routes: [
-                ProfileRouter.instance.route,
-              ],
-            ),
-          ]),
+          NavigatorBarRouter.instance.shellRoute(
+            _createNavigatorBarBranches(),
+            _createNavigatorBarSubRoutes(),
+          ),
+          CreateToyGoRoute.instance,
         ],
         redirect: (BuildContext context, GoRouterState state) async {
           final currentAuth = context.read<AuthRepository>().currentAuth;
@@ -86,7 +86,7 @@ class AppRouter {
           String? verifiedSignedInCheckConsumer() {
             String? consumerHasData() {
               if (!_inConsumerScreens(state)) {
-                return ToysRouter.instance.path;
+                return ToysGoRoute.instance.path;
               }
               return null;
             }
@@ -168,9 +168,11 @@ class AppRouter {
 
   // [ConsumerScreens]
   bool _inConsumerScreens(GoRouterState state) => [
-        ToysRouter.instance.path,
-        DemandsRouter.instance.path,
-        MatchesRouter.instance.path,
-        ProfileRouter.instance.path,
+        ToysGoRoute.instance.path,
+        DemandsGoRoute.instance.path,
+        CreateToyGoRoute.instance.path,
+        MatchesGoRoute.instance.path,
+        ProfileGoRoute.instance.path,
+        SubMatchesGoRoute.instance.path,
       ].contains(state.matchedLocation);
 }

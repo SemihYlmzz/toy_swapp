@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../navigator_bar/navigator_bar.dart';
 import '../profile.dart';
 
-class ProfileRouter {
-  factory ProfileRouter() {
+class ProfileGoRoute extends NavigatorBarSubGoRoute {
+  factory ProfileGoRoute() {
     return instance;
   }
-  ProfileRouter._();
-  static final ProfileRouter instance = ProfileRouter._();
+  ProfileGoRoute._()
+      : super(path: _path, name: _name, pageBuilder: _pageBuilder);
+  static final ProfileGoRoute instance = ProfileGoRoute._();
 
   static const String _path = '/profile';
   static const String _name = 'profile';
+  static GoRouterPageBuilder get _pageBuilder =>
+      (context, state) => const NoTransitionPage(
+            child: ProfileScreen(),
+          );
 
-  String get path => _path;
-  String get name => _name;
+  @override
+  PreferredSizeWidget? get appBar => const ProfileAppBar();
 
-  GoRoute get route => GoRoute(
-        path: _path,
-        name: _name,
-        // parentNavigatorKey: RouterMixin.parentNavigatorKey,
-        pageBuilder: (context, state) => const NoTransitionPage(
-          child: ProfileScreen(),
-        ),
-      );
+  @override
+  Widget? get endDrawer => const Drawer();
+  
   void go(BuildContext context) {
     GoRouter.of(context).goNamed(_name);
   }

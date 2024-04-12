@@ -8,10 +8,17 @@ class NavigatorBarRouter {
   NavigatorBarRouter._();
   static final NavigatorBarRouter instance = NavigatorBarRouter._();
 
-  StatefulShellRoute shellRoute(List<StatefulShellBranch> branches) =>
+  StatefulShellRoute shellRoute(
+    List<StatefulShellBranch> branches,
+    List<NavigatorBarSubGoRoute> routes,
+  ) =>
       StatefulShellRoute.indexedStack(
         pageBuilder: (context, state, navigationShell) => NoTransitionPage(
-          child: NavigatorBarScreen(navigationShell: navigationShell),
+          child: NavigatorBarScreen(
+            navigationShell: navigationShell,
+            goRouterState: state,
+            subRoutes: routes,
+          ),
         ),
         branches: branches,
       );
