@@ -13,6 +13,7 @@ import '../forgot_password/forgot_password.dart';
 import '../matches/matches.dart';
 import '../navigator_bar/navigator_bar.dart';
 import '../profile/profile.dart';
+import '../settings/settings.dart';
 import '../sign_in/sign_in.dart';
 import '../sign_up/sign_up.dart';
 
@@ -48,17 +49,24 @@ class AppRouter {
         initialLocation: SignInRouter.instance.path,
         navigatorKey: parentNavigatorKey,
         routes: [
+          // [NotSignedIn]
           SignInRouter.instance.route,
           SignUpRouter.instance.route,
           ForgotPasswordRouter.instance.route,
+          // [SignedIn] + [NotVerified]
           EmailVerificationRouter.instance.route,
-          AccountRegistrationRouter.instance.route,
+          // [SignedIn] + [Verified] + User: [NotInitialized]
           AccountInitializerRouter.instance.route,
+          // [SignedIn] + [Verified] + User: [NotExist]
+          AccountRegistrationRouter.instance.route,
+          // [SignedIn] + [Verified] + User: [ConsumerHasData]
           NavigatorBarRouter.instance.shellRoute(
             _createStatefulShelBranches(_navigatorBarMainRoutes),
             NavigatorBarRouter.instance.getSubRoutes(_navigatorBarMainRoutes),
           ),
           CreateToyGoRoute.instance,
+          // [NoRule]
+          SettingsRouter.instance.route,
         ],
         redirect: (BuildContext context, GoRouterState state) async {
           final currentAuth = context.read<AuthRepository>().currentAuth;
@@ -132,6 +140,9 @@ class AppRouter {
             return null;
           }
 
+          if (_inNoRuleScreens(state)) {
+            return null;
+          }
           return switch (currentAuth.state) {
             AuthState.unAuth => authNotSignedIn(),
             AuthState.auth => authSignedIn()
@@ -172,5 +183,8 @@ class AppRouter {
         MatchesGoRoute.instance.name,
         ProfileGoRoute.instance.name,
         SubMatchesGoRoute.instance.name,
+      ].contains(state.topRoute!.name);
+  bool _inNoRuleScreens(GoRouterState state) => [
+        SettingsRouter.instance.name,
       ].contains(state.topRoute!.name);
 }

@@ -17,6 +17,7 @@ class NavigatorBarView extends StatelessWidget {
       (NavigatorBarCubit bloc) => bloc.state.selectedSubRoute,
     );
     return BaseScaffold(
+      safeArea: true,
       appBar: subRoute?.appBar,
       body: navigationShell,
       drawer: subRoute?.drawer,

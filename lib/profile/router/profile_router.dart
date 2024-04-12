@@ -23,7 +23,7 @@ class ProfileGoRoute extends NavigatorBarSubGoRoute {
   PreferredSizeWidget? get appBar => const ProfileAppBar();
 
   @override
-  Widget? get endDrawer => const Drawer();
+  Widget? get endDrawer => const ProfileDrawer();
 
   void go(BuildContext context) {
     GoRouter.of(context).goNamed(_name);
