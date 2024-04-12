@@ -18,7 +18,7 @@ class ProfileGoRoute extends NavigatorBarSubGoRoute {
       (context, state) => const NoTransitionPage(
             child: ProfileScreen(),
           );
-          
+
   @override
   PreferredSizeWidget? get appBar => const ProfileAppBar();
 

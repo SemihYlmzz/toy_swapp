@@ -10,19 +10,19 @@ class DemandsBloc extends Bloc<DemandsEvent, DemandsState> {
   DemandsBloc() : super(const DemandsState()) {
     on<DemandsEvent>(_onDemandsEvent);
   }
-  
+
   Future<void> _onDemandsEvent(
     DemandsEvent event,
     Emitter<DemandsState> emit,
-    ) async {
+  ) async {
     emit(state.copyWith(isLoading: true));
-    
+
     await event.map(
       fetch: (e) async {
         // print('Fetching data...');
       },
     );
-    
+
     emit(state.copyWith(isLoading: false, failure: null));
   }
 }

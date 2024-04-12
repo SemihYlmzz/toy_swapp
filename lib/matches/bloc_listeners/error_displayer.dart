@@ -4,12 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../matches.dart';
 
 extension MatchesErrorDisplayer on MatchesBlocListeners {
-  BlocListener<MatchesBloc, MatchesState>
-      errorDisplayer() {
+  BlocListener<MatchesBloc, MatchesState> errorDisplayer() {
     return BlocListener(
       listener: (context, state) {
         final failure = state.failure;
-        
+
         if (failure == null || !context.mounted) {
           return;
         }

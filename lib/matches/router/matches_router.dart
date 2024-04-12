@@ -27,7 +27,7 @@ class MatchesGoRoute extends NavigatorBarSubGoRoute {
   List<NavigatorBarSubGoRoute> get routes => [
         SubMatchesGoRoute.instance,
       ];
-  
+
   void go(BuildContext context) {
     GoRouter.of(context).goNamed(_name);
   }

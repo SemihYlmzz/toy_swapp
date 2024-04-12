@@ -10,7 +10,7 @@ class DemandsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final demandsBlocListeners = DemandsBlocListeners();
-  
+
     return BlocProvider(
       create: (context) => DemandsBloc(),
       child: MultiBlocListener(

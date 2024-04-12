@@ -2,7 +2,7 @@ part of 'profile_bloc.dart';
 
 @freezed
 class ProfileState with _$ProfileState {
-   const factory ProfileState({
+  const factory ProfileState({
     @Default(false) bool isLoading,
     Failure? failure,
   }) = _ProfileState;

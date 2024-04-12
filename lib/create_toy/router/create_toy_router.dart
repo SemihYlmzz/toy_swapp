@@ -21,7 +21,7 @@ class CreateToyGoRoute extends NavigatorBarSubGoRoute {
 
   @override
   PreferredSizeWidget? get appBar => const CreateToyAppBar();
-  
+
   void go(BuildContext context) {
     GoRouter.of(context).goNamed(_name);
   }

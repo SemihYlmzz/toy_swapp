@@ -10,8 +10,7 @@ class ProfileView extends StatelessWidget {
       children: [
         Center(
           child: TextButton(
-            onPressed: () {
-            },
+            onPressed: () {},
             child: const Text('Display Profile'),
           ),
         ),

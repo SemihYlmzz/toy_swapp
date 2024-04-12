@@ -10,19 +10,19 @@ class MatchesBloc extends Bloc<MatchesEvent, MatchesState> {
   MatchesBloc() : super(const MatchesState()) {
     on<MatchesEvent>(_onMatchesEvent);
   }
-  
+
   Future<void> _onMatchesEvent(
     MatchesEvent event,
     Emitter<MatchesState> emit,
-    ) async {
+  ) async {
     emit(state.copyWith(isLoading: true));
-    
+
     await event.map(
       fetch: (e) async {
         // print('Fetching data...');
       },
     );
-    
+
     emit(state.copyWith(isLoading: false, failure: null));
   }
 }

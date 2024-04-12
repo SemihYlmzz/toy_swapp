@@ -10,19 +10,19 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc() : super(const ProfileState()) {
     on<ProfileEvent>(_onProfileEvent);
   }
-  
+
   Future<void> _onProfileEvent(
     ProfileEvent event,
     Emitter<ProfileState> emit,
-    ) async {
+  ) async {
     emit(state.copyWith(isLoading: true));
-    
+
     await event.map(
       fetch: (e) async {
         // print('Fetching data...');
       },
     );
-    
+
     emit(state.copyWith(isLoading: false, failure: null));
   }
 }

@@ -10,19 +10,19 @@ class NavigatorBarBloc extends Bloc<NavigatorBarEvent, NavigatorBarState> {
   NavigatorBarBloc() : super(const NavigatorBarState()) {
     on<NavigatorBarEvent>(_onNavigatorBarEvent);
   }
-  
+
   Future<void> _onNavigatorBarEvent(
     NavigatorBarEvent event,
     Emitter<NavigatorBarState> emit,
-    ) async {
+  ) async {
     emit(state.copyWith(isLoading: true));
-    
+
     await event.map(
       fetch: (e) async {
         // print('Fetching data...');
       },
     );
-    
+
     emit(state.copyWith(isLoading: false, failure: null));
   }
 }

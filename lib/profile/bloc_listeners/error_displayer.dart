@@ -4,12 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../profile.dart';
 
 extension ProfileErrorDisplayer on ProfileBlocListeners {
-  BlocListener<ProfileBloc, ProfileState>
-      errorDisplayer() {
+  BlocListener<ProfileBloc, ProfileState> errorDisplayer() {
     return BlocListener(
       listener: (context, state) {
         final failure = state.failure;
-        
+
         if (failure == null || !context.mounted) {
           return;
         }

@@ -4,6 +4,5 @@ class ToysBlocListeners {
   }
 
   ToysBlocListeners._internal();
-  static final ToysBlocListeners _instance =
-      ToysBlocListeners._internal();
+  static final ToysBlocListeners _instance = ToysBlocListeners._internal();
 }

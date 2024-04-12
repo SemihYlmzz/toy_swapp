@@ -38,6 +38,4 @@ abstract class Palette {
 
   // Canvas
   Color get canvasColor;
-
-
 }

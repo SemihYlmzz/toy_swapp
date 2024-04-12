@@ -32,7 +32,7 @@ class DefaultDarkPalette implements Palette {
   Color get colorSchemeError => Colors.red.shade900;
   @override
   Color get colorSchemeOnPrimary => Colors.white;
-  
+
   // App Bar
   @override
   Color get appBarColor => const Color(0xFF111111);
@@ -58,5 +58,4 @@ class DefaultDarkPalette implements Palette {
   // Canvas
   @override
   Color get canvasColor => const Color(0xFF303030);
-
 }

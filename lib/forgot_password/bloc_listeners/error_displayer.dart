@@ -4,12 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../forgot_password.dart';
 
 extension ForgotPasswordErrorDisplayer on ForgotPasswordBlocListeners {
-  BlocListener<ForgotPasswordBloc, ForgotPasswordState>
-      errorDisplayer() {
+  BlocListener<ForgotPasswordBloc, ForgotPasswordState> errorDisplayer() {
     return BlocListener(
       listener: (context, state) {
         final failure = state.failure;
-        
+
         if (failure == null || !context.mounted) {
           return;
         }

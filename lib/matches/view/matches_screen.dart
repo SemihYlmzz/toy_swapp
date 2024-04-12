@@ -10,7 +10,7 @@ class MatchesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final matchesBlocListeners = MatchesBlocListeners();
-  
+
     return BlocProvider(
       create: (context) => MatchesBloc(),
       child: MultiBlocListener(

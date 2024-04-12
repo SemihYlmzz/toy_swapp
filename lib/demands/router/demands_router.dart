@@ -21,7 +21,7 @@ class DemandsGoRoute extends NavigatorBarSubGoRoute {
 
   @override
   PreferredSizeWidget? get appBar => const DemandsAppBar();
-  
+
   void go(BuildContext context) {
     GoRouter.of(context).goNamed(_name);
   }
