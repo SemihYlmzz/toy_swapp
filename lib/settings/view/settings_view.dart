@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 
@@ -89,7 +90,15 @@ class SettingsView extends StatelessWidget {
               ),
             ],
           ),
-          const _DestructiveSettingButton(),
+          _DestructiveSettingButton(
+            settingName: 'Sign Out',
+            settingIconData: Icons.logout,
+            onTap: () {
+              context
+                  .read<SettingsBloc>()
+                  .add(const SettingsEvent.authSignOut());
+            },
+          ),
         ],
       ),
     );
@@ -107,7 +116,7 @@ class _SettingGroup extends StatelessWidget {
         height: settings.length * 56 + (settings.length - 1) * 1,
         margin: SharedPaddings.horizontal32,
         decoration: BoxDecoration(
-          color: Colors.white10,
+          color: Colors.white.withOpacity(0.1),
           borderRadius: SharedBorderRadius.circular12,
         ),
         child: ListView.builder(
@@ -145,6 +154,9 @@ class _Setting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      shape: RoundedRectangleBorder(
+        borderRadius: SharedBorderRadius.circular12,
+      ),
       title: Text(settingName),
       leading: Container(
         padding: SharedPaddings.all4,
@@ -165,8 +177,14 @@ class _Setting extends StatelessWidget {
 }
 
 class _DestructiveSettingButton extends StatelessWidget {
-  const _DestructiveSettingButton();
-
+  const _DestructiveSettingButton({
+    required this.settingName,
+    required this.settingIconData,
+    required this.onTap,
+  });
+  final String settingName;
+  final IconData settingIconData;
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -180,9 +198,9 @@ class _DestructiveSettingButton extends StatelessWidget {
         ),
         child: _Setting(
           iconColor: Colors.red,
-          onTap: () {},
-          settingIcon: Icons.logout,
-          settingName: 'Sign Out',
+          onTap: onTap,
+          settingIcon: settingIconData,
+          settingName: settingName,
         ),
       ),
     );

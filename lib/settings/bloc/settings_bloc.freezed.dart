@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SettingsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() authSignOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? authSignOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? authSignOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SettingsFetch value) fetch,
+    required TResult Function(SettingsAuthSignOut value) authSignOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SettingsFetch value)? fetch,
+    TResult? Function(SettingsAuthSignOut value)? authSignOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SettingsFetch value)? fetch,
+    TResult Function(SettingsAuthSignOut value)? authSignOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,35 +69,36 @@ class _$SettingsEventCopyWithImpl<$Res, $Val extends SettingsEvent>
 }
 
 /// @nodoc
-abstract class _$$SettingsFetchImplCopyWith<$Res> {
-  factory _$$SettingsFetchImplCopyWith(
-          _$SettingsFetchImpl value, $Res Function(_$SettingsFetchImpl) then) =
-      __$$SettingsFetchImplCopyWithImpl<$Res>;
+abstract class _$$SettingsAuthSignOutImplCopyWith<$Res> {
+  factory _$$SettingsAuthSignOutImplCopyWith(_$SettingsAuthSignOutImpl value,
+          $Res Function(_$SettingsAuthSignOutImpl) then) =
+      __$$SettingsAuthSignOutImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SettingsFetchImplCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$SettingsFetchImpl>
-    implements _$$SettingsFetchImplCopyWith<$Res> {
-  __$$SettingsFetchImplCopyWithImpl(
-      _$SettingsFetchImpl _value, $Res Function(_$SettingsFetchImpl) _then)
+class __$$SettingsAuthSignOutImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$SettingsAuthSignOutImpl>
+    implements _$$SettingsAuthSignOutImplCopyWith<$Res> {
+  __$$SettingsAuthSignOutImplCopyWithImpl(_$SettingsAuthSignOutImpl _value,
+      $Res Function(_$SettingsAuthSignOutImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SettingsFetchImpl implements SettingsFetch {
-  const _$SettingsFetchImpl();
+class _$SettingsAuthSignOutImpl implements SettingsAuthSignOut {
+  const _$SettingsAuthSignOutImpl();
 
   @override
   String toString() {
-    return 'SettingsEvent.fetch()';
+    return 'SettingsEvent.authSignOut()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SettingsFetchImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$SettingsAuthSignOutImpl);
   }
 
   @override
@@ -106,27 +107,27 @@ class _$SettingsFetchImpl implements SettingsFetch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() authSignOut,
   }) {
-    return fetch();
+    return authSignOut();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? authSignOut,
   }) {
-    return fetch?.call();
+    return authSignOut?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? authSignOut,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch();
+    if (authSignOut != null) {
+      return authSignOut();
     }
     return orElse();
   }
@@ -134,38 +135,39 @@ class _$SettingsFetchImpl implements SettingsFetch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SettingsFetch value) fetch,
+    required TResult Function(SettingsAuthSignOut value) authSignOut,
   }) {
-    return fetch(this);
+    return authSignOut(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SettingsFetch value)? fetch,
+    TResult? Function(SettingsAuthSignOut value)? authSignOut,
   }) {
-    return fetch?.call(this);
+    return authSignOut?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SettingsFetch value)? fetch,
+    TResult Function(SettingsAuthSignOut value)? authSignOut,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch(this);
+    if (authSignOut != null) {
+      return authSignOut(this);
     }
     return orElse();
   }
 }
 
-abstract class SettingsFetch implements SettingsEvent {
-  const factory SettingsFetch() = _$SettingsFetchImpl;
+abstract class SettingsAuthSignOut implements SettingsEvent {
+  const factory SettingsAuthSignOut() = _$SettingsAuthSignOutImpl;
 }
 
 /// @nodoc
 mixin _$SettingsState {
+  bool get isSignOutCompleted => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
@@ -180,7 +182,7 @@ abstract class $SettingsStateCopyWith<$Res> {
           SettingsState value, $Res Function(SettingsState) then) =
       _$SettingsStateCopyWithImpl<$Res, SettingsState>;
   @useResult
-  $Res call({bool isLoading, Failure? failure});
+  $Res call({bool isSignOutCompleted, bool isLoading, Failure? failure});
 }
 
 /// @nodoc
@@ -196,10 +198,15 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isSignOutCompleted = null,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
+      isSignOutCompleted: null == isSignOutCompleted
+          ? _value.isSignOutCompleted
+          : isSignOutCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -220,7 +227,7 @@ abstract class _$$SettingsStateImplCopyWith<$Res>
       __$$SettingsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, Failure? failure});
+  $Res call({bool isSignOutCompleted, bool isLoading, Failure? failure});
 }
 
 /// @nodoc
@@ -234,10 +241,15 @@ class __$$SettingsStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isSignOutCompleted = null,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
     return _then(_$SettingsStateImpl(
+      isSignOutCompleted: null == isSignOutCompleted
+          ? _value.isSignOutCompleted
+          : isSignOutCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -253,8 +265,12 @@ class __$$SettingsStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SettingsStateImpl implements _SettingsState {
-  const _$SettingsStateImpl({this.isLoading = false, this.failure});
+  const _$SettingsStateImpl(
+      {this.isSignOutCompleted = false, this.isLoading = false, this.failure});
 
+  @override
+  @JsonKey()
+  final bool isSignOutCompleted;
   @override
   @JsonKey()
   final bool isLoading;
@@ -263,7 +279,7 @@ class _$SettingsStateImpl implements _SettingsState {
 
   @override
   String toString() {
-    return 'SettingsState(isLoading: $isLoading, failure: $failure)';
+    return 'SettingsState(isSignOutCompleted: $isSignOutCompleted, isLoading: $isLoading, failure: $failure)';
   }
 
   @override
@@ -271,13 +287,16 @@ class _$SettingsStateImpl implements _SettingsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SettingsStateImpl &&
+            (identical(other.isSignOutCompleted, isSignOutCompleted) ||
+                other.isSignOutCompleted == isSignOutCompleted) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, failure);
+  int get hashCode =>
+      Object.hash(runtimeType, isSignOutCompleted, isLoading, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -287,9 +306,13 @@ class _$SettingsStateImpl implements _SettingsState {
 }
 
 abstract class _SettingsState implements SettingsState {
-  const factory _SettingsState({final bool isLoading, final Failure? failure}) =
-      _$SettingsStateImpl;
+  const factory _SettingsState(
+      {final bool isSignOutCompleted,
+      final bool isLoading,
+      final Failure? failure}) = _$SettingsStateImpl;
 
+  @override
+  bool get isSignOutCompleted;
   @override
   bool get isLoading;
   @override

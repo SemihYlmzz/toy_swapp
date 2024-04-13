@@ -18,18 +18,15 @@ class SettingsRouter {
   GoRoute get route => GoRoute(
         path: _path,
         name: _name,
-        // parentNavigatorKey: RouterMixin.parentNavigatorKey,
-        pageBuilder: (context, state) => const NoTransitionPage(
+        pageBuilder: (context, state) => const MaterialPage(
           child: SettingsScreen(),
         ),
       );
   void go(BuildContext context) {
-
     GoRouter.of(context).goNamed(_name);
   }
 
   void push(BuildContext context) {
-
     GoRouter.of(context).pushNamed(_name);
   }
 }

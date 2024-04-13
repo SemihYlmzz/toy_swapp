@@ -12,10 +12,13 @@ class SettingsScreen extends StatelessWidget {
     final settingsBlocListeners = SettingsBlocListeners();
 
     return BlocProvider(
-      create: (context) => SettingsBloc(),
+      create: (context) => SettingsBloc(
+        authRepository: context.read(),
+      ),
       child: MultiBlocListener(
         listeners: [
           settingsBlocListeners.errorDisplayer(),
+          settingsBlocListeners.signOutNavigator(),
         ],
         child: BlocSelector<SettingsBloc, SettingsState, bool>(
           selector: (state) => state.isLoading,
