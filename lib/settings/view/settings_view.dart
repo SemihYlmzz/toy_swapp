@@ -6,11 +6,6 @@ import '../settings.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
-  Divider _divider() => const Divider(
-        indent: 56,
-        color: Colors.white30,
-        height: 0,
-      );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
