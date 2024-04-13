@@ -22,6 +22,9 @@ class NavigatorBarCubit extends Cubit<NavigatorBarCubitState> {
     final subRoute = state.subRoutes
         .where((element) => element.name == goRouterState.topRoute!.name)
         .firstOrNull;
+    if (subRoute == null) {
+      return;
+    }
     emit(
       state.copyWith(goRouterState: goRouterState, selectedSubRoute: subRoute),
     );
