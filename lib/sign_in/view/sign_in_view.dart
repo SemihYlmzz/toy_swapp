@@ -16,7 +16,7 @@ class SignInView extends StatelessWidget {
       appBar: const SignInAppBar(),
       body: Padding(
         padding: SharedPaddings.all12,
-        child: Column(
+        child: BaseColumn(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SignInEmailTextField(),

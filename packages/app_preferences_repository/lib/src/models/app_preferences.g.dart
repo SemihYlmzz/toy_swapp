@@ -8,6 +8,7 @@ part of 'app_preferences.dart';
 
 _$AppPreferencesImpl _$$AppPreferencesImplFromJson(Map<String, dynamic> json) =>
     _$AppPreferencesImpl(
+      note: json['note'] as String,
       termsAcceptance: json['termsAcceptance'] == null
           ? null
           : TermsAcceptance.fromJson(
@@ -17,5 +18,6 @@ _$AppPreferencesImpl _$$AppPreferencesImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$AppPreferencesImplToJson(
         _$AppPreferencesImpl instance) =>
     <String, dynamic>{
+      'note': instance.note,
       'termsAcceptance': instance.termsAcceptance,
     };

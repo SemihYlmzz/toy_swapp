@@ -15,4 +15,11 @@ class AppMetadata with _$AppMetadata {
 
   factory AppMetadata.fromJson(Map<String, Object?> json) =>
       _$AppMetadataFromJson(json);
+
+  factory AppMetadata.empty() => AppMetadata(
+        termsVersions: TermsVersions.empty(),
+        appName: '',
+        version: '',
+        coreVersionNumber: 0,
+      );
 }

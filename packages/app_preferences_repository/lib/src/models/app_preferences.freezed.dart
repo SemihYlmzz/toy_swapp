@@ -20,6 +20,8 @@ AppPreferences _$AppPreferencesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AppPreferences {
+// Temporary
+  String get note => throw _privateConstructorUsedError; // End Temporary
   TermsAcceptance? get termsAcceptance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +36,7 @@ abstract class $AppPreferencesCopyWith<$Res> {
           AppPreferences value, $Res Function(AppPreferences) then) =
       _$AppPreferencesCopyWithImpl<$Res, AppPreferences>;
   @useResult
-  $Res call({TermsAcceptance? termsAcceptance});
+  $Res call({String note, TermsAcceptance? termsAcceptance});
 
   $TermsAcceptanceCopyWith<$Res>? get termsAcceptance;
 }
@@ -52,9 +54,14 @@ class _$AppPreferencesCopyWithImpl<$Res, $Val extends AppPreferences>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? note = null,
     Object? termsAcceptance = freezed,
   }) {
     return _then(_value.copyWith(
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
       termsAcceptance: freezed == termsAcceptance
           ? _value.termsAcceptance
           : termsAcceptance // ignore: cast_nullable_to_non_nullable
@@ -83,7 +90,7 @@ abstract class _$$AppPreferencesImplCopyWith<$Res>
       __$$AppPreferencesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TermsAcceptance? termsAcceptance});
+  $Res call({String note, TermsAcceptance? termsAcceptance});
 
   @override
   $TermsAcceptanceCopyWith<$Res>? get termsAcceptance;
@@ -100,9 +107,14 @@ class __$$AppPreferencesImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? note = null,
     Object? termsAcceptance = freezed,
   }) {
     return _then(_$AppPreferencesImpl(
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
       termsAcceptance: freezed == termsAcceptance
           ? _value.termsAcceptance
           : termsAcceptance // ignore: cast_nullable_to_non_nullable
@@ -114,17 +126,21 @@ class __$$AppPreferencesImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AppPreferencesImpl implements _AppPreferences {
-  const _$AppPreferencesImpl({this.termsAcceptance});
+  const _$AppPreferencesImpl({required this.note, this.termsAcceptance});
 
   factory _$AppPreferencesImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppPreferencesImplFromJson(json);
 
+// Temporary
+  @override
+  final String note;
+// End Temporary
   @override
   final TermsAcceptance? termsAcceptance;
 
   @override
   String toString() {
-    return 'AppPreferences(termsAcceptance: $termsAcceptance)';
+    return 'AppPreferences(note: $note, termsAcceptance: $termsAcceptance)';
   }
 
   @override
@@ -132,13 +148,14 @@ class _$AppPreferencesImpl implements _AppPreferences {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppPreferencesImpl &&
+            (identical(other.note, note) || other.note == note) &&
             (identical(other.termsAcceptance, termsAcceptance) ||
                 other.termsAcceptance == termsAcceptance));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, termsAcceptance);
+  int get hashCode => Object.hash(runtimeType, note, termsAcceptance);
 
   @JsonKey(ignore: true)
   @override
@@ -156,13 +173,16 @@ class _$AppPreferencesImpl implements _AppPreferences {
 }
 
 abstract class _AppPreferences implements AppPreferences {
-  const factory _AppPreferences({final TermsAcceptance? termsAcceptance}) =
-      _$AppPreferencesImpl;
+  const factory _AppPreferences(
+      {required final String note,
+      final TermsAcceptance? termsAcceptance}) = _$AppPreferencesImpl;
 
   factory _AppPreferences.fromJson(Map<String, dynamic> json) =
       _$AppPreferencesImpl.fromJson;
 
-  @override
+  @override // Temporary
+  String get note;
+  @override // End Temporary
   TermsAcceptance? get termsAcceptance;
   @override
   @JsonKey(ignore: true)

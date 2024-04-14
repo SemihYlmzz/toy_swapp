@@ -19,7 +19,6 @@ class AppScreen extends StatelessWidget {
     required AppPreferencesRepository appPreferencesRepository,
     required ConsumerRepository consumerRepository,
     required AppMetadataRepository appMetadataRepository,
-    required AppMetadata appMetadata,
     required AppPreferences appPreferences,
     required RouterConfig<Object> routerConfig,
     super.key,
@@ -31,7 +30,6 @@ class AppScreen extends StatelessWidget {
         _appPreferences = appPreferences,
         _appMetadataRepository = appMetadataRepository,
         _consumerRepository = consumerRepository,
-        _appMetadata = appMetadata,
         _routerConfig = routerConfig;
   // Services
   final PermissionService _permissionService;
@@ -46,7 +44,6 @@ class AppScreen extends StatelessWidget {
 
   // Instances
   final AppPreferences _appPreferences;
-  final AppMetadata _appMetadata;
   final RouterConfig<Object> _routerConfig;
 
   @override
@@ -67,7 +64,7 @@ class AppScreen extends StatelessWidget {
           create: (context) => AppBloc(
             appPreferencesRepository: _appPreferencesRepository,
             appPreferences: _appPreferences,
-            appMetadata: _appMetadata,
+            appMetadata: _appMetadataRepository.appMetadata,
           )..add(const AppEvent.checkIsTermsAccepted()),
         ),
       ],

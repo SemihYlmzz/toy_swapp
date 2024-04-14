@@ -28,7 +28,7 @@ void main() async {
     consumerRepository.currentConsumerStream,
   );
   final appPreferences = await appPreferencesRepository.read();
-  final appMetadata = await appMetadataRepository.read();
+  await appMetadataRepository.read();
   final deviceMetadata = await deviceMetadataRepository.getDeviceMetadata();
 
   // Services
@@ -46,7 +46,6 @@ void main() async {
         imageService: imageService,
         locationService: locationService,
         appPreferences: appPreferences,
-        appMetadata: appMetadata,
         appMetadataRepository: appMetadataRepository,
         appPreferencesRepository: appPreferencesRepository,
         authRepository: authRepository,

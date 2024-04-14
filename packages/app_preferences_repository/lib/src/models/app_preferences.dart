@@ -8,9 +8,17 @@ part 'app_preferences.g.dart';
 @freezed
 class AppPreferences with _$AppPreferences {
   const factory AppPreferences({
+    // Temporary
+    required String note,
+    // End Temporary
     TermsAcceptance? termsAcceptance,
   }) = _AppPreferences;
 
   factory AppPreferences.fromJson(Map<String, Object?> json) =>
       _$AppPreferencesFromJson(json);
+
+  factory AppPreferences.empty() => AppPreferences(
+        termsAcceptance: TermsAcceptance.empty(),
+        note: '',
+      );
 }

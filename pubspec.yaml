@@ -90,7 +90,8 @@ dependencies:
   # Widgets
   styled_text: ^8.1.0
   linkpeek: ^1.0.0
-  
+  settings_ui: ^2.0.2
+
 dev_dependencies:
 
   # Tests

@@ -15,4 +15,12 @@ class TermsVersions with _$TermsVersions {
 
   factory TermsVersions.fromJson(Map<String, Object?> json) =>
       _$TermsVersionsFromJson(json);
+
+  factory TermsVersions.empty() => TermsVersions(
+        termsReleaseNumber: 0,
+        isReleasedTermsUrgent: false,
+        termsOfServiceUrl: '',
+        devangsPrivacyPolicyUrl: '',
+        toySwappPrivacyPolicyUrl: '',
+      );
 }

@@ -25,7 +25,7 @@ class AppPreferencesRepository {
 
   Stream<AppPreferences> get appPreferencesStream => _streamController.stream;
 
-  AppPreferences? appPreferences;
+  AppPreferences appPreferences = AppPreferences.empty();
 
   // Functions
   Future<AppPreferences> read() async {
@@ -49,7 +49,7 @@ class AppPreferencesRepository {
   }
 
   Future<AppPreferences> create() async {
-    const creatableAppPreferences = AppPreferences();
+    const creatableAppPreferences = AppPreferences(note: 'Take Note');
 
     await _sharedPreferences.setString(
       AppPreferencesRepositoryStrings.localDatabaseKey,
@@ -63,15 +63,30 @@ class AppPreferencesRepository {
     required int appCoreVersionNumber,
     required int termsReleaseNumber,
   }) async {
-    if (appPreferences == null) {
-      return Left(AppPreferencesRepositoryUnknown());
-    }
     try {
-      final updatedPreferences = appPreferences!.copyWith(
+      final updatedPreferences = appPreferences.copyWith(
         termsAcceptance: TermsAcceptance(
           appCoreVersionNumber: appCoreVersionNumber,
           termsReleaseNumber: termsReleaseNumber,
         ),
+      );
+      await _sharedPreferences.setString(
+        AppPreferencesRepositoryStrings.localDatabaseKey,
+        jsonEncode(updatedPreferences.toJson()),
+      );
+      _streamController.sink.add(updatedPreferences);
+      return const Right(unit);
+    } catch (exception) {
+      return Left(AppPreferencesRepositoryUnknown());
+    }
+  }
+
+  FutureUnit updateNote({
+    required String note,
+  }) async {
+    try {
+      final updatedPreferences = appPreferences.copyWith(
+        note: note,
       );
       await _sharedPreferences.setString(
         AppPreferencesRepositoryStrings.localDatabaseKey,

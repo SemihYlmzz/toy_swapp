@@ -14,6 +14,8 @@ class SettingsScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => SettingsBloc(
         authRepository: context.read(),
+        consumerRepository: context.read(),
+        appMetadataRepository: context.read(),
       ),
       child: MultiBlocListener(
         listeners: [

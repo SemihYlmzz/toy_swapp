@@ -11,7 +11,9 @@ class SubMatchesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final subMatchesBlocListeners = SubMatchesBlocListeners();
     return BlocProvider(
-      create: (context) => SubMatchesBloc(),
+      create: (context) => SubMatchesBloc(
+        appPreferencesRepository: context.read(),
+      ),
       child: MultiBlocListener(
         listeners: [
           subMatchesBlocListeners.errorDisplayer(),
