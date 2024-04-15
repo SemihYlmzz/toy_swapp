@@ -10,6 +10,7 @@ extension StartupErrorDisplayer on StartupBlocListeners {
         if (!isInitializeError) {
           return;
         }
+        // TODO:
         // show popup something went wrong and try again button
       },
     );

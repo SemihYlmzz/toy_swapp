@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../dependencies/dependencies.dart';
@@ -31,25 +33,44 @@ class StartupBloc extends Bloc<StartupEvent, StartupState> {
     StartupEvent event,
     Emitter<StartupState> emit,
   ) async {
+    // Will remove later
+    final random = Random();
     await event.map(
       initializeAllDependencies: (e) async {
         try {
           // Loggers
           _loggerDependencies.init();
+          emit(const StartupState(progressValue: 0.1));
+          await Future<void>.delayed(
+            Duration(milliseconds: random.nextInt(400) + 100),
+          );
           // Configs
           await _configDependencies.init();
-          // Repositories
+          emit(const StartupState(progressValue: 0.3));
+          await Future<void>.delayed(
+            Duration(milliseconds: random.nextInt(400) + 100),
+          ); // Repositories
           final repositories = await _repositoryDependencies.init();
-          // Instances
+          emit(const StartupState(progressValue: 0.6));
+          await Future<void>.delayed(
+            Duration(milliseconds: random.nextInt(400) + 100),
+          ); // Instances
           final instances = await _instanceDependencies.init(
             repositories: repositories,
           );
-          // Services
+          emit(const StartupState(progressValue: 0.8));
+          await Future<void>.delayed(
+            Duration(milliseconds: random.nextInt(400) + 100),
+          ); // Services
           final services = await _serviceDependencies.init(
             androidVersionSdkNumber:
                 instances.deviceMetadata.androidInformation?.versionSdkNumber,
           );
+          emit(const StartupState(progressValue: 1));
 
+          await Future<void>.delayed(
+            Duration(milliseconds: random.nextInt(300) + 300),
+          );
           emit(
             StartupState(
               appDependencies: AppDependencies(

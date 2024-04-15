@@ -1,5 +1,5 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../startup.dart';
 
@@ -8,20 +8,21 @@ class StartupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = PlatformDispatcher.instance.platformBrightness;
+
     return Scaffold(
-      appBar: const StartupAppBar(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      backgroundColor: brightness == Brightness.dark
+          ? const Color(0xFF111111)
+          : const Color(0xFFFFFFFF),
+      body: Stack(
+        alignment: Alignment.center,
         children: [
-          Center(
-            child: TextButton(
-              onPressed: () {
-                context.read<StartupBloc>().add(
-                      const StartupEvent.initializeAllDependencies(),
-                    );
-              },
-              child: const Text('Init Dependencies'),
-            ),
+          Align(
+            child: Image.asset('assets/flame_logo.png', height: 128),
+          ),
+          Positioned(
+            bottom: MediaQuery.of(context).viewInsets.bottom + 80,
+            child: const InitializeProgressDisplayer(),
           ),
         ],
       ),

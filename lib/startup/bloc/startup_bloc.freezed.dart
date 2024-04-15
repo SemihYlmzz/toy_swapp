@@ -178,6 +178,7 @@ abstract class StartupInitializeAllDependencies implements StartupEvent {
 
 /// @nodoc
 mixin _$StartupState {
+  double get progressValue => throw _privateConstructorUsedError;
   AppDependencies? get appDependencies => throw _privateConstructorUsedError;
   bool get isInitializeError => throw _privateConstructorUsedError;
 
@@ -192,7 +193,10 @@ abstract class $StartupStateCopyWith<$Res> {
           StartupState value, $Res Function(StartupState) then) =
       _$StartupStateCopyWithImpl<$Res, StartupState>;
   @useResult
-  $Res call({AppDependencies? appDependencies, bool isInitializeError});
+  $Res call(
+      {double progressValue,
+      AppDependencies? appDependencies,
+      bool isInitializeError});
 }
 
 /// @nodoc
@@ -208,10 +212,15 @@ class _$StartupStateCopyWithImpl<$Res, $Val extends StartupState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? progressValue = null,
     Object? appDependencies = freezed,
     Object? isInitializeError = null,
   }) {
     return _then(_value.copyWith(
+      progressValue: null == progressValue
+          ? _value.progressValue
+          : progressValue // ignore: cast_nullable_to_non_nullable
+              as double,
       appDependencies: freezed == appDependencies
           ? _value.appDependencies
           : appDependencies // ignore: cast_nullable_to_non_nullable
@@ -232,7 +241,10 @@ abstract class _$$StartupStateImplCopyWith<$Res>
       __$$StartupStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AppDependencies? appDependencies, bool isInitializeError});
+  $Res call(
+      {double progressValue,
+      AppDependencies? appDependencies,
+      bool isInitializeError});
 }
 
 /// @nodoc
@@ -246,10 +258,15 @@ class __$$StartupStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? progressValue = null,
     Object? appDependencies = freezed,
     Object? isInitializeError = null,
   }) {
     return _then(_$StartupStateImpl(
+      progressValue: null == progressValue
+          ? _value.progressValue
+          : progressValue // ignore: cast_nullable_to_non_nullable
+              as double,
       appDependencies: freezed == appDependencies
           ? _value.appDependencies
           : appDependencies // ignore: cast_nullable_to_non_nullable
@@ -266,8 +283,13 @@ class __$$StartupStateImplCopyWithImpl<$Res>
 
 class _$StartupStateImpl implements _StartupState {
   const _$StartupStateImpl(
-      {this.appDependencies, this.isInitializeError = false});
+      {this.progressValue = 0.0,
+      this.appDependencies,
+      this.isInitializeError = false});
 
+  @override
+  @JsonKey()
+  final double progressValue;
   @override
   final AppDependencies? appDependencies;
   @override
@@ -276,7 +298,7 @@ class _$StartupStateImpl implements _StartupState {
 
   @override
   String toString() {
-    return 'StartupState(appDependencies: $appDependencies, isInitializeError: $isInitializeError)';
+    return 'StartupState(progressValue: $progressValue, appDependencies: $appDependencies, isInitializeError: $isInitializeError)';
   }
 
   @override
@@ -284,6 +306,8 @@ class _$StartupStateImpl implements _StartupState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StartupStateImpl &&
+            (identical(other.progressValue, progressValue) ||
+                other.progressValue == progressValue) &&
             (identical(other.appDependencies, appDependencies) ||
                 other.appDependencies == appDependencies) &&
             (identical(other.isInitializeError, isInitializeError) ||
@@ -291,8 +315,8 @@ class _$StartupStateImpl implements _StartupState {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, appDependencies, isInitializeError);
+  int get hashCode => Object.hash(
+      runtimeType, progressValue, appDependencies, isInitializeError);
 
   @JsonKey(ignore: true)
   @override
@@ -303,9 +327,12 @@ class _$StartupStateImpl implements _StartupState {
 
 abstract class _StartupState implements StartupState {
   const factory _StartupState(
-      {final AppDependencies? appDependencies,
+      {final double progressValue,
+      final AppDependencies? appDependencies,
       final bool isInitializeError}) = _$StartupStateImpl;
 
+  @override
+  double get progressValue;
   @override
   AppDependencies? get appDependencies;
   @override

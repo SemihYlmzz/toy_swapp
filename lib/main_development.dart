@@ -7,6 +7,7 @@ import 'package:toy_swapp/startup/startup.dart';
 void main() async {
   // Fluter Initializer
   WidgetsFlutterBinding.ensureInitialized();
+
   // Dependencies
   const configDependencies = ConfigDependencies();
   const loggerDependencies = LoggerDependencies();

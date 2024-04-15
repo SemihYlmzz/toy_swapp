@@ -40,7 +40,7 @@ class StartupScreen extends StatelessWidget {
           instanceDependencies: _instanceDependencies,
           repositoryDependencies: _repositoryDependencies,
           serviceDependencies: _serviceDependencies,
-        ),
+        )..add(const StartupEvent.initializeAllDependencies()),
         child: MultiBlocListener(
           listeners: [
             startupBlocListeners.errorDisplayer(),

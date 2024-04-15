@@ -41,18 +41,6 @@ dependencies:
   location_service:
     path: packages/location_service
 
-  # # Interfaces
-  # local_database_api:
-  #   path: packages/local_database_api
-  # remote_config_api:
-  #   path: packages/remote_config_api
-
-  # # Apis
-  # shared_preferences_api:
-  #   path: packages/shared_preferences_api
-  # firebase_remote_config_api:
-  #   path: packages/firebase_remote_config_api
-
   # Animation
   flutter_animate: ^4.5.0
 
@@ -86,6 +74,8 @@ dependencies:
   # Navigation
   go_router: ^13.2.2
 
+  # Splash Screen
+  flutter_native_splash: ^2.4.0
 
   # Widgets
   styled_text: ^8.1.0
@@ -108,6 +98,16 @@ dev_dependencies:
   freezed: ^2.4.7
   json_serializable: ^6.7.1
 
+  # Splash Screen
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/flame_logo.png
+  color_dark: "#111111"
+  image_dark: assets/flame_logo.png
+  
+
 flutter:
   uses-material-design: true
   # generate: true
+  assets:
+    - assets/
