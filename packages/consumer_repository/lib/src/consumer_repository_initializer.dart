@@ -5,10 +5,11 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 class ConsumerRepositoryInitializer {
   static Future<ConsumerRepository> initialize({
+    required FirebaseOptions firebaseOptions,
     FirebaseFirestore? firebaseFirestore,
     FirebaseStorage? firebaseStorage,
   }) async {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(options: firebaseOptions);
     return ConsumerRepository(
       firebaseFirestore: firebaseFirestore ?? FirebaseFirestore.instance,
       firebaseStorage: firebaseStorage ?? FirebaseStorage.instance,

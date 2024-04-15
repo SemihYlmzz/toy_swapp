@@ -7,7 +7,7 @@ import 'package:logging/logging.dart';
 class LoggerDependencies {
   const LoggerDependencies();
 
-   void init() {
+  void init() {
     // Configure Logger
     if (kReleaseMode) {
       Logger.root.level = Level.WARNING;

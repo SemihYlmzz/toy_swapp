@@ -4,11 +4,17 @@ import 'package:firebase_core/firebase_core.dart';
 
 class AuthRepositoryInitializer {
   static Future<AuthRepository> initialize({
+    required FirebaseOptions firebaseOptions,
     FirebaseAuth? firebaseAuth,
   }) async {
-    await Firebase.initializeApp();
-    return AuthRepository(
-      firebaseAuth: firebaseAuth ?? FirebaseAuth.instance,
-    );
+    try {
+      await Firebase.initializeApp(options: firebaseOptions);
+      
+      return AuthRepository(
+        firebaseAuth: firebaseAuth ?? FirebaseAuth.instance,
+      );
+    } catch (exception) {
+      rethrow;
+    }
   }
 }

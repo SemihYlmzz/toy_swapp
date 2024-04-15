@@ -1160,7 +1160,7 @@ SPEC CHECKSUMS:
   abseil: ebec4f56469dd7ce9ab08683c0319a68aa0ad86e
   BoringSSL-GRPC: 1e2348957acdbcad360b80a264a90799984b2ba6
   cloud_firestore: 16ad850949e9c68ac1d99e883adaaba9b9fc955c
-  device_info_plus: 97af1d7e84681a90d0693e63169a5d50e0839a0d
+  device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
   Firebase: 797fd7297b7e1be954432743a0b3f90038e45a71
   firebase_auth: bd4ebe97d1e836aa5692b75c8f13412ed4381871
   firebase_core: aaadbddb3cb2ee3792b9804f9dbb63e5f6f7b55c

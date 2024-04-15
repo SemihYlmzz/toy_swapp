@@ -6,11 +6,12 @@ import '../app_metadata_repository.dart';
 
 class AppMetadataRepositoryInitializer {
   static Future<AppMetadataRepository> initialize({
+    required FirebaseOptions firebaseOptions,
     FirebaseRemoteConfig? firebaseRemoteConfig,
     RemoteConfigSettings? remoteConfigSettings,
   }) async {
     try {
-      await Firebase.initializeApp();
+      await Firebase.initializeApp(options: firebaseOptions);
 
       // Initialize Variables
       firebaseRemoteConfig ??= FirebaseRemoteConfig.instance;
