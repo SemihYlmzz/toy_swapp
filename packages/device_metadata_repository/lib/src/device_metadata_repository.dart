@@ -11,7 +11,7 @@ class DeviceMetadataRepository {
 
   final DeviceInfoPlugin _deviceInfoPlugin;
 
-  Future<DeviceMetadata> getDeviceMetadata() async {
+  Future<DeviceMetadata> read() async {
     AndroidInformation? androidInformation;
 
     // Ensure Device Android

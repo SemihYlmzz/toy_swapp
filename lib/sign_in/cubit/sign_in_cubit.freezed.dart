@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignInCubitState {
+  FocusNode get passwordFocusNode => throw _privateConstructorUsedError;
   Email get email => throw _privateConstructorUsedError;
   Password get password => throw _privateConstructorUsedError;
   bool get displayErrors => throw _privateConstructorUsedError;
@@ -31,7 +32,11 @@ abstract class $SignInCubitStateCopyWith<$Res> {
           SignInCubitState value, $Res Function(SignInCubitState) then) =
       _$SignInCubitStateCopyWithImpl<$Res, SignInCubitState>;
   @useResult
-  $Res call({Email email, Password password, bool displayErrors});
+  $Res call(
+      {FocusNode passwordFocusNode,
+      Email email,
+      Password password,
+      bool displayErrors});
 }
 
 /// @nodoc
@@ -47,11 +52,16 @@ class _$SignInCubitStateCopyWithImpl<$Res, $Val extends SignInCubitState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? passwordFocusNode = null,
     Object? email = null,
     Object? password = null,
     Object? displayErrors = null,
   }) {
     return _then(_value.copyWith(
+      passwordFocusNode: null == passwordFocusNode
+          ? _value.passwordFocusNode
+          : passwordFocusNode // ignore: cast_nullable_to_non_nullable
+              as FocusNode,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -76,7 +86,11 @@ abstract class _$$SignInCubitStateImplCopyWith<$Res>
       __$$SignInCubitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Email email, Password password, bool displayErrors});
+  $Res call(
+      {FocusNode passwordFocusNode,
+      Email email,
+      Password password,
+      bool displayErrors});
 }
 
 /// @nodoc
@@ -90,11 +104,16 @@ class __$$SignInCubitStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? passwordFocusNode = null,
     Object? email = null,
     Object? password = null,
     Object? displayErrors = null,
   }) {
     return _then(_$SignInCubitStateImpl(
+      passwordFocusNode: null == passwordFocusNode
+          ? _value.passwordFocusNode
+          : passwordFocusNode // ignore: cast_nullable_to_non_nullable
+              as FocusNode,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -115,10 +134,13 @@ class __$$SignInCubitStateImplCopyWithImpl<$Res>
 
 class _$SignInCubitStateImpl implements _SignInCubitState {
   const _$SignInCubitStateImpl(
-      {this.email = const Email.pure(),
+      {required this.passwordFocusNode,
+      this.email = const Email.pure(),
       this.password = const Password.pure(),
       this.displayErrors = false});
 
+  @override
+  final FocusNode passwordFocusNode;
   @override
   @JsonKey()
   final Email email;
@@ -131,7 +153,7 @@ class _$SignInCubitStateImpl implements _SignInCubitState {
 
   @override
   String toString() {
-    return 'SignInCubitState(email: $email, password: $password, displayErrors: $displayErrors)';
+    return 'SignInCubitState(passwordFocusNode: $passwordFocusNode, email: $email, password: $password, displayErrors: $displayErrors)';
   }
 
   @override
@@ -139,6 +161,8 @@ class _$SignInCubitStateImpl implements _SignInCubitState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignInCubitStateImpl &&
+            (identical(other.passwordFocusNode, passwordFocusNode) ||
+                other.passwordFocusNode == passwordFocusNode) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
@@ -147,7 +171,8 @@ class _$SignInCubitStateImpl implements _SignInCubitState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, displayErrors);
+  int get hashCode => Object.hash(
+      runtimeType, passwordFocusNode, email, password, displayErrors);
 
   @JsonKey(ignore: true)
   @override
@@ -159,10 +184,13 @@ class _$SignInCubitStateImpl implements _SignInCubitState {
 
 abstract class _SignInCubitState implements SignInCubitState {
   const factory _SignInCubitState(
-      {final Email email,
+      {required final FocusNode passwordFocusNode,
+      final Email email,
       final Password password,
       final bool displayErrors}) = _$SignInCubitStateImpl;
 
+  @override
+  FocusNode get passwordFocusNode;
   @override
   Email get email;
   @override

@@ -28,6 +28,7 @@ class AccountInitializerRouter {
   }
 
   void push(BuildContext context) {
+    FocusManager.instance.primaryFocus?.unfocus();
     GoRouter.of(context).pushNamed(_name);
   }
 

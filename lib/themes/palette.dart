@@ -5,6 +5,9 @@ abstract class Palette {
 
   // Brightness
   Brightness get brightness;
+  
+  // Primary Color
+  Color get primaryColor;
 
   // Bottom Navigation Bar
   Color get bottomNavigationBarUnselectedItemColor;

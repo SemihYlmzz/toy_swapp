@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
+import 'package:toy_swapp/app/app.dart';
 
 import '../sign_up.dart';
 
@@ -18,25 +19,26 @@ class SignUpView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GradientTextField(
-              hintText: 'E-Mail',
+            ToySwappTextField(
+              labelText: 'E-Mail',
               onChanged: (v) => context.read<SignUpCubit>().updateEmail(v),
               errorText: state.email.isNotValid && state.displayErrors
                   ? 'Sorun var.'
                   : null,
             ),
             SharedGap.gap16,
-            GradientTextField(
-              hintText: 'Password',
+            ToySwappTextField(
+              labelText: 'Password',
               obscureText: true,
               onChanged: (v) => context.read<SignUpCubit>().updatePassword(v),
               errorText: state.password.isNotValid && state.displayErrors
                   ? 'Sorun var.'
                   : null,
+              // focusNode: state.passwordFocusNode,
             ),
             SharedGap.gap16,
-            GradientTextField(
-              hintText: 'Confirm Password',
+            ToySwappTextField(
+              labelText: 'Confirm Password',
               obscureText: true,
               onChanged: (v) =>
                   context.read<SignUpCubit>().updateConfirmPassword(v),
@@ -44,6 +46,7 @@ class SignUpView extends StatelessWidget {
                   state.confirmedPassword.isNotValid && state.displayErrors
                       ? 'Passwords do not match'
                       : null,
+              // focusNode: state.confirmedPasswordFocusNode,
             ),
             ElevatedButton(
               onPressed: () {

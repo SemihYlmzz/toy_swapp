@@ -29,7 +29,7 @@ class AppMetadataRepository {
   AppMetadata appMetadata = AppMetadata.empty();
 
   // Functions
-  Future<void> read() async {
+  Future<AppMetadata> read() async {
     try {
       final termsVersionDecoded =
           _firebaseRemoteConfig.getString('terms_versions');
@@ -45,7 +45,7 @@ class AppMetadataRepository {
       );
 
       _appMetadataStreamController.sink.add(appMetadata);
-      return;
+      return appMetadata;
     } catch (exception) {
       throw Exception('Error reading App Metadata: $exception');
     }

@@ -9,6 +9,11 @@ class DefaultDarkPalette implements Palette {
   @override
   Brightness get brightness => Brightness.dark;
 
+  // Primary Color
+
+  @override
+  Color get primaryColor => Colors.deepOrangeAccent;
+
   // Bottom Navigation Bar
   @override
   double get bottomNavigationBarIconSize => 30;
@@ -25,9 +30,9 @@ class DefaultDarkPalette implements Palette {
   @override
   Color get colorSchemeOnSurface => Colors.white;
   @override
-  Color get colorSchemePrimary => Colors.white;
+  Color get colorSchemePrimary => Colors.deepOrangeAccent;
   @override
-  Color get colorSchemeSurface => Colors.deepPurple.shade800;
+  Color get colorSchemeSurface => Colors.purple;
   @override
   Color get colorSchemeError => Colors.red.shade900;
   @override

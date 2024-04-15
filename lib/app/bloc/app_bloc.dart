@@ -64,7 +64,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         }
 
         final isAppVersionUpdated = state.appMetadata.coreVersionNumber >
-            state.appPreferences.termsAcceptance!.appCoreVersionNumber;
+            termsAcceptance.appCoreVersionNumber;
         // [Terms Accepted] but [Non Urgent New Terms] and [App Version Updated]
         if (isAppVersionUpdated) {
           emit(state.copyWith(needTermAcceptance: true));

@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'themes.dart';
 
 class CustomThemeData {
@@ -7,6 +7,7 @@ class CustomThemeData {
 
   static ThemeData themeData(Palette palette) => ThemeData(
         brightness: palette.brightness,
+        primaryColor: palette.primaryColor,
         colorScheme: ColorScheme(
           brightness: palette.brightness,
           primary: palette.colorSchemePrimary,
@@ -20,11 +21,24 @@ class CustomThemeData {
           onSecondary: Colors.yellow,
           onError: Colors.yellow,
         ),
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: palette.primaryColor,
+          selectionColor: palette.colorSchemeOnBackground.withOpacity(0.4),
+          selectionHandleColor: Colors.pinkAccent,
+        ),
+        cupertinoOverrideTheme: CupertinoThemeData(
+          primaryColor: palette.primaryColor,
+        ),
         sliderTheme: SliderThemeData(
           activeTrackColor: palette.colorSchemeSurface,
           thumbColor: palette.colorSchemePrimary,
           inactiveTrackColor: Colors.white30,
           valueIndicatorColor: palette.colorSchemeSurface,
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(palette.primaryColor),
+          ),
         ),
         appBarTheme: AppBarTheme(
           color: palette.appBarColor,
@@ -45,6 +59,13 @@ class CustomThemeData {
         dividerTheme: DividerThemeData(
           thickness: 0.5,
           color: palette.dividerColor,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(palette.primaryColor),
+            foregroundColor:
+                MaterialStateProperty.all(palette.colorSchemeOnBackground),
+          ),
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: palette.colorSchemeBackground,
