@@ -11,6 +11,7 @@ class AppPreferences with _$AppPreferences {
     // Temporary
     required String note,
     // End Temporary
+    required bool isVibratable,
     TermsAcceptance? termsAcceptance,
   }) = _AppPreferences;
 
@@ -20,5 +21,6 @@ class AppPreferences with _$AppPreferences {
   factory AppPreferences.empty() => AppPreferences(
         termsAcceptance: TermsAcceptance.empty(),
         note: '',
+        isVibratable: false,
       );
 }

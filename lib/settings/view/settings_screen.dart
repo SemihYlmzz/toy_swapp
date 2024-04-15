@@ -16,6 +16,7 @@ class SettingsScreen extends StatelessWidget {
         authRepository: context.read(),
         consumerRepository: context.read(),
         appMetadataRepository: context.read(),
+        appPreferencesRepository: context.read(),
       ),
       child: MultiBlocListener(
         listeners: [

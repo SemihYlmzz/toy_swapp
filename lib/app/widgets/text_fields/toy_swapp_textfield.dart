@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_constants/shared_constants.dart';
 
 class ToySwappTextField extends StatefulWidget {
   const ToySwappTextField({
@@ -9,6 +10,7 @@ class ToySwappTextField extends StatefulWidget {
     this.onChanged,
     this.onSubmit,
     this.focusNode,
+    this.keyboardType,
   });
 
   final bool obscureText;
@@ -17,6 +19,7 @@ class ToySwappTextField extends StatefulWidget {
   final void Function(String)? onChanged;
   final void Function(String)? onSubmit;
   final FocusNode? focusNode;
+  final TextInputType? keyboardType;
   @override
   State<ToySwappTextField> createState() => _ToySwappTextFieldState();
 }
@@ -25,37 +28,48 @@ class _ToySwappTextFieldState extends State<ToySwappTextField> {
   bool hidePassword = true;
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      focusNode: widget.focusNode,
-      obscureText: widget.obscureText && hidePassword,
-      decoration: InputDecoration(
-        labelText: widget.labelText,
-        labelStyle: TextStyle(
-          color: Theme.of(context).colorScheme.onBackground,
+    return Stack(
+      children: [
+        TextField(
+          focusNode: widget.focusNode,
+          obscureText: widget.obscureText && hidePassword,
+          decoration: InputDecoration(
+            labelText: widget.labelText,
+            labelStyle: TextStyle(
+              color: Theme.of(context).colorScheme.onBackground,
+            ),
+            floatingLabelStyle: TextStyle(
+              color: Theme.of(context).colorScheme.onBackground,
+            ),
+            errorText: widget.errorText,
+            focusedBorder: OutlineInputBorder(
+              borderSide:
+                  BorderSide(color: Theme.of(context).colorScheme.primary),
+            ),
+          ),
+          onChanged: widget.onChanged,
+          onSubmitted: widget.onSubmit,
+          keyboardType: widget.keyboardType,
         ),
-        floatingLabelStyle: TextStyle(
-          color: Theme.of(context).colorScheme.onBackground,
-        ),
-        suffix: !widget.obscureText
-            ? null
-            : GestureDetector(
-                onTap: () {
-                  setState(() {
-                    hidePassword = !hidePassword;
-                  });
-                },
+        if (widget.obscureText)
+          Positioned(
+            right: 0,
+            top: 4,
+            child: GestureDetector(
+              onTap: () {
+                hidePassword = !hidePassword;
+                setState(() {});
+              },
+              child: Container(
+                color: Colors.transparent,
+                padding: SharedPaddings.all16,
                 child: Icon(
                   hidePassword ? Icons.visibility : Icons.visibility_off,
                 ),
               ),
-        errorText: widget.errorText,
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),
-        ),
-      ),
-      onChanged: widget.onChanged,
-      onSubmitted: widget.onSubmit,
-      keyboardType: TextInputType.emailAddress,
+            ),
+          ),
+      ],
     );
   }
 }

@@ -1,1 +1,10 @@
+export 'app_preferences_setting_group.dart';
+export 'app_version_text.dart';
+export 'consumer_first_setting_group.dart';
+export 'consumer_second_setting_group.dart';
+export 'destructive_setting.dart';
+export 'setting.dart';
+export 'setting_group.dart';
+export 'setting_sign_out_button.dart';
 export 'settings_app_bar.dart';
+export 'terms_setting_group.dart';

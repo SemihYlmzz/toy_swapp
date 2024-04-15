@@ -23,6 +23,9 @@ mixin _$SettingsEvent {
     required TResult Function(Auth updatedAuth) currentAuthUpdated,
     required TResult Function(AppMetadata updatedAppMetadata)
         appMetadataUpdated,
+    required TResult Function(AppPreferences updatedAppPreferences)
+        appPreferencesUpdated,
+    required TResult Function(bool updatedIsVibratable) updateIsVibratable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,6 +34,9 @@ mixin _$SettingsEvent {
     TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult? Function(Auth updatedAuth)? currentAuthUpdated,
     TResult? Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult? Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult? Function(bool updatedIsVibratable)? updateIsVibratable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,6 +45,9 @@ mixin _$SettingsEvent {
     TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult Function(Auth updatedAuth)? currentAuthUpdated,
     TResult Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult Function(bool updatedIsVibratable)? updateIsVibratable,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +60,10 @@ mixin _$SettingsEvent {
         currentAuthUpdated,
     required TResult Function(SettingsAppMetadataUpdated value)
         appMetadataUpdated,
+    required TResult Function(SettingsAppPreferencesUpdated value)
+        appPreferencesUpdated,
+    required TResult Function(SettingsUpdateIsVibratable value)
+        updateIsVibratable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +73,9 @@ mixin _$SettingsEvent {
         currentConsumerUpdated,
     TResult? Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
     TResult? Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult? Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult? Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +85,9 @@ mixin _$SettingsEvent {
         currentConsumerUpdated,
     TResult Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
     TResult Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -136,6 +155,9 @@ class _$SettingsAuthSignOutImpl implements SettingsAuthSignOut {
     required TResult Function(Auth updatedAuth) currentAuthUpdated,
     required TResult Function(AppMetadata updatedAppMetadata)
         appMetadataUpdated,
+    required TResult Function(AppPreferences updatedAppPreferences)
+        appPreferencesUpdated,
+    required TResult Function(bool updatedIsVibratable) updateIsVibratable,
   }) {
     return authSignOut();
   }
@@ -147,6 +169,9 @@ class _$SettingsAuthSignOutImpl implements SettingsAuthSignOut {
     TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult? Function(Auth updatedAuth)? currentAuthUpdated,
     TResult? Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult? Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult? Function(bool updatedIsVibratable)? updateIsVibratable,
   }) {
     return authSignOut?.call();
   }
@@ -158,6 +183,9 @@ class _$SettingsAuthSignOutImpl implements SettingsAuthSignOut {
     TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult Function(Auth updatedAuth)? currentAuthUpdated,
     TResult Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult Function(bool updatedIsVibratable)? updateIsVibratable,
     required TResult orElse(),
   }) {
     if (authSignOut != null) {
@@ -176,6 +204,10 @@ class _$SettingsAuthSignOutImpl implements SettingsAuthSignOut {
         currentAuthUpdated,
     required TResult Function(SettingsAppMetadataUpdated value)
         appMetadataUpdated,
+    required TResult Function(SettingsAppPreferencesUpdated value)
+        appPreferencesUpdated,
+    required TResult Function(SettingsUpdateIsVibratable value)
+        updateIsVibratable,
   }) {
     return authSignOut(this);
   }
@@ -188,6 +220,9 @@ class _$SettingsAuthSignOutImpl implements SettingsAuthSignOut {
         currentConsumerUpdated,
     TResult? Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
     TResult? Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult? Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult? Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
   }) {
     return authSignOut?.call(this);
   }
@@ -200,6 +235,9 @@ class _$SettingsAuthSignOutImpl implements SettingsAuthSignOut {
         currentConsumerUpdated,
     TResult Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
     TResult Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
     required TResult orElse(),
   }) {
     if (authSignOut != null) {
@@ -299,6 +337,9 @@ class _$SettingsCurrentConsumerUpdatedImpl
     required TResult Function(Auth updatedAuth) currentAuthUpdated,
     required TResult Function(AppMetadata updatedAppMetadata)
         appMetadataUpdated,
+    required TResult Function(AppPreferences updatedAppPreferences)
+        appPreferencesUpdated,
+    required TResult Function(bool updatedIsVibratable) updateIsVibratable,
   }) {
     return currentConsumerUpdated(updatedConsumer);
   }
@@ -310,6 +351,9 @@ class _$SettingsCurrentConsumerUpdatedImpl
     TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult? Function(Auth updatedAuth)? currentAuthUpdated,
     TResult? Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult? Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult? Function(bool updatedIsVibratable)? updateIsVibratable,
   }) {
     return currentConsumerUpdated?.call(updatedConsumer);
   }
@@ -321,6 +365,9 @@ class _$SettingsCurrentConsumerUpdatedImpl
     TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult Function(Auth updatedAuth)? currentAuthUpdated,
     TResult Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult Function(bool updatedIsVibratable)? updateIsVibratable,
     required TResult orElse(),
   }) {
     if (currentConsumerUpdated != null) {
@@ -339,6 +386,10 @@ class _$SettingsCurrentConsumerUpdatedImpl
         currentAuthUpdated,
     required TResult Function(SettingsAppMetadataUpdated value)
         appMetadataUpdated,
+    required TResult Function(SettingsAppPreferencesUpdated value)
+        appPreferencesUpdated,
+    required TResult Function(SettingsUpdateIsVibratable value)
+        updateIsVibratable,
   }) {
     return currentConsumerUpdated(this);
   }
@@ -351,6 +402,9 @@ class _$SettingsCurrentConsumerUpdatedImpl
         currentConsumerUpdated,
     TResult? Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
     TResult? Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult? Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult? Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
   }) {
     return currentConsumerUpdated?.call(this);
   }
@@ -363,6 +417,9 @@ class _$SettingsCurrentConsumerUpdatedImpl
         currentConsumerUpdated,
     TResult Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
     TResult Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
     required TResult orElse(),
   }) {
     if (currentConsumerUpdated != null) {
@@ -466,6 +523,9 @@ class _$SettingsCurrentAuthUpdatedImpl implements SettingsCurrentAuthUpdated {
     required TResult Function(Auth updatedAuth) currentAuthUpdated,
     required TResult Function(AppMetadata updatedAppMetadata)
         appMetadataUpdated,
+    required TResult Function(AppPreferences updatedAppPreferences)
+        appPreferencesUpdated,
+    required TResult Function(bool updatedIsVibratable) updateIsVibratable,
   }) {
     return currentAuthUpdated(updatedAuth);
   }
@@ -477,6 +537,9 @@ class _$SettingsCurrentAuthUpdatedImpl implements SettingsCurrentAuthUpdated {
     TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult? Function(Auth updatedAuth)? currentAuthUpdated,
     TResult? Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult? Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult? Function(bool updatedIsVibratable)? updateIsVibratable,
   }) {
     return currentAuthUpdated?.call(updatedAuth);
   }
@@ -488,6 +551,9 @@ class _$SettingsCurrentAuthUpdatedImpl implements SettingsCurrentAuthUpdated {
     TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult Function(Auth updatedAuth)? currentAuthUpdated,
     TResult Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult Function(bool updatedIsVibratable)? updateIsVibratable,
     required TResult orElse(),
   }) {
     if (currentAuthUpdated != null) {
@@ -506,6 +572,10 @@ class _$SettingsCurrentAuthUpdatedImpl implements SettingsCurrentAuthUpdated {
         currentAuthUpdated,
     required TResult Function(SettingsAppMetadataUpdated value)
         appMetadataUpdated,
+    required TResult Function(SettingsAppPreferencesUpdated value)
+        appPreferencesUpdated,
+    required TResult Function(SettingsUpdateIsVibratable value)
+        updateIsVibratable,
   }) {
     return currentAuthUpdated(this);
   }
@@ -518,6 +588,9 @@ class _$SettingsCurrentAuthUpdatedImpl implements SettingsCurrentAuthUpdated {
         currentConsumerUpdated,
     TResult? Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
     TResult? Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult? Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult? Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
   }) {
     return currentAuthUpdated?.call(this);
   }
@@ -530,6 +603,9 @@ class _$SettingsCurrentAuthUpdatedImpl implements SettingsCurrentAuthUpdated {
         currentConsumerUpdated,
     TResult Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
     TResult Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
     required TResult orElse(),
   }) {
     if (currentAuthUpdated != null) {
@@ -632,6 +708,9 @@ class _$SettingsAppMetadataUpdatedImpl implements SettingsAppMetadataUpdated {
     required TResult Function(Auth updatedAuth) currentAuthUpdated,
     required TResult Function(AppMetadata updatedAppMetadata)
         appMetadataUpdated,
+    required TResult Function(AppPreferences updatedAppPreferences)
+        appPreferencesUpdated,
+    required TResult Function(bool updatedIsVibratable) updateIsVibratable,
   }) {
     return appMetadataUpdated(updatedAppMetadata);
   }
@@ -643,6 +722,9 @@ class _$SettingsAppMetadataUpdatedImpl implements SettingsAppMetadataUpdated {
     TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult? Function(Auth updatedAuth)? currentAuthUpdated,
     TResult? Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult? Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult? Function(bool updatedIsVibratable)? updateIsVibratable,
   }) {
     return appMetadataUpdated?.call(updatedAppMetadata);
   }
@@ -654,6 +736,9 @@ class _$SettingsAppMetadataUpdatedImpl implements SettingsAppMetadataUpdated {
     TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult Function(Auth updatedAuth)? currentAuthUpdated,
     TResult Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult Function(bool updatedIsVibratable)? updateIsVibratable,
     required TResult orElse(),
   }) {
     if (appMetadataUpdated != null) {
@@ -672,6 +757,10 @@ class _$SettingsAppMetadataUpdatedImpl implements SettingsAppMetadataUpdated {
         currentAuthUpdated,
     required TResult Function(SettingsAppMetadataUpdated value)
         appMetadataUpdated,
+    required TResult Function(SettingsAppPreferencesUpdated value)
+        appPreferencesUpdated,
+    required TResult Function(SettingsUpdateIsVibratable value)
+        updateIsVibratable,
   }) {
     return appMetadataUpdated(this);
   }
@@ -684,6 +773,9 @@ class _$SettingsAppMetadataUpdatedImpl implements SettingsAppMetadataUpdated {
         currentConsumerUpdated,
     TResult? Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
     TResult? Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult? Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult? Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
   }) {
     return appMetadataUpdated?.call(this);
   }
@@ -696,6 +788,9 @@ class _$SettingsAppMetadataUpdatedImpl implements SettingsAppMetadataUpdated {
         currentConsumerUpdated,
     TResult Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
     TResult Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
     required TResult orElse(),
   }) {
     if (appMetadataUpdated != null) {
@@ -716,8 +811,375 @@ abstract class SettingsAppMetadataUpdated implements SettingsEvent {
 }
 
 /// @nodoc
+abstract class _$$SettingsAppPreferencesUpdatedImplCopyWith<$Res> {
+  factory _$$SettingsAppPreferencesUpdatedImplCopyWith(
+          _$SettingsAppPreferencesUpdatedImpl value,
+          $Res Function(_$SettingsAppPreferencesUpdatedImpl) then) =
+      __$$SettingsAppPreferencesUpdatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AppPreferences updatedAppPreferences});
+
+  $AppPreferencesCopyWith<$Res> get updatedAppPreferences;
+}
+
+/// @nodoc
+class __$$SettingsAppPreferencesUpdatedImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res,
+        _$SettingsAppPreferencesUpdatedImpl>
+    implements _$$SettingsAppPreferencesUpdatedImplCopyWith<$Res> {
+  __$$SettingsAppPreferencesUpdatedImplCopyWithImpl(
+      _$SettingsAppPreferencesUpdatedImpl _value,
+      $Res Function(_$SettingsAppPreferencesUpdatedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? updatedAppPreferences = null,
+  }) {
+    return _then(_$SettingsAppPreferencesUpdatedImpl(
+      null == updatedAppPreferences
+          ? _value.updatedAppPreferences
+          : updatedAppPreferences // ignore: cast_nullable_to_non_nullable
+              as AppPreferences,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AppPreferencesCopyWith<$Res> get updatedAppPreferences {
+    return $AppPreferencesCopyWith<$Res>(_value.updatedAppPreferences, (value) {
+      return _then(_value.copyWith(updatedAppPreferences: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SettingsAppPreferencesUpdatedImpl
+    implements SettingsAppPreferencesUpdated {
+  const _$SettingsAppPreferencesUpdatedImpl(this.updatedAppPreferences);
+
+  @override
+  final AppPreferences updatedAppPreferences;
+
+  @override
+  String toString() {
+    return 'SettingsEvent.appPreferencesUpdated(updatedAppPreferences: $updatedAppPreferences)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SettingsAppPreferencesUpdatedImpl &&
+            (identical(other.updatedAppPreferences, updatedAppPreferences) ||
+                other.updatedAppPreferences == updatedAppPreferences));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, updatedAppPreferences);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SettingsAppPreferencesUpdatedImplCopyWith<
+          _$SettingsAppPreferencesUpdatedImpl>
+      get copyWith => __$$SettingsAppPreferencesUpdatedImplCopyWithImpl<
+          _$SettingsAppPreferencesUpdatedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authSignOut,
+    required TResult Function(Consumer updatedConsumer) currentConsumerUpdated,
+    required TResult Function(Auth updatedAuth) currentAuthUpdated,
+    required TResult Function(AppMetadata updatedAppMetadata)
+        appMetadataUpdated,
+    required TResult Function(AppPreferences updatedAppPreferences)
+        appPreferencesUpdated,
+    required TResult Function(bool updatedIsVibratable) updateIsVibratable,
+  }) {
+    return appPreferencesUpdated(updatedAppPreferences);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? authSignOut,
+    TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult? Function(Auth updatedAuth)? currentAuthUpdated,
+    TResult? Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult? Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult? Function(bool updatedIsVibratable)? updateIsVibratable,
+  }) {
+    return appPreferencesUpdated?.call(updatedAppPreferences);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authSignOut,
+    TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult Function(Auth updatedAuth)? currentAuthUpdated,
+    TResult Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult Function(bool updatedIsVibratable)? updateIsVibratable,
+    required TResult orElse(),
+  }) {
+    if (appPreferencesUpdated != null) {
+      return appPreferencesUpdated(updatedAppPreferences);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SettingsAuthSignOut value) authSignOut,
+    required TResult Function(SettingsCurrentConsumerUpdated value)
+        currentConsumerUpdated,
+    required TResult Function(SettingsCurrentAuthUpdated value)
+        currentAuthUpdated,
+    required TResult Function(SettingsAppMetadataUpdated value)
+        appMetadataUpdated,
+    required TResult Function(SettingsAppPreferencesUpdated value)
+        appPreferencesUpdated,
+    required TResult Function(SettingsUpdateIsVibratable value)
+        updateIsVibratable,
+  }) {
+    return appPreferencesUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SettingsAuthSignOut value)? authSignOut,
+    TResult? Function(SettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult? Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
+    TResult? Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult? Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult? Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+  }) {
+    return appPreferencesUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SettingsAuthSignOut value)? authSignOut,
+    TResult Function(SettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
+    TResult Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    required TResult orElse(),
+  }) {
+    if (appPreferencesUpdated != null) {
+      return appPreferencesUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SettingsAppPreferencesUpdated implements SettingsEvent {
+  const factory SettingsAppPreferencesUpdated(
+          final AppPreferences updatedAppPreferences) =
+      _$SettingsAppPreferencesUpdatedImpl;
+
+  AppPreferences get updatedAppPreferences;
+  @JsonKey(ignore: true)
+  _$$SettingsAppPreferencesUpdatedImplCopyWith<
+          _$SettingsAppPreferencesUpdatedImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SettingsUpdateIsVibratableImplCopyWith<$Res> {
+  factory _$$SettingsUpdateIsVibratableImplCopyWith(
+          _$SettingsUpdateIsVibratableImpl value,
+          $Res Function(_$SettingsUpdateIsVibratableImpl) then) =
+      __$$SettingsUpdateIsVibratableImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool updatedIsVibratable});
+}
+
+/// @nodoc
+class __$$SettingsUpdateIsVibratableImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$SettingsUpdateIsVibratableImpl>
+    implements _$$SettingsUpdateIsVibratableImplCopyWith<$Res> {
+  __$$SettingsUpdateIsVibratableImplCopyWithImpl(
+      _$SettingsUpdateIsVibratableImpl _value,
+      $Res Function(_$SettingsUpdateIsVibratableImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? updatedIsVibratable = null,
+  }) {
+    return _then(_$SettingsUpdateIsVibratableImpl(
+      updatedIsVibratable: null == updatedIsVibratable
+          ? _value.updatedIsVibratable
+          : updatedIsVibratable // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SettingsUpdateIsVibratableImpl implements SettingsUpdateIsVibratable {
+  const _$SettingsUpdateIsVibratableImpl({required this.updatedIsVibratable});
+
+  @override
+  final bool updatedIsVibratable;
+
+  @override
+  String toString() {
+    return 'SettingsEvent.updateIsVibratable(updatedIsVibratable: $updatedIsVibratable)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SettingsUpdateIsVibratableImpl &&
+            (identical(other.updatedIsVibratable, updatedIsVibratable) ||
+                other.updatedIsVibratable == updatedIsVibratable));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, updatedIsVibratable);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SettingsUpdateIsVibratableImplCopyWith<_$SettingsUpdateIsVibratableImpl>
+      get copyWith => __$$SettingsUpdateIsVibratableImplCopyWithImpl<
+          _$SettingsUpdateIsVibratableImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authSignOut,
+    required TResult Function(Consumer updatedConsumer) currentConsumerUpdated,
+    required TResult Function(Auth updatedAuth) currentAuthUpdated,
+    required TResult Function(AppMetadata updatedAppMetadata)
+        appMetadataUpdated,
+    required TResult Function(AppPreferences updatedAppPreferences)
+        appPreferencesUpdated,
+    required TResult Function(bool updatedIsVibratable) updateIsVibratable,
+  }) {
+    return updateIsVibratable(updatedIsVibratable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? authSignOut,
+    TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult? Function(Auth updatedAuth)? currentAuthUpdated,
+    TResult? Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult? Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult? Function(bool updatedIsVibratable)? updateIsVibratable,
+  }) {
+    return updateIsVibratable?.call(updatedIsVibratable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authSignOut,
+    TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult Function(Auth updatedAuth)? currentAuthUpdated,
+    TResult Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult Function(bool updatedIsVibratable)? updateIsVibratable,
+    required TResult orElse(),
+  }) {
+    if (updateIsVibratable != null) {
+      return updateIsVibratable(updatedIsVibratable);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SettingsAuthSignOut value) authSignOut,
+    required TResult Function(SettingsCurrentConsumerUpdated value)
+        currentConsumerUpdated,
+    required TResult Function(SettingsCurrentAuthUpdated value)
+        currentAuthUpdated,
+    required TResult Function(SettingsAppMetadataUpdated value)
+        appMetadataUpdated,
+    required TResult Function(SettingsAppPreferencesUpdated value)
+        appPreferencesUpdated,
+    required TResult Function(SettingsUpdateIsVibratable value)
+        updateIsVibratable,
+  }) {
+    return updateIsVibratable(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SettingsAuthSignOut value)? authSignOut,
+    TResult? Function(SettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult? Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
+    TResult? Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult? Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult? Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+  }) {
+    return updateIsVibratable?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SettingsAuthSignOut value)? authSignOut,
+    TResult Function(SettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
+    TResult Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    required TResult orElse(),
+  }) {
+    if (updateIsVibratable != null) {
+      return updateIsVibratable(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SettingsUpdateIsVibratable implements SettingsEvent {
+  const factory SettingsUpdateIsVibratable(
+          {required final bool updatedIsVibratable}) =
+      _$SettingsUpdateIsVibratableImpl;
+
+  bool get updatedIsVibratable;
+  @JsonKey(ignore: true)
+  _$$SettingsUpdateIsVibratableImplCopyWith<_$SettingsUpdateIsVibratableImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$SettingsState {
   AppMetadata get appMetadata => throw _privateConstructorUsedError;
+  AppPreferences get appPreferences => throw _privateConstructorUsedError;
   Consumer get currentConsumer => throw _privateConstructorUsedError;
   Auth get currentAuth => throw _privateConstructorUsedError;
   bool get isSignOutCompleted => throw _privateConstructorUsedError;
@@ -737,6 +1199,7 @@ abstract class $SettingsStateCopyWith<$Res> {
   @useResult
   $Res call(
       {AppMetadata appMetadata,
+      AppPreferences appPreferences,
       Consumer currentConsumer,
       Auth currentAuth,
       bool isSignOutCompleted,
@@ -744,6 +1207,7 @@ abstract class $SettingsStateCopyWith<$Res> {
       Failure? failure});
 
   $AppMetadataCopyWith<$Res> get appMetadata;
+  $AppPreferencesCopyWith<$Res> get appPreferences;
   $ConsumerCopyWith<$Res> get currentConsumer;
   $AuthCopyWith<$Res> get currentAuth;
 }
@@ -762,6 +1226,7 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
   @override
   $Res call({
     Object? appMetadata = null,
+    Object? appPreferences = null,
     Object? currentConsumer = null,
     Object? currentAuth = null,
     Object? isSignOutCompleted = null,
@@ -773,6 +1238,10 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
           ? _value.appMetadata
           : appMetadata // ignore: cast_nullable_to_non_nullable
               as AppMetadata,
+      appPreferences: null == appPreferences
+          ? _value.appPreferences
+          : appPreferences // ignore: cast_nullable_to_non_nullable
+              as AppPreferences,
       currentConsumer: null == currentConsumer
           ? _value.currentConsumer
           : currentConsumer // ignore: cast_nullable_to_non_nullable
@@ -806,6 +1275,14 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
 
   @override
   @pragma('vm:prefer-inline')
+  $AppPreferencesCopyWith<$Res> get appPreferences {
+    return $AppPreferencesCopyWith<$Res>(_value.appPreferences, (value) {
+      return _then(_value.copyWith(appPreferences: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $ConsumerCopyWith<$Res> get currentConsumer {
     return $ConsumerCopyWith<$Res>(_value.currentConsumer, (value) {
       return _then(_value.copyWith(currentConsumer: value) as $Val);
@@ -831,6 +1308,7 @@ abstract class _$$SettingsStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {AppMetadata appMetadata,
+      AppPreferences appPreferences,
       Consumer currentConsumer,
       Auth currentAuth,
       bool isSignOutCompleted,
@@ -839,6 +1317,8 @@ abstract class _$$SettingsStateImplCopyWith<$Res>
 
   @override
   $AppMetadataCopyWith<$Res> get appMetadata;
+  @override
+  $AppPreferencesCopyWith<$Res> get appPreferences;
   @override
   $ConsumerCopyWith<$Res> get currentConsumer;
   @override
@@ -857,6 +1337,7 @@ class __$$SettingsStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? appMetadata = null,
+    Object? appPreferences = null,
     Object? currentConsumer = null,
     Object? currentAuth = null,
     Object? isSignOutCompleted = null,
@@ -868,6 +1349,10 @@ class __$$SettingsStateImplCopyWithImpl<$Res>
           ? _value.appMetadata
           : appMetadata // ignore: cast_nullable_to_non_nullable
               as AppMetadata,
+      appPreferences: null == appPreferences
+          ? _value.appPreferences
+          : appPreferences // ignore: cast_nullable_to_non_nullable
+              as AppPreferences,
       currentConsumer: null == currentConsumer
           ? _value.currentConsumer
           : currentConsumer // ignore: cast_nullable_to_non_nullable
@@ -897,6 +1382,7 @@ class __$$SettingsStateImplCopyWithImpl<$Res>
 class _$SettingsStateImpl implements _SettingsState {
   const _$SettingsStateImpl(
       {required this.appMetadata,
+      required this.appPreferences,
       required this.currentConsumer,
       required this.currentAuth,
       this.isSignOutCompleted = false,
@@ -905,6 +1391,8 @@ class _$SettingsStateImpl implements _SettingsState {
 
   @override
   final AppMetadata appMetadata;
+  @override
+  final AppPreferences appPreferences;
   @override
   final Consumer currentConsumer;
   @override
@@ -920,7 +1408,7 @@ class _$SettingsStateImpl implements _SettingsState {
 
   @override
   String toString() {
-    return 'SettingsState(appMetadata: $appMetadata, currentConsumer: $currentConsumer, currentAuth: $currentAuth, isSignOutCompleted: $isSignOutCompleted, isLoading: $isLoading, failure: $failure)';
+    return 'SettingsState(appMetadata: $appMetadata, appPreferences: $appPreferences, currentConsumer: $currentConsumer, currentAuth: $currentAuth, isSignOutCompleted: $isSignOutCompleted, isLoading: $isLoading, failure: $failure)';
   }
 
   @override
@@ -930,6 +1418,8 @@ class _$SettingsStateImpl implements _SettingsState {
             other is _$SettingsStateImpl &&
             (identical(other.appMetadata, appMetadata) ||
                 other.appMetadata == appMetadata) &&
+            (identical(other.appPreferences, appPreferences) ||
+                other.appPreferences == appPreferences) &&
             (identical(other.currentConsumer, currentConsumer) ||
                 other.currentConsumer == currentConsumer) &&
             (identical(other.currentAuth, currentAuth) ||
@@ -942,8 +1432,8 @@ class _$SettingsStateImpl implements _SettingsState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, appMetadata, currentConsumer,
-      currentAuth, isSignOutCompleted, isLoading, failure);
+  int get hashCode => Object.hash(runtimeType, appMetadata, appPreferences,
+      currentConsumer, currentAuth, isSignOutCompleted, isLoading, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -955,6 +1445,7 @@ class _$SettingsStateImpl implements _SettingsState {
 abstract class _SettingsState implements SettingsState {
   const factory _SettingsState(
       {required final AppMetadata appMetadata,
+      required final AppPreferences appPreferences,
       required final Consumer currentConsumer,
       required final Auth currentAuth,
       final bool isSignOutCompleted,
@@ -963,6 +1454,8 @@ abstract class _SettingsState implements SettingsState {
 
   @override
   AppMetadata get appMetadata;
+  @override
+  AppPreferences get appPreferences;
   @override
   Consumer get currentConsumer;
   @override

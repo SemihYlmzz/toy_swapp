@@ -40,6 +40,7 @@ class AccountRegistrationCubit extends Cubit<AccountRegistrationCubitState> {
       return;
     }
     final trySelect = await _imageService.pickSingleImageFromPhotos();
+
     final selectFailure = trySelect.getLeft().toNullable();
     if (selectFailure != null) {
       return emit(state.copyWith(errorMessage: selectFailure.toString()));

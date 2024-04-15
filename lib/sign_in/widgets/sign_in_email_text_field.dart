@@ -15,6 +15,7 @@ class SignInEmailTextField extends StatelessWidget {
     final state = context.watch<SignInCubit>().state;
     return ToySwappTextField(
       labelText: 'E-Mail',
+      keyboardType: TextInputType.emailAddress,
       errorText: state.email.isNotValid && state.displayErrors
           ? switch (state.email.validator(state.email.value)) {
               EmailObjectError.empty => 'Email cannot be empty',

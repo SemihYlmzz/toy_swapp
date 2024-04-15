@@ -13,20 +13,22 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appBlocListeners = AppBlocListeners();
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
-      darkTheme: CustomThemeData.themeData(const DefaultDarkPalette()),
-      // themeMode: ThemeMode.system,
-      routerConfig: _routerConfig,
-      builder: (context, child) {
-        return MultiBlocListener(
-          listeners: [
-            appBlocListeners.termsPopUpDisplayer(),
-          ],
-          child: child!,
-        );
-      },
+    return MaterialApp(
+      home: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.light(),
+        darkTheme: CustomThemeData.themeData(const DefaultDarkPalette()),
+        // themeMode: ThemeMode.system,
+        routerConfig: _routerConfig,
+        builder: (context, child) {
+          return MultiBlocListener(
+            listeners: [
+              appBlocListeners.termsPopUpDisplayer(),
+            ],
+            child: child!,
+          );
+        },
+      ),
     );
   }
 }

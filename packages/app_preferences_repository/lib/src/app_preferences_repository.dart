@@ -42,14 +42,17 @@ class AppPreferencesRepository {
 
     final appPreferences = AppPreferences.fromJson(
       appPreferencesJson,
-    );
-
+    ); 
+    
     _streamController.sink.add(appPreferences);
     return appPreferences;
   }
 
   Future<AppPreferences> create() async {
-    const creatableAppPreferences = AppPreferences(note: 'Take Note');
+    const creatableAppPreferences = AppPreferences(
+      note: 'Take Note',
+      isVibratable: true,
+    );
 
     await _sharedPreferences.setString(
       AppPreferencesRepositoryStrings.localDatabaseKey,
@@ -69,6 +72,24 @@ class AppPreferencesRepository {
           appCoreVersionNumber: appCoreVersionNumber,
           termsReleaseNumber: termsReleaseNumber,
         ),
+      );
+      await _sharedPreferences.setString(
+        AppPreferencesRepositoryStrings.localDatabaseKey,
+        jsonEncode(updatedPreferences.toJson()),
+      );
+      _streamController.sink.add(updatedPreferences);
+      return const Right(unit);
+    } catch (exception) {
+      return Left(AppPreferencesRepositoryUnknown());
+    }
+  }
+
+  FutureUnit updateIsVibratable({
+    required bool isVibratable,
+  }) async {
+    try {
+      final updatedPreferences = appPreferences.copyWith(
+        isVibratable: isVibratable,
       );
       await _sharedPreferences.setString(
         AppPreferencesRepositoryStrings.localDatabaseKey,

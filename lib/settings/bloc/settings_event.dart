@@ -12,4 +12,10 @@ sealed class SettingsEvent with _$SettingsEvent {
   const factory SettingsEvent.appMetadataUpdated(
     AppMetadata updatedAppMetadata,
   ) = SettingsAppMetadataUpdated;
+  const factory SettingsEvent.appPreferencesUpdated(
+    AppPreferences updatedAppPreferences,
+  ) = SettingsAppPreferencesUpdated;
+  const factory SettingsEvent.updateIsVibratable({
+    required bool updatedIsVibratable,
+  }) = SettingsUpdateIsVibratable;
 }

@@ -22,6 +22,7 @@ AppPreferences _$AppPreferencesFromJson(Map<String, dynamic> json) {
 mixin _$AppPreferences {
 // Temporary
   String get note => throw _privateConstructorUsedError; // End Temporary
+  bool get isVibratable => throw _privateConstructorUsedError;
   TermsAcceptance? get termsAcceptance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +37,7 @@ abstract class $AppPreferencesCopyWith<$Res> {
           AppPreferences value, $Res Function(AppPreferences) then) =
       _$AppPreferencesCopyWithImpl<$Res, AppPreferences>;
   @useResult
-  $Res call({String note, TermsAcceptance? termsAcceptance});
+  $Res call({String note, bool isVibratable, TermsAcceptance? termsAcceptance});
 
   $TermsAcceptanceCopyWith<$Res>? get termsAcceptance;
 }
@@ -55,6 +56,7 @@ class _$AppPreferencesCopyWithImpl<$Res, $Val extends AppPreferences>
   @override
   $Res call({
     Object? note = null,
+    Object? isVibratable = null,
     Object? termsAcceptance = freezed,
   }) {
     return _then(_value.copyWith(
@@ -62,6 +64,10 @@ class _$AppPreferencesCopyWithImpl<$Res, $Val extends AppPreferences>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
+      isVibratable: null == isVibratable
+          ? _value.isVibratable
+          : isVibratable // ignore: cast_nullable_to_non_nullable
+              as bool,
       termsAcceptance: freezed == termsAcceptance
           ? _value.termsAcceptance
           : termsAcceptance // ignore: cast_nullable_to_non_nullable
@@ -90,7 +96,7 @@ abstract class _$$AppPreferencesImplCopyWith<$Res>
       __$$AppPreferencesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String note, TermsAcceptance? termsAcceptance});
+  $Res call({String note, bool isVibratable, TermsAcceptance? termsAcceptance});
 
   @override
   $TermsAcceptanceCopyWith<$Res>? get termsAcceptance;
@@ -108,6 +114,7 @@ class __$$AppPreferencesImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? note = null,
+    Object? isVibratable = null,
     Object? termsAcceptance = freezed,
   }) {
     return _then(_$AppPreferencesImpl(
@@ -115,6 +122,10 @@ class __$$AppPreferencesImplCopyWithImpl<$Res>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
+      isVibratable: null == isVibratable
+          ? _value.isVibratable
+          : isVibratable // ignore: cast_nullable_to_non_nullable
+              as bool,
       termsAcceptance: freezed == termsAcceptance
           ? _value.termsAcceptance
           : termsAcceptance // ignore: cast_nullable_to_non_nullable
@@ -126,7 +137,8 @@ class __$$AppPreferencesImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AppPreferencesImpl implements _AppPreferences {
-  const _$AppPreferencesImpl({required this.note, this.termsAcceptance});
+  const _$AppPreferencesImpl(
+      {required this.note, required this.isVibratable, this.termsAcceptance});
 
   factory _$AppPreferencesImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppPreferencesImplFromJson(json);
@@ -136,11 +148,13 @@ class _$AppPreferencesImpl implements _AppPreferences {
   final String note;
 // End Temporary
   @override
+  final bool isVibratable;
+  @override
   final TermsAcceptance? termsAcceptance;
 
   @override
   String toString() {
-    return 'AppPreferences(note: $note, termsAcceptance: $termsAcceptance)';
+    return 'AppPreferences(note: $note, isVibratable: $isVibratable, termsAcceptance: $termsAcceptance)';
   }
 
   @override
@@ -149,13 +163,16 @@ class _$AppPreferencesImpl implements _AppPreferences {
         (other.runtimeType == runtimeType &&
             other is _$AppPreferencesImpl &&
             (identical(other.note, note) || other.note == note) &&
+            (identical(other.isVibratable, isVibratable) ||
+                other.isVibratable == isVibratable) &&
             (identical(other.termsAcceptance, termsAcceptance) ||
                 other.termsAcceptance == termsAcceptance));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, note, termsAcceptance);
+  int get hashCode =>
+      Object.hash(runtimeType, note, isVibratable, termsAcceptance);
 
   @JsonKey(ignore: true)
   @override
@@ -175,6 +192,7 @@ class _$AppPreferencesImpl implements _AppPreferences {
 abstract class _AppPreferences implements AppPreferences {
   const factory _AppPreferences(
       {required final String note,
+      required final bool isVibratable,
       final TermsAcceptance? termsAcceptance}) = _$AppPreferencesImpl;
 
   factory _AppPreferences.fromJson(Map<String, dynamic> json) =
@@ -183,6 +201,8 @@ abstract class _AppPreferences implements AppPreferences {
   @override // Temporary
   String get note;
   @override // End Temporary
+  bool get isVibratable;
+  @override
   TermsAcceptance? get termsAcceptance;
   @override
   @JsonKey(ignore: true)
