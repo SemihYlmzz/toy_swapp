@@ -37,6 +37,7 @@ class StartupBloc extends Bloc<StartupEvent, StartupState> {
     final random = Random();
     await event.map(
       initializeAllDependencies: (e) async {
+        emit(state.copyWith(progressValue: 0, isInitializeError: false));
         try {
           // Loggers
           _loggerDependencies.init();

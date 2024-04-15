@@ -29,33 +29,35 @@ class StartupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final startupBlocListeners = StartupBlocListeners();
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
-      home: BlocProvider(
-        create: (context) => StartupBloc(
-          configDependencies: _configDependencies,
-          loggerDependencies: _loggerDependencies,
-          instanceDependencies: _instanceDependencies,
-          repositoryDependencies: _repositoryDependencies,
-          serviceDependencies: _serviceDependencies,
-        )..add(const StartupEvent.initializeAllDependencies()),
-        child: MultiBlocListener(
-          listeners: [
-            startupBlocListeners.errorDisplayer(),
-          ],
-          child: BlocSelector<StartupBloc, StartupState, AppDependencies?>(
-            selector: (state) {
-              return state.appDependencies;
-            },
-            builder: (context, appDependencies) {
-              return appDependencies == null
-                  ? const StartupView()
-                  : AppScreen(appDependencies: appDependencies);
-            },
-          ),
-        ),
+    return BlocProvider(
+      create: (context) => StartupBloc(
+        configDependencies: _configDependencies,
+        loggerDependencies: _loggerDependencies,
+        instanceDependencies: _instanceDependencies,
+        repositoryDependencies: _repositoryDependencies,
+        serviceDependencies: _serviceDependencies,
+      )..add(const StartupEvent.initializeAllDependencies()),
+      child: BlocSelector<StartupBloc, StartupState, AppDependencies?>(
+        selector: (state) {
+          return state.appDependencies;
+        },
+        builder: (context, appDependencies) {
+          return appDependencies == null
+              ? MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  theme: ThemeData.light(),
+                  darkTheme: ThemeData.dark(),
+                  home: MultiBlocListener(
+                    listeners: [
+                      startupBlocListeners.errorDisplayer(),
+                    ],
+                    child: const StartupView(),
+                  ),
+                )
+              : AppScreen(
+                  appDependencies: appDependencies,
+                );
+        },
       ),
     );
   }

@@ -108,6 +108,8 @@ flutter_native_splash:
 
 flutter:
   uses-material-design: true
+  # Generate for L10n File
   # generate: true
+
   assets:
     - assets/

@@ -6,7 +6,7 @@ import 'models/models.dart';
 class ServiceDependencies {
   const ServiceDependencies();
 
-   Future<Services> init({
+  Future<Services> init({
     required int? androidVersionSdkNumber,
   }) async {
     // Services
@@ -15,7 +15,6 @@ class ServiceDependencies {
     ).initPermissions();
     final imageService = ImageService();
     const locationService = LocationService();
-
     return Services(
       permission: permissionService,
       image: imageService,

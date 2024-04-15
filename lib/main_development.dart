@@ -5,7 +5,7 @@ import 'package:toy_swapp/dependencies/dependencies.dart';
 import 'package:toy_swapp/startup/startup.dart';
 
 void main() async {
-  // Fluter Initializer
+  // Flutter Initializer
   WidgetsFlutterBinding.ensureInitialized();
 
   // Dependencies
@@ -14,6 +14,7 @@ void main() async {
   const instanceDependencies = InstanceDependencies();
   const repositoryDependencies = RepositoryDependencies();
   const serviceDependencies = ServiceDependencies();
+
   // Start App
   runApp(
     const StartupScreen(
