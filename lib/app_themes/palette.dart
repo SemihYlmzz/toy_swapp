@@ -12,7 +12,6 @@ abstract class Palette {
   // Bottom Navigation Bar
   Color get bottomNavigationBarUnselectedItemColor;
   Color get bottomNavigationBarSelectedItemColor;
-  double get bottomNavigationBarIconSize;
 
   // Color Scheme
   Color get colorSchemePrimary;

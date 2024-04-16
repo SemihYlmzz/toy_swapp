@@ -26,6 +26,7 @@ mixin _$SettingsEvent {
     required TResult Function(AppPreferences updatedAppPreferences)
         appPreferencesUpdated,
     required TResult Function(bool updatedIsVibratable) updateIsVibratable,
+    required TResult Function(ThemeMode updatedThemeMode) updateThemeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,6 +38,7 @@ mixin _$SettingsEvent {
     TResult? Function(AppPreferences updatedAppPreferences)?
         appPreferencesUpdated,
     TResult? Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult? Function(ThemeMode updatedThemeMode)? updateThemeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -48,6 +50,7 @@ mixin _$SettingsEvent {
     TResult Function(AppPreferences updatedAppPreferences)?
         appPreferencesUpdated,
     TResult Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult Function(ThemeMode updatedThemeMode)? updateThemeMode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -64,6 +67,7 @@ mixin _$SettingsEvent {
         appPreferencesUpdated,
     required TResult Function(SettingsUpdateIsVibratable value)
         updateIsVibratable,
+    required TResult Function(SettingsUpdateThemeMode value) updateThemeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,6 +80,7 @@ mixin _$SettingsEvent {
     TResult? Function(SettingsAppPreferencesUpdated value)?
         appPreferencesUpdated,
     TResult? Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult? Function(SettingsUpdateThemeMode value)? updateThemeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -88,6 +93,7 @@ mixin _$SettingsEvent {
     TResult Function(SettingsAppPreferencesUpdated value)?
         appPreferencesUpdated,
     TResult Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult Function(SettingsUpdateThemeMode value)? updateThemeMode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -158,6 +164,7 @@ class _$SettingsAuthSignOutImpl implements SettingsAuthSignOut {
     required TResult Function(AppPreferences updatedAppPreferences)
         appPreferencesUpdated,
     required TResult Function(bool updatedIsVibratable) updateIsVibratable,
+    required TResult Function(ThemeMode updatedThemeMode) updateThemeMode,
   }) {
     return authSignOut();
   }
@@ -172,6 +179,7 @@ class _$SettingsAuthSignOutImpl implements SettingsAuthSignOut {
     TResult? Function(AppPreferences updatedAppPreferences)?
         appPreferencesUpdated,
     TResult? Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult? Function(ThemeMode updatedThemeMode)? updateThemeMode,
   }) {
     return authSignOut?.call();
   }
@@ -186,6 +194,7 @@ class _$SettingsAuthSignOutImpl implements SettingsAuthSignOut {
     TResult Function(AppPreferences updatedAppPreferences)?
         appPreferencesUpdated,
     TResult Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult Function(ThemeMode updatedThemeMode)? updateThemeMode,
     required TResult orElse(),
   }) {
     if (authSignOut != null) {
@@ -208,6 +217,7 @@ class _$SettingsAuthSignOutImpl implements SettingsAuthSignOut {
         appPreferencesUpdated,
     required TResult Function(SettingsUpdateIsVibratable value)
         updateIsVibratable,
+    required TResult Function(SettingsUpdateThemeMode value) updateThemeMode,
   }) {
     return authSignOut(this);
   }
@@ -223,6 +233,7 @@ class _$SettingsAuthSignOutImpl implements SettingsAuthSignOut {
     TResult? Function(SettingsAppPreferencesUpdated value)?
         appPreferencesUpdated,
     TResult? Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult? Function(SettingsUpdateThemeMode value)? updateThemeMode,
   }) {
     return authSignOut?.call(this);
   }
@@ -238,6 +249,7 @@ class _$SettingsAuthSignOutImpl implements SettingsAuthSignOut {
     TResult Function(SettingsAppPreferencesUpdated value)?
         appPreferencesUpdated,
     TResult Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult Function(SettingsUpdateThemeMode value)? updateThemeMode,
     required TResult orElse(),
   }) {
     if (authSignOut != null) {
@@ -340,6 +352,7 @@ class _$SettingsCurrentConsumerUpdatedImpl
     required TResult Function(AppPreferences updatedAppPreferences)
         appPreferencesUpdated,
     required TResult Function(bool updatedIsVibratable) updateIsVibratable,
+    required TResult Function(ThemeMode updatedThemeMode) updateThemeMode,
   }) {
     return currentConsumerUpdated(updatedConsumer);
   }
@@ -354,6 +367,7 @@ class _$SettingsCurrentConsumerUpdatedImpl
     TResult? Function(AppPreferences updatedAppPreferences)?
         appPreferencesUpdated,
     TResult? Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult? Function(ThemeMode updatedThemeMode)? updateThemeMode,
   }) {
     return currentConsumerUpdated?.call(updatedConsumer);
   }
@@ -368,6 +382,7 @@ class _$SettingsCurrentConsumerUpdatedImpl
     TResult Function(AppPreferences updatedAppPreferences)?
         appPreferencesUpdated,
     TResult Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult Function(ThemeMode updatedThemeMode)? updateThemeMode,
     required TResult orElse(),
   }) {
     if (currentConsumerUpdated != null) {
@@ -390,6 +405,7 @@ class _$SettingsCurrentConsumerUpdatedImpl
         appPreferencesUpdated,
     required TResult Function(SettingsUpdateIsVibratable value)
         updateIsVibratable,
+    required TResult Function(SettingsUpdateThemeMode value) updateThemeMode,
   }) {
     return currentConsumerUpdated(this);
   }
@@ -405,6 +421,7 @@ class _$SettingsCurrentConsumerUpdatedImpl
     TResult? Function(SettingsAppPreferencesUpdated value)?
         appPreferencesUpdated,
     TResult? Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult? Function(SettingsUpdateThemeMode value)? updateThemeMode,
   }) {
     return currentConsumerUpdated?.call(this);
   }
@@ -420,6 +437,7 @@ class _$SettingsCurrentConsumerUpdatedImpl
     TResult Function(SettingsAppPreferencesUpdated value)?
         appPreferencesUpdated,
     TResult Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult Function(SettingsUpdateThemeMode value)? updateThemeMode,
     required TResult orElse(),
   }) {
     if (currentConsumerUpdated != null) {
@@ -526,6 +544,7 @@ class _$SettingsCurrentAuthUpdatedImpl implements SettingsCurrentAuthUpdated {
     required TResult Function(AppPreferences updatedAppPreferences)
         appPreferencesUpdated,
     required TResult Function(bool updatedIsVibratable) updateIsVibratable,
+    required TResult Function(ThemeMode updatedThemeMode) updateThemeMode,
   }) {
     return currentAuthUpdated(updatedAuth);
   }
@@ -540,6 +559,7 @@ class _$SettingsCurrentAuthUpdatedImpl implements SettingsCurrentAuthUpdated {
     TResult? Function(AppPreferences updatedAppPreferences)?
         appPreferencesUpdated,
     TResult? Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult? Function(ThemeMode updatedThemeMode)? updateThemeMode,
   }) {
     return currentAuthUpdated?.call(updatedAuth);
   }
@@ -554,6 +574,7 @@ class _$SettingsCurrentAuthUpdatedImpl implements SettingsCurrentAuthUpdated {
     TResult Function(AppPreferences updatedAppPreferences)?
         appPreferencesUpdated,
     TResult Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult Function(ThemeMode updatedThemeMode)? updateThemeMode,
     required TResult orElse(),
   }) {
     if (currentAuthUpdated != null) {
@@ -576,6 +597,7 @@ class _$SettingsCurrentAuthUpdatedImpl implements SettingsCurrentAuthUpdated {
         appPreferencesUpdated,
     required TResult Function(SettingsUpdateIsVibratable value)
         updateIsVibratable,
+    required TResult Function(SettingsUpdateThemeMode value) updateThemeMode,
   }) {
     return currentAuthUpdated(this);
   }
@@ -591,6 +613,7 @@ class _$SettingsCurrentAuthUpdatedImpl implements SettingsCurrentAuthUpdated {
     TResult? Function(SettingsAppPreferencesUpdated value)?
         appPreferencesUpdated,
     TResult? Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult? Function(SettingsUpdateThemeMode value)? updateThemeMode,
   }) {
     return currentAuthUpdated?.call(this);
   }
@@ -606,6 +629,7 @@ class _$SettingsCurrentAuthUpdatedImpl implements SettingsCurrentAuthUpdated {
     TResult Function(SettingsAppPreferencesUpdated value)?
         appPreferencesUpdated,
     TResult Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult Function(SettingsUpdateThemeMode value)? updateThemeMode,
     required TResult orElse(),
   }) {
     if (currentAuthUpdated != null) {
@@ -711,6 +735,7 @@ class _$SettingsAppMetadataUpdatedImpl implements SettingsAppMetadataUpdated {
     required TResult Function(AppPreferences updatedAppPreferences)
         appPreferencesUpdated,
     required TResult Function(bool updatedIsVibratable) updateIsVibratable,
+    required TResult Function(ThemeMode updatedThemeMode) updateThemeMode,
   }) {
     return appMetadataUpdated(updatedAppMetadata);
   }
@@ -725,6 +750,7 @@ class _$SettingsAppMetadataUpdatedImpl implements SettingsAppMetadataUpdated {
     TResult? Function(AppPreferences updatedAppPreferences)?
         appPreferencesUpdated,
     TResult? Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult? Function(ThemeMode updatedThemeMode)? updateThemeMode,
   }) {
     return appMetadataUpdated?.call(updatedAppMetadata);
   }
@@ -739,6 +765,7 @@ class _$SettingsAppMetadataUpdatedImpl implements SettingsAppMetadataUpdated {
     TResult Function(AppPreferences updatedAppPreferences)?
         appPreferencesUpdated,
     TResult Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult Function(ThemeMode updatedThemeMode)? updateThemeMode,
     required TResult orElse(),
   }) {
     if (appMetadataUpdated != null) {
@@ -761,6 +788,7 @@ class _$SettingsAppMetadataUpdatedImpl implements SettingsAppMetadataUpdated {
         appPreferencesUpdated,
     required TResult Function(SettingsUpdateIsVibratable value)
         updateIsVibratable,
+    required TResult Function(SettingsUpdateThemeMode value) updateThemeMode,
   }) {
     return appMetadataUpdated(this);
   }
@@ -776,6 +804,7 @@ class _$SettingsAppMetadataUpdatedImpl implements SettingsAppMetadataUpdated {
     TResult? Function(SettingsAppPreferencesUpdated value)?
         appPreferencesUpdated,
     TResult? Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult? Function(SettingsUpdateThemeMode value)? updateThemeMode,
   }) {
     return appMetadataUpdated?.call(this);
   }
@@ -791,6 +820,7 @@ class _$SettingsAppMetadataUpdatedImpl implements SettingsAppMetadataUpdated {
     TResult Function(SettingsAppPreferencesUpdated value)?
         appPreferencesUpdated,
     TResult Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult Function(SettingsUpdateThemeMode value)? updateThemeMode,
     required TResult orElse(),
   }) {
     if (appMetadataUpdated != null) {
@@ -899,6 +929,7 @@ class _$SettingsAppPreferencesUpdatedImpl
     required TResult Function(AppPreferences updatedAppPreferences)
         appPreferencesUpdated,
     required TResult Function(bool updatedIsVibratable) updateIsVibratable,
+    required TResult Function(ThemeMode updatedThemeMode) updateThemeMode,
   }) {
     return appPreferencesUpdated(updatedAppPreferences);
   }
@@ -913,6 +944,7 @@ class _$SettingsAppPreferencesUpdatedImpl
     TResult? Function(AppPreferences updatedAppPreferences)?
         appPreferencesUpdated,
     TResult? Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult? Function(ThemeMode updatedThemeMode)? updateThemeMode,
   }) {
     return appPreferencesUpdated?.call(updatedAppPreferences);
   }
@@ -927,6 +959,7 @@ class _$SettingsAppPreferencesUpdatedImpl
     TResult Function(AppPreferences updatedAppPreferences)?
         appPreferencesUpdated,
     TResult Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult Function(ThemeMode updatedThemeMode)? updateThemeMode,
     required TResult orElse(),
   }) {
     if (appPreferencesUpdated != null) {
@@ -949,6 +982,7 @@ class _$SettingsAppPreferencesUpdatedImpl
         appPreferencesUpdated,
     required TResult Function(SettingsUpdateIsVibratable value)
         updateIsVibratable,
+    required TResult Function(SettingsUpdateThemeMode value) updateThemeMode,
   }) {
     return appPreferencesUpdated(this);
   }
@@ -964,6 +998,7 @@ class _$SettingsAppPreferencesUpdatedImpl
     TResult? Function(SettingsAppPreferencesUpdated value)?
         appPreferencesUpdated,
     TResult? Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult? Function(SettingsUpdateThemeMode value)? updateThemeMode,
   }) {
     return appPreferencesUpdated?.call(this);
   }
@@ -979,6 +1014,7 @@ class _$SettingsAppPreferencesUpdatedImpl
     TResult Function(SettingsAppPreferencesUpdated value)?
         appPreferencesUpdated,
     TResult Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult Function(SettingsUpdateThemeMode value)? updateThemeMode,
     required TResult orElse(),
   }) {
     if (appPreferencesUpdated != null) {
@@ -1076,6 +1112,7 @@ class _$SettingsUpdateIsVibratableImpl implements SettingsUpdateIsVibratable {
     required TResult Function(AppPreferences updatedAppPreferences)
         appPreferencesUpdated,
     required TResult Function(bool updatedIsVibratable) updateIsVibratable,
+    required TResult Function(ThemeMode updatedThemeMode) updateThemeMode,
   }) {
     return updateIsVibratable(updatedIsVibratable);
   }
@@ -1090,6 +1127,7 @@ class _$SettingsUpdateIsVibratableImpl implements SettingsUpdateIsVibratable {
     TResult? Function(AppPreferences updatedAppPreferences)?
         appPreferencesUpdated,
     TResult? Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult? Function(ThemeMode updatedThemeMode)? updateThemeMode,
   }) {
     return updateIsVibratable?.call(updatedIsVibratable);
   }
@@ -1104,6 +1142,7 @@ class _$SettingsUpdateIsVibratableImpl implements SettingsUpdateIsVibratable {
     TResult Function(AppPreferences updatedAppPreferences)?
         appPreferencesUpdated,
     TResult Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult Function(ThemeMode updatedThemeMode)? updateThemeMode,
     required TResult orElse(),
   }) {
     if (updateIsVibratable != null) {
@@ -1126,6 +1165,7 @@ class _$SettingsUpdateIsVibratableImpl implements SettingsUpdateIsVibratable {
         appPreferencesUpdated,
     required TResult Function(SettingsUpdateIsVibratable value)
         updateIsVibratable,
+    required TResult Function(SettingsUpdateThemeMode value) updateThemeMode,
   }) {
     return updateIsVibratable(this);
   }
@@ -1141,6 +1181,7 @@ class _$SettingsUpdateIsVibratableImpl implements SettingsUpdateIsVibratable {
     TResult? Function(SettingsAppPreferencesUpdated value)?
         appPreferencesUpdated,
     TResult? Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult? Function(SettingsUpdateThemeMode value)? updateThemeMode,
   }) {
     return updateIsVibratable?.call(this);
   }
@@ -1156,6 +1197,7 @@ class _$SettingsUpdateIsVibratableImpl implements SettingsUpdateIsVibratable {
     TResult Function(SettingsAppPreferencesUpdated value)?
         appPreferencesUpdated,
     TResult Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult Function(SettingsUpdateThemeMode value)? updateThemeMode,
     required TResult orElse(),
   }) {
     if (updateIsVibratable != null) {
@@ -1173,6 +1215,188 @@ abstract class SettingsUpdateIsVibratable implements SettingsEvent {
   bool get updatedIsVibratable;
   @JsonKey(ignore: true)
   _$$SettingsUpdateIsVibratableImplCopyWith<_$SettingsUpdateIsVibratableImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SettingsUpdateThemeModeImplCopyWith<$Res> {
+  factory _$$SettingsUpdateThemeModeImplCopyWith(
+          _$SettingsUpdateThemeModeImpl value,
+          $Res Function(_$SettingsUpdateThemeModeImpl) then) =
+      __$$SettingsUpdateThemeModeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ThemeMode updatedThemeMode});
+}
+
+/// @nodoc
+class __$$SettingsUpdateThemeModeImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$SettingsUpdateThemeModeImpl>
+    implements _$$SettingsUpdateThemeModeImplCopyWith<$Res> {
+  __$$SettingsUpdateThemeModeImplCopyWithImpl(
+      _$SettingsUpdateThemeModeImpl _value,
+      $Res Function(_$SettingsUpdateThemeModeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? updatedThemeMode = null,
+  }) {
+    return _then(_$SettingsUpdateThemeModeImpl(
+      updatedThemeMode: null == updatedThemeMode
+          ? _value.updatedThemeMode
+          : updatedThemeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SettingsUpdateThemeModeImpl implements SettingsUpdateThemeMode {
+  const _$SettingsUpdateThemeModeImpl({required this.updatedThemeMode});
+
+  @override
+  final ThemeMode updatedThemeMode;
+
+  @override
+  String toString() {
+    return 'SettingsEvent.updateThemeMode(updatedThemeMode: $updatedThemeMode)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SettingsUpdateThemeModeImpl &&
+            (identical(other.updatedThemeMode, updatedThemeMode) ||
+                other.updatedThemeMode == updatedThemeMode));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, updatedThemeMode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SettingsUpdateThemeModeImplCopyWith<_$SettingsUpdateThemeModeImpl>
+      get copyWith => __$$SettingsUpdateThemeModeImplCopyWithImpl<
+          _$SettingsUpdateThemeModeImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authSignOut,
+    required TResult Function(Consumer updatedConsumer) currentConsumerUpdated,
+    required TResult Function(Auth updatedAuth) currentAuthUpdated,
+    required TResult Function(AppMetadata updatedAppMetadata)
+        appMetadataUpdated,
+    required TResult Function(AppPreferences updatedAppPreferences)
+        appPreferencesUpdated,
+    required TResult Function(bool updatedIsVibratable) updateIsVibratable,
+    required TResult Function(ThemeMode updatedThemeMode) updateThemeMode,
+  }) {
+    return updateThemeMode(updatedThemeMode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? authSignOut,
+    TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult? Function(Auth updatedAuth)? currentAuthUpdated,
+    TResult? Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult? Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult? Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult? Function(ThemeMode updatedThemeMode)? updateThemeMode,
+  }) {
+    return updateThemeMode?.call(updatedThemeMode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authSignOut,
+    TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult Function(Auth updatedAuth)? currentAuthUpdated,
+    TResult Function(AppMetadata updatedAppMetadata)? appMetadataUpdated,
+    TResult Function(AppPreferences updatedAppPreferences)?
+        appPreferencesUpdated,
+    TResult Function(bool updatedIsVibratable)? updateIsVibratable,
+    TResult Function(ThemeMode updatedThemeMode)? updateThemeMode,
+    required TResult orElse(),
+  }) {
+    if (updateThemeMode != null) {
+      return updateThemeMode(updatedThemeMode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SettingsAuthSignOut value) authSignOut,
+    required TResult Function(SettingsCurrentConsumerUpdated value)
+        currentConsumerUpdated,
+    required TResult Function(SettingsCurrentAuthUpdated value)
+        currentAuthUpdated,
+    required TResult Function(SettingsAppMetadataUpdated value)
+        appMetadataUpdated,
+    required TResult Function(SettingsAppPreferencesUpdated value)
+        appPreferencesUpdated,
+    required TResult Function(SettingsUpdateIsVibratable value)
+        updateIsVibratable,
+    required TResult Function(SettingsUpdateThemeMode value) updateThemeMode,
+  }) {
+    return updateThemeMode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SettingsAuthSignOut value)? authSignOut,
+    TResult? Function(SettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult? Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
+    TResult? Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult? Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult? Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult? Function(SettingsUpdateThemeMode value)? updateThemeMode,
+  }) {
+    return updateThemeMode?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SettingsAuthSignOut value)? authSignOut,
+    TResult Function(SettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult Function(SettingsCurrentAuthUpdated value)? currentAuthUpdated,
+    TResult Function(SettingsAppMetadataUpdated value)? appMetadataUpdated,
+    TResult Function(SettingsAppPreferencesUpdated value)?
+        appPreferencesUpdated,
+    TResult Function(SettingsUpdateIsVibratable value)? updateIsVibratable,
+    TResult Function(SettingsUpdateThemeMode value)? updateThemeMode,
+    required TResult orElse(),
+  }) {
+    if (updateThemeMode != null) {
+      return updateThemeMode(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SettingsUpdateThemeMode implements SettingsEvent {
+  const factory SettingsUpdateThemeMode(
+          {required final ThemeMode updatedThemeMode}) =
+      _$SettingsUpdateThemeModeImpl;
+
+  ThemeMode get updatedThemeMode;
+  @JsonKey(ignore: true)
+  _$$SettingsUpdateThemeModeImplCopyWith<_$SettingsUpdateThemeModeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 

@@ -10,6 +10,7 @@ _$AppPreferencesImpl _$$AppPreferencesImplFromJson(Map<String, dynamic> json) =>
     _$AppPreferencesImpl(
       note: json['note'] as String,
       isVibratable: json['isVibratable'] as bool,
+      themeMode: $enumDecode(_$ThemeModeEnumMap, json['themeMode']),
       termsAcceptance: json['termsAcceptance'] == null
           ? null
           : TermsAcceptance.fromJson(
@@ -21,5 +22,12 @@ Map<String, dynamic> _$$AppPreferencesImplToJson(
     <String, dynamic>{
       'note': instance.note,
       'isVibratable': instance.isVibratable,
+      'themeMode': _$ThemeModeEnumMap[instance.themeMode]!,
       'termsAcceptance': instance.termsAcceptance,
     };
+
+const _$ThemeModeEnumMap = {
+  ThemeMode.system: 'system',
+  ThemeMode.light: 'light',
+  ThemeMode.dark: 'dark',
+};

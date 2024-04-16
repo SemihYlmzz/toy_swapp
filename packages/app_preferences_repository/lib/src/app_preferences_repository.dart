@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toy_swapp/errors/errors.dart';
@@ -42,8 +43,8 @@ class AppPreferencesRepository {
 
     final appPreferences = AppPreferences.fromJson(
       appPreferencesJson,
-    ); 
-    
+    );
+
     _streamController.sink.add(appPreferences);
     return appPreferences;
   }
@@ -52,6 +53,7 @@ class AppPreferencesRepository {
     const creatableAppPreferences = AppPreferences(
       note: 'Take Note',
       isVibratable: true,
+      themeMode: ThemeMode.system,
     );
 
     await _sharedPreferences.setString(
@@ -90,6 +92,24 @@ class AppPreferencesRepository {
     try {
       final updatedPreferences = appPreferences.copyWith(
         isVibratable: isVibratable,
+      );
+      await _sharedPreferences.setString(
+        AppPreferencesRepositoryStrings.localDatabaseKey,
+        jsonEncode(updatedPreferences.toJson()),
+      );
+      _streamController.sink.add(updatedPreferences);
+      return const Right(unit);
+    } catch (exception) {
+      return Left(AppPreferencesRepositoryUnknown());
+    }
+  }
+
+  FutureUnit updateThemeMode({
+    required ThemeMode updatedThemeMode,
+  }) async {
+    try {
+      final updatedPreferences = appPreferences.copyWith(
+        themeMode: updatedThemeMode,
       );
       await _sharedPreferences.setString(
         AppPreferencesRepositoryStrings.localDatabaseKey,

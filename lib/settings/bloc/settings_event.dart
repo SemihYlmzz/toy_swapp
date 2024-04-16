@@ -18,4 +18,7 @@ sealed class SettingsEvent with _$SettingsEvent {
   const factory SettingsEvent.updateIsVibratable({
     required bool updatedIsVibratable,
   }) = SettingsUpdateIsVibratable;
+  const factory SettingsEvent.updateThemeMode({
+    required ThemeMode updatedThemeMode,
+  }) = SettingsUpdateThemeMode;
 }

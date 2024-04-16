@@ -4,6 +4,7 @@ import 'package:app_metadata_repository/app_metadata_repository.dart';
 import 'package:app_preferences_repository/app_preferences_repository.dart';
 import 'package:auth_repository/auth_repository.dart';
 import 'package:consumer_repository/consumer_repository.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../errors/errors.dart';
@@ -102,6 +103,15 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       updateIsVibratable: (value) async {
         final tryUpdate = await _appPreferencesRepository.updateIsVibratable(
           isVibratable: value.updatedIsVibratable,
+        );
+        tryUpdate.fold(
+          (failure) => emit(state.copyWith(failure: failure)),
+          (success) => null,
+        );
+      },
+      updateThemeMode: (e) async {
+        final tryUpdate = await _appPreferencesRepository.updateThemeMode(
+          updatedThemeMode: e.updatedThemeMode,
         );
         tryUpdate.fold(
           (failure) => emit(state.copyWith(failure: failure)),

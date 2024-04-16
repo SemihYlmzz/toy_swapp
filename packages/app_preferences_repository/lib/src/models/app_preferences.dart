@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'models.dart';
@@ -12,6 +13,7 @@ class AppPreferences with _$AppPreferences {
     required String note,
     // End Temporary
     required bool isVibratable,
+    required ThemeMode themeMode,
     TermsAcceptance? termsAcceptance,
   }) = _AppPreferences;
 
@@ -20,6 +22,7 @@ class AppPreferences with _$AppPreferences {
 
   factory AppPreferences.empty() => AppPreferences(
         termsAcceptance: TermsAcceptance.empty(),
+        themeMode: ThemeMode.system,
         note: '',
         isVibratable: false,
       );

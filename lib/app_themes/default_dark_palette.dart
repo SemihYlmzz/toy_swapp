@@ -16,8 +16,6 @@ class DefaultDarkPalette implements Palette {
 
   // Bottom Navigation Bar
   @override
-  double get bottomNavigationBarIconSize => 30;
-  @override
   Color get bottomNavigationBarSelectedItemColor => Colors.white;
   @override
   Color get bottomNavigationBarUnselectedItemColor => Colors.white24;

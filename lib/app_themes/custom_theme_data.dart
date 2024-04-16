@@ -71,9 +71,6 @@ class CustomThemeData {
           backgroundColor: palette.colorSchemeBackground,
           unselectedItemColor: palette.bottomNavigationBarUnselectedItemColor,
           selectedItemColor: palette.bottomNavigationBarSelectedItemColor,
-          selectedIconTheme: IconThemeData(
-            size: palette.bottomNavigationBarIconSize,
-          ),
         ),
         snackBarTheme: SnackBarThemeData(
           contentTextStyle: TextStyle(
