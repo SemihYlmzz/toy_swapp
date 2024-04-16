@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'themes.dart';
+import 'app_themes.dart';
 
 class DefaultDarkPalette implements Palette {
   const DefaultDarkPalette();

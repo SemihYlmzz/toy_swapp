@@ -21,7 +21,7 @@ class SettingsView extends StatelessWidget {
             notificationsSetting: _notificationsSetting(),
           ),
           AppPreferencesSettingGroup(
-            themeSetting: _themeSetting(),
+            themeSetting: _themeSetting(context),
             vibrationSetting: _vibrationSetting(context),
             permissionsSetting: _permissionSetting(),
           ),
@@ -95,7 +95,9 @@ class SettingsView extends StatelessWidget {
     );
   }
 
-  Setting _vibrationSetting(BuildContext context) {
+  Setting _vibrationSetting(
+    BuildContext context,
+  ) {
     final isVibratable = context
         .select((SettingsBloc bloc) => bloc.state.appPreferences.isVibratable);
     return Setting(
@@ -112,7 +114,7 @@ class SettingsView extends StatelessWidget {
     );
   }
 
-  Setting _themeSetting() {
+  Setting _themeSetting(BuildContext context) {
     return Setting(
       settingName: 'Theme',
       settingIcon: Icons.palette,

@@ -10,18 +10,6 @@ class ProfileDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final settings = [
       _DrawerSettingValue(
-        title: 'Support',
-        iconData: Icons.support,
-        subTitle: 'Get in touch with us.',
-        onTap: () {},
-      ),
-      _DrawerSettingValue(
-        title: 'About Us',
-        iconData: Icons.diversity_1,
-        subTitle: 'Discover our story.',
-        onTap: () {},
-      ),
-      _DrawerSettingValue(
         title: 'Rate Us',
         iconData: Icons.stars,
         subTitle: 'Rate us out of 5.',
@@ -53,6 +41,7 @@ class ProfileDrawer extends StatelessWidget {
     ];
 
     return Drawer(
+      elevation: 0,
       child: SafeArea(
         child: BaseColumn(
           mainAxisAlignment: MainAxisAlignment.start,
