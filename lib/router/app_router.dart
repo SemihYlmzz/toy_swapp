@@ -3,6 +3,7 @@ import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:toy_swapp/terms_acceptance/terms_acceptance.dart';
 
 import '../account_initializer/account_initializer.dart';
 import '../account_registration/account_registration.dart';
@@ -16,7 +17,6 @@ import '../profile/profile.dart';
 import '../settings/settings.dart';
 import '../sign_in/sign_in.dart';
 import '../sign_up/sign_up.dart';
-
 import '../sub_matches/sub_matches.dart';
 import '../toys/toys.dart';
 import 'router.dart';
@@ -46,7 +46,7 @@ class AppRouter {
   GoRouter router(Stream<dynamic> authStream, Stream<dynamic> userStream) =>
       GoRouter(
         debugLogDiagnostics: true,
-        initialLocation: SignInRouter.instance.path,
+        initialLocation: TermsAcceptanceRouter.instance.path,
         navigatorKey: parentNavigatorKey,
         routes: [
           // [NotSignedIn]
@@ -67,11 +67,13 @@ class AppRouter {
           CreateToyGoRoute.instance,
           // [NoRule]
           SettingsRouter.instance.route,
+          TermsAcceptanceRouter.instance.route,
         ],
         redirect: (BuildContext context, GoRouterState state) async {
           final currentAuth = context.read<AuthRepository>().currentAuth;
           final currentConsumer =
               context.read<ConsumerRepository>().currentConsumer;
+
           // [ClearConsumer] on [SignOut]
           if (currentConsumer.state != ConsumerState.empty &&
               currentAuth.state == AuthState.unAuth) {
@@ -83,6 +85,7 @@ class AppRouter {
           // if (currentAdmin.state != AdminState.empty) {
           // clearAdmin();
           // }
+
           String? nonVerifiedSignedIn() {
             if (!_inEmailVerificationScreen(state)) {
               return EmailVerificationRouter.instance.path;
@@ -186,5 +189,6 @@ class AppRouter {
       ].contains(state.topRoute!.name);
   bool _inNoRuleScreens(GoRouterState state) => [
         SettingsRouter.instance.name,
+        TermsAcceptanceRouter.instance.name,
       ].contains(state.topRoute!.name);
 }

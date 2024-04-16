@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../terms_acceptance.dart';
 
-import '../terms_of_use.dart';
-
-extension TermsOfUseErrorDisplayer on TermsOfUseBlocListeners {
-  BlocListener<TermsOfUseBloc, TermsOfUseState> errorDisplayer() {
+extension TermsAcceptanceErrorDisplayer on TermsAcceptanceBlocListeners {
+  BlocListener<TermsAcceptanceBloc, TermsAcceptanceState> errorDisplayer() {
     return BlocListener(
       listener: (context, state) {
         final failure = state.failure;
@@ -12,6 +11,7 @@ extension TermsOfUseErrorDisplayer on TermsOfUseBlocListeners {
         if (failure == null || !context.mounted) {
           return;
         }
+        // final errorMessage = FailureLocalizor.localize(failure, context);
 
         ScaffoldMessenger.of(context)
           ..clearSnackBars()

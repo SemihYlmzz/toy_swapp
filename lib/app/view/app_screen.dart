@@ -27,14 +27,6 @@ class AppScreen extends StatelessWidget {
         RepositoryProvider(create: (context) => repositories.appPreferences),
         RepositoryProvider(create: (context) => repositories.appMetadata),
         RepositoryProvider(create: (context) => repositories.consumer),
-        // Bloc
-        BlocProvider(
-          create: (context) => AppBloc(
-            appPreferencesRepository: repositories.appPreferences,
-            appPreferences: instances.appPreferences,
-            appMetadata: instances.appMetadata,
-          )..add(const AppEvent.checkIsTermsAccepted()),
-        ),
       ],
       child: AppView(
         routerConfig: instances.goRouter,

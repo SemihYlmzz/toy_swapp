@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../themes/themes.dart';
-import '../app.dart';
 
 class AppView extends StatelessWidget {
   const AppView({
@@ -12,23 +10,12 @@ class AppView extends StatelessWidget {
   final RouterConfig<Object> _routerConfig;
   @override
   Widget build(BuildContext context) {
-    final appBlocListeners = AppBlocListeners();
-    return MaterialApp(
-      home: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData.light(),
-        darkTheme: CustomThemeData.themeData(const DefaultDarkPalette()),
-        // themeMode: ThemeMode.system,
-        routerConfig: _routerConfig,
-        builder: (context, child) {
-          return MultiBlocListener(
-            listeners: [
-              appBlocListeners.termsPopUpDisplayer(),
-            ],
-            child: child!,
-          );
-        },
-      ),
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(),
+      darkTheme: CustomThemeData.themeData(const DefaultDarkPalette()),
+      // themeMode: ThemeMode.system,
+      routerConfig: _routerConfig,
     );
   }
 }
