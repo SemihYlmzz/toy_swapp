@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkpeek/linkpeek.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
+import 'package:toy_swapp/permissions/permissions.dart';
 
 import '../settings.dart';
 
@@ -23,7 +24,7 @@ class SettingsView extends StatelessWidget {
           AppPreferencesSettingGroup(
             themeSetting: _themeSetting(context),
             vibrationSetting: _vibrationSetting(context),
-            permissionsSetting: _permissionSetting(),
+            permissionsSetting: _permissionsSetting(context),
           ),
           ConsumerSecondSettingGroup(
             discoverUsSetting: _discoverUsSetting(),
@@ -86,11 +87,13 @@ class SettingsView extends StatelessWidget {
     );
   }
 
-  Setting _permissionSetting() {
+  Setting _permissionsSetting(BuildContext context) {
     return Setting(
       settingName: 'Permissions',
       settingIcon: Icons.share_location,
-      onTap: () {},
+      onTap: () {
+        PermissionsRouter.instance.push(context);
+      },
       iconColor: Colors.lightBlueAccent,
     );
   }

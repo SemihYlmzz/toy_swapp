@@ -3,7 +3,6 @@ import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:toy_swapp/terms_acceptance/terms_acceptance.dart';
 
 import '../account_initializer/account_initializer.dart';
 import '../account_registration/account_registration.dart';
@@ -13,11 +12,13 @@ import '../email_verification/email_verification.dart';
 import '../forgot_password/forgot_password.dart';
 import '../matches/matches.dart';
 import '../navigator_bar/navigator_bar.dart';
+import '../permissions/permissions.dart';
 import '../profile/profile.dart';
 import '../settings/settings.dart';
 import '../sign_in/sign_in.dart';
 import '../sign_up/sign_up.dart';
 import '../sub_matches/sub_matches.dart';
+import '../terms_acceptance/terms_acceptance.dart';
 import '../toys/toys.dart';
 import 'router.dart';
 
@@ -68,6 +69,7 @@ class AppRouter {
           // [NoRule]
           SettingsRouter.instance.route,
           TermsAcceptanceRouter.instance.route,
+          PermissionsRouter.instance.route,
         ],
         redirect: (BuildContext context, GoRouterState state) async {
           final currentAuth = context.read<AuthRepository>().currentAuth;
@@ -190,5 +192,6 @@ class AppRouter {
   bool _inNoRuleScreens(GoRouterState state) => [
         SettingsRouter.instance.name,
         TermsAcceptanceRouter.instance.name,
+        PermissionsRouter.instance.name,
       ].contains(state.topRoute!.name);
 }
