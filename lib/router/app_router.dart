@@ -3,6 +3,7 @@ import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:toy_swapp/account_settings/router/router.dart';
 
 import '../account_initializer/account_initializer.dart';
 import '../account_registration/account_registration.dart';
@@ -66,6 +67,7 @@ class AppRouter {
             NavigatorBarRouter.instance.getSubRoutes(_navigatorBarMainRoutes),
           ),
           CreateToyGoRoute.instance,
+          AccountSettingsRouter.instance.route,
           // [NoRule]
           SettingsRouter.instance.route,
           TermsAcceptanceRouter.instance.route,
@@ -188,6 +190,7 @@ class AppRouter {
         MatchesGoRoute.instance.name,
         ProfileGoRoute.instance.name,
         SubMatchesGoRoute.instance.name,
+        AccountSettingsRouter.instance.name,
       ].contains(state.topRoute!.name);
   bool _inNoRuleScreens(GoRouterState state) => [
         SettingsRouter.instance.name,

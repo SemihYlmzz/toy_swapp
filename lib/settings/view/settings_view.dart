@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkpeek/linkpeek.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
+import 'package:toy_swapp/account_settings/account_settings.dart';
 import 'package:toy_swapp/permissions/permissions.dart';
 
 import '../settings.dart';
@@ -18,7 +19,7 @@ class SettingsView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           ConsumerFirstSettingGroup(
-            accountSetting: _accountSetting(),
+            accountSetting: _accountSetting(context),
             notificationsSetting: _notificationsSetting(),
           ),
           AppPreferencesSettingGroup(
@@ -78,10 +79,12 @@ class SettingsView extends StatelessWidget {
     );
   }
 
-  Setting _accountSetting() {
+  Setting _accountSetting(BuildContext context) {
     return Setting(
       iconColor: Colors.deepOrangeAccent,
-      onTap: () {},
+      onTap: () {
+        AccountSettingsRouter.instance.push(context);
+      },
       settingIcon: Icons.person,
       settingName: 'Account',
     );
