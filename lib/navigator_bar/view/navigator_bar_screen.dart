@@ -23,7 +23,9 @@ class NavigatorBarScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<NavigatorBarBloc>(
-          create: (context) => NavigatorBarBloc(),
+          create: (context) => NavigatorBarBloc(
+            consumerRepository: context.read(),
+          ),
         ),
         BlocProvider(
           create: (context) => NavigatorBarCubit(
