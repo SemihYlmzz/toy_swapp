@@ -8,7 +8,7 @@ class PermissionsAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Permissions View'),
+      title: const Text('Permissions'),
     );
   }
 

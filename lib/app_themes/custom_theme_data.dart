@@ -63,6 +63,9 @@ class CustomThemeData {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(palette.primaryColor),
+            overlayColor: MaterialStateProperty.all(
+              palette.colorSchemeOnBackground.withOpacity(0.35),
+            ),
             foregroundColor:
                 MaterialStateProperty.all(palette.colorSchemeOnBackground),
           ),
