@@ -10,9 +10,12 @@ class AccountSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final accountSettingsBlocListeners = AccountSettingsBlocListeners();
-  
-    return BlocProvider(
-      create: (context) => AccountSettingsBloc(),
+
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AccountSettingsBloc()),
+        BlocProvider(create: (context) => AccountSettingsCubit()),
+      ],
       child: MultiBlocListener(
         listeners: [
           accountSettingsBlocListeners.errorDisplayer(),

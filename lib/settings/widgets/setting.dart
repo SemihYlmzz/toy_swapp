@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_constants/shared_constants.dart';
-import 'package:toy_swapp/settings/settings.dart';
+
+import '../../app/app.dart';
 
 class Setting extends StatelessWidget {
   const Setting({
@@ -23,7 +24,7 @@ class Setting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isVibratable = context.select(
-      (SettingsBloc bloc) => bloc.state.appPreferences.isVibratable,
+      (AppBloc bloc) => bloc.state.appPreferences.isVibratable,
     );
     return ListTile(
       shape: RoundedRectangleBorder(

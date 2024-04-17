@@ -24,7 +24,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         super(
           SettingsState(
             appMetadata: appMetadataRepository.appMetadata,
-            appPreferences: appPreferencesRepository.appPreferences,
             currentConsumer: consumerRepository.currentConsumer,
             currentAuth: authRepository.currentAuth,
           ),
@@ -46,11 +45,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         appMetadataRepository.appMetadataStream.listen((appMetadata) {
       add(SettingsEvent.appMetadataUpdated(appMetadata));
     });
-    // Listen AppPreferences Changes
-    _appPreferencesSubscription =
-        _appPreferencesRepository.appPreferencesStream.listen((appPreferences) {
-      add(SettingsEvent.appPreferencesUpdated(appPreferences));
-    });
+
   }
 
   // Repositories
@@ -61,7 +56,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   StreamSubscription<Consumer>? _currentConsumerSubcription;
   StreamSubscription<Auth>? _currentAuthSubscription;
   StreamSubscription<AppMetadata>? _appMetadataSubscription;
-  StreamSubscription<AppPreferences>? _appPreferencesSubscription;
 
   // Dispose Subscriptions
   @override
@@ -69,7 +63,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     _currentConsumerSubcription?.cancel();
     _currentAuthSubscription?.cancel();
     _appMetadataSubscription?.cancel();
-    _appPreferencesSubscription?.cancel();
     return super.close();
   }
 
@@ -96,9 +89,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       },
       appMetadataUpdated: (value) {
         emit(state.copyWith(appMetadata: value.updatedAppMetadata));
-      },
-      appPreferencesUpdated: (value) {
-        emit(state.copyWith(appPreferences: value.updatedAppPreferences));
       },
       updateIsVibratable: (value) async {
         final tryUpdate = await _appPreferencesRepository.updateIsVibratable(

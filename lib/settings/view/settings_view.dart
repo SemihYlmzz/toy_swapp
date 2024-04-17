@@ -7,6 +7,7 @@ import 'package:shared_widgets/shared_widgets.dart';
 import 'package:toy_swapp/account_settings/account_settings.dart';
 import 'package:toy_swapp/permissions/permissions.dart';
 
+import '../../app/app.dart';
 import '../settings.dart';
 
 class SettingsView extends StatelessWidget {
@@ -104,8 +105,9 @@ class SettingsView extends StatelessWidget {
   Setting _vibrationSetting(
     BuildContext context,
   ) {
-    final isVibratable = context
-        .select((SettingsBloc bloc) => bloc.state.appPreferences.isVibratable);
+    final isVibratable = context.select(
+      (AppBloc bloc) => bloc.state.appPreferences.isVibratable,
+    );
     return Setting(
       settingName: 'Vibration',
       settingIcon: Icons.vibration,
