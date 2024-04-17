@@ -9,9 +9,8 @@ class Setting extends StatelessWidget {
     required this.settingName,
     required this.settingIcon,
     required this.iconColor,
+    this.trailing,
     this.onTap,
-    this.switchValue,
-    this.onSwitchChanged,
     super.key,
   });
 
@@ -19,8 +18,7 @@ class Setting extends StatelessWidget {
   final IconData settingIcon;
   final VoidCallback? onTap;
   final Color iconColor;
-  final bool? switchValue;
-  final void Function({required bool value})? onSwitchChanged;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -40,19 +38,12 @@ class Setting extends StatelessWidget {
         ),
         child: Icon(settingIcon),
       ),
-      trailing: switchValue == null
-          ? Icon(
-              Icons.adaptive.arrow_forward,
-              color: Colors.white24,
-              size: 18,
-            )
-          : Switch.adaptive(
-              value: switchValue!,
-              onChanged: (value) {
-                if (isVibratable) HapticFeedback.mediumImpact();
-                onSwitchChanged?.call(value: value);
-              },
-            ),
+      trailing: trailing ??
+          Icon(
+            Icons.adaptive.arrow_forward,
+            color: Colors.white24,
+            size: 18,
+          ),
       onTap: onTap == null
           ? null
           : () {

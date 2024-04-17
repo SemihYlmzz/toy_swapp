@@ -104,63 +104,23 @@ class SettingsView extends StatelessWidget {
       settingName: 'Vibration',
       settingIcon: Icons.vibration,
       iconColor: Colors.lightGreen,
-      switchValue: isVibratable,
-      onSwitchChanged: ({required value}) {
-        if (value) HapticFeedback.mediumImpact();
-        context.read<SettingsBloc>().add(
-              SettingsEvent.updateIsVibratable(updatedIsVibratable: value),
-            );
-      },
+      trailing: Switch.adaptive(
+        value: isVibratable,
+        onChanged: (value) {
+          if (value) HapticFeedback.mediumImpact();
+          context.read<SettingsBloc>().add(
+                SettingsEvent.updateIsVibratable(updatedIsVibratable: value),
+              );
+        },
+      ),
     );
   }
 
   Setting _themeSetting(BuildContext context) {
-    return Setting(
+    return const Setting(
       settingName: 'Theme',
       settingIcon: Icons.palette,
-      onTap: () async {
-        final updatedThemeMode = await showDialog<ThemeMode>(
-          context: context,
-          barrierColor: Colors.black87,
-          builder: (context) => Center(
-            child: Container(
-              width: 320,
-              height: 320,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 84, 84, 84),
-                borderRadius: SharedBorderRadius.circular16,
-              ),
-              child: BaseColumn(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.maybePop(context, ThemeMode.light);
-                    },
-                    child: const Text('Light Theme'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.maybePop(context, ThemeMode.dark);
-                    },
-                    child: const Text('Dark Theme'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.maybePop(context, ThemeMode.system);
-                    },
-                    child: const Text('System Theme'),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-        if (updatedThemeMode == null) return;
-        if (!context.mounted) return;
-        context.read<SettingsBloc>().add(
-              SettingsEvent.updateThemeMode(updatedThemeMode: updatedThemeMode),
-            );
-      },
+      trailing: ThemeModePickerDropdownButton(),
       iconColor: Colors.deepPurpleAccent,
     );
   }

@@ -8,3 +8,4 @@ export 'setting_group.dart';
 export 'setting_sign_out_button.dart';
 export 'settings_app_bar.dart';
 export 'terms_setting_group.dart';
+export 'theme_mode_picker_dropdown_button.dart';
