@@ -27,7 +27,7 @@ class ConsumerAvatarDisplayer extends StatelessWidget {
             currentConsumerAvatarUrl256,
             // 'https://picsum.photos/257/257',
           ),
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
         ),
       ),
     );

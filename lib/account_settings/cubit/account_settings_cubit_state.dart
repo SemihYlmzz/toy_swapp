@@ -6,7 +6,7 @@ class AccountSettingsCubitState with _$AccountSettingsCubitState {
     @Default(AccountSettingsViewState.navigation)
     AccountSettingsViewState currentViewState,
     @Default(Password.pure()) Password currentPassword,
-    Uint8List? selectedAvatar,
+    AvatarImages? newAvatarImages,
     Failure? failure,
   }) = _AccountSettingsCubitState;
 }

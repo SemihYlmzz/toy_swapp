@@ -111,6 +111,33 @@ class AuthRepository {
     }
   }
 
+  FutureUnit reAuthenticateEmailAndPassword({
+    required Password currentPassword,
+  }) async {
+    final currentAuthEmail = currentAuth.email;
+    if (currentAuthEmail == null) {
+      return Left(AuthRepositoryUnknown()); // TDO -Current Auth is Empty
+    }
+    if (currentPassword.isNotValid) {
+      return Left(AuthRepositoryInvalidInput());
+    }
+    try {
+      final credential = EmailAuthProvider.credential(
+        email: currentAuthEmail,
+        password: currentPassword.value,
+      );
+      await _firebaseAuth.currentUser?.reauthenticateWithCredential(credential);
+      return const Right(unit);
+    } catch (exception) {
+      if (exception is FirebaseAuthException) {
+        if (exception.code == 'invalid-credential') {
+          return Left(AuthRepositoryReAuthenticateInvalidCredential());
+        }
+      }
+      return Left(AuthRepositoryUnknown());
+    }
+  }
+
   // Firebase Specific Functions
   Auth _authFromFirebaseUser(User? user) {
     if (user == null) {

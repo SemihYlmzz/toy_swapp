@@ -9,4 +9,8 @@ sealed class ConsumerRepositoryException
     implements Failure {
   const factory ConsumerRepositoryException.unknown() =
       ConsumerRepositoryExceptionUnknown;
+  const factory ConsumerRepositoryException.invalidInput() =
+      ConsumerRepositoryExceptionInvalidInput;
+  const factory ConsumerRepositoryException.nonEmptyConsumerRequired() =
+      ConsumerRepositoryExceptionNonEmptyConsumerRequired;
 }

@@ -13,7 +13,12 @@ class AccountSettingsScreen extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => AccountSettingsBloc()),
+        BlocProvider(
+          create: (context) => AccountSettingsBloc(
+            consumerRepository: context.read(),
+            authRepository: context.read(),
+          ),
+        ),
         BlocProvider(
           create: (context) => AccountSettingsCubit(
             imageService: context.read(),

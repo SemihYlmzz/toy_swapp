@@ -19,7 +19,7 @@ mixin _$AccountSettingsCubitState {
   AccountSettingsViewState get currentViewState =>
       throw _privateConstructorUsedError;
   Password get currentPassword => throw _privateConstructorUsedError;
-  Uint8List? get selectedAvatar => throw _privateConstructorUsedError;
+  AvatarImages? get newAvatarImages => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $AccountSettingsCubitStateCopyWith<$Res> {
   $Res call(
       {AccountSettingsViewState currentViewState,
       Password currentPassword,
-      Uint8List? selectedAvatar,
+      AvatarImages? newAvatarImages,
       Failure? failure});
 }
 
@@ -56,7 +56,7 @@ class _$AccountSettingsCubitStateCopyWithImpl<$Res,
   $Res call({
     Object? currentViewState = null,
     Object? currentPassword = null,
-    Object? selectedAvatar = freezed,
+    Object? newAvatarImages = freezed,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
@@ -68,10 +68,10 @@ class _$AccountSettingsCubitStateCopyWithImpl<$Res,
           ? _value.currentPassword
           : currentPassword // ignore: cast_nullable_to_non_nullable
               as Password,
-      selectedAvatar: freezed == selectedAvatar
-          ? _value.selectedAvatar
-          : selectedAvatar // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
+      newAvatarImages: freezed == newAvatarImages
+          ? _value.newAvatarImages
+          : newAvatarImages // ignore: cast_nullable_to_non_nullable
+              as AvatarImages?,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -92,7 +92,7 @@ abstract class _$$AccountSettingsCubitStateImplCopyWith<$Res>
   $Res call(
       {AccountSettingsViewState currentViewState,
       Password currentPassword,
-      Uint8List? selectedAvatar,
+      AvatarImages? newAvatarImages,
       Failure? failure});
 }
 
@@ -111,7 +111,7 @@ class __$$AccountSettingsCubitStateImplCopyWithImpl<$Res>
   $Res call({
     Object? currentViewState = null,
     Object? currentPassword = null,
-    Object? selectedAvatar = freezed,
+    Object? newAvatarImages = freezed,
     Object? failure = freezed,
   }) {
     return _then(_$AccountSettingsCubitStateImpl(
@@ -123,10 +123,10 @@ class __$$AccountSettingsCubitStateImplCopyWithImpl<$Res>
           ? _value.currentPassword
           : currentPassword // ignore: cast_nullable_to_non_nullable
               as Password,
-      selectedAvatar: freezed == selectedAvatar
-          ? _value.selectedAvatar
-          : selectedAvatar // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
+      newAvatarImages: freezed == newAvatarImages
+          ? _value.newAvatarImages
+          : newAvatarImages // ignore: cast_nullable_to_non_nullable
+              as AvatarImages?,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -141,7 +141,7 @@ class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
   const _$AccountSettingsCubitStateImpl(
       {this.currentViewState = AccountSettingsViewState.navigation,
       this.currentPassword = const Password.pure(),
-      this.selectedAvatar,
+      this.newAvatarImages,
       this.failure});
 
   @override
@@ -151,13 +151,13 @@ class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
   @JsonKey()
   final Password currentPassword;
   @override
-  final Uint8List? selectedAvatar;
+  final AvatarImages? newAvatarImages;
   @override
   final Failure? failure;
 
   @override
   String toString() {
-    return 'AccountSettingsCubitState(currentViewState: $currentViewState, currentPassword: $currentPassword, selectedAvatar: $selectedAvatar, failure: $failure)';
+    return 'AccountSettingsCubitState(currentViewState: $currentViewState, currentPassword: $currentPassword, newAvatarImages: $newAvatarImages, failure: $failure)';
   }
 
   @override
@@ -169,18 +169,14 @@ class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
                 other.currentViewState == currentViewState) &&
             (identical(other.currentPassword, currentPassword) ||
                 other.currentPassword == currentPassword) &&
-            const DeepCollectionEquality()
-                .equals(other.selectedAvatar, selectedAvatar) &&
+            (identical(other.newAvatarImages, newAvatarImages) ||
+                other.newAvatarImages == newAvatarImages) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      currentViewState,
-      currentPassword,
-      const DeepCollectionEquality().hash(selectedAvatar),
-      failure);
+      runtimeType, currentViewState, currentPassword, newAvatarImages, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -194,7 +190,7 @@ abstract class _AccountSettingsCubitState implements AccountSettingsCubitState {
   const factory _AccountSettingsCubitState(
       {final AccountSettingsViewState currentViewState,
       final Password currentPassword,
-      final Uint8List? selectedAvatar,
+      final AvatarImages? newAvatarImages,
       final Failure? failure}) = _$AccountSettingsCubitStateImpl;
 
   @override
@@ -202,7 +198,7 @@ abstract class _AccountSettingsCubitState implements AccountSettingsCubitState {
   @override
   Password get currentPassword;
   @override
-  Uint8List? get selectedAvatar;
+  AvatarImages? get newAvatarImages;
   @override
   Failure? get failure;
   @override

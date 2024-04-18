@@ -10,7 +10,12 @@ class UpdateAvatarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectedAvatar = context.select(
-      (AccountSettingsCubit bloc) => bloc.state.selectedAvatar,
+      (AccountSettingsCubit bloc) =>
+          bloc.state.newAvatarImages?.value?.avatarImage512,
+    );
+    final currentConsumerAvatarUrl512 = context.select(
+      (AccountSettingsBloc bloc) =>
+          bloc.state.currentConsumer.avatarUrls.url512,
     );
     return BaseColumn(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -28,12 +33,15 @@ class UpdateAvatarView extends StatelessWidget {
             ),
             shape: BoxShape.circle,
             image: selectedAvatar == null
-                ? const DecorationImage(
-                    image: NetworkImage('https://picsum.photos/257/257'),
-                    fit: BoxFit.fill,
+                ? DecorationImage(
+                    image: NetworkImage(currentConsumerAvatarUrl512),
+                    fit: BoxFit.cover,
                   )
                 : DecorationImage(
-                    image: MemoryImage(selectedAvatar),
+                    image: ResizeImage(
+                      width: 512,
+                      MemoryImage(selectedAvatar),
+                    ),
                     fit: BoxFit.cover,
                   ),
           ),
@@ -48,8 +56,28 @@ class UpdateAvatarView extends StatelessWidget {
               onTap: selectedAvatar == null
                   ? null
                   : () {
-                      context.read<AccountSettingsCubit>().updateViewState(
-                            AccountSettingsViewState.navigation,
+                      final cubitState =
+                          context.read<AccountSettingsCubit>().state;
+
+                      final currentPassword = cubitState.currentPassword;
+                      if (cubitState.currentPassword.isNotValid) {
+                        print('Invalid password');
+                        return;
+                      }
+                      final newAvatarImages = cubitState.newAvatarImages;
+                      if (newAvatarImages == null) {
+                        print('Image not Selected');
+                        return;
+                      }
+                      if (newAvatarImages.isNotValid) {
+                        print('Images Not Valid');
+                        return;
+                      }
+                      context.read<AccountSettingsBloc>().add(
+                            AccountSettingsEvent.updateAvatarImage(
+                              newAvatarImages: newAvatarImages,
+                              currentPassword: currentPassword,
+                            ),
                           );
                     },
             ),

@@ -18,33 +18,48 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AccountSettingsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function(Consumer updatedConsumer) currentConsumerUpdated,
+    required TResult Function(
+            AvatarImages newAvatarImages, Password currentPassword)
+        updateAvatarImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult? Function(AvatarImages newAvatarImages, Password currentPassword)?
+        updateAvatarImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult Function(AvatarImages newAvatarImages, Password currentPassword)?
+        updateAvatarImage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AccountSettingsFetch value) fetch,
+    required TResult Function(AccountSettingsCurrentConsumerUpdated value)
+        currentConsumerUpdated,
+    required TResult Function(AccountSettingsUpdateAvatarImage value)
+        updateAvatarImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AccountSettingsFetch value)? fetch,
+    TResult? Function(AccountSettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult? Function(AccountSettingsUpdateAvatarImage value)?
+        updateAvatarImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AccountSettingsFetch value)? fetch,
+    TResult Function(AccountSettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult Function(AccountSettingsUpdateAvatarImage value)? updateAvatarImage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,65 +85,114 @@ class _$AccountSettingsEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$AccountSettingsFetchImplCopyWith<$Res> {
-  factory _$$AccountSettingsFetchImplCopyWith(_$AccountSettingsFetchImpl value,
-          $Res Function(_$AccountSettingsFetchImpl) then) =
-      __$$AccountSettingsFetchImplCopyWithImpl<$Res>;
+abstract class _$$AccountSettingsCurrentConsumerUpdatedImplCopyWith<$Res> {
+  factory _$$AccountSettingsCurrentConsumerUpdatedImplCopyWith(
+          _$AccountSettingsCurrentConsumerUpdatedImpl value,
+          $Res Function(_$AccountSettingsCurrentConsumerUpdatedImpl) then) =
+      __$$AccountSettingsCurrentConsumerUpdatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Consumer updatedConsumer});
+
+  $ConsumerCopyWith<$Res> get updatedConsumer;
 }
 
 /// @nodoc
-class __$$AccountSettingsFetchImplCopyWithImpl<$Res>
-    extends _$AccountSettingsEventCopyWithImpl<$Res, _$AccountSettingsFetchImpl>
-    implements _$$AccountSettingsFetchImplCopyWith<$Res> {
-  __$$AccountSettingsFetchImplCopyWithImpl(_$AccountSettingsFetchImpl _value,
-      $Res Function(_$AccountSettingsFetchImpl) _then)
+class __$$AccountSettingsCurrentConsumerUpdatedImplCopyWithImpl<$Res>
+    extends _$AccountSettingsEventCopyWithImpl<$Res,
+        _$AccountSettingsCurrentConsumerUpdatedImpl>
+    implements _$$AccountSettingsCurrentConsumerUpdatedImplCopyWith<$Res> {
+  __$$AccountSettingsCurrentConsumerUpdatedImplCopyWithImpl(
+      _$AccountSettingsCurrentConsumerUpdatedImpl _value,
+      $Res Function(_$AccountSettingsCurrentConsumerUpdatedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? updatedConsumer = null,
+  }) {
+    return _then(_$AccountSettingsCurrentConsumerUpdatedImpl(
+      null == updatedConsumer
+          ? _value.updatedConsumer
+          : updatedConsumer // ignore: cast_nullable_to_non_nullable
+              as Consumer,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConsumerCopyWith<$Res> get updatedConsumer {
+    return $ConsumerCopyWith<$Res>(_value.updatedConsumer, (value) {
+      return _then(_value.copyWith(updatedConsumer: value));
+    });
+  }
 }
 
 /// @nodoc
 
-class _$AccountSettingsFetchImpl implements AccountSettingsFetch {
-  const _$AccountSettingsFetchImpl();
+class _$AccountSettingsCurrentConsumerUpdatedImpl
+    implements AccountSettingsCurrentConsumerUpdated {
+  const _$AccountSettingsCurrentConsumerUpdatedImpl(this.updatedConsumer);
+
+  @override
+  final Consumer updatedConsumer;
 
   @override
   String toString() {
-    return 'AccountSettingsEvent.fetch()';
+    return 'AccountSettingsEvent.currentConsumerUpdated(updatedConsumer: $updatedConsumer)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccountSettingsFetchImpl);
+            other is _$AccountSettingsCurrentConsumerUpdatedImpl &&
+            (identical(other.updatedConsumer, updatedConsumer) ||
+                other.updatedConsumer == updatedConsumer));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, updatedConsumer);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AccountSettingsCurrentConsumerUpdatedImplCopyWith<
+          _$AccountSettingsCurrentConsumerUpdatedImpl>
+      get copyWith => __$$AccountSettingsCurrentConsumerUpdatedImplCopyWithImpl<
+          _$AccountSettingsCurrentConsumerUpdatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function(Consumer updatedConsumer) currentConsumerUpdated,
+    required TResult Function(
+            AvatarImages newAvatarImages, Password currentPassword)
+        updateAvatarImage,
   }) {
-    return fetch();
+    return currentConsumerUpdated(updatedConsumer);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult? Function(AvatarImages newAvatarImages, Password currentPassword)?
+        updateAvatarImage,
   }) {
-    return fetch?.call();
+    return currentConsumerUpdated?.call(updatedConsumer);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult Function(AvatarImages newAvatarImages, Password currentPassword)?
+        updateAvatarImage,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch();
+    if (currentConsumerUpdated != null) {
+      return currentConsumerUpdated(updatedConsumer);
     }
     return orElse();
   }
@@ -136,38 +200,223 @@ class _$AccountSettingsFetchImpl implements AccountSettingsFetch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AccountSettingsFetch value) fetch,
+    required TResult Function(AccountSettingsCurrentConsumerUpdated value)
+        currentConsumerUpdated,
+    required TResult Function(AccountSettingsUpdateAvatarImage value)
+        updateAvatarImage,
   }) {
-    return fetch(this);
+    return currentConsumerUpdated(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AccountSettingsFetch value)? fetch,
+    TResult? Function(AccountSettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult? Function(AccountSettingsUpdateAvatarImage value)?
+        updateAvatarImage,
   }) {
-    return fetch?.call(this);
+    return currentConsumerUpdated?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AccountSettingsFetch value)? fetch,
+    TResult Function(AccountSettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult Function(AccountSettingsUpdateAvatarImage value)? updateAvatarImage,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch(this);
+    if (currentConsumerUpdated != null) {
+      return currentConsumerUpdated(this);
     }
     return orElse();
   }
 }
 
-abstract class AccountSettingsFetch implements AccountSettingsEvent {
-  const factory AccountSettingsFetch() = _$AccountSettingsFetchImpl;
+abstract class AccountSettingsCurrentConsumerUpdated
+    implements AccountSettingsEvent {
+  const factory AccountSettingsCurrentConsumerUpdated(
+          final Consumer updatedConsumer) =
+      _$AccountSettingsCurrentConsumerUpdatedImpl;
+
+  Consumer get updatedConsumer;
+  @JsonKey(ignore: true)
+  _$$AccountSettingsCurrentConsumerUpdatedImplCopyWith<
+          _$AccountSettingsCurrentConsumerUpdatedImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AccountSettingsUpdateAvatarImageImplCopyWith<$Res> {
+  factory _$$AccountSettingsUpdateAvatarImageImplCopyWith(
+          _$AccountSettingsUpdateAvatarImageImpl value,
+          $Res Function(_$AccountSettingsUpdateAvatarImageImpl) then) =
+      __$$AccountSettingsUpdateAvatarImageImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AvatarImages newAvatarImages, Password currentPassword});
+}
+
+/// @nodoc
+class __$$AccountSettingsUpdateAvatarImageImplCopyWithImpl<$Res>
+    extends _$AccountSettingsEventCopyWithImpl<$Res,
+        _$AccountSettingsUpdateAvatarImageImpl>
+    implements _$$AccountSettingsUpdateAvatarImageImplCopyWith<$Res> {
+  __$$AccountSettingsUpdateAvatarImageImplCopyWithImpl(
+      _$AccountSettingsUpdateAvatarImageImpl _value,
+      $Res Function(_$AccountSettingsUpdateAvatarImageImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? newAvatarImages = null,
+    Object? currentPassword = null,
+  }) {
+    return _then(_$AccountSettingsUpdateAvatarImageImpl(
+      newAvatarImages: null == newAvatarImages
+          ? _value.newAvatarImages
+          : newAvatarImages // ignore: cast_nullable_to_non_nullable
+              as AvatarImages,
+      currentPassword: null == currentPassword
+          ? _value.currentPassword
+          : currentPassword // ignore: cast_nullable_to_non_nullable
+              as Password,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AccountSettingsUpdateAvatarImageImpl
+    implements AccountSettingsUpdateAvatarImage {
+  const _$AccountSettingsUpdateAvatarImageImpl(
+      {required this.newAvatarImages, required this.currentPassword});
+
+  @override
+  final AvatarImages newAvatarImages;
+  @override
+  final Password currentPassword;
+
+  @override
+  String toString() {
+    return 'AccountSettingsEvent.updateAvatarImage(newAvatarImages: $newAvatarImages, currentPassword: $currentPassword)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AccountSettingsUpdateAvatarImageImpl &&
+            (identical(other.newAvatarImages, newAvatarImages) ||
+                other.newAvatarImages == newAvatarImages) &&
+            (identical(other.currentPassword, currentPassword) ||
+                other.currentPassword == currentPassword));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, newAvatarImages, currentPassword);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AccountSettingsUpdateAvatarImageImplCopyWith<
+          _$AccountSettingsUpdateAvatarImageImpl>
+      get copyWith => __$$AccountSettingsUpdateAvatarImageImplCopyWithImpl<
+          _$AccountSettingsUpdateAvatarImageImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Consumer updatedConsumer) currentConsumerUpdated,
+    required TResult Function(
+            AvatarImages newAvatarImages, Password currentPassword)
+        updateAvatarImage,
+  }) {
+    return updateAvatarImage(newAvatarImages, currentPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult? Function(AvatarImages newAvatarImages, Password currentPassword)?
+        updateAvatarImage,
+  }) {
+    return updateAvatarImage?.call(newAvatarImages, currentPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult Function(AvatarImages newAvatarImages, Password currentPassword)?
+        updateAvatarImage,
+    required TResult orElse(),
+  }) {
+    if (updateAvatarImage != null) {
+      return updateAvatarImage(newAvatarImages, currentPassword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AccountSettingsCurrentConsumerUpdated value)
+        currentConsumerUpdated,
+    required TResult Function(AccountSettingsUpdateAvatarImage value)
+        updateAvatarImage,
+  }) {
+    return updateAvatarImage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AccountSettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult? Function(AccountSettingsUpdateAvatarImage value)?
+        updateAvatarImage,
+  }) {
+    return updateAvatarImage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AccountSettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult Function(AccountSettingsUpdateAvatarImage value)? updateAvatarImage,
+    required TResult orElse(),
+  }) {
+    if (updateAvatarImage != null) {
+      return updateAvatarImage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AccountSettingsUpdateAvatarImage
+    implements AccountSettingsEvent {
+  const factory AccountSettingsUpdateAvatarImage(
+          {required final AvatarImages newAvatarImages,
+          required final Password currentPassword}) =
+      _$AccountSettingsUpdateAvatarImageImpl;
+
+  AvatarImages get newAvatarImages;
+  Password get currentPassword;
+  @JsonKey(ignore: true)
+  _$$AccountSettingsUpdateAvatarImageImplCopyWith<
+          _$AccountSettingsUpdateAvatarImageImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$AccountSettingsState {
+  Consumer get currentConsumer => throw _privateConstructorUsedError;
+  bool get isValueUpdated => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
@@ -182,7 +431,13 @@ abstract class $AccountSettingsStateCopyWith<$Res> {
           $Res Function(AccountSettingsState) then) =
       _$AccountSettingsStateCopyWithImpl<$Res, AccountSettingsState>;
   @useResult
-  $Res call({bool isLoading, Failure? failure});
+  $Res call(
+      {Consumer currentConsumer,
+      bool isValueUpdated,
+      bool isLoading,
+      Failure? failure});
+
+  $ConsumerCopyWith<$Res> get currentConsumer;
 }
 
 /// @nodoc
@@ -199,10 +454,20 @@ class _$AccountSettingsStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? currentConsumer = null,
+    Object? isValueUpdated = null,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
+      currentConsumer: null == currentConsumer
+          ? _value.currentConsumer
+          : currentConsumer // ignore: cast_nullable_to_non_nullable
+              as Consumer,
+      isValueUpdated: null == isValueUpdated
+          ? _value.isValueUpdated
+          : isValueUpdated // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -212,6 +477,14 @@ class _$AccountSettingsStateCopyWithImpl<$Res,
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConsumerCopyWith<$Res> get currentConsumer {
+    return $ConsumerCopyWith<$Res>(_value.currentConsumer, (value) {
+      return _then(_value.copyWith(currentConsumer: value) as $Val);
+    });
   }
 }
 
@@ -223,7 +496,14 @@ abstract class _$$AccountSettingsStateImplCopyWith<$Res>
       __$$AccountSettingsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, Failure? failure});
+  $Res call(
+      {Consumer currentConsumer,
+      bool isValueUpdated,
+      bool isLoading,
+      Failure? failure});
+
+  @override
+  $ConsumerCopyWith<$Res> get currentConsumer;
 }
 
 /// @nodoc
@@ -237,10 +517,20 @@ class __$$AccountSettingsStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? currentConsumer = null,
+    Object? isValueUpdated = null,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
     return _then(_$AccountSettingsStateImpl(
+      currentConsumer: null == currentConsumer
+          ? _value.currentConsumer
+          : currentConsumer // ignore: cast_nullable_to_non_nullable
+              as Consumer,
+      isValueUpdated: null == isValueUpdated
+          ? _value.isValueUpdated
+          : isValueUpdated // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -256,8 +546,17 @@ class __$$AccountSettingsStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AccountSettingsStateImpl implements _AccountSettingsState {
-  const _$AccountSettingsStateImpl({this.isLoading = false, this.failure});
+  const _$AccountSettingsStateImpl(
+      {required this.currentConsumer,
+      this.isValueUpdated = false,
+      this.isLoading = false,
+      this.failure});
 
+  @override
+  final Consumer currentConsumer;
+  @override
+  @JsonKey()
+  final bool isValueUpdated;
   @override
   @JsonKey()
   final bool isLoading;
@@ -266,7 +565,7 @@ class _$AccountSettingsStateImpl implements _AccountSettingsState {
 
   @override
   String toString() {
-    return 'AccountSettingsState(isLoading: $isLoading, failure: $failure)';
+    return 'AccountSettingsState(currentConsumer: $currentConsumer, isValueUpdated: $isValueUpdated, isLoading: $isLoading, failure: $failure)';
   }
 
   @override
@@ -274,13 +573,18 @@ class _$AccountSettingsStateImpl implements _AccountSettingsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AccountSettingsStateImpl &&
+            (identical(other.currentConsumer, currentConsumer) ||
+                other.currentConsumer == currentConsumer) &&
+            (identical(other.isValueUpdated, isValueUpdated) ||
+                other.isValueUpdated == isValueUpdated) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, failure);
+  int get hashCode => Object.hash(
+      runtimeType, currentConsumer, isValueUpdated, isLoading, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -293,9 +597,15 @@ class _$AccountSettingsStateImpl implements _AccountSettingsState {
 
 abstract class _AccountSettingsState implements AccountSettingsState {
   const factory _AccountSettingsState(
-      {final bool isLoading,
+      {required final Consumer currentConsumer,
+      final bool isValueUpdated,
+      final bool isLoading,
       final Failure? failure}) = _$AccountSettingsStateImpl;
 
+  @override
+  Consumer get currentConsumer;
+  @override
+  bool get isValueUpdated;
   @override
   bool get isLoading;
   @override

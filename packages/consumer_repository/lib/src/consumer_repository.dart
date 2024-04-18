@@ -137,6 +137,61 @@ class ConsumerRepository {
     _currentConsumerStreamController.sink.add(Consumer.empty());
   }
 
+  FutureUnit updateAvatarImage({
+    required AvatarImages avatarImages,
+  }) async {
+    final avatarImagesValue = avatarImages.value;
+    if (avatarImages.isNotValid || avatarImagesValue == null) {
+      return const Left(ConsumerRepositoryException.invalidInput());
+    }
+    if (currentConsumer == Consumer.empty()) {
+      return const Left(ConsumerRepositoryException.nonEmptyConsumerRequired());
+    }
+    try {
+      final avatar128Url = await _uploadAvatarImageToStorage(
+        avatarImagesValue.avatarImage128,
+        currentConsumer.authId,
+        'size128',
+      );
+      final avatar256Url = await _uploadAvatarImageToStorage(
+        avatarImagesValue.avatarImage256,
+        currentConsumer.authId,
+        'size256',
+      );
+      final avatar512Url = await _uploadAvatarImageToStorage(
+        avatarImagesValue.avatarImage512,
+        currentConsumer.authId,
+        'size512',
+      );
+      final avatar1024Url = await _uploadAvatarImageToStorage(
+        avatarImagesValue.avatarImage1024,
+        currentConsumer.authId,
+        'size1024',
+      );
+
+      final updatedConsumer = currentConsumer.copyWith(
+        avatarUrls: AvatarUrls(
+          url128: avatar128Url,
+          url256: avatar256Url,
+          url512: avatar512Url,
+          url1024: avatar1024Url,
+        ),
+      );
+      await _firebaseFirestore
+          .collection(ConsumerRepositoryStrings.consumerCollectionPath)
+          .doc(currentConsumer.authId)
+          .update(updatedConsumer.toJson());
+
+      _currentConsumerStreamController.sink.add(updatedConsumer);
+      return const Right(unit);
+    } catch (exception) {
+      // if (exception is FirebaseException) {
+      //   throw _firebaseExceptionToUserException(exception);
+      // }
+      return const Left(ConsumerRepositoryException.unknown());
+    }
+  }
+
   // Special Functions
   Future<String> _uploadAvatarImageToStorage(
     Uint8List image,
