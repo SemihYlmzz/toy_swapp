@@ -14,11 +14,16 @@ class AccountSettingsScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AccountSettingsBloc()),
-        BlocProvider(create: (context) => AccountSettingsCubit()),
+        BlocProvider(
+          create: (context) => AccountSettingsCubit(
+            imageService: context.read(),
+          ),
+        ),
       ],
       child: MultiBlocListener(
         listeners: [
           accountSettingsBlocListeners.errorDisplayer(),
+          accountSettingsBlocListeners.clearStateOnNavigatorScreen(),
         ],
         child: BlocSelector<AccountSettingsBloc, AccountSettingsState, bool>(
           selector: (state) => state.isLoading,

@@ -17,6 +17,21 @@ class AccountSettingsView extends StatelessWidget {
     return BaseScaffold(
       safeArea: true,
       appBar: const AccountSettingsAppBar(),
+      floatingActionButton:
+          currentViewState == AccountSettingsViewState.updateAvatar
+              ? Padding(
+                  padding: SharedPaddings.bottom64 + SharedPaddings.bottom64,
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.greenAccent.shade700,
+                    onPressed: () {
+                      context
+                          .read<AccountSettingsCubit>()
+                          .selectAvatarImageFromPhotos();
+                    },
+                    child: const Icon(Icons.photo_library),
+                  ),
+                )
+              : null,
       body: PageTransitionSwitcher(
         duration: SharedDurations.ms370,
         reverse: currentViewState == AccountSettingsViewState.navigation,

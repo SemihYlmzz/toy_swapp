@@ -57,14 +57,17 @@ class AccountSettingsNavigatorView extends StatelessWidget {
             ),
           ],
         ),
-        ElevatedButton(
+        TextButton(
           onPressed: () => context.read<AccountSettingsCubit>().updateViewState(
                 AccountSettingsViewState.deleteAccount,
               ),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Theme.of(context).colorScheme.error,
+          child: Text(
+            'Delete Account',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.error,
+              fontWeight: FontWeight.w800,
+            ),
           ),
-          child: const Text('Delete Account'),
         ),
       ],
     );

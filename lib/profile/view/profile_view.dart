@@ -19,18 +19,9 @@ class ProfileView extends StatelessWidget {
               padding: SharedPaddings.left32,
               child: ConsumerAvatarDisplayer(),
             ),
-            ProfileCounterDisplayer(
-              counterName: 'Toys',
-              counterValue: 5,
-            ),
-            ProfileCounterDisplayer(
-              counterName: 'Switched',
-              counterValue: 3,
-            ),
-            ProfileCounterDisplayer(
-              counterName: 'Chance',
-              counterValue: 12,
-            ),
+            ProfileToysCounter(),
+            ProfileSwitchedCounter(),
+            ProfileChanceCounter(),
             SharedGap.gap4,
           ],
         ),

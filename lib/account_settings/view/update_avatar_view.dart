@@ -9,82 +9,53 @@ class UpdateAvatarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final selectedAvatar = context.select(
+      (AccountSettingsCubit bloc) => bloc.state.selectedAvatar,
+    );
     return BaseColumn(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          padding: SharedPaddings.all32,
+          width: 200,
+          height: 200,
+          margin: SharedPaddings.top32,
           decoration: BoxDecoration(
-            color: Colors.white38,
-            borderRadius: SharedBorderRadius.circular32,
-          ),
-          child: Column(
-            children: [
-              Text(
-                'Current Avatar',
-                style: Theme.of(context).textTheme.displaySmall,
-              ),
-              SharedGap.gap32,
-              Container(
-                width: 200,
-                height: 200,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Theme.of(context).colorScheme.primary,
-                    width: 2,
-                  ),
-                  shape: BoxShape.circle,
-                  image: const DecorationImage(
-                    image: NetworkImage(
-                      'https://picsum.photos/257/257',
-                    ),
+            border: Border.all(
+              color: selectedAvatar == null
+                  ? Theme.of(context).colorScheme.primary
+                  : Colors.greenAccent,
+              width: 2,
+            ),
+            shape: BoxShape.circle,
+            image: selectedAvatar == null
+                ? const DecorationImage(
+                    image: NetworkImage('https://picsum.photos/257/257'),
                     fit: BoxFit.fill,
+                  )
+                : DecorationImage(
+                    image: MemoryImage(selectedAvatar),
+                    fit: BoxFit.cover,
                   ),
-                ),
-              ),
-            ],
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        Column(
           children: [
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
-              ),
-              onPressed: () {
-                context.read<AccountSettingsCubit>().updateViewState(
-                      AccountSettingsViewState.navigation,
-                    );
-              },
-              child: const Text('Back'),
+            AccountSettingsPasswordConfirmationTextField(
+              isVisible: selectedAvatar != null,
             ),
-            // selectedImage == null
-            //     ? SelectAvatarImageButton()
-            //     : ElevatedButton(
-            //         style: ElevatedButton.styleFrom(
-            //           backgroundColor: Colors.greenAccent,
-            //         ),
-            //         onPressed: () {
-            //           context.read<AccountSettingsCubit>().updateViewState(
-            //                 AccountSettingsViewState.navigation,
-            //               );
-            //         },
-            //         child: const Text('Save'),
-            //       ),
+            SharedGap.gap8,
+            BackAndSaveButtons(
+              onTap: selectedAvatar == null
+                  ? null
+                  : () {
+                      context.read<AccountSettingsCubit>().updateViewState(
+                            AccountSettingsViewState.navigation,
+                          );
+                    },
+            ),
           ],
         ),
       ],
     );
-  }
-}
-
-class SelectAvatarImageButton extends StatelessWidget {
-  const SelectAvatarImageButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }

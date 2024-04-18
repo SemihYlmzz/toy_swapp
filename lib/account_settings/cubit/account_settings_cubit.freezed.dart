@@ -18,6 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AccountSettingsCubitState {
   AccountSettingsViewState get currentViewState =>
       throw _privateConstructorUsedError;
+  Password get currentPassword => throw _privateConstructorUsedError;
+  Uint8List? get selectedAvatar => throw _privateConstructorUsedError;
+  Failure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AccountSettingsCubitStateCopyWith<AccountSettingsCubitState> get copyWith =>
@@ -30,7 +33,11 @@ abstract class $AccountSettingsCubitStateCopyWith<$Res> {
           $Res Function(AccountSettingsCubitState) then) =
       _$AccountSettingsCubitStateCopyWithImpl<$Res, AccountSettingsCubitState>;
   @useResult
-  $Res call({AccountSettingsViewState currentViewState});
+  $Res call(
+      {AccountSettingsViewState currentViewState,
+      Password currentPassword,
+      Uint8List? selectedAvatar,
+      Failure? failure});
 }
 
 /// @nodoc
@@ -48,12 +55,27 @@ class _$AccountSettingsCubitStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? currentViewState = null,
+    Object? currentPassword = null,
+    Object? selectedAvatar = freezed,
+    Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
       currentViewState: null == currentViewState
           ? _value.currentViewState
           : currentViewState // ignore: cast_nullable_to_non_nullable
               as AccountSettingsViewState,
+      currentPassword: null == currentPassword
+          ? _value.currentPassword
+          : currentPassword // ignore: cast_nullable_to_non_nullable
+              as Password,
+      selectedAvatar: freezed == selectedAvatar
+          ? _value.selectedAvatar
+          : selectedAvatar // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
     ) as $Val);
   }
 }
@@ -67,7 +89,11 @@ abstract class _$$AccountSettingsCubitStateImplCopyWith<$Res>
       __$$AccountSettingsCubitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AccountSettingsViewState currentViewState});
+  $Res call(
+      {AccountSettingsViewState currentViewState,
+      Password currentPassword,
+      Uint8List? selectedAvatar,
+      Failure? failure});
 }
 
 /// @nodoc
@@ -84,12 +110,27 @@ class __$$AccountSettingsCubitStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? currentViewState = null,
+    Object? currentPassword = null,
+    Object? selectedAvatar = freezed,
+    Object? failure = freezed,
   }) {
     return _then(_$AccountSettingsCubitStateImpl(
       currentViewState: null == currentViewState
           ? _value.currentViewState
           : currentViewState // ignore: cast_nullable_to_non_nullable
               as AccountSettingsViewState,
+      currentPassword: null == currentPassword
+          ? _value.currentPassword
+          : currentPassword // ignore: cast_nullable_to_non_nullable
+              as Password,
+      selectedAvatar: freezed == selectedAvatar
+          ? _value.selectedAvatar
+          : selectedAvatar // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
     ));
   }
 }
@@ -98,15 +139,25 @@ class __$$AccountSettingsCubitStateImplCopyWithImpl<$Res>
 
 class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
   const _$AccountSettingsCubitStateImpl(
-      {this.currentViewState = AccountSettingsViewState.navigation});
+      {this.currentViewState = AccountSettingsViewState.navigation,
+      this.currentPassword = const Password.pure(),
+      this.selectedAvatar,
+      this.failure});
 
   @override
   @JsonKey()
   final AccountSettingsViewState currentViewState;
+  @override
+  @JsonKey()
+  final Password currentPassword;
+  @override
+  final Uint8List? selectedAvatar;
+  @override
+  final Failure? failure;
 
   @override
   String toString() {
-    return 'AccountSettingsCubitState(currentViewState: $currentViewState)';
+    return 'AccountSettingsCubitState(currentViewState: $currentViewState, currentPassword: $currentPassword, selectedAvatar: $selectedAvatar, failure: $failure)';
   }
 
   @override
@@ -115,11 +166,21 @@ class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
         (other.runtimeType == runtimeType &&
             other is _$AccountSettingsCubitStateImpl &&
             (identical(other.currentViewState, currentViewState) ||
-                other.currentViewState == currentViewState));
+                other.currentViewState == currentViewState) &&
+            (identical(other.currentPassword, currentPassword) ||
+                other.currentPassword == currentPassword) &&
+            const DeepCollectionEquality()
+                .equals(other.selectedAvatar, selectedAvatar) &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currentViewState);
+  int get hashCode => Object.hash(
+      runtimeType,
+      currentViewState,
+      currentPassword,
+      const DeepCollectionEquality().hash(selectedAvatar),
+      failure);
 
   @JsonKey(ignore: true)
   @override
@@ -131,11 +192,19 @@ class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
 
 abstract class _AccountSettingsCubitState implements AccountSettingsCubitState {
   const factory _AccountSettingsCubitState(
-          {final AccountSettingsViewState currentViewState}) =
-      _$AccountSettingsCubitStateImpl;
+      {final AccountSettingsViewState currentViewState,
+      final Password currentPassword,
+      final Uint8List? selectedAvatar,
+      final Failure? failure}) = _$AccountSettingsCubitStateImpl;
 
   @override
   AccountSettingsViewState get currentViewState;
+  @override
+  Password get currentPassword;
+  @override
+  Uint8List? get selectedAvatar;
+  @override
+  Failure? get failure;
   @override
   @JsonKey(ignore: true)
   _$$AccountSettingsCubitStateImplCopyWith<_$AccountSettingsCubitStateImpl>

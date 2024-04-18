@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../navigator_bar/bloc/navigator_bar_bloc.dart';
 
 class ConsumerAvatarDisplayer extends StatelessWidget {
   const ConsumerAvatarDisplayer({
@@ -8,6 +10,9 @@ class ConsumerAvatarDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentConsumerAvatarUrl256 = context.select(
+      (NavigatorBarBloc bloc) => bloc.state.currentConsumer.avatarUrls.url256,
+    );
     return Container(
       width: 100,
       height: 100,
@@ -17,9 +22,10 @@ class ConsumerAvatarDisplayer extends StatelessWidget {
           width: 2,
         ),
         shape: BoxShape.circle,
-        image: const DecorationImage(
+        image: DecorationImage(
           image: NetworkImage(
-            'https://picsum.photos/257/257',
+            currentConsumerAvatarUrl256,
+            // 'https://picsum.photos/257/257',
           ),
           fit: BoxFit.fill,
         ),
