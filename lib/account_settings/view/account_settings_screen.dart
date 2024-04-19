@@ -29,12 +29,19 @@ class AccountSettingsScreen extends StatelessWidget {
         listeners: [
           accountSettingsBlocListeners.errorDisplayer(),
           accountSettingsBlocListeners.clearStateOnNavigatorScreen(),
+          accountSettingsBlocListeners.displayNavigatorOnSuccessUpdate(),
         ],
-        child: BlocSelector<AccountSettingsBloc, AccountSettingsState, bool>(
-          selector: (state) => state.isLoading,
-          builder: (context, isLoading) {
+        child: Builder(
+          builder: (context) {
+            final isBlocLoading = context.select(
+              (AccountSettingsBloc bloc) => bloc.state.isLoading,
+            );
+            final isCubitLoading = context.select(
+              (AccountSettingsCubit cubit) => cubit.state.isLoading,
+            );
+
             return LoadingScreen(
-              isLoading: isLoading,
+              isLoading: isBlocLoading || isCubitLoading,
               size: MediaQuery.sizeOf(context),
               child: const AccountSettingsView(),
             );

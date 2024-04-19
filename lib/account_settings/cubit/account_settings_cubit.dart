@@ -1,6 +1,7 @@
 import 'package:auth_repository/auth_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:consumer_repository/consumer_repository.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_service/image_service.dart';
 import 'package:toy_swapp/account_settings/account_settings.dart';
@@ -14,7 +15,7 @@ class AccountSettingsCubit extends Cubit<AccountSettingsCubitState> {
   AccountSettingsCubit({
     required ImageService imageService,
   })  : _imageService = imageService,
-        super(const AccountSettingsCubitState());
+        super(AccountSettingsCubitState(lastNameFocusNode: FocusNode()));
   // Services
   final ImageService _imageService;
   // Functions
@@ -27,6 +28,10 @@ class AccountSettingsCubit extends Cubit<AccountSettingsCubitState> {
       state.copyWith(
         newAvatarImages: null,
         currentPassword: const Password.pure(),
+        firstNameObject: const FirstName.pure(),
+        lastNameObject: const LastName.pure(),
+        isLoading: false,
+        failure: null,
       ),
     );
   }
@@ -36,11 +41,29 @@ class AccountSettingsCubit extends Cubit<AccountSettingsCubitState> {
     emit(state.copyWith(currentPassword: updatedPassword));
   }
 
+  void updateFirstName(String updatedFirstNameValue, String currentFirstName) {
+    final updatedFirstName = FirstName.dirty(
+      newFirstName: updatedFirstNameValue,
+      currentFirstName: currentFirstName,
+    );
+    emit(state.copyWith(firstNameObject: updatedFirstName));
+  }
+
+  void updateLastName(String updatedLastNameValue, String currentLastName) {
+    final updatedLastName = LastName.dirty(
+      newLastName: updatedLastNameValue,
+      currentLastName: currentLastName,
+    );
+    emit(state.copyWith(lastNameObject: updatedLastName));
+  }
+
   Future<void> selectAvatarImageFromPhotos() async {
+    emit(state.copyWith(isLoading: true));
     // Select Image and Ensure Valued
     final tryPick = await _imageService.pickSingleImageFromPhotos();
     final nullableImage = tryPick.getRight().toNullable();
     if (nullableImage == null) {
+      emit(state.copyWith(isLoading: false));
       return;
     }
     // Compress Selected Image
@@ -62,6 +85,7 @@ class AccountSettingsCubit extends Cubit<AccountSettingsCubitState> {
         nullableImage128 == null ||
         nullableImage256 == null ||
         nullableImage512 == null) {
+      emit(state.copyWith(isLoading: false));
       return;
     }
     emit(
@@ -72,6 +96,7 @@ class AccountSettingsCubit extends Cubit<AccountSettingsCubitState> {
           avatarImage512: nullableImage512,
           avatarImage1024: nullableImage1024,
         ),
+        isLoading: false,
       ),
     );
   }

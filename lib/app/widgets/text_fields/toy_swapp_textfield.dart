@@ -11,6 +11,7 @@ class ToySwappTextField extends StatefulWidget {
     this.onSubmit,
     this.focusNode,
     this.keyboardType,
+    this.textCapitalization = TextCapitalization.none,
   });
 
   final bool obscureText;
@@ -20,6 +21,8 @@ class ToySwappTextField extends StatefulWidget {
   final void Function(String)? onSubmit;
   final FocusNode? focusNode;
   final TextInputType? keyboardType;
+  final TextCapitalization textCapitalization;
+
   @override
   State<ToySwappTextField> createState() => _ToySwappTextFieldState();
 }
@@ -33,6 +36,7 @@ class _ToySwappTextFieldState extends State<ToySwappTextField> {
         TextField(
           focusNode: widget.focusNode,
           obscureText: widget.obscureText && hidePassword,
+          textCapitalization: widget.textCapitalization,
           decoration: InputDecoration(
             labelText: widget.labelText,
             labelStyle: TextStyle(

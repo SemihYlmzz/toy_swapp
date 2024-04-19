@@ -48,7 +48,7 @@ class AccountSettingsView extends StatelessWidget {
           AccountSettingsViewState.navigation =>
             const AccountSettingsNavigatorView(),
           AccountSettingsViewState.updateAvatar => const UpdateAvatarView(),
-          AccountSettingsViewState.updateUsername => const UpdateUsernameView(),
+          AccountSettingsViewState.updateFullName => const UpdateFullNameView(),
           AccountSettingsViewState.updateEmail => const UpdateEmailView(),
           AccountSettingsViewState.updatePassword => const UpdatePasswordView(),
           AccountSettingsViewState.deleteAccount => const DeleteAccountView(),

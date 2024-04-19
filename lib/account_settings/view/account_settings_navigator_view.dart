@@ -15,7 +15,7 @@ class AccountSettingsNavigatorView extends StatelessWidget {
         const Column(
           children: [
             UpdateAvatarViewDisplayer(),
-            UpdateUsernameViewDisplayer(),
+            UpdateFullNameViewDisplayer(),
             UpdateEmailViewDisplayer(),
             UpdatePasswordViewDisplayer(),
           ],

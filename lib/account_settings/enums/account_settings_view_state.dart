@@ -1,7 +1,7 @@
 enum AccountSettingsViewState {
   navigation,
   updateAvatar,
-  updateUsername,
+  updateFullName,
   updateEmail,
   updatePassword,
   deleteAccount,

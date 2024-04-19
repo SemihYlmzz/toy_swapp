@@ -54,16 +54,28 @@ class AccountSettingsBloc
         emit(state.copyWith(currentConsumer: e.updatedConsumer));
       },
       updateAvatarImage: (e) async {
-        final tryReAuth = await _authRepository.reAuthenticateEmailAndPassword(
-          currentPassword: e.currentPassword,
-        );
-        final failure = tryReAuth.getLeft().toNullable();
-        if (failure != null) {
-          emit(state.copyWith(failure: failure));
+        final tryReauthFailure = await _tryReauth(e.currentPassword);
+        if (tryReauthFailure != null) {
+          emit(state.copyWith(failure: tryReauthFailure));
           return;
         }
         final tryUpdate = await _consumerRepository.updateAvatarImage(
           avatarImages: e.newAvatarImages,
+        );
+        tryUpdate.fold(
+          (failure) => emit(state.copyWith(failure: failure)),
+          (consumer) => emit(state.copyWith(isValueUpdated: true)),
+        );
+      },
+      updateFullName: (e) async {
+        final tryReauthFailure = await _tryReauth(e.currentPassword);
+        if (tryReauthFailure != null) {
+          emit(state.copyWith(failure: tryReauthFailure));
+          return;
+        }
+        final tryUpdate = await _consumerRepository.updateFullName(
+          firstNameObject: e.firstNameObject,
+          lastNameObject: e.lastNameObject,
         );
         tryUpdate.fold(
           (failure) => emit(state.copyWith(failure: failure)),
@@ -75,5 +87,12 @@ class AccountSettingsBloc
     emit(
       state.copyWith(isLoading: false, failure: null, isValueUpdated: false),
     );
+  }
+
+  Future<Failure?> _tryReauth(Password currentPassword) async {
+    final tryReAuth = await _authRepository.reAuthenticateEmailAndPassword(
+      currentPassword: currentPassword,
+    );
+    return tryReAuth.getLeft().toNullable();
   }
 }

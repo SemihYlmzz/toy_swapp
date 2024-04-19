@@ -192,6 +192,43 @@ class ConsumerRepository {
     }
   }
 
+  FutureUnit updateFullName({
+    required FirstName firstNameObject,
+    required LastName lastNameObject,
+  }) async {
+    if (currentConsumer == Consumer.empty()) {
+      return const Left(ConsumerRepositoryException.nonEmptyConsumerRequired());
+    }
+    if (firstNameObject.isNotValid && lastNameObject.isNotValid) {
+      return const Left(ConsumerRepositoryException.invalidInput());
+    }
+    final newFirstName = firstNameObject.isValid
+        ? firstNameObject.value.newFirstName
+        : currentConsumer.firstName;
+
+    final newLastName = lastNameObject.isValid
+        ? lastNameObject.value.newLastName
+        : currentConsumer.lastName;
+    try {
+      final updatedConsumer = currentConsumer.copyWith(
+        firstName: newFirstName,
+        lastName: newLastName,
+      );
+      await _firebaseFirestore
+          .collection(ConsumerRepositoryStrings.consumerCollectionPath)
+          .doc(currentConsumer.authId)
+          .update(updatedConsumer.toJson());
+
+      _currentConsumerStreamController.sink.add(updatedConsumer);
+      return const Right(unit);
+    } catch (exception) {
+      // if (exception is FirebaseException) {
+      //   throw _firebaseExceptionToUserException(exception);
+      // }
+      return const Left(ConsumerRepositoryException.unknown());
+    }
+  }
+
   // Special Functions
   Future<String> _uploadAvatarImageToStorage(
     Uint8List image,

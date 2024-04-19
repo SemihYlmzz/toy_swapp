@@ -22,6 +22,9 @@ mixin _$AccountSettingsEvent {
     required TResult Function(
             AvatarImages newAvatarImages, Password currentPassword)
         updateAvatarImage,
+    required TResult Function(FirstName firstNameObject,
+            LastName lastNameObject, Password currentPassword)
+        updateFullName,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,6 +32,9 @@ mixin _$AccountSettingsEvent {
     TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult? Function(AvatarImages newAvatarImages, Password currentPassword)?
         updateAvatarImage,
+    TResult? Function(FirstName firstNameObject, LastName lastNameObject,
+            Password currentPassword)?
+        updateFullName,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,6 +42,9 @@ mixin _$AccountSettingsEvent {
     TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult Function(AvatarImages newAvatarImages, Password currentPassword)?
         updateAvatarImage,
+    TResult Function(FirstName firstNameObject, LastName lastNameObject,
+            Password currentPassword)?
+        updateFullName,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,6 +54,8 @@ mixin _$AccountSettingsEvent {
         currentConsumerUpdated,
     required TResult Function(AccountSettingsUpdateAvatarImage value)
         updateAvatarImage,
+    required TResult Function(AccountSettingsUpdateFullName value)
+        updateFullName,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +64,7 @@ mixin _$AccountSettingsEvent {
         currentConsumerUpdated,
     TResult? Function(AccountSettingsUpdateAvatarImage value)?
         updateAvatarImage,
+    TResult? Function(AccountSettingsUpdateFullName value)? updateFullName,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +72,7 @@ mixin _$AccountSettingsEvent {
     TResult Function(AccountSettingsCurrentConsumerUpdated value)?
         currentConsumerUpdated,
     TResult Function(AccountSettingsUpdateAvatarImage value)? updateAvatarImage,
+    TResult Function(AccountSettingsUpdateFullName value)? updateFullName,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -169,6 +182,9 @@ class _$AccountSettingsCurrentConsumerUpdatedImpl
     required TResult Function(
             AvatarImages newAvatarImages, Password currentPassword)
         updateAvatarImage,
+    required TResult Function(FirstName firstNameObject,
+            LastName lastNameObject, Password currentPassword)
+        updateFullName,
   }) {
     return currentConsumerUpdated(updatedConsumer);
   }
@@ -179,6 +195,9 @@ class _$AccountSettingsCurrentConsumerUpdatedImpl
     TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult? Function(AvatarImages newAvatarImages, Password currentPassword)?
         updateAvatarImage,
+    TResult? Function(FirstName firstNameObject, LastName lastNameObject,
+            Password currentPassword)?
+        updateFullName,
   }) {
     return currentConsumerUpdated?.call(updatedConsumer);
   }
@@ -189,6 +208,9 @@ class _$AccountSettingsCurrentConsumerUpdatedImpl
     TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult Function(AvatarImages newAvatarImages, Password currentPassword)?
         updateAvatarImage,
+    TResult Function(FirstName firstNameObject, LastName lastNameObject,
+            Password currentPassword)?
+        updateFullName,
     required TResult orElse(),
   }) {
     if (currentConsumerUpdated != null) {
@@ -204,6 +226,8 @@ class _$AccountSettingsCurrentConsumerUpdatedImpl
         currentConsumerUpdated,
     required TResult Function(AccountSettingsUpdateAvatarImage value)
         updateAvatarImage,
+    required TResult Function(AccountSettingsUpdateFullName value)
+        updateFullName,
   }) {
     return currentConsumerUpdated(this);
   }
@@ -215,6 +239,7 @@ class _$AccountSettingsCurrentConsumerUpdatedImpl
         currentConsumerUpdated,
     TResult? Function(AccountSettingsUpdateAvatarImage value)?
         updateAvatarImage,
+    TResult? Function(AccountSettingsUpdateFullName value)? updateFullName,
   }) {
     return currentConsumerUpdated?.call(this);
   }
@@ -225,6 +250,7 @@ class _$AccountSettingsCurrentConsumerUpdatedImpl
     TResult Function(AccountSettingsCurrentConsumerUpdated value)?
         currentConsumerUpdated,
     TResult Function(AccountSettingsUpdateAvatarImage value)? updateAvatarImage,
+    TResult Function(AccountSettingsUpdateFullName value)? updateFullName,
     required TResult orElse(),
   }) {
     if (currentConsumerUpdated != null) {
@@ -333,6 +359,9 @@ class _$AccountSettingsUpdateAvatarImageImpl
     required TResult Function(
             AvatarImages newAvatarImages, Password currentPassword)
         updateAvatarImage,
+    required TResult Function(FirstName firstNameObject,
+            LastName lastNameObject, Password currentPassword)
+        updateFullName,
   }) {
     return updateAvatarImage(newAvatarImages, currentPassword);
   }
@@ -343,6 +372,9 @@ class _$AccountSettingsUpdateAvatarImageImpl
     TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult? Function(AvatarImages newAvatarImages, Password currentPassword)?
         updateAvatarImage,
+    TResult? Function(FirstName firstNameObject, LastName lastNameObject,
+            Password currentPassword)?
+        updateFullName,
   }) {
     return updateAvatarImage?.call(newAvatarImages, currentPassword);
   }
@@ -353,6 +385,9 @@ class _$AccountSettingsUpdateAvatarImageImpl
     TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
     TResult Function(AvatarImages newAvatarImages, Password currentPassword)?
         updateAvatarImage,
+    TResult Function(FirstName firstNameObject, LastName lastNameObject,
+            Password currentPassword)?
+        updateFullName,
     required TResult orElse(),
   }) {
     if (updateAvatarImage != null) {
@@ -368,6 +403,8 @@ class _$AccountSettingsUpdateAvatarImageImpl
         currentConsumerUpdated,
     required TResult Function(AccountSettingsUpdateAvatarImage value)
         updateAvatarImage,
+    required TResult Function(AccountSettingsUpdateFullName value)
+        updateFullName,
   }) {
     return updateAvatarImage(this);
   }
@@ -379,6 +416,7 @@ class _$AccountSettingsUpdateAvatarImageImpl
         currentConsumerUpdated,
     TResult? Function(AccountSettingsUpdateAvatarImage value)?
         updateAvatarImage,
+    TResult? Function(AccountSettingsUpdateFullName value)? updateFullName,
   }) {
     return updateAvatarImage?.call(this);
   }
@@ -389,6 +427,7 @@ class _$AccountSettingsUpdateAvatarImageImpl
     TResult Function(AccountSettingsCurrentConsumerUpdated value)?
         currentConsumerUpdated,
     TResult Function(AccountSettingsUpdateAvatarImage value)? updateAvatarImage,
+    TResult Function(AccountSettingsUpdateFullName value)? updateFullName,
     required TResult orElse(),
   }) {
     if (updateAvatarImage != null) {
@@ -410,6 +449,201 @@ abstract class AccountSettingsUpdateAvatarImage
   @JsonKey(ignore: true)
   _$$AccountSettingsUpdateAvatarImageImplCopyWith<
           _$AccountSettingsUpdateAvatarImageImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AccountSettingsUpdateFullNameImplCopyWith<$Res> {
+  factory _$$AccountSettingsUpdateFullNameImplCopyWith(
+          _$AccountSettingsUpdateFullNameImpl value,
+          $Res Function(_$AccountSettingsUpdateFullNameImpl) then) =
+      __$$AccountSettingsUpdateFullNameImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {FirstName firstNameObject,
+      LastName lastNameObject,
+      Password currentPassword});
+}
+
+/// @nodoc
+class __$$AccountSettingsUpdateFullNameImplCopyWithImpl<$Res>
+    extends _$AccountSettingsEventCopyWithImpl<$Res,
+        _$AccountSettingsUpdateFullNameImpl>
+    implements _$$AccountSettingsUpdateFullNameImplCopyWith<$Res> {
+  __$$AccountSettingsUpdateFullNameImplCopyWithImpl(
+      _$AccountSettingsUpdateFullNameImpl _value,
+      $Res Function(_$AccountSettingsUpdateFullNameImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? firstNameObject = null,
+    Object? lastNameObject = null,
+    Object? currentPassword = null,
+  }) {
+    return _then(_$AccountSettingsUpdateFullNameImpl(
+      firstNameObject: null == firstNameObject
+          ? _value.firstNameObject
+          : firstNameObject // ignore: cast_nullable_to_non_nullable
+              as FirstName,
+      lastNameObject: null == lastNameObject
+          ? _value.lastNameObject
+          : lastNameObject // ignore: cast_nullable_to_non_nullable
+              as LastName,
+      currentPassword: null == currentPassword
+          ? _value.currentPassword
+          : currentPassword // ignore: cast_nullable_to_non_nullable
+              as Password,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AccountSettingsUpdateFullNameImpl
+    implements AccountSettingsUpdateFullName {
+  const _$AccountSettingsUpdateFullNameImpl(
+      {required this.firstNameObject,
+      required this.lastNameObject,
+      required this.currentPassword});
+
+  @override
+  final FirstName firstNameObject;
+  @override
+  final LastName lastNameObject;
+  @override
+  final Password currentPassword;
+
+  @override
+  String toString() {
+    return 'AccountSettingsEvent.updateFullName(firstNameObject: $firstNameObject, lastNameObject: $lastNameObject, currentPassword: $currentPassword)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AccountSettingsUpdateFullNameImpl &&
+            (identical(other.firstNameObject, firstNameObject) ||
+                other.firstNameObject == firstNameObject) &&
+            (identical(other.lastNameObject, lastNameObject) ||
+                other.lastNameObject == lastNameObject) &&
+            (identical(other.currentPassword, currentPassword) ||
+                other.currentPassword == currentPassword));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, firstNameObject, lastNameObject, currentPassword);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AccountSettingsUpdateFullNameImplCopyWith<
+          _$AccountSettingsUpdateFullNameImpl>
+      get copyWith => __$$AccountSettingsUpdateFullNameImplCopyWithImpl<
+          _$AccountSettingsUpdateFullNameImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Consumer updatedConsumer) currentConsumerUpdated,
+    required TResult Function(
+            AvatarImages newAvatarImages, Password currentPassword)
+        updateAvatarImage,
+    required TResult Function(FirstName firstNameObject,
+            LastName lastNameObject, Password currentPassword)
+        updateFullName,
+  }) {
+    return updateFullName(firstNameObject, lastNameObject, currentPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult? Function(AvatarImages newAvatarImages, Password currentPassword)?
+        updateAvatarImage,
+    TResult? Function(FirstName firstNameObject, LastName lastNameObject,
+            Password currentPassword)?
+        updateFullName,
+  }) {
+    return updateFullName?.call(
+        firstNameObject, lastNameObject, currentPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult Function(AvatarImages newAvatarImages, Password currentPassword)?
+        updateAvatarImage,
+    TResult Function(FirstName firstNameObject, LastName lastNameObject,
+            Password currentPassword)?
+        updateFullName,
+    required TResult orElse(),
+  }) {
+    if (updateFullName != null) {
+      return updateFullName(firstNameObject, lastNameObject, currentPassword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AccountSettingsCurrentConsumerUpdated value)
+        currentConsumerUpdated,
+    required TResult Function(AccountSettingsUpdateAvatarImage value)
+        updateAvatarImage,
+    required TResult Function(AccountSettingsUpdateFullName value)
+        updateFullName,
+  }) {
+    return updateFullName(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AccountSettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult? Function(AccountSettingsUpdateAvatarImage value)?
+        updateAvatarImage,
+    TResult? Function(AccountSettingsUpdateFullName value)? updateFullName,
+  }) {
+    return updateFullName?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AccountSettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult Function(AccountSettingsUpdateAvatarImage value)? updateAvatarImage,
+    TResult Function(AccountSettingsUpdateFullName value)? updateFullName,
+    required TResult orElse(),
+  }) {
+    if (updateFullName != null) {
+      return updateFullName(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AccountSettingsUpdateFullName implements AccountSettingsEvent {
+  const factory AccountSettingsUpdateFullName(
+          {required final FirstName firstNameObject,
+          required final LastName lastNameObject,
+          required final Password currentPassword}) =
+      _$AccountSettingsUpdateFullNameImpl;
+
+  FirstName get firstNameObject;
+  LastName get lastNameObject;
+  Password get currentPassword;
+  @JsonKey(ignore: true)
+  _$$AccountSettingsUpdateFullNameImplCopyWith<
+          _$AccountSettingsUpdateFullNameImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 

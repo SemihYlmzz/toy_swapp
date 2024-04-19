@@ -61,16 +61,13 @@ class UpdateAvatarView extends StatelessWidget {
 
                       final currentPassword = cubitState.currentPassword;
                       if (cubitState.currentPassword.isNotValid) {
-                        print('Invalid password');
                         return;
                       }
                       final newAvatarImages = cubitState.newAvatarImages;
                       if (newAvatarImages == null) {
-                        print('Image not Selected');
                         return;
                       }
                       if (newAvatarImages.isNotValid) {
-                        print('Images Not Valid');
                         return;
                       }
                       context.read<AccountSettingsBloc>().add(
