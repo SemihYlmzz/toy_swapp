@@ -82,6 +82,7 @@ class StartupBloc extends Bloc<StartupEvent, StartupState> {
             ),
           );
         } catch (exception) {
+          // print(exception);
           emit(const StartupState(isInitializeError: true));
         }
       },

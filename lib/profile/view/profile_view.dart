@@ -12,6 +12,7 @@ class ProfileView extends StatelessWidget {
     return const BaseColumn(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        SharedGap.gap16,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

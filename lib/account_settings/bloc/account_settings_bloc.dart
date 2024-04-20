@@ -82,6 +82,20 @@ class AccountSettingsBloc
           (consumer) => emit(state.copyWith(isValueUpdated: true)),
         );
       },
+      updateEmail: (e) async {
+        final tryReauthFailure = await _tryReauth(e.currentPassword);
+        if (tryReauthFailure != null) {
+          emit(state.copyWith(failure: tryReauthFailure));
+          return;
+        }
+        final tryUpdate = await _authRepository.sendEmailUpdateVerification(
+          emailObject: e.emailObject,
+        );
+        tryUpdate.fold(
+          (failure) => emit(state.copyWith(failure: failure)),
+          (consumer) => emit(state.copyWith(isValueUpdated: true)),
+        );
+      },
     );
 
     emit(

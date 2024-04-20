@@ -7,6 +7,7 @@ import 'package:toy_swapp/account_settings/router/router.dart';
 
 import '../account_initializer/account_initializer.dart';
 import '../account_registration/account_registration.dart';
+import '../consumer_data_calibration/consumer_data_calibration.dart';
 import '../create_toy/create_toy.dart';
 import '../demands/demands.dart';
 import '../email_verification/email_verification.dart';
@@ -62,6 +63,7 @@ class AppRouter {
           // [SignedIn] + [Verified] + User: [NotExist]
           AccountRegistrationRouter.instance.route,
           // [SignedIn] + [Verified] + User: [ConsumerHasData]
+          ConsumerDataCalibrationRouter.instance.route,
           NavigatorBarRouter.instance.shellRoute(
             _createStatefulShelBranches(_navigatorBarMainRoutes),
             NavigatorBarRouter.instance.getSubRoutes(_navigatorBarMainRoutes),
@@ -99,6 +101,10 @@ class AppRouter {
 
           String? verifiedSignedInCheckConsumer() {
             String? consumerHasData() {
+              if (currentAuth.email != currentConsumer.email) {
+                return ConsumerDataCalibrationRouter.instance.path;
+              }
+
               if (!_inConsumerScreens(state)) {
                 return ToysGoRoute.instance.path;
               }
@@ -191,6 +197,7 @@ class AppRouter {
         ProfileGoRoute.instance.name,
         SubMatchesGoRoute.instance.name,
         AccountSettingsRouter.instance.name,
+        ConsumerDataCalibrationRouter.instance.name,
       ].contains(state.topRoute!.name);
   bool _inNoRuleScreens(GoRouterState state) => [
       //  SettingsRouter.instance.name,

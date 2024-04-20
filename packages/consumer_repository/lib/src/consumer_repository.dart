@@ -229,6 +229,28 @@ class ConsumerRepository {
     }
   }
 
+  FutureUnit updateEmail({
+    required String email,
+  }) async {
+    try {
+      final updatedConsumer = currentConsumer.copyWith(
+        email: email,
+      );
+      await _firebaseFirestore
+          .collection(ConsumerRepositoryStrings.consumerCollectionPath)
+          .doc(currentConsumer.authId)
+          .update(updatedConsumer.toJson());
+
+      _currentConsumerStreamController.sink.add(updatedConsumer);
+      return const Right(unit);
+    } catch (exception) {
+      // if (exception is FirebaseException) {
+      //   throw _firebaseExceptionToUserException(exception);
+      // }
+      return const Left(ConsumerRepositoryException.unknown());
+    }
+  }
+
   // Special Functions
   Future<String> _uploadAvatarImageToStorage(
     Uint8List image,
