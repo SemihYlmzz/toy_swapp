@@ -193,7 +193,7 @@ class AppRouter {
         AccountSettingsRouter.instance.name,
       ].contains(state.topRoute!.name);
   bool _inNoRuleScreens(GoRouterState state) => [
-        SettingsRouter.instance.name,
+      //  SettingsRouter.instance.name,
         TermsAcceptanceRouter.instance.name,
         PermissionsRouter.instance.name,
       ].contains(state.topRoute!.name);
