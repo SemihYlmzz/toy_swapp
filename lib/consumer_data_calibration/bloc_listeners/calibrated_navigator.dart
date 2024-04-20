@@ -17,7 +17,7 @@ extension ConsumerDataCalibrationCalibratedNavigator
         if (currentAuthEmail != currentConsumerEmail) {
           return;
         }
-        ToysGoRoute.instance.push(context);
+        ToysGoRoute.instance.go(context);
       },
     );
   }

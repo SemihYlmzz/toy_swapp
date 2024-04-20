@@ -39,7 +39,7 @@ class UpdateEmailView extends StatelessWidget {
                 ],
               ),
             ),
-            SharedGap.gap4,
+            SharedGap.gap12,
             ToySwappTextField(
               labelText: currentEmail,
               keyboardType: TextInputType.emailAddress,
@@ -55,6 +55,10 @@ class UpdateEmailView extends StatelessWidget {
                   color: contextTheme.colorScheme.onBackground.withOpacity(0.4),
                 ),
                 children: [
+                  const TextSpan(
+                    text: 'We will send a verification email '
+                        'to your new email address. ',
+                  ),
                   const TextSpan(
                     text: 'After email verified you need to ',
                   ),
@@ -74,7 +78,7 @@ class UpdateEmailView extends StatelessWidget {
                     ),
                   ),
                   const TextSpan(
-                    text: '.\n',
+                    text: '. ',
                   ),
                   const TextSpan(
                     text: 'If you do not, your in-app actions will throw an ',

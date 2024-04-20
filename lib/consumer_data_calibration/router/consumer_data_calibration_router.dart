@@ -7,7 +7,8 @@ class ConsumerDataCalibrationRouter {
     return instance;
   }
   ConsumerDataCalibrationRouter._();
-  static final ConsumerDataCalibrationRouter instance = ConsumerDataCalibrationRouter._();
+  static final ConsumerDataCalibrationRouter instance =
+      ConsumerDataCalibrationRouter._();
 
   static const String _path = '/consumer_data_calibration';
   static const String _name = 'consumer_data_calibration';

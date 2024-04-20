@@ -27,6 +27,7 @@ class FirstName extends FormzInput<
     final firstNameWords = value.newFirstName.split(' ');
     // TODO :
     // - Capitalize first letters. then check everything
+    // - NewFirstName and FirstName should not be the same
     if (value.newFirstName.isEmpty) {
       return FirstNameObjectError.empty;
     } else if (value.newFirstName.length < 2) {
