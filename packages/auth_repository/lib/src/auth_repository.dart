@@ -111,6 +111,26 @@ class AuthRepository {
     }
   }
 
+  FutureUnit sendEmailUpdateVerification({
+    required Email emailObject,
+  }) async {
+    if (emailObject.isNotValid) {
+      return Left(AuthRepositoryInvalidInput());
+    }
+    try {
+      await _firebaseAuth.currentUser?.verifyBeforeUpdateEmail(
+        emailObject.value,
+      );
+
+      _streamController.sink.add(
+        _authFromFirebaseUser(_firebaseAuth.currentUser),
+      );
+      return const Right(unit);
+    } catch (exception) {
+      return Left(AuthRepositoryUnknown());
+    }
+  }
+
   FutureUnit reAuthenticateEmailAndPassword({
     required Password currentPassword,
   }) async {

@@ -14,4 +14,8 @@ sealed class AccountSettingsEvent with _$AccountSettingsEvent {
     required LastName lastNameObject,
     required Password currentPassword,
   }) = AccountSettingsUpdateFullName;
+  const factory AccountSettingsEvent.updateEmail({
+    required Email emailObject,
+    required Password currentPassword,
+  }) = AccountSettingsUpdateEmail;
 }

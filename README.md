@@ -1,3 +1,6 @@
+# To Do
+1- Firebase Rules: authEmail != consumerEmail
+
 # Toy Swapp
 
 ![coverage][coverage_badge]

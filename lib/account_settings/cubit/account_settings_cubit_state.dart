@@ -9,6 +9,7 @@ class AccountSettingsCubitState with _$AccountSettingsCubitState {
     @Default(Password.pure()) Password currentPassword,
     @Default(FirstName.pure()) FirstName firstNameObject,
     @Default(LastName.pure()) LastName lastNameObject,
+    @Default(Email.pure()) Email emailObject,
     AvatarImages? newAvatarImages,
     @Default(false) bool isLoading,
     Failure? failure,

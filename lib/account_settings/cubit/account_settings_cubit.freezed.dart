@@ -22,6 +22,7 @@ mixin _$AccountSettingsCubitState {
   Password get currentPassword => throw _privateConstructorUsedError;
   FirstName get firstNameObject => throw _privateConstructorUsedError;
   LastName get lastNameObject => throw _privateConstructorUsedError;
+  Email get emailObject => throw _privateConstructorUsedError;
   AvatarImages? get newAvatarImages => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
@@ -43,6 +44,7 @@ abstract class $AccountSettingsCubitStateCopyWith<$Res> {
       Password currentPassword,
       FirstName firstNameObject,
       LastName lastNameObject,
+      Email emailObject,
       AvatarImages? newAvatarImages,
       bool isLoading,
       Failure? failure});
@@ -67,6 +69,7 @@ class _$AccountSettingsCubitStateCopyWithImpl<$Res,
     Object? currentPassword = null,
     Object? firstNameObject = null,
     Object? lastNameObject = null,
+    Object? emailObject = null,
     Object? newAvatarImages = freezed,
     Object? isLoading = null,
     Object? failure = freezed,
@@ -92,6 +95,10 @@ class _$AccountSettingsCubitStateCopyWithImpl<$Res,
           ? _value.lastNameObject
           : lastNameObject // ignore: cast_nullable_to_non_nullable
               as LastName,
+      emailObject: null == emailObject
+          ? _value.emailObject
+          : emailObject // ignore: cast_nullable_to_non_nullable
+              as Email,
       newAvatarImages: freezed == newAvatarImages
           ? _value.newAvatarImages
           : newAvatarImages // ignore: cast_nullable_to_non_nullable
@@ -123,6 +130,7 @@ abstract class _$$AccountSettingsCubitStateImplCopyWith<$Res>
       Password currentPassword,
       FirstName firstNameObject,
       LastName lastNameObject,
+      Email emailObject,
       AvatarImages? newAvatarImages,
       bool isLoading,
       Failure? failure});
@@ -146,6 +154,7 @@ class __$$AccountSettingsCubitStateImplCopyWithImpl<$Res>
     Object? currentPassword = null,
     Object? firstNameObject = null,
     Object? lastNameObject = null,
+    Object? emailObject = null,
     Object? newAvatarImages = freezed,
     Object? isLoading = null,
     Object? failure = freezed,
@@ -171,6 +180,10 @@ class __$$AccountSettingsCubitStateImplCopyWithImpl<$Res>
           ? _value.lastNameObject
           : lastNameObject // ignore: cast_nullable_to_non_nullable
               as LastName,
+      emailObject: null == emailObject
+          ? _value.emailObject
+          : emailObject // ignore: cast_nullable_to_non_nullable
+              as Email,
       newAvatarImages: freezed == newAvatarImages
           ? _value.newAvatarImages
           : newAvatarImages // ignore: cast_nullable_to_non_nullable
@@ -196,6 +209,7 @@ class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
       this.currentPassword = const Password.pure(),
       this.firstNameObject = const FirstName.pure(),
       this.lastNameObject = const LastName.pure(),
+      this.emailObject = const Email.pure(),
       this.newAvatarImages,
       this.isLoading = false,
       this.failure});
@@ -215,6 +229,9 @@ class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
   @JsonKey()
   final LastName lastNameObject;
   @override
+  @JsonKey()
+  final Email emailObject;
+  @override
   final AvatarImages? newAvatarImages;
   @override
   @JsonKey()
@@ -224,7 +241,7 @@ class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
 
   @override
   String toString() {
-    return 'AccountSettingsCubitState(lastNameFocusNode: $lastNameFocusNode, currentViewState: $currentViewState, currentPassword: $currentPassword, firstNameObject: $firstNameObject, lastNameObject: $lastNameObject, newAvatarImages: $newAvatarImages, isLoading: $isLoading, failure: $failure)';
+    return 'AccountSettingsCubitState(lastNameFocusNode: $lastNameFocusNode, currentViewState: $currentViewState, currentPassword: $currentPassword, firstNameObject: $firstNameObject, lastNameObject: $lastNameObject, emailObject: $emailObject, newAvatarImages: $newAvatarImages, isLoading: $isLoading, failure: $failure)';
   }
 
   @override
@@ -242,6 +259,8 @@ class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
                 other.firstNameObject == firstNameObject) &&
             (identical(other.lastNameObject, lastNameObject) ||
                 other.lastNameObject == lastNameObject) &&
+            (identical(other.emailObject, emailObject) ||
+                other.emailObject == emailObject) &&
             (identical(other.newAvatarImages, newAvatarImages) ||
                 other.newAvatarImages == newAvatarImages) &&
             (identical(other.isLoading, isLoading) ||
@@ -257,6 +276,7 @@ class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
       currentPassword,
       firstNameObject,
       lastNameObject,
+      emailObject,
       newAvatarImages,
       isLoading,
       failure);
@@ -276,6 +296,7 @@ abstract class _AccountSettingsCubitState implements AccountSettingsCubitState {
       final Password currentPassword,
       final FirstName firstNameObject,
       final LastName lastNameObject,
+      final Email emailObject,
       final AvatarImages? newAvatarImages,
       final bool isLoading,
       final Failure? failure}) = _$AccountSettingsCubitStateImpl;
@@ -290,6 +311,8 @@ abstract class _AccountSettingsCubitState implements AccountSettingsCubitState {
   FirstName get firstNameObject;
   @override
   LastName get lastNameObject;
+  @override
+  Email get emailObject;
   @override
   AvatarImages? get newAvatarImages;
   @override

@@ -30,6 +30,7 @@ class AccountSettingsCubit extends Cubit<AccountSettingsCubitState> {
         currentPassword: const Password.pure(),
         firstNameObject: const FirstName.pure(),
         lastNameObject: const LastName.pure(),
+        emailObject: const Email.pure(),
         isLoading: false,
         failure: null,
       ),
@@ -55,6 +56,11 @@ class AccountSettingsCubit extends Cubit<AccountSettingsCubitState> {
       currentLastName: currentLastName,
     );
     emit(state.copyWith(lastNameObject: updatedLastName));
+  }
+
+  void updateEmail(String updatedEmailValue) {
+    final updatedEmail = Email.dirty(value: updatedEmailValue);
+    emit(state.copyWith(emailObject: updatedEmail));
   }
 
   Future<void> selectAvatarImageFromPhotos() async {
