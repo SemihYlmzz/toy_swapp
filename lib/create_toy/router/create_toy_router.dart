@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../navigator_bar/navigator_bar.dart';
 import '../create_toy.dart';
 
-class CreateToyGoRoute extends NavigatorBarSubGoRoute {
-  factory CreateToyGoRoute() {
+class CreateToyRouter {
+  factory CreateToyRouter() {
     return instance;
   }
-  CreateToyGoRoute._()
-      : super(path: _path, name: _name, pageBuilder: _pageBuilder);
-  static final CreateToyGoRoute instance = CreateToyGoRoute._();
+  CreateToyRouter._();
+  static final CreateToyRouter instance = CreateToyRouter._();
 
   static const String _path = '/create_toy';
   static const String _name = 'create_toy';
 
-  static GoRouterPageBuilder get _pageBuilder =>
-      (context, state) => const NoTransitionPage(
-            child: CreateToyScreen(),
-          );
+  String get path => _path;
+  String get name => _name;
 
-  @override
-  PreferredSizeWidget? get appBar => const CreateToyAppBar();
-
+  GoRoute get route => GoRoute(
+        path: _path,
+        name: _name,
+        // parentNavigatorKey: RouterMixin.parentNavigatorKey,
+        pageBuilder: (context, state) => const NoTransitionPage(
+          child: CreateToyScreen(),
+        ),
+      );
   void go(BuildContext context) {
     GoRouter.of(context).goNamed(_name);
   }
