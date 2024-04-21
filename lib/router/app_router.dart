@@ -68,7 +68,7 @@ class AppRouter {
             _createStatefulShelBranches(_navigatorBarMainRoutes),
             NavigatorBarRouter.instance.getSubRoutes(_navigatorBarMainRoutes),
           ),
-          CreateToyGoRoute.instance,
+          CreateToyRouter.instance.route,
           AccountSettingsRouter.instance.route,
           // [NoRule]
           SettingsRouter.instance.route,
@@ -192,7 +192,7 @@ class AppRouter {
   bool _inConsumerScreens(GoRouterState state) => [
         ToysGoRoute.instance.name,
         DemandsGoRoute.instance.name,
-        CreateToyGoRoute.instance.name,
+        CreateToyRouter.instance.name,
         MatchesGoRoute.instance.name,
         ProfileGoRoute.instance.name,
         SubMatchesGoRoute.instance.name,
@@ -200,7 +200,7 @@ class AppRouter {
         ConsumerDataCalibrationRouter.instance.name,
       ].contains(state.topRoute!.name);
   bool _inNoRuleScreens(GoRouterState state) => [
-      //  SettingsRouter.instance.name,
+        SettingsRouter.instance.name,
         TermsAcceptanceRouter.instance.name,
         PermissionsRouter.instance.name,
       ].contains(state.topRoute!.name);

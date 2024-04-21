@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 import 'package:toy_swapp/navigator_bar/navigator_bar.dart';
 
+import '../../create_toy/create_toy.dart';
+
 class NavigatorBarView extends StatelessWidget {
   const NavigatorBarView({
     required this.navigationShell,
@@ -31,13 +33,12 @@ class NavigatorBarView extends StatelessWidget {
         onTap: (index) {
           if (index < 2) {
             navigationShell.goBranch(index);
-            return;
-          } else if (index == 2) {
-            // ConsumerCreateToyRouter.instance.push(context);
-            return;
-          } else {
+          }
+          if (index == 2) {
+            CreateToyRouter.instance.push(context);
+          }
+          if (index > 2) {
             navigationShell.goBranch(index - 1);
-            return;
           }
         },
         items: [

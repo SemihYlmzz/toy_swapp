@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_constants/shared_constants.dart';
 
 class ToysAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ToysAppBar({
@@ -8,7 +9,21 @@ class ToysAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Toys'),
+      surfaceTintColor: Colors.transparent,
+      leading: const Padding(
+        padding: SharedPaddings.left20,
+        child: Icon(
+          Icons.search,
+          size: 32,
+        ),
+      ),
+      actions: const [
+        Icon(
+          Icons.favorite_border,
+          size: 32,
+        ),
+        SharedGap.gap20,
+      ],
     );
   }
 
