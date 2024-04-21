@@ -20,6 +20,8 @@ mixin _$AccountSettingsCubitState {
   AccountSettingsViewState get currentViewState =>
       throw _privateConstructorUsedError;
   Password get currentPassword => throw _privateConstructorUsedError;
+  Password get newPassword => throw _privateConstructorUsedError;
+  ConfirmedPassword get confirmedPassword => throw _privateConstructorUsedError;
   FirstName get firstNameObject => throw _privateConstructorUsedError;
   LastName get lastNameObject => throw _privateConstructorUsedError;
   Email get emailObject => throw _privateConstructorUsedError;
@@ -42,6 +44,8 @@ abstract class $AccountSettingsCubitStateCopyWith<$Res> {
       {FocusNode lastNameFocusNode,
       AccountSettingsViewState currentViewState,
       Password currentPassword,
+      Password newPassword,
+      ConfirmedPassword confirmedPassword,
       FirstName firstNameObject,
       LastName lastNameObject,
       Email emailObject,
@@ -67,6 +71,8 @@ class _$AccountSettingsCubitStateCopyWithImpl<$Res,
     Object? lastNameFocusNode = null,
     Object? currentViewState = null,
     Object? currentPassword = null,
+    Object? newPassword = null,
+    Object? confirmedPassword = null,
     Object? firstNameObject = null,
     Object? lastNameObject = null,
     Object? emailObject = null,
@@ -87,6 +93,14 @@ class _$AccountSettingsCubitStateCopyWithImpl<$Res,
           ? _value.currentPassword
           : currentPassword // ignore: cast_nullable_to_non_nullable
               as Password,
+      newPassword: null == newPassword
+          ? _value.newPassword
+          : newPassword // ignore: cast_nullable_to_non_nullable
+              as Password,
+      confirmedPassword: null == confirmedPassword
+          ? _value.confirmedPassword
+          : confirmedPassword // ignore: cast_nullable_to_non_nullable
+              as ConfirmedPassword,
       firstNameObject: null == firstNameObject
           ? _value.firstNameObject
           : firstNameObject // ignore: cast_nullable_to_non_nullable
@@ -128,6 +142,8 @@ abstract class _$$AccountSettingsCubitStateImplCopyWith<$Res>
       {FocusNode lastNameFocusNode,
       AccountSettingsViewState currentViewState,
       Password currentPassword,
+      Password newPassword,
+      ConfirmedPassword confirmedPassword,
       FirstName firstNameObject,
       LastName lastNameObject,
       Email emailObject,
@@ -152,6 +168,8 @@ class __$$AccountSettingsCubitStateImplCopyWithImpl<$Res>
     Object? lastNameFocusNode = null,
     Object? currentViewState = null,
     Object? currentPassword = null,
+    Object? newPassword = null,
+    Object? confirmedPassword = null,
     Object? firstNameObject = null,
     Object? lastNameObject = null,
     Object? emailObject = null,
@@ -172,6 +190,14 @@ class __$$AccountSettingsCubitStateImplCopyWithImpl<$Res>
           ? _value.currentPassword
           : currentPassword // ignore: cast_nullable_to_non_nullable
               as Password,
+      newPassword: null == newPassword
+          ? _value.newPassword
+          : newPassword // ignore: cast_nullable_to_non_nullable
+              as Password,
+      confirmedPassword: null == confirmedPassword
+          ? _value.confirmedPassword
+          : confirmedPassword // ignore: cast_nullable_to_non_nullable
+              as ConfirmedPassword,
       firstNameObject: null == firstNameObject
           ? _value.firstNameObject
           : firstNameObject // ignore: cast_nullable_to_non_nullable
@@ -207,6 +233,8 @@ class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
       {required this.lastNameFocusNode,
       this.currentViewState = AccountSettingsViewState.navigation,
       this.currentPassword = const Password.pure(),
+      this.newPassword = const Password.pure(),
+      this.confirmedPassword = const ConfirmedPassword.pure(),
       this.firstNameObject = const FirstName.pure(),
       this.lastNameObject = const LastName.pure(),
       this.emailObject = const Email.pure(),
@@ -222,6 +250,12 @@ class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
   @override
   @JsonKey()
   final Password currentPassword;
+  @override
+  @JsonKey()
+  final Password newPassword;
+  @override
+  @JsonKey()
+  final ConfirmedPassword confirmedPassword;
   @override
   @JsonKey()
   final FirstName firstNameObject;
@@ -241,7 +275,7 @@ class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
 
   @override
   String toString() {
-    return 'AccountSettingsCubitState(lastNameFocusNode: $lastNameFocusNode, currentViewState: $currentViewState, currentPassword: $currentPassword, firstNameObject: $firstNameObject, lastNameObject: $lastNameObject, emailObject: $emailObject, newAvatarImages: $newAvatarImages, isLoading: $isLoading, failure: $failure)';
+    return 'AccountSettingsCubitState(lastNameFocusNode: $lastNameFocusNode, currentViewState: $currentViewState, currentPassword: $currentPassword, newPassword: $newPassword, confirmedPassword: $confirmedPassword, firstNameObject: $firstNameObject, lastNameObject: $lastNameObject, emailObject: $emailObject, newAvatarImages: $newAvatarImages, isLoading: $isLoading, failure: $failure)';
   }
 
   @override
@@ -255,6 +289,10 @@ class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
                 other.currentViewState == currentViewState) &&
             (identical(other.currentPassword, currentPassword) ||
                 other.currentPassword == currentPassword) &&
+            (identical(other.newPassword, newPassword) ||
+                other.newPassword == newPassword) &&
+            (identical(other.confirmedPassword, confirmedPassword) ||
+                other.confirmedPassword == confirmedPassword) &&
             (identical(other.firstNameObject, firstNameObject) ||
                 other.firstNameObject == firstNameObject) &&
             (identical(other.lastNameObject, lastNameObject) ||
@@ -274,6 +312,8 @@ class _$AccountSettingsCubitStateImpl implements _AccountSettingsCubitState {
       lastNameFocusNode,
       currentViewState,
       currentPassword,
+      newPassword,
+      confirmedPassword,
       firstNameObject,
       lastNameObject,
       emailObject,
@@ -294,6 +334,8 @@ abstract class _AccountSettingsCubitState implements AccountSettingsCubitState {
       {required final FocusNode lastNameFocusNode,
       final AccountSettingsViewState currentViewState,
       final Password currentPassword,
+      final Password newPassword,
+      final ConfirmedPassword confirmedPassword,
       final FirstName firstNameObject,
       final LastName lastNameObject,
       final Email emailObject,
@@ -307,6 +349,10 @@ abstract class _AccountSettingsCubitState implements AccountSettingsCubitState {
   AccountSettingsViewState get currentViewState;
   @override
   Password get currentPassword;
+  @override
+  Password get newPassword;
+  @override
+  ConfirmedPassword get confirmedPassword;
   @override
   FirstName get firstNameObject;
   @override

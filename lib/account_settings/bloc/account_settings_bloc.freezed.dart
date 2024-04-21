@@ -27,6 +27,9 @@ mixin _$AccountSettingsEvent {
         updateFullName,
     required TResult Function(Email emailObject, Password currentPassword)
         updateEmail,
+    required TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)
+        updatePassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +41,9 @@ mixin _$AccountSettingsEvent {
             Password currentPassword)?
         updateFullName,
     TResult? Function(Email emailObject, Password currentPassword)? updateEmail,
+    TResult? Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,6 +55,9 @@ mixin _$AccountSettingsEvent {
             Password currentPassword)?
         updateFullName,
     TResult Function(Email emailObject, Password currentPassword)? updateEmail,
+    TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,6 +70,8 @@ mixin _$AccountSettingsEvent {
     required TResult Function(AccountSettingsUpdateFullName value)
         updateFullName,
     required TResult Function(AccountSettingsUpdateEmail value) updateEmail,
+    required TResult Function(AccountSettingsupdatePassword value)
+        updatePassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,6 +82,7 @@ mixin _$AccountSettingsEvent {
         updateAvatarImage,
     TResult? Function(AccountSettingsUpdateFullName value)? updateFullName,
     TResult? Function(AccountSettingsUpdateEmail value)? updateEmail,
+    TResult? Function(AccountSettingsupdatePassword value)? updatePassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,6 +92,7 @@ mixin _$AccountSettingsEvent {
     TResult Function(AccountSettingsUpdateAvatarImage value)? updateAvatarImage,
     TResult Function(AccountSettingsUpdateFullName value)? updateFullName,
     TResult Function(AccountSettingsUpdateEmail value)? updateEmail,
+    TResult Function(AccountSettingsupdatePassword value)? updatePassword,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -194,6 +207,9 @@ class _$AccountSettingsCurrentConsumerUpdatedImpl
         updateFullName,
     required TResult Function(Email emailObject, Password currentPassword)
         updateEmail,
+    required TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)
+        updatePassword,
   }) {
     return currentConsumerUpdated(updatedConsumer);
   }
@@ -208,6 +224,9 @@ class _$AccountSettingsCurrentConsumerUpdatedImpl
             Password currentPassword)?
         updateFullName,
     TResult? Function(Email emailObject, Password currentPassword)? updateEmail,
+    TResult? Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
   }) {
     return currentConsumerUpdated?.call(updatedConsumer);
   }
@@ -222,6 +241,9 @@ class _$AccountSettingsCurrentConsumerUpdatedImpl
             Password currentPassword)?
         updateFullName,
     TResult Function(Email emailObject, Password currentPassword)? updateEmail,
+    TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
     required TResult orElse(),
   }) {
     if (currentConsumerUpdated != null) {
@@ -240,6 +262,8 @@ class _$AccountSettingsCurrentConsumerUpdatedImpl
     required TResult Function(AccountSettingsUpdateFullName value)
         updateFullName,
     required TResult Function(AccountSettingsUpdateEmail value) updateEmail,
+    required TResult Function(AccountSettingsupdatePassword value)
+        updatePassword,
   }) {
     return currentConsumerUpdated(this);
   }
@@ -253,6 +277,7 @@ class _$AccountSettingsCurrentConsumerUpdatedImpl
         updateAvatarImage,
     TResult? Function(AccountSettingsUpdateFullName value)? updateFullName,
     TResult? Function(AccountSettingsUpdateEmail value)? updateEmail,
+    TResult? Function(AccountSettingsupdatePassword value)? updatePassword,
   }) {
     return currentConsumerUpdated?.call(this);
   }
@@ -265,6 +290,7 @@ class _$AccountSettingsCurrentConsumerUpdatedImpl
     TResult Function(AccountSettingsUpdateAvatarImage value)? updateAvatarImage,
     TResult Function(AccountSettingsUpdateFullName value)? updateFullName,
     TResult Function(AccountSettingsUpdateEmail value)? updateEmail,
+    TResult Function(AccountSettingsupdatePassword value)? updatePassword,
     required TResult orElse(),
   }) {
     if (currentConsumerUpdated != null) {
@@ -378,6 +404,9 @@ class _$AccountSettingsUpdateAvatarImageImpl
         updateFullName,
     required TResult Function(Email emailObject, Password currentPassword)
         updateEmail,
+    required TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)
+        updatePassword,
   }) {
     return updateAvatarImage(newAvatarImages, currentPassword);
   }
@@ -392,6 +421,9 @@ class _$AccountSettingsUpdateAvatarImageImpl
             Password currentPassword)?
         updateFullName,
     TResult? Function(Email emailObject, Password currentPassword)? updateEmail,
+    TResult? Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
   }) {
     return updateAvatarImage?.call(newAvatarImages, currentPassword);
   }
@@ -406,6 +438,9 @@ class _$AccountSettingsUpdateAvatarImageImpl
             Password currentPassword)?
         updateFullName,
     TResult Function(Email emailObject, Password currentPassword)? updateEmail,
+    TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
     required TResult orElse(),
   }) {
     if (updateAvatarImage != null) {
@@ -424,6 +459,8 @@ class _$AccountSettingsUpdateAvatarImageImpl
     required TResult Function(AccountSettingsUpdateFullName value)
         updateFullName,
     required TResult Function(AccountSettingsUpdateEmail value) updateEmail,
+    required TResult Function(AccountSettingsupdatePassword value)
+        updatePassword,
   }) {
     return updateAvatarImage(this);
   }
@@ -437,6 +474,7 @@ class _$AccountSettingsUpdateAvatarImageImpl
         updateAvatarImage,
     TResult? Function(AccountSettingsUpdateFullName value)? updateFullName,
     TResult? Function(AccountSettingsUpdateEmail value)? updateEmail,
+    TResult? Function(AccountSettingsupdatePassword value)? updatePassword,
   }) {
     return updateAvatarImage?.call(this);
   }
@@ -449,6 +487,7 @@ class _$AccountSettingsUpdateAvatarImageImpl
     TResult Function(AccountSettingsUpdateAvatarImage value)? updateAvatarImage,
     TResult Function(AccountSettingsUpdateFullName value)? updateFullName,
     TResult Function(AccountSettingsUpdateEmail value)? updateEmail,
+    TResult Function(AccountSettingsupdatePassword value)? updatePassword,
     required TResult orElse(),
   }) {
     if (updateAvatarImage != null) {
@@ -578,6 +617,9 @@ class _$AccountSettingsUpdateFullNameImpl
         updateFullName,
     required TResult Function(Email emailObject, Password currentPassword)
         updateEmail,
+    required TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)
+        updatePassword,
   }) {
     return updateFullName(firstNameObject, lastNameObject, currentPassword);
   }
@@ -592,6 +634,9 @@ class _$AccountSettingsUpdateFullNameImpl
             Password currentPassword)?
         updateFullName,
     TResult? Function(Email emailObject, Password currentPassword)? updateEmail,
+    TResult? Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
   }) {
     return updateFullName?.call(
         firstNameObject, lastNameObject, currentPassword);
@@ -607,6 +652,9 @@ class _$AccountSettingsUpdateFullNameImpl
             Password currentPassword)?
         updateFullName,
     TResult Function(Email emailObject, Password currentPassword)? updateEmail,
+    TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
     required TResult orElse(),
   }) {
     if (updateFullName != null) {
@@ -625,6 +673,8 @@ class _$AccountSettingsUpdateFullNameImpl
     required TResult Function(AccountSettingsUpdateFullName value)
         updateFullName,
     required TResult Function(AccountSettingsUpdateEmail value) updateEmail,
+    required TResult Function(AccountSettingsupdatePassword value)
+        updatePassword,
   }) {
     return updateFullName(this);
   }
@@ -638,6 +688,7 @@ class _$AccountSettingsUpdateFullNameImpl
         updateAvatarImage,
     TResult? Function(AccountSettingsUpdateFullName value)? updateFullName,
     TResult? Function(AccountSettingsUpdateEmail value)? updateEmail,
+    TResult? Function(AccountSettingsupdatePassword value)? updatePassword,
   }) {
     return updateFullName?.call(this);
   }
@@ -650,6 +701,7 @@ class _$AccountSettingsUpdateFullNameImpl
     TResult Function(AccountSettingsUpdateAvatarImage value)? updateAvatarImage,
     TResult Function(AccountSettingsUpdateFullName value)? updateFullName,
     TResult Function(AccountSettingsUpdateEmail value)? updateEmail,
+    TResult Function(AccountSettingsupdatePassword value)? updatePassword,
     required TResult orElse(),
   }) {
     if (updateFullName != null) {
@@ -763,6 +815,9 @@ class _$AccountSettingsUpdateEmailImpl implements AccountSettingsUpdateEmail {
         updateFullName,
     required TResult Function(Email emailObject, Password currentPassword)
         updateEmail,
+    required TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)
+        updatePassword,
   }) {
     return updateEmail(emailObject, currentPassword);
   }
@@ -777,6 +832,9 @@ class _$AccountSettingsUpdateEmailImpl implements AccountSettingsUpdateEmail {
             Password currentPassword)?
         updateFullName,
     TResult? Function(Email emailObject, Password currentPassword)? updateEmail,
+    TResult? Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
   }) {
     return updateEmail?.call(emailObject, currentPassword);
   }
@@ -791,6 +849,9 @@ class _$AccountSettingsUpdateEmailImpl implements AccountSettingsUpdateEmail {
             Password currentPassword)?
         updateFullName,
     TResult Function(Email emailObject, Password currentPassword)? updateEmail,
+    TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
     required TResult orElse(),
   }) {
     if (updateEmail != null) {
@@ -809,6 +870,8 @@ class _$AccountSettingsUpdateEmailImpl implements AccountSettingsUpdateEmail {
     required TResult Function(AccountSettingsUpdateFullName value)
         updateFullName,
     required TResult Function(AccountSettingsUpdateEmail value) updateEmail,
+    required TResult Function(AccountSettingsupdatePassword value)
+        updatePassword,
   }) {
     return updateEmail(this);
   }
@@ -822,6 +885,7 @@ class _$AccountSettingsUpdateEmailImpl implements AccountSettingsUpdateEmail {
         updateAvatarImage,
     TResult? Function(AccountSettingsUpdateFullName value)? updateFullName,
     TResult? Function(AccountSettingsUpdateEmail value)? updateEmail,
+    TResult? Function(AccountSettingsupdatePassword value)? updatePassword,
   }) {
     return updateEmail?.call(this);
   }
@@ -834,6 +898,7 @@ class _$AccountSettingsUpdateEmailImpl implements AccountSettingsUpdateEmail {
     TResult Function(AccountSettingsUpdateAvatarImage value)? updateAvatarImage,
     TResult Function(AccountSettingsUpdateFullName value)? updateFullName,
     TResult Function(AccountSettingsUpdateEmail value)? updateEmail,
+    TResult Function(AccountSettingsupdatePassword value)? updatePassword,
     required TResult orElse(),
   }) {
     if (updateEmail != null) {
@@ -853,6 +918,221 @@ abstract class AccountSettingsUpdateEmail implements AccountSettingsEvent {
   Password get currentPassword;
   @JsonKey(ignore: true)
   _$$AccountSettingsUpdateEmailImplCopyWith<_$AccountSettingsUpdateEmailImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AccountSettingsupdatePasswordImplCopyWith<$Res> {
+  factory _$$AccountSettingsupdatePasswordImplCopyWith(
+          _$AccountSettingsupdatePasswordImpl value,
+          $Res Function(_$AccountSettingsupdatePasswordImpl) then) =
+      __$$AccountSettingsupdatePasswordImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {Password currentPassword,
+      Password newPassword,
+      ConfirmedPassword confirmedNewPassword});
+}
+
+/// @nodoc
+class __$$AccountSettingsupdatePasswordImplCopyWithImpl<$Res>
+    extends _$AccountSettingsEventCopyWithImpl<$Res,
+        _$AccountSettingsupdatePasswordImpl>
+    implements _$$AccountSettingsupdatePasswordImplCopyWith<$Res> {
+  __$$AccountSettingsupdatePasswordImplCopyWithImpl(
+      _$AccountSettingsupdatePasswordImpl _value,
+      $Res Function(_$AccountSettingsupdatePasswordImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? currentPassword = null,
+    Object? newPassword = null,
+    Object? confirmedNewPassword = null,
+  }) {
+    return _then(_$AccountSettingsupdatePasswordImpl(
+      currentPassword: null == currentPassword
+          ? _value.currentPassword
+          : currentPassword // ignore: cast_nullable_to_non_nullable
+              as Password,
+      newPassword: null == newPassword
+          ? _value.newPassword
+          : newPassword // ignore: cast_nullable_to_non_nullable
+              as Password,
+      confirmedNewPassword: null == confirmedNewPassword
+          ? _value.confirmedNewPassword
+          : confirmedNewPassword // ignore: cast_nullable_to_non_nullable
+              as ConfirmedPassword,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AccountSettingsupdatePasswordImpl
+    implements AccountSettingsupdatePassword {
+  const _$AccountSettingsupdatePasswordImpl(
+      {required this.currentPassword,
+      required this.newPassword,
+      required this.confirmedNewPassword});
+
+  @override
+  final Password currentPassword;
+  @override
+  final Password newPassword;
+  @override
+  final ConfirmedPassword confirmedNewPassword;
+
+  @override
+  String toString() {
+    return 'AccountSettingsEvent.updatePassword(currentPassword: $currentPassword, newPassword: $newPassword, confirmedNewPassword: $confirmedNewPassword)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AccountSettingsupdatePasswordImpl &&
+            (identical(other.currentPassword, currentPassword) ||
+                other.currentPassword == currentPassword) &&
+            (identical(other.newPassword, newPassword) ||
+                other.newPassword == newPassword) &&
+            (identical(other.confirmedNewPassword, confirmedNewPassword) ||
+                other.confirmedNewPassword == confirmedNewPassword));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, currentPassword, newPassword, confirmedNewPassword);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AccountSettingsupdatePasswordImplCopyWith<
+          _$AccountSettingsupdatePasswordImpl>
+      get copyWith => __$$AccountSettingsupdatePasswordImplCopyWithImpl<
+          _$AccountSettingsupdatePasswordImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Consumer updatedConsumer) currentConsumerUpdated,
+    required TResult Function(
+            AvatarImages newAvatarImages, Password currentPassword)
+        updateAvatarImage,
+    required TResult Function(FirstName firstNameObject,
+            LastName lastNameObject, Password currentPassword)
+        updateFullName,
+    required TResult Function(Email emailObject, Password currentPassword)
+        updateEmail,
+    required TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)
+        updatePassword,
+  }) {
+    return updatePassword(currentPassword, newPassword, confirmedNewPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult? Function(AvatarImages newAvatarImages, Password currentPassword)?
+        updateAvatarImage,
+    TResult? Function(FirstName firstNameObject, LastName lastNameObject,
+            Password currentPassword)?
+        updateFullName,
+    TResult? Function(Email emailObject, Password currentPassword)? updateEmail,
+    TResult? Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
+  }) {
+    return updatePassword?.call(
+        currentPassword, newPassword, confirmedNewPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
+    TResult Function(AvatarImages newAvatarImages, Password currentPassword)?
+        updateAvatarImage,
+    TResult Function(FirstName firstNameObject, LastName lastNameObject,
+            Password currentPassword)?
+        updateFullName,
+    TResult Function(Email emailObject, Password currentPassword)? updateEmail,
+    TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
+    required TResult orElse(),
+  }) {
+    if (updatePassword != null) {
+      return updatePassword(currentPassword, newPassword, confirmedNewPassword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AccountSettingsCurrentConsumerUpdated value)
+        currentConsumerUpdated,
+    required TResult Function(AccountSettingsUpdateAvatarImage value)
+        updateAvatarImage,
+    required TResult Function(AccountSettingsUpdateFullName value)
+        updateFullName,
+    required TResult Function(AccountSettingsUpdateEmail value) updateEmail,
+    required TResult Function(AccountSettingsupdatePassword value)
+        updatePassword,
+  }) {
+    return updatePassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AccountSettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult? Function(AccountSettingsUpdateAvatarImage value)?
+        updateAvatarImage,
+    TResult? Function(AccountSettingsUpdateFullName value)? updateFullName,
+    TResult? Function(AccountSettingsUpdateEmail value)? updateEmail,
+    TResult? Function(AccountSettingsupdatePassword value)? updatePassword,
+  }) {
+    return updatePassword?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AccountSettingsCurrentConsumerUpdated value)?
+        currentConsumerUpdated,
+    TResult Function(AccountSettingsUpdateAvatarImage value)? updateAvatarImage,
+    TResult Function(AccountSettingsUpdateFullName value)? updateFullName,
+    TResult Function(AccountSettingsUpdateEmail value)? updateEmail,
+    TResult Function(AccountSettingsupdatePassword value)? updatePassword,
+    required TResult orElse(),
+  }) {
+    if (updatePassword != null) {
+      return updatePassword(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AccountSettingsupdatePassword implements AccountSettingsEvent {
+  const factory AccountSettingsupdatePassword(
+          {required final Password currentPassword,
+          required final Password newPassword,
+          required final ConfirmedPassword confirmedNewPassword}) =
+      _$AccountSettingsupdatePasswordImpl;
+
+  Password get currentPassword;
+  Password get newPassword;
+  ConfirmedPassword get confirmedNewPassword;
+  @JsonKey(ignore: true)
+  _$$AccountSettingsupdatePasswordImplCopyWith<
+          _$AccountSettingsupdatePasswordImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 

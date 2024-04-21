@@ -19,7 +19,7 @@ class ToysAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: const [
         Icon(
-          Icons.favorite_border,
+          Icons.tune,
           size: 32,
         ),
         SharedGap.gap20,
