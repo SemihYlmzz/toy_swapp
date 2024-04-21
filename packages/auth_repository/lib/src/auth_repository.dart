@@ -131,6 +131,27 @@ class AuthRepository {
     }
   }
 
+  FutureUnit updatePassword({
+    required Password newPassword,
+    required ConfirmedPassword confirmedPassword,
+  }) async {
+    if (newPassword.isNotValid) {
+      return Left(AuthRepositoryInvalidInput());
+    }
+    if (confirmedPassword.isNotValid) {
+      return Left(AuthRepositoryInvalidInput());
+    }
+    try {
+      await _firebaseAuth.currentUser?.updatePassword(newPassword.value);
+      _streamController.sink.add(
+        _authFromFirebaseUser(_firebaseAuth.currentUser),
+      );
+      return const Right(unit);
+    } catch (exception) {
+      return Left(AuthRepositoryUnknown());
+    }
+  }
+
   FutureUnit reAuthenticateEmailAndPassword({
     required Password currentPassword,
   }) async {

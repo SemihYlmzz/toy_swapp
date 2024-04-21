@@ -7,6 +7,8 @@ class AccountSettingsCubitState with _$AccountSettingsCubitState {
     @Default(AccountSettingsViewState.navigation)
     AccountSettingsViewState currentViewState,
     @Default(Password.pure()) Password currentPassword,
+    @Default(Password.pure()) Password newPassword,
+    @Default(ConfirmedPassword.pure()) ConfirmedPassword confirmedPassword,
     @Default(FirstName.pure()) FirstName firstNameObject,
     @Default(LastName.pure()) LastName lastNameObject,
     @Default(Email.pure()) Email emailObject,

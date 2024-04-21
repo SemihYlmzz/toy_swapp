@@ -15,8 +15,9 @@ class UpdatePasswordView extends StatelessWidget {
     //      AccountSettingsViewState.navigation,
     //    );
     final contextTheme = Theme.of(context);
+    final cubitState = context.watch<AccountSettingsCubit>().state;
 
-    return const BaseColumn(
+    return BaseColumn(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
@@ -26,31 +27,57 @@ class UpdatePasswordView extends StatelessWidget {
             Text.rich(
               textAlign: TextAlign.start,
               TextSpan(
-                text: 'Enter Your Password',
-                style: TextStyle(
+                text: 'Enter Your New Password',
+                style: const TextStyle(
                   color: Colors.red,
                 ),
                 children: [
                   TextSpan(
                     text: ' *',
-                    style: TextStyle(color: Colors.red),
+                    style: contextTheme.textTheme.labelLarge,
                   ),
                 ],
               ),
             ),
             SharedGap.gap12,
             ToySwappTextField(
-              labelText: 'Password',
+              obscureText: true,
+              labelText: 'New Password',
+              onChanged: context.read<AccountSettingsCubit>().updateNewPassword,
             ),
             SharedGap.gap12,
             ToySwappTextField(
-              labelText: 'New Password',
-            ),
-            SharedGap.gap12,
-            ToySwappTextField(
-              labelText: 'New Password',
+              obscureText: true,
+              labelText: 'Confirm New Password',
+              onChanged: context
+                  .read<AccountSettingsCubit>()
+                  .updateNewConfirmedPassword,
             ),
           ],
+        ),
+        AccountSettingsPasswordConfirmationTextField(
+          isVisible: cubitState.newPassword.isValid &&
+              cubitState.confirmedPassword.isValid,
+        ),
+        BackAndSaveButtons(
+          onTap: () {
+            if (cubitState.newPassword.isNotValid) {
+              return;
+            }
+            if (cubitState.confirmedPassword.isNotValid) {
+              return;
+            }
+            if (cubitState.currentPassword.isNotValid) {
+              return;
+            }
+            context.read<AccountSettingsBloc>().add(
+                  AccountSettingsEvent.updatePassword(
+                    currentPassword: cubitState.currentPassword,
+                    newPassword: cubitState.newPassword,
+                    confirmedNewPassword: cubitState.confirmedPassword,
+                  ),
+                );
+          },
         ),
       ],
     );

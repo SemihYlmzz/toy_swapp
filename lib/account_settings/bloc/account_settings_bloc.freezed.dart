@@ -27,7 +27,9 @@ mixin _$AccountSettingsEvent {
         updateFullName,
     required TResult Function(Email emailObject, Password currentPassword)
         updateEmail,
-    required TResult Function(Password currentPassword) updatePassword,
+    required TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)
+        updatePassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,7 +41,9 @@ mixin _$AccountSettingsEvent {
             Password currentPassword)?
         updateFullName,
     TResult? Function(Email emailObject, Password currentPassword)? updateEmail,
-    TResult? Function(Password currentPassword)? updatePassword,
+    TResult? Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,7 +55,9 @@ mixin _$AccountSettingsEvent {
             Password currentPassword)?
         updateFullName,
     TResult Function(Email emailObject, Password currentPassword)? updateEmail,
-    TResult Function(Password currentPassword)? updatePassword,
+    TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -201,7 +207,9 @@ class _$AccountSettingsCurrentConsumerUpdatedImpl
         updateFullName,
     required TResult Function(Email emailObject, Password currentPassword)
         updateEmail,
-    required TResult Function(Password currentPassword) updatePassword,
+    required TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)
+        updatePassword,
   }) {
     return currentConsumerUpdated(updatedConsumer);
   }
@@ -216,7 +224,9 @@ class _$AccountSettingsCurrentConsumerUpdatedImpl
             Password currentPassword)?
         updateFullName,
     TResult? Function(Email emailObject, Password currentPassword)? updateEmail,
-    TResult? Function(Password currentPassword)? updatePassword,
+    TResult? Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
   }) {
     return currentConsumerUpdated?.call(updatedConsumer);
   }
@@ -231,7 +241,9 @@ class _$AccountSettingsCurrentConsumerUpdatedImpl
             Password currentPassword)?
         updateFullName,
     TResult Function(Email emailObject, Password currentPassword)? updateEmail,
-    TResult Function(Password currentPassword)? updatePassword,
+    TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
     required TResult orElse(),
   }) {
     if (currentConsumerUpdated != null) {
@@ -392,7 +404,9 @@ class _$AccountSettingsUpdateAvatarImageImpl
         updateFullName,
     required TResult Function(Email emailObject, Password currentPassword)
         updateEmail,
-    required TResult Function(Password currentPassword) updatePassword,
+    required TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)
+        updatePassword,
   }) {
     return updateAvatarImage(newAvatarImages, currentPassword);
   }
@@ -407,7 +421,9 @@ class _$AccountSettingsUpdateAvatarImageImpl
             Password currentPassword)?
         updateFullName,
     TResult? Function(Email emailObject, Password currentPassword)? updateEmail,
-    TResult? Function(Password currentPassword)? updatePassword,
+    TResult? Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
   }) {
     return updateAvatarImage?.call(newAvatarImages, currentPassword);
   }
@@ -422,7 +438,9 @@ class _$AccountSettingsUpdateAvatarImageImpl
             Password currentPassword)?
         updateFullName,
     TResult Function(Email emailObject, Password currentPassword)? updateEmail,
-    TResult Function(Password currentPassword)? updatePassword,
+    TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
     required TResult orElse(),
   }) {
     if (updateAvatarImage != null) {
@@ -599,7 +617,9 @@ class _$AccountSettingsUpdateFullNameImpl
         updateFullName,
     required TResult Function(Email emailObject, Password currentPassword)
         updateEmail,
-    required TResult Function(Password currentPassword) updatePassword,
+    required TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)
+        updatePassword,
   }) {
     return updateFullName(firstNameObject, lastNameObject, currentPassword);
   }
@@ -614,7 +634,9 @@ class _$AccountSettingsUpdateFullNameImpl
             Password currentPassword)?
         updateFullName,
     TResult? Function(Email emailObject, Password currentPassword)? updateEmail,
-    TResult? Function(Password currentPassword)? updatePassword,
+    TResult? Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
   }) {
     return updateFullName?.call(
         firstNameObject, lastNameObject, currentPassword);
@@ -630,7 +652,9 @@ class _$AccountSettingsUpdateFullNameImpl
             Password currentPassword)?
         updateFullName,
     TResult Function(Email emailObject, Password currentPassword)? updateEmail,
-    TResult Function(Password currentPassword)? updatePassword,
+    TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
     required TResult orElse(),
   }) {
     if (updateFullName != null) {
@@ -791,7 +815,9 @@ class _$AccountSettingsUpdateEmailImpl implements AccountSettingsUpdateEmail {
         updateFullName,
     required TResult Function(Email emailObject, Password currentPassword)
         updateEmail,
-    required TResult Function(Password currentPassword) updatePassword,
+    required TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)
+        updatePassword,
   }) {
     return updateEmail(emailObject, currentPassword);
   }
@@ -806,7 +832,9 @@ class _$AccountSettingsUpdateEmailImpl implements AccountSettingsUpdateEmail {
             Password currentPassword)?
         updateFullName,
     TResult? Function(Email emailObject, Password currentPassword)? updateEmail,
-    TResult? Function(Password currentPassword)? updatePassword,
+    TResult? Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
   }) {
     return updateEmail?.call(emailObject, currentPassword);
   }
@@ -821,7 +849,9 @@ class _$AccountSettingsUpdateEmailImpl implements AccountSettingsUpdateEmail {
             Password currentPassword)?
         updateFullName,
     TResult Function(Email emailObject, Password currentPassword)? updateEmail,
-    TResult Function(Password currentPassword)? updatePassword,
+    TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
     required TResult orElse(),
   }) {
     if (updateEmail != null) {
@@ -898,7 +928,10 @@ abstract class _$$AccountSettingsupdatePasswordImplCopyWith<$Res> {
           $Res Function(_$AccountSettingsupdatePasswordImpl) then) =
       __$$AccountSettingsupdatePasswordImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Password currentPassword});
+  $Res call(
+      {Password currentPassword,
+      Password newPassword,
+      ConfirmedPassword confirmedNewPassword});
 }
 
 /// @nodoc
@@ -915,12 +948,22 @@ class __$$AccountSettingsupdatePasswordImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? currentPassword = null,
+    Object? newPassword = null,
+    Object? confirmedNewPassword = null,
   }) {
     return _then(_$AccountSettingsupdatePasswordImpl(
       currentPassword: null == currentPassword
           ? _value.currentPassword
           : currentPassword // ignore: cast_nullable_to_non_nullable
               as Password,
+      newPassword: null == newPassword
+          ? _value.newPassword
+          : newPassword // ignore: cast_nullable_to_non_nullable
+              as Password,
+      confirmedNewPassword: null == confirmedNewPassword
+          ? _value.confirmedNewPassword
+          : confirmedNewPassword // ignore: cast_nullable_to_non_nullable
+              as ConfirmedPassword,
     ));
   }
 }
@@ -929,14 +972,21 @@ class __$$AccountSettingsupdatePasswordImplCopyWithImpl<$Res>
 
 class _$AccountSettingsupdatePasswordImpl
     implements AccountSettingsupdatePassword {
-  const _$AccountSettingsupdatePasswordImpl({required this.currentPassword});
+  const _$AccountSettingsupdatePasswordImpl(
+      {required this.currentPassword,
+      required this.newPassword,
+      required this.confirmedNewPassword});
 
   @override
   final Password currentPassword;
+  @override
+  final Password newPassword;
+  @override
+  final ConfirmedPassword confirmedNewPassword;
 
   @override
   String toString() {
-    return 'AccountSettingsEvent.updatePassword(currentPassword: $currentPassword)';
+    return 'AccountSettingsEvent.updatePassword(currentPassword: $currentPassword, newPassword: $newPassword, confirmedNewPassword: $confirmedNewPassword)';
   }
 
   @override
@@ -945,11 +995,16 @@ class _$AccountSettingsupdatePasswordImpl
         (other.runtimeType == runtimeType &&
             other is _$AccountSettingsupdatePasswordImpl &&
             (identical(other.currentPassword, currentPassword) ||
-                other.currentPassword == currentPassword));
+                other.currentPassword == currentPassword) &&
+            (identical(other.newPassword, newPassword) ||
+                other.newPassword == newPassword) &&
+            (identical(other.confirmedNewPassword, confirmedNewPassword) ||
+                other.confirmedNewPassword == confirmedNewPassword));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currentPassword);
+  int get hashCode => Object.hash(
+      runtimeType, currentPassword, newPassword, confirmedNewPassword);
 
   @JsonKey(ignore: true)
   @override
@@ -971,9 +1026,11 @@ class _$AccountSettingsupdatePasswordImpl
         updateFullName,
     required TResult Function(Email emailObject, Password currentPassword)
         updateEmail,
-    required TResult Function(Password currentPassword) updatePassword,
+    required TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)
+        updatePassword,
   }) {
-    return updatePassword(currentPassword);
+    return updatePassword(currentPassword, newPassword, confirmedNewPassword);
   }
 
   @override
@@ -986,9 +1043,12 @@ class _$AccountSettingsupdatePasswordImpl
             Password currentPassword)?
         updateFullName,
     TResult? Function(Email emailObject, Password currentPassword)? updateEmail,
-    TResult? Function(Password currentPassword)? updatePassword,
+    TResult? Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
   }) {
-    return updatePassword?.call(currentPassword);
+    return updatePassword?.call(
+        currentPassword, newPassword, confirmedNewPassword);
   }
 
   @override
@@ -1001,11 +1061,13 @@ class _$AccountSettingsupdatePasswordImpl
             Password currentPassword)?
         updateFullName,
     TResult Function(Email emailObject, Password currentPassword)? updateEmail,
-    TResult Function(Password currentPassword)? updatePassword,
+    TResult Function(Password currentPassword, Password newPassword,
+            ConfirmedPassword confirmedNewPassword)?
+        updatePassword,
     required TResult orElse(),
   }) {
     if (updatePassword != null) {
-      return updatePassword(currentPassword);
+      return updatePassword(currentPassword, newPassword, confirmedNewPassword);
     }
     return orElse();
   }
@@ -1060,10 +1122,14 @@ class _$AccountSettingsupdatePasswordImpl
 
 abstract class AccountSettingsupdatePassword implements AccountSettingsEvent {
   const factory AccountSettingsupdatePassword(
-          {required final Password currentPassword}) =
+          {required final Password currentPassword,
+          required final Password newPassword,
+          required final ConfirmedPassword confirmedNewPassword}) =
       _$AccountSettingsupdatePasswordImpl;
 
   Password get currentPassword;
+  Password get newPassword;
+  ConfirmedPassword get confirmedNewPassword;
   @JsonKey(ignore: true)
   _$$AccountSettingsupdatePasswordImplCopyWith<
           _$AccountSettingsupdatePasswordImpl>

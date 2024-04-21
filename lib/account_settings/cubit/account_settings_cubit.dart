@@ -33,6 +33,8 @@ class AccountSettingsCubit extends Cubit<AccountSettingsCubitState> {
         emailObject: const Email.pure(),
         isLoading: false,
         failure: null,
+        confirmedPassword: const ConfirmedPassword.pure(),
+        newPassword: const Password.pure(),
       ),
     );
   }
@@ -40,6 +42,27 @@ class AccountSettingsCubit extends Cubit<AccountSettingsCubitState> {
   void updatePassword(String updatedPasswordValue) {
     final updatedPassword = Password.dirty(value: updatedPasswordValue);
     emit(state.copyWith(currentPassword: updatedPassword));
+  }
+
+  void updateNewPassword(String updatedNewPasswordValue) {
+    final updatedNewPassword = Password.dirty(value: updatedNewPasswordValue);
+    emit(
+      state.copyWith(
+        newPassword: updatedNewPassword,
+        confirmedPassword: ConfirmedPassword.dirty(
+          password: updatedNewPasswordValue,
+          value: state.confirmedPassword.value,
+        ),
+      ),
+    );
+  }
+
+  void updateNewConfirmedPassword(String updateNewConfirmedPasswordValue) {
+    final updateNewConfirmedPassword = ConfirmedPassword.dirty(
+      value: updateNewConfirmedPasswordValue,
+      password: state.newPassword.value,
+    );
+    emit(state.copyWith(confirmedPassword: updateNewConfirmedPassword));
   }
 
   void updateFirstName(String updatedFirstNameValue, String currentFirstName) {
