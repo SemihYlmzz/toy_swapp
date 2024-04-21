@@ -1229,7 +1229,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "3f6ae5d7248f387e4d6a176ffe2f5dcee46b4fcb"
+      resolved-ref: c798e325a90777b8040a2bdbd5e571485f2c46ad
       url: "https://github.com/SemihYlmzz/shared_constants.git"
     source: git
     version: "0.0.1"
@@ -1294,7 +1294,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "6f7ca4741b9d9792d603fed19e99c7b3aeece778"
+      resolved-ref: d777dd030019f76522eeed6e3d3571a8525a5a4e
       url: "https://github.com/SemihYlmzz/shared_widgets.git"
     source: git
     version: "0.0.1"
