@@ -32,7 +32,9 @@ dependencies:
     path: packages/consumer_repository
   device_metadata_repository:
     path: packages/device_metadata_repository
-    
+  toy_repository:
+    path: packages/toy_repository
+
   # Services
   permission_service:
     path: packages/permission_service
@@ -83,7 +85,6 @@ dependencies:
   linkpeek: ^1.0.0
   flutter_touch_ripple: ^1.1.21
   smooth_page_indicator: ^1.1.0
-  shimmer: ^3.0.0
 
 dev_dependencies:
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:toy_swapp/app/app.dart';
 
 import '../toy_detail.dart';
@@ -15,9 +14,9 @@ class ToyDetailView extends StatelessWidget {
     final toyOwnerConsumer = context.select(
       (ToyDetailBloc bloc) => bloc.state.toyOwnerConsumer,
     );
-    final currentConsumer = context.select(
-      (ToyDetailBloc bloc) => bloc.state.currentConsumer,
-    );
+    // final currentConsumer = context.select(
+    //   (ToyDetailBloc bloc) => bloc.state.currentConsumer,
+    // );
     return BaseScaffold(
       safeArea: true,
       body: Stack(

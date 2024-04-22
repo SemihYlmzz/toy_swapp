@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
+import 'package:toy_swapp/app/app.dart';
 
 class CreateToyView extends StatelessWidget {
   const CreateToyView({super.key});
@@ -15,102 +16,40 @@ class CreateToyView extends StatelessWidget {
           BaseColumn(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.network(
-                'https://picsum.photos/512/512?image=10',
-                width: MediaQuery.of(context).size.width,
-                height: 260,
-                fit: BoxFit.cover,
+              const ToySwappTextField(
+                labelText: 'Toy Name',
               ),
-              SharedGap.gap4,
-              Container(
-                height: 60,
-                padding: SharedPaddings.left8,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 10,
-                  itemBuilder: (context, index) => Center(
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      margin: SharedPaddings.right12,
-                      decoration: BoxDecoration(
-                        borderRadius: SharedBorderRadius.circular4,
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            'https://picsum.photos/128/128?image=${index + 24}',
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+              const ToySwappTextField(
+                labelText: 'Description',
               ),
-              SharedGap.gap12,
-              Row(
-                children: [
-                  SharedGap.gap20,
-                  Text(
-                    'Pelush Bear',
-                    style: Theme.of(context).textTheme.displaySmall,
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('Select Toy Images'),
+              ),
+              DropdownButton(
+                items: const [
+                  DropdownMenuItem<void>(
+                    child: Text('Min. Age'),
                   ),
                 ],
+                onChanged: (value) {},
               ),
-              SharedGap.gap12,
-              Padding(
-                padding: SharedPaddings.horizontal20,
-                child: Text(
-                  'Pelush Bear is a soft and cuddly bear that is perfect '
-                  'for any child. It is made of high-quality materials and '
-                  'is designed to be durable and long-lasting. '
-                  'The bear is also machine washable, making it easy to keep '
-                  'clean and looking new. Pelush Bear is the perfect '
-                  'companion for any child and is sure to bring hours '
-                  'of joy and comfort.',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onBackground
-                            .withOpacity(0.6),
-                      ),
-                ),
-              ),
-              SharedGap.gap20,
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  const Divider(thickness: 0.1),
-                  Container(
-                    color: Theme.of(context).colorScheme.background,
-                    padding: SharedPaddings.all20,
-                    child: Text(
-                      'Toy Details',
-                      style:
-                          Theme.of(context).textTheme.headlineMedium?.copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onBackground
-                                    .withOpacity(0.4),
-                              ),
-                    ),
+              DropdownButton(
+                items: const [
+                  DropdownMenuItem<void>(
+                    child: Text('Pref. Gender'),
                   ),
                 ],
+                onChanged: (value) {},
               ),
-              Column(
-                children: [
-                  Text(
-                    'Min. Age',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: Colors.pinkAccent,
-                        ),
-                  ),
-                  Text(
-                    '3',
-                    style: Theme.of(context).textTheme.headlineMedium,
+              DropdownButton(
+                items: const [
+                  DropdownMenuItem<void>(
+                    child: Text('Toy Condition'),
                   ),
                 ],
+                onChanged: (value) {},
               ),
-              SharedGap.gap128,
             ],
           ),
           Align(
