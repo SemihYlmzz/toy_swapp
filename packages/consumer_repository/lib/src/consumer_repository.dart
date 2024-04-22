@@ -31,7 +31,7 @@ class ConsumerRepository {
   Consumer currentConsumer = Consumer.empty();
 
   // FUNCTIONS
-  FutureUnit create({
+  FutureUnit createCurrentConsumer({
     required String authId,
     required String firstName,
     required String lastName,
@@ -106,7 +106,7 @@ class ConsumerRepository {
     }
   }
 
-  FutureUnit readConsumer({
+  FutureUnit initCurrentConsumer({
     required String authId,
   }) async {
     // CONTROL ALL INPUT VALUES
@@ -243,6 +243,27 @@ class ConsumerRepository {
 
       _currentConsumerStreamController.sink.add(updatedConsumer);
       return const Right(unit);
+    } catch (exception) {
+      // if (exception is FirebaseException) {
+      //   throw _firebaseExceptionToUserException(exception);
+      // }
+      return const Left(ConsumerRepositoryException.unknown());
+    }
+  }
+
+  FutureEither<Consumer> readConsumer({
+    required String authId,
+  }) async {
+    try {
+      final consumerDoc = await _firebaseFirestore
+          .collection(ConsumerRepositoryStrings.consumerCollectionPath)
+          .doc(authId)
+          .get();
+      if (!consumerDoc.exists || consumerDoc.data() == null) {
+        return const Left(ConsumerRepositoryException.unknown());
+      }
+      final consumer = Consumer.fromJson(consumerDoc.data()!);
+      return Right(consumer);
     } catch (exception) {
       // if (exception is FirebaseException) {
       //   throw _firebaseExceptionToUserException(exception);

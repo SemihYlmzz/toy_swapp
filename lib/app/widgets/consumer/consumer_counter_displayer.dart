@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ProfileCounterDisplayer extends StatelessWidget {
-  const ProfileCounterDisplayer({
+class ConsumerCounterDisplayer extends StatelessWidget {
+  const ConsumerCounterDisplayer({
     required this.counterName,
     required this.counterValue,
     super.key,

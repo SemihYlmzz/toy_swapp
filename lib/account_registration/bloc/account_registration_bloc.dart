@@ -43,7 +43,7 @@ class AccountRegistrationBloc
         if (state.authState == Auth.empty()) {
           return;
         }
-        final tryCreate = await _consumerRepository.create(
+        final tryCreate = await _consumerRepository.createCurrentConsumer(
           authId: state.authState.id,
           avatarImage1024: e.avatarImage1024,
           avatarImage128: e.avatarImage128,

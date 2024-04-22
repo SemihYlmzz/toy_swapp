@@ -10,19 +10,17 @@ class CreateToyBloc extends Bloc<CreateToyEvent, CreateToyState> {
   CreateToyBloc() : super(const CreateToyState()) {
     on<CreateToyEvent>(_onCreateToyEvent);
   }
-  
+
   Future<void> _onCreateToyEvent(
     CreateToyEvent event,
     Emitter<CreateToyState> emit,
-    ) async {
+  ) async {
     emit(state.copyWith(isLoading: true));
-    
+
     await event.map(
-      fetch: (e) async {
-        print('Fetching data...');
-      },
+      fetch: (e) async {},
     );
-    
+
     emit(state.copyWith(isLoading: false, failure: null));
   }
 }

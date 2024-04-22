@@ -15,7 +15,7 @@ class ToysView extends StatelessWidget {
           child: Padding(
             padding: SharedPaddings.bottom32,
             child: ToyCard(
-              imageSize: 512 + index * 10,
+              imageSize: 512 + index * 9,
             ),
           ),
         );

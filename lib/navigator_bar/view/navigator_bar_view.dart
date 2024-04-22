@@ -25,7 +25,6 @@ class NavigatorBarView extends StatelessWidget {
       drawer: subRoute?.drawer,
       endDrawer: subRoute?.endDrawer,
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.green,
         currentIndex: navigationShell.currentIndex < 2
             ? navigationShell.currentIndex
             : navigationShell.currentIndex + 1,
@@ -35,7 +34,15 @@ class NavigatorBarView extends StatelessWidget {
             navigationShell.goBranch(index);
           }
           if (index == 2) {
-            CreateToyRouter.instance.push(context);
+            // CreateToyRouter.instance.push(context);
+            showModalBottomSheet<void>(
+              context: context,
+              isScrollControlled: true,
+              isDismissible: false,
+              builder: (context) {
+                return const CreateToyScreen();
+              },
+            );
           }
           if (index > 2) {
             navigationShell.goBranch(index - 1);

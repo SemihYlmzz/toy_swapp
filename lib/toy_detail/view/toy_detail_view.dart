@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:toy_swapp/app/app.dart';
 
-class CreateToyView extends StatelessWidget {
-  const CreateToyView({super.key});
+import '../toy_detail.dart';
 
+class ToyDetailView extends StatelessWidget {
+  const ToyDetailView({required this.requirements, super.key});
+  final ToyDetailScreenRequirements requirements;
   @override
   Widget build(BuildContext context) {
+    final toyOwnerConsumer = context.select(
+      (ToyDetailBloc bloc) => bloc.state.toyOwnerConsumer,
+    );
+    final currentConsumer = context.select(
+      (ToyDetailBloc bloc) => bloc.state.currentConsumer,
+    );
     return BaseScaffold(
       safeArea: true,
       body: Stack(
@@ -15,11 +25,17 @@ class CreateToyView extends StatelessWidget {
           BaseColumn(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.network(
-                'https://picsum.photos/512/512?image=10',
-                width: MediaQuery.of(context).size.width,
-                height: 260,
-                fit: BoxFit.cover,
+              Hero(
+                tag: requirements.imageNumber + requirements.imageSize,
+                child: Image.network(
+                  'https://picsum.photos'
+                  '/${requirements.imageSize}'
+                  '/${requirements.imageSize}'
+                  '?image=${requirements.imageNumber}',
+                  width: MediaQuery.of(context).size.width,
+                  height: 260,
+                  fit: BoxFit.cover,
+                ),
               ),
               SharedGap.gap4,
               Container(
@@ -96,20 +112,108 @@ class CreateToyView extends StatelessWidget {
                   ),
                 ],
               ),
-              Column(
+              Wrap(
+                spacing: 32,
+                runSpacing: 16,
                 children: [
-                  Text(
-                    'Min. Age',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: Colors.pinkAccent,
-                        ),
+                  Column(
+                    children: [
+                      Text(
+                        'Min. Age',
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                              color: Colors.pinkAccent,
+                            ),
+                      ),
+                      Text(
+                        '3',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
+                    ],
                   ),
-                  Text(
-                    '3',
-                    style: Theme.of(context).textTheme.headlineMedium,
+                  Column(
+                    children: [
+                      Text(
+                        'Mostly Used by',
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                              color: Colors.pinkAccent,
+                            ),
+                      ),
+                      Text(
+                        'Girls',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        'Condition',
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                              color: Colors.pinkAccent,
+                            ),
+                      ),
+                      Text(
+                        'New',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
+                    ],
                   ),
                 ],
               ),
+              SharedGap.gap20,
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  const Divider(thickness: 0.1),
+                  Container(
+                    color: Theme.of(context).colorScheme.background,
+                    padding: SharedPaddings.all20,
+                    child: Text(
+                      'Owner Details',
+                      style:
+                          Theme.of(context).textTheme.headlineMedium?.copyWith(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onBackground
+                                    .withOpacity(0.4),
+                              ),
+                    ),
+                  ),
+                ],
+              ),
+              if (toyOwnerConsumer != null)
+                ConsumerCard(consumer: toyOwnerConsumer),
+              if (toyOwnerConsumer != null)
+                Padding(
+                  padding: SharedPaddings.horizontal20,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '${toyOwnerConsumer.firstName} '
+                        '${toyOwnerConsumer.lastName}',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
+                      SharedGap.gap16,
+                      // Todo: same with toy card widget
+                      const Row(
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: Colors.pinkAccent,
+                          ),
+                          Text(
+                            '300 Meters',
+                            style: TextStyle(
+                              color: Colors.white54,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              SharedGap.gap128,
               SharedGap.gap128,
             ],
           ),

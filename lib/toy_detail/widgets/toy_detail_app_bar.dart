@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class CreateToyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CreateToyAppBar({
+class ToyDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const ToyDetailAppBar({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Create Toy'),
+      title: const Text('Toy Detail View'),
     );
   }
 
