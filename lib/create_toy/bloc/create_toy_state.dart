@@ -4,6 +4,7 @@ part of 'create_toy_bloc.dart';
 class CreateToyState with _$CreateToyState {
    const factory CreateToyState({
     required Auth currentAuth,
+    @Default(false) bool isToyCreated,
     @Default(false) bool isLoading,
     Failure? failure,
   }) = _CreateToyState;

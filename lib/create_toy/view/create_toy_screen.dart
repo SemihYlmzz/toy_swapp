@@ -11,14 +11,24 @@ class CreateToyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final createToyBlocListeners = CreateToyBlocListeners();
 
-    return BlocProvider(
-      create: (context) => CreateToyBloc(
-        authRepository: context.read(),
-        toyRepository: context.read(),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => CreateToyBloc(
+            authRepository: context.read(),
+            toyRepository: context.read(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => CreateToyCubit(
+            imageService: context.read(),
+          ),
+        ),
+      ],
       child: MultiBlocListener(
         listeners: [
           createToyBlocListeners.errorDisplayer(),
+          createToyBlocListeners.navigateProfileOnCreate(),
         ],
         child: BlocSelector<CreateToyBloc, CreateToyState, bool>(
           selector: (state) => state.isLoading,

@@ -30,14 +30,18 @@ class CreateToyBloc extends Bloc<CreateToyEvent, CreateToyState> {
         if (state.currentAuth == Auth.empty()) {
           return;
         }
-        final tryCreate = _toyRepository.create(
+        final tryCreate = await _toyRepository.create(
           ownerAuthId: state.currentAuth.id,
-          name: e.name,
-          description: e.description,
+          toyName: e.toyName,
+          toyDescription: e.toyDescription,
           toyImageList: e.imageUrlList,
           toyAge: e.toyAge,
           toyGender: e.toyGender,
           toyCondition: e.toyCondition,
+        );
+        tryCreate.fold(
+          (failure) => emit(state.copyWith(failure: failure)),
+          (r) => emit(state.copyWith(isToyCreated: true)),
         );
       },
     );

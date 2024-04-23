@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CreateToyEvent {
-  String get name => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  ToyName get toyName => throw _privateConstructorUsedError;
+  ToyDescription get toyDescription => throw _privateConstructorUsedError;
   List<ToyImage> get imageUrlList => throw _privateConstructorUsedError;
   ToyAge get toyAge => throw _privateConstructorUsedError;
   ToyGender get toyGender => throw _privateConstructorUsedError;
@@ -25,8 +25,8 @@ mixin _$CreateToyEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String name,
-            String description,
+            ToyName toyName,
+            ToyDescription toyDescription,
             List<ToyImage> imageUrlList,
             ToyAge toyAge,
             ToyGender toyGender,
@@ -37,8 +37,8 @@ mixin _$CreateToyEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            String name,
-            String description,
+            ToyName toyName,
+            ToyDescription toyDescription,
             List<ToyImage> imageUrlList,
             ToyAge toyAge,
             ToyGender toyGender,
@@ -49,8 +49,8 @@ mixin _$CreateToyEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            String name,
-            String description,
+            ToyName toyName,
+            ToyDescription toyDescription,
             List<ToyImage> imageUrlList,
             ToyAge toyAge,
             ToyGender toyGender,
@@ -88,8 +88,8 @@ abstract class $CreateToyEventCopyWith<$Res> {
       _$CreateToyEventCopyWithImpl<$Res, CreateToyEvent>;
   @useResult
   $Res call(
-      {String name,
-      String description,
+      {ToyName toyName,
+      ToyDescription toyDescription,
       List<ToyImage> imageUrlList,
       ToyAge toyAge,
       ToyGender toyGender,
@@ -109,22 +109,22 @@ class _$CreateToyEventCopyWithImpl<$Res, $Val extends CreateToyEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? description = null,
+    Object? toyName = null,
+    Object? toyDescription = null,
     Object? imageUrlList = null,
     Object? toyAge = null,
     Object? toyGender = null,
     Object? toyCondition = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
+      toyName: null == toyName
+          ? _value.toyName
+          : toyName // ignore: cast_nullable_to_non_nullable
+              as ToyName,
+      toyDescription: null == toyDescription
+          ? _value.toyDescription
+          : toyDescription // ignore: cast_nullable_to_non_nullable
+              as ToyDescription,
       imageUrlList: null == imageUrlList
           ? _value.imageUrlList
           : imageUrlList // ignore: cast_nullable_to_non_nullable
@@ -155,8 +155,8 @@ abstract class _$$CreateToyCreateOwnedToyImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
-      String description,
+      {ToyName toyName,
+      ToyDescription toyDescription,
       List<ToyImage> imageUrlList,
       ToyAge toyAge,
       ToyGender toyGender,
@@ -175,22 +175,22 @@ class __$$CreateToyCreateOwnedToyImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? description = null,
+    Object? toyName = null,
+    Object? toyDescription = null,
     Object? imageUrlList = null,
     Object? toyAge = null,
     Object? toyGender = null,
     Object? toyCondition = null,
   }) {
     return _then(_$CreateToyCreateOwnedToyImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
+      toyName: null == toyName
+          ? _value.toyName
+          : toyName // ignore: cast_nullable_to_non_nullable
+              as ToyName,
+      toyDescription: null == toyDescription
+          ? _value.toyDescription
+          : toyDescription // ignore: cast_nullable_to_non_nullable
+              as ToyDescription,
       imageUrlList: null == imageUrlList
           ? _value._imageUrlList
           : imageUrlList // ignore: cast_nullable_to_non_nullable
@@ -215,8 +215,8 @@ class __$$CreateToyCreateOwnedToyImplCopyWithImpl<$Res>
 
 class _$CreateToyCreateOwnedToyImpl implements CreateToyCreateOwnedToy {
   const _$CreateToyCreateOwnedToyImpl(
-      {required this.name,
-      required this.description,
+      {required this.toyName,
+      required this.toyDescription,
       required final List<ToyImage> imageUrlList,
       required this.toyAge,
       required this.toyGender,
@@ -224,9 +224,9 @@ class _$CreateToyCreateOwnedToyImpl implements CreateToyCreateOwnedToy {
       : _imageUrlList = imageUrlList;
 
   @override
-  final String name;
+  final ToyName toyName;
   @override
-  final String description;
+  final ToyDescription toyDescription;
   final List<ToyImage> _imageUrlList;
   @override
   List<ToyImage> get imageUrlList {
@@ -244,7 +244,7 @@ class _$CreateToyCreateOwnedToyImpl implements CreateToyCreateOwnedToy {
 
   @override
   String toString() {
-    return 'CreateToyEvent.createOwnedToy(name: $name, description: $description, imageUrlList: $imageUrlList, toyAge: $toyAge, toyGender: $toyGender, toyCondition: $toyCondition)';
+    return 'CreateToyEvent.createOwnedToy(toyName: $toyName, toyDescription: $toyDescription, imageUrlList: $imageUrlList, toyAge: $toyAge, toyGender: $toyGender, toyCondition: $toyCondition)';
   }
 
   @override
@@ -252,9 +252,9 @@ class _$CreateToyCreateOwnedToyImpl implements CreateToyCreateOwnedToy {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateToyCreateOwnedToyImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
+            (identical(other.toyName, toyName) || other.toyName == toyName) &&
+            (identical(other.toyDescription, toyDescription) ||
+                other.toyDescription == toyDescription) &&
             const DeepCollectionEquality()
                 .equals(other._imageUrlList, _imageUrlList) &&
             (identical(other.toyAge, toyAge) || other.toyAge == toyAge) &&
@@ -267,8 +267,8 @@ class _$CreateToyCreateOwnedToyImpl implements CreateToyCreateOwnedToy {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      name,
-      description,
+      toyName,
+      toyDescription,
       const DeepCollectionEquality().hash(_imageUrlList),
       toyAge,
       toyGender,
@@ -285,8 +285,8 @@ class _$CreateToyCreateOwnedToyImpl implements CreateToyCreateOwnedToy {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String name,
-            String description,
+            ToyName toyName,
+            ToyDescription toyDescription,
             List<ToyImage> imageUrlList,
             ToyAge toyAge,
             ToyGender toyGender,
@@ -294,15 +294,15 @@ class _$CreateToyCreateOwnedToyImpl implements CreateToyCreateOwnedToy {
         createOwnedToy,
   }) {
     return createOwnedToy(
-        name, description, imageUrlList, toyAge, toyGender, toyCondition);
+        toyName, toyDescription, imageUrlList, toyAge, toyGender, toyCondition);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            String name,
-            String description,
+            ToyName toyName,
+            ToyDescription toyDescription,
             List<ToyImage> imageUrlList,
             ToyAge toyAge,
             ToyGender toyGender,
@@ -310,15 +310,15 @@ class _$CreateToyCreateOwnedToyImpl implements CreateToyCreateOwnedToy {
         createOwnedToy,
   }) {
     return createOwnedToy?.call(
-        name, description, imageUrlList, toyAge, toyGender, toyCondition);
+        toyName, toyDescription, imageUrlList, toyAge, toyGender, toyCondition);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            String name,
-            String description,
+            ToyName toyName,
+            ToyDescription toyDescription,
             List<ToyImage> imageUrlList,
             ToyAge toyAge,
             ToyGender toyGender,
@@ -327,8 +327,8 @@ class _$CreateToyCreateOwnedToyImpl implements CreateToyCreateOwnedToy {
     required TResult orElse(),
   }) {
     if (createOwnedToy != null) {
-      return createOwnedToy(
-          name, description, imageUrlList, toyAge, toyGender, toyCondition);
+      return createOwnedToy(toyName, toyDescription, imageUrlList, toyAge,
+          toyGender, toyCondition);
     }
     return orElse();
   }
@@ -364,8 +364,8 @@ class _$CreateToyCreateOwnedToyImpl implements CreateToyCreateOwnedToy {
 
 abstract class CreateToyCreateOwnedToy implements CreateToyEvent {
   const factory CreateToyCreateOwnedToy(
-          {required final String name,
-          required final String description,
+          {required final ToyName toyName,
+          required final ToyDescription toyDescription,
           required final List<ToyImage> imageUrlList,
           required final ToyAge toyAge,
           required final ToyGender toyGender,
@@ -373,9 +373,9 @@ abstract class CreateToyCreateOwnedToy implements CreateToyEvent {
       _$CreateToyCreateOwnedToyImpl;
 
   @override
-  String get name;
+  ToyName get toyName;
   @override
-  String get description;
+  ToyDescription get toyDescription;
   @override
   List<ToyImage> get imageUrlList;
   @override
@@ -393,6 +393,7 @@ abstract class CreateToyCreateOwnedToy implements CreateToyEvent {
 /// @nodoc
 mixin _$CreateToyState {
   Auth get currentAuth => throw _privateConstructorUsedError;
+  bool get isToyCreated => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
@@ -407,7 +408,8 @@ abstract class $CreateToyStateCopyWith<$Res> {
           CreateToyState value, $Res Function(CreateToyState) then) =
       _$CreateToyStateCopyWithImpl<$Res, CreateToyState>;
   @useResult
-  $Res call({Auth currentAuth, bool isLoading, Failure? failure});
+  $Res call(
+      {Auth currentAuth, bool isToyCreated, bool isLoading, Failure? failure});
 
   $AuthCopyWith<$Res> get currentAuth;
 }
@@ -426,6 +428,7 @@ class _$CreateToyStateCopyWithImpl<$Res, $Val extends CreateToyState>
   @override
   $Res call({
     Object? currentAuth = null,
+    Object? isToyCreated = null,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
@@ -434,6 +437,10 @@ class _$CreateToyStateCopyWithImpl<$Res, $Val extends CreateToyState>
           ? _value.currentAuth
           : currentAuth // ignore: cast_nullable_to_non_nullable
               as Auth,
+      isToyCreated: null == isToyCreated
+          ? _value.isToyCreated
+          : isToyCreated // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -462,7 +469,8 @@ abstract class _$$CreateToyStateImplCopyWith<$Res>
       __$$CreateToyStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Auth currentAuth, bool isLoading, Failure? failure});
+  $Res call(
+      {Auth currentAuth, bool isToyCreated, bool isLoading, Failure? failure});
 
   @override
   $AuthCopyWith<$Res> get currentAuth;
@@ -480,6 +488,7 @@ class __$$CreateToyStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? currentAuth = null,
+    Object? isToyCreated = null,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
@@ -488,6 +497,10 @@ class __$$CreateToyStateImplCopyWithImpl<$Res>
           ? _value.currentAuth
           : currentAuth // ignore: cast_nullable_to_non_nullable
               as Auth,
+      isToyCreated: null == isToyCreated
+          ? _value.isToyCreated
+          : isToyCreated // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -504,10 +517,16 @@ class __$$CreateToyStateImplCopyWithImpl<$Res>
 
 class _$CreateToyStateImpl implements _CreateToyState {
   const _$CreateToyStateImpl(
-      {required this.currentAuth, this.isLoading = false, this.failure});
+      {required this.currentAuth,
+      this.isToyCreated = false,
+      this.isLoading = false,
+      this.failure});
 
   @override
   final Auth currentAuth;
+  @override
+  @JsonKey()
+  final bool isToyCreated;
   @override
   @JsonKey()
   final bool isLoading;
@@ -516,7 +535,7 @@ class _$CreateToyStateImpl implements _CreateToyState {
 
   @override
   String toString() {
-    return 'CreateToyState(currentAuth: $currentAuth, isLoading: $isLoading, failure: $failure)';
+    return 'CreateToyState(currentAuth: $currentAuth, isToyCreated: $isToyCreated, isLoading: $isLoading, failure: $failure)';
   }
 
   @override
@@ -526,13 +545,16 @@ class _$CreateToyStateImpl implements _CreateToyState {
             other is _$CreateToyStateImpl &&
             (identical(other.currentAuth, currentAuth) ||
                 other.currentAuth == currentAuth) &&
+            (identical(other.isToyCreated, isToyCreated) ||
+                other.isToyCreated == isToyCreated) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currentAuth, isLoading, failure);
+  int get hashCode =>
+      Object.hash(runtimeType, currentAuth, isToyCreated, isLoading, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -545,11 +567,14 @@ class _$CreateToyStateImpl implements _CreateToyState {
 abstract class _CreateToyState implements CreateToyState {
   const factory _CreateToyState(
       {required final Auth currentAuth,
+      final bool isToyCreated,
       final bool isLoading,
       final Failure? failure}) = _$CreateToyStateImpl;
 
   @override
   Auth get currentAuth;
+  @override
+  bool get isToyCreated;
   @override
   bool get isLoading;
   @override

@@ -11,6 +11,9 @@ class ToySwappTextField extends StatefulWidget {
     this.onSubmit,
     this.focusNode,
     this.keyboardType,
+    this.maxLines,
+    this.maxLength,
+    this.minLines,
     this.textCapitalization = TextCapitalization.none,
   });
 
@@ -22,7 +25,9 @@ class ToySwappTextField extends StatefulWidget {
   final FocusNode? focusNode;
   final TextInputType? keyboardType;
   final TextCapitalization textCapitalization;
-
+  final int? maxLines;
+  final int? maxLength;
+  final int? minLines;
   @override
   State<ToySwappTextField> createState() => _ToySwappTextFieldState();
 }
@@ -54,6 +59,9 @@ class _ToySwappTextFieldState extends State<ToySwappTextField> {
           onChanged: widget.onChanged,
           onSubmitted: widget.onSubmit,
           keyboardType: widget.keyboardType,
+          maxLines: widget.maxLines,
+          maxLength: widget.maxLength,
+          minLines: widget.minLines,
         ),
         if (widget.obscureText)
           Positioned(

@@ -63,4 +63,20 @@ class ImageService {
       return const Left(ImageServiceException.unknown());
     }
   }
+
+  FutureEither<List<Uint8List>> pickMultiImagesFromPhotos() async {
+    try {
+      final pickedImages = await _imagePicker.pickMultiImage();
+      if (pickedImages.isEmpty) {
+        return const Right([]);
+      }
+
+      final pickedImagesUint8list = await Future.wait(
+        pickedImages.map((pickedImage) => pickedImage.readAsBytes()),
+      );
+      return Right(pickedImagesUint8list);
+    } catch (exception) {
+      return const Left(ImageServiceException.unknown());
+    }
+  }
 }

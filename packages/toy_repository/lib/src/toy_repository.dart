@@ -2,6 +2,8 @@ import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:toy_swapp/errors/errors.dart';
 
 import '../toy_repository.dart';
 import 'constants/constants.dart';
@@ -17,19 +19,24 @@ class ToyRepository {
   final FirebaseStorage _firebaseStorage;
 
   // Functions
-  Future<void> create({
+  FutureUnit create({
     required String ownerAuthId,
-    required String name,
-    required String description,
+    required ToyName toyName,
+    required ToyDescription toyDescription,
     required List<ToyImage> toyImageList,
     required ToyAge toyAge,
     required ToyGender toyGender,
     required ToyCondition toyCondition,
   }) async {
     final uploadedToyImageUrls = <ToyImageUrls>[];
+    if (toyName.isNotValid) {
+      return const Left(ToyRepositoryException.unknown());
+    }
+    if (toyDescription.isNotValid) {
+      return const Left(ToyRepositoryException.unknown());
+    }
     // Todo:
     // Add Uint8List length and size Checker value object
-
     final id = DateTime.now().millisecondsSinceEpoch.toString() + ownerAuthId;
     try {
       for (final toyImage in toyImageList) {
@@ -53,13 +60,13 @@ class ToyRepository {
         );
       }
       if (uploadedToyImageUrls.length != toyImageList.length) {
-        throw Exception('Image upload failed');
+        return const Left(ToyRepositoryException.unknown());
       }
       final creatableToy = Toy(
         ownerAuthId: ownerAuthId,
         id: id,
-        name: name,
-        description: description,
+        name: toyName.value,
+        description: toyDescription.value,
         imageUrlList: uploadedToyImageUrls,
         details: ToyDetails(
           age: toyAge,
@@ -69,9 +76,11 @@ class ToyRepository {
       );
       await _firebaseFirestore
           .collection(ToyRepositoryStrings.toysCollectionPath)
-          .add(creatableToy.toJson());
+          .doc(id)
+          .set(creatableToy.toJson());
+      return const Right(unit);
     } catch (exception) {
-      throw Exception('Toy creation failed');
+      return const Left(ToyRepositoryException.unknown());
     }
   } // Special Functions
 

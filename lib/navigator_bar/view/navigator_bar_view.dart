@@ -39,6 +39,7 @@ class NavigatorBarView extends StatelessWidget {
               context: context,
               isScrollControlled: true,
               isDismissible: false,
+              useSafeArea: true,
               builder: (context) {
                 return const CreateToyScreen();
               },
