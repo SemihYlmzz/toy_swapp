@@ -6,7 +6,7 @@ import 'package:toy_swapp/errors/errors.dart';
 class RemoteDatabaseCloudFirestore extends RemoteDatabase {
   RemoteDatabaseCloudFirestore({
     required FirebaseFirestore firestore,
-  })  : _firestore = firestore;
+  }) : _firestore = firestore;
 
   final FirebaseFirestore _firestore;
 
@@ -57,13 +57,10 @@ class RemoteDatabaseCloudFirestore extends RemoteDatabase {
     required String? documentID,
     required Map<String, dynamic> jsonData,
   }) {
-    try {
-      final docRef = _firestore.collection(collectionID).doc(documentID);
-      _batch.set(docRef, jsonData);
-      return;
-    } catch (exception) {
-      rethrow;
-    }
+    final docRef = _firestore.collection(collectionID).doc(documentID);
+    _batch.set(docRef, jsonData);
+    print('setted');
+    return;
   }
 
   @override

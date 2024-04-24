@@ -1,6 +1,7 @@
 import 'package:auth_repository/auth_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:remote_database/remote_database.dart';
 import 'package:toy_repository/toy_repository.dart';
 import '../../errors/errors.dart';
 
@@ -10,12 +11,16 @@ part 'create_toy_state.dart';
 
 class CreateToyBloc extends Bloc<CreateToyEvent, CreateToyState> {
   CreateToyBloc({
+    required RemoteDatabase remoteDatabase,
     required ToyRepository toyRepository,
     required AuthRepository authRepository,
   })  : _toyRepository = toyRepository,
+        _remoteDatabase = remoteDatabase,
         super(CreateToyState(currentAuth: authRepository.currentAuth)) {
     on<CreateToyEvent>(_onCreateToyEvent);
   }
+  // APIS
+  final RemoteDatabase _remoteDatabase;
   // Repositories
   final ToyRepository _toyRepository;
 
@@ -39,7 +44,13 @@ class CreateToyBloc extends Bloc<CreateToyEvent, CreateToyState> {
           toyGender: e.toyGender,
           toyCondition: e.toyCondition,
         );
-        tryCreate.fold(
+        final tryCreateFailure = tryCreate.getLeft().toNullable();
+        if (tryCreateFailure != null) {
+          emit(state.copyWith(failure: tryCreateFailure));
+          return;
+        }
+        final tryCommit = await _remoteDatabase.batchCommit();
+        tryCommit.fold(
           (failure) => emit(state.copyWith(failure: failure)),
           (r) => emit(state.copyWith(isToyCreated: true)),
         );

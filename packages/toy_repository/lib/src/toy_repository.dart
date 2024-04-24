@@ -40,24 +40,24 @@ class ToyRepository {
         '/$id'
         '/images';
     try {
-      for (final toyImage in toyImageList) {
-        final value = toyImage.value;
+      for (var i = 0; i < toyImageList.length; i++) {
+        final value = toyImageList[i].value;
 
         final toyImageUrls = ToyImageUrls(
           url1024: await _cloudStorage.uploadImageGetUrl(
-            path: '$path/toyImage1024',
+            path: '$path/image$i/toyImage1024',
             image: value.toyImage1024,
           ),
           url128: await _cloudStorage.uploadImageGetUrl(
-            path: '$path/toyImage128',
+            path: '$path/image$i/toyImage128',
             image: value.toyImage128,
           ),
           url256: await _cloudStorage.uploadImageGetUrl(
-            path: '$path/toyImage256',
+            path: '$path/image$i/toyImage256',
             image: value.toyImage256,
           ),
           url512: await _cloudStorage.uploadImageGetUrl(
-            path: '$path/toyImage512',
+            path: '$path/image$i/toyImage512',
             image: value.toyImage512,
           ),
         );
@@ -90,5 +90,5 @@ class ToyRepository {
     } catch (exception) {
       return const Left(ToyRepositoryException.unknown());
     }
-  } // Special Functions
+  }
 }
