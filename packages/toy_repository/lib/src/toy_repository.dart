@@ -1,8 +1,6 @@
-import 'dart:typed_data';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_storage/cloud_storage.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:remote_database/remote_database.dart';
 import 'package:toy_swapp/errors/errors.dart';
 
 import '../toy_repository.dart';
@@ -10,13 +8,13 @@ import 'constants/constants.dart';
 
 class ToyRepository {
   const ToyRepository({
-    required FirebaseFirestore firebaseFirestore,
-    required FirebaseStorage firebaseStorage,
-  })  : _firebaseFirestore = firebaseFirestore,
-        _firebaseStorage = firebaseStorage;
+    required RemoteDatabase remoteDatabase,
+    required CloudStorage cloudStorage,
+  })  : _remoteDatabase = remoteDatabase,
+        _cloudStorage = cloudStorage;
   // INSTANCES
-  final FirebaseFirestore _firebaseFirestore;
-  final FirebaseStorage _firebaseStorage;
+  final CloudStorage _cloudStorage;
+  final RemoteDatabase _remoteDatabase;
 
   // Functions
   FutureUnit create({
@@ -38,30 +36,38 @@ class ToyRepository {
     // Todo:
     // Add Uint8List length and size Checker value object
     final id = DateTime.now().millisecondsSinceEpoch.toString() + ownerAuthId;
+    final path = '${ToyRepositoryStrings.toysCollectionPath}'
+        '/$id'
+        '/images';
     try {
       for (final toyImage in toyImageList) {
         final value = toyImage.value;
-        final size128Url =
-            await _uploadToyImagesToStorage(value.toyImage128, id, 'size128');
-        final size256Url =
-            await _uploadToyImagesToStorage(value.toyImage256, id, 'size256');
-        final size512Url =
-            await _uploadToyImagesToStorage(value.toyImage512, id, 'size512');
-        final size1024Url =
-            await _uploadToyImagesToStorage(value.toyImage1024, id, 'size1024');
 
-        uploadedToyImageUrls.add(
-          ToyImageUrls(
-            url1024: size128Url,
-            url128: size256Url,
-            url256: size512Url,
-            url512: size1024Url,
+        final toyImageUrls = ToyImageUrls(
+          url1024: await _cloudStorage.uploadImageGetUrl(
+            path: '$path/toyImage1024',
+            image: value.toyImage1024,
+          ),
+          url128: await _cloudStorage.uploadImageGetUrl(
+            path: '$path/toyImage128',
+            image: value.toyImage128,
+          ),
+          url256: await _cloudStorage.uploadImageGetUrl(
+            path: '$path/toyImage256',
+            image: value.toyImage256,
+          ),
+          url512: await _cloudStorage.uploadImageGetUrl(
+            path: '$path/toyImage512',
+            image: value.toyImage512,
           ),
         );
+
+        uploadedToyImageUrls.add(toyImageUrls);
       }
       if (uploadedToyImageUrls.length != toyImageList.length) {
         return const Left(ToyRepositoryException.unknown());
       }
+
       final creatableToy = Toy(
         ownerAuthId: ownerAuthId,
         id: id,
@@ -74,34 +80,15 @@ class ToyRepository {
           condition: toyCondition,
         ),
       );
-      await _firebaseFirestore
-          .collection(ToyRepositoryStrings.toysCollectionPath)
-          .doc(id)
-          .set(creatableToy.toJson());
+
+      _remoteDatabase.batchSetDoc(
+        collectionID: ToyRepositoryStrings.toysCollectionPath,
+        documentID: id,
+        jsonData: creatableToy.toJson(),
+      );
       return const Right(unit);
     } catch (exception) {
       return const Left(ToyRepositoryException.unknown());
     }
   } // Special Functions
-
-  // Todo:
-  // Shared function with ConsumerRepository
-  Future<String> _uploadToyImagesToStorage(
-    Uint8List image,
-    String toyId,
-    String imageKey,
-  ) async {
-    try {
-      final storageRef = _firebaseStorage.ref().child(
-            '${ToyRepositoryStrings.toysCollectionPath}'
-            '/$toyId'
-            '/images'
-            '/$imageKey',
-          );
-      final task = await storageRef.putData(image);
-      return await task.ref.getDownloadURL();
-    } catch (exception) {
-      rethrow;
-    }
-  }
 }

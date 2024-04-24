@@ -10,6 +10,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Dependencies
+  final apiDependencies = ApiDependencies(
+    firebaseOptions: DefaultFirebaseOptions.currentPlatform,
+  );
   const configDependencies = ConfigDependencies();
   const loggerDependencies = LoggerDependencies();
   const instanceDependencies = InstanceDependencies();
@@ -21,6 +24,7 @@ void main() async {
   // Start App
   runApp(
     StartupScreen(
+      apiDependencies: apiDependencies,
       configDependencies: configDependencies,
       loggerDependencies: loggerDependencies,
       instanceDependencies: instanceDependencies,

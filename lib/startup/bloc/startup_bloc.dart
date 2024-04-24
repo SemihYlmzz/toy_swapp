@@ -10,12 +10,14 @@ part 'startup_state.dart';
 
 class StartupBloc extends Bloc<StartupEvent, StartupState> {
   StartupBloc({
+    required ApiDependencies apiDependencies,
     required ConfigDependencies configDependencies,
     required LoggerDependencies loggerDependencies,
     required RepositoryDependencies repositoryDependencies,
     required ServiceDependencies serviceDependencies,
     required InstanceDependencies instanceDependencies,
-  })  : _configDependencies = configDependencies,
+  })  : _apiDependencies = apiDependencies,
+        _configDependencies = configDependencies,
         _loggerDependencies = loggerDependencies,
         _repositoryDependencies = repositoryDependencies,
         _serviceDependencies = serviceDependencies,
@@ -23,6 +25,7 @@ class StartupBloc extends Bloc<StartupEvent, StartupState> {
         super(const StartupState()) {
     on<StartupEvent>(_onStartupEvent);
   }
+  final ApiDependencies _apiDependencies;
   final ConfigDependencies _configDependencies;
   final LoggerDependencies _loggerDependencies;
   final RepositoryDependencies _repositoryDependencies;
@@ -45,21 +48,31 @@ class StartupBloc extends Bloc<StartupEvent, StartupState> {
           await Future<void>.delayed(
             Duration(milliseconds: random.nextInt(400) + 100),
           );
+
           // Configs
           await _configDependencies.init();
           emit(const StartupState(progressValue: 0.3));
           await Future<void>.delayed(
             Duration(milliseconds: random.nextInt(400) + 100),
-          ); // Repositories
-          final repositories = await _repositoryDependencies.init();
-          emit(const StartupState(progressValue: 0.6));
+          );
+          // Apis
+          final apis = await _apiDependencies.init();
+          emit(const StartupState(progressValue: 0.5));
+          await Future<void>.delayed(
+            Duration(milliseconds: random.nextInt(400) + 100),
+          );
+          // Repositories
+          final repositories = await _repositoryDependencies.init(
+            apis: apis,
+          );
+          emit(const StartupState(progressValue: 0.7));
           await Future<void>.delayed(
             Duration(milliseconds: random.nextInt(400) + 100),
           ); // Instances
           final instances = await _instanceDependencies.init(
             repositories: repositories,
           );
-          emit(const StartupState(progressValue: 0.8));
+          emit(const StartupState(progressValue: 0.9));
           await Future<void>.delayed(
             Duration(milliseconds: random.nextInt(400) + 100),
           ); // Services
@@ -75,6 +88,7 @@ class StartupBloc extends Bloc<StartupEvent, StartupState> {
           emit(
             StartupState(
               appDependencies: AppDependencies(
+                apis: apis,
                 repositories: repositories,
                 services: services,
                 instances: instances,
@@ -82,7 +96,6 @@ class StartupBloc extends Bloc<StartupEvent, StartupState> {
             ),
           );
         } catch (exception) {
-          // print(exception);
           emit(const StartupState(isInitializeError: true));
         }
       },

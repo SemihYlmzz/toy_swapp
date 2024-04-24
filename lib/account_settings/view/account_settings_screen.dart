@@ -15,6 +15,7 @@ class AccountSettingsScreen extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => AccountSettingsBloc(
+            remoteDatabase: context.read(),
             consumerRepository: context.read(),
             authRepository: context.read(),
           ),

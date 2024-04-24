@@ -4,6 +4,7 @@ import 'package:auth_repository/auth_repository.dart';
 import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:remote_database/remote_database.dart';
 import '../../errors/errors.dart';
 
 part 'consumer_data_calibration_bloc.freezed.dart';
@@ -13,9 +14,11 @@ part 'consumer_data_calibration_state.dart';
 class ConsumerDataCalibrationBloc
     extends Bloc<ConsumerDataCalibrationEvent, ConsumerDataCalibrationState> {
   ConsumerDataCalibrationBloc({
+    required RemoteDatabase remoteDatabase,
     required AuthRepository authRepository,
     required ConsumerRepository consumerRepository,
   })  : _consumerRepository = consumerRepository,
+        _remoteDatabase = remoteDatabase,
         super(
           ConsumerDataCalibrationState(currentAuth: authRepository.currentAuth),
         ) {
@@ -25,6 +28,8 @@ class ConsumerDataCalibrationBloc
       add(ConsumerDataCalibrationEvent.currentAuthUpdated(auth));
     });
   }
+  // Apis
+  final RemoteDatabase _remoteDatabase;
   // Repositories
   final ConsumerRepository _consumerRepository;
 
@@ -48,15 +53,16 @@ class ConsumerDataCalibrationBloc
           return;
         }
 
-        final tryUpdate = await _consumerRepository.updateEmail(
+        final updatedConsumerValue = _consumerRepository.updateEmail(
           email: currentAuthEmail,
         );
-
+        final tryUpdate = await _remoteDatabase.batchCommit();
         final tryUpdateFailure = tryUpdate.getLeft().toNullable();
         if (tryUpdateFailure != null) {
           emit(state.copyWith(updateEmailFailure: tryUpdateFailure));
           return;
         }
+        _consumerRepository.sinkCurrentConsumer(consumer: updatedConsumerValue);
         emit(state.copyWith(successUpdatedConsumerEmail: currentAuthEmail));
       },
     );

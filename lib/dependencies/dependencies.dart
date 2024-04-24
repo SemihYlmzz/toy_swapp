@@ -1,3 +1,4 @@
+export 'api_dependencies.dart';
 export 'config_dependencies.dart';
 export 'instance_dependencies.dart';
 export 'logger_dependencies.dart';

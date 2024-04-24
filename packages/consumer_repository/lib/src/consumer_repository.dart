@@ -1,27 +1,28 @@
 import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:consumer_repository/consumer_repository.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_storage/cloud_storage.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:remote_database/remote_database.dart';
 import 'package:toy_swapp/errors/errors.dart';
 
+import '../consumer_repository.dart';
 import 'constants/constants.dart';
 
 class ConsumerRepository {
   ConsumerRepository({
-    required FirebaseFirestore firebaseFirestore,
-    required FirebaseStorage firebaseStorage,
-  })  : _firebaseFirestore = firebaseFirestore,
-        _firebaseStorage = firebaseStorage {
+    required RemoteDatabase remoteDatabase,
+    required CloudStorage cloudStorage,
+  })  : _remoteDatabase = remoteDatabase,
+        _cloudStorage = cloudStorage {
     currentConsumerStream.listen((event) {
       currentConsumer = event;
     });
   }
-  // INSTANCES
-  final FirebaseFirestore _firebaseFirestore;
-  final FirebaseStorage _firebaseStorage;
+
+  // Apis
+  final RemoteDatabase _remoteDatabase;
+  final CloudStorage _cloudStorage;
 
   // VARIABLES
   final _currentConsumerStreamController =
@@ -43,28 +44,30 @@ class ConsumerRepository {
     required Uint8List avatarImage1024,
     String? email,
   }) async {
+    // TODO
     // CONTROL ALL INPUT VALUES
-
+    final avatarImagePath =
+        '${ConsumerRepositoryStrings.consumerCollectionPath}'
+        '/$authId'
+        '/avatarImages';
     try {
-      final avatar128Url = await _uploadAvatarImageToStorage(
-        avatarImage128,
-        authId,
-        'size128',
-      );
-      final avatar256Url = await _uploadAvatarImageToStorage(
-        avatarImage256,
-        authId,
-        'size256',
-      );
-      final avatar512Url = await _uploadAvatarImageToStorage(
-        avatarImage512,
-        authId,
-        'size512',
-      );
-      final avatar1024Url = await _uploadAvatarImageToStorage(
-        avatarImage1024,
-        authId,
-        'size1024',
+      final avatarUrls = AvatarUrls(
+        url128: await _cloudStorage.uploadImageGetUrl(
+          path: '$avatarImagePath/avatarImage128',
+          image: avatarImage128,
+        ),
+        url256: await _cloudStorage.uploadImageGetUrl(
+          path: '$avatarImagePath/avatarImage256',
+          image: avatarImage256,
+        ),
+        url512: await _cloudStorage.uploadImageGetUrl(
+          path: '$avatarImagePath/avatarImage512',
+          image: avatarImage512,
+        ),
+        url1024: await _cloudStorage.uploadImageGetUrl(
+          path: '$avatarImagePath/avatarImage1024',
+          image: avatarImage1024,
+        ),
       );
 
       final creatableConsumer = Consumer(
@@ -76,12 +79,7 @@ class ConsumerRepository {
           latitude: latitude,
           longitude: longitude,
         ),
-        avatarUrls: AvatarUrls(
-          url128: avatar128Url,
-          url256: avatar256Url,
-          url512: avatar512Url,
-          url1024: avatar1024Url,
-        ),
+        avatarUrls: avatarUrls,
         counters: const Counters(
           ownedToy: 0,
           switchChance: 0,
@@ -90,13 +88,12 @@ class ConsumerRepository {
         isDeletingAccount: false,
         state: ConsumerState.hasData,
       );
+      _remoteDatabase.batchSetDoc(
+        collectionID: ConsumerRepositoryStrings.consumerCollectionPath,
+        documentID: authId,
+        jsonData: creatableConsumer.toJson(),
+      );
 
-      await _firebaseFirestore
-          .collection(ConsumerRepositoryStrings.consumerCollectionPath)
-          .doc(authId)
-          .set(creatableConsumer.toJson());
-
-      _currentConsumerStreamController.sink.add(creatableConsumer);
       return const Right(unit);
     } catch (exception) {
       // if (exception is FirebaseException) {
@@ -112,23 +109,20 @@ class ConsumerRepository {
     // CONTROL ALL INPUT VALUES
 
     try {
-      final consumerDoc = await _firebaseFirestore
-          .collection(ConsumerRepositoryStrings.consumerCollectionPath)
-          .doc(authId)
-          .get();
-      if (!consumerDoc.exists || consumerDoc.data() == null) {
-        _currentConsumerStreamController.sink.add(
-          Consumer.needRegister(),
-        );
+      final consumerDoc = await _remoteDatabase.readDoc(
+        collectionID: ConsumerRepositoryStrings.consumerCollectionPath,
+        documentID: authId,
+      );
+
+      if (consumerDoc == null) {
+        _currentConsumerStreamController.sink.add(Consumer.needRegister());
         return const Right(unit);
       }
-      final currentConsumer = Consumer.fromJson(consumerDoc.data()!);
+
+      final currentConsumer = Consumer.fromJson(consumerDoc);
       _currentConsumerStreamController.sink.add(currentConsumer);
       return const Right(unit);
     } catch (exception) {
-      // if (exception is FirebaseException) {
-      //   throw _firebaseExceptionToUserException(exception);
-      // }
       return const Left(ConsumerRepositoryException.unknown());
     }
   }
@@ -147,42 +141,42 @@ class ConsumerRepository {
     if (currentConsumer == Consumer.empty()) {
       return const Left(ConsumerRepositoryException.nonEmptyConsumerRequired());
     }
+    final avatarImagePath =
+        '${ConsumerRepositoryStrings.consumerCollectionPath}'
+        '/${currentConsumer.authId}'
+        '/avatarImages';
     try {
-      final avatar128Url = await _uploadAvatarImageToStorage(
-        avatarImagesValue.avatarImage128,
-        currentConsumer.authId,
-        'size128',
-      );
-      final avatar256Url = await _uploadAvatarImageToStorage(
-        avatarImagesValue.avatarImage256,
-        currentConsumer.authId,
-        'size256',
-      );
-      final avatar512Url = await _uploadAvatarImageToStorage(
-        avatarImagesValue.avatarImage512,
-        currentConsumer.authId,
-        'size512',
-      );
-      final avatar1024Url = await _uploadAvatarImageToStorage(
-        avatarImagesValue.avatarImage1024,
-        currentConsumer.authId,
-        'size1024',
+      final avatarUrls = AvatarUrls(
+        url128: await _cloudStorage.uploadImageGetUrl(
+          path: '$avatarImagePath/avatarImage128',
+          image: avatarImagesValue.avatarImage128,
+        ),
+        url256: await _cloudStorage.uploadImageGetUrl(
+          path: '$avatarImagePath/avatarImage256',
+          image: avatarImagesValue.avatarImage256,
+        ),
+        url512: await _cloudStorage.uploadImageGetUrl(
+          path: '$avatarImagePath/avatarImage512',
+          image: avatarImagesValue.avatarImage512,
+        ),
+        url1024: await _cloudStorage.uploadImageGetUrl(
+          path: '$avatarImagePath/avatarImage1024',
+          image: avatarImagesValue.avatarImage1024,
+        ),
       );
 
       final updatedConsumer = currentConsumer.copyWith(
-        avatarUrls: AvatarUrls(
-          url128: avatar128Url,
-          url256: avatar256Url,
-          url512: avatar512Url,
-          url1024: avatar1024Url,
-        ),
+        avatarUrls: avatarUrls,
       );
-      await _firebaseFirestore
-          .collection(ConsumerRepositoryStrings.consumerCollectionPath)
-          .doc(currentConsumer.authId)
-          .update(updatedConsumer.toJson());
 
-      _currentConsumerStreamController.sink.add(updatedConsumer);
+      // Todo:
+      // Add json {'specific':field}
+      _remoteDatabase.batchUpdateDoc(
+        collectionID: ConsumerRepositoryStrings.consumerCollectionPath,
+        documentID: currentConsumer.authId,
+        jsonData: updatedConsumer.toJson(),
+      );
+
       return const Right(unit);
     } catch (exception) {
       // if (exception is FirebaseException) {
@@ -192,15 +186,15 @@ class ConsumerRepository {
     }
   }
 
-  FutureUnit updateFullName({
+  Consumer? updateFullName({
     required FirstName firstNameObject,
     required LastName lastNameObject,
-  }) async {
+  }) {
     if (currentConsumer == Consumer.empty()) {
-      return const Left(ConsumerRepositoryException.nonEmptyConsumerRequired());
+      return null;
     }
     if (firstNameObject.isNotValid && lastNameObject.isNotValid) {
-      return const Left(ConsumerRepositoryException.invalidInput());
+      return null;
     }
     final newFirstName = firstNameObject.isValid
         ? firstNameObject.value.newFirstName
@@ -209,86 +203,52 @@ class ConsumerRepository {
     final newLastName = lastNameObject.isValid
         ? lastNameObject.value.newLastName
         : currentConsumer.lastName;
-    try {
-      final updatedConsumer = currentConsumer.copyWith(
-        firstName: newFirstName,
-        lastName: newLastName,
-      );
-      await _firebaseFirestore
-          .collection(ConsumerRepositoryStrings.consumerCollectionPath)
-          .doc(currentConsumer.authId)
-          .update(updatedConsumer.toJson());
-
-      _currentConsumerStreamController.sink.add(updatedConsumer);
-      return const Right(unit);
-    } catch (exception) {
-      // if (exception is FirebaseException) {
-      //   throw _firebaseExceptionToUserException(exception);
-      // }
-      return const Left(ConsumerRepositoryException.unknown());
-    }
+    final updatedConsumer = currentConsumer.copyWith(
+      firstName: newFirstName,
+      lastName: newLastName,
+    );
+    _remoteDatabase.batchUpdateDoc(
+      collectionID: ConsumerRepositoryStrings.consumerCollectionPath,
+      documentID: currentConsumer.authId,
+      jsonData: updatedConsumer.toJson(),
+    );
+    return updatedConsumer;
   }
 
-  FutureUnit updateEmail({
+  Consumer updateEmail({
     required String email,
-  }) async {
-    try {
-      final updatedConsumer = currentConsumer.copyWith(
-        email: email,
-      );
-      await _firebaseFirestore
-          .collection(ConsumerRepositoryStrings.consumerCollectionPath)
-          .doc(currentConsumer.authId)
-          .update(updatedConsumer.toJson());
-
-      _currentConsumerStreamController.sink.add(updatedConsumer);
-      return const Right(unit);
-    } catch (exception) {
-      // if (exception is FirebaseException) {
-      //   throw _firebaseExceptionToUserException(exception);
-      // }
-      return const Left(ConsumerRepositoryException.unknown());
-    }
+  }) {
+    final updatedConsumer = currentConsumer.copyWith(email: email);
+    _remoteDatabase.batchUpdateDoc(
+      collectionID: ConsumerRepositoryStrings.consumerCollectionPath,
+      documentID: currentConsumer.authId,
+      jsonData: updatedConsumer.toJson(),
+    );
+    return updatedConsumer;
   }
 
   FutureEither<Consumer> readConsumer({
     required String authId,
   }) async {
     try {
-      final consumerDoc = await _firebaseFirestore
-          .collection(ConsumerRepositoryStrings.consumerCollectionPath)
-          .doc(authId)
-          .get();
-      if (!consumerDoc.exists || consumerDoc.data() == null) {
+      final consumerDoc = await _remoteDatabase.readDoc(
+        collectionID: ConsumerRepositoryStrings.consumerCollectionPath,
+        documentID: authId,
+      );
+
+      if (consumerDoc == null) {
         return const Left(ConsumerRepositoryException.unknown());
       }
-      final consumer = Consumer.fromJson(consumerDoc.data()!);
+      final consumer = Consumer.fromJson(consumerDoc);
       return Right(consumer);
     } catch (exception) {
-      // if (exception is FirebaseException) {
-      //   throw _firebaseExceptionToUserException(exception);
-      // }
       return const Left(ConsumerRepositoryException.unknown());
     }
   }
 
-  // Special Functions
-  Future<String> _uploadAvatarImageToStorage(
-    Uint8List image,
-    String consumerAuthId,
-    String imageKey,
-  ) async {
-    try {
-      final storageRef = _firebaseStorage.ref().child(
-            '${ConsumerRepositoryStrings.consumerCollectionPath}'
-            '/$consumerAuthId'
-            '/avatarImages'
-            '/$imageKey',
-          );
-      final task = await storageRef.putData(image);
-      return await task.ref.getDownloadURL();
-    } catch (exception) {
-      rethrow;
-    }
+  void sinkCurrentConsumer({
+    required Consumer consumer,
+  }) {
+    _currentConsumerStreamController.sink.add(consumer);
   }
 }

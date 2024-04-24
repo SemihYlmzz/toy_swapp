@@ -4,6 +4,7 @@ import 'package:auth_repository/auth_repository.dart';
 import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:remote_database/remote_database.dart';
 import '../../errors/errors.dart';
 
 part 'account_settings_bloc.freezed.dart';
@@ -13,9 +14,11 @@ part 'account_settings_state.dart';
 class AccountSettingsBloc
     extends Bloc<AccountSettingsEvent, AccountSettingsState> {
   AccountSettingsBloc({
+    required RemoteDatabase remoteDatabase,
     required ConsumerRepository consumerRepository,
     required AuthRepository authRepository,
-  })  : _consumerRepository = consumerRepository,
+  })  : _remoteDatabase = remoteDatabase,
+        _consumerRepository = consumerRepository,
         _authRepository = authRepository,
         super(
           AccountSettingsState(
@@ -28,6 +31,9 @@ class AccountSettingsBloc
       (consumer) => add(AccountSettingsEvent.currentConsumerUpdated(consumer)),
     );
   }
+  // Apis
+  final RemoteDatabase _remoteDatabase;
+
   // Repositories
   final ConsumerRepository _consumerRepository;
   final AuthRepository _authRepository;
@@ -73,14 +79,23 @@ class AccountSettingsBloc
           emit(state.copyWith(failure: tryReauthFailure));
           return;
         }
-        final tryUpdate = await _consumerRepository.updateFullName(
+        final updatedCosumer = _consumerRepository.updateFullName(
           firstNameObject: e.firstNameObject,
           lastNameObject: e.lastNameObject,
         );
-        tryUpdate.fold(
-          (failure) => emit(state.copyWith(failure: failure)),
-          (consumer) => emit(state.copyWith(isValueUpdated: true)),
-        );
+        if (updatedCosumer == null) {
+          // Todo
+          // set failure
+          return;
+        }
+        final tryUpdate = await _remoteDatabase.batchCommit();
+        final tryUpdateFailure = tryUpdate.getLeft().toNullable();
+        if (tryUpdateFailure != null) {
+          emit(state.copyWith(failure: tryUpdateFailure));
+          return;
+        }
+        _consumerRepository.sinkCurrentConsumer(consumer: updatedCosumer);
+        emit(state.copyWith(isValueUpdated: true));
       },
       updateEmail: (e) async {
         final tryReauthFailure = await _tryReauth(e.currentPassword);

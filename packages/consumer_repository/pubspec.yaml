@@ -14,6 +14,12 @@ dependencies:
   toy_swapp:
     path: ../../
 
+  # Apis
+  remote_database:
+    path: ../remote_database
+  cloud_storage:
+    path: ../cloud_storage
+
   # Annotations
   json_annotation: ^4.8.1
   freezed_annotation: ^2.4.1
@@ -23,11 +29,6 @@ dependencies:
 
   # Validation
   formz: ^0.7.0
-  
-  # Firebase
-  firebase_core: ^2.29.0
-  cloud_firestore: ^4.16.1
-  firebase_storage: ^11.7.1
 
 dev_dependencies:
   very_good_analysis: ^5.1.0

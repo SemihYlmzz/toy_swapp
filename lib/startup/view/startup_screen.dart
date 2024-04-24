@@ -7,18 +7,21 @@ import '../startup.dart';
 
 class StartupScreen extends StatelessWidget {
   const StartupScreen({
+    required ApiDependencies apiDependencies,
     required ConfigDependencies configDependencies,
     required LoggerDependencies loggerDependencies,
     required InstanceDependencies instanceDependencies,
     required RepositoryDependencies repositoryDependencies,
     required ServiceDependencies serviceDependencies,
     super.key,
-  })  : _configDependencies = configDependencies,
+  })  : _apiDependencies = apiDependencies,
+        _configDependencies = configDependencies,
         _loggerDependencies = loggerDependencies,
         _instanceDependencies = instanceDependencies,
         _repositoryDependencies = repositoryDependencies,
         _serviceDependencies = serviceDependencies;
 
+  final ApiDependencies _apiDependencies;
   final ConfigDependencies _configDependencies;
   final LoggerDependencies _loggerDependencies;
   final InstanceDependencies _instanceDependencies;
@@ -31,6 +34,7 @@ class StartupScreen extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => StartupBloc(
+        apiDependencies: _apiDependencies,
         configDependencies: _configDependencies,
         loggerDependencies: _loggerDependencies,
         instanceDependencies: _instanceDependencies,

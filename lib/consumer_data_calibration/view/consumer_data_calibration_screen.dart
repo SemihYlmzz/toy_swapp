@@ -14,6 +14,7 @@ class ConsumerDataCalibrationScreen extends StatelessWidget {
       create: (context) => ConsumerDataCalibrationBloc(
         authRepository: context.read(),
         consumerRepository: context.read(),
+        remoteDatabase: context.read(),
       )..add(const ConsumerDataCalibrationEvent.updateConsumerEmail()),
       child: MultiBlocListener(
         listeners: [

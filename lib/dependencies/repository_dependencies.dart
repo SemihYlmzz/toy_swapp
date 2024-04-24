@@ -13,23 +13,29 @@ class RepositoryDependencies {
     required FirebaseOptions firebaseOptions,
   }) : _firebaseOptions = firebaseOptions;
   final FirebaseOptions _firebaseOptions;
-  Future<Repositories> init() async {
+  Future<Repositories> init({
+    required Apis apis,
+  }) async {
     final authRepository = await AuthRepositoryInitializer.initialize(
       firebaseOptions: _firebaseOptions,
     );
     final appPreferencesRepository =
         await AppPreferencesRepositoryInitializer.initialize();
+
     final appMetadataRepository =
         await AppMetadataRepositoryInitializer.initialize(
       firebaseOptions: _firebaseOptions,
     );
-    final consumerRepository = await ConsumerRepositoryInitializer.initialize(
-      firebaseOptions: _firebaseOptions,
-    );
+
     final deviceMetadataRepository = DeviceMetadataRepository();
 
-    final toyRepository = await ToyRepositoryInitializer.initialize(
-      firebaseOptions: _firebaseOptions,
+    final consumerRepository = ConsumerRepository(
+      cloudStorage: apis.cloudStorage,
+      remoteDatabase: apis.remoteDatabase,
+    );
+    final toyRepository = ToyRepository(
+      cloudStorage: apis.cloudStorage,
+      remoteDatabase: apis.remoteDatabase,
     );
 
     return Repositories(

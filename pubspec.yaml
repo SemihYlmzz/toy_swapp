@@ -43,7 +43,18 @@ dependencies:
   location_service:
     path: packages/location_service
 
-  # Animation
+  # Apis
+  remote_database:
+    path: packages/remote_database
+  remote_database_cloud_firestore:
+    path: packages/remote_database_cloud_firestore
+  cloud_storage:
+    path: packages/cloud_storage
+  cloud_storage_firebase_storage:
+    path: packages/cloud_storage_firebase_storage
+
+  
+  # Animations
   flutter_animate: ^4.5.0
   animations: ^2.0.11
   
