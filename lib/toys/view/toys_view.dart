@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_constants/shared_constants.dart';
 
 import '../toys.dart';
 
@@ -23,23 +22,19 @@ class _ToysViewState extends State<ToysView> {
   @override
   Widget build(BuildContext context) {
     final toysAndOwners = context.select((ToysBloc bloc) => bloc.state.toys);
-
     return RefreshIndicator(
       onRefresh: () async {
-        // context.read<ToysBloc>().add(const ToysEvent.fetchNewest10Toys());
+        context.read<ToysBloc>().add(const ToysEvent.fetchLatest10());
       },
       child: ListView.builder(
+        // cacheExtent: MediaQuery.sizeOf(context).height * 2,
         controller: _scrollController,
         itemCount: toysAndOwners.length,
         itemBuilder: (context, index) {
           return Center(
-            child: Padding(
-              padding: SharedPaddings.bottom32,
-              child: ToyCard(
-                index: index,
-                key: ValueKey(toysAndOwners.reversed.toList()[index].toy.id),
-                toyAndOwnerConsumer: toysAndOwners.reversed.toList()[index],
-              ),
+            child: ToyCard(
+              index: index,
+              toyAndOwnerConsumer: toysAndOwners.reversed.toList()[index],
             ),
           );
         },

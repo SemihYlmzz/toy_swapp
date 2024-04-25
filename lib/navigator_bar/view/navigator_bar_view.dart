@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 import 'package:toy_swapp/navigator_bar/navigator_bar.dart';
 
+import '../../app/app.dart';
 import '../../create_toy/create_toy.dart';
 
 class NavigatorBarView extends StatelessWidget {
@@ -18,6 +20,9 @@ class NavigatorBarView extends StatelessWidget {
     final subRoute = context.select(
       (NavigatorBarCubit bloc) => bloc.state.selectedSubRoute,
     );
+    final isVibratable = context.select(
+      (AppBloc bloc) => bloc.state.appPreferences.isVibratable,
+    );
     return BaseScaffold(
       safeArea: true,
       appBar: subRoute?.appBar,
@@ -25,11 +30,13 @@ class NavigatorBarView extends StatelessWidget {
       drawer: subRoute?.drawer,
       endDrawer: subRoute?.endDrawer,
       bottomNavigationBar: BottomNavigationBar(
+        enableFeedback: true,
         currentIndex: navigationShell.currentIndex < 2
             ? navigationShell.currentIndex
             : navigationShell.currentIndex + 1,
-        enableFeedback: true,
         onTap: (index) {
+          if (isVibratable) HapticFeedback.mediumImpact();
+
           if (index < 2) {
             navigationShell.goBranch(index);
           }

@@ -12,12 +12,12 @@ class LoggerDependencies {
     if (kReleaseMode) {
       Logger.root.level = Level.WARNING;
     }
-    // Print Logger Activities
-    Logger.root.onRecord.listen((record) {
-      debugPrint('LOGGER ${record.level.name}: ${record.time}: '
-          '${record.loggerName}: '
-          '${record.message}');
-    });
+    // // Print Logger Activities
+    // Logger.root.onRecord.listen((record) {
+    //   debugPrint('LOGGER ${record.level.name}: ${record.time}: '
+    //       '${record.loggerName}: '
+    //       '${record.message}');
+    // });
 
     // Initialize Bloc Observer
     Bloc.observer = AppBlocObserver();

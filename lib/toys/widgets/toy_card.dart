@@ -7,7 +7,7 @@ import '../../app/app.dart';
 import '../../toy_detail/toy_detail.dart';
 import '../toys.dart';
 
-class ToyCard extends StatefulWidget {
+class ToyCard extends StatelessWidget {
   const ToyCard({
     required this.index,
     required this.toyAndOwnerConsumer,
@@ -18,41 +18,21 @@ class ToyCard extends StatefulWidget {
   final ToyAndOwnerConsumer toyAndOwnerConsumer;
 
   @override
-  State<ToyCard> createState() => _ToyCardState();
-}
-
-class _ToyCardState extends State<ToyCard> with AutomaticKeepAliveClientMixin {
-  @override
-  bool get wantKeepAlive => true;
-  late final PageController _pageController;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController();
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
     final contextTheme = Theme.of(context);
-    final toy = widget.toyAndOwnerConsumer.toy;
-    final ownerConsumer = widget.toyAndOwnerConsumer.ownerConsumer;
+    final toy = toyAndOwnerConsumer.toy;
+    final ownerConsumer = toyAndOwnerConsumer.ownerConsumer;
     final toyGradient = switch (toy.details.gender) {
       ToyGender.boy => AppColors.boyToyGradient,
       ToyGender.girl => AppColors.girlToyGradient,
       ToyGender.unisex => AppColors.unisexToyGradient,
     };
+    final imageIndex = ValueNotifier(0);
 
     return Container(
       width: 320,
       height: 500,
+      margin: SharedPaddings.bottom32,
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.white24,
@@ -85,6 +65,7 @@ class _ToyCardState extends State<ToyCard> with AutomaticKeepAliveClientMixin {
                             image: NetworkImage(
                               ownerConsumer.avatarUrls.url128,
                             ),
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -129,52 +110,54 @@ class _ToyCardState extends State<ToyCard> with AutomaticKeepAliveClientMixin {
               child: Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
-                  PageView.builder(
+                  PageView(
+                    allowImplicitScrolling: true,
                     key: ValueKey(toy.id),
-                    controller: _pageController,
-                    itemCount: toy.imageUrlList.length,
-                    itemBuilder: (context, index) {
-                      final imageNumber = index;
-                      return GestureDetector(
-                        onTap: () {
-                          ToyDetailRouter.instance.push(
-                            context,
-                            ToyDetailScreenRequirements(
-                              imageSize: 1,
-                              imageNumber: imageNumber,
-                              toyOwnerAuthId: '7vqVPe3zKdQqf4QsF7WFTQzNQ692',
+                    onPageChanged: (index) {
+                      imageIndex.value = index;
+                    },
+                    children: [
+                      for (int index = 0;
+                          index < toy.imageUrlList.length;
+                          index++)
+                        GestureDetector(
+                          onTap: () {
+                            ToyDetailRouter.instance.push(
+                              context,
+                              const ToyDetailScreenRequirements(
+                                imageSize: 1,
+                                imageNumber: 1,
+                                toyOwnerAuthId: '7vqVPe3zKdQqf4QsF7WFTQzNQ692',
+                              ),
+                            );
+                          },
+                          child: Hero(
+                            tag: toy.imageUrlList.elementAt(index).url128,
+                            child: Image.network(
+                              toy.imageUrlList.elementAt(index).url128,
+                              fit: BoxFit.cover,
                             ),
-                          );
-                        },
-                        child: Hero(
-                          tag: toy.imageUrlList.elementAt(index).url128,
-                          child: Image.network(
-                            toy.imageUrlList.elementAt(index).url128,
-                            fit: BoxFit.cover,
                           ),
                         ),
-                      );
-                    },
+                    ],
                   ),
                   Container(
                     width: double.infinity,
                     height: 25,
                     color: Colors.black45,
                     child: Center(
-                      child: SmoothPageIndicator(
-                        controller: _pageController,
-                        onDotClicked: (index) {
-                          _pageController.animateToPage(
-                            index,
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.easeInOut,
+                      child: ValueListenableBuilder(
+                        valueListenable: imageIndex,
+                        builder: (context, index, _) {
+                          return AnimatedSmoothIndicator(
+                            activeIndex: index,
+                            count: toy.imageUrlList.length,
+                            effect: ScrollingDotsEffect(
+                              dotColor: Colors.white38,
+                              activeDotColor: contextTheme.primaryColor,
+                            ),
                           );
                         },
-                        count: toy.imageUrlList.length,
-                        effect: ScrollingDotsEffect(
-                          dotColor: Colors.white38,
-                          activeDotColor: contextTheme.primaryColor,
-                        ),
                       ),
                     ),
                   ),

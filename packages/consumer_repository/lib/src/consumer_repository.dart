@@ -25,11 +25,15 @@ class ConsumerRepository {
   final CloudStorage _cloudStorage;
 
   // VARIABLES
+  // Current Consumer
   final _currentConsumerStreamController =
       StreamController<Consumer>.broadcast();
   Stream<Consumer> get currentConsumerStream =>
       _currentConsumerStreamController.stream;
   Consumer currentConsumer = Consumer.empty();
+  // Cached Consumers
+  final _cachedConsumers =
+      <String, ({DateTime endDate, Consumer cachedConsumer})>{};
 
   // FUNCTIONS
   FutureUnit createCurrentConsumer({
@@ -230,6 +234,25 @@ class ConsumerRepository {
   FutureEither<Consumer> readConsumer({
     required String authId,
   }) async {
+    // Clear Cache
+    for (final key in _cachedConsumers.keys) {
+      if (_cachedConsumers[key]!.endDate.isBefore(DateTime.now())) {
+        _cachedConsumers.remove(key);
+      }
+    }
+    // Get from Cache
+    final thisConsumerCache = _cachedConsumers[authId];
+
+    // If Cache is not empty and not expired
+    // Return from Cache
+    if (_cachedConsumers.containsKey(authId) &&
+        thisConsumerCache != null &&
+        thisConsumerCache.endDate.isAfter(DateTime.now())) {
+      return Right(_cachedConsumers[authId]!.cachedConsumer);
+    }
+
+    // If Cache is empty or expired
+    // Get from Remote Database
     try {
       final consumerDoc = await _remoteDatabase.readDoc(
         collectionID: ConsumerRepositoryStrings.consumerCollectionPath,
@@ -240,6 +263,13 @@ class ConsumerRepository {
         return const Left(ConsumerRepositoryException.unknown());
       }
       final consumer = Consumer.fromJson(consumerDoc);
+      // Add to cache
+      _cachedConsumers.addAll({
+        authId: (
+          cachedConsumer: consumer,
+          endDate: DateTime.now().add(const Duration(minutes: 10)),
+        ),
+      });
       return Right(consumer);
     } catch (exception) {
       return const Left(ConsumerRepositoryException.unknown());

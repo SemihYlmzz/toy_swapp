@@ -13,7 +13,7 @@ part 'toys_bloc.freezed.dart';
 part 'toys_event.dart';
 part 'toys_state.dart';
 
-const throttleDuration = Duration(seconds: 1);
+const duration = Duration(milliseconds: 300);
 
 EventTransformer<E> throttleDroppable<E>(Duration duration) {
   return (events, mapper) {
@@ -28,14 +28,14 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
   })  : _toyRepository = toyRepository,
         _consumerRepository = consumerRepository,
         super(const ToysState()) {
-    on<ToysEvent>(
-      _onToysEvent,
-      transformer: throttleDroppable(throttleDuration),
-    );
+    // Trigger Events 
+    on<ToysEvent>(_onToysEvent, transformer: throttleDroppable(duration));
   }
+
   // Repositories
   final ToyRepository _toyRepository;
   final ConsumerRepository _consumerRepository;
+
   // Events
   Future<void> _onToysEvent(
     ToysEvent event,
@@ -46,7 +46,6 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
     // Use Shimmer instead
     // Loading -> Initializing
     emit(state.copyWith(isLoading: true));
-
     await event.map(
       fetchLatest10: (value) async {
         final tryFetch = await _toyRepository.fetchLatest10();
@@ -128,7 +127,6 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
 
         emit(state.copyWith(toys: fetchedToys));
       },
-      fetch10AfterNewestToy: (e) async {},
     );
     emit(state.copyWith(isLoading: false, failure: null));
   }

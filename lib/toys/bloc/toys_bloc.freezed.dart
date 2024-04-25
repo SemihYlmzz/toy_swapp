@@ -19,21 +19,18 @@ mixin _$ToysEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchLatest10,
-    required TResult Function() fetch10AfterNewestToy,
     required TResult Function() fetch10BeforeOldestToy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchLatest10,
-    TResult? Function()? fetch10AfterNewestToy,
     TResult? Function()? fetch10BeforeOldestToy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchLatest10,
-    TResult Function()? fetch10AfterNewestToy,
     TResult Function()? fetch10BeforeOldestToy,
     required TResult orElse(),
   }) =>
@@ -41,8 +38,6 @@ mixin _$ToysEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ToysFetchLatest10 value) fetchLatest10,
-    required TResult Function(ToysFetch10AfterNewestToy value)
-        fetch10AfterNewestToy,
     required TResult Function(ToysFetch10BeforeOldestToy value)
         fetch10BeforeOldestToy,
   }) =>
@@ -50,14 +45,12 @@ mixin _$ToysEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult? Function(ToysFetch10AfterNewestToy value)? fetch10AfterNewestToy,
     TResult? Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult Function(ToysFetch10AfterNewestToy value)? fetch10AfterNewestToy,
     TResult Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
     required TResult orElse(),
   }) =>
@@ -120,7 +113,6 @@ class _$ToysFetchLatest10Impl implements ToysFetchLatest10 {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchLatest10,
-    required TResult Function() fetch10AfterNewestToy,
     required TResult Function() fetch10BeforeOldestToy,
   }) {
     return fetchLatest10();
@@ -130,7 +122,6 @@ class _$ToysFetchLatest10Impl implements ToysFetchLatest10 {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchLatest10,
-    TResult? Function()? fetch10AfterNewestToy,
     TResult? Function()? fetch10BeforeOldestToy,
   }) {
     return fetchLatest10?.call();
@@ -140,7 +131,6 @@ class _$ToysFetchLatest10Impl implements ToysFetchLatest10 {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchLatest10,
-    TResult Function()? fetch10AfterNewestToy,
     TResult Function()? fetch10BeforeOldestToy,
     required TResult orElse(),
   }) {
@@ -154,8 +144,6 @@ class _$ToysFetchLatest10Impl implements ToysFetchLatest10 {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ToysFetchLatest10 value) fetchLatest10,
-    required TResult Function(ToysFetch10AfterNewestToy value)
-        fetch10AfterNewestToy,
     required TResult Function(ToysFetch10BeforeOldestToy value)
         fetch10BeforeOldestToy,
   }) {
@@ -166,7 +154,6 @@ class _$ToysFetchLatest10Impl implements ToysFetchLatest10 {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult? Function(ToysFetch10AfterNewestToy value)? fetch10AfterNewestToy,
     TResult? Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
   }) {
     return fetchLatest10?.call(this);
@@ -176,7 +163,6 @@ class _$ToysFetchLatest10Impl implements ToysFetchLatest10 {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult Function(ToysFetch10AfterNewestToy value)? fetch10AfterNewestToy,
     TResult Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
     required TResult orElse(),
   }) {
@@ -189,119 +175,6 @@ class _$ToysFetchLatest10Impl implements ToysFetchLatest10 {
 
 abstract class ToysFetchLatest10 implements ToysEvent {
   const factory ToysFetchLatest10() = _$ToysFetchLatest10Impl;
-}
-
-/// @nodoc
-abstract class _$$ToysFetch10AfterNewestToyImplCopyWith<$Res> {
-  factory _$$ToysFetch10AfterNewestToyImplCopyWith(
-          _$ToysFetch10AfterNewestToyImpl value,
-          $Res Function(_$ToysFetch10AfterNewestToyImpl) then) =
-      __$$ToysFetch10AfterNewestToyImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ToysFetch10AfterNewestToyImplCopyWithImpl<$Res>
-    extends _$ToysEventCopyWithImpl<$Res, _$ToysFetch10AfterNewestToyImpl>
-    implements _$$ToysFetch10AfterNewestToyImplCopyWith<$Res> {
-  __$$ToysFetch10AfterNewestToyImplCopyWithImpl(
-      _$ToysFetch10AfterNewestToyImpl _value,
-      $Res Function(_$ToysFetch10AfterNewestToyImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ToysFetch10AfterNewestToyImpl implements ToysFetch10AfterNewestToy {
-  const _$ToysFetch10AfterNewestToyImpl();
-
-  @override
-  String toString() {
-    return 'ToysEvent.fetch10AfterNewestToy()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ToysFetch10AfterNewestToyImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() fetchLatest10,
-    required TResult Function() fetch10AfterNewestToy,
-    required TResult Function() fetch10BeforeOldestToy,
-  }) {
-    return fetch10AfterNewestToy();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchLatest10,
-    TResult? Function()? fetch10AfterNewestToy,
-    TResult? Function()? fetch10BeforeOldestToy,
-  }) {
-    return fetch10AfterNewestToy?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchLatest10,
-    TResult Function()? fetch10AfterNewestToy,
-    TResult Function()? fetch10BeforeOldestToy,
-    required TResult orElse(),
-  }) {
-    if (fetch10AfterNewestToy != null) {
-      return fetch10AfterNewestToy();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ToysFetchLatest10 value) fetchLatest10,
-    required TResult Function(ToysFetch10AfterNewestToy value)
-        fetch10AfterNewestToy,
-    required TResult Function(ToysFetch10BeforeOldestToy value)
-        fetch10BeforeOldestToy,
-  }) {
-    return fetch10AfterNewestToy(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult? Function(ToysFetch10AfterNewestToy value)? fetch10AfterNewestToy,
-    TResult? Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
-  }) {
-    return fetch10AfterNewestToy?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult Function(ToysFetch10AfterNewestToy value)? fetch10AfterNewestToy,
-    TResult Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
-    required TResult orElse(),
-  }) {
-    if (fetch10AfterNewestToy != null) {
-      return fetch10AfterNewestToy(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ToysFetch10AfterNewestToy implements ToysEvent {
-  const factory ToysFetch10AfterNewestToy() = _$ToysFetch10AfterNewestToyImpl;
 }
 
 /// @nodoc
@@ -346,7 +219,6 @@ class _$ToysFetch10BeforeOldestToyImpl implements ToysFetch10BeforeOldestToy {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchLatest10,
-    required TResult Function() fetch10AfterNewestToy,
     required TResult Function() fetch10BeforeOldestToy,
   }) {
     return fetch10BeforeOldestToy();
@@ -356,7 +228,6 @@ class _$ToysFetch10BeforeOldestToyImpl implements ToysFetch10BeforeOldestToy {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchLatest10,
-    TResult? Function()? fetch10AfterNewestToy,
     TResult? Function()? fetch10BeforeOldestToy,
   }) {
     return fetch10BeforeOldestToy?.call();
@@ -366,7 +237,6 @@ class _$ToysFetch10BeforeOldestToyImpl implements ToysFetch10BeforeOldestToy {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchLatest10,
-    TResult Function()? fetch10AfterNewestToy,
     TResult Function()? fetch10BeforeOldestToy,
     required TResult orElse(),
   }) {
@@ -380,8 +250,6 @@ class _$ToysFetch10BeforeOldestToyImpl implements ToysFetch10BeforeOldestToy {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ToysFetchLatest10 value) fetchLatest10,
-    required TResult Function(ToysFetch10AfterNewestToy value)
-        fetch10AfterNewestToy,
     required TResult Function(ToysFetch10BeforeOldestToy value)
         fetch10BeforeOldestToy,
   }) {
@@ -392,7 +260,6 @@ class _$ToysFetch10BeforeOldestToyImpl implements ToysFetch10BeforeOldestToy {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult? Function(ToysFetch10AfterNewestToy value)? fetch10AfterNewestToy,
     TResult? Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
   }) {
     return fetch10BeforeOldestToy?.call(this);
@@ -402,7 +269,6 @@ class _$ToysFetch10BeforeOldestToyImpl implements ToysFetch10BeforeOldestToy {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult Function(ToysFetch10AfterNewestToy value)? fetch10AfterNewestToy,
     TResult Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
     required TResult orElse(),
   }) {
