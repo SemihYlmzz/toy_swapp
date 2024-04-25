@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_constants/shared_constants.dart';
 
 import '../toys.dart';
 
@@ -22,23 +24,29 @@ class _ToysViewState extends State<ToysView> {
   @override
   Widget build(BuildContext context) {
     final toysAndOwners = context.select((ToysBloc bloc) => bloc.state.toys);
+    final isInitializing =
+        context.select((ToysBloc bloc) => bloc.state.isInitializing);
     return RefreshIndicator(
       onRefresh: () async {
         context.read<ToysBloc>().add(const ToysEvent.fetchLatest10());
       },
-      child: ListView.builder(
-        // cacheExtent: MediaQuery.sizeOf(context).height * 2,
-        controller: _scrollController,
-        itemCount: toysAndOwners.length,
-        itemBuilder: (context, index) {
-          return Center(
-            child: ToyCard(
-              index: index,
-              toyAndOwnerConsumer: toysAndOwners.reversed.toList()[index],
-            ),
-          );
-        },
-      ),
+      child: !isInitializing
+          ? ListView.builder(
+              controller: _scrollController,
+              itemCount: toysAndOwners.length,
+              itemBuilder: (context, index) {
+                return Center(
+                  child: Padding(
+                    padding: SharedPaddings.bottom32,
+                    child: ToyCard(
+                      toyAndOwnerConsumer:
+                          toysAndOwners.reversed.toList()[index],
+                    ),
+                  ),
+                );
+              },
+            )
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 
@@ -51,15 +59,24 @@ class _ToysViewState extends State<ToysView> {
   }
 
   void _onScroll() {
-    if (_isBottom) {
+    final isLoading = context.read<ToysBloc>().state.isLoading;
+    if (_isBottom && !isLoading) {
       context.read<ToysBloc>().add(const ToysEvent.fetch10BeforeOldestToy());
     }
   }
 
   bool get _isBottom {
+    if (_scrollController.position.userScrollDirection ==
+        ScrollDirection.forward) {
+      return false;
+    }
+    if (_scrollController.position.atEdge &&
+        _scrollController.position.pixels != 0) {
+      return false;
+    }
     if (!_scrollController.hasClients) return false;
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.offset;
-    return currentScroll >= (maxScroll * 0.65);
+    return currentScroll >= (maxScroll - MediaQuery.sizeOf(context).height);
   }
 }

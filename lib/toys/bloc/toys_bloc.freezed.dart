@@ -287,6 +287,7 @@ abstract class ToysFetch10BeforeOldestToy implements ToysEvent {
 mixin _$ToysState {
   List<ToyAndOwnerConsumer> get toys => throw _privateConstructorUsedError;
   bool get hasReachedMax => throw _privateConstructorUsedError;
+  bool get isInitializing => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
@@ -303,6 +304,7 @@ abstract class $ToysStateCopyWith<$Res> {
   $Res call(
       {List<ToyAndOwnerConsumer> toys,
       bool hasReachedMax,
+      bool isInitializing,
       bool isLoading,
       Failure? failure});
 }
@@ -322,6 +324,7 @@ class _$ToysStateCopyWithImpl<$Res, $Val extends ToysState>
   $Res call({
     Object? toys = null,
     Object? hasReachedMax = null,
+    Object? isInitializing = null,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
@@ -333,6 +336,10 @@ class _$ToysStateCopyWithImpl<$Res, $Val extends ToysState>
       hasReachedMax: null == hasReachedMax
           ? _value.hasReachedMax
           : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isInitializing: null == isInitializing
+          ? _value.isInitializing
+          : isInitializing // ignore: cast_nullable_to_non_nullable
               as bool,
       isLoading: null == isLoading
           ? _value.isLoading
@@ -357,6 +364,7 @@ abstract class _$$ToysStateImplCopyWith<$Res>
   $Res call(
       {List<ToyAndOwnerConsumer> toys,
       bool hasReachedMax,
+      bool isInitializing,
       bool isLoading,
       Failure? failure});
 }
@@ -374,6 +382,7 @@ class __$$ToysStateImplCopyWithImpl<$Res>
   $Res call({
     Object? toys = null,
     Object? hasReachedMax = null,
+    Object? isInitializing = null,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
@@ -385,6 +394,10 @@ class __$$ToysStateImplCopyWithImpl<$Res>
       hasReachedMax: null == hasReachedMax
           ? _value.hasReachedMax
           : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isInitializing: null == isInitializing
+          ? _value.isInitializing
+          : isInitializing // ignore: cast_nullable_to_non_nullable
               as bool,
       isLoading: null == isLoading
           ? _value.isLoading
@@ -404,6 +417,7 @@ class _$ToysStateImpl implements _ToysState {
   const _$ToysStateImpl(
       {final List<ToyAndOwnerConsumer> toys = const [],
       this.hasReachedMax = false,
+      this.isInitializing = true,
       this.isLoading = false,
       this.failure})
       : _toys = toys;
@@ -422,13 +436,16 @@ class _$ToysStateImpl implements _ToysState {
   final bool hasReachedMax;
   @override
   @JsonKey()
+  final bool isInitializing;
+  @override
+  @JsonKey()
   final bool isLoading;
   @override
   final Failure? failure;
 
   @override
   String toString() {
-    return 'ToysState(toys: $toys, hasReachedMax: $hasReachedMax, isLoading: $isLoading, failure: $failure)';
+    return 'ToysState(toys: $toys, hasReachedMax: $hasReachedMax, isInitializing: $isInitializing, isLoading: $isLoading, failure: $failure)';
   }
 
   @override
@@ -439,6 +456,8 @@ class _$ToysStateImpl implements _ToysState {
             const DeepCollectionEquality().equals(other._toys, _toys) &&
             (identical(other.hasReachedMax, hasReachedMax) ||
                 other.hasReachedMax == hasReachedMax) &&
+            (identical(other.isInitializing, isInitializing) ||
+                other.isInitializing == isInitializing) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.failure, failure) || other.failure == failure));
@@ -449,6 +468,7 @@ class _$ToysStateImpl implements _ToysState {
       runtimeType,
       const DeepCollectionEquality().hash(_toys),
       hasReachedMax,
+      isInitializing,
       isLoading,
       failure);
 
@@ -463,6 +483,7 @@ abstract class _ToysState implements ToysState {
   const factory _ToysState(
       {final List<ToyAndOwnerConsumer> toys,
       final bool hasReachedMax,
+      final bool isInitializing,
       final bool isLoading,
       final Failure? failure}) = _$ToysStateImpl;
 
@@ -470,6 +491,8 @@ abstract class _ToysState implements ToysState {
   List<ToyAndOwnerConsumer> get toys;
   @override
   bool get hasReachedMax;
+  @override
+  bool get isInitializing;
   @override
   bool get isLoading;
   @override

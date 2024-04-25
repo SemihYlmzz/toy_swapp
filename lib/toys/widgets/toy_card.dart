@@ -9,12 +9,10 @@ import '../toys.dart';
 
 class ToyCard extends StatelessWidget {
   const ToyCard({
-    required this.index,
     required this.toyAndOwnerConsumer,
     super.key,
   });
 
-  final int index;
   final ToyAndOwnerConsumer toyAndOwnerConsumer;
 
   @override
@@ -32,7 +30,6 @@ class ToyCard extends StatelessWidget {
     return Container(
       width: 320,
       height: 500,
-      margin: SharedPaddings.bottom32,
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.white24,

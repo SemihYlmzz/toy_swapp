@@ -28,7 +28,7 @@ class LoggerDependencies {
 class AppBlocObserver extends BlocObserver {
   @override
   void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {
-    log('onEvent(${bloc.runtimeType}, $event)');
+    debugPrint('onEvent(${bloc.runtimeType}, $event)');
     super.onEvent(bloc, event);
   }
 
@@ -36,19 +36,21 @@ class AppBlocObserver extends BlocObserver {
   @override
   void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
     super.onChange(bloc, change);
-    log('onChange(${bloc.runtimeType}, )');
+    debugPrint(
+      'onChange(${bloc.runtimeType}, ${change.currentState} -> ${change.nextState})',
+    );
   }
 
   // When a bloc error
   @override
   void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    log('onError(${bloc.runtimeType}, $error, $stackTrace)');
+    debugPrint('onError(${bloc.runtimeType}, $error, $stackTrace)');
     super.onError(bloc, error, stackTrace);
   }
 
   @override
   void onClose(BlocBase<dynamic> bloc) {
-    log('onClose(${bloc.runtimeType})');
+    debugPrint('onClose(${bloc.runtimeType})');
     super.onClose(bloc);
   }
 

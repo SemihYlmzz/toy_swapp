@@ -13,7 +13,7 @@ part 'toys_bloc.freezed.dart';
 part 'toys_event.dart';
 part 'toys_state.dart';
 
-const duration = Duration(milliseconds: 300);
+const duration = Duration(seconds: 2);
 
 EventTransformer<E> throttleDroppable<E>(Duration duration) {
   return (events, mapper) {
@@ -28,8 +28,11 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
   })  : _toyRepository = toyRepository,
         _consumerRepository = consumerRepository,
         super(const ToysState()) {
-    // Trigger Events 
-    on<ToysEvent>(_onToysEvent, transformer: throttleDroppable(duration));
+    // Trigger Events
+    on<ToysEvent>(
+      _onToysEvent,
+      transformer: throttleDroppable(duration),
+    );
   }
 
   // Repositories
@@ -48,6 +51,7 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
     emit(state.copyWith(isLoading: true));
     await event.map(
       fetchLatest10: (value) async {
+        emit(state.copyWith(isInitializing: true));
         final tryFetch = await _toyRepository.fetchLatest10();
         final nullableLatest10Toys = tryFetch.getRight().toNullable();
         if (nullableLatest10Toys == null) {
@@ -77,7 +81,13 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
             },
           );
         }
-        emit(state.copyWith(toys: fetchedToys));
+        emit(
+          state.copyWith(
+            toys: fetchedToys,
+            hasReachedMax: false,
+            isInitializing: false,
+          ),
+        );
       },
       fetch10BeforeOldestToy: (value) async {
         if (state.hasReachedMax) return;
