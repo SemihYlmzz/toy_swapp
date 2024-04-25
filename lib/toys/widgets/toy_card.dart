@@ -1,19 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:toy_repository/toy_repository.dart';
 
+import '../../app/app.dart';
 import '../../toy_detail/toy_detail.dart';
+import '../toys.dart';
 
-class ToyCard extends StatelessWidget {
+class ToyCard extends StatefulWidget {
   const ToyCard({
-    required this.imageSize,
+    required this.index,
+    required this.toyAndOwnerConsumer,
     super.key,
   });
-  final int imageSize;
+
+  final int index;
+  final ToyAndOwnerConsumer toyAndOwnerConsumer;
+
+  @override
+  State<ToyCard> createState() => _ToyCardState();
+}
+
+class _ToyCardState extends State<ToyCard> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final imagePageController = PageController();
+    super.build(context);
     final contextTheme = Theme.of(context);
+    final toy = widget.toyAndOwnerConsumer.toy;
+    final ownerConsumer = widget.toyAndOwnerConsumer.ownerConsumer;
+    final toyGradient = switch (toy.details.gender) {
+      ToyGender.boy => AppColors.boyToyGradient,
+      ToyGender.girl => AppColors.girlToyGradient,
+      ToyGender.unisex => AppColors.unisexToyGradient,
+    };
+
     return Container(
       width: 320,
       height: 500,
@@ -45,9 +81,9 @@ class ToyCard extends StatelessWidget {
                             color: Colors.pink,
                           ),
                           shape: BoxShape.circle,
-                          image: const DecorationImage(
+                          image: DecorationImage(
                             image: NetworkImage(
-                              'https://picsum.photos/128/128',
+                              ownerConsumer.avatarUrls.url128,
                             ),
                           ),
                         ),
@@ -57,7 +93,8 @@ class ToyCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Semih Yılmaz',
+                            '${ownerConsumer.firstName} '
+                            '${ownerConsumer.lastName}',
                             style: contextTheme.textTheme.titleLarge,
                           ),
                           const Row(
@@ -93,8 +130,9 @@ class ToyCard extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 children: [
                   PageView.builder(
-                    controller: imagePageController,
-                    itemCount: 10,
+                    key: ValueKey(toy.id),
+                    controller: _pageController,
+                    itemCount: toy.imageUrlList.length,
                     itemBuilder: (context, index) {
                       final imageNumber = index;
                       return GestureDetector(
@@ -102,16 +140,16 @@ class ToyCard extends StatelessWidget {
                           ToyDetailRouter.instance.push(
                             context,
                             ToyDetailScreenRequirements(
-                              imageSize: imageSize,
+                              imageSize: 1,
                               imageNumber: imageNumber,
                               toyOwnerAuthId: '7vqVPe3zKdQqf4QsF7WFTQzNQ692',
                             ),
                           );
                         },
                         child: Hero(
-                          tag: imageSize + imageNumber,
+                          tag: toy.imageUrlList.elementAt(index).url128,
                           child: Image.network(
-                            'https://picsum.photos/$imageSize/$imageSize?image=$imageNumber',
+                            toy.imageUrlList.elementAt(index).url128,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -121,21 +159,21 @@ class ToyCard extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     height: 25,
-                    color: Colors.black26,
+                    color: Colors.black45,
                     child: Center(
                       child: SmoothPageIndicator(
-                        controller: imagePageController,
+                        controller: _pageController,
                         onDotClicked: (index) {
-                          imagePageController.animateToPage(
+                          _pageController.animateToPage(
                             index,
                             duration: const Duration(milliseconds: 500),
                             curve: Curves.easeInOut,
                           );
                         },
-                        count: 10,
-                        effect: const ScrollingDotsEffect(
-                          dotColor: Colors.white24,
-                          activeDotColor: Colors.pinkAccent,
+                        count: toy.imageUrlList.length,
+                        effect: ScrollingDotsEffect(
+                          dotColor: Colors.white38,
+                          activeDotColor: contextTheme.primaryColor,
                         ),
                       ),
                     ),
@@ -147,24 +185,24 @@ class ToyCard extends StatelessWidget {
           Container(
             padding: SharedPaddings.all8,
             decoration: BoxDecoration(
-              color: Colors.pinkAccent.withOpacity(0.5),
+              gradient: toyGradient,
               borderRadius: SharedBorderRadius.bottomLeftRight12,
             ),
-            child: const Row(
+            child: Row(
               children: [
                 Expanded(
                   child: Padding(
                     padding: SharedPaddings.left12,
                     child: Text(
-                      'Pelush Bear',
-                      style: TextStyle(
+                      toy.name,
+                      style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 ),
-                Icon(
+                const Icon(
                   Icons.favorite_outline,
                   size: 40,
                 ),

@@ -133,6 +133,7 @@ class CreateToyView extends StatelessWidget {
               padding: SharedPaddings.all16,
               child: TouchRipple<void>(
                 onTap: () {
+                  FocusScope.of(context).unfocus();
                   final toyName = createToyCubit.state.toyName;
                   final toyDescription = createToyCubit.state.toyDescription;
                   final imageUrlList = createToyCubit.state.imageUrlList;

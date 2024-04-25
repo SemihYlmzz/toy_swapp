@@ -21,6 +21,11 @@ abstract class RemoteDatabase {
 
   Future<List<Map<String, dynamic>>?> readCollection({
     required String collectionID,
+    required String? orderBy,
+    bool descending = false,
+    int? limit,
+    int? limitToLast,
+    Iterable<Object?>? endBefore,
   });
   FutureUnit batchCommit();
 }

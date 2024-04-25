@@ -65,7 +65,7 @@ dependencies:
   # Business Logic
   bloc: ^8.1.4
   flutter_bloc: ^8.1.5
-  
+  bloc_concurrency: ^0.2.5
   # Core APIS
   firebase_core: ^2.28.0
 
@@ -90,6 +90,9 @@ dependencies:
 
   # Splash Screen
   flutter_native_splash: ^2.4.0
+  
+  # Streams
+  stream_transform: ^2.1.0
 
   # Widgets
   styled_text: ^8.1.0

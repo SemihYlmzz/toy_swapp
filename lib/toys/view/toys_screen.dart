@@ -12,7 +12,10 @@ class ToysScreen extends StatelessWidget {
     final toysBlocListeners = ToysBlocListeners();
 
     return BlocProvider(
-      create: (context) => ToysBloc(),
+      create: (context) => ToysBloc(
+        consumerRepository: context.read(),
+        toyRepository: context.read(),
+      )..add(const ToysEvent.fetchLatest10()),
       child: MultiBlocListener(
         listeners: [
           toysBlocListeners.errorDisplayer(),

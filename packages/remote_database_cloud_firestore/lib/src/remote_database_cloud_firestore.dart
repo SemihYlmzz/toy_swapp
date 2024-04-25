@@ -36,9 +36,31 @@ class RemoteDatabaseCloudFirestore extends RemoteDatabase {
   @override
   Future<List<Map<String, dynamic>>?> readCollection({
     required String collectionID,
+    required String? orderBy,
+    bool descending = false,
+    int? limit,
+    int? limitToLast,
+    Iterable<Object?>? endBefore,
   }) async {
+    Query<Map<String, dynamic>> query;
     try {
-      final collectionData = await _firestore.collection(collectionID).get();
+      query = _firestore.collection(collectionID);
+
+      if (orderBy != null) {
+        query = query.orderBy(orderBy, descending: descending);
+      }
+      if (endBefore != null) {
+        query = query.endBefore(endBefore);
+      }
+      if (limit != null) {
+        query = query.limit(limit);
+      }
+      if (limitToLast != null) {
+        query = query.limitToLast(limitToLast);
+      }
+
+      final collectionData = await query.get();
+
       if (collectionData.docs.isEmpty) {
         return null;
       }
@@ -59,7 +81,6 @@ class RemoteDatabaseCloudFirestore extends RemoteDatabase {
   }) {
     final docRef = _firestore.collection(collectionID).doc(documentID);
     _batch.set(docRef, jsonData);
-    print('setted');
     return;
   }
 

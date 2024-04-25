@@ -79,6 +79,7 @@ class ToyRepository {
           gender: toyGender,
           condition: toyCondition,
         ),
+        createdAt: DateTime.now(),
       );
 
       _remoteDatabase.batchSetDoc(
@@ -87,6 +88,44 @@ class ToyRepository {
         jsonData: creatableToy.toJson(),
       );
       return const Right(unit);
+    } catch (exception) {
+      return const Left(ToyRepositoryException.unknown());
+    }
+  }
+
+  FutureEither<List<Toy>> fetch10BeforeOldestToy({
+    required Toy oldestToy,
+  }) async {
+    try {
+      final toyDocs = await _remoteDatabase.readCollection(
+        collectionID: ToyRepositoryStrings.toysCollectionPath,
+        orderBy: 'createdAt',
+        limitToLast: 10,
+        endBefore: [oldestToy.createdAt.millisecondsSinceEpoch],
+      );
+      if (toyDocs == null) {
+        return right([]);
+      }
+      final toys = toyDocs.map(Toy.fromJson).toList();
+      return Right(toys);
+    } catch (exception) {
+      return const Left(ToyRepositoryException.unknown());
+    }
+  }
+
+  FutureEither<List<Toy>> fetchLatest10() async {
+    try {
+      final toyDocs = await _remoteDatabase.readCollection(
+        collectionID: ToyRepositoryStrings.toysCollectionPath,
+        orderBy: 'createdAt',
+        limitToLast: 10,
+      );
+
+      if (toyDocs == null) {
+        return right([]);
+      }
+      final toys = toyDocs.map(Toy.fromJson).toList();
+      return Right(toys);
     } catch (exception) {
       return const Left(ToyRepositoryException.unknown());
     }
