@@ -114,7 +114,7 @@ dev_dependencies:
   # Code Generation
   build_runner: ^2.4.9
   freezed: ^2.4.7
-  json_serializable: ^6.7.1
+  json_serializable: ^6.8.0
 
   # Splash Screen
 flutter_native_splash:
