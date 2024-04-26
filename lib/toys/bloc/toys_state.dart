@@ -7,6 +7,8 @@ class ToysState with _$ToysState {
     @Default(false) bool hasReachedMax,
     @Default(true) bool isInitializing,
     @Default(false) bool isLoading,
+    Failure? initializingFailure,
+    Failure? fetchMoreFailure,
     Failure? failure,
   }) = _ToysState;
 }

@@ -44,46 +44,28 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
     ToysEvent event,
     Emitter<ToysState> emit,
   ) async {
-    // TODO
-    // Loading screen very bad
-    // Use Shimmer instead
-    // Loading -> Initializing
     emit(state.copyWith(isLoading: true));
     await event.map(
+      clearFetchMoreFailure: (value) async {
+        emit(state.copyWith(fetchMoreFailure: null));
+      },
       fetchLatest10: (value) async {
-        emit(state.copyWith(isInitializing: true));
+        emit(state.copyWith(isInitializing: true, initializingFailure: null));
         final tryFetch = await _toyRepository.fetchLatest10();
-        final nullableLatest10Toys = tryFetch.getRight().toNullable();
-        if (nullableLatest10Toys == null) {
-          // If Toys are null, stop function.
+        var newToys = <Toy>[];
+        tryFetch.fold(
+          (l) => emit(state.copyWith(initializingFailure: l)),
+          (fetchedToys) => newToys = fetchedToys,
+        );
+        if (state.initializingFailure != null) {
           return;
         }
-        final latest10Toys = nullableLatest10Toys;
-        // Loop through all toys to read their owner
-        final fetchedToys = <ToyAndOwnerConsumer>[];
 
-        for (final toy in latest10Toys) {
-          // Try Read Owner
-          final tryRead = await _consumerRepository.readConsumer(
-            authId: toy.ownerAuthId,
-          );
-          await tryRead.fold(
-            // If Owner is not found, skip this toy
-            (l) => null,
-            // If Owner is found, add to list
-            (toyOwnerConsumer) async {
-              fetchedToys.add(
-                ToyAndOwnerConsumer(
-                  toy: toy,
-                  ownerConsumer: toyOwnerConsumer,
-                ),
-              );
-            },
-          );
-        }
+        final fetchedToysAndOwners = await _toysToToyAndOwnerConsumers(newToys);
+
         emit(
           state.copyWith(
-            toys: fetchedToys,
+            toys: fetchedToysAndOwners,
             hasReachedMax: false,
             isInitializing: false,
           ),
@@ -97,47 +79,57 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
         final tryFetch = await _toyRepository.fetch10BeforeOldestToy(
           oldestToy: oldestToy,
         );
-        final toys = tryFetch.getRight().toNullable();
-        // Get Toy Values But Nullable
-        if (toys == null) {
-          // If Toys are null, stop function.
+
+        var toys = <Toy>[];
+        tryFetch.fold(
+          (l) => emit(state.copyWith(fetchMoreFailure: l)),
+          (newToyList) => toys = newToyList,
+        );
+        if (state.fetchMoreFailure != null) {
           return;
         }
+        // If there is no failure,
+        // less than 10 toys are fetched means there are no more toys to fetch
         if (toys.length < 10) {
           emit(state.copyWith(hasReachedMax: true));
         }
-        // Toys List to update
-        final fetchedToys = <ToyAndOwnerConsumer>[];
-
         // Loop through all toys to read their owner
-        for (final toy in toys) {
-          if (state.toys.any((element) => element.toy.id == toy.id)) {
-            continue;
-          }
-          // Try Read Owner
-          final tryRead = await _consumerRepository.readConsumer(
-            authId: toy.ownerAuthId,
-          );
-          await tryRead.fold(
-            // If Owner is not found, skip this toy
-            (l) => null,
-            // If Owner is found, add to list
-            (toyOwnerConsumer) async {
-              fetchedToys.add(
-                ToyAndOwnerConsumer(
-                  toy: toy,
-                  ownerConsumer: toyOwnerConsumer,
-                ),
-              );
-            },
-          );
-        }
-
+        final fetchedToys = await _toysToToyAndOwnerConsumers(toys);
+        // Add old toys
         fetchedToys.addAll(state.toys);
-
-        emit(state.copyWith(toys: fetchedToys));
+        emit(state.copyWith(toys: fetchedToys, fetchMoreFailure: null));
       },
     );
     emit(state.copyWith(isLoading: false, failure: null));
+  }
+
+  // Toys Specific Functions
+  Future<List<ToyAndOwnerConsumer>> _toysToToyAndOwnerConsumers(
+    List<Toy> toys,
+  ) async {
+    final givenToysAndOwners = <ToyAndOwnerConsumer>[];
+    for (final toy in toys) {
+      if (state.toys.any((element) => element.toy.id == toy.id)) {
+        continue;
+      }
+      // Try Read Owner
+      final tryRead = await _consumerRepository.readConsumer(
+        authId: toy.ownerAuthId,
+      );
+      await tryRead.fold(
+        // If Owner is not found, skip this toy
+        (l) => null,
+        // If Owner is found, add to list
+        (toyOwnerConsumer) async {
+          givenToysAndOwners.add(
+            ToyAndOwnerConsumer(
+              toy: toy,
+              ownerConsumer: toyOwnerConsumer,
+            ),
+          );
+        },
+      );
+    }
+    return givenToysAndOwners;
   }
 }

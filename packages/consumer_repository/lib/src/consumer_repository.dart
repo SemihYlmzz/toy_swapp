@@ -235,19 +235,16 @@ class ConsumerRepository {
     required String authId,
   }) async {
     // Clear Cache
-    for (final key in _cachedConsumers.keys) {
-      if (_cachedConsumers[key]!.endDate.isBefore(DateTime.now())) {
-        _cachedConsumers.remove(key);
-      }
-    }
+    _cachedConsumers.removeWhere(
+      (key, value) => value.endDate.isBefore(DateTime.now()),
+    );
+
     // Get from Cache
     final thisConsumerCache = _cachedConsumers[authId];
 
     // If Cache is not empty and not expired
     // Return from Cache
-    if (_cachedConsumers.containsKey(authId) &&
-        thisConsumerCache != null &&
-        thisConsumerCache.endDate.isAfter(DateTime.now())) {
+    if (thisConsumerCache != null) {
       return Right(_cachedConsumers[authId]!.cachedConsumer);
     }
 
@@ -267,7 +264,7 @@ class ConsumerRepository {
       _cachedConsumers.addAll({
         authId: (
           cachedConsumer: consumer,
-          endDate: DateTime.now().add(const Duration(minutes: 10)),
+          endDate: DateTime.now().add(const Duration(seconds: 10)),
         ),
       });
       return Right(consumer);

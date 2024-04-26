@@ -18,51 +18,96 @@ class _ToysViewState extends State<ToysView> {
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(_onScroll);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final toysAndOwners = context.select((ToysBloc bloc) => bloc.state.toys);
-    final isInitializing =
-        context.select((ToysBloc bloc) => bloc.state.isInitializing);
-    return RefreshIndicator(
-      onRefresh: () async {
-        context.read<ToysBloc>().add(const ToysEvent.fetchLatest10());
-      },
-      child: !isInitializing
-          ? ListView.builder(
-              controller: _scrollController,
-              itemCount: toysAndOwners.length,
-              itemBuilder: (context, index) {
-                return Center(
-                  child: Padding(
-                    padding: SharedPaddings.bottom32,
-                    child: ToyCard(
-                      toyAndOwnerConsumer:
-                          toysAndOwners.reversed.toList()[index],
-                    ),
-                  ),
-                );
-              },
-            )
-          : const Center(child: CircularProgressIndicator()),
-    );
+    _scrollController.addListener(_fetchMoreOnScroll);
   }
 
   @override
   void dispose() {
     _scrollController
-      ..removeListener(_onScroll)
+      ..removeListener(_fetchMoreOnScroll)
       ..dispose();
     super.dispose();
   }
 
-  void _onScroll() {
-    final isLoading = context.read<ToysBloc>().state.isLoading;
-    if (_isBottom && !isLoading) {
-      context.read<ToysBloc>().add(const ToysEvent.fetch10BeforeOldestToy());
+  @override
+  Widget build(BuildContext context) {
+    final toysState = context.select((ToysBloc bloc) => bloc.state);
+    final toysList = toysState.toys.reversed.toList();
+    final fetchMoreFailure = toysState.fetchMoreFailure;
+    final initializingFailure = toysState.initializingFailure;
+    return RefreshIndicator(
+      onRefresh: () async {
+        context.read<ToysBloc>().add(const ToysEvent.fetchLatest10());
+      },
+      child: initializingFailure != null
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(initializingFailure.toString()),
+                  TextButton(
+                    onPressed: () {
+                      context
+                          .read<ToysBloc>()
+                          .add(const ToysEvent.fetchLatest10());
+                    },
+                    child: const Text('Retry'),
+                  ),
+                ],
+              ),
+            )
+          : !toysState.isInitializing
+              ? ListView.builder(
+                  controller: _scrollController,
+                  itemCount: toysList.length +
+                      (toysState.fetchMoreFailure != null ? 1 : 0),
+                  itemBuilder: (context, index) {
+                    if (fetchMoreFailure != null && index == toysList.length) {
+                      return GestureDetector(
+                        onTap: () {
+                          context
+                              .read<ToysBloc>()
+                              .add(const ToysEvent.clearFetchMoreFailure());
+                        },
+                        child: const SizedBox(
+                          height: 100,
+                          child: Center(
+                            child: Text(
+                              'Error Occured while fetching more toys.\n'
+                              'Tap to retry.',
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                    return Center(
+                      child: Padding(
+                        padding: SharedPaddings.bottom32,
+                        child: ToyCard(toyAndOwnerConsumer: toysList[index]),
+                      ),
+                    );
+                  },
+                )
+              : const Center(child: CircularProgressIndicator()),
+    );
+  }
+
+  void _fetchMoreOnScroll() {
+    final toysState = context.read<ToysBloc>().state;
+    if (!_isBottom) {
+      return;
     }
+    if (toysState.isLoading) {
+      return;
+    }
+    if (toysState.fetchMoreFailure != null) {
+      return;
+    }
+    if (toysState.hasReachedMax) {
+      return;
+    }
+    context.read<ToysBloc>().add(const ToysEvent.fetch10BeforeOldestToy());
   }
 
   bool get _isBottom {
