@@ -231,6 +231,20 @@ class ConsumerRepository {
     return updatedConsumer;
   }
 
+  Consumer increaseOwnedToyCounter() {
+    final updatedConsumer = currentConsumer.copyWith(
+      counters: currentConsumer.counters.copyWith(
+        ownedToy: currentConsumer.counters.ownedToy + 1,
+      ),
+    );
+    _remoteDatabase.batchUpdateDoc(
+      collectionID: ConsumerRepositoryStrings.consumerCollectionPath,
+      documentID: currentConsumer.authId,
+      jsonData: updatedConsumer.toJson(),
+    );
+    return updatedConsumer;
+  }
+
   FutureEither<Consumer> readConsumer({
     required String authId,
   }) async {
@@ -264,7 +278,7 @@ class ConsumerRepository {
       _cachedConsumers.addAll({
         authId: (
           cachedConsumer: consumer,
-          endDate: DateTime.now().add(const Duration(seconds: 10)),
+          endDate: DateTime.now().add(const Duration(minutes: 1)),
         ),
       });
       return Right(consumer);

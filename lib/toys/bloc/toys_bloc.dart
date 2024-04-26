@@ -109,9 +109,6 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
   ) async {
     final givenToysAndOwners = <ToyAndOwnerConsumer>[];
     for (final toy in toys) {
-      if (state.toys.any((element) => element.toy.id == toy.id)) {
-        continue;
-      }
       // Try Read Owner
       final tryRead = await _consumerRepository.readConsumer(
         authId: toy.ownerAuthId,

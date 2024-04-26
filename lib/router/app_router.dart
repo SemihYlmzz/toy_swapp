@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:toy_swapp/account_settings/router/router.dart';
+import 'package:toy_swapp/liked_toys/liked_toys.dart';
 import 'package:toy_swapp/toy_detail/toy_detail.dart';
 
 import '../account_initializer/account_initializer.dart';
@@ -72,6 +73,7 @@ class AppRouter {
           CreateToyRouter.instance.route,
           AccountSettingsRouter.instance.route,
           ToyDetailRouter.instance.route,
+          LikedToysRouter.instance.route,
           // [NoRule]
           SettingsRouter.instance.route,
           TermsAcceptanceRouter.instance.route,
@@ -201,6 +203,7 @@ class AppRouter {
         AccountSettingsRouter.instance.name,
         ConsumerDataCalibrationRouter.instance.name,
         ToyDetailRouter.instance.name,
+        LikedToysRouter.instance.name,
       ].contains(state.topRoute!.name);
   bool _inNoRuleScreens(GoRouterState state) => [
         SettingsRouter.instance.name,

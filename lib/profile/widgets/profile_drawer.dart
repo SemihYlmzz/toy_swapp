@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_widgets/shared_widgets.dart';
+import 'package:toy_swapp/liked_toys/liked_toys.dart';
 
 import '../../settings/settings.dart';
 
@@ -27,6 +28,16 @@ class ProfileDrawer extends StatelessWidget {
         subTitle: 'Change is good.',
         onTap: () {
           SettingsRouter.instance.push(context);
+          Scaffold.of(context).closeEndDrawer();
+          Scaffold.of(context).closeDrawer();
+        },
+      ),
+      _DrawerSettingValue(
+        title: 'Liked Toys',
+        iconData: Icons.favorite,
+        subTitle: 'The toys you liked.',
+        onTap: () {
+          LikedToysRouter.instance.push(context);
           Scaffold.of(context).closeEndDrawer();
           Scaffold.of(context).closeDrawer();
         },

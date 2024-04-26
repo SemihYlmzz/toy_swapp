@@ -13,6 +13,7 @@ abstract class RemoteDatabase {
     required String collectionID,
     required String documentID,
   });
+  
   void batchUpdateDoc({
     required String collectionID,
     required String documentID,

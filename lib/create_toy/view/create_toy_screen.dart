@@ -18,6 +18,7 @@ class CreateToyScreen extends StatelessWidget {
             remoteDatabase: context.read(),
             authRepository: context.read(),
             toyRepository: context.read(),
+            consumerRepository: context.read(),
           ),
         ),
         BlocProvider(

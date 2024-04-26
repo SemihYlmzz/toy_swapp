@@ -254,6 +254,27 @@ class ToyDetailView extends StatelessWidget {
               ),
             ),
           ),
+          Align(
+            alignment: Alignment.topRight,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.maybePop(context);
+              },
+              child: Container(
+                width: 50,
+                height: 50,
+                margin: SharedPaddings.all20,
+                decoration: BoxDecoration(
+                  color: Colors.redAccent.withOpacity(0.4),
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  //    child: Icon(Icons.delete_outlined),
+                  child: Icon(Icons.priority_high),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
