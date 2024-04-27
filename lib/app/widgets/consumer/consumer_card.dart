@@ -32,7 +32,6 @@ class ConsumerCard extends StatelessWidget {
             counterName: 'Chance',
             counterValue: consumer.counters.switchChance,
           ),
-          SharedGap.gap4,
         ],
       ),
     );

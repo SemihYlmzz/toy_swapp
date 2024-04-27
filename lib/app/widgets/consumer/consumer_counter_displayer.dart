@@ -12,7 +12,7 @@ class ConsumerCounterDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 75,
+      width: 65,
       child: Column(
         children: [
           Text(
@@ -21,7 +21,7 @@ class ConsumerCounterDisplayer extends StatelessWidget {
           ),
           Text(
             counterName,
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ],
       ),

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_storage/cloud_storage.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:remote_database/remote_database.dart';
@@ -7,14 +9,24 @@ import '../toy_repository.dart';
 import 'constants/constants.dart';
 
 class ToyRepository {
-  const ToyRepository({
+  ToyRepository({
     required RemoteDatabase remoteDatabase,
     required CloudStorage cloudStorage,
   })  : _remoteDatabase = remoteDatabase,
-        _cloudStorage = cloudStorage;
+        _cloudStorage = cloudStorage {
+    ownedToysStream.listen((event) {
+      ownedToys = event;
+    });
+  }
   // INSTANCES
   final CloudStorage _cloudStorage;
   final RemoteDatabase _remoteDatabase;
+
+  // VARIABLES
+  // Current Consumer
+  final _ownedToysStreamController = StreamController<List<Toy>>.broadcast();
+  Stream<List<Toy>> get ownedToysStream => _ownedToysStreamController.stream;
+  List<Toy>? ownedToys;
 
   // Functions
   FutureUnit create({
@@ -88,6 +100,59 @@ class ToyRepository {
         jsonData: creatableToy.toJson(),
       );
       return const Right(unit);
+    } catch (exception) {
+      return const Left(ToyRepositoryException.unknown());
+    }
+  }
+
+  FutureUnit fetchLastest12Owned({required String ownerAuthId}) async {
+    try {
+      final toyDocs = await _remoteDatabase.readCollection(
+        collectionID: ToyRepositoryStrings.toysCollectionPath,
+        orderBy: 'createdAt',
+        limitToLast: 12,
+        fieldContains: (field: 'ownerAuthId', value: ownerAuthId),
+      );
+      if (toyDocs == null) {
+        return const Left(ToyRepositoryException.unknown());
+      }
+      if (toyDocs.isEmpty) {
+        _ownedToysStreamController.sink.add([]);
+        return const Right(unit);
+      }
+      final toys = toyDocs.map(Toy.fromJson).toList();
+      _ownedToysStreamController.sink.add(toys);
+      return const Right(unit);
+    } catch (exception) {
+      return const Left(ToyRepositoryException.unknown());
+    }
+  }
+
+  FutureEither<List<Toy>> fetch12BeforeOldestOwnedToy({
+    required String ownerAuthId,
+    required Toy oldestOwnedToy,
+  }) async {
+    try {
+      final toyDocs = await _remoteDatabase.readCollection(
+        collectionID: ToyRepositoryStrings.toysCollectionPath,
+        fieldContains: (field: 'ownerAuthId', value: ownerAuthId),
+        orderBy: 'createdAt',
+        limitToLast: 12,
+        endBefore: [oldestOwnedToy.createdAt.millisecondsSinceEpoch],
+      );
+      if (toyDocs == null) {
+        return const Left(ToyRepositoryException.unknown());
+      }
+      if (toyDocs.isEmpty) {
+        _ownedToysStreamController.sink.add([]);
+        return const Right([]);
+      }
+
+      final toys = toyDocs.map(Toy.fromJson).toList();
+      final newOwnedToysList = List<Toy>.from(toys)..addAll(ownedToys ?? []);
+      _ownedToysStreamController.sink.add(newOwnedToysList);
+
+      return Right(toys);
     } catch (exception) {
       return const Left(ToyRepositoryException.unknown());
     }

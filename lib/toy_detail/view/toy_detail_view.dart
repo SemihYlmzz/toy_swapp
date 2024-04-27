@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_touch_ripple/flutter_touch_ripple.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 import 'package:toy_swapp/app/app.dart';
@@ -256,18 +257,17 @@ class ToyDetailView extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topRight,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.maybePop(context);
-              },
-              child: Container(
-                width: 50,
-                height: 50,
-                margin: SharedPaddings.all20,
-                decoration: BoxDecoration(
-                  color: Colors.redAccent.withOpacity(0.4),
-                  shape: BoxShape.circle,
-                ),
+            child: Container(
+              width: 50,
+              height: 50,
+              margin: SharedPaddings.all20,
+              decoration: BoxDecoration(
+                color: Colors.redAccent.withOpacity(0.4),
+                shape: BoxShape.circle,
+              ),
+              child: TouchRipple<void>(
+                onTap: () {},
+                borderRadius: SharedBorderRadius.circular32,
                 child: const Center(
                   //    child: Icon(Icons.delete_outlined),
                   child: Icon(Icons.priority_high),

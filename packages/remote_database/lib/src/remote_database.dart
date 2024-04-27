@@ -13,7 +13,7 @@ abstract class RemoteDatabase {
     required String collectionID,
     required String documentID,
   });
-  
+
   void batchUpdateDoc({
     required String collectionID,
     required String documentID,
@@ -27,6 +27,7 @@ abstract class RemoteDatabase {
     int? limit,
     int? limitToLast,
     Iterable<Object?>? endBefore,
+    ({String field, Object? value})? fieldContains,
   });
   FutureUnit batchCommit();
 }

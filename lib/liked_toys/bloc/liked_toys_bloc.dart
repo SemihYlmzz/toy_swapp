@@ -10,19 +10,17 @@ class LikedToysBloc extends Bloc<LikedToysEvent, LikedToysState> {
   LikedToysBloc() : super(const LikedToysState()) {
     on<LikedToysEvent>(_onLikedToysEvent);
   }
-  
+
   Future<void> _onLikedToysEvent(
     LikedToysEvent event,
     Emitter<LikedToysState> emit,
-    ) async {
+  ) async {
     emit(state.copyWith(isLoading: true));
-    
+
     await event.map(
-      fetch: (e) async {
-        print('Fetching data...');
-      },
+      fetch: (e) async {},
     );
-    
+
     emit(state.copyWith(isLoading: false, failure: null));
   }
 }

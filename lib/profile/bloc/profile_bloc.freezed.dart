@@ -18,33 +18,46 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() fetchOwnedToys,
+    required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
+    required TResult Function() fetchMoreOwnedToys,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? fetchOwnedToys,
+    TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
+    TResult? Function()? fetchMoreOwnedToys,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? fetchOwnedToys,
+    TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
+    TResult Function()? fetchMoreOwnedToys,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ProfileFetch value) fetch,
+    required TResult Function(ProfileFetchOwnedToys value) fetchOwnedToys,
+    required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
+    required TResult Function(ProfileFetchMoreOwnedToys value)
+        fetchMoreOwnedToys,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProfileFetch value)? fetch,
+    TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
+    TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
+    TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProfileFetch value)? fetch,
+    TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
+    TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
+    TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,35 +82,37 @@ class _$ProfileEventCopyWithImpl<$Res, $Val extends ProfileEvent>
 }
 
 /// @nodoc
-abstract class _$$ProfileFetchImplCopyWith<$Res> {
-  factory _$$ProfileFetchImplCopyWith(
-          _$ProfileFetchImpl value, $Res Function(_$ProfileFetchImpl) then) =
-      __$$ProfileFetchImplCopyWithImpl<$Res>;
+abstract class _$$ProfileFetchOwnedToysImplCopyWith<$Res> {
+  factory _$$ProfileFetchOwnedToysImplCopyWith(
+          _$ProfileFetchOwnedToysImpl value,
+          $Res Function(_$ProfileFetchOwnedToysImpl) then) =
+      __$$ProfileFetchOwnedToysImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ProfileFetchImplCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res, _$ProfileFetchImpl>
-    implements _$$ProfileFetchImplCopyWith<$Res> {
-  __$$ProfileFetchImplCopyWithImpl(
-      _$ProfileFetchImpl _value, $Res Function(_$ProfileFetchImpl) _then)
+class __$$ProfileFetchOwnedToysImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$ProfileFetchOwnedToysImpl>
+    implements _$$ProfileFetchOwnedToysImplCopyWith<$Res> {
+  __$$ProfileFetchOwnedToysImplCopyWithImpl(_$ProfileFetchOwnedToysImpl _value,
+      $Res Function(_$ProfileFetchOwnedToysImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ProfileFetchImpl implements ProfileFetch {
-  const _$ProfileFetchImpl();
+class _$ProfileFetchOwnedToysImpl implements ProfileFetchOwnedToys {
+  const _$ProfileFetchOwnedToysImpl();
 
   @override
   String toString() {
-    return 'ProfileEvent.fetch()';
+    return 'ProfileEvent.fetchOwnedToys()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ProfileFetchImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ProfileFetchOwnedToysImpl);
   }
 
   @override
@@ -106,27 +121,33 @@ class _$ProfileFetchImpl implements ProfileFetch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() fetchOwnedToys,
+    required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
+    required TResult Function() fetchMoreOwnedToys,
   }) {
-    return fetch();
+    return fetchOwnedToys();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? fetchOwnedToys,
+    TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
+    TResult? Function()? fetchMoreOwnedToys,
   }) {
-    return fetch?.call();
+    return fetchOwnedToys?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? fetchOwnedToys,
+    TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
+    TResult Function()? fetchMoreOwnedToys,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch();
+    if (fetchOwnedToys != null) {
+      return fetchOwnedToys();
     }
     return orElse();
   }
@@ -134,39 +155,317 @@ class _$ProfileFetchImpl implements ProfileFetch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ProfileFetch value) fetch,
+    required TResult Function(ProfileFetchOwnedToys value) fetchOwnedToys,
+    required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
+    required TResult Function(ProfileFetchMoreOwnedToys value)
+        fetchMoreOwnedToys,
   }) {
-    return fetch(this);
+    return fetchOwnedToys(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProfileFetch value)? fetch,
+    TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
+    TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
+    TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
   }) {
-    return fetch?.call(this);
+    return fetchOwnedToys?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProfileFetch value)? fetch,
+    TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
+    TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
+    TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch(this);
+    if (fetchOwnedToys != null) {
+      return fetchOwnedToys(this);
     }
     return orElse();
   }
 }
 
-abstract class ProfileFetch implements ProfileEvent {
-  const factory ProfileFetch() = _$ProfileFetchImpl;
+abstract class ProfileFetchOwnedToys implements ProfileEvent {
+  const factory ProfileFetchOwnedToys() = _$ProfileFetchOwnedToysImpl;
+}
+
+/// @nodoc
+abstract class _$$ProfileOwnedToysUpdatedImplCopyWith<$Res> {
+  factory _$$ProfileOwnedToysUpdatedImplCopyWith(
+          _$ProfileOwnedToysUpdatedImpl value,
+          $Res Function(_$ProfileOwnedToysUpdatedImpl) then) =
+      __$$ProfileOwnedToysUpdatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Toy> updatedOwnedToys});
+}
+
+/// @nodoc
+class __$$ProfileOwnedToysUpdatedImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$ProfileOwnedToysUpdatedImpl>
+    implements _$$ProfileOwnedToysUpdatedImplCopyWith<$Res> {
+  __$$ProfileOwnedToysUpdatedImplCopyWithImpl(
+      _$ProfileOwnedToysUpdatedImpl _value,
+      $Res Function(_$ProfileOwnedToysUpdatedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? updatedOwnedToys = null,
+  }) {
+    return _then(_$ProfileOwnedToysUpdatedImpl(
+      null == updatedOwnedToys
+          ? _value._updatedOwnedToys
+          : updatedOwnedToys // ignore: cast_nullable_to_non_nullable
+              as List<Toy>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ProfileOwnedToysUpdatedImpl implements ProfileOwnedToysUpdated {
+  const _$ProfileOwnedToysUpdatedImpl(final List<Toy> updatedOwnedToys)
+      : _updatedOwnedToys = updatedOwnedToys;
+
+  final List<Toy> _updatedOwnedToys;
+  @override
+  List<Toy> get updatedOwnedToys {
+    if (_updatedOwnedToys is EqualUnmodifiableListView)
+      return _updatedOwnedToys;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_updatedOwnedToys);
+  }
+
+  @override
+  String toString() {
+    return 'ProfileEvent.ownedToysUpdated(updatedOwnedToys: $updatedOwnedToys)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProfileOwnedToysUpdatedImpl &&
+            const DeepCollectionEquality()
+                .equals(other._updatedOwnedToys, _updatedOwnedToys));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_updatedOwnedToys));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProfileOwnedToysUpdatedImplCopyWith<_$ProfileOwnedToysUpdatedImpl>
+      get copyWith => __$$ProfileOwnedToysUpdatedImplCopyWithImpl<
+          _$ProfileOwnedToysUpdatedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchOwnedToys,
+    required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
+    required TResult Function() fetchMoreOwnedToys,
+  }) {
+    return ownedToysUpdated(updatedOwnedToys);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchOwnedToys,
+    TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
+    TResult? Function()? fetchMoreOwnedToys,
+  }) {
+    return ownedToysUpdated?.call(updatedOwnedToys);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchOwnedToys,
+    TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
+    TResult Function()? fetchMoreOwnedToys,
+    required TResult orElse(),
+  }) {
+    if (ownedToysUpdated != null) {
+      return ownedToysUpdated(updatedOwnedToys);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProfileFetchOwnedToys value) fetchOwnedToys,
+    required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
+    required TResult Function(ProfileFetchMoreOwnedToys value)
+        fetchMoreOwnedToys,
+  }) {
+    return ownedToysUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
+    TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
+    TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
+  }) {
+    return ownedToysUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
+    TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
+    TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
+    required TResult orElse(),
+  }) {
+    if (ownedToysUpdated != null) {
+      return ownedToysUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProfileOwnedToysUpdated implements ProfileEvent {
+  const factory ProfileOwnedToysUpdated(final List<Toy> updatedOwnedToys) =
+      _$ProfileOwnedToysUpdatedImpl;
+
+  List<Toy> get updatedOwnedToys;
+  @JsonKey(ignore: true)
+  _$$ProfileOwnedToysUpdatedImplCopyWith<_$ProfileOwnedToysUpdatedImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ProfileFetchMoreOwnedToysImplCopyWith<$Res> {
+  factory _$$ProfileFetchMoreOwnedToysImplCopyWith(
+          _$ProfileFetchMoreOwnedToysImpl value,
+          $Res Function(_$ProfileFetchMoreOwnedToysImpl) then) =
+      __$$ProfileFetchMoreOwnedToysImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ProfileFetchMoreOwnedToysImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$ProfileFetchMoreOwnedToysImpl>
+    implements _$$ProfileFetchMoreOwnedToysImplCopyWith<$Res> {
+  __$$ProfileFetchMoreOwnedToysImplCopyWithImpl(
+      _$ProfileFetchMoreOwnedToysImpl _value,
+      $Res Function(_$ProfileFetchMoreOwnedToysImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ProfileFetchMoreOwnedToysImpl implements ProfileFetchMoreOwnedToys {
+  const _$ProfileFetchMoreOwnedToysImpl();
+
+  @override
+  String toString() {
+    return 'ProfileEvent.fetchMoreOwnedToys()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProfileFetchMoreOwnedToysImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchOwnedToys,
+    required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
+    required TResult Function() fetchMoreOwnedToys,
+  }) {
+    return fetchMoreOwnedToys();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchOwnedToys,
+    TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
+    TResult? Function()? fetchMoreOwnedToys,
+  }) {
+    return fetchMoreOwnedToys?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchOwnedToys,
+    TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
+    TResult Function()? fetchMoreOwnedToys,
+    required TResult orElse(),
+  }) {
+    if (fetchMoreOwnedToys != null) {
+      return fetchMoreOwnedToys();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProfileFetchOwnedToys value) fetchOwnedToys,
+    required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
+    required TResult Function(ProfileFetchMoreOwnedToys value)
+        fetchMoreOwnedToys,
+  }) {
+    return fetchMoreOwnedToys(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
+    TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
+    TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
+  }) {
+    return fetchMoreOwnedToys?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
+    TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
+    TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
+    required TResult orElse(),
+  }) {
+    if (fetchMoreOwnedToys != null) {
+      return fetchMoreOwnedToys(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProfileFetchMoreOwnedToys implements ProfileEvent {
+  const factory ProfileFetchMoreOwnedToys() = _$ProfileFetchMoreOwnedToysImpl;
 }
 
 /// @nodoc
 mixin _$ProfileState {
+  String get currentAuthId => throw _privateConstructorUsedError;
+  List<Toy>? get ownedToys => throw _privateConstructorUsedError;
+  bool get hasReachedMax => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isInitializing => throw _privateConstructorUsedError;
+  Failure? get fetchMoreFailure => throw _privateConstructorUsedError;
+  Failure? get fetchLatestToysFailure => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -180,7 +479,15 @@ abstract class $ProfileStateCopyWith<$Res> {
           ProfileState value, $Res Function(ProfileState) then) =
       _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
-  $Res call({bool isLoading, Failure? failure});
+  $Res call(
+      {String currentAuthId,
+      List<Toy>? ownedToys,
+      bool hasReachedMax,
+      bool isLoading,
+      bool isInitializing,
+      Failure? fetchMoreFailure,
+      Failure? fetchLatestToysFailure,
+      Failure? failure});
 }
 
 /// @nodoc
@@ -196,14 +503,44 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? currentAuthId = null,
+    Object? ownedToys = freezed,
+    Object? hasReachedMax = null,
     Object? isLoading = null,
+    Object? isInitializing = null,
+    Object? fetchMoreFailure = freezed,
+    Object? fetchLatestToysFailure = freezed,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
+      currentAuthId: null == currentAuthId
+          ? _value.currentAuthId
+          : currentAuthId // ignore: cast_nullable_to_non_nullable
+              as String,
+      ownedToys: freezed == ownedToys
+          ? _value.ownedToys
+          : ownedToys // ignore: cast_nullable_to_non_nullable
+              as List<Toy>?,
+      hasReachedMax: null == hasReachedMax
+          ? _value.hasReachedMax
+          : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isInitializing: null == isInitializing
+          ? _value.isInitializing
+          : isInitializing // ignore: cast_nullable_to_non_nullable
+              as bool,
+      fetchMoreFailure: freezed == fetchMoreFailure
+          ? _value.fetchMoreFailure
+          : fetchMoreFailure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
+      fetchLatestToysFailure: freezed == fetchLatestToysFailure
+          ? _value.fetchLatestToysFailure
+          : fetchLatestToysFailure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -220,7 +557,15 @@ abstract class _$$ProfileStateImplCopyWith<$Res>
       __$$ProfileStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, Failure? failure});
+  $Res call(
+      {String currentAuthId,
+      List<Toy>? ownedToys,
+      bool hasReachedMax,
+      bool isLoading,
+      bool isInitializing,
+      Failure? fetchMoreFailure,
+      Failure? fetchLatestToysFailure,
+      Failure? failure});
 }
 
 /// @nodoc
@@ -234,14 +579,44 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? currentAuthId = null,
+    Object? ownedToys = freezed,
+    Object? hasReachedMax = null,
     Object? isLoading = null,
+    Object? isInitializing = null,
+    Object? fetchMoreFailure = freezed,
+    Object? fetchLatestToysFailure = freezed,
     Object? failure = freezed,
   }) {
     return _then(_$ProfileStateImpl(
+      currentAuthId: null == currentAuthId
+          ? _value.currentAuthId
+          : currentAuthId // ignore: cast_nullable_to_non_nullable
+              as String,
+      ownedToys: freezed == ownedToys
+          ? _value._ownedToys
+          : ownedToys // ignore: cast_nullable_to_non_nullable
+              as List<Toy>?,
+      hasReachedMax: null == hasReachedMax
+          ? _value.hasReachedMax
+          : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isInitializing: null == isInitializing
+          ? _value.isInitializing
+          : isInitializing // ignore: cast_nullable_to_non_nullable
+              as bool,
+      fetchMoreFailure: freezed == fetchMoreFailure
+          ? _value.fetchMoreFailure
+          : fetchMoreFailure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
+      fetchLatestToysFailure: freezed == fetchLatestToysFailure
+          ? _value.fetchLatestToysFailure
+          : fetchLatestToysFailure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -253,17 +628,48 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProfileStateImpl implements _ProfileState {
-  const _$ProfileStateImpl({this.isLoading = false, this.failure});
+  const _$ProfileStateImpl(
+      {required this.currentAuthId,
+      required final List<Toy>? ownedToys,
+      this.hasReachedMax = false,
+      this.isLoading = false,
+      this.isInitializing = false,
+      this.fetchMoreFailure,
+      this.fetchLatestToysFailure,
+      this.failure})
+      : _ownedToys = ownedToys;
+
+  @override
+  final String currentAuthId;
+  final List<Toy>? _ownedToys;
+  @override
+  List<Toy>? get ownedToys {
+    final value = _ownedToys;
+    if (value == null) return null;
+    if (_ownedToys is EqualUnmodifiableListView) return _ownedToys;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   @JsonKey()
+  final bool hasReachedMax;
+  @override
+  @JsonKey()
   final bool isLoading;
+  @override
+  @JsonKey()
+  final bool isInitializing;
+  @override
+  final Failure? fetchMoreFailure;
+  @override
+  final Failure? fetchLatestToysFailure;
   @override
   final Failure? failure;
 
   @override
   String toString() {
-    return 'ProfileState(isLoading: $isLoading, failure: $failure)';
+    return 'ProfileState(currentAuthId: $currentAuthId, ownedToys: $ownedToys, hasReachedMax: $hasReachedMax, isLoading: $isLoading, isInitializing: $isInitializing, fetchMoreFailure: $fetchMoreFailure, fetchLatestToysFailure: $fetchLatestToysFailure, failure: $failure)';
   }
 
   @override
@@ -271,13 +677,34 @@ class _$ProfileStateImpl implements _ProfileState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProfileStateImpl &&
+            (identical(other.currentAuthId, currentAuthId) ||
+                other.currentAuthId == currentAuthId) &&
+            const DeepCollectionEquality()
+                .equals(other._ownedToys, _ownedToys) &&
+            (identical(other.hasReachedMax, hasReachedMax) ||
+                other.hasReachedMax == hasReachedMax) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.isInitializing, isInitializing) ||
+                other.isInitializing == isInitializing) &&
+            (identical(other.fetchMoreFailure, fetchMoreFailure) ||
+                other.fetchMoreFailure == fetchMoreFailure) &&
+            (identical(other.fetchLatestToysFailure, fetchLatestToysFailure) ||
+                other.fetchLatestToysFailure == fetchLatestToysFailure) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, failure);
+  int get hashCode => Object.hash(
+      runtimeType,
+      currentAuthId,
+      const DeepCollectionEquality().hash(_ownedToys),
+      hasReachedMax,
+      isLoading,
+      isInitializing,
+      fetchMoreFailure,
+      fetchLatestToysFailure,
+      failure);
 
   @JsonKey(ignore: true)
   @override
@@ -287,11 +714,30 @@ class _$ProfileStateImpl implements _ProfileState {
 }
 
 abstract class _ProfileState implements ProfileState {
-  const factory _ProfileState({final bool isLoading, final Failure? failure}) =
-      _$ProfileStateImpl;
+  const factory _ProfileState(
+      {required final String currentAuthId,
+      required final List<Toy>? ownedToys,
+      final bool hasReachedMax,
+      final bool isLoading,
+      final bool isInitializing,
+      final Failure? fetchMoreFailure,
+      final Failure? fetchLatestToysFailure,
+      final Failure? failure}) = _$ProfileStateImpl;
 
   @override
+  String get currentAuthId;
+  @override
+  List<Toy>? get ownedToys;
+  @override
+  bool get hasReachedMax;
+  @override
   bool get isLoading;
+  @override
+  bool get isInitializing;
+  @override
+  Failure? get fetchMoreFailure;
+  @override
+  Failure? get fetchLatestToysFailure;
   @override
   Failure? get failure;
   @override

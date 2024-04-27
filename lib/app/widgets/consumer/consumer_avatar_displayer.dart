@@ -20,7 +20,7 @@ class ConsumerAvatarDisplayer extends StatelessWidget {
         ),
         shape: BoxShape.circle,
         image: DecorationImage(
-          image: NetworkImage(consumer.avatarUrls.url256),
+          image: NetworkImage(consumer.avatarUrls.url128),
           fit: BoxFit.cover,
         ),
       ),
