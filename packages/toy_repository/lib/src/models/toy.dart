@@ -9,6 +9,9 @@ class Toy {
     required this.imageUrlList,
     required this.details,
     required this.createdAt,
+    required this.isPublic,
+    required this.isPublicable,
+    required this.likersConsumerIds,
   });
 
   Toy.fromJson(Map<String, dynamic> json)
@@ -21,7 +24,12 @@ class Toy {
             .toList(),
         details = ToyDetails.fromJson(json['details'] as Map<String, dynamic>),
         createdAt =
-            DateTime.fromMillisecondsSinceEpoch(json['createdAt'] as int);
+            DateTime.fromMillisecondsSinceEpoch(json['createdAt'] as int),
+        isPublic = json['isPublic'] as bool,
+        isPublicable = json['isPublicable'] as bool,
+        likersConsumerIds = (json['likersConsumerIds'] as List)
+            .map((e) => e as String)
+            .toList();
 
   final String ownerAuthId;
   final String id;
@@ -30,6 +38,9 @@ class Toy {
   final List<ToyImageUrls> imageUrlList;
   final ToyDetails details;
   final DateTime createdAt;
+  final bool isPublic;
+  final bool isPublicable;
+  final List<String> likersConsumerIds;
 
   Map<String, dynamic> toJson() => {
         'ownerAuthId': ownerAuthId,
@@ -39,5 +50,8 @@ class Toy {
         'imageUrlList': imageUrlList.map((e) => e.toJson()).toList(),
         'details': details.toJson(),
         'createdAt': createdAt.millisecondsSinceEpoch,
+        'isPublic': isPublic,
+        'isPublicable': isPublicable,
+        'likersConsumerIds': likersConsumerIds,
       };
 }

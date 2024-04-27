@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pinch_to_zoom_scrollable/pinch_to_zoom_scrollable.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:toy_repository/toy_repository.dart';
@@ -130,9 +131,13 @@ class ToyCard extends StatelessWidget {
                           },
                           child: Hero(
                             tag: toy.imageUrlList.elementAt(index).url128,
-                            child: Image.network(
-                              toy.imageUrlList.elementAt(index).url128,
-                              fit: BoxFit.cover,
+                            child: PinchToZoomScrollableWidget(
+                              maxScale: 4,
+                              rootOverlay: true,
+                              child: Image.network(
+                                toy.imageUrlList.elementAt(index).url128,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),

@@ -27,7 +27,7 @@ class _OwnedToysGridViewDisplayerState
         crossAxisCount: 3,
         crossAxisSpacing: 4,
         mainAxisSpacing: 8,
-        mainAxisExtent: 200,
+        mainAxisExtent: 176,
       ),
       itemCount: widget.ownedToys.length,
       itemBuilder: (context, index) {

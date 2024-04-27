@@ -24,72 +24,78 @@ class ControlOwnedToyCard extends StatelessWidget {
       ToyGender.unisex => Colors.deepPurpleAccent,
     };
 
-    return GestureDetector(
-      onTap: () {
-        ToyDetailRouter.instance.push(
-          context,
-          ToyDetailScreenRequirements(
-            imageSize: 1,
-            imageNumber: 1,
-            toyOwnerAuthId: ownedToy.ownerAuthId,
-          ),
-        );
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: SharedBorderRadius.circular12,
-          color: Colors.white12,
-          border: Border.all(
-            color: Colors.white54,
-          ),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: SharedBorderRadius.circular12,
+        color: Colors.white12,
+        border: Border.all(
+          color: Colors.white54,
         ),
-        child: Column(
-          children: [
-            ClipRRect(
-              borderRadius: SharedBorderRadius.circular12,
+      ),
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: SharedBorderRadius.circular12,
+            child: GestureDetector(
+              onTap: () {
+                ToyDetailRouter.instance.push(
+                  context,
+                  ToyDetailScreenRequirements(
+                    imageSize: 1,
+                    imageNumber: 1,
+                    toyOwnerAuthId: ownedToy.ownerAuthId,
+                  ),
+                );
+              },
               child: Image.network(
                 ownedToy.imageUrlList.first.url512,
-                width: 150,
-                height: 150,
+                width: 125,
+                height: 125,
                 fit: BoxFit.cover,
               ),
             ),
-            Padding(
-              padding: SharedPaddings.horizontal4,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      ShaderMask(
-                        blendMode: BlendMode.srcIn,
-                        shaderCallback: (bounds) => toyGradient.createShader(
-                          Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-                        ),
-                        child: const Icon(
-                          Icons.favorite,
-                          size: 32,
-                        ),
+          ),
+          Padding(
+            padding: SharedPaddings.horizontal4,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    ShaderMask(
+                      blendMode: BlendMode.srcIn,
+                      shaderCallback: (bounds) => toyGradient.createShader(
+                        Rect.fromLTWH(0, 0, bounds.width, bounds.height),
                       ),
-                      Text(
-                        '10',
-                        style: Theme.of(context).textTheme.titleMedium,
+                      child: const Icon(
+                        Icons.favorite,
+                        size: 32,
                       ),
-                    ],
-                  ),
-                  Flexible(
-                    child: Switch.adaptive(
-                      activeColor: toyColor,
-                      inactiveTrackColor: Colors.white12,
-                      value: true,
-                      onChanged: (value) {},
                     ),
+                    Text(
+                      ownedToy.likersConsumerIds.length.toString(),
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ],
+                ),
+                Flexible(
+                  child: Switch.adaptive(
+                    activeColor: toyColor,
+                    inactiveTrackColor: Colors.white12,
+                    thumbIcon: MaterialStateProperty.all(
+                      Icon(
+                        Icons.check,
+                        color: toyColor,
+                      ),
+                    ),
+                    value: ownedToy.isPublic,
+                    onChanged: (value) {},
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -92,6 +92,9 @@ class ToyRepository {
           condition: toyCondition,
         ),
         createdAt: DateTime.now(),
+        isPublic: false,
+        isPublicable: true,
+        likersConsumerIds: [],
       );
 
       _remoteDatabase.batchSetDoc(
