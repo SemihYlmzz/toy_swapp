@@ -6,10 +6,10 @@ sealed class ProfileEvent with _$ProfileEvent {
   const factory ProfileEvent.ownedToysUpdated(List<Toy> updatedOwnedToys) =
       ProfileOwnedToysUpdated;
   const factory ProfileEvent.fetchMoreOwnedToys() = ProfileFetchMoreOwnedToys;
-  const factory ProfileEvent.makeToyPublic({
+  const factory ProfileEvent.openToyToPublic({
     required String toyId,
-  }) = ProfileMakeToyPublic;
-  const factory ProfileEvent.makeToyPrivate({
+  }) = ProfileOpenToyToPublic;
+  const factory ProfileEvent.closeToyToPublic({
     required String toyId,
-  }) = ProfileMakeToyPrivate;
+  }) = ProfileCloseToyToPublic;
 }

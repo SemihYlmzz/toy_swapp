@@ -21,8 +21,8 @@ mixin _$ProfileEvent {
     required TResult Function() fetchOwnedToys,
     required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
     required TResult Function() fetchMoreOwnedToys,
-    required TResult Function(String toyId) makeToyPublic,
-    required TResult Function(String toyId) makeToyPrivate,
+    required TResult Function(String toyId) openToyToPublic,
+    required TResult Function(String toyId) closeToyToPublic,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,8 +30,8 @@ mixin _$ProfileEvent {
     TResult? Function()? fetchOwnedToys,
     TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
     TResult? Function()? fetchMoreOwnedToys,
-    TResult? Function(String toyId)? makeToyPublic,
-    TResult? Function(String toyId)? makeToyPrivate,
+    TResult? Function(String toyId)? openToyToPublic,
+    TResult? Function(String toyId)? closeToyToPublic,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,8 +39,8 @@ mixin _$ProfileEvent {
     TResult Function()? fetchOwnedToys,
     TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
     TResult Function()? fetchMoreOwnedToys,
-    TResult Function(String toyId)? makeToyPublic,
-    TResult Function(String toyId)? makeToyPrivate,
+    TResult Function(String toyId)? openToyToPublic,
+    TResult Function(String toyId)? closeToyToPublic,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -50,8 +50,8 @@ mixin _$ProfileEvent {
     required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
     required TResult Function(ProfileFetchMoreOwnedToys value)
         fetchMoreOwnedToys,
-    required TResult Function(ProfileMakeToyPublic value) makeToyPublic,
-    required TResult Function(ProfileMakeToyPrivate value) makeToyPrivate,
+    required TResult Function(ProfileOpenToyToPublic value) openToyToPublic,
+    required TResult Function(ProfileCloseToyToPublic value) closeToyToPublic,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,8 +59,8 @@ mixin _$ProfileEvent {
     TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
-    TResult? Function(ProfileMakeToyPublic value)? makeToyPublic,
-    TResult? Function(ProfileMakeToyPrivate value)? makeToyPrivate,
+    TResult? Function(ProfileOpenToyToPublic value)? openToyToPublic,
+    TResult? Function(ProfileCloseToyToPublic value)? closeToyToPublic,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,8 +68,8 @@ mixin _$ProfileEvent {
     TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
-    TResult Function(ProfileMakeToyPublic value)? makeToyPublic,
-    TResult Function(ProfileMakeToyPrivate value)? makeToyPrivate,
+    TResult Function(ProfileOpenToyToPublic value)? openToyToPublic,
+    TResult Function(ProfileCloseToyToPublic value)? closeToyToPublic,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -136,8 +136,8 @@ class _$ProfileFetchOwnedToysImpl implements ProfileFetchOwnedToys {
     required TResult Function() fetchOwnedToys,
     required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
     required TResult Function() fetchMoreOwnedToys,
-    required TResult Function(String toyId) makeToyPublic,
-    required TResult Function(String toyId) makeToyPrivate,
+    required TResult Function(String toyId) openToyToPublic,
+    required TResult Function(String toyId) closeToyToPublic,
   }) {
     return fetchOwnedToys();
   }
@@ -148,8 +148,8 @@ class _$ProfileFetchOwnedToysImpl implements ProfileFetchOwnedToys {
     TResult? Function()? fetchOwnedToys,
     TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
     TResult? Function()? fetchMoreOwnedToys,
-    TResult? Function(String toyId)? makeToyPublic,
-    TResult? Function(String toyId)? makeToyPrivate,
+    TResult? Function(String toyId)? openToyToPublic,
+    TResult? Function(String toyId)? closeToyToPublic,
   }) {
     return fetchOwnedToys?.call();
   }
@@ -160,8 +160,8 @@ class _$ProfileFetchOwnedToysImpl implements ProfileFetchOwnedToys {
     TResult Function()? fetchOwnedToys,
     TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
     TResult Function()? fetchMoreOwnedToys,
-    TResult Function(String toyId)? makeToyPublic,
-    TResult Function(String toyId)? makeToyPrivate,
+    TResult Function(String toyId)? openToyToPublic,
+    TResult Function(String toyId)? closeToyToPublic,
     required TResult orElse(),
   }) {
     if (fetchOwnedToys != null) {
@@ -177,8 +177,8 @@ class _$ProfileFetchOwnedToysImpl implements ProfileFetchOwnedToys {
     required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
     required TResult Function(ProfileFetchMoreOwnedToys value)
         fetchMoreOwnedToys,
-    required TResult Function(ProfileMakeToyPublic value) makeToyPublic,
-    required TResult Function(ProfileMakeToyPrivate value) makeToyPrivate,
+    required TResult Function(ProfileOpenToyToPublic value) openToyToPublic,
+    required TResult Function(ProfileCloseToyToPublic value) closeToyToPublic,
   }) {
     return fetchOwnedToys(this);
   }
@@ -189,8 +189,8 @@ class _$ProfileFetchOwnedToysImpl implements ProfileFetchOwnedToys {
     TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
-    TResult? Function(ProfileMakeToyPublic value)? makeToyPublic,
-    TResult? Function(ProfileMakeToyPrivate value)? makeToyPrivate,
+    TResult? Function(ProfileOpenToyToPublic value)? openToyToPublic,
+    TResult? Function(ProfileCloseToyToPublic value)? closeToyToPublic,
   }) {
     return fetchOwnedToys?.call(this);
   }
@@ -201,8 +201,8 @@ class _$ProfileFetchOwnedToysImpl implements ProfileFetchOwnedToys {
     TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
-    TResult Function(ProfileMakeToyPublic value)? makeToyPublic,
-    TResult Function(ProfileMakeToyPrivate value)? makeToyPrivate,
+    TResult Function(ProfileOpenToyToPublic value)? openToyToPublic,
+    TResult Function(ProfileCloseToyToPublic value)? closeToyToPublic,
     required TResult orElse(),
   }) {
     if (fetchOwnedToys != null) {
@@ -295,8 +295,8 @@ class _$ProfileOwnedToysUpdatedImpl implements ProfileOwnedToysUpdated {
     required TResult Function() fetchOwnedToys,
     required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
     required TResult Function() fetchMoreOwnedToys,
-    required TResult Function(String toyId) makeToyPublic,
-    required TResult Function(String toyId) makeToyPrivate,
+    required TResult Function(String toyId) openToyToPublic,
+    required TResult Function(String toyId) closeToyToPublic,
   }) {
     return ownedToysUpdated(updatedOwnedToys);
   }
@@ -307,8 +307,8 @@ class _$ProfileOwnedToysUpdatedImpl implements ProfileOwnedToysUpdated {
     TResult? Function()? fetchOwnedToys,
     TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
     TResult? Function()? fetchMoreOwnedToys,
-    TResult? Function(String toyId)? makeToyPublic,
-    TResult? Function(String toyId)? makeToyPrivate,
+    TResult? Function(String toyId)? openToyToPublic,
+    TResult? Function(String toyId)? closeToyToPublic,
   }) {
     return ownedToysUpdated?.call(updatedOwnedToys);
   }
@@ -319,8 +319,8 @@ class _$ProfileOwnedToysUpdatedImpl implements ProfileOwnedToysUpdated {
     TResult Function()? fetchOwnedToys,
     TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
     TResult Function()? fetchMoreOwnedToys,
-    TResult Function(String toyId)? makeToyPublic,
-    TResult Function(String toyId)? makeToyPrivate,
+    TResult Function(String toyId)? openToyToPublic,
+    TResult Function(String toyId)? closeToyToPublic,
     required TResult orElse(),
   }) {
     if (ownedToysUpdated != null) {
@@ -336,8 +336,8 @@ class _$ProfileOwnedToysUpdatedImpl implements ProfileOwnedToysUpdated {
     required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
     required TResult Function(ProfileFetchMoreOwnedToys value)
         fetchMoreOwnedToys,
-    required TResult Function(ProfileMakeToyPublic value) makeToyPublic,
-    required TResult Function(ProfileMakeToyPrivate value) makeToyPrivate,
+    required TResult Function(ProfileOpenToyToPublic value) openToyToPublic,
+    required TResult Function(ProfileCloseToyToPublic value) closeToyToPublic,
   }) {
     return ownedToysUpdated(this);
   }
@@ -348,8 +348,8 @@ class _$ProfileOwnedToysUpdatedImpl implements ProfileOwnedToysUpdated {
     TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
-    TResult? Function(ProfileMakeToyPublic value)? makeToyPublic,
-    TResult? Function(ProfileMakeToyPrivate value)? makeToyPrivate,
+    TResult? Function(ProfileOpenToyToPublic value)? openToyToPublic,
+    TResult? Function(ProfileCloseToyToPublic value)? closeToyToPublic,
   }) {
     return ownedToysUpdated?.call(this);
   }
@@ -360,8 +360,8 @@ class _$ProfileOwnedToysUpdatedImpl implements ProfileOwnedToysUpdated {
     TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
-    TResult Function(ProfileMakeToyPublic value)? makeToyPublic,
-    TResult Function(ProfileMakeToyPrivate value)? makeToyPrivate,
+    TResult Function(ProfileOpenToyToPublic value)? openToyToPublic,
+    TResult Function(ProfileCloseToyToPublic value)? closeToyToPublic,
     required TResult orElse(),
   }) {
     if (ownedToysUpdated != null) {
@@ -425,8 +425,8 @@ class _$ProfileFetchMoreOwnedToysImpl implements ProfileFetchMoreOwnedToys {
     required TResult Function() fetchOwnedToys,
     required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
     required TResult Function() fetchMoreOwnedToys,
-    required TResult Function(String toyId) makeToyPublic,
-    required TResult Function(String toyId) makeToyPrivate,
+    required TResult Function(String toyId) openToyToPublic,
+    required TResult Function(String toyId) closeToyToPublic,
   }) {
     return fetchMoreOwnedToys();
   }
@@ -437,8 +437,8 @@ class _$ProfileFetchMoreOwnedToysImpl implements ProfileFetchMoreOwnedToys {
     TResult? Function()? fetchOwnedToys,
     TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
     TResult? Function()? fetchMoreOwnedToys,
-    TResult? Function(String toyId)? makeToyPublic,
-    TResult? Function(String toyId)? makeToyPrivate,
+    TResult? Function(String toyId)? openToyToPublic,
+    TResult? Function(String toyId)? closeToyToPublic,
   }) {
     return fetchMoreOwnedToys?.call();
   }
@@ -449,8 +449,8 @@ class _$ProfileFetchMoreOwnedToysImpl implements ProfileFetchMoreOwnedToys {
     TResult Function()? fetchOwnedToys,
     TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
     TResult Function()? fetchMoreOwnedToys,
-    TResult Function(String toyId)? makeToyPublic,
-    TResult Function(String toyId)? makeToyPrivate,
+    TResult Function(String toyId)? openToyToPublic,
+    TResult Function(String toyId)? closeToyToPublic,
     required TResult orElse(),
   }) {
     if (fetchMoreOwnedToys != null) {
@@ -466,8 +466,8 @@ class _$ProfileFetchMoreOwnedToysImpl implements ProfileFetchMoreOwnedToys {
     required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
     required TResult Function(ProfileFetchMoreOwnedToys value)
         fetchMoreOwnedToys,
-    required TResult Function(ProfileMakeToyPublic value) makeToyPublic,
-    required TResult Function(ProfileMakeToyPrivate value) makeToyPrivate,
+    required TResult Function(ProfileOpenToyToPublic value) openToyToPublic,
+    required TResult Function(ProfileCloseToyToPublic value) closeToyToPublic,
   }) {
     return fetchMoreOwnedToys(this);
   }
@@ -478,8 +478,8 @@ class _$ProfileFetchMoreOwnedToysImpl implements ProfileFetchMoreOwnedToys {
     TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
-    TResult? Function(ProfileMakeToyPublic value)? makeToyPublic,
-    TResult? Function(ProfileMakeToyPrivate value)? makeToyPrivate,
+    TResult? Function(ProfileOpenToyToPublic value)? openToyToPublic,
+    TResult? Function(ProfileCloseToyToPublic value)? closeToyToPublic,
   }) {
     return fetchMoreOwnedToys?.call(this);
   }
@@ -490,8 +490,8 @@ class _$ProfileFetchMoreOwnedToysImpl implements ProfileFetchMoreOwnedToys {
     TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
-    TResult Function(ProfileMakeToyPublic value)? makeToyPublic,
-    TResult Function(ProfileMakeToyPrivate value)? makeToyPrivate,
+    TResult Function(ProfileOpenToyToPublic value)? openToyToPublic,
+    TResult Function(ProfileCloseToyToPublic value)? closeToyToPublic,
     required TResult orElse(),
   }) {
     if (fetchMoreOwnedToys != null) {
@@ -506,20 +506,22 @@ abstract class ProfileFetchMoreOwnedToys implements ProfileEvent {
 }
 
 /// @nodoc
-abstract class _$$ProfileMakeToyPublicImplCopyWith<$Res> {
-  factory _$$ProfileMakeToyPublicImplCopyWith(_$ProfileMakeToyPublicImpl value,
-          $Res Function(_$ProfileMakeToyPublicImpl) then) =
-      __$$ProfileMakeToyPublicImplCopyWithImpl<$Res>;
+abstract class _$$ProfileOpenToyToPublicImplCopyWith<$Res> {
+  factory _$$ProfileOpenToyToPublicImplCopyWith(
+          _$ProfileOpenToyToPublicImpl value,
+          $Res Function(_$ProfileOpenToyToPublicImpl) then) =
+      __$$ProfileOpenToyToPublicImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String toyId});
 }
 
 /// @nodoc
-class __$$ProfileMakeToyPublicImplCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res, _$ProfileMakeToyPublicImpl>
-    implements _$$ProfileMakeToyPublicImplCopyWith<$Res> {
-  __$$ProfileMakeToyPublicImplCopyWithImpl(_$ProfileMakeToyPublicImpl _value,
-      $Res Function(_$ProfileMakeToyPublicImpl) _then)
+class __$$ProfileOpenToyToPublicImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$ProfileOpenToyToPublicImpl>
+    implements _$$ProfileOpenToyToPublicImplCopyWith<$Res> {
+  __$$ProfileOpenToyToPublicImplCopyWithImpl(
+      _$ProfileOpenToyToPublicImpl _value,
+      $Res Function(_$ProfileOpenToyToPublicImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -527,7 +529,7 @@ class __$$ProfileMakeToyPublicImplCopyWithImpl<$Res>
   $Res call({
     Object? toyId = null,
   }) {
-    return _then(_$ProfileMakeToyPublicImpl(
+    return _then(_$ProfileOpenToyToPublicImpl(
       toyId: null == toyId
           ? _value.toyId
           : toyId // ignore: cast_nullable_to_non_nullable
@@ -538,22 +540,22 @@ class __$$ProfileMakeToyPublicImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProfileMakeToyPublicImpl implements ProfileMakeToyPublic {
-  const _$ProfileMakeToyPublicImpl({required this.toyId});
+class _$ProfileOpenToyToPublicImpl implements ProfileOpenToyToPublic {
+  const _$ProfileOpenToyToPublicImpl({required this.toyId});
 
   @override
   final String toyId;
 
   @override
   String toString() {
-    return 'ProfileEvent.makeToyPublic(toyId: $toyId)';
+    return 'ProfileEvent.openToyToPublic(toyId: $toyId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProfileMakeToyPublicImpl &&
+            other is _$ProfileOpenToyToPublicImpl &&
             (identical(other.toyId, toyId) || other.toyId == toyId));
   }
 
@@ -563,10 +565,9 @@ class _$ProfileMakeToyPublicImpl implements ProfileMakeToyPublic {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProfileMakeToyPublicImplCopyWith<_$ProfileMakeToyPublicImpl>
-      get copyWith =>
-          __$$ProfileMakeToyPublicImplCopyWithImpl<_$ProfileMakeToyPublicImpl>(
-              this, _$identity);
+  _$$ProfileOpenToyToPublicImplCopyWith<_$ProfileOpenToyToPublicImpl>
+      get copyWith => __$$ProfileOpenToyToPublicImplCopyWithImpl<
+          _$ProfileOpenToyToPublicImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -574,10 +575,10 @@ class _$ProfileMakeToyPublicImpl implements ProfileMakeToyPublic {
     required TResult Function() fetchOwnedToys,
     required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
     required TResult Function() fetchMoreOwnedToys,
-    required TResult Function(String toyId) makeToyPublic,
-    required TResult Function(String toyId) makeToyPrivate,
+    required TResult Function(String toyId) openToyToPublic,
+    required TResult Function(String toyId) closeToyToPublic,
   }) {
-    return makeToyPublic(toyId);
+    return openToyToPublic(toyId);
   }
 
   @override
@@ -586,10 +587,10 @@ class _$ProfileMakeToyPublicImpl implements ProfileMakeToyPublic {
     TResult? Function()? fetchOwnedToys,
     TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
     TResult? Function()? fetchMoreOwnedToys,
-    TResult? Function(String toyId)? makeToyPublic,
-    TResult? Function(String toyId)? makeToyPrivate,
+    TResult? Function(String toyId)? openToyToPublic,
+    TResult? Function(String toyId)? closeToyToPublic,
   }) {
-    return makeToyPublic?.call(toyId);
+    return openToyToPublic?.call(toyId);
   }
 
   @override
@@ -598,12 +599,12 @@ class _$ProfileMakeToyPublicImpl implements ProfileMakeToyPublic {
     TResult Function()? fetchOwnedToys,
     TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
     TResult Function()? fetchMoreOwnedToys,
-    TResult Function(String toyId)? makeToyPublic,
-    TResult Function(String toyId)? makeToyPrivate,
+    TResult Function(String toyId)? openToyToPublic,
+    TResult Function(String toyId)? closeToyToPublic,
     required TResult orElse(),
   }) {
-    if (makeToyPublic != null) {
-      return makeToyPublic(toyId);
+    if (openToyToPublic != null) {
+      return openToyToPublic(toyId);
     }
     return orElse();
   }
@@ -615,10 +616,10 @@ class _$ProfileMakeToyPublicImpl implements ProfileMakeToyPublic {
     required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
     required TResult Function(ProfileFetchMoreOwnedToys value)
         fetchMoreOwnedToys,
-    required TResult Function(ProfileMakeToyPublic value) makeToyPublic,
-    required TResult Function(ProfileMakeToyPrivate value) makeToyPrivate,
+    required TResult Function(ProfileOpenToyToPublic value) openToyToPublic,
+    required TResult Function(ProfileCloseToyToPublic value) closeToyToPublic,
   }) {
-    return makeToyPublic(this);
+    return openToyToPublic(this);
   }
 
   @override
@@ -627,10 +628,10 @@ class _$ProfileMakeToyPublicImpl implements ProfileMakeToyPublic {
     TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
-    TResult? Function(ProfileMakeToyPublic value)? makeToyPublic,
-    TResult? Function(ProfileMakeToyPrivate value)? makeToyPrivate,
+    TResult? Function(ProfileOpenToyToPublic value)? openToyToPublic,
+    TResult? Function(ProfileCloseToyToPublic value)? closeToyToPublic,
   }) {
-    return makeToyPublic?.call(this);
+    return openToyToPublic?.call(this);
   }
 
   @override
@@ -639,43 +640,44 @@ class _$ProfileMakeToyPublicImpl implements ProfileMakeToyPublic {
     TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
-    TResult Function(ProfileMakeToyPublic value)? makeToyPublic,
-    TResult Function(ProfileMakeToyPrivate value)? makeToyPrivate,
+    TResult Function(ProfileOpenToyToPublic value)? openToyToPublic,
+    TResult Function(ProfileCloseToyToPublic value)? closeToyToPublic,
     required TResult orElse(),
   }) {
-    if (makeToyPublic != null) {
-      return makeToyPublic(this);
+    if (openToyToPublic != null) {
+      return openToyToPublic(this);
     }
     return orElse();
   }
 }
 
-abstract class ProfileMakeToyPublic implements ProfileEvent {
-  const factory ProfileMakeToyPublic({required final String toyId}) =
-      _$ProfileMakeToyPublicImpl;
+abstract class ProfileOpenToyToPublic implements ProfileEvent {
+  const factory ProfileOpenToyToPublic({required final String toyId}) =
+      _$ProfileOpenToyToPublicImpl;
 
   String get toyId;
   @JsonKey(ignore: true)
-  _$$ProfileMakeToyPublicImplCopyWith<_$ProfileMakeToyPublicImpl>
+  _$$ProfileOpenToyToPublicImplCopyWith<_$ProfileOpenToyToPublicImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProfileMakeToyPrivateImplCopyWith<$Res> {
-  factory _$$ProfileMakeToyPrivateImplCopyWith(
-          _$ProfileMakeToyPrivateImpl value,
-          $Res Function(_$ProfileMakeToyPrivateImpl) then) =
-      __$$ProfileMakeToyPrivateImplCopyWithImpl<$Res>;
+abstract class _$$ProfileCloseToyToPublicImplCopyWith<$Res> {
+  factory _$$ProfileCloseToyToPublicImplCopyWith(
+          _$ProfileCloseToyToPublicImpl value,
+          $Res Function(_$ProfileCloseToyToPublicImpl) then) =
+      __$$ProfileCloseToyToPublicImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String toyId});
 }
 
 /// @nodoc
-class __$$ProfileMakeToyPrivateImplCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res, _$ProfileMakeToyPrivateImpl>
-    implements _$$ProfileMakeToyPrivateImplCopyWith<$Res> {
-  __$$ProfileMakeToyPrivateImplCopyWithImpl(_$ProfileMakeToyPrivateImpl _value,
-      $Res Function(_$ProfileMakeToyPrivateImpl) _then)
+class __$$ProfileCloseToyToPublicImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$ProfileCloseToyToPublicImpl>
+    implements _$$ProfileCloseToyToPublicImplCopyWith<$Res> {
+  __$$ProfileCloseToyToPublicImplCopyWithImpl(
+      _$ProfileCloseToyToPublicImpl _value,
+      $Res Function(_$ProfileCloseToyToPublicImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -683,7 +685,7 @@ class __$$ProfileMakeToyPrivateImplCopyWithImpl<$Res>
   $Res call({
     Object? toyId = null,
   }) {
-    return _then(_$ProfileMakeToyPrivateImpl(
+    return _then(_$ProfileCloseToyToPublicImpl(
       toyId: null == toyId
           ? _value.toyId
           : toyId // ignore: cast_nullable_to_non_nullable
@@ -694,22 +696,22 @@ class __$$ProfileMakeToyPrivateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProfileMakeToyPrivateImpl implements ProfileMakeToyPrivate {
-  const _$ProfileMakeToyPrivateImpl({required this.toyId});
+class _$ProfileCloseToyToPublicImpl implements ProfileCloseToyToPublic {
+  const _$ProfileCloseToyToPublicImpl({required this.toyId});
 
   @override
   final String toyId;
 
   @override
   String toString() {
-    return 'ProfileEvent.makeToyPrivate(toyId: $toyId)';
+    return 'ProfileEvent.closeToyToPublic(toyId: $toyId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProfileMakeToyPrivateImpl &&
+            other is _$ProfileCloseToyToPublicImpl &&
             (identical(other.toyId, toyId) || other.toyId == toyId));
   }
 
@@ -719,9 +721,9 @@ class _$ProfileMakeToyPrivateImpl implements ProfileMakeToyPrivate {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProfileMakeToyPrivateImplCopyWith<_$ProfileMakeToyPrivateImpl>
-      get copyWith => __$$ProfileMakeToyPrivateImplCopyWithImpl<
-          _$ProfileMakeToyPrivateImpl>(this, _$identity);
+  _$$ProfileCloseToyToPublicImplCopyWith<_$ProfileCloseToyToPublicImpl>
+      get copyWith => __$$ProfileCloseToyToPublicImplCopyWithImpl<
+          _$ProfileCloseToyToPublicImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -729,10 +731,10 @@ class _$ProfileMakeToyPrivateImpl implements ProfileMakeToyPrivate {
     required TResult Function() fetchOwnedToys,
     required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
     required TResult Function() fetchMoreOwnedToys,
-    required TResult Function(String toyId) makeToyPublic,
-    required TResult Function(String toyId) makeToyPrivate,
+    required TResult Function(String toyId) openToyToPublic,
+    required TResult Function(String toyId) closeToyToPublic,
   }) {
-    return makeToyPrivate(toyId);
+    return closeToyToPublic(toyId);
   }
 
   @override
@@ -741,10 +743,10 @@ class _$ProfileMakeToyPrivateImpl implements ProfileMakeToyPrivate {
     TResult? Function()? fetchOwnedToys,
     TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
     TResult? Function()? fetchMoreOwnedToys,
-    TResult? Function(String toyId)? makeToyPublic,
-    TResult? Function(String toyId)? makeToyPrivate,
+    TResult? Function(String toyId)? openToyToPublic,
+    TResult? Function(String toyId)? closeToyToPublic,
   }) {
-    return makeToyPrivate?.call(toyId);
+    return closeToyToPublic?.call(toyId);
   }
 
   @override
@@ -753,12 +755,12 @@ class _$ProfileMakeToyPrivateImpl implements ProfileMakeToyPrivate {
     TResult Function()? fetchOwnedToys,
     TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
     TResult Function()? fetchMoreOwnedToys,
-    TResult Function(String toyId)? makeToyPublic,
-    TResult Function(String toyId)? makeToyPrivate,
+    TResult Function(String toyId)? openToyToPublic,
+    TResult Function(String toyId)? closeToyToPublic,
     required TResult orElse(),
   }) {
-    if (makeToyPrivate != null) {
-      return makeToyPrivate(toyId);
+    if (closeToyToPublic != null) {
+      return closeToyToPublic(toyId);
     }
     return orElse();
   }
@@ -770,10 +772,10 @@ class _$ProfileMakeToyPrivateImpl implements ProfileMakeToyPrivate {
     required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
     required TResult Function(ProfileFetchMoreOwnedToys value)
         fetchMoreOwnedToys,
-    required TResult Function(ProfileMakeToyPublic value) makeToyPublic,
-    required TResult Function(ProfileMakeToyPrivate value) makeToyPrivate,
+    required TResult Function(ProfileOpenToyToPublic value) openToyToPublic,
+    required TResult Function(ProfileCloseToyToPublic value) closeToyToPublic,
   }) {
-    return makeToyPrivate(this);
+    return closeToyToPublic(this);
   }
 
   @override
@@ -782,10 +784,10 @@ class _$ProfileMakeToyPrivateImpl implements ProfileMakeToyPrivate {
     TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
-    TResult? Function(ProfileMakeToyPublic value)? makeToyPublic,
-    TResult? Function(ProfileMakeToyPrivate value)? makeToyPrivate,
+    TResult? Function(ProfileOpenToyToPublic value)? openToyToPublic,
+    TResult? Function(ProfileCloseToyToPublic value)? closeToyToPublic,
   }) {
-    return makeToyPrivate?.call(this);
+    return closeToyToPublic?.call(this);
   }
 
   @override
@@ -794,24 +796,24 @@ class _$ProfileMakeToyPrivateImpl implements ProfileMakeToyPrivate {
     TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
-    TResult Function(ProfileMakeToyPublic value)? makeToyPublic,
-    TResult Function(ProfileMakeToyPrivate value)? makeToyPrivate,
+    TResult Function(ProfileOpenToyToPublic value)? openToyToPublic,
+    TResult Function(ProfileCloseToyToPublic value)? closeToyToPublic,
     required TResult orElse(),
   }) {
-    if (makeToyPrivate != null) {
-      return makeToyPrivate(this);
+    if (closeToyToPublic != null) {
+      return closeToyToPublic(this);
     }
     return orElse();
   }
 }
 
-abstract class ProfileMakeToyPrivate implements ProfileEvent {
-  const factory ProfileMakeToyPrivate({required final String toyId}) =
-      _$ProfileMakeToyPrivateImpl;
+abstract class ProfileCloseToyToPublic implements ProfileEvent {
+  const factory ProfileCloseToyToPublic({required final String toyId}) =
+      _$ProfileCloseToyToPublicImpl;
 
   String get toyId;
   @JsonKey(ignore: true)
-  _$$ProfileMakeToyPrivateImplCopyWith<_$ProfileMakeToyPrivateImpl>
+  _$$ProfileCloseToyToPublicImplCopyWith<_$ProfileCloseToyToPublicImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 

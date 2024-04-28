@@ -34,6 +34,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<ProfileOwnedToysUpdated>(
       _onProfileEvent,
     );
+    on<ProfileOpenToyToPublic>(
+      _onProfileEvent,
+    );
+    on<ProfileCloseToyToPublic>(
+      _onProfileEvent,
+    );
     on<ProfileEvent>(
       _onProfileEvent,
       transformer: throttleDroppable(duration),
@@ -56,15 +62,19 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     emit(state.copyWith(isLoading: true));
 
     await event.map(
-      makeToyPublic: (e) async {
+      openToyToPublic: (e) async {
         final tryUpdate = await _toyRepository.openToPublic(toyId: e.toyId);
         tryUpdate.fold(
           (l) => emit(state.copyWith(failure: l)),
           (r) => null,
         );
       },
-      makeToyPrivate: (e) async {
-        // final tryUpdate = await _toyRepository.openToPublic(toyId: e.toyId);
+      closeToyToPublic: (e) async {
+        final tryUpdate = await _toyRepository.closeToPublic(toyId: e.toyId);
+        tryUpdate.fold(
+          (l) => emit(state.copyWith(failure: l)),
+          (r) => null,
+        );
       },
       ownedToysUpdated: (e) async {
         emit(state.copyWith(ownedToys: e.updatedOwnedToys));

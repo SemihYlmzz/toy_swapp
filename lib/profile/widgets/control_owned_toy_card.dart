@@ -94,14 +94,14 @@ class ControlOwnedToyCard extends StatelessWidget {
                     onChanged: (value) {
                       if (value) {
                         context.read<ProfileBloc>().add(
-                              ProfileEvent.makeToyPublic(
+                              ProfileEvent.openToyToPublic(
                                 toyId: ownedToy.id,
                               ),
                             );
                         return;
                       } else {
                         context.read<ProfileBloc>().add(
-                              ProfileEvent.makeToyPrivate(
+                              ProfileEvent.closeToyToPublic(
                                 toyId: ownedToy.id,
                               ),
                             );
