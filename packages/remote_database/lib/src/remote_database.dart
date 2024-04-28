@@ -19,6 +19,11 @@ abstract class RemoteDatabase {
     required String documentID,
     required Map<String, dynamic> jsonData,
   });
+  Future<void> updateDoc({
+    required String collectionID,
+    required String documentID,
+    required Map<String, dynamic> jsonData,
+  });
 
   Future<List<Map<String, dynamic>>?> readCollection({
     required String collectionID,

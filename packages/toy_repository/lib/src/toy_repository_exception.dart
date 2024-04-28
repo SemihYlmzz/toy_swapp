@@ -10,4 +10,6 @@ sealed class ToyRepositoryException
     implements Failure {
   const factory ToyRepositoryException.unknown() =
       ToyRepositoryExceptionUnknown;
+  const factory ToyRepositoryException.notPublicable() =
+      ToyRepositoryExceptionNotPublicable;
 }

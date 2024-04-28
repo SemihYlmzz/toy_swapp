@@ -6,8 +6,7 @@ part of 'counters.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CountersImpl _$$CountersImplFromJson(Map<String, dynamic> json) =>
-    _$CountersImpl(
+_$CountersImpl _$$CountersImplFromJson(Map json) => _$CountersImpl(
       ownedToy: json['ownedToy'] as int,
       switchChance: json['switchChance'] as int,
       switchs: json['switchs'] as int,

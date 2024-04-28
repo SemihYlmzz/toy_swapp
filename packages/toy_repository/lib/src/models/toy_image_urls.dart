@@ -1,26 +1,18 @@
-class ToyImageUrls {
-  ToyImageUrls({
-    required this.url1024,
-    required this.url128,
-    required this.url256,
-    required this.url512,
-  });
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  ToyImageUrls.fromJson(Map<String, dynamic> json)
-      : url1024 = json['url1024'] as String,
-        url512 = json['url512'] as String,
-        url256 = json['url256'] as String,
-        url128 = json['url128'] as String;
+part 'toy_image_urls.freezed.dart';
+part 'toy_image_urls.g.dart';
 
-  final String url1024;
-  final String url128;
-  final String url256;
-  final String url512;
+@freezed
+class ToyImageUrls with _$ToyImageUrls {
+  const factory ToyImageUrls({
+    required String url1024,
+    required String url128,
+    required String url256,
+    required String url512,
+  }) = _ToyImageUrls;
 
-  Map<String, dynamic> toJson() => {
-        'url1024': url1024,
-        'url128': url128,
-        'url256': url256,
-        'url512': url512,
-      };
+  factory ToyImageUrls.fromJson(Map<String, Object?> json) =>
+      _$ToyImageUrlsFromJson(json);
 }

@@ -6,16 +6,16 @@ part of 'consumer.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ConsumerImpl _$$ConsumerImplFromJson(Map<String, dynamic> json) =>
-    _$ConsumerImpl(
+_$ConsumerImpl _$$ConsumerImplFromJson(Map json) => _$ConsumerImpl(
       authId: json['authId'] as String,
       firstName: json['firstName'] as String,
       lastName: json['lastName'] as String,
       currentLocation: CurrentLocation.fromJson(
-          json['currentLocation'] as Map<String, dynamic>),
-      avatarUrls:
-          AvatarUrls.fromJson(json['avatarUrls'] as Map<String, dynamic>),
-      counters: Counters.fromJson(json['counters'] as Map<String, dynamic>),
+          Map<String, Object?>.from(json['currentLocation'] as Map)),
+      avatarUrls: AvatarUrls.fromJson(
+          Map<String, Object?>.from(json['avatarUrls'] as Map)),
+      counters:
+          Counters.fromJson(Map<String, Object?>.from(json['counters'] as Map)),
       isDeletingAccount: json['isDeletingAccount'] as bool,
       state: $enumDecode(_$ConsumerStateEnumMap, json['state']),
       email: json['email'] as String?,

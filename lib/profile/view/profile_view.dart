@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_widgets/shared_widgets.dart';
 
 import '../profile.dart';
 
@@ -46,6 +47,7 @@ class _ProfileViewState extends State<ProfileView> {
       edgeOffset: 160,
       child: CustomScrollView(
         controller: _scrollController,
+        physics: const AlwaysScrollableScrollPhysics(),
         slivers: [
           const ProfileSliverAppBar(),
           if (fetchLatestFailure != null)

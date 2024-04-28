@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:toy_repository/toy_repository.dart';
 
 import '../../app/app.dart';
 import '../../toy_detail/toy_detail.dart';
+import '../profile.dart';
 
 class ControlOwnedToyCard extends StatelessWidget {
   const ControlOwnedToyCard({
@@ -49,8 +51,8 @@ class ControlOwnedToyCard extends StatelessWidget {
               },
               child: Image.network(
                 ownedToy.imageUrlList.first.url512,
-                width: 125,
-                height: 125,
+                width: double.infinity,
+                height: 126,
                 fit: BoxFit.cover,
               ),
             ),
@@ -89,7 +91,23 @@ class ControlOwnedToyCard extends StatelessWidget {
                       ),
                     ),
                     value: ownedToy.isPublic,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      if (value) {
+                        context.read<ProfileBloc>().add(
+                              ProfileEvent.makeToyPublic(
+                                toyId: ownedToy.id,
+                              ),
+                            );
+                        return;
+                      } else {
+                        context.read<ProfileBloc>().add(
+                              ProfileEvent.makeToyPrivate(
+                                toyId: ownedToy.id,
+                              ),
+                            );
+                        return;
+                      }
+                    },
                   ),
                 ),
               ],

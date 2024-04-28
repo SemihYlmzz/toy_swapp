@@ -30,7 +30,7 @@ class ToyCard extends StatelessWidget {
 
     return Container(
       width: 320,
-      height: 500,
+      height: 550,
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.white24,
@@ -103,68 +103,38 @@ class ToyCard extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: SizedBox(
-              height: 340,
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  PageView(
-                    allowImplicitScrolling: true,
-                    key: ValueKey(toy.id),
-                    onPageChanged: (index) {
-                      imageIndex.value = index;
-                    },
-                    children: [
-                      for (int index = 0;
-                          index < toy.imageUrlList.length;
-                          index++)
-                        GestureDetector(
-                          onTap: () {
-                            ToyDetailRouter.instance.push(
-                              context,
-                              const ToyDetailScreenRequirements(
-                                imageSize: 1,
-                                imageNumber: 1,
-                                toyOwnerAuthId: '7vqVPe3zKdQqf4QsF7WFTQzNQ692',
-                              ),
-                            );
-                          },
-                          child: Hero(
-                            tag: toy.imageUrlList.elementAt(index).url128,
-                            child: PinchToZoomScrollableWidget(
-                              maxScale: 4,
-                              rootOverlay: true,
-                              child: Image.network(
-                                toy.imageUrlList.elementAt(index).url128,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
+            child: PageView(
+              allowImplicitScrolling: true,
+              key: ValueKey(toy.id),
+              onPageChanged: (index) {
+                imageIndex.value = index;
+              },
+              children: [
+                for (int index = 0; index < toy.imageUrlList.length; index++)
+                  GestureDetector(
+                    onTap: () {
+                      ToyDetailRouter.instance.push(
+                        context,
+                        const ToyDetailScreenRequirements(
+                          imageSize: 1,
+                          imageNumber: 1,
+                          toyOwnerAuthId: '7vqVPe3zKdQqf4QsF7WFTQzNQ692',
                         ),
-                    ],
-                  ),
-                  Container(
-                    width: double.infinity,
-                    height: 25,
-                    color: Colors.black45,
-                    child: Center(
-                      child: ValueListenableBuilder(
-                        valueListenable: imageIndex,
-                        builder: (context, index, _) {
-                          return AnimatedSmoothIndicator(
-                            activeIndex: index,
-                            count: toy.imageUrlList.length,
-                            effect: ScrollingDotsEffect(
-                              dotColor: Colors.white38,
-                              activeDotColor: contextTheme.primaryColor,
-                            ),
-                          );
-                        },
+                      );
+                    },
+                    child: Hero(
+                      tag: toy.imageUrlList.elementAt(index).url128,
+                      child: PinchToZoomScrollableWidget(
+                        maxScale: 4,
+                        rootOverlay: true,
+                        child: Image.network(
+                          toy.imageUrlList.elementAt(index).url128,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
-                ],
-              ),
+              ],
             ),
           ),
           Container(
@@ -173,25 +143,45 @@ class ToyCard extends StatelessWidget {
               gradient: toyGradient,
               borderRadius: SharedBorderRadius.bottomLeftRight12,
             ),
-            child: Row(
+            child: Column(
               children: [
-                Expanded(
-                  child: Padding(
-                    padding: SharedPaddings.left12,
-                    child: Text(
-                      toy.name,
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                Center(
+                  child: ValueListenableBuilder(
+                    valueListenable: imageIndex,
+                    builder: (context, index, _) {
+                      return AnimatedSmoothIndicator(
+                        activeIndex: index,
+                        count: toy.imageUrlList.length,
+                        effect: const ScrollingDotsEffect(
+                          dotColor: Colors.black38,
+                          activeDotColor: Colors.white,
+                        ),
+                      );
+                    },
                   ),
                 ),
-                const Icon(
-                  Icons.favorite_outline,
-                  size: 40,
+                const Divider(color: Colors.white38, indent: 16, endIndent: 16),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: SharedPaddings.left12,
+                        child: Text(
+                          toy.name,
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Icon(
+                      Icons.favorite_outline,
+                      size: 40,
+                    ),
+                    SharedGap.gap12,
+                  ],
                 ),
-                SharedGap.gap12,
               ],
             ),
           ),

@@ -19,32 +19,39 @@ mixin _$ToyRepositoryException {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
+    required TResult Function() notPublicable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
+    TResult? Function()? notPublicable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
+    TResult Function()? notPublicable,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ToyRepositoryExceptionUnknown value) unknown,
+    required TResult Function(ToyRepositoryExceptionNotPublicable value)
+        notPublicable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ToyRepositoryExceptionUnknown value)? unknown,
+    TResult? Function(ToyRepositoryExceptionNotPublicable value)? notPublicable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ToyRepositoryExceptionUnknown value)? unknown,
+    TResult Function(ToyRepositoryExceptionNotPublicable value)? notPublicable,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +120,7 @@ class _$ToyRepositoryExceptionUnknownImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
+    required TResult Function() notPublicable,
   }) {
     return unknown();
   }
@@ -121,6 +129,7 @@ class _$ToyRepositoryExceptionUnknownImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
+    TResult? Function()? notPublicable,
   }) {
     return unknown?.call();
   }
@@ -129,6 +138,7 @@ class _$ToyRepositoryExceptionUnknownImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
+    TResult Function()? notPublicable,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -141,6 +151,8 @@ class _$ToyRepositoryExceptionUnknownImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ToyRepositoryExceptionUnknown value) unknown,
+    required TResult Function(ToyRepositoryExceptionNotPublicable value)
+        notPublicable,
   }) {
     return unknown(this);
   }
@@ -149,6 +161,7 @@ class _$ToyRepositoryExceptionUnknownImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ToyRepositoryExceptionUnknown value)? unknown,
+    TResult? Function(ToyRepositoryExceptionNotPublicable value)? notPublicable,
   }) {
     return unknown?.call(this);
   }
@@ -157,6 +170,7 @@ class _$ToyRepositoryExceptionUnknownImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ToyRepositoryExceptionUnknown value)? unknown,
+    TResult Function(ToyRepositoryExceptionNotPublicable value)? notPublicable,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -169,4 +183,114 @@ class _$ToyRepositoryExceptionUnknownImpl
 abstract class ToyRepositoryExceptionUnknown implements ToyRepositoryException {
   const factory ToyRepositoryExceptionUnknown() =
       _$ToyRepositoryExceptionUnknownImpl;
+}
+
+/// @nodoc
+abstract class _$$ToyRepositoryExceptionNotPublicableImplCopyWith<$Res> {
+  factory _$$ToyRepositoryExceptionNotPublicableImplCopyWith(
+          _$ToyRepositoryExceptionNotPublicableImpl value,
+          $Res Function(_$ToyRepositoryExceptionNotPublicableImpl) then) =
+      __$$ToyRepositoryExceptionNotPublicableImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ToyRepositoryExceptionNotPublicableImplCopyWithImpl<$Res>
+    extends _$ToyRepositoryExceptionCopyWithImpl<$Res,
+        _$ToyRepositoryExceptionNotPublicableImpl>
+    implements _$$ToyRepositoryExceptionNotPublicableImplCopyWith<$Res> {
+  __$$ToyRepositoryExceptionNotPublicableImplCopyWithImpl(
+      _$ToyRepositoryExceptionNotPublicableImpl _value,
+      $Res Function(_$ToyRepositoryExceptionNotPublicableImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ToyRepositoryExceptionNotPublicableImpl
+    implements ToyRepositoryExceptionNotPublicable {
+  const _$ToyRepositoryExceptionNotPublicableImpl();
+
+  @override
+  String toString() {
+    return 'ToyRepositoryException.notPublicable()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToyRepositoryExceptionNotPublicableImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() notPublicable,
+  }) {
+    return notPublicable();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? notPublicable,
+  }) {
+    return notPublicable?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? notPublicable,
+    required TResult orElse(),
+  }) {
+    if (notPublicable != null) {
+      return notPublicable();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ToyRepositoryExceptionUnknown value) unknown,
+    required TResult Function(ToyRepositoryExceptionNotPublicable value)
+        notPublicable,
+  }) {
+    return notPublicable(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToyRepositoryExceptionUnknown value)? unknown,
+    TResult? Function(ToyRepositoryExceptionNotPublicable value)? notPublicable,
+  }) {
+    return notPublicable?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToyRepositoryExceptionUnknown value)? unknown,
+    TResult Function(ToyRepositoryExceptionNotPublicable value)? notPublicable,
+    required TResult orElse(),
+  }) {
+    if (notPublicable != null) {
+      return notPublicable(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ToyRepositoryExceptionNotPublicable
+    implements ToyRepositoryException {
+  const factory ToyRepositoryExceptionNotPublicable() =
+      _$ToyRepositoryExceptionNotPublicableImpl;
 }

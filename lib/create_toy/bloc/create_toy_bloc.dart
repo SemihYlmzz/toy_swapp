@@ -51,10 +51,19 @@ class CreateToyBloc extends Bloc<CreateToyEvent, CreateToyState> {
           toyCondition: e.toyCondition,
         );
         final updatedConsumer = _consumerRepository.increaseOwnedToyCounter();
+        Toy? createdToy;
+        createdToy = tryCreate.getRight().toNullable();
+        if (createdToy == null) {
+          emit(state.copyWith(failure: tryCreate.getLeft().toNullable()));
+          return;
+        }
 
-        final tryCreateFailure = tryCreate.getLeft().toNullable();
-        if (tryCreateFailure != null) {
-          emit(state.copyWith(failure: tryCreateFailure));
+        tryCreate.fold(
+          (failure) => emit(state.copyWith(failure: failure)),
+          (toy) => createdToy = toy,
+        );
+
+        if (createdToy == null) {
           return;
         }
 
@@ -63,6 +72,7 @@ class CreateToyBloc extends Bloc<CreateToyEvent, CreateToyState> {
           (failure) => emit(state.copyWith(failure: failure)),
           (success) {
             _consumerRepository.sinkCurrentConsumer(consumer: updatedConsumer);
+            _toyRepository.sinkAddOwnedToy(createdToy!);
             emit(state.copyWith(isToyCreated: true));
           },
         );

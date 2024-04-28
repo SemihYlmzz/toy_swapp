@@ -11,18 +11,16 @@ class ToysAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       surfaceTintColor: Colors.transparent,
       leading: const Padding(
-        padding: SharedPaddings.left20,
+        padding: SharedPaddings.left12,
         child: Icon(
           Icons.search,
-          size: 32,
         ),
       ),
       actions: const [
         Icon(
           Icons.tune,
-          size: 32,
         ),
-        SharedGap.gap20,
+        SharedGap.gap12,
       ],
     );
   }

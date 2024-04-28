@@ -56,6 +56,16 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     emit(state.copyWith(isLoading: true));
 
     await event.map(
+      makeToyPublic: (e) async {
+        final tryUpdate = await _toyRepository.openToPublic(toyId: e.toyId);
+        tryUpdate.fold(
+          (l) => emit(state.copyWith(failure: l)),
+          (r) => null,
+        );
+      },
+      makeToyPrivate: (e) async {
+        // final tryUpdate = await _toyRepository.openToPublic(toyId: e.toyId);
+      },
       ownedToysUpdated: (e) async {
         emit(state.copyWith(ownedToys: e.updatedOwnedToys));
       },
@@ -73,7 +83,15 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         );
         tryFetch.fold(
           (l) => emit(state.copyWith(fetchLatestToysFailure: l)),
-          (r) => null,
+          (fetchedToysList) {
+            if (fetchedToysList.isEmpty) {
+              emit(state.copyWith(hasReachedMax: true));
+              return;
+            }
+            if (fetchedToysList.length < 12) {
+              emit(state.copyWith(hasReachedMax: true));
+            }
+          },
         );
       },
       fetchMoreOwnedToys: (e) async {
@@ -87,6 +105,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           ownerAuthId: state.currentAuthId,
           oldestOwnedToy: ownedToys.first,
         );
+
         tryFetch.fold(
           (l) => emit(state.copyWith(fetchMoreFailure: l)),
           (newOwnedToys) {

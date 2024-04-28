@@ -100,12 +100,24 @@ class RemoteDatabaseCloudFirestore extends RemoteDatabase {
   }
 
   @override
+  Future<void> updateDoc({
+    required String collectionID,
+    required String documentID,
+    required Map<String, dynamic> jsonData,
+  }) async {
+    await _firestore.collection(collectionID).doc(documentID).update(jsonData);
+    return;
+  }
+
+  @override
   FutureUnit batchCommit() async {
     try {
       await _batch.commit();
       _batch = _firestore.batch();
       return right(unit);
     } catch (exception) {
+      print(exception);
+      _batch = _firestore.batch();
       return const Left(RemoteDatabaseException.unknown());
     }
   }
