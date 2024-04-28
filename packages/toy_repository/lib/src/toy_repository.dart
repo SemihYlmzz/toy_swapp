@@ -108,6 +108,40 @@ class ToyRepository {
     }
   }
 
+  FutureEither<Toy> readToy({
+    required String toyId,
+  }) async {
+    try {
+      final toyDoc = await _remoteDatabase.readDoc(
+        collectionID: ToyRepositoryStrings.toysCollectionPath,
+        documentID: toyId,
+      );
+      if (toyDoc == null) {
+        return const Left(ToyRepositoryException.unknown());
+      }
+      if (toyDoc.isEmpty) {
+        return const Left(ToyRepositoryException.unknown());
+      }
+
+      final readedToy = Toy.fromJson(toyDoc);
+      // If fetched toy is owned. 
+      // Update the ownedToy also.
+      if (ownedToys?.contains(readedToy) ?? false) {
+        final updatedList = List<Toy>.from(ownedToys!);
+        final toyListIndex = updatedList.indexWhere(
+          (element) => element.id == toyId,
+        );
+        updatedList[toyListIndex] = readedToy;
+        _ownedToysStreamController.sink.add(updatedList);
+      }
+      // Todo: 
+      // Feed screen için de sorulabilir.
+      return Right(readedToy);
+    } catch (exception) {
+      return const Left(ToyRepositoryException.unknown());
+    }
+  }
+
   FutureUnit openToPublic({
     required String toyId,
   }) async {

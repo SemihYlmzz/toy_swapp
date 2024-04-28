@@ -115,15 +115,15 @@ class ToyCard extends StatelessWidget {
                     onTap: () {
                       ToyDetailRouter.instance.push(
                         context,
-                        const ToyDetailScreenRequirements(
-                          imageSize: 1,
-                          imageNumber: 1,
-                          toyOwnerAuthId: '7vqVPe3zKdQqf4QsF7WFTQzNQ692',
+                        ToyDetailScreenRequirements(
+                          toy: toy,
+                          ownerConsumer: ownerConsumer,
+                          heroTag: 'ToyCard${toy.id}$index',
                         ),
                       );
                     },
                     child: Hero(
-                      tag: toy.imageUrlList.elementAt(index).url128,
+                      tag: 'ToyCard${toy.id}$index',
                       child: PinchToZoomScrollableWidget(
                         maxScale: 4,
                         rootOverlay: true,

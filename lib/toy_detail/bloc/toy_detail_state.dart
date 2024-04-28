@@ -4,7 +4,8 @@ part of 'toy_detail_bloc.dart';
 class ToyDetailState with _$ToyDetailState {
   const factory ToyDetailState({
     required Consumer currentConsumer,
-    Consumer? toyOwnerConsumer,
+    Toy? toy,
+    Consumer? ownerConsumer,
     @Default(false) bool isLoading,
     Failure? failure,
   }) = _ToyDetailState;

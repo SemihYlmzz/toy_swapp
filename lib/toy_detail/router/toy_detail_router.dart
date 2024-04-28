@@ -1,5 +1,7 @@
+import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:toy_repository/toy_repository.dart';
 import '../toy_detail.dart';
 
 class ToyDetailRouter {
@@ -37,12 +39,11 @@ class ToyDetailRouter {
 
 class ToyDetailScreenRequirements {
   const ToyDetailScreenRequirements({
-    required this.imageSize,
-    required this.imageNumber,
-    required this.toyOwnerAuthId,
-
+    required this.toy,
+    required this.ownerConsumer,
+    required this.heroTag,
   });
-  final int imageSize;
-  final int imageNumber;
-  final String toyOwnerAuthId;
+  final Toy toy;
+  final Consumer? ownerConsumer;
+  final String heroTag;
 }

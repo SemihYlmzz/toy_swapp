@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:toy_repository/toy_repository.dart';
 import '../../errors/errors.dart';
 
 part 'toy_detail_bloc.freezed.dart';
@@ -12,12 +13,16 @@ part 'toy_detail_state.dart';
 class ToyDetailBloc extends Bloc<ToyDetailEvent, ToyDetailState> {
   ToyDetailBloc({
     required ConsumerRepository consumerRepository,
+    required ToyRepository toyRepository,
   })  : _consumerRepository = consumerRepository,
+        _toyRepository = toyRepository,
         super(
-          ToyDetailState(currentConsumer: consumerRepository.currentConsumer),
+          ToyDetailState(
+            currentConsumer: consumerRepository.currentConsumer,
+          ),
         ) {
     on<ToyDetailEvent>(_onToyDetailEvent);
-
+    // Listen Current Consumer Changes
     _currentConsumerSubscription =
         consumerRepository.currentConsumerStream.listen((value) {
       add(ToyDetailEvent.currentConsumerUpdated(value));
@@ -25,6 +30,8 @@ class ToyDetailBloc extends Bloc<ToyDetailEvent, ToyDetailState> {
   }
   // Repositories
   final ConsumerRepository _consumerRepository;
+  final ToyRepository _toyRepository;
+
   // Stream Subscriptions
   StreamSubscription<Consumer>? _currentConsumerSubscription;
 
@@ -39,14 +46,31 @@ class ToyDetailBloc extends Bloc<ToyDetailEvent, ToyDetailState> {
       currentConsumerUpdated: (e) async {
         emit(state.copyWith(currentConsumer: e.updatedConsumer));
       },
-      loadToyOwnerConsumerData: (e) async {
-        final tryRead = await _consumerRepository.readConsumer(
-          authId: e.toyOwnerAuthId,
+      loadToyAndOwner: (e) async {
+        final tryRead = await _toyRepository.readToy(
+          toyId: e.toyId,
         );
-        tryRead.fold(
-          (failure) => emit(state.copyWith(failure: failure)),
-          (toyOwnerConsumer) => emit(
-            state.copyWith(toyOwnerConsumer: toyOwnerConsumer),
+        final fetchedToy = tryRead.getRight().toNullable();
+        if (fetchedToy == null) {
+          emit(state.copyWith(failure: tryRead.getLeft().toNullable()));
+          return;
+        }
+        if (fetchedToy.ownerAuthId == state.currentConsumer.authId) {
+          emit(
+            state.copyWith(
+              toy: fetchedToy,
+              ownerConsumer: state.currentConsumer,
+            ),
+          );
+          return;
+        }
+        final tryReadOwnerConsumer = await _consumerRepository.readConsumer(
+          authId: fetchedToy.ownerAuthId,
+        );
+        tryReadOwnerConsumer.fold(
+          (failure) => emit(state.copyWith(failure: failure, toy: fetchedToy)),
+          (ownerConsumer) => emit(
+            state.copyWith(ownerConsumer: ownerConsumer, toy: fetchedToy),
           ),
         );
       },

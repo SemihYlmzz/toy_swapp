@@ -25,7 +25,6 @@ class ControlOwnedToyCard extends StatelessWidget {
       ToyGender.girl => Colors.pinkAccent,
       ToyGender.unisex => Colors.deepPurpleAccent,
     };
-
     return Container(
       decoration: BoxDecoration(
         borderRadius: SharedBorderRadius.circular12,
@@ -43,17 +42,20 @@ class ControlOwnedToyCard extends StatelessWidget {
                 ToyDetailRouter.instance.push(
                   context,
                   ToyDetailScreenRequirements(
-                    imageSize: 1,
-                    imageNumber: 1,
-                    toyOwnerAuthId: ownedToy.ownerAuthId,
+                    toy: ownedToy,
+                    ownerConsumer: null,
+                    heroTag: 'ControlOwnedToyCard${ownedToy.id}',
                   ),
                 );
               },
-              child: Image.network(
-                ownedToy.imageUrlList.first.url512,
-                width: double.infinity,
-                height: 126,
-                fit: BoxFit.cover,
+              child: Hero(
+                tag: 'ControlOwnedToyCard${ownedToy.id}',
+                child: Image.network(
+                  ownedToy.imageUrlList.first.url512,
+                  width: double.infinity,
+                  height: 126,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),

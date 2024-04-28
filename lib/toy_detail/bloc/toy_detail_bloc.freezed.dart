@@ -19,19 +19,19 @@ mixin _$ToyDetailEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Consumer updatedConsumer) currentConsumerUpdated,
-    required TResult Function(String toyOwnerAuthId) loadToyOwnerConsumerData,
+    required TResult Function(String toyId) loadToyAndOwner,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
-    TResult? Function(String toyOwnerAuthId)? loadToyOwnerConsumerData,
+    TResult? Function(String toyId)? loadToyAndOwner,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
-    TResult Function(String toyOwnerAuthId)? loadToyOwnerConsumerData,
+    TResult Function(String toyId)? loadToyAndOwner,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,24 +39,21 @@ mixin _$ToyDetailEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(ToyDetailCurrentConsumerUpdated value)
         currentConsumerUpdated,
-    required TResult Function(ToyDetailLoadToyOwnerConsumerData value)
-        loadToyOwnerConsumerData,
+    required TResult Function(ToyDetailLoadToyAndOwner value) loadToyAndOwner,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ToyDetailCurrentConsumerUpdated value)?
         currentConsumerUpdated,
-    TResult? Function(ToyDetailLoadToyOwnerConsumerData value)?
-        loadToyOwnerConsumerData,
+    TResult? Function(ToyDetailLoadToyAndOwner value)? loadToyAndOwner,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ToyDetailCurrentConsumerUpdated value)?
         currentConsumerUpdated,
-    TResult Function(ToyDetailLoadToyOwnerConsumerData value)?
-        loadToyOwnerConsumerData,
+    TResult Function(ToyDetailLoadToyAndOwner value)? loadToyAndOwner,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -162,7 +159,7 @@ class _$ToyDetailCurrentConsumerUpdatedImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Consumer updatedConsumer) currentConsumerUpdated,
-    required TResult Function(String toyOwnerAuthId) loadToyOwnerConsumerData,
+    required TResult Function(String toyId) loadToyAndOwner,
   }) {
     return currentConsumerUpdated(updatedConsumer);
   }
@@ -171,7 +168,7 @@ class _$ToyDetailCurrentConsumerUpdatedImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
-    TResult? Function(String toyOwnerAuthId)? loadToyOwnerConsumerData,
+    TResult? Function(String toyId)? loadToyAndOwner,
   }) {
     return currentConsumerUpdated?.call(updatedConsumer);
   }
@@ -180,7 +177,7 @@ class _$ToyDetailCurrentConsumerUpdatedImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
-    TResult Function(String toyOwnerAuthId)? loadToyOwnerConsumerData,
+    TResult Function(String toyId)? loadToyAndOwner,
     required TResult orElse(),
   }) {
     if (currentConsumerUpdated != null) {
@@ -194,8 +191,7 @@ class _$ToyDetailCurrentConsumerUpdatedImpl
   TResult map<TResult extends Object?>({
     required TResult Function(ToyDetailCurrentConsumerUpdated value)
         currentConsumerUpdated,
-    required TResult Function(ToyDetailLoadToyOwnerConsumerData value)
-        loadToyOwnerConsumerData,
+    required TResult Function(ToyDetailLoadToyAndOwner value) loadToyAndOwner,
   }) {
     return currentConsumerUpdated(this);
   }
@@ -205,8 +201,7 @@ class _$ToyDetailCurrentConsumerUpdatedImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ToyDetailCurrentConsumerUpdated value)?
         currentConsumerUpdated,
-    TResult? Function(ToyDetailLoadToyOwnerConsumerData value)?
-        loadToyOwnerConsumerData,
+    TResult? Function(ToyDetailLoadToyAndOwner value)? loadToyAndOwner,
   }) {
     return currentConsumerUpdated?.call(this);
   }
@@ -216,8 +211,7 @@ class _$ToyDetailCurrentConsumerUpdatedImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ToyDetailCurrentConsumerUpdated value)?
         currentConsumerUpdated,
-    TResult Function(ToyDetailLoadToyOwnerConsumerData value)?
-        loadToyOwnerConsumerData,
+    TResult Function(ToyDetailLoadToyAndOwner value)? loadToyAndOwner,
     required TResult orElse(),
   }) {
     if (currentConsumerUpdated != null) {
@@ -239,34 +233,33 @@ abstract class ToyDetailCurrentConsumerUpdated implements ToyDetailEvent {
 }
 
 /// @nodoc
-abstract class _$$ToyDetailLoadToyOwnerConsumerDataImplCopyWith<$Res> {
-  factory _$$ToyDetailLoadToyOwnerConsumerDataImplCopyWith(
-          _$ToyDetailLoadToyOwnerConsumerDataImpl value,
-          $Res Function(_$ToyDetailLoadToyOwnerConsumerDataImpl) then) =
-      __$$ToyDetailLoadToyOwnerConsumerDataImplCopyWithImpl<$Res>;
+abstract class _$$ToyDetailLoadToyAndOwnerImplCopyWith<$Res> {
+  factory _$$ToyDetailLoadToyAndOwnerImplCopyWith(
+          _$ToyDetailLoadToyAndOwnerImpl value,
+          $Res Function(_$ToyDetailLoadToyAndOwnerImpl) then) =
+      __$$ToyDetailLoadToyAndOwnerImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String toyOwnerAuthId});
+  $Res call({String toyId});
 }
 
 /// @nodoc
-class __$$ToyDetailLoadToyOwnerConsumerDataImplCopyWithImpl<$Res>
-    extends _$ToyDetailEventCopyWithImpl<$Res,
-        _$ToyDetailLoadToyOwnerConsumerDataImpl>
-    implements _$$ToyDetailLoadToyOwnerConsumerDataImplCopyWith<$Res> {
-  __$$ToyDetailLoadToyOwnerConsumerDataImplCopyWithImpl(
-      _$ToyDetailLoadToyOwnerConsumerDataImpl _value,
-      $Res Function(_$ToyDetailLoadToyOwnerConsumerDataImpl) _then)
+class __$$ToyDetailLoadToyAndOwnerImplCopyWithImpl<$Res>
+    extends _$ToyDetailEventCopyWithImpl<$Res, _$ToyDetailLoadToyAndOwnerImpl>
+    implements _$$ToyDetailLoadToyAndOwnerImplCopyWith<$Res> {
+  __$$ToyDetailLoadToyAndOwnerImplCopyWithImpl(
+      _$ToyDetailLoadToyAndOwnerImpl _value,
+      $Res Function(_$ToyDetailLoadToyAndOwnerImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? toyOwnerAuthId = null,
+    Object? toyId = null,
   }) {
-    return _then(_$ToyDetailLoadToyOwnerConsumerDataImpl(
-      toyOwnerAuthId: null == toyOwnerAuthId
-          ? _value.toyOwnerAuthId
-          : toyOwnerAuthId // ignore: cast_nullable_to_non_nullable
+    return _then(_$ToyDetailLoadToyAndOwnerImpl(
+      toyId: null == toyId
+          ? _value.toyId
+          : toyId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -274,65 +267,62 @@ class __$$ToyDetailLoadToyOwnerConsumerDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ToyDetailLoadToyOwnerConsumerDataImpl
-    implements ToyDetailLoadToyOwnerConsumerData {
-  const _$ToyDetailLoadToyOwnerConsumerDataImpl({required this.toyOwnerAuthId});
+class _$ToyDetailLoadToyAndOwnerImpl implements ToyDetailLoadToyAndOwner {
+  const _$ToyDetailLoadToyAndOwnerImpl({required this.toyId});
 
   @override
-  final String toyOwnerAuthId;
+  final String toyId;
 
   @override
   String toString() {
-    return 'ToyDetailEvent.loadToyOwnerConsumerData(toyOwnerAuthId: $toyOwnerAuthId)';
+    return 'ToyDetailEvent.loadToyAndOwner(toyId: $toyId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ToyDetailLoadToyOwnerConsumerDataImpl &&
-            (identical(other.toyOwnerAuthId, toyOwnerAuthId) ||
-                other.toyOwnerAuthId == toyOwnerAuthId));
+            other is _$ToyDetailLoadToyAndOwnerImpl &&
+            (identical(other.toyId, toyId) || other.toyId == toyId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, toyOwnerAuthId);
+  int get hashCode => Object.hash(runtimeType, toyId);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ToyDetailLoadToyOwnerConsumerDataImplCopyWith<
-          _$ToyDetailLoadToyOwnerConsumerDataImpl>
-      get copyWith => __$$ToyDetailLoadToyOwnerConsumerDataImplCopyWithImpl<
-          _$ToyDetailLoadToyOwnerConsumerDataImpl>(this, _$identity);
+  _$$ToyDetailLoadToyAndOwnerImplCopyWith<_$ToyDetailLoadToyAndOwnerImpl>
+      get copyWith => __$$ToyDetailLoadToyAndOwnerImplCopyWithImpl<
+          _$ToyDetailLoadToyAndOwnerImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Consumer updatedConsumer) currentConsumerUpdated,
-    required TResult Function(String toyOwnerAuthId) loadToyOwnerConsumerData,
+    required TResult Function(String toyId) loadToyAndOwner,
   }) {
-    return loadToyOwnerConsumerData(toyOwnerAuthId);
+    return loadToyAndOwner(toyId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Consumer updatedConsumer)? currentConsumerUpdated,
-    TResult? Function(String toyOwnerAuthId)? loadToyOwnerConsumerData,
+    TResult? Function(String toyId)? loadToyAndOwner,
   }) {
-    return loadToyOwnerConsumerData?.call(toyOwnerAuthId);
+    return loadToyAndOwner?.call(toyId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Consumer updatedConsumer)? currentConsumerUpdated,
-    TResult Function(String toyOwnerAuthId)? loadToyOwnerConsumerData,
+    TResult Function(String toyId)? loadToyAndOwner,
     required TResult orElse(),
   }) {
-    if (loadToyOwnerConsumerData != null) {
-      return loadToyOwnerConsumerData(toyOwnerAuthId);
+    if (loadToyAndOwner != null) {
+      return loadToyAndOwner(toyId);
     }
     return orElse();
   }
@@ -342,10 +332,9 @@ class _$ToyDetailLoadToyOwnerConsumerDataImpl
   TResult map<TResult extends Object?>({
     required TResult Function(ToyDetailCurrentConsumerUpdated value)
         currentConsumerUpdated,
-    required TResult Function(ToyDetailLoadToyOwnerConsumerData value)
-        loadToyOwnerConsumerData,
+    required TResult Function(ToyDetailLoadToyAndOwner value) loadToyAndOwner,
   }) {
-    return loadToyOwnerConsumerData(this);
+    return loadToyAndOwner(this);
   }
 
   @override
@@ -353,10 +342,9 @@ class _$ToyDetailLoadToyOwnerConsumerDataImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ToyDetailCurrentConsumerUpdated value)?
         currentConsumerUpdated,
-    TResult? Function(ToyDetailLoadToyOwnerConsumerData value)?
-        loadToyOwnerConsumerData,
+    TResult? Function(ToyDetailLoadToyAndOwner value)? loadToyAndOwner,
   }) {
-    return loadToyOwnerConsumerData?.call(this);
+    return loadToyAndOwner?.call(this);
   }
 
   @override
@@ -364,33 +352,31 @@ class _$ToyDetailLoadToyOwnerConsumerDataImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ToyDetailCurrentConsumerUpdated value)?
         currentConsumerUpdated,
-    TResult Function(ToyDetailLoadToyOwnerConsumerData value)?
-        loadToyOwnerConsumerData,
+    TResult Function(ToyDetailLoadToyAndOwner value)? loadToyAndOwner,
     required TResult orElse(),
   }) {
-    if (loadToyOwnerConsumerData != null) {
-      return loadToyOwnerConsumerData(this);
+    if (loadToyAndOwner != null) {
+      return loadToyAndOwner(this);
     }
     return orElse();
   }
 }
 
-abstract class ToyDetailLoadToyOwnerConsumerData implements ToyDetailEvent {
-  const factory ToyDetailLoadToyOwnerConsumerData(
-          {required final String toyOwnerAuthId}) =
-      _$ToyDetailLoadToyOwnerConsumerDataImpl;
+abstract class ToyDetailLoadToyAndOwner implements ToyDetailEvent {
+  const factory ToyDetailLoadToyAndOwner({required final String toyId}) =
+      _$ToyDetailLoadToyAndOwnerImpl;
 
-  String get toyOwnerAuthId;
+  String get toyId;
   @JsonKey(ignore: true)
-  _$$ToyDetailLoadToyOwnerConsumerDataImplCopyWith<
-          _$ToyDetailLoadToyOwnerConsumerDataImpl>
+  _$$ToyDetailLoadToyAndOwnerImplCopyWith<_$ToyDetailLoadToyAndOwnerImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$ToyDetailState {
   Consumer get currentConsumer => throw _privateConstructorUsedError;
-  Consumer? get toyOwnerConsumer => throw _privateConstructorUsedError;
+  Toy? get toy => throw _privateConstructorUsedError;
+  Consumer? get ownerConsumer => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
@@ -407,12 +393,14 @@ abstract class $ToyDetailStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Consumer currentConsumer,
-      Consumer? toyOwnerConsumer,
+      Toy? toy,
+      Consumer? ownerConsumer,
       bool isLoading,
       Failure? failure});
 
   $ConsumerCopyWith<$Res> get currentConsumer;
-  $ConsumerCopyWith<$Res>? get toyOwnerConsumer;
+  $ToyCopyWith<$Res>? get toy;
+  $ConsumerCopyWith<$Res>? get ownerConsumer;
 }
 
 /// @nodoc
@@ -429,7 +417,8 @@ class _$ToyDetailStateCopyWithImpl<$Res, $Val extends ToyDetailState>
   @override
   $Res call({
     Object? currentConsumer = null,
-    Object? toyOwnerConsumer = freezed,
+    Object? toy = freezed,
+    Object? ownerConsumer = freezed,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
@@ -438,9 +427,13 @@ class _$ToyDetailStateCopyWithImpl<$Res, $Val extends ToyDetailState>
           ? _value.currentConsumer
           : currentConsumer // ignore: cast_nullable_to_non_nullable
               as Consumer,
-      toyOwnerConsumer: freezed == toyOwnerConsumer
-          ? _value.toyOwnerConsumer
-          : toyOwnerConsumer // ignore: cast_nullable_to_non_nullable
+      toy: freezed == toy
+          ? _value.toy
+          : toy // ignore: cast_nullable_to_non_nullable
+              as Toy?,
+      ownerConsumer: freezed == ownerConsumer
+          ? _value.ownerConsumer
+          : ownerConsumer // ignore: cast_nullable_to_non_nullable
               as Consumer?,
       isLoading: null == isLoading
           ? _value.isLoading
@@ -463,13 +456,25 @@ class _$ToyDetailStateCopyWithImpl<$Res, $Val extends ToyDetailState>
 
   @override
   @pragma('vm:prefer-inline')
-  $ConsumerCopyWith<$Res>? get toyOwnerConsumer {
-    if (_value.toyOwnerConsumer == null) {
+  $ToyCopyWith<$Res>? get toy {
+    if (_value.toy == null) {
       return null;
     }
 
-    return $ConsumerCopyWith<$Res>(_value.toyOwnerConsumer!, (value) {
-      return _then(_value.copyWith(toyOwnerConsumer: value) as $Val);
+    return $ToyCopyWith<$Res>(_value.toy!, (value) {
+      return _then(_value.copyWith(toy: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConsumerCopyWith<$Res>? get ownerConsumer {
+    if (_value.ownerConsumer == null) {
+      return null;
+    }
+
+    return $ConsumerCopyWith<$Res>(_value.ownerConsumer!, (value) {
+      return _then(_value.copyWith(ownerConsumer: value) as $Val);
     });
   }
 }
@@ -484,14 +489,17 @@ abstract class _$$ToyDetailStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {Consumer currentConsumer,
-      Consumer? toyOwnerConsumer,
+      Toy? toy,
+      Consumer? ownerConsumer,
       bool isLoading,
       Failure? failure});
 
   @override
   $ConsumerCopyWith<$Res> get currentConsumer;
   @override
-  $ConsumerCopyWith<$Res>? get toyOwnerConsumer;
+  $ToyCopyWith<$Res>? get toy;
+  @override
+  $ConsumerCopyWith<$Res>? get ownerConsumer;
 }
 
 /// @nodoc
@@ -506,7 +514,8 @@ class __$$ToyDetailStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? currentConsumer = null,
-    Object? toyOwnerConsumer = freezed,
+    Object? toy = freezed,
+    Object? ownerConsumer = freezed,
     Object? isLoading = null,
     Object? failure = freezed,
   }) {
@@ -515,9 +524,13 @@ class __$$ToyDetailStateImplCopyWithImpl<$Res>
           ? _value.currentConsumer
           : currentConsumer // ignore: cast_nullable_to_non_nullable
               as Consumer,
-      toyOwnerConsumer: freezed == toyOwnerConsumer
-          ? _value.toyOwnerConsumer
-          : toyOwnerConsumer // ignore: cast_nullable_to_non_nullable
+      toy: freezed == toy
+          ? _value.toy
+          : toy // ignore: cast_nullable_to_non_nullable
+              as Toy?,
+      ownerConsumer: freezed == ownerConsumer
+          ? _value.ownerConsumer
+          : ownerConsumer // ignore: cast_nullable_to_non_nullable
               as Consumer?,
       isLoading: null == isLoading
           ? _value.isLoading
@@ -536,14 +549,17 @@ class __$$ToyDetailStateImplCopyWithImpl<$Res>
 class _$ToyDetailStateImpl implements _ToyDetailState {
   const _$ToyDetailStateImpl(
       {required this.currentConsumer,
-      this.toyOwnerConsumer,
+      this.toy,
+      this.ownerConsumer,
       this.isLoading = false,
       this.failure});
 
   @override
   final Consumer currentConsumer;
   @override
-  final Consumer? toyOwnerConsumer;
+  final Toy? toy;
+  @override
+  final Consumer? ownerConsumer;
   @override
   @JsonKey()
   final bool isLoading;
@@ -552,7 +568,7 @@ class _$ToyDetailStateImpl implements _ToyDetailState {
 
   @override
   String toString() {
-    return 'ToyDetailState(currentConsumer: $currentConsumer, toyOwnerConsumer: $toyOwnerConsumer, isLoading: $isLoading, failure: $failure)';
+    return 'ToyDetailState(currentConsumer: $currentConsumer, toy: $toy, ownerConsumer: $ownerConsumer, isLoading: $isLoading, failure: $failure)';
   }
 
   @override
@@ -562,8 +578,9 @@ class _$ToyDetailStateImpl implements _ToyDetailState {
             other is _$ToyDetailStateImpl &&
             (identical(other.currentConsumer, currentConsumer) ||
                 other.currentConsumer == currentConsumer) &&
-            (identical(other.toyOwnerConsumer, toyOwnerConsumer) ||
-                other.toyOwnerConsumer == toyOwnerConsumer) &&
+            (identical(other.toy, toy) || other.toy == toy) &&
+            (identical(other.ownerConsumer, ownerConsumer) ||
+                other.ownerConsumer == ownerConsumer) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.failure, failure) || other.failure == failure));
@@ -571,7 +588,7 @@ class _$ToyDetailStateImpl implements _ToyDetailState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, currentConsumer, toyOwnerConsumer, isLoading, failure);
+      runtimeType, currentConsumer, toy, ownerConsumer, isLoading, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -584,14 +601,17 @@ class _$ToyDetailStateImpl implements _ToyDetailState {
 abstract class _ToyDetailState implements ToyDetailState {
   const factory _ToyDetailState(
       {required final Consumer currentConsumer,
-      final Consumer? toyOwnerConsumer,
+      final Toy? toy,
+      final Consumer? ownerConsumer,
       final bool isLoading,
       final Failure? failure}) = _$ToyDetailStateImpl;
 
   @override
   Consumer get currentConsumer;
   @override
-  Consumer? get toyOwnerConsumer;
+  Toy? get toy;
+  @override
+  Consumer? get ownerConsumer;
   @override
   bool get isLoading;
   @override

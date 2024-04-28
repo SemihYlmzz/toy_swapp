@@ -1,23 +1,28 @@
+import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_touch_ripple/flutter_touch_ripple.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
+import 'package:toy_repository/toy_repository.dart';
 import 'package:toy_swapp/app/app.dart';
 
-import '../toy_detail.dart';
-
 class ToyDetailView extends StatelessWidget {
-  const ToyDetailView({required this.requirements, super.key});
-  final ToyDetailScreenRequirements requirements;
+  const ToyDetailView({
+    required this.currentConsumer,
+    required this.toy,
+    required this.ownerConsumer,
+    required this.heroTag,
+    super.key,
+  });
+  final Consumer currentConsumer;
+  final Toy toy;
+  final Consumer ownerConsumer;
+  final String heroTag;
+
   @override
   Widget build(BuildContext context) {
-    final toyOwnerConsumer = context.select(
-      (ToyDetailBloc bloc) => bloc.state.toyOwnerConsumer,
-    );
-    // final currentConsumer = context.select(
-    //   (ToyDetailBloc bloc) => bloc.state.currentConsumer,
-    // );
+    final isCurrentConsumerOwner = currentConsumer.authId == toy.ownerAuthId;
+
     return BaseScaffold(
       safeArea: true,
       body: Stack(
@@ -26,12 +31,9 @@ class ToyDetailView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Hero(
-                tag: requirements.imageNumber + requirements.imageSize,
+                tag: heroTag,
                 child: Image.network(
-                  'https://picsum.photos'
-                  '/${requirements.imageSize}'
-                  '/${requirements.imageSize}'
-                  '?image=${requirements.imageNumber}',
+                  toy.imageUrlList.first.url128,
                   width: MediaQuery.of(context).size.width,
                   height: 260,
                   fit: BoxFit.cover,
@@ -43,7 +45,7 @@ class ToyDetailView extends StatelessWidget {
                 padding: SharedPaddings.left8,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 10,
+                  itemCount: toy.imageUrlList.length,
                   itemBuilder: (context, index) => Center(
                     child: Container(
                       width: 60,
@@ -53,7 +55,7 @@ class ToyDetailView extends StatelessWidget {
                         borderRadius: SharedBorderRadius.circular4,
                         image: DecorationImage(
                           image: NetworkImage(
-                            'https://picsum.photos/128/128?image=${index + 24}',
+                            toy.imageUrlList[index].url128,
                           ),
                           fit: BoxFit.cover,
                         ),
@@ -67,7 +69,7 @@ class ToyDetailView extends StatelessWidget {
                 children: [
                   SharedGap.gap20,
                   Text(
-                    'Pelush Bear',
+                    toy.name,
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                 ],
@@ -76,13 +78,7 @@ class ToyDetailView extends StatelessWidget {
               Padding(
                 padding: SharedPaddings.horizontal20,
                 child: Text(
-                  'Pelush Bear is a soft and cuddly bear that is perfect '
-                  'for any child. It is made of high-quality materials and '
-                  'is designed to be durable and long-lasting. '
-                  'The bear is also machine washable, making it easy to keep '
-                  'clean and looking new. Pelush Bear is the perfect '
-                  'companion for any child and is sure to bring hours '
-                  'of joy and comfort.',
+                  toy.description,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: Theme.of(context)
                             .colorScheme
@@ -125,7 +121,7 @@ class ToyDetailView extends StatelessWidget {
                             ),
                       ),
                       Text(
-                        '3',
+                        toy.details.age.toString(),
                         style: Theme.of(context).textTheme.headlineMedium,
                       ),
                     ],
@@ -139,7 +135,7 @@ class ToyDetailView extends StatelessWidget {
                             ),
                       ),
                       Text(
-                        'Girls',
+                        toy.details.gender.toString(),
                         style: Theme.of(context).textTheme.headlineMedium,
                       ),
                     ],
@@ -153,7 +149,7 @@ class ToyDetailView extends StatelessWidget {
                             ),
                       ),
                       Text(
-                        'New',
+                        toy.details.condition.toString(),
                         style: Theme.of(context).textTheme.headlineMedium,
                       ),
                     ],
@@ -181,38 +177,36 @@ class ToyDetailView extends StatelessWidget {
                   ),
                 ],
               ),
-              if (toyOwnerConsumer != null)
-                ConsumerCard(consumer: toyOwnerConsumer),
-              if (toyOwnerConsumer != null)
-                Padding(
-                  padding: SharedPaddings.horizontal20,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '${toyOwnerConsumer.firstName} '
-                        '${toyOwnerConsumer.lastName}',
-                        style: Theme.of(context).textTheme.headlineMedium,
-                      ),
-                      SharedGap.gap16,
-                      // Todo: same with toy card widget
-                      const Row(
-                        children: [
-                          Icon(
-                            Icons.location_on,
-                            color: Colors.pinkAccent,
+              ConsumerCard(consumer: ownerConsumer),
+              Padding(
+                padding: SharedPaddings.horizontal20,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '${ownerConsumer.firstName} '
+                      '${ownerConsumer.lastName}',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                    SharedGap.gap16,
+                    // Todo: same with toy card widget
+                    const Row(
+                      children: [
+                        Icon(
+                          Icons.location_on,
+                          color: Colors.pinkAccent,
+                        ),
+                        Text(
+                          '300 Meters',
+                          style: TextStyle(
+                            color: Colors.white54,
                           ),
-                          Text(
-                            '300 Meters',
-                            style: TextStyle(
-                              color: Colors.white54,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
+              ),
               SharedGap.gap128,
               SharedGap.gap128,
             ],
@@ -237,44 +231,67 @@ class ToyDetailView extends StatelessWidget {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Container(
-              height: 70,
-              width: 70,
-              margin: SharedPaddings.all16,
-              decoration: BoxDecoration(
-                color: Colors.white12,
-                border: Border.all(
-                  color: Colors.pinkAccent,
+          if (!isCurrentConsumerOwner)
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Container(
+                height: 70,
+                width: 70,
+                margin: SharedPaddings.all16,
+                decoration: BoxDecoration(
+                  color: Colors.white12,
+                  border: Border.all(
+                    color: Colors.pinkAccent,
+                  ),
+                  borderRadius: SharedBorderRadius.circular8,
                 ),
-                borderRadius: SharedBorderRadius.circular8,
-              ),
-              child: const Center(
-                child: Icon(Icons.favorite_outline, size: 32),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.topRight,
-            child: Container(
-              width: 50,
-              height: 50,
-              margin: SharedPaddings.all20,
-              decoration: BoxDecoration(
-                color: Colors.redAccent.withOpacity(0.4),
-                shape: BoxShape.circle,
-              ),
-              child: TouchRipple<void>(
-                onTap: () {},
-                borderRadius: SharedBorderRadius.circular32,
                 child: const Center(
-                  //    child: Icon(Icons.delete_outlined),
-                  child: Icon(Icons.priority_high),
+                  child: Icon(Icons.favorite_outline, size: 32),
                 ),
               ),
             ),
-          ),
+          if (!isCurrentConsumerOwner)
+            Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                width: 50,
+                height: 50,
+                margin: SharedPaddings.all20,
+                decoration: BoxDecoration(
+                  color: Colors.redAccent.withOpacity(0.4),
+                  shape: BoxShape.circle,
+                ),
+                child: TouchRipple<void>(
+                  onTap: () {},
+                  borderRadius: SharedBorderRadius.circular32,
+                  child: const Center(
+                    //    child: Icon(Icons.delete_outlined),
+                    child: Icon(Icons.priority_high),
+                  ),
+                ),
+              ),
+            )
+          else
+            Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                width: 50,
+                height: 50,
+                margin: SharedPaddings.all20,
+                decoration: BoxDecoration(
+                  color: Colors.redAccent.withOpacity(0.4),
+                  shape: BoxShape.circle,
+                ),
+                child: TouchRipple<void>(
+                  onTap: () {},
+                  borderRadius: SharedBorderRadius.circular32,
+                  child: const Center(
+                    //    child: Icon(Icons.delete_outlined),
+                    child: Icon(Icons.delete),
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );

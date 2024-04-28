@@ -14,9 +14,10 @@ class ToyDetailScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => ToyDetailBloc(
         consumerRepository: context.read(),
+        toyRepository: context.read(),
       )..add(
-          ToyDetailEvent.loadToyOwnerConsumerData(
-            toyOwnerAuthId: requirements.toyOwnerAuthId,
+          ToyDetailEvent.loadToyAndOwner(
+            toyId: requirements.toy.id,
           ),
         ),
       child: MultiBlocListener(
@@ -29,13 +30,34 @@ class ToyDetailScreen extends StatelessWidget {
             return LoadingScreen(
               isLoading: isLoading,
               size: MediaQuery.sizeOf(context),
-              child: ToyDetailView(
-                requirements: requirements,
+              child: BlocBuilder<ToyDetailBloc, ToyDetailState>(
+                builder: (context, state) {
+                  // final toy = state.toy;
+                  final currentConsumer = state.currentConsumer;
+                  // final ownerConsumer = state.ownerConsumer;
+
+                  return ToyDetailView(
+                    currentConsumer: currentConsumer,
+                    ownerConsumer:
+                        requirements.ownerConsumer ?? currentConsumer,
+                    toy: requirements.toy,
+                    heroTag: requirements.heroTag,
+                  );
+                },
               ),
             );
           },
         ),
       ),
     );
+  }
+}
+
+class ToyLoadingView extends StatelessWidget {
+  const ToyLoadingView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold();
   }
 }
