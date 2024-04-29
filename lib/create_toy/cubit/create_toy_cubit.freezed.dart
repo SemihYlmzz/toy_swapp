@@ -188,7 +188,7 @@ class _$CreateToyCubitStateImpl implements _CreateToyCubitState {
   const _$CreateToyCubitStateImpl(
       {this.toyName = const ToyName.pure(),
       this.toyDescription = const ToyDescription.pure(),
-      final List<ToyImage> imageUrlList = const [],
+      required final List<ToyImage> imageUrlList,
       this.toyAge = null,
       this.toyGender = null,
       this.toyCondition = null,
@@ -204,7 +204,6 @@ class _$CreateToyCubitStateImpl implements _CreateToyCubitState {
   final ToyDescription toyDescription;
   final List<ToyImage> _imageUrlList;
   @override
-  @JsonKey()
   List<ToyImage> get imageUrlList {
     if (_imageUrlList is EqualUnmodifiableListView) return _imageUrlList;
     // ignore: implicit_dynamic_type
@@ -275,7 +274,7 @@ abstract class _CreateToyCubitState implements CreateToyCubitState {
   const factory _CreateToyCubitState(
       {final ToyName toyName,
       final ToyDescription toyDescription,
-      final List<ToyImage> imageUrlList,
+      required final List<ToyImage> imageUrlList,
       final ToyAge? toyAge,
       final ToyGender? toyGender,
       final ToyCondition? toyCondition,

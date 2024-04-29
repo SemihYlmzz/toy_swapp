@@ -19,32 +19,41 @@ mixin _$ImageServiceException {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
+    required TResult Function() notEnoughImages,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
+    TResult? Function()? notEnoughImages,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
+    TResult Function()? notEnoughImages,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ImageServiceExceptionUnknown value) unknown,
+    required TResult Function(ImageServiceExceptionNotEnoughImages value)
+        notEnoughImages,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ImageServiceExceptionUnknown value)? unknown,
+    TResult? Function(ImageServiceExceptionNotEnoughImages value)?
+        notEnoughImages,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ImageServiceExceptionUnknown value)? unknown,
+    TResult Function(ImageServiceExceptionNotEnoughImages value)?
+        notEnoughImages,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +122,7 @@ class _$ImageServiceExceptionUnknownImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
+    required TResult Function() notEnoughImages,
   }) {
     return unknown();
   }
@@ -121,6 +131,7 @@ class _$ImageServiceExceptionUnknownImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
+    TResult? Function()? notEnoughImages,
   }) {
     return unknown?.call();
   }
@@ -129,6 +140,7 @@ class _$ImageServiceExceptionUnknownImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
+    TResult Function()? notEnoughImages,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -141,6 +153,8 @@ class _$ImageServiceExceptionUnknownImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ImageServiceExceptionUnknown value) unknown,
+    required TResult Function(ImageServiceExceptionNotEnoughImages value)
+        notEnoughImages,
   }) {
     return unknown(this);
   }
@@ -149,6 +163,8 @@ class _$ImageServiceExceptionUnknownImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ImageServiceExceptionUnknown value)? unknown,
+    TResult? Function(ImageServiceExceptionNotEnoughImages value)?
+        notEnoughImages,
   }) {
     return unknown?.call(this);
   }
@@ -157,6 +173,8 @@ class _$ImageServiceExceptionUnknownImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ImageServiceExceptionUnknown value)? unknown,
+    TResult Function(ImageServiceExceptionNotEnoughImages value)?
+        notEnoughImages,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -169,4 +187,116 @@ class _$ImageServiceExceptionUnknownImpl
 abstract class ImageServiceExceptionUnknown implements ImageServiceException {
   const factory ImageServiceExceptionUnknown() =
       _$ImageServiceExceptionUnknownImpl;
+}
+
+/// @nodoc
+abstract class _$$ImageServiceExceptionNotEnoughImagesImplCopyWith<$Res> {
+  factory _$$ImageServiceExceptionNotEnoughImagesImplCopyWith(
+          _$ImageServiceExceptionNotEnoughImagesImpl value,
+          $Res Function(_$ImageServiceExceptionNotEnoughImagesImpl) then) =
+      __$$ImageServiceExceptionNotEnoughImagesImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ImageServiceExceptionNotEnoughImagesImplCopyWithImpl<$Res>
+    extends _$ImageServiceExceptionCopyWithImpl<$Res,
+        _$ImageServiceExceptionNotEnoughImagesImpl>
+    implements _$$ImageServiceExceptionNotEnoughImagesImplCopyWith<$Res> {
+  __$$ImageServiceExceptionNotEnoughImagesImplCopyWithImpl(
+      _$ImageServiceExceptionNotEnoughImagesImpl _value,
+      $Res Function(_$ImageServiceExceptionNotEnoughImagesImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ImageServiceExceptionNotEnoughImagesImpl
+    implements ImageServiceExceptionNotEnoughImages {
+  const _$ImageServiceExceptionNotEnoughImagesImpl();
+
+  @override
+  String toString() {
+    return 'ImageServiceException.notEnoughImages()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ImageServiceExceptionNotEnoughImagesImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() notEnoughImages,
+  }) {
+    return notEnoughImages();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? notEnoughImages,
+  }) {
+    return notEnoughImages?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? notEnoughImages,
+    required TResult orElse(),
+  }) {
+    if (notEnoughImages != null) {
+      return notEnoughImages();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ImageServiceExceptionUnknown value) unknown,
+    required TResult Function(ImageServiceExceptionNotEnoughImages value)
+        notEnoughImages,
+  }) {
+    return notEnoughImages(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ImageServiceExceptionUnknown value)? unknown,
+    TResult? Function(ImageServiceExceptionNotEnoughImages value)?
+        notEnoughImages,
+  }) {
+    return notEnoughImages?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ImageServiceExceptionUnknown value)? unknown,
+    TResult Function(ImageServiceExceptionNotEnoughImages value)?
+        notEnoughImages,
+    required TResult orElse(),
+  }) {
+    if (notEnoughImages != null) {
+      return notEnoughImages(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ImageServiceExceptionNotEnoughImages
+    implements ImageServiceException {
+  const factory ImageServiceExceptionNotEnoughImages() =
+      _$ImageServiceExceptionNotEnoughImagesImpl;
 }

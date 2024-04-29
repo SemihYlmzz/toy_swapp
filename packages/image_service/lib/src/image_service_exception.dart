@@ -8,4 +8,6 @@ sealed class ImageServiceException
     with _$ImageServiceException
     implements Failure {
   const factory ImageServiceException.unknown() = ImageServiceExceptionUnknown;
+  const factory ImageServiceException.notEnoughImages() =
+      ImageServiceExceptionNotEnoughImages;
 }

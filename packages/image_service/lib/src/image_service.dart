@@ -64,13 +64,17 @@ class ImageService {
     }
   }
 
-  FutureEither<List<Uint8List>> pickMultiImagesFromPhotos() async {
+  FutureEither<List<Uint8List>> pickMultiImagesFromPhotos({
+    required int minImages,
+  }) async {
     try {
       final pickedImages = await _imagePicker.pickMultiImage();
       if (pickedImages.isEmpty) {
         return const Right([]);
       }
-
+      if(pickedImages.length < minImages) {
+        return const Left(ImageServiceException.notEnoughImages());
+      }
       final pickedImagesUint8list = await Future.wait(
         pickedImages.map((pickedImage) => pickedImage.readAsBytes()),
       );

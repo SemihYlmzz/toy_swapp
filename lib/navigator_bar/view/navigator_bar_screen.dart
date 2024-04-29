@@ -31,12 +31,15 @@ class NavigatorBarScreen extends StatelessWidget {
           create: (context) => NavigatorBarCubit(
             goRouterState: goRouterState,
             subRoutes: subRoutes,
+            imageService: context.read(),
           ),
         ),
       ],
       child: MultiBlocListener(
         listeners: [
           navigatorBarBlocListeners.errorDisplayer(),
+          navigatorBarBlocListeners.cubitErrorDisplayer(),
+          navigatorBarBlocListeners.openCreateToyBottomSheetOnImagesSelected(),
         ],
         child: Builder(
           builder: (context) {

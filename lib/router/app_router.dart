@@ -10,7 +10,6 @@ import 'package:toy_swapp/toy_detail/toy_detail.dart';
 import '../account_initializer/account_initializer.dart';
 import '../account_registration/account_registration.dart';
 import '../consumer_data_calibration/consumer_data_calibration.dart';
-import '../create_toy/create_toy.dart';
 import '../demands/demands.dart';
 import '../email_verification/email_verification.dart';
 import '../forgot_password/forgot_password.dart';
@@ -70,7 +69,6 @@ class AppRouter {
             _createStatefulShelBranches(_navigatorBarMainRoutes),
             NavigatorBarRouter.instance.getSubRoutes(_navigatorBarMainRoutes),
           ),
-          CreateToyRouter.instance.route,
           AccountSettingsRouter.instance.route,
           ToyDetailRouter.instance.route,
           LikedToysRouter.instance.route,
@@ -196,7 +194,6 @@ class AppRouter {
   bool _inConsumerScreens(GoRouterState state) => [
         ToysGoRoute.instance.name,
         DemandsGoRoute.instance.name,
-        CreateToyRouter.instance.name,
         MatchesGoRoute.instance.name,
         ProfileGoRoute.instance.name,
         SubMatchesGoRoute.instance.name,

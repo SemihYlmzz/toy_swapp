@@ -6,7 +6,6 @@ import 'package:shared_widgets/shared_widgets.dart';
 import 'package:toy_swapp/navigator_bar/navigator_bar.dart';
 
 import '../../app/app.dart';
-import '../../create_toy/create_toy.dart';
 
 class NavigatorBarView extends StatelessWidget {
   const NavigatorBarView({
@@ -42,15 +41,7 @@ class NavigatorBarView extends StatelessWidget {
           }
           if (index == 2) {
             // CreateToyRouter.instance.push(context);
-            showModalBottomSheet<void>(
-              context: context,
-              isScrollControlled: true,
-              isDismissible: false,
-              useSafeArea: true,
-              builder: (context) {
-                return const CreateToyScreen();
-              },
-            );
+            context.read<NavigatorBarCubit>().selectMultipleImages();
           }
           if (index > 2) {
             navigationShell.goBranch(index - 1);

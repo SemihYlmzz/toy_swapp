@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_widgets/shared_widgets.dart';
+import 'package:toy_repository/toy_repository.dart';
 
 import '../create_toy.dart';
 
 class CreateToyScreen extends StatelessWidget {
-  const CreateToyScreen({super.key});
+  const CreateToyScreen({required this.imageList, super.key});
+  final List<ToyImage> imageList;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +24,7 @@ class CreateToyScreen extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => CreateToyCubit(
-            imageService: context.read(),
-          ),
+          create: (context) => CreateToyCubit(imageUrlList: imageList),
         ),
       ],
       child: MultiBlocListener(

@@ -19,8 +19,11 @@ mixin _$NavigatorBarCubitState {
   GoRouterState get goRouterState => throw _privateConstructorUsedError;
   List<NavigatorBarSubGoRoute> get subRoutes =>
       throw _privateConstructorUsedError;
+  List<ToyImage> get imageUrlList => throw _privateConstructorUsedError;
   NavigatorBarSubGoRoute? get selectedSubRoute =>
       throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+  Failure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NavigatorBarCubitStateCopyWith<NavigatorBarCubitState> get copyWith =>
@@ -36,7 +39,10 @@ abstract class $NavigatorBarCubitStateCopyWith<$Res> {
   $Res call(
       {GoRouterState goRouterState,
       List<NavigatorBarSubGoRoute> subRoutes,
-      NavigatorBarSubGoRoute? selectedSubRoute});
+      List<ToyImage> imageUrlList,
+      NavigatorBarSubGoRoute? selectedSubRoute,
+      bool isLoading,
+      Failure? failure});
 }
 
 /// @nodoc
@@ -55,7 +61,10 @@ class _$NavigatorBarCubitStateCopyWithImpl<$Res,
   $Res call({
     Object? goRouterState = null,
     Object? subRoutes = null,
+    Object? imageUrlList = null,
     Object? selectedSubRoute = freezed,
+    Object? isLoading = null,
+    Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
       goRouterState: null == goRouterState
@@ -66,10 +75,22 @@ class _$NavigatorBarCubitStateCopyWithImpl<$Res,
           ? _value.subRoutes
           : subRoutes // ignore: cast_nullable_to_non_nullable
               as List<NavigatorBarSubGoRoute>,
+      imageUrlList: null == imageUrlList
+          ? _value.imageUrlList
+          : imageUrlList // ignore: cast_nullable_to_non_nullable
+              as List<ToyImage>,
       selectedSubRoute: freezed == selectedSubRoute
           ? _value.selectedSubRoute
           : selectedSubRoute // ignore: cast_nullable_to_non_nullable
               as NavigatorBarSubGoRoute?,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
     ) as $Val);
   }
 }
@@ -86,7 +107,10 @@ abstract class _$$NavigatorBarCubitStateImplCopyWith<$Res>
   $Res call(
       {GoRouterState goRouterState,
       List<NavigatorBarSubGoRoute> subRoutes,
-      NavigatorBarSubGoRoute? selectedSubRoute});
+      List<ToyImage> imageUrlList,
+      NavigatorBarSubGoRoute? selectedSubRoute,
+      bool isLoading,
+      Failure? failure});
 }
 
 /// @nodoc
@@ -104,7 +128,10 @@ class __$$NavigatorBarCubitStateImplCopyWithImpl<$Res>
   $Res call({
     Object? goRouterState = null,
     Object? subRoutes = null,
+    Object? imageUrlList = null,
     Object? selectedSubRoute = freezed,
+    Object? isLoading = null,
+    Object? failure = freezed,
   }) {
     return _then(_$NavigatorBarCubitStateImpl(
       goRouterState: null == goRouterState
@@ -115,10 +142,22 @@ class __$$NavigatorBarCubitStateImplCopyWithImpl<$Res>
           ? _value._subRoutes
           : subRoutes // ignore: cast_nullable_to_non_nullable
               as List<NavigatorBarSubGoRoute>,
+      imageUrlList: null == imageUrlList
+          ? _value._imageUrlList
+          : imageUrlList // ignore: cast_nullable_to_non_nullable
+              as List<ToyImage>,
       selectedSubRoute: freezed == selectedSubRoute
           ? _value.selectedSubRoute
           : selectedSubRoute // ignore: cast_nullable_to_non_nullable
               as NavigatorBarSubGoRoute?,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
     ));
   }
 }
@@ -129,8 +168,12 @@ class _$NavigatorBarCubitStateImpl implements _NavigatorBarCubitState {
   const _$NavigatorBarCubitStateImpl(
       {required this.goRouterState,
       required final List<NavigatorBarSubGoRoute> subRoutes,
-      this.selectedSubRoute})
-      : _subRoutes = subRoutes;
+      final List<ToyImage> imageUrlList = const [],
+      this.selectedSubRoute,
+      this.isLoading = false,
+      this.failure})
+      : _subRoutes = subRoutes,
+        _imageUrlList = imageUrlList;
 
   @override
   final GoRouterState goRouterState;
@@ -142,12 +185,26 @@ class _$NavigatorBarCubitStateImpl implements _NavigatorBarCubitState {
     return EqualUnmodifiableListView(_subRoutes);
   }
 
+  final List<ToyImage> _imageUrlList;
+  @override
+  @JsonKey()
+  List<ToyImage> get imageUrlList {
+    if (_imageUrlList is EqualUnmodifiableListView) return _imageUrlList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_imageUrlList);
+  }
+
   @override
   final NavigatorBarSubGoRoute? selectedSubRoute;
+  @override
+  @JsonKey()
+  final bool isLoading;
+  @override
+  final Failure? failure;
 
   @override
   String toString() {
-    return 'NavigatorBarCubitState(goRouterState: $goRouterState, subRoutes: $subRoutes, selectedSubRoute: $selectedSubRoute)';
+    return 'NavigatorBarCubitState(goRouterState: $goRouterState, subRoutes: $subRoutes, imageUrlList: $imageUrlList, selectedSubRoute: $selectedSubRoute, isLoading: $isLoading, failure: $failure)';
   }
 
   @override
@@ -159,13 +216,24 @@ class _$NavigatorBarCubitStateImpl implements _NavigatorBarCubitState {
                 other.goRouterState == goRouterState) &&
             const DeepCollectionEquality()
                 .equals(other._subRoutes, _subRoutes) &&
+            const DeepCollectionEquality()
+                .equals(other._imageUrlList, _imageUrlList) &&
             (identical(other.selectedSubRoute, selectedSubRoute) ||
-                other.selectedSubRoute == selectedSubRoute));
+                other.selectedSubRoute == selectedSubRoute) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, goRouterState,
-      const DeepCollectionEquality().hash(_subRoutes), selectedSubRoute);
+  int get hashCode => Object.hash(
+      runtimeType,
+      goRouterState,
+      const DeepCollectionEquality().hash(_subRoutes),
+      const DeepCollectionEquality().hash(_imageUrlList),
+      selectedSubRoute,
+      isLoading,
+      failure);
 
   @JsonKey(ignore: true)
   @override
@@ -177,17 +245,25 @@ class _$NavigatorBarCubitStateImpl implements _NavigatorBarCubitState {
 
 abstract class _NavigatorBarCubitState implements NavigatorBarCubitState {
   const factory _NavigatorBarCubitState(
-          {required final GoRouterState goRouterState,
-          required final List<NavigatorBarSubGoRoute> subRoutes,
-          final NavigatorBarSubGoRoute? selectedSubRoute}) =
-      _$NavigatorBarCubitStateImpl;
+      {required final GoRouterState goRouterState,
+      required final List<NavigatorBarSubGoRoute> subRoutes,
+      final List<ToyImage> imageUrlList,
+      final NavigatorBarSubGoRoute? selectedSubRoute,
+      final bool isLoading,
+      final Failure? failure}) = _$NavigatorBarCubitStateImpl;
 
   @override
   GoRouterState get goRouterState;
   @override
   List<NavigatorBarSubGoRoute> get subRoutes;
   @override
+  List<ToyImage> get imageUrlList;
+  @override
   NavigatorBarSubGoRoute? get selectedSubRoute;
+  @override
+  bool get isLoading;
+  @override
+  Failure? get failure;
   @override
   @JsonKey(ignore: true)
   _$$NavigatorBarCubitStateImplCopyWith<_$NavigatorBarCubitStateImpl>
