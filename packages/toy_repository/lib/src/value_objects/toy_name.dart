@@ -15,20 +15,15 @@ class ToyName extends FormzInput<String, ToyNameObjectError> {
 
   @override
   ToyNameObjectError? validator(String value) {
-    final toyNameWords = value.split(' ');
-    // TODO :
-    // - Capitalize first letters. then check everything
     if (value.isEmpty) {
       return ToyNameObjectError.empty;
-    } else if (value.length < 2) {
+    } else if (value.length < 3) {
       return ToyNameObjectError.tooShort;
-    } else if (value.length > 16) {
+    } else if (value.length > 55) {
       return ToyNameObjectError.tooLong;
-    } else if (toyNameWords.length > 2) {
-      return ToyNameObjectError.moreThanTwoWords;
     } else if (value.contains('  ')) {
       return ToyNameObjectError.haveTwoSpacesInARow;
-    } else if (value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+    } else if (value.contains(RegExp(r'[!@#$%^&*.?":{}|<>]'))) {
       return ToyNameObjectError.containsSpecialCharacters;
     }
     return null;

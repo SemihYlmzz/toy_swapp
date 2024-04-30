@@ -36,7 +36,7 @@ class ConsumerRepository {
       <String, ({DateTime endDate, Consumer cachedConsumer})>{};
 
   // FUNCTIONS
-  FutureUnit createCurrentConsumer({
+  FutureEither<Consumer> createCurrentConsumer({
     required String authId,
     required String firstName,
     required String lastName,
@@ -98,7 +98,7 @@ class ConsumerRepository {
         jsonData: creatableConsumer.toJson(),
       );
 
-      return const Right(unit);
+      return Right(creatableConsumer);
     } catch (exception) {
       // if (exception is FirebaseException) {
       //   throw _firebaseExceptionToUserException(exception);

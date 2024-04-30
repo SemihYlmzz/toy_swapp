@@ -124,7 +124,7 @@ class ToyRepository {
       }
 
       final readedToy = Toy.fromJson(toyDoc);
-      // If fetched toy is owned. 
+      // If fetched toy is owned.
       // Update the ownedToy also.
       if (ownedToys?.contains(readedToy) ?? false) {
         final updatedList = List<Toy>.from(ownedToys!);
@@ -134,7 +134,7 @@ class ToyRepository {
         updatedList[toyListIndex] = readedToy;
         _ownedToysStreamController.sink.add(updatedList);
       }
-      // Todo: 
+      // Todo:
       // Feed screen için de sorulabilir.
       return Right(readedToy);
     } catch (exception) {
@@ -229,15 +229,14 @@ class ToyRepository {
         collectionID: ToyRepositoryStrings.toysCollectionPath,
         orderBy: 'createdAt',
         limitToLast: 12,
-        fieldContains: (field: 'ownerAuthId', value: ownerAuthId),
+        fieldEqualTo: (field: 'ownerAuthId', value: ownerAuthId),
       );
-      if (toyDocs == null) {
-        return const Left(ToyRepositoryException.unknown());
-      }
-      if (toyDocs.isEmpty) {
+
+      if (toyDocs == null || toyDocs.isEmpty) {
         _ownedToysStreamController.sink.add([]);
         return const Right([]);
       }
+
       final toys = toyDocs.map(Toy.fromJson).toList();
       _ownedToysStreamController.sink.add(toys);
       return Right(toys);
@@ -253,7 +252,7 @@ class ToyRepository {
     try {
       final toyDocs = await _remoteDatabase.readCollection(
         collectionID: ToyRepositoryStrings.toysCollectionPath,
-        fieldContains: (field: 'ownerAuthId', value: ownerAuthId),
+        fieldEqualTo: (field: 'ownerAuthId', value: ownerAuthId),
         orderBy: 'createdAt',
         limitToLast: 12,
         endBefore: [oldestOwnedToy.createdAt.toIso8601String()],
@@ -315,5 +314,9 @@ class ToyRepository {
   void sinkAddOwnedToy(Toy addedToy) {
     final updatedList = List<Toy>.from(ownedToys ?? [])..add(addedToy);
     _ownedToysStreamController.sink.add(updatedList);
+  }
+
+  void clearOwnedToys() {
+    _ownedToysStreamController.sink.add([]);
   }
 }

@@ -59,7 +59,7 @@ class _ToySwappTextFieldState extends State<ToySwappTextField> {
           onChanged: widget.onChanged,
           onSubmitted: widget.onSubmit,
           keyboardType: widget.keyboardType,
-          maxLines: widget.obscureText ? 1 : widget.maxLines,
+          maxLines: widget.obscureText ? 1 : widget.maxLines ?? 1,
           maxLength: widget.maxLength,
           minLines: widget.minLines,
         ),

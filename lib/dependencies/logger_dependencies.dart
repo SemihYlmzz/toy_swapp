@@ -28,7 +28,7 @@ class LoggerDependencies {
 class AppBlocObserver extends BlocObserver {
   @override
   void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {
-    debugPrint('onEvent(${bloc.runtimeType}, $event)');
+    debugPrint('onEvent(${bloc.runtimeType})');
     super.onEvent(bloc, event);
   }
 

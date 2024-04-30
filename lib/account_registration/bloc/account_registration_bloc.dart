@@ -5,6 +5,7 @@ import 'package:auth_repository/auth_repository.dart';
 import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:remote_database/remote_database.dart';
 import '../../errors/errors.dart';
 
 part 'account_registration_bloc.freezed.dart';
@@ -16,14 +17,18 @@ class AccountRegistrationBloc
   AccountRegistrationBloc({
     required ConsumerRepository consumerRepository,
     required AuthRepository authRepository,
+    required RemoteDatabase remoteDatabase,
   })  : _consumerRepository = consumerRepository,
         _authRepository = authRepository,
+        _remoteDatabase = remoteDatabase,
         super(AccountRegistrationState(authState: authRepository.currentAuth)) {
     on<AccountRegistrationEvent>(_onAccountRegistrationEvent);
     _authStreamSubscription = _authRepository.currentAuthStream.listen((event) {
       add(AccountRegistrationEvent.authStateUpdated(event));
     });
   }
+  // Database
+  final RemoteDatabase _remoteDatabase;
   // Repositories
   final ConsumerRepository _consumerRepository;
   final AuthRepository _authRepository;
@@ -55,9 +60,20 @@ class AccountRegistrationBloc
           longitude: e.longitude,
           email: state.authState.email,
         );
+        Consumer? createdConsumer;
         tryCreate.fold(
           (failure) => emit(state.copyWith(failure: failure)),
-          (success) => null,
+          (consumer) => createdConsumer = consumer,
+        );
+        if (createdConsumer == null) {
+          return;
+        }
+        final tryCommit = await _remoteDatabase.batchCommit();
+        tryCommit.fold(
+          (failure) => emit(state.copyWith(failure: failure)),
+          (success) {
+            _consumerRepository.sinkCurrentConsumer(consumer: createdConsumer!);
+          },
         );
       },
       authStateUpdated: (e) async => emit(

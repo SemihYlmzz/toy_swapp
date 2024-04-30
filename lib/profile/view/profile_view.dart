@@ -37,7 +37,6 @@ class _ProfileViewState extends State<ProfileView> {
     final fetchMoreFailure = profileState.fetchMoreFailure;
     final fetchLatestFailure = profileState.fetchLatestToysFailure;
     final isInitializing = profileState.isInitializing;
-
     return RefreshIndicator(
       onRefresh: () async {
         context.read<ProfileBloc>().add(const ProfileEvent.fetchOwnedToys());

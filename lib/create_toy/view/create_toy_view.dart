@@ -1,93 +1,134 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 
 import '../create_toy.dart';
 
-class CreateToyView extends StatelessWidget {
+class CreateToyView extends StatefulWidget {
   const CreateToyView({super.key});
 
   @override
+  State<CreateToyView> createState() => _CreateToyViewState();
+}
+
+class _CreateToyViewState extends State<CreateToyView>
+    with SingleTickerProviderStateMixin {
+  late ScrollController _scrollController;
+  Timer? _timer;
+  bool isKeyboardOpen = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const BaseScaffold(
+    return BaseScaffold(
+      isKeyboardOpen: (value) {
+        if (!value) {
+          _timer?.cancel();
+          return;
+        }
+
+        _timer = _scrollBottomPeriodically();
+      },
       safeArea: true,
       body: Stack(
         children: [
-          BaseColumn(
-            mainAxisAlignment: MainAxisAlignment.start,
+          Column(
             children: [
-              // ToySwappTextField(
-              //   labelText: 'Toy Name',
-              //   onChanged: createToyCubit.toyNameChanged,
-              // ),
-              // ToySwappTextField(
-              //   labelText: 'Description',
-              //   onChanged: createToyCubit.toyDescriptionChanged,
-              //   keyboardType: TextInputType.multiline,
-              //   minLines: 1,
-              //   maxLines: 5,
-              //   maxLength: 100,
-              // ),
-              ToyCreateSelectedImagesDisplayer(),
-
-              // DropdownButton(
-              //   value: createToyCubit.state.toyAge,
-              //   hint: const Text('Minimum Age'),
-              //   items: ToyAge.values
-              //       .map(
-              //         (e) => DropdownMenuItem<ToyAge>(
-              //           value: e,
-              //           child: Text(e.toString()),
-              //         ),
-              //       )
-              //       .toList(),
-              //   onChanged: (value) {
-              //     if (value == null) return;
-              //     createToyCubit.toyAgeChanged(value);
-              //   },
-              // ),
-              // DropdownButton(
-              //   value: createToyCubit.state.toyGender,
-              //   hint: const Text('Pref. Gender'),
-              //   items: ToyGender.values
-              //       .map(
-              //         (e) => DropdownMenuItem<ToyGender>(
-              //           value: e,
-              //           child: Text(e.toString()),
-              //         ),
-              //       )
-              //       .toList(),
-              //   onChanged: (value) {
-              //     if (value == null) return;
-              //     createToyCubit.toyGenderChanged(value);
-              //   },
-              // ),
-              // DropdownButton(
-              //   value: createToyCubit.state.toyCondition,
-              //   hint: const Text('Toy Condition'),
-              //   items: ToyCondition.values
-              //       .map(
-              //         (e) => DropdownMenuItem<ToyCondition>(
-              //           value: e,
-              //           child: Text(e.toString()),
-              //         ),
-              //       )
-              //       .toList(),
-              //   onChanged: (value) {
-              //     if (value == null) return;
-              //     createToyCubit.toyConditionChanged(value);
-              //   },
-              // ),
+              Expanded(
+                child: BaseColumn(
+                  scrollController: _scrollController,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    ToyCreateSelectedImagesDisplayer(),
+                    SharedGap.gap12,
+                    Row(
+                      children: [
+                        SharedGap.gap12,
+                        Expanded(child: CreateToyNameDisplayer()),
+                      ],
+                    ),
+                    SharedGap.gap12,
+                    ToyCreateDescriptionDisplayer(),
+                    SharedGap.gap64,
+                  ],
+                ),
+              ),
+              const Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CreateToyValueUpdater(),
+                  SharedGap.gap4,
+                  SizedBox(
+                    height: 40,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(child: CreateToyBackButton()),
+                        Expanded(child: CreateToyContinueButton()),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
-          Align(
+          const Align(
             alignment: Alignment.topLeft,
             child: CreateToyPopButton(),
           ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: CreateToyButton(),
-          ),
         ],
+      ),
+    );
+  }
+
+  Timer _scrollBottomPeriodically() {
+    return Timer.periodic(
+      SharedDurations.s1,
+      (timer) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: SharedDurations.ms370,
+          curve: Curves.easeIn,
+        );
+      },
+    );
+  }
+}
+
+class ToyCreateDescriptionDisplayer extends StatelessWidget {
+  const ToyCreateDescriptionDisplayer({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final toyDescription = context.select(
+      (CreateToyCubit bloc) => bloc.state.toyDescription.value,
+    );
+    final contextTheme = Theme.of(context);
+    return Padding(
+      padding: SharedPaddings.horizontal20,
+      child: Text(
+        toyDescription,
+        style: contextTheme.textTheme.bodyLarge?.copyWith(
+          color: contextTheme.colorScheme.onBackground.withOpacity(0.6),
+        ),
       ),
     );
   }

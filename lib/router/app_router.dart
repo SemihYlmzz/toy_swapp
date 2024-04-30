@@ -3,6 +3,7 @@ import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:toy_repository/toy_repository.dart';
 import 'package:toy_swapp/account_settings/router/router.dart';
 import 'package:toy_swapp/liked_toys/liked_toys.dart';
 import 'package:toy_swapp/toy_detail/toy_detail.dart';
@@ -86,6 +87,7 @@ class AppRouter {
           if (currentConsumer.state != ConsumerState.empty &&
               currentAuth.state == AuthState.unAuth) {
             context.read<ConsumerRepository>().clearCurrentConsumer();
+            context.read<ToyRepository>().clearOwnedToys();
           }
           // if (currentSupport.state != SupportState.empty) {
           // clearSupport();

@@ -16,13 +16,16 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CreateToyCubitState {
+  List<ToyImage> get imageUrlList => throw _privateConstructorUsedError;
+  CreateToyEnterValueState get enterValueState =>
+      throw _privateConstructorUsedError;
   ToyName get toyName => throw _privateConstructorUsedError;
   ToyDescription get toyDescription => throw _privateConstructorUsedError;
-  List<ToyImage> get imageUrlList => throw _privateConstructorUsedError;
   ToyAge? get toyAge => throw _privateConstructorUsedError;
   ToyGender? get toyGender => throw _privateConstructorUsedError;
   ToyCondition? get toyCondition => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get displayObjectErrors => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -37,13 +40,15 @@ abstract class $CreateToyCubitStateCopyWith<$Res> {
       _$CreateToyCubitStateCopyWithImpl<$Res, CreateToyCubitState>;
   @useResult
   $Res call(
-      {ToyName toyName,
+      {List<ToyImage> imageUrlList,
+      CreateToyEnterValueState enterValueState,
+      ToyName toyName,
       ToyDescription toyDescription,
-      List<ToyImage> imageUrlList,
       ToyAge? toyAge,
       ToyGender? toyGender,
       ToyCondition? toyCondition,
       bool isLoading,
+      bool displayObjectErrors,
       Failure? failure});
 }
 
@@ -60,16 +65,26 @@ class _$CreateToyCubitStateCopyWithImpl<$Res, $Val extends CreateToyCubitState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? imageUrlList = null,
+    Object? enterValueState = null,
     Object? toyName = null,
     Object? toyDescription = null,
-    Object? imageUrlList = null,
     Object? toyAge = freezed,
     Object? toyGender = freezed,
     Object? toyCondition = freezed,
     Object? isLoading = null,
+    Object? displayObjectErrors = null,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
+      imageUrlList: null == imageUrlList
+          ? _value.imageUrlList
+          : imageUrlList // ignore: cast_nullable_to_non_nullable
+              as List<ToyImage>,
+      enterValueState: null == enterValueState
+          ? _value.enterValueState
+          : enterValueState // ignore: cast_nullable_to_non_nullable
+              as CreateToyEnterValueState,
       toyName: null == toyName
           ? _value.toyName
           : toyName // ignore: cast_nullable_to_non_nullable
@@ -78,10 +93,6 @@ class _$CreateToyCubitStateCopyWithImpl<$Res, $Val extends CreateToyCubitState>
           ? _value.toyDescription
           : toyDescription // ignore: cast_nullable_to_non_nullable
               as ToyDescription,
-      imageUrlList: null == imageUrlList
-          ? _value.imageUrlList
-          : imageUrlList // ignore: cast_nullable_to_non_nullable
-              as List<ToyImage>,
       toyAge: freezed == toyAge
           ? _value.toyAge
           : toyAge // ignore: cast_nullable_to_non_nullable
@@ -97,6 +108,10 @@ class _$CreateToyCubitStateCopyWithImpl<$Res, $Val extends CreateToyCubitState>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      displayObjectErrors: null == displayObjectErrors
+          ? _value.displayObjectErrors
+          : displayObjectErrors // ignore: cast_nullable_to_non_nullable
               as bool,
       failure: freezed == failure
           ? _value.failure
@@ -115,13 +130,15 @@ abstract class _$$CreateToyCubitStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ToyName toyName,
+      {List<ToyImage> imageUrlList,
+      CreateToyEnterValueState enterValueState,
+      ToyName toyName,
       ToyDescription toyDescription,
-      List<ToyImage> imageUrlList,
       ToyAge? toyAge,
       ToyGender? toyGender,
       ToyCondition? toyCondition,
       bool isLoading,
+      bool displayObjectErrors,
       Failure? failure});
 }
 
@@ -136,16 +153,26 @@ class __$$CreateToyCubitStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? imageUrlList = null,
+    Object? enterValueState = null,
     Object? toyName = null,
     Object? toyDescription = null,
-    Object? imageUrlList = null,
     Object? toyAge = freezed,
     Object? toyGender = freezed,
     Object? toyCondition = freezed,
     Object? isLoading = null,
+    Object? displayObjectErrors = null,
     Object? failure = freezed,
   }) {
     return _then(_$CreateToyCubitStateImpl(
+      imageUrlList: null == imageUrlList
+          ? _value._imageUrlList
+          : imageUrlList // ignore: cast_nullable_to_non_nullable
+              as List<ToyImage>,
+      enterValueState: null == enterValueState
+          ? _value.enterValueState
+          : enterValueState // ignore: cast_nullable_to_non_nullable
+              as CreateToyEnterValueState,
       toyName: null == toyName
           ? _value.toyName
           : toyName // ignore: cast_nullable_to_non_nullable
@@ -154,10 +181,6 @@ class __$$CreateToyCubitStateImplCopyWithImpl<$Res>
           ? _value.toyDescription
           : toyDescription // ignore: cast_nullable_to_non_nullable
               as ToyDescription,
-      imageUrlList: null == imageUrlList
-          ? _value._imageUrlList
-          : imageUrlList // ignore: cast_nullable_to_non_nullable
-              as List<ToyImage>,
       toyAge: freezed == toyAge
           ? _value.toyAge
           : toyAge // ignore: cast_nullable_to_non_nullable
@@ -174,6 +197,10 @@ class __$$CreateToyCubitStateImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      displayObjectErrors: null == displayObjectErrors
+          ? _value.displayObjectErrors
+          : displayObjectErrors // ignore: cast_nullable_to_non_nullable
+              as bool,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -186,22 +213,18 @@ class __$$CreateToyCubitStateImplCopyWithImpl<$Res>
 
 class _$CreateToyCubitStateImpl implements _CreateToyCubitState {
   const _$CreateToyCubitStateImpl(
-      {this.toyName = const ToyName.pure(),
+      {required final List<ToyImage> imageUrlList,
+      required this.enterValueState,
+      this.toyName = const ToyName.pure(),
       this.toyDescription = const ToyDescription.pure(),
-      required final List<ToyImage> imageUrlList,
       this.toyAge = null,
       this.toyGender = null,
       this.toyCondition = null,
       this.isLoading = false,
+      this.displayObjectErrors = false,
       this.failure})
       : _imageUrlList = imageUrlList;
 
-  @override
-  @JsonKey()
-  final ToyName toyName;
-  @override
-  @JsonKey()
-  final ToyDescription toyDescription;
   final List<ToyImage> _imageUrlList;
   @override
   List<ToyImage> get imageUrlList {
@@ -210,6 +233,14 @@ class _$CreateToyCubitStateImpl implements _CreateToyCubitState {
     return EqualUnmodifiableListView(_imageUrlList);
   }
 
+  @override
+  final CreateToyEnterValueState enterValueState;
+  @override
+  @JsonKey()
+  final ToyName toyName;
+  @override
+  @JsonKey()
+  final ToyDescription toyDescription;
   @override
   @JsonKey()
   final ToyAge? toyAge;
@@ -223,11 +254,14 @@ class _$CreateToyCubitStateImpl implements _CreateToyCubitState {
   @JsonKey()
   final bool isLoading;
   @override
+  @JsonKey()
+  final bool displayObjectErrors;
+  @override
   final Failure? failure;
 
   @override
   String toString() {
-    return 'CreateToyCubitState(toyName: $toyName, toyDescription: $toyDescription, imageUrlList: $imageUrlList, toyAge: $toyAge, toyGender: $toyGender, toyCondition: $toyCondition, isLoading: $isLoading, failure: $failure)';
+    return 'CreateToyCubitState(imageUrlList: $imageUrlList, enterValueState: $enterValueState, toyName: $toyName, toyDescription: $toyDescription, toyAge: $toyAge, toyGender: $toyGender, toyCondition: $toyCondition, isLoading: $isLoading, displayObjectErrors: $displayObjectErrors, failure: $failure)';
   }
 
   @override
@@ -235,11 +269,13 @@ class _$CreateToyCubitStateImpl implements _CreateToyCubitState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateToyCubitStateImpl &&
+            const DeepCollectionEquality()
+                .equals(other._imageUrlList, _imageUrlList) &&
+            (identical(other.enterValueState, enterValueState) ||
+                other.enterValueState == enterValueState) &&
             (identical(other.toyName, toyName) || other.toyName == toyName) &&
             (identical(other.toyDescription, toyDescription) ||
                 other.toyDescription == toyDescription) &&
-            const DeepCollectionEquality()
-                .equals(other._imageUrlList, _imageUrlList) &&
             (identical(other.toyAge, toyAge) || other.toyAge == toyAge) &&
             (identical(other.toyGender, toyGender) ||
                 other.toyGender == toyGender) &&
@@ -247,19 +283,23 @@ class _$CreateToyCubitStateImpl implements _CreateToyCubitState {
                 other.toyCondition == toyCondition) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.displayObjectErrors, displayObjectErrors) ||
+                other.displayObjectErrors == displayObjectErrors) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(_imageUrlList),
+      enterValueState,
       toyName,
       toyDescription,
-      const DeepCollectionEquality().hash(_imageUrlList),
       toyAge,
       toyGender,
       toyCondition,
       isLoading,
+      displayObjectErrors,
       failure);
 
   @JsonKey(ignore: true)
@@ -272,21 +312,25 @@ class _$CreateToyCubitStateImpl implements _CreateToyCubitState {
 
 abstract class _CreateToyCubitState implements CreateToyCubitState {
   const factory _CreateToyCubitState(
-      {final ToyName toyName,
+      {required final List<ToyImage> imageUrlList,
+      required final CreateToyEnterValueState enterValueState,
+      final ToyName toyName,
       final ToyDescription toyDescription,
-      required final List<ToyImage> imageUrlList,
       final ToyAge? toyAge,
       final ToyGender? toyGender,
       final ToyCondition? toyCondition,
       final bool isLoading,
+      final bool displayObjectErrors,
       final Failure? failure}) = _$CreateToyCubitStateImpl;
 
+  @override
+  List<ToyImage> get imageUrlList;
+  @override
+  CreateToyEnterValueState get enterValueState;
   @override
   ToyName get toyName;
   @override
   ToyDescription get toyDescription;
-  @override
-  List<ToyImage> get imageUrlList;
   @override
   ToyAge? get toyAge;
   @override
@@ -295,6 +339,8 @@ abstract class _CreateToyCubitState implements CreateToyCubitState {
   ToyCondition? get toyCondition;
   @override
   bool get isLoading;
+  @override
+  bool get displayObjectErrors;
   @override
   Failure? get failure;
   @override

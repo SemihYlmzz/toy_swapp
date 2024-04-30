@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
+import 'package:toy_swapp/app/app.dart';
 
 import '../account_registration.dart';
 
@@ -24,15 +25,16 @@ class AccountRegistrationView extends StatelessWidget {
                 children: [
                   const AccountRegisterationAvatarSelector(),
                   SharedGap.gap20,
-                  GradientTextField(
-                    hintText: 'First Name',
+                  ToySwappTextField(
+                    labelText: 'First Name',
+                    textCapitalization: TextCapitalization.words,
                     onChanged: (value) => context
                         .read<AccountRegistrationCubit>()
                         .updateFirstName(value),
                   ),
                   SharedGap.gap20,
-                  GradientTextField(
-                    hintText: 'Last Name',
+                  ToySwappTextField(
+                    labelText: 'Last Name',
                     onChanged: (value) => context
                         .read<AccountRegistrationCubit>()
                         .updateLastName(value),

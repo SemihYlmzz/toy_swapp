@@ -23,7 +23,7 @@ class EmailVerificationBloc
     });
     // [Reload] the [AuthState] every second if link tapped.
     _timerInAction ??= Timer.periodic(
-      SharedDurations.s1,
+      SharedDurations.s2,
       (timer) {
         add(const EmailVerificationEvent.reloadAuthState());
       },
@@ -39,7 +39,9 @@ class EmailVerificationBloc
     EmailVerificationEvent event,
     Emitter<EmailVerificationState> emit,
   ) async {
-    emit(state.copyWith(isLoading: true));
+    if (event is! EmailVerificationReloadAuthState) {
+      emit(state.copyWith(isLoading: true));
+    }
 
     await event.map(
       sendVerificationEmail: (value) async {

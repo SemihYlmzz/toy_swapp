@@ -25,7 +25,7 @@ class ToyCreateSelectedImagesDisplayer extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
           ),
           SizedBox(
-            height: 100,
+            height: 75 + 8,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: cubitState.imageUrlList.length,
@@ -35,7 +35,7 @@ class ToyCreateSelectedImagesDisplayer extends StatelessWidget {
                   effects: [
                     FadeEffect(
                       delay:
-                          SharedDurations.ms370 + SharedDurations.ms300 * index,
+                          SharedDurations.ms370 + SharedDurations.ms200 * index,
                     ),
                   ],
                   child: Padding(

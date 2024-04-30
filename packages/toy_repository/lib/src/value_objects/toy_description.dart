@@ -17,17 +17,15 @@ class ToyDescription extends FormzInput<String, ToyDescriptionObjectError> {
 
   @override
   ToyDescriptionObjectError? validator(String value) {
-    // TODO :
-    // - Capitalize first letters. then check everything
     if (value.isEmpty) {
       return ToyDescriptionObjectError.empty;
+    } else if (value.contains('  ')) {
+      return ToyDescriptionObjectError.haveTwoSpacesInARow;
     } else if (value.length < ToyRepositoryInts.minToyDescriptionLength) {
       return ToyDescriptionObjectError.tooShort;
     } else if (value.length > ToyRepositoryInts.maxToyDescriptionLength) {
       return ToyDescriptionObjectError.tooLong;
-    } else if (value.contains('  ')) {
-      return ToyDescriptionObjectError.haveTwoSpacesInARow;
-    } else if (value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+    } else if (value.contains(RegExp(r'[!@#$%^&*?":{}|<>\n]'))) {
       return ToyDescriptionObjectError.containsSpecialCharacters;
     }
     return null;

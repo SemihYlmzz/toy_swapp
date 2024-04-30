@@ -37,7 +37,7 @@ class RemoteDatabaseCloudFirestore extends RemoteDatabase {
   Future<List<Map<String, dynamic>>?> readCollection({
     required String collectionID,
     required String? orderBy,
-    ({String field, Object? value})? fieldContains,
+    ({String field, Object? value})? fieldEqualTo,
     bool descending = false,
     int? limit,
     int? limitToLast,
@@ -53,14 +53,14 @@ class RemoteDatabaseCloudFirestore extends RemoteDatabase {
       if (endBefore != null) {
         query = query.endBefore(endBefore);
       }
+      if (fieldEqualTo != null) {
+        query = query.where(fieldEqualTo.field, isEqualTo: fieldEqualTo.value);
+      }
       if (limit != null) {
         query = query.limit(limit);
       }
       if (limitToLast != null) {
         query = query.limitToLast(limitToLast);
-      }
-      if (fieldContains != null) {
-        query.where(fieldContains.field, isEqualTo: fieldContains.value);
       }
 
       final collectionData = await query.get();
@@ -116,7 +116,6 @@ class RemoteDatabaseCloudFirestore extends RemoteDatabase {
       _batch = _firestore.batch();
       return right(unit);
     } catch (exception) {
-      print(exception);
       _batch = _firestore.batch();
       return const Left(RemoteDatabaseException.unknown());
     }

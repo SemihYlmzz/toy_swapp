@@ -5,8 +5,8 @@ import 'package:shared_constants/shared_constants.dart';
 
 import '../create_toy.dart';
 
-class CreateToyButton extends StatelessWidget {
-  const CreateToyButton({
+class NextAndCreateToyButton extends StatelessWidget {
+  const NextAndCreateToyButton({
     super.key,
   });
 

@@ -29,6 +29,7 @@ class ToyDetailView extends StatelessWidget {
         children: [
           BaseColumn(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Hero(
                 tag: heroTag,
@@ -108,53 +109,61 @@ class ToyDetailView extends StatelessWidget {
                   ),
                 ],
               ),
-              Wrap(
-                spacing: 32,
-                runSpacing: 16,
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                        'Min. Age',
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: Colors.pinkAccent,
-                            ),
-                      ),
-                      Text(
-                        toy.details.age.toString(),
-                        style: Theme.of(context).textTheme.headlineMedium,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        'Mostly Used by',
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: Colors.pinkAccent,
-                            ),
-                      ),
-                      Text(
-                        toy.details.gender.toString(),
-                        style: Theme.of(context).textTheme.headlineMedium,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        'Condition',
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: Colors.pinkAccent,
-                            ),
-                      ),
-                      Text(
-                        toy.details.condition.toString(),
-                        style: Theme.of(context).textTheme.headlineMedium,
-                      ),
-                    ],
-                  ),
-                ],
+              SizedBox(
+                width: MediaQuery.sizeOf(context).width,
+                child: Wrap(
+                  spacing: 32,
+                  runSpacing: 16,
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          'Min. Age',
+                          style:
+                              Theme.of(context).textTheme.labelSmall?.copyWith(
+                                    color: Colors.pinkAccent,
+                                  ),
+                        ),
+                        Text(
+                          toy.details.age.toString(),
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          'Mostly Used by',
+                          style:
+                              Theme.of(context).textTheme.labelSmall?.copyWith(
+                                    color: Colors.pinkAccent,
+                                  ),
+                        ),
+                        Text(
+                          toy.details.gender.toString(),
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          'Condition',
+                          style:
+                              Theme.of(context).textTheme.labelSmall?.copyWith(
+                                    color: Colors.pinkAccent,
+                                  ),
+                        ),
+                        Text(
+                          toy.details.condition.toString(),
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               SharedGap.gap20,
               Stack(
@@ -207,7 +216,6 @@ class ToyDetailView extends StatelessWidget {
                   ],
                 ),
               ),
-              SharedGap.gap128,
               SharedGap.gap128,
             ],
           ),
