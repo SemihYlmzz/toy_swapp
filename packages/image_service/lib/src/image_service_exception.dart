@@ -10,4 +10,6 @@ sealed class ImageServiceException
   const factory ImageServiceException.unknown() = ImageServiceExceptionUnknown;
   const factory ImageServiceException.notEnoughImages() =
       ImageServiceExceptionNotEnoughImages;
+  const factory ImageServiceException.tooMuchImageSelected() =
+      ImageServiceExceptionTooMuchImageSelected;
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pinch_to_zoom_scrollable/pinch_to_zoom_scrollable.dart';
 import 'package:shared_constants/shared_constants.dart';
 
 import '../create_toy.dart';
@@ -18,11 +19,15 @@ class ToyCreateSelectedImagesDisplayer extends StatelessWidget {
       ],
       child: Column(
         children: [
-          Image.memory(
-            cubitState.imageUrlList.first.value.toyImage128,
-            fit: BoxFit.cover,
-            height: 260,
-            width: MediaQuery.of(context).size.width,
+          PinchToZoomScrollableWidget(
+            maxScale: 6,
+            child: Image.memory(
+              cubitState.imageUrlList[cubitState.selectedImageIndex].value
+                  .toyImage512,
+              fit: BoxFit.cover,
+              height: 260,
+              width: MediaQuery.of(context).size.width,
+            ),
           ),
           SizedBox(
             height: 75 + 8,
@@ -40,11 +45,34 @@ class ToyCreateSelectedImagesDisplayer extends StatelessWidget {
                   ],
                   child: Padding(
                     padding: SharedPaddings.all8,
-                    child: Image.memory(
-                      imageUrl.value.toyImage128,
-                      width: 75,
-                      height: 75,
-                      fit: BoxFit.cover,
+                    child: GestureDetector(
+                      onTap: () {
+                        context
+                            .read<CreateToyCubit>()
+                            .changeSelectedImageIndex(index);
+                      },
+                      child: AnimatedContainer(
+                        duration: SharedDurations.ms200,
+                        width: 75,
+                        height: 75,
+                        padding: SharedPaddings.all4,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            strokeAlign: BorderSide.strokeAlignOutside,
+                            width: 2,
+                            color: cubitState.selectedImageIndex == index
+                                ? Theme.of(context).colorScheme.primary
+                                : Colors.transparent,
+                          ),
+                          borderRadius: SharedBorderRadius.circular16,
+                          image: DecorationImage(
+                            image: MemoryImage(
+                              imageUrl.value.toyImage128,
+                            ),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 );

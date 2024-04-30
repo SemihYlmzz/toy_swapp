@@ -20,18 +20,21 @@ mixin _$ImageServiceException {
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
     required TResult Function() notEnoughImages,
+    required TResult Function() tooMuchImageSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
     TResult? Function()? notEnoughImages,
+    TResult? Function()? tooMuchImageSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
     TResult Function()? notEnoughImages,
+    TResult Function()? tooMuchImageSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -40,6 +43,8 @@ mixin _$ImageServiceException {
     required TResult Function(ImageServiceExceptionUnknown value) unknown,
     required TResult Function(ImageServiceExceptionNotEnoughImages value)
         notEnoughImages,
+    required TResult Function(ImageServiceExceptionTooMuchImageSelected value)
+        tooMuchImageSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +52,8 @@ mixin _$ImageServiceException {
     TResult? Function(ImageServiceExceptionUnknown value)? unknown,
     TResult? Function(ImageServiceExceptionNotEnoughImages value)?
         notEnoughImages,
+    TResult? Function(ImageServiceExceptionTooMuchImageSelected value)?
+        tooMuchImageSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,6 +61,8 @@ mixin _$ImageServiceException {
     TResult Function(ImageServiceExceptionUnknown value)? unknown,
     TResult Function(ImageServiceExceptionNotEnoughImages value)?
         notEnoughImages,
+    TResult Function(ImageServiceExceptionTooMuchImageSelected value)?
+        tooMuchImageSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -123,6 +132,7 @@ class _$ImageServiceExceptionUnknownImpl
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
     required TResult Function() notEnoughImages,
+    required TResult Function() tooMuchImageSelected,
   }) {
     return unknown();
   }
@@ -132,6 +142,7 @@ class _$ImageServiceExceptionUnknownImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
     TResult? Function()? notEnoughImages,
+    TResult? Function()? tooMuchImageSelected,
   }) {
     return unknown?.call();
   }
@@ -141,6 +152,7 @@ class _$ImageServiceExceptionUnknownImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
     TResult Function()? notEnoughImages,
+    TResult Function()? tooMuchImageSelected,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -155,6 +167,8 @@ class _$ImageServiceExceptionUnknownImpl
     required TResult Function(ImageServiceExceptionUnknown value) unknown,
     required TResult Function(ImageServiceExceptionNotEnoughImages value)
         notEnoughImages,
+    required TResult Function(ImageServiceExceptionTooMuchImageSelected value)
+        tooMuchImageSelected,
   }) {
     return unknown(this);
   }
@@ -165,6 +179,8 @@ class _$ImageServiceExceptionUnknownImpl
     TResult? Function(ImageServiceExceptionUnknown value)? unknown,
     TResult? Function(ImageServiceExceptionNotEnoughImages value)?
         notEnoughImages,
+    TResult? Function(ImageServiceExceptionTooMuchImageSelected value)?
+        tooMuchImageSelected,
   }) {
     return unknown?.call(this);
   }
@@ -175,6 +191,8 @@ class _$ImageServiceExceptionUnknownImpl
     TResult Function(ImageServiceExceptionUnknown value)? unknown,
     TResult Function(ImageServiceExceptionNotEnoughImages value)?
         notEnoughImages,
+    TResult Function(ImageServiceExceptionTooMuchImageSelected value)?
+        tooMuchImageSelected,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -234,6 +252,7 @@ class _$ImageServiceExceptionNotEnoughImagesImpl
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
     required TResult Function() notEnoughImages,
+    required TResult Function() tooMuchImageSelected,
   }) {
     return notEnoughImages();
   }
@@ -243,6 +262,7 @@ class _$ImageServiceExceptionNotEnoughImagesImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unknown,
     TResult? Function()? notEnoughImages,
+    TResult? Function()? tooMuchImageSelected,
   }) {
     return notEnoughImages?.call();
   }
@@ -252,6 +272,7 @@ class _$ImageServiceExceptionNotEnoughImagesImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
     TResult Function()? notEnoughImages,
+    TResult Function()? tooMuchImageSelected,
     required TResult orElse(),
   }) {
     if (notEnoughImages != null) {
@@ -266,6 +287,8 @@ class _$ImageServiceExceptionNotEnoughImagesImpl
     required TResult Function(ImageServiceExceptionUnknown value) unknown,
     required TResult Function(ImageServiceExceptionNotEnoughImages value)
         notEnoughImages,
+    required TResult Function(ImageServiceExceptionTooMuchImageSelected value)
+        tooMuchImageSelected,
   }) {
     return notEnoughImages(this);
   }
@@ -276,6 +299,8 @@ class _$ImageServiceExceptionNotEnoughImagesImpl
     TResult? Function(ImageServiceExceptionUnknown value)? unknown,
     TResult? Function(ImageServiceExceptionNotEnoughImages value)?
         notEnoughImages,
+    TResult? Function(ImageServiceExceptionTooMuchImageSelected value)?
+        tooMuchImageSelected,
   }) {
     return notEnoughImages?.call(this);
   }
@@ -286,6 +311,8 @@ class _$ImageServiceExceptionNotEnoughImagesImpl
     TResult Function(ImageServiceExceptionUnknown value)? unknown,
     TResult Function(ImageServiceExceptionNotEnoughImages value)?
         notEnoughImages,
+    TResult Function(ImageServiceExceptionTooMuchImageSelected value)?
+        tooMuchImageSelected,
     required TResult orElse(),
   }) {
     if (notEnoughImages != null) {
@@ -299,4 +326,125 @@ abstract class ImageServiceExceptionNotEnoughImages
     implements ImageServiceException {
   const factory ImageServiceExceptionNotEnoughImages() =
       _$ImageServiceExceptionNotEnoughImagesImpl;
+}
+
+/// @nodoc
+abstract class _$$ImageServiceExceptionTooMuchImageSelectedImplCopyWith<$Res> {
+  factory _$$ImageServiceExceptionTooMuchImageSelectedImplCopyWith(
+          _$ImageServiceExceptionTooMuchImageSelectedImpl value,
+          $Res Function(_$ImageServiceExceptionTooMuchImageSelectedImpl) then) =
+      __$$ImageServiceExceptionTooMuchImageSelectedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ImageServiceExceptionTooMuchImageSelectedImplCopyWithImpl<$Res>
+    extends _$ImageServiceExceptionCopyWithImpl<$Res,
+        _$ImageServiceExceptionTooMuchImageSelectedImpl>
+    implements _$$ImageServiceExceptionTooMuchImageSelectedImplCopyWith<$Res> {
+  __$$ImageServiceExceptionTooMuchImageSelectedImplCopyWithImpl(
+      _$ImageServiceExceptionTooMuchImageSelectedImpl _value,
+      $Res Function(_$ImageServiceExceptionTooMuchImageSelectedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ImageServiceExceptionTooMuchImageSelectedImpl
+    implements ImageServiceExceptionTooMuchImageSelected {
+  const _$ImageServiceExceptionTooMuchImageSelectedImpl();
+
+  @override
+  String toString() {
+    return 'ImageServiceException.tooMuchImageSelected()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ImageServiceExceptionTooMuchImageSelectedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() notEnoughImages,
+    required TResult Function() tooMuchImageSelected,
+  }) {
+    return tooMuchImageSelected();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? notEnoughImages,
+    TResult? Function()? tooMuchImageSelected,
+  }) {
+    return tooMuchImageSelected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? notEnoughImages,
+    TResult Function()? tooMuchImageSelected,
+    required TResult orElse(),
+  }) {
+    if (tooMuchImageSelected != null) {
+      return tooMuchImageSelected();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ImageServiceExceptionUnknown value) unknown,
+    required TResult Function(ImageServiceExceptionNotEnoughImages value)
+        notEnoughImages,
+    required TResult Function(ImageServiceExceptionTooMuchImageSelected value)
+        tooMuchImageSelected,
+  }) {
+    return tooMuchImageSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ImageServiceExceptionUnknown value)? unknown,
+    TResult? Function(ImageServiceExceptionNotEnoughImages value)?
+        notEnoughImages,
+    TResult? Function(ImageServiceExceptionTooMuchImageSelected value)?
+        tooMuchImageSelected,
+  }) {
+    return tooMuchImageSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ImageServiceExceptionUnknown value)? unknown,
+    TResult Function(ImageServiceExceptionNotEnoughImages value)?
+        notEnoughImages,
+    TResult Function(ImageServiceExceptionTooMuchImageSelected value)?
+        tooMuchImageSelected,
+    required TResult orElse(),
+  }) {
+    if (tooMuchImageSelected != null) {
+      return tooMuchImageSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ImageServiceExceptionTooMuchImageSelected
+    implements ImageServiceException {
+  const factory ImageServiceExceptionTooMuchImageSelected() =
+      _$ImageServiceExceptionTooMuchImageSelectedImpl;
 }

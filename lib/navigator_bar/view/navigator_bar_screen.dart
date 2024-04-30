@@ -46,11 +46,15 @@ class NavigatorBarScreen extends StatelessWidget {
             context
                 .read<NavigatorBarCubit>()
                 .updateGoRouterState(goRouterState);
-            return BlocSelector<NavigatorBarBloc, NavigatorBarState, bool>(
-              selector: (state) => state.isLoading,
-              builder: (context, isLoading) {
+            return Builder(
+              builder: (context) {
+                final isLoading = context
+                    .select((NavigatorBarBloc bloc) => bloc.state.isLoading);
+                final isCubitLoading = context
+                    .select((NavigatorBarCubit bloc) => bloc.state.isLoading);
+
                 return LoadingScreen(
-                  isLoading: isLoading,
+                  isLoading: isLoading || isCubitLoading,
                   size: MediaQuery.sizeOf(context),
                   child: NavigatorBarView(
                     navigationShell: navigationShell,

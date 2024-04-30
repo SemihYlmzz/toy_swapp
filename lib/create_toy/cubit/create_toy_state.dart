@@ -5,6 +5,7 @@ class CreateToyCubitState with _$CreateToyCubitState {
   const factory CreateToyCubitState({
     required List<ToyImage> imageUrlList,
     required CreateToyEnterValueState enterValueState,
+    @Default(0) int selectedImageIndex,
     @Default(ToyName.pure()) ToyName toyName,
     @Default(ToyDescription.pure()) ToyDescription toyDescription,
     @Default(null) ToyAge? toyAge,

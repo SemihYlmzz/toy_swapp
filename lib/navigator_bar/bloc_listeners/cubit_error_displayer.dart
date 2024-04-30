@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_constants/shared_constants.dart';
 import '../navigator_bar.dart';
+
 extension NavigatorBarCubitErrorDisplayer on NavigatorBarBlocListeners {
   BlocListener<NavigatorBarCubit, NavigatorBarCubitState>
       cubitErrorDisplayer() {
@@ -13,11 +15,11 @@ extension NavigatorBarCubitErrorDisplayer on NavigatorBarBlocListeners {
         }
 
         // final errorMessage = FailureLocalizor.localize(failure, context);
-
         ScaffoldMessenger.of(context)
           ..clearSnackBars()
           ..showSnackBar(
             SnackBar(
+              duration: SharedDurations.ms1500,
               content: Text(failure.toString()),
               backgroundColor: Theme.of(context).colorScheme.error,
             ),

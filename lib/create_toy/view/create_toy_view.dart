@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 
@@ -41,7 +40,6 @@ class _CreateToyViewState extends State<CreateToyView>
           _timer?.cancel();
           return;
         }
-
         _timer = _scrollBottomPeriodically();
       },
       safeArea: true,
@@ -64,8 +62,9 @@ class _CreateToyViewState extends State<CreateToyView>
                       ],
                     ),
                     SharedGap.gap12,
-                    ToyCreateDescriptionDisplayer(),
-                    SharedGap.gap64,
+                    CreateToyDescriptionDisplayer(),
+                    SharedGap.gap32,
+                    CreateToyDetailsDisplayer(),
                   ],
                 ),
               ),
@@ -107,29 +106,6 @@ class _CreateToyViewState extends State<CreateToyView>
           curve: Curves.easeIn,
         );
       },
-    );
-  }
-}
-
-class ToyCreateDescriptionDisplayer extends StatelessWidget {
-  const ToyCreateDescriptionDisplayer({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final toyDescription = context.select(
-      (CreateToyCubit bloc) => bloc.state.toyDescription.value,
-    );
-    final contextTheme = Theme.of(context);
-    return Padding(
-      padding: SharedPaddings.horizontal20,
-      child: Text(
-        toyDescription,
-        style: contextTheme.textTheme.bodyLarge?.copyWith(
-          color: contextTheme.colorScheme.onBackground.withOpacity(0.6),
-        ),
-      ),
     );
   }
 }

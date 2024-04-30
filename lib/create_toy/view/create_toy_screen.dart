@@ -12,7 +12,6 @@ class CreateToyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final createToyBlocListeners = CreateToyBlocListeners();
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(

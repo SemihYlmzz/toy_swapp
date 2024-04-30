@@ -40,8 +40,10 @@ class NavigatorBarCubit extends Cubit<NavigatorBarCubitState> {
   }
 
   Future<void> selectMultipleImages() async {
+    emit(state.copyWith(isLoading: true));
     final tryPick = await _imageService.pickMultiImagesFromPhotos(
       minImages: 2,
+      maxImages: 10,
     );
     List<Uint8List>? selectedToyImages;
     tryPick.fold(
@@ -49,7 +51,7 @@ class NavigatorBarCubit extends Cubit<NavigatorBarCubitState> {
       (toyImages) => selectedToyImages = toyImages,
     );
     if (selectedToyImages == null) {
-      emit(state.copyWith(failure: null));
+      emit(state.copyWith(failure: null, isLoading: false));
       return;
     }
 

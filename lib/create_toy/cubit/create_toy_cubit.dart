@@ -63,6 +63,10 @@ class CreateToyCubit extends Cubit<CreateToyCubitState> {
     emit(state.copyWith(displayObjectErrors: true));
   }
 
+  void hideObjectErrors() {
+    emit(state.copyWith(displayObjectErrors: false));
+  }
+
   void nextEnterValueState() {
     final newEnterValueState = switch (state.enterValueState) {
       CreateToyEnterValueState.name => CreateToyEnterValueState.description,
@@ -95,5 +99,9 @@ class CreateToyCubit extends Cubit<CreateToyCubitState> {
         enterValueState: newEnterValueState,
       ),
     );
+  }
+
+  void changeSelectedImageIndex(int index) {
+    emit(state.copyWith(selectedImageIndex: index));
   }
 }

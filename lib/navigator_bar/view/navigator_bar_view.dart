@@ -40,7 +40,7 @@ class NavigatorBarView extends StatelessWidget {
             navigationShell.goBranch(index);
           }
           if (index == 2) {
-            // CreateToyRouter.instance.push(context);
+            
             context.read<NavigatorBarCubit>().selectMultipleImages();
           }
           if (index > 2) {

@@ -1,5 +1,6 @@
 import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_touch_ripple/flutter_touch_ripple.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
@@ -69,9 +70,11 @@ class ToyDetailView extends StatelessWidget {
               Row(
                 children: [
                   SharedGap.gap20,
-                  Text(
-                    toy.name,
-                    style: Theme.of(context).textTheme.displaySmall,
+                  Expanded(
+                    child: Text(
+                      toy.name,
+                      style: Theme.of(context).textTheme.displaySmall,
+                    ),
                   ),
                 ],
               ),
@@ -89,26 +92,7 @@ class ToyDetailView extends StatelessWidget {
                 ),
               ),
               SharedGap.gap20,
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  const Divider(thickness: 0.1),
-                  Container(
-                    color: Theme.of(context).colorScheme.background,
-                    padding: SharedPaddings.all20,
-                    child: Text(
-                      'Toy Details',
-                      style:
-                          Theme.of(context).textTheme.headlineMedium?.copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onBackground
-                                    .withOpacity(0.4),
-                              ),
-                    ),
-                  ),
-                ],
-              ),
+              const ToyDetailsDividerText(),
               SizedBox(
                 width: MediaQuery.sizeOf(context).width,
                 child: Wrap(
@@ -221,20 +205,27 @@ class ToyDetailView extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.maybePop(context);
-              },
-              child: Container(
-                width: 50,
-                height: 50,
-                margin: SharedPaddings.all20,
-                decoration: const BoxDecoration(
-                  color: Colors.black54,
-                  shape: BoxShape.circle,
+            child: Animate(
+              effects: const [
+                FadeEffect(
+                  delay: SharedDurations.ms370,
                 ),
-                child: const Center(
-                  child: Icon(Icons.close_rounded),
+              ],
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.maybePop(context);
+                },
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  margin: SharedPaddings.all20,
+                  decoration: const BoxDecoration(
+                    color: Colors.black54,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Center(
+                    child: Icon(Icons.close_rounded),
+                  ),
                 ),
               ),
             ),
@@ -261,20 +252,26 @@ class ToyDetailView extends StatelessWidget {
           if (!isCurrentConsumerOwner)
             Align(
               alignment: Alignment.topRight,
-              child: Container(
-                width: 50,
-                height: 50,
-                margin: SharedPaddings.all20,
-                decoration: BoxDecoration(
-                  color: Colors.redAccent.withOpacity(0.4),
-                  shape: BoxShape.circle,
-                ),
-                child: TouchRipple<void>(
-                  onTap: () {},
-                  borderRadius: SharedBorderRadius.circular32,
-                  child: const Center(
-                    //    child: Icon(Icons.delete_outlined),
-                    child: Icon(Icons.priority_high),
+              child: Animate(
+                effects: const [
+                  FadeEffect(
+                    delay: SharedDurations.ms370,
+                  ),
+                ],
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  margin: SharedPaddings.all20,
+                  decoration: BoxDecoration(
+                    color: Colors.redAccent.withOpacity(0.4),
+                    shape: BoxShape.circle,
+                  ),
+                  child: TouchRipple<void>(
+                    onTap: () {},
+                    borderRadius: SharedBorderRadius.circular32,
+                    child: const Center(
+                      child: Icon(Icons.priority_high),
+                    ),
                   ),
                 ),
               ),
@@ -282,20 +279,26 @@ class ToyDetailView extends StatelessWidget {
           else
             Align(
               alignment: Alignment.topRight,
-              child: Container(
-                width: 50,
-                height: 50,
-                margin: SharedPaddings.all20,
-                decoration: BoxDecoration(
-                  color: Colors.redAccent.withOpacity(0.4),
-                  shape: BoxShape.circle,
-                ),
-                child: TouchRipple<void>(
-                  onTap: () {},
-                  borderRadius: SharedBorderRadius.circular32,
-                  child: const Center(
-                    //    child: Icon(Icons.delete_outlined),
-                    child: Icon(Icons.delete),
+              child: Animate(
+                effects: const [
+                  FadeEffect(
+                    delay: SharedDurations.ms370,
+                  ),
+                ],
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  margin: SharedPaddings.all20,
+                  decoration: BoxDecoration(
+                    color: Colors.redAccent.withOpacity(0.4),
+                    shape: BoxShape.circle,
+                  ),
+                  child: TouchRipple<void>(
+                    onTap: () {},
+                    borderRadius: SharedBorderRadius.circular32,
+                    child: const Center(
+                      child: Icon(Icons.delete),
+                    ),
                   ),
                 ),
               ),

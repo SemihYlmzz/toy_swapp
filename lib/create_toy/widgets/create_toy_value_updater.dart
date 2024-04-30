@@ -37,6 +37,7 @@ class CreateToyNameUpdater extends StatelessWidget {
     final cubitState = context.select((CreateToyCubit bloc) => bloc.state);
     return ToySwappTextField(
       labelText: 'Toy Name',
+      initialValue: cubitState.toyName.value,
       textCapitalization: TextCapitalization.words,
       onChanged: context.read<CreateToyCubit>().toyNameChanged,
       errorText: cubitState.displayObjectErrors
@@ -58,6 +59,7 @@ class CreateToyDescriptionUpdater extends StatelessWidget {
     return ToySwappTextField(
       labelText: 'Toy Description',
       textCapitalization: TextCapitalization.sentences,
+      initialValue: createToyCubit.state.toyDescription.value,
       onChanged: createToyCubit.toyDescriptionChanged,
       errorText: createToyCubit.state.displayObjectErrors
           ? createToyCubit.state.toyDescription.error?.name
@@ -77,36 +79,31 @@ class CreateToyAgeUpdater extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final createToyCubit = context.watch<CreateToyCubit>();
-    return Column(
-      children: [
-        const Text('Select Minimum Age for Toy'),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              for (int i = 0; i < ToyAge.values.length; i++)
-                TouchRipple<void>(
-                  onTap: () {
-                    createToyCubit.toyAgeChanged(ToyAge.values[i]);
-                  },
-                  child: AnimatedContainer(
-                    duration: SharedDurations.ms370,
-                    margin: SharedPaddings.all4,
-                    height: 56,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      color: createToyCubit.state.toyAge != ToyAge.values[i]
-                          ? Colors.white30
-                          : Colors.greenAccent.withOpacity(0.7),
-                      borderRadius: SharedBorderRadius.circular8,
-                    ),
-                    child: Center(child: Text(ToyAge.values[i].name)),
-                  ),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          for (int i = 0; i < ToyAge.values.length; i++)
+            TouchRipple<void>(
+              onTap: () {
+                createToyCubit.toyAgeChanged(ToyAge.values[i]);
+              },
+              child: AnimatedContainer(
+                duration: SharedDurations.ms370,
+                margin: SharedPaddings.all4,
+                height: 56,
+                width: 100,
+                decoration: BoxDecoration(
+                  color: createToyCubit.state.toyAge != ToyAge.values[i]
+                      ? Colors.white30
+                      : Colors.greenAccent.withOpacity(0.7),
+                  borderRadius: SharedBorderRadius.circular8,
                 ),
-            ],
-          ),
-        ),
-      ],
+                child: Center(child: Text(ToyAge.values[i].name)),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }
@@ -119,37 +116,31 @@ class CreateToyGenderUpdater extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final createToyCubit = context.watch<CreateToyCubit>();
-    return Column(
-      children: [
-        const Text('Select Minimum Age for Toy'),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              for (int i = 0; i < ToyGender.values.length; i++)
-                TouchRipple<void>(
-                  onTap: () {
-                    createToyCubit.toyGenderChanged(ToyGender.values[i]);
-                  },
-                  child: AnimatedContainer(
-                    duration: SharedDurations.ms370,
-                    margin: SharedPaddings.all4,
-                    height: 56,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      color:
-                          createToyCubit.state.toyGender != ToyGender.values[i]
-                              ? Colors.white30
-                              : Colors.greenAccent.withOpacity(0.7),
-                      borderRadius: SharedBorderRadius.circular8,
-                    ),
-                    child: Center(child: Text(ToyGender.values[i].name)),
-                  ),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          for (int i = 0; i < ToyGender.values.length; i++)
+            TouchRipple<void>(
+              onTap: () {
+                createToyCubit.toyGenderChanged(ToyGender.values[i]);
+              },
+              child: AnimatedContainer(
+                duration: SharedDurations.ms370,
+                margin: SharedPaddings.all4,
+                height: 56,
+                width: 100,
+                decoration: BoxDecoration(
+                  color: createToyCubit.state.toyGender != ToyGender.values[i]
+                      ? Colors.white30
+                      : Colors.greenAccent.withOpacity(0.7),
+                  borderRadius: SharedBorderRadius.circular8,
                 ),
-            ],
-          ),
-        ),
-      ],
+                child: Center(child: Text(ToyGender.values[i].name)),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

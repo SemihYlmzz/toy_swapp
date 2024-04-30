@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:pinch_to_zoom_scrollable/pinch_to_zoom_scrollable.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -71,10 +72,15 @@ class ToyCard extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            '${ownerConsumer.firstName} '
-                            '${ownerConsumer.lastName}',
-                            style: contextTheme.textTheme.titleLarge,
+                          SizedBox(
+                            width: 140,
+                            child: Text(
+                              '${ownerConsumer.firstName} '
+                              '${ownerConsumer.lastName}',
+                              style: contextTheme.textTheme.titleLarge,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                           const Row(
                             children: [
@@ -168,6 +174,8 @@ class ToyCard extends StatelessWidget {
                         padding: SharedPaddings.left12,
                         child: Text(
                           toy.name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
