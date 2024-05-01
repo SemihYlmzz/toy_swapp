@@ -37,7 +37,11 @@ class _ToysViewState extends State<ToysView> {
     final initializingFailure = toysState.initializingFailure;
     return RefreshIndicator(
       onRefresh: () async {
-        context.read<ToysBloc>().add(const ToysEvent.fetchLatest10());
+        context.read<ToysBloc>().add(
+              const ToysEvent.fetchLikeableToys(
+                clearBeforeFetch: true,
+              ),
+            );
       },
       child: initializingFailure != null
           ? Center(
@@ -49,7 +53,7 @@ class _ToysViewState extends State<ToysView> {
                     onPressed: () {
                       context
                           .read<ToysBloc>()
-                          .add(const ToysEvent.fetchLatest10());
+                          .add(const ToysEvent.fetchLikeableToys());
                     },
                     child: const Text('Retry'),
                   ),
@@ -107,7 +111,7 @@ class _ToysViewState extends State<ToysView> {
     if (toysState.hasReachedMax) {
       return;
     }
-    context.read<ToysBloc>().add(const ToysEvent.fetch10BeforeOldestToy());
+    context.read<ToysBloc>().add(const ToysEvent.fetchLikeableToys());
   }
 
   bool get _isBottom {

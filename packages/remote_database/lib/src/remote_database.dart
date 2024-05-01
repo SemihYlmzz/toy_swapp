@@ -32,7 +32,8 @@ abstract class RemoteDatabase {
     int? limit,
     int? limitToLast,
     Iterable<Object?>? endBefore,
-    ({String field, Object? value})? fieldEqualTo,
+    List<({String field, Object? value})>? fieldIsEqualToList,
+    ({String field, Object? value})? fieldIsNotEqualTo,
   });
   FutureUnit batchCommit();
 }

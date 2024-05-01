@@ -1,3 +1,4 @@
+import 'package:auth_repository/auth_repository.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,11 +24,12 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
 
 class ToysBloc extends Bloc<ToysEvent, ToysState> {
   ToysBloc({
+    required AuthRepository authRepository,
     required ConsumerRepository consumerRepository,
     required ToyRepository toyRepository,
   })  : _toyRepository = toyRepository,
         _consumerRepository = consumerRepository,
-        super(const ToysState()) {
+        super(ToysState(currentAuth: authRepository.currentAuth)) {
     // Trigger Events
     on<ToysEvent>(
       _onToysEvent,
@@ -49,55 +51,64 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
       clearFetchMoreFailure: (value) async {
         emit(state.copyWith(fetchMoreFailure: null));
       },
-      fetchLatest10: (value) async {
-        emit(state.copyWith(isInitializing: true, initializingFailure: null));
-        final tryFetch = await _toyRepository.fetchLatest10();
-        var newToys = <Toy>[];
-        tryFetch.fold(
-          (l) => emit(state.copyWith(initializingFailure: l)),
-          (fetchedToys) => newToys = fetchedToys,
-        );
-        if (state.initializingFailure != null) {
-          return;
+      fetchLikeableToys: (value) async {
+        if(value.clearBeforeFetch){
+          emit(state.copyWith(toys: [],hasReachedMax: false));
         }
 
-        final fetchedToysAndOwners = await _toysToToyAndOwnerConsumers(newToys);
-
-        emit(
-          state.copyWith(
-            toys: fetchedToysAndOwners,
-            hasReachedMax: false,
-            isInitializing: false,
-          ),
-        );
-      },
-      fetch10BeforeOldestToy: (value) async {
+        // If reached max, do not fetch
         if (state.hasReachedMax) return;
+        // Get the oldest toy
         final oldestToy = state.toys.firstOrNull?.toy;
-        if (oldestToy == null) return;
 
-        final tryFetch = await _toyRepository.fetch10BeforeOldestToy(
-          oldestToy: oldestToy,
+        // If there is no toy,
+        if (oldestToy == null) {
+          // set it is initializing
+          emit(state.copyWith(isInitializing: true));
+        }
+        // No failure while fetching
+        emit(state.copyWith(initializingFailure: null, fetchMoreFailure: null));
+
+        // Fetch 10 likeable toys
+        final tryFetch = await _toyRepository.fetch10LikeableToysLatest(
+          // If oldest toy is null, fetch latest
+          // If not, fetch before this toy
+          beforeThisToy: oldestToy,
+          // Do not fetch owned toys
+          currentAuthId: state.currentAuth.id,
+
         );
-
-        var toys = <Toy>[];
+        var newToys = <Toy>[];
         tryFetch.fold(
-          (l) => emit(state.copyWith(fetchMoreFailure: l)),
-          (newToyList) => toys = newToyList,
+          (failure) {
+            if (oldestToy == null) {
+              emit(state.copyWith(isInitializing: false));
+            } else {
+              emit(state.copyWith(fetchMoreFailure: failure));
+            }
+          },
+          (fetchedToys) => newToys = fetchedToys,
         );
-        if (state.fetchMoreFailure != null) {
+
+        if (state.initializingFailure != null ||
+            state.fetchMoreFailure != null) {
           return;
         }
         // If there is no failure,
         // less than 10 toys are fetched means there are no more toys to fetch
-        if (toys.length < 10) {
+        if (newToys.length < 10) {
           emit(state.copyWith(hasReachedMax: true));
         }
-        // Loop through all toys to read their owner
-        final fetchedToys = await _toysToToyAndOwnerConsumers(toys);
+        // Get the owners of the toys
+        final fetchedToysAndOwners = await _toysToToyAndOwnerConsumers(newToys);
         // Add old toys
-        fetchedToys.addAll(state.toys);
-        emit(state.copyWith(toys: fetchedToys, fetchMoreFailure: null));
+        fetchedToysAndOwners.addAll(state.toys);
+        emit(
+          state.copyWith(
+            toys: fetchedToysAndOwners,
+            isInitializing: false,
+          ),
+        );
       },
     );
     emit(state.copyWith(isLoading: false, failure: null));

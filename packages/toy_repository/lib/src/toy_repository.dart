@@ -229,7 +229,7 @@ class ToyRepository {
         collectionID: ToyRepositoryStrings.toysCollectionPath,
         orderBy: 'createdAt',
         limitToLast: 12,
-        fieldEqualTo: (field: 'ownerAuthId', value: ownerAuthId),
+        fieldIsEqualToList: [(field: 'ownerAuthId', value: ownerAuthId)],
       );
 
       if (toyDocs == null || toyDocs.isEmpty) {
@@ -252,7 +252,7 @@ class ToyRepository {
     try {
       final toyDocs = await _remoteDatabase.readCollection(
         collectionID: ToyRepositoryStrings.toysCollectionPath,
-        fieldEqualTo: (field: 'ownerAuthId', value: ownerAuthId),
+        fieldIsEqualToList: [(field: 'ownerAuthId', value: ownerAuthId)],
         orderBy: 'createdAt',
         limitToLast: 12,
         endBefore: [oldestOwnedToy.createdAt.toIso8601String()],
@@ -271,31 +271,30 @@ class ToyRepository {
     }
   }
 
-  // TODO: Rename
-  FutureEither<List<Toy>> fetch10BeforeOldestToy({
-    required Toy oldestToy,
+  FutureEither<List<Toy>> fetch10LikeableToysLatest({
+    required String currentAuthId,
+    required Toy? beforeThisToy,
   }) async {
     try {
       final toyDocs = await _remoteDatabase.readCollection(
         collectionID: ToyRepositoryStrings.toysCollectionPath,
-        orderBy: 'createdAt',
-        limitToLast: 10,
-        endBefore: [oldestToy.createdAt.toIso8601String()],
-      );
-      if (toyDocs == null) {
-        return right([]);
-      }
-      final toys = toyDocs.map(Toy.fromJson).toList();
-      return Right(toys);
-    } catch (exception) {
-      return const Left(ToyRepositoryException.unknown());
-    }
-  }
-
-  FutureEither<List<Toy>> fetchLatest10() async {
-    try {
-      final toyDocs = await _remoteDatabase.readCollection(
-        collectionID: ToyRepositoryStrings.toysCollectionPath,
+        fieldIsNotEqualTo: (
+          field: 'ownerAuthId',
+          value: currentAuthId,
+        ),
+        fieldIsEqualToList: [
+          (
+            field: 'isPublic',
+            value: true,
+          ),
+          (
+            field: 'isLocked',
+            value: false,
+          ),
+        ],
+        endBefore: beforeThisToy != null
+            ? [beforeThisToy.createdAt.toIso8601String()]
+            : null,
         orderBy: 'createdAt',
         limitToLast: 10,
       );

@@ -18,46 +18,39 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ToysEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchLatest10,
-    required TResult Function() fetch10BeforeOldestToy,
+    required TResult Function(bool clearBeforeFetch) fetchLikeableToys,
     required TResult Function() clearFetchMoreFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchLatest10,
-    TResult? Function()? fetch10BeforeOldestToy,
+    TResult? Function(bool clearBeforeFetch)? fetchLikeableToys,
     TResult? Function()? clearFetchMoreFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchLatest10,
-    TResult Function()? fetch10BeforeOldestToy,
+    TResult Function(bool clearBeforeFetch)? fetchLikeableToys,
     TResult Function()? clearFetchMoreFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ToysFetchLatest10 value) fetchLatest10,
-    required TResult Function(ToysFetch10BeforeOldestToy value)
-        fetch10BeforeOldestToy,
+    required TResult Function(ToysFetchLikeableToys value) fetchLikeableToys,
     required TResult Function(ToysClearFetchMoreFailure value)
         clearFetchMoreFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult? Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
+    TResult? Function(ToysFetchLikeableToys value)? fetchLikeableToys,
     TResult? Function(ToysClearFetchMoreFailure value)? clearFetchMoreFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
+    TResult Function(ToysFetchLikeableToys value)? fetchLikeableToys,
     TResult Function(ToysClearFetchMoreFailure value)? clearFetchMoreFailure,
     required TResult orElse(),
   }) =>
@@ -82,183 +75,97 @@ class _$ToysEventCopyWithImpl<$Res, $Val extends ToysEvent>
 }
 
 /// @nodoc
-abstract class _$$ToysFetchLatest10ImplCopyWith<$Res> {
-  factory _$$ToysFetchLatest10ImplCopyWith(_$ToysFetchLatest10Impl value,
-          $Res Function(_$ToysFetchLatest10Impl) then) =
-      __$$ToysFetchLatest10ImplCopyWithImpl<$Res>;
+abstract class _$$ToysFetchLikeableToysImplCopyWith<$Res> {
+  factory _$$ToysFetchLikeableToysImplCopyWith(
+          _$ToysFetchLikeableToysImpl value,
+          $Res Function(_$ToysFetchLikeableToysImpl) then) =
+      __$$ToysFetchLikeableToysImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool clearBeforeFetch});
 }
 
 /// @nodoc
-class __$$ToysFetchLatest10ImplCopyWithImpl<$Res>
-    extends _$ToysEventCopyWithImpl<$Res, _$ToysFetchLatest10Impl>
-    implements _$$ToysFetchLatest10ImplCopyWith<$Res> {
-  __$$ToysFetchLatest10ImplCopyWithImpl(_$ToysFetchLatest10Impl _value,
-      $Res Function(_$ToysFetchLatest10Impl) _then)
+class __$$ToysFetchLikeableToysImplCopyWithImpl<$Res>
+    extends _$ToysEventCopyWithImpl<$Res, _$ToysFetchLikeableToysImpl>
+    implements _$$ToysFetchLikeableToysImplCopyWith<$Res> {
+  __$$ToysFetchLikeableToysImplCopyWithImpl(_$ToysFetchLikeableToysImpl _value,
+      $Res Function(_$ToysFetchLikeableToysImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? clearBeforeFetch = null,
+  }) {
+    return _then(_$ToysFetchLikeableToysImpl(
+      clearBeforeFetch: null == clearBeforeFetch
+          ? _value.clearBeforeFetch
+          : clearBeforeFetch // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$ToysFetchLatest10Impl implements ToysFetchLatest10 {
-  const _$ToysFetchLatest10Impl();
+class _$ToysFetchLikeableToysImpl implements ToysFetchLikeableToys {
+  const _$ToysFetchLikeableToysImpl({this.clearBeforeFetch = false});
+
+  @override
+  @JsonKey()
+  final bool clearBeforeFetch;
 
   @override
   String toString() {
-    return 'ToysEvent.fetchLatest10()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ToysFetchLatest10Impl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() fetchLatest10,
-    required TResult Function() fetch10BeforeOldestToy,
-    required TResult Function() clearFetchMoreFailure,
-  }) {
-    return fetchLatest10();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchLatest10,
-    TResult? Function()? fetch10BeforeOldestToy,
-    TResult? Function()? clearFetchMoreFailure,
-  }) {
-    return fetchLatest10?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchLatest10,
-    TResult Function()? fetch10BeforeOldestToy,
-    TResult Function()? clearFetchMoreFailure,
-    required TResult orElse(),
-  }) {
-    if (fetchLatest10 != null) {
-      return fetchLatest10();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ToysFetchLatest10 value) fetchLatest10,
-    required TResult Function(ToysFetch10BeforeOldestToy value)
-        fetch10BeforeOldestToy,
-    required TResult Function(ToysClearFetchMoreFailure value)
-        clearFetchMoreFailure,
-  }) {
-    return fetchLatest10(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult? Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
-    TResult? Function(ToysClearFetchMoreFailure value)? clearFetchMoreFailure,
-  }) {
-    return fetchLatest10?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
-    TResult Function(ToysClearFetchMoreFailure value)? clearFetchMoreFailure,
-    required TResult orElse(),
-  }) {
-    if (fetchLatest10 != null) {
-      return fetchLatest10(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ToysFetchLatest10 implements ToysEvent {
-  const factory ToysFetchLatest10() = _$ToysFetchLatest10Impl;
-}
-
-/// @nodoc
-abstract class _$$ToysFetch10BeforeOldestToyImplCopyWith<$Res> {
-  factory _$$ToysFetch10BeforeOldestToyImplCopyWith(
-          _$ToysFetch10BeforeOldestToyImpl value,
-          $Res Function(_$ToysFetch10BeforeOldestToyImpl) then) =
-      __$$ToysFetch10BeforeOldestToyImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ToysFetch10BeforeOldestToyImplCopyWithImpl<$Res>
-    extends _$ToysEventCopyWithImpl<$Res, _$ToysFetch10BeforeOldestToyImpl>
-    implements _$$ToysFetch10BeforeOldestToyImplCopyWith<$Res> {
-  __$$ToysFetch10BeforeOldestToyImplCopyWithImpl(
-      _$ToysFetch10BeforeOldestToyImpl _value,
-      $Res Function(_$ToysFetch10BeforeOldestToyImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ToysFetch10BeforeOldestToyImpl implements ToysFetch10BeforeOldestToy {
-  const _$ToysFetch10BeforeOldestToyImpl();
-
-  @override
-  String toString() {
-    return 'ToysEvent.fetch10BeforeOldestToy()';
+    return 'ToysEvent.fetchLikeableToys(clearBeforeFetch: $clearBeforeFetch)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ToysFetch10BeforeOldestToyImpl);
+            other is _$ToysFetchLikeableToysImpl &&
+            (identical(other.clearBeforeFetch, clearBeforeFetch) ||
+                other.clearBeforeFetch == clearBeforeFetch));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, clearBeforeFetch);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToysFetchLikeableToysImplCopyWith<_$ToysFetchLikeableToysImpl>
+      get copyWith => __$$ToysFetchLikeableToysImplCopyWithImpl<
+          _$ToysFetchLikeableToysImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchLatest10,
-    required TResult Function() fetch10BeforeOldestToy,
+    required TResult Function(bool clearBeforeFetch) fetchLikeableToys,
     required TResult Function() clearFetchMoreFailure,
   }) {
-    return fetch10BeforeOldestToy();
+    return fetchLikeableToys(clearBeforeFetch);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchLatest10,
-    TResult? Function()? fetch10BeforeOldestToy,
+    TResult? Function(bool clearBeforeFetch)? fetchLikeableToys,
     TResult? Function()? clearFetchMoreFailure,
   }) {
-    return fetch10BeforeOldestToy?.call();
+    return fetchLikeableToys?.call(clearBeforeFetch);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchLatest10,
-    TResult Function()? fetch10BeforeOldestToy,
+    TResult Function(bool clearBeforeFetch)? fetchLikeableToys,
     TResult Function()? clearFetchMoreFailure,
     required TResult orElse(),
   }) {
-    if (fetch10BeforeOldestToy != null) {
-      return fetch10BeforeOldestToy();
+    if (fetchLikeableToys != null) {
+      return fetchLikeableToys(clearBeforeFetch);
     }
     return orElse();
   }
@@ -266,42 +173,44 @@ class _$ToysFetch10BeforeOldestToyImpl implements ToysFetch10BeforeOldestToy {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ToysFetchLatest10 value) fetchLatest10,
-    required TResult Function(ToysFetch10BeforeOldestToy value)
-        fetch10BeforeOldestToy,
+    required TResult Function(ToysFetchLikeableToys value) fetchLikeableToys,
     required TResult Function(ToysClearFetchMoreFailure value)
         clearFetchMoreFailure,
   }) {
-    return fetch10BeforeOldestToy(this);
+    return fetchLikeableToys(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult? Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
+    TResult? Function(ToysFetchLikeableToys value)? fetchLikeableToys,
     TResult? Function(ToysClearFetchMoreFailure value)? clearFetchMoreFailure,
   }) {
-    return fetch10BeforeOldestToy?.call(this);
+    return fetchLikeableToys?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
+    TResult Function(ToysFetchLikeableToys value)? fetchLikeableToys,
     TResult Function(ToysClearFetchMoreFailure value)? clearFetchMoreFailure,
     required TResult orElse(),
   }) {
-    if (fetch10BeforeOldestToy != null) {
-      return fetch10BeforeOldestToy(this);
+    if (fetchLikeableToys != null) {
+      return fetchLikeableToys(this);
     }
     return orElse();
   }
 }
 
-abstract class ToysFetch10BeforeOldestToy implements ToysEvent {
-  const factory ToysFetch10BeforeOldestToy() = _$ToysFetch10BeforeOldestToyImpl;
+abstract class ToysFetchLikeableToys implements ToysEvent {
+  const factory ToysFetchLikeableToys({final bool clearBeforeFetch}) =
+      _$ToysFetchLikeableToysImpl;
+
+  bool get clearBeforeFetch;
+  @JsonKey(ignore: true)
+  _$$ToysFetchLikeableToysImplCopyWith<_$ToysFetchLikeableToysImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -345,8 +254,7 @@ class _$ToysClearFetchMoreFailureImpl implements ToysClearFetchMoreFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchLatest10,
-    required TResult Function() fetch10BeforeOldestToy,
+    required TResult Function(bool clearBeforeFetch) fetchLikeableToys,
     required TResult Function() clearFetchMoreFailure,
   }) {
     return clearFetchMoreFailure();
@@ -355,8 +263,7 @@ class _$ToysClearFetchMoreFailureImpl implements ToysClearFetchMoreFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchLatest10,
-    TResult? Function()? fetch10BeforeOldestToy,
+    TResult? Function(bool clearBeforeFetch)? fetchLikeableToys,
     TResult? Function()? clearFetchMoreFailure,
   }) {
     return clearFetchMoreFailure?.call();
@@ -365,8 +272,7 @@ class _$ToysClearFetchMoreFailureImpl implements ToysClearFetchMoreFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchLatest10,
-    TResult Function()? fetch10BeforeOldestToy,
+    TResult Function(bool clearBeforeFetch)? fetchLikeableToys,
     TResult Function()? clearFetchMoreFailure,
     required TResult orElse(),
   }) {
@@ -379,9 +285,7 @@ class _$ToysClearFetchMoreFailureImpl implements ToysClearFetchMoreFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ToysFetchLatest10 value) fetchLatest10,
-    required TResult Function(ToysFetch10BeforeOldestToy value)
-        fetch10BeforeOldestToy,
+    required TResult Function(ToysFetchLikeableToys value) fetchLikeableToys,
     required TResult Function(ToysClearFetchMoreFailure value)
         clearFetchMoreFailure,
   }) {
@@ -391,8 +295,7 @@ class _$ToysClearFetchMoreFailureImpl implements ToysClearFetchMoreFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult? Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
+    TResult? Function(ToysFetchLikeableToys value)? fetchLikeableToys,
     TResult? Function(ToysClearFetchMoreFailure value)? clearFetchMoreFailure,
   }) {
     return clearFetchMoreFailure?.call(this);
@@ -401,8 +304,7 @@ class _$ToysClearFetchMoreFailureImpl implements ToysClearFetchMoreFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToysFetchLatest10 value)? fetchLatest10,
-    TResult Function(ToysFetch10BeforeOldestToy value)? fetch10BeforeOldestToy,
+    TResult Function(ToysFetchLikeableToys value)? fetchLikeableToys,
     TResult Function(ToysClearFetchMoreFailure value)? clearFetchMoreFailure,
     required TResult orElse(),
   }) {
@@ -419,6 +321,7 @@ abstract class ToysClearFetchMoreFailure implements ToysEvent {
 
 /// @nodoc
 mixin _$ToysState {
+  Auth get currentAuth => throw _privateConstructorUsedError;
   List<ToyAndOwnerConsumer> get toys => throw _privateConstructorUsedError;
   bool get hasReachedMax => throw _privateConstructorUsedError;
   bool get isInitializing => throw _privateConstructorUsedError;
@@ -438,13 +341,16 @@ abstract class $ToysStateCopyWith<$Res> {
       _$ToysStateCopyWithImpl<$Res, ToysState>;
   @useResult
   $Res call(
-      {List<ToyAndOwnerConsumer> toys,
+      {Auth currentAuth,
+      List<ToyAndOwnerConsumer> toys,
       bool hasReachedMax,
       bool isInitializing,
       bool isLoading,
       Failure? initializingFailure,
       Failure? fetchMoreFailure,
       Failure? failure});
+
+  $AuthCopyWith<$Res> get currentAuth;
 }
 
 /// @nodoc
@@ -460,6 +366,7 @@ class _$ToysStateCopyWithImpl<$Res, $Val extends ToysState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? currentAuth = null,
     Object? toys = null,
     Object? hasReachedMax = null,
     Object? isInitializing = null,
@@ -469,6 +376,10 @@ class _$ToysStateCopyWithImpl<$Res, $Val extends ToysState>
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
+      currentAuth: null == currentAuth
+          ? _value.currentAuth
+          : currentAuth // ignore: cast_nullable_to_non_nullable
+              as Auth,
       toys: null == toys
           ? _value.toys
           : toys // ignore: cast_nullable_to_non_nullable
@@ -499,6 +410,14 @@ class _$ToysStateCopyWithImpl<$Res, $Val extends ToysState>
               as Failure?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AuthCopyWith<$Res> get currentAuth {
+    return $AuthCopyWith<$Res>(_value.currentAuth, (value) {
+      return _then(_value.copyWith(currentAuth: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -510,13 +429,17 @@ abstract class _$$ToysStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<ToyAndOwnerConsumer> toys,
+      {Auth currentAuth,
+      List<ToyAndOwnerConsumer> toys,
       bool hasReachedMax,
       bool isInitializing,
       bool isLoading,
       Failure? initializingFailure,
       Failure? fetchMoreFailure,
       Failure? failure});
+
+  @override
+  $AuthCopyWith<$Res> get currentAuth;
 }
 
 /// @nodoc
@@ -530,6 +453,7 @@ class __$$ToysStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? currentAuth = null,
     Object? toys = null,
     Object? hasReachedMax = null,
     Object? isInitializing = null,
@@ -539,6 +463,10 @@ class __$$ToysStateImplCopyWithImpl<$Res>
     Object? failure = freezed,
   }) {
     return _then(_$ToysStateImpl(
+      currentAuth: null == currentAuth
+          ? _value.currentAuth
+          : currentAuth // ignore: cast_nullable_to_non_nullable
+              as Auth,
       toys: null == toys
           ? _value._toys
           : toys // ignore: cast_nullable_to_non_nullable
@@ -575,7 +503,8 @@ class __$$ToysStateImplCopyWithImpl<$Res>
 
 class _$ToysStateImpl implements _ToysState {
   const _$ToysStateImpl(
-      {final List<ToyAndOwnerConsumer> toys = const [],
+      {required this.currentAuth,
+      final List<ToyAndOwnerConsumer> toys = const [],
       this.hasReachedMax = false,
       this.isInitializing = true,
       this.isLoading = false,
@@ -584,6 +513,8 @@ class _$ToysStateImpl implements _ToysState {
       this.failure})
       : _toys = toys;
 
+  @override
+  final Auth currentAuth;
   final List<ToyAndOwnerConsumer> _toys;
   @override
   @JsonKey()
@@ -611,7 +542,7 @@ class _$ToysStateImpl implements _ToysState {
 
   @override
   String toString() {
-    return 'ToysState(toys: $toys, hasReachedMax: $hasReachedMax, isInitializing: $isInitializing, isLoading: $isLoading, initializingFailure: $initializingFailure, fetchMoreFailure: $fetchMoreFailure, failure: $failure)';
+    return 'ToysState(currentAuth: $currentAuth, toys: $toys, hasReachedMax: $hasReachedMax, isInitializing: $isInitializing, isLoading: $isLoading, initializingFailure: $initializingFailure, fetchMoreFailure: $fetchMoreFailure, failure: $failure)';
   }
 
   @override
@@ -619,6 +550,8 @@ class _$ToysStateImpl implements _ToysState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ToysStateImpl &&
+            (identical(other.currentAuth, currentAuth) ||
+                other.currentAuth == currentAuth) &&
             const DeepCollectionEquality().equals(other._toys, _toys) &&
             (identical(other.hasReachedMax, hasReachedMax) ||
                 other.hasReachedMax == hasReachedMax) &&
@@ -636,6 +569,7 @@ class _$ToysStateImpl implements _ToysState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      currentAuth,
       const DeepCollectionEquality().hash(_toys),
       hasReachedMax,
       isInitializing,
@@ -653,7 +587,8 @@ class _$ToysStateImpl implements _ToysState {
 
 abstract class _ToysState implements ToysState {
   const factory _ToysState(
-      {final List<ToyAndOwnerConsumer> toys,
+      {required final Auth currentAuth,
+      final List<ToyAndOwnerConsumer> toys,
       final bool hasReachedMax,
       final bool isInitializing,
       final bool isLoading,
@@ -661,6 +596,8 @@ abstract class _ToysState implements ToysState {
       final Failure? fetchMoreFailure,
       final Failure? failure}) = _$ToysStateImpl;
 
+  @override
+  Auth get currentAuth;
   @override
   List<ToyAndOwnerConsumer> get toys;
   @override

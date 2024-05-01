@@ -37,7 +37,8 @@ class RemoteDatabaseCloudFirestore extends RemoteDatabase {
   Future<List<Map<String, dynamic>>?> readCollection({
     required String collectionID,
     required String? orderBy,
-    ({String field, Object? value})? fieldEqualTo,
+    List<({String field, Object? value})>? fieldIsEqualToList,
+    ({String field, Object? value})? fieldIsNotEqualTo,
     bool descending = false,
     int? limit,
     int? limitToLast,
@@ -53,8 +54,20 @@ class RemoteDatabaseCloudFirestore extends RemoteDatabase {
       if (endBefore != null) {
         query = query.endBefore(endBefore);
       }
-      if (fieldEqualTo != null) {
-        query = query.where(fieldEqualTo.field, isEqualTo: fieldEqualTo.value);
+
+      if (fieldIsEqualToList != null) {
+        for (final fieldIsEqualTo in fieldIsEqualToList) {
+          query = query.where(
+            fieldIsEqualTo.field,
+            isEqualTo: fieldIsEqualTo.value,
+          );
+        }
+      }
+      if (fieldIsNotEqualTo != null) {
+        query = query.where(
+          fieldIsNotEqualTo.field,
+          isNotEqualTo: fieldIsNotEqualTo.value,
+        );
       }
       if (limit != null) {
         query = query.limit(limit);
