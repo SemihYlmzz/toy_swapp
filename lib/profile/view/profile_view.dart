@@ -66,10 +66,19 @@ class _ProfileViewState extends State<ProfileView> {
                 ? const SliverFillRemaining(
                     child: Center(child: CircularProgressIndicator()),
                   )
-                : OwnedToysGridViewDisplayer(
-                    ownedToys: ownedToys,
-                    scrollController: _scrollController,
-                  ),
+                : ownedToys.isEmpty
+                    ? Center(
+                        child: Container(
+                          color: Colors.white,
+                          height: 50,
+                          width: 50,
+                          child: const Text('empty'),
+                        ),
+                      )
+                    : OwnedToysGridViewDisplayer(
+                        ownedToys: ownedToys,
+                        scrollController: _scrollController,
+                      ),
           if (fetchMoreFailure != null)
             SliverToBoxAdapter(
               child: TextButton(

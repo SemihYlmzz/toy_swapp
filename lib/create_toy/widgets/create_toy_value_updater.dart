@@ -22,7 +22,7 @@ class CreateToyValueUpdater extends StatelessWidget {
       CreateToyEnterValueState.age => const CreateToyAgeUpdater(),
       CreateToyEnterValueState.gender => const CreateToyGenderUpdater(),
       CreateToyEnterValueState.condition => const CreateToyConditionUpdater(),
-      CreateToyEnterValueState.done => const SizedBox.shrink(),
+      CreateToyEnterValueState.done => const CreateToyDoneAccepter(),
     };
   }
 }
@@ -155,7 +155,6 @@ class CreateToyConditionUpdater extends StatelessWidget {
     final createToyCubit = context.watch<CreateToyCubit>();
     return Column(
       children: [
-        const Text('Select Minimum Age for Toy'),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
@@ -182,6 +181,68 @@ class CreateToyConditionUpdater extends StatelessWidget {
                 ),
             ],
           ),
+        ),
+      ],
+    );
+  }
+}
+
+class CreateToyDoneAccepter extends StatelessWidget {
+  const CreateToyDoneAccepter({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final cubitState = context.watch<CreateToyCubit>().state;
+
+    return AlertDialog(
+      shadowColor: Colors.white,
+      title: const Text('Are You Sure?'),
+      content: const SingleChildScrollView(
+        child: ListBody(
+          children: <Widget>[
+            Text(
+              'You Gonna Share This Toy!',
+            ),
+          ],
+        ),
+      ),
+      actions: <Widget>[
+        TextButton(
+          child: const Text('Okey'),
+          onPressed: () {
+            final toyAge = cubitState.toyAge;
+            final toyCondition = cubitState.toyCondition;
+            final toyGender = cubitState.toyGender;
+            if (cubitState.imageUrlList.isEmpty) {
+              return;
+            }
+            if (toyAge == null) {
+              return;
+            }
+            if (toyCondition == null) {
+              return;
+            }
+            if (toyGender == null) {
+              return;
+            }
+            if (cubitState.toyName.isNotValid) {
+              return;
+            }
+            if (cubitState.toyDescription.isNotValid) {
+              return;
+            }
+            context.read<CreateToyBloc>().add(
+                  CreateToyEvent.createOwnedToy(
+                    imageUrlList: cubitState.imageUrlList,
+                    toyAge: toyAge,
+                    toyCondition: toyCondition,
+                    toyDescription: cubitState.toyDescription,
+                    toyGender: toyGender,
+                    toyName: cubitState.toyName,
+                  ),
+                );
+            Navigator.maybePop(context);
+          },
         ),
       ],
     );

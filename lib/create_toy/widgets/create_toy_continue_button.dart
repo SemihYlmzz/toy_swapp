@@ -24,13 +24,8 @@ class CreateToyContinueButton extends StatelessWidget {
           return;
         }
         switch (enterValueState) {
-          case CreateToyEnterValueState.age:
-            if (cubitState.toyAge == null) {
-              context.read<CreateToyCubit>().showObjectErrors();
-              return;
-            }
-          case CreateToyEnterValueState.condition:
-            if (cubitState.toyCondition == null) {
+          case CreateToyEnterValueState.name:
+            if (cubitState.toyName.isNotValid) {
               context.read<CreateToyCubit>().showObjectErrors();
               return;
             }
@@ -39,48 +34,23 @@ class CreateToyContinueButton extends StatelessWidget {
               context.read<CreateToyCubit>().showObjectErrors();
               return;
             }
+          case CreateToyEnterValueState.age:
+            if (cubitState.toyAge == null) {
+              context.read<CreateToyCubit>().showObjectErrors();
+              return;
+            }
           case CreateToyEnterValueState.gender:
             if (cubitState.toyGender == null) {
               context.read<CreateToyCubit>().showObjectErrors();
               return;
             }
-          case CreateToyEnterValueState.name:
-            if (cubitState.toyName.isNotValid) {
+          case CreateToyEnterValueState.condition:
+            if (cubitState.toyCondition == null) {
               context.read<CreateToyCubit>().showObjectErrors();
               return;
             }
           case CreateToyEnterValueState.done:
-            final toyAge = cubitState.toyAge;
-            final toyCondition = cubitState.toyCondition;
-            final toyGender = cubitState.toyGender;
-            if (cubitState.imageUrlList.isEmpty) {
-              return;
-            }
-            if (toyAge == null) {
-              return;
-            }
-            if (toyCondition == null) {
-              return;
-            }
-            if (toyGender == null) {
-              return;
-            }
-            if (cubitState.toyName.isNotValid) {
-              return;
-            }
-            if (cubitState.toyDescription.isNotValid) {
-              return;
-            }
-            context.read<CreateToyBloc>().add(
-                  CreateToyEvent.createOwnedToy(
-                    imageUrlList: cubitState.imageUrlList,
-                    toyAge: toyAge,
-                    toyCondition: toyCondition,
-                    toyDescription: cubitState.toyDescription,
-                    toyGender: toyGender,
-                    toyName: cubitState.toyName,
-                  ),
-                );
+            const CreateToyDoneAccepter();
         }
         context.read<CreateToyCubit>().hideObjectErrors();
         context.read<CreateToyCubit>().nextEnterValueState();
