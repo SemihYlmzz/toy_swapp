@@ -67,12 +67,13 @@ class _ProfileViewState extends State<ProfileView> {
                     child: Center(child: CircularProgressIndicator()),
                   )
                 : ownedToys.isEmpty
-                    ? Center(
-                        child: Container(
-                          color: Colors.white,
-                          height: 50,
-                          width: 50,
-                          child: const Text('empty'),
+                    ? const SliverToBoxAdapter(
+                        child: Center(
+                          child: SizedBox(
+                            height: 50,
+                            width: 50,
+                            child: Text('empty'),
+                          ),
                         ),
                       )
                     : OwnedToysGridViewDisplayer(

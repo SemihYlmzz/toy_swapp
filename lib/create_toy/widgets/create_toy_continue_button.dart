@@ -16,51 +16,61 @@ class CreateToyContinueButton extends StatelessWidget {
     final iconData = enterValueState != CreateToyEnterValueState.done
         ? Icons.adaptive.arrow_forward
         : Icons.done;
-    return TouchRipple<void>(
-      onTap: () {
-        if (cubitState.displayObjectErrors &&
-            enterValueState != CreateToyEnterValueState.name &&
-            enterValueState != CreateToyEnterValueState.description) {
-          return;
-        }
-        switch (enterValueState) {
-          case CreateToyEnterValueState.name:
-            if (cubitState.toyName.isNotValid) {
-              context.read<CreateToyCubit>().showObjectErrors();
+    return Builder(
+      builder: (builderContext) {
+        return TouchRipple<void>(
+          onTap: () {
+            if (cubitState.displayObjectErrors &&
+                enterValueState != CreateToyEnterValueState.name &&
+                enterValueState != CreateToyEnterValueState.description) {
               return;
             }
-          case CreateToyEnterValueState.description:
-            if (cubitState.toyDescription.isNotValid) {
-              context.read<CreateToyCubit>().showObjectErrors();
-              return;
+            switch (enterValueState) {
+              case CreateToyEnterValueState.name:
+                if (cubitState.toyName.isNotValid) {
+                  context.read<CreateToyCubit>().showObjectErrors();
+                  return;
+                }
+              case CreateToyEnterValueState.description:
+                if (cubitState.toyDescription.isNotValid) {
+                  context.read<CreateToyCubit>().showObjectErrors();
+                  return;
+                }
+              case CreateToyEnterValueState.age:
+                if (cubitState.toyAge == null) {
+                  context.read<CreateToyCubit>().showObjectErrors();
+                  return;
+                }
+              case CreateToyEnterValueState.gender:
+                if (cubitState.toyGender == null) {
+                  context.read<CreateToyCubit>().showObjectErrors();
+                  return;
+                }
+              case CreateToyEnterValueState.condition:
+                if (cubitState.toyCondition == null) {
+                  context.read<CreateToyCubit>().showObjectErrors();
+                  return;
+                }
+              case CreateToyEnterValueState.done:
+                showDialog<void>(
+                  context: context,
+                  builder: (context) {
+                    return CreateToyDialog(builderContext: builderContext);
+                  },
+                );
+                return;
             }
-          case CreateToyEnterValueState.age:
-            if (cubitState.toyAge == null) {
-              context.read<CreateToyCubit>().showObjectErrors();
-              return;
-            }
-          case CreateToyEnterValueState.gender:
-            if (cubitState.toyGender == null) {
-              context.read<CreateToyCubit>().showObjectErrors();
-              return;
-            }
-          case CreateToyEnterValueState.condition:
-            if (cubitState.toyCondition == null) {
-              context.read<CreateToyCubit>().showObjectErrors();
-              return;
-            }
-          case CreateToyEnterValueState.done:
-            const CreateToyDoneAccepter();
-        }
-        context.read<CreateToyCubit>().hideObjectErrors();
-        context.read<CreateToyCubit>().nextEnterValueState();
+            context.read<CreateToyCubit>().hideObjectErrors();
+            context.read<CreateToyCubit>().nextEnterValueState();
+          },
+          child: ColoredBox(
+            color: Colors.greenAccent.withOpacity(0.4),
+            child: Center(
+              child: Icon(iconData),
+            ),
+          ),
+        );
       },
-      child: ColoredBox(
-        color: Colors.greenAccent.withOpacity(0.4),
-        child: Center(
-          child: Icon(iconData),
-        ),
-      ),
     );
   }
 }
