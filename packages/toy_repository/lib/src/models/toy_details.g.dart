@@ -25,6 +25,7 @@ const _$ToyAgeEnumMap = {
   ToyAge.two: 'two',
   ToyAge.three: 'three',
   ToyAge.four: 'four',
+  ToyAge.five: 'five',
   ToyAge.six: 'six',
 };
 
@@ -35,9 +36,9 @@ const _$ToyGenderEnumMap = {
 };
 
 const _$ToyConditionEnumMap = {
-  ToyCondition.mint: 'mint',
+  ToyCondition.brandNew: 'brandNew',
   ToyCondition.good: 'good',
-  ToyCondition.fair: 'fair',
-  ToyCondition.poor: 'poor',
-  ToyCondition.scrap: 'scrap',
+  ToyCondition.normal: 'normal',
+  ToyCondition.bad: 'bad',
+  ToyCondition.broken: 'broken',
 };

@@ -1,7 +1,9 @@
 import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_touch_ripple/flutter_touch_ripple.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 import 'package:toy_repository/toy_repository.dart';
@@ -34,50 +36,20 @@ class ToyDetailView extends StatelessWidget {
             children: [
               Hero(
                 tag: heroTag,
-                child: Image.network(
-                  toy.imageUrlList.first.url128,
-                  width: MediaQuery.of(context).size.width,
-                  height: 260,
-                  fit: BoxFit.cover,
+                child: ToyImageDisplayer(
+                  toyImage128: Left(toy.imageUrlList.first.url128),
                 ),
               ),
               SharedGap.gap4,
-              Container(
-                height: 60,
-                padding: SharedPaddings.left8,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: toy.imageUrlList.length,
-                  itemBuilder: (context, index) => Center(
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      margin: SharedPaddings.right12,
-                      decoration: BoxDecoration(
-                        borderRadius: SharedBorderRadius.circular4,
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            toy.imageUrlList[index].url128,
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
+              ToyImagesSelector(
+                toyImagesList: Left(
+                  toy.imageUrlList.map((e) => e.url128).toList(),
                 ),
+                selectedImageIndex: 0,
+                selectedImageIndexChanged: (i) {},
               ),
               SharedGap.gap12,
-              Row(
-                children: [
-                  SharedGap.gap20,
-                  Expanded(
-                    child: Text(
-                      toy.name,
-                      style: Theme.of(context).textTheme.displaySmall,
-                    ),
-                  ),
-                ],
-              ),
+              ToyNameDisplayer(toyName: toy.name),
               SharedGap.gap12,
               Padding(
                 padding: SharedPaddings.horizontal20,
@@ -92,62 +64,10 @@ class ToyDetailView extends StatelessWidget {
                 ),
               ),
               SharedGap.gap20,
-              const ToyDetailsDividerText(),
-              SizedBox(
-                width: MediaQuery.sizeOf(context).width,
-                child: Wrap(
-                  spacing: 32,
-                  runSpacing: 16,
-                  alignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          'Min. Age',
-                          style:
-                              Theme.of(context).textTheme.labelSmall?.copyWith(
-                                    color: Colors.pinkAccent,
-                                  ),
-                        ),
-                        Text(
-                          toy.details.age.toString(),
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          'Mostly Used by',
-                          style:
-                              Theme.of(context).textTheme.labelSmall?.copyWith(
-                                    color: Colors.pinkAccent,
-                                  ),
-                        ),
-                        Text(
-                          toy.details.gender.toString(),
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          'Condition',
-                          style:
-                              Theme.of(context).textTheme.labelSmall?.copyWith(
-                                    color: Colors.pinkAccent,
-                                  ),
-                        ),
-                        Text(
-                          toy.details.condition.toString(),
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+              ToyDetailsDisplayer(
+                toyAge: toy.details.age,
+                toyGender: toy.details.gender,
+                toyCondition: toy.details.condition,
               ),
               SharedGap.gap20,
               Stack(
@@ -156,48 +76,57 @@ class ToyDetailView extends StatelessWidget {
                   const Divider(thickness: 0.1),
                   Container(
                     color: Theme.of(context).colorScheme.background,
-                    padding: SharedPaddings.all20,
-                    child: Text(
-                      'Owner Details',
-                      style:
-                          Theme.of(context).textTheme.headlineMedium?.copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onBackground
-                                    .withOpacity(0.4),
-                              ),
+                    padding: SharedPaddings.horizontal20,
+                    child: ConsumerAvatarDisplayer(consumer: ownerConsumer),
+                  ),
+                ],
+              ),
+              SharedGap.gap12,
+              Center(
+                child: Text(
+                  '${ownerConsumer.firstName} '
+                  '${ownerConsumer.lastName}',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SharedGap.gap12,
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.location_on,
+                    color: Colors.pinkAccent,
+                  ),
+                  Text(
+                    '300 Meters',
+                    style: TextStyle(
+                      color: Colors.white54,
                     ),
                   ),
                 ],
               ),
-              ConsumerCard(consumer: ownerConsumer),
-              Padding(
-                padding: SharedPaddings.horizontal20,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '${ownerConsumer.firstName} '
-                      '${ownerConsumer.lastName}',
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ),
-                    SharedGap.gap16,
-                    // Todo: same with toy card widget
-                    const Row(
-                      children: [
-                        Icon(
-                          Icons.location_on,
-                          color: Colors.pinkAccent,
-                        ),
-                        Text(
-                          '300 Meters',
-                          style: TextStyle(
-                            color: Colors.white54,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+              SharedGap.gap12,
+              Center(
+                child: SizedBox(
+                  width: 320,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ConsumerCounterDisplayer(
+                        counterName: 'Toys',
+                        counterValue: ownerConsumer.counters.ownedToy,
+                      ),
+                      ConsumerCounterDisplayer(
+                        counterName: 'Switched',
+                        counterValue: ownerConsumer.counters.switchs,
+                      ),
+                      ConsumerCounterDisplayer(
+                        counterName: 'Chance',
+                        counterValue: ownerConsumer.counters.switchChance,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SharedGap.gap128,

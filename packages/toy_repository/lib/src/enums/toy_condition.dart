@@ -1,7 +1,7 @@
 enum ToyCondition {
-  mint,
+  brandNew,
   good,
-  fair,
-  poor,
-  scrap,
+  normal,
+  bad,
+  broken,
 }

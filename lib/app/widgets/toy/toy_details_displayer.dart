@@ -1,27 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_constants/shared_constants.dart';
+import 'package:toy_repository/toy_repository.dart';
 
-import '../../app/app.dart';
-import '../create_toy.dart';
+import '../../app.dart';
 
-class CreateToyDetailsDisplayer extends StatelessWidget {
-  const CreateToyDetailsDisplayer({super.key});
-
+class ToyDetailsDisplayer extends StatelessWidget {
+  const ToyDetailsDisplayer({
+    required this.toyAge,
+    required this.toyGender,
+    required this.toyCondition,
+    this.displayToyAge = true,
+    this.displayToyGender = true,
+    this.displayToyCondition = true,
+    this.isShakeToyAge = false,
+    this.isShakeToyGender = false,
+    this.isShakeToyCondition = false,
+    this.onShakeComplete,
+    super.key,
+  });
+  final ToyAge? toyAge;
+  final ToyGender? toyGender;
+  final ToyCondition? toyCondition;
+  final bool displayToyAge;
+  final bool displayToyGender;
+  final bool displayToyCondition;
+  final bool isShakeToyAge;
+  final bool isShakeToyGender;
+  final bool isShakeToyCondition;
+  final VoidCallback? onShakeComplete;
   @override
   Widget build(BuildContext context) {
-    final cubitState = context.watch<CreateToyCubit>().state;
-    final enterValueState = cubitState.enterValueState;
-    final isVisible = switch (enterValueState) {
-      CreateToyEnterValueState.name => false,
-      CreateToyEnterValueState.description => false,
-      _ => true,
-    };
-    final toyAge = cubitState.toyAge;
-    final toyGender = cubitState.toyGender;
-    final toyCondition = cubitState.toyCondition;
-    return isVisible
+    final isAllHidden =
+        !displayToyAge && !displayToyGender && !displayToyCondition;
+    return !isAllHidden
         ? Animate(
             effects: const [
               FadeEffect(delay: SharedDurations.ms370),
@@ -53,25 +65,30 @@ class CreateToyDetailsDisplayer extends StatelessWidget {
                                 ),
                           ),
                           Animate(
-                            target: (cubitState.displayObjectErrors &&
-                                    enterValueState ==
-                                        CreateToyEnterValueState.age)
-                                ? 1
-                                : 0,
+                            target: isShakeToyAge ? 1 : 0,
                             effects: const [
                               ShakeEffect(),
                             ],
                             onComplete: (v) {
-                              context.read<CreateToyCubit>().hideObjectErrors();
+                              onShakeComplete?.call();
                             },
                             child: Text(
-                              toyAge != null ? '$toyAge' : 'Not Selected',
+                              switch (toyAge) {
+                                ToyAge.zero => '0',
+                                ToyAge.one => '1',
+                                ToyAge.two => '2',
+                                ToyAge.three => '3',
+                                ToyAge.four => '4',
+                                ToyAge.five => '5',
+                                ToyAge.six => '6',
+                                _ => 'Not Selected',
+                              },
                               style: Theme.of(context).textTheme.headlineMedium,
                             ),
                           ),
                         ],
                       ),
-                      if (enterValueState != CreateToyEnterValueState.age)
+                      if (displayToyGender)
                         Animate(
                           effects: const [
                             FadeEffect(delay: SharedDurations.ms370),
@@ -92,23 +109,20 @@ class CreateToyDetailsDisplayer extends StatelessWidget {
                                     ),
                               ),
                               Animate(
-                                target: (cubitState.displayObjectErrors &&
-                                        enterValueState ==
-                                            CreateToyEnterValueState.gender)
-                                    ? 1
-                                    : 0,
+                                target: isShakeToyGender ? 1 : 0,
                                 effects: const [
                                   ShakeEffect(),
                                 ],
                                 onComplete: (v) {
-                                  context
-                                      .read<CreateToyCubit>()
-                                      .hideObjectErrors();
+                                  onShakeComplete?.call();
                                 },
                                 child: Text(
-                                  toyGender != null
-                                      ? '$toyGender'
-                                      : 'Not Selected',
+                                  switch (toyGender) {
+                                    ToyGender.boy => 'Boys',
+                                    ToyGender.girl => 'Girls',
+                                    ToyGender.unisex => 'Both',
+                                    _ => 'Not Selected'
+                                  },
                                   style: Theme.of(context)
                                       .textTheme
                                       .headlineMedium,
@@ -117,8 +131,7 @@ class CreateToyDetailsDisplayer extends StatelessWidget {
                             ],
                           ),
                         ),
-                      if (enterValueState != CreateToyEnterValueState.gender &&
-                          enterValueState != CreateToyEnterValueState.age)
+                      if (displayToyCondition)
                         Animate(
                           effects: const [
                             FadeEffect(delay: SharedDurations.ms370),
@@ -139,23 +152,22 @@ class CreateToyDetailsDisplayer extends StatelessWidget {
                                     ),
                               ),
                               Animate(
-                                target: (cubitState.displayObjectErrors &&
-                                        enterValueState ==
-                                            CreateToyEnterValueState.age)
-                                    ? 1
-                                    : 0,
+                                target: isShakeToyCondition ? 1 : 0,
                                 effects: const [
                                   ShakeEffect(),
                                 ],
                                 onComplete: (v) {
-                                  context
-                                      .read<CreateToyCubit>()
-                                      .hideObjectErrors();
+                                  onShakeComplete?.call();
                                 },
                                 child: Text(
-                                  toyCondition != null
-                                      ? '$toyCondition'
-                                      : 'Not Selected',
+                                  switch (toyCondition) {
+                                    ToyCondition.brandNew => 'New',
+                                    ToyCondition.good => 'Good',
+                                    ToyCondition.normal => 'Normal',
+                                    ToyCondition.bad => 'Bad',
+                                    ToyCondition.broken => 'Broken',
+                                    _ => 'Not Selected'
+                                  },
                                   style: Theme.of(context)
                                       .textTheme
                                       .headlineMedium,
@@ -167,7 +179,7 @@ class CreateToyDetailsDisplayer extends StatelessWidget {
                     ],
                   ),
                 ),
-                SharedGap.gap128,
+                SharedGap.gap32,
               ],
             ),
           )

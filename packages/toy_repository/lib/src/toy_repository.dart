@@ -229,7 +229,9 @@ class ToyRepository {
         collectionID: ToyRepositoryStrings.toysCollectionPath,
         orderBy: 'createdAt',
         limitToLast: 12,
-        fieldIsEqualToList: [(field: 'ownerAuthId', value: ownerAuthId)],
+        fieldIsEqualToList: [
+          (field: 'ownerAuthId', value: ownerAuthId),
+        ],
       );
 
       if (toyDocs == null || toyDocs.isEmpty) {
@@ -241,6 +243,7 @@ class ToyRepository {
       _ownedToysStreamController.sink.add(toys);
       return Right(toys);
     } catch (exception) {
+      print(exception);
       return const Left(ToyRepositoryException.unknown());
     }
   }
