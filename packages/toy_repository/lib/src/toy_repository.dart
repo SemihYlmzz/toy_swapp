@@ -308,7 +308,6 @@ class ToyRepository {
       final toys = toyDocs.map(Toy.fromJson).toList();
       return Right(toys);
     } catch (exception) {
-      print(exception);
       return const Left(ToyRepositoryException.unknown());
     }
   }

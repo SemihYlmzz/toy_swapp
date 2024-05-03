@@ -97,15 +97,17 @@ class _CreateToyViewState extends State<CreateToyView>
                           toyGender: state.toyGender,
                           displayToyAge: state.enterValueState ==
                               CreateToyEnterValueState.age,
-                          isShakeToyAge: isAgeDisplayable,
                           displayToyGender: isGenderDisplayable,
                           displayToyCondition: isConditionDisplayable,
-                          isShakeToyCondition: state.displayObjectErrors &&
+                          isShakeToyAge: state.displayObjectErrors &&
                               state.enterValueState ==
-                                  CreateToyEnterValueState.condition,
+                                  CreateToyEnterValueState.age,
                           isShakeToyGender: state.displayObjectErrors &&
                               state.enterValueState ==
                                   CreateToyEnterValueState.gender,
+                          isShakeToyCondition: state.displayObjectErrors &&
+                              state.enterValueState ==
+                                  CreateToyEnterValueState.condition,
                           onShakeComplete: () {
                             context.read<CreateToyCubit>().hideObjectErrors();
                           },
@@ -115,18 +117,28 @@ class _CreateToyViewState extends State<CreateToyView>
                   ],
                 ),
               ),
-              const Column(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  CreateToyValueUpdater(),
+                  CreateToyValueUpdater(
+                    onChanged: _scrollBottom,
+                  ),
                   SharedGap.gap4,
                   SizedBox(
                     height: 40,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Expanded(child: CreateToyBackButton()),
-                        Expanded(child: CreateToyContinueButton()),
+                        Expanded(
+                          child: CreateToyBackButton(
+                            onPressed: _scrollBottom,
+                          ),
+                        ),
+                        Expanded(
+                          child: CreateToyContinueButton(
+                            onPressed: _scrollBottom,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -147,12 +159,18 @@ class _CreateToyViewState extends State<CreateToyView>
     return Timer.periodic(
       SharedDurations.s1,
       (timer) {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration: SharedDurations.ms370,
-          curve: Curves.easeIn,
-        );
+        _scrollBottom();
       },
     );
+  }
+
+  void _scrollBottom() {
+    if (_scrollController.hasClients) {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: SharedDurations.ms370,
+        curve: Curves.easeIn,
+      );
+    }
   }
 }

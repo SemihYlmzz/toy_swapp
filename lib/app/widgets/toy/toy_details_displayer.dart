@@ -73,16 +73,7 @@ class ToyDetailsDisplayer extends StatelessWidget {
                               onShakeComplete?.call();
                             },
                             child: Text(
-                              switch (toyAge) {
-                                ToyAge.zero => '0',
-                                ToyAge.one => '1',
-                                ToyAge.two => '2',
-                                ToyAge.three => '3',
-                                ToyAge.four => '4',
-                                ToyAge.five => '5',
-                                ToyAge.six => '6',
-                                _ => 'Not Selected',
-                              },
+                              toyAge?.displayName ?? 'Not Selected',
                               style: Theme.of(context).textTheme.headlineMedium,
                             ),
                           ),
@@ -117,12 +108,7 @@ class ToyDetailsDisplayer extends StatelessWidget {
                                   onShakeComplete?.call();
                                 },
                                 child: Text(
-                                  switch (toyGender) {
-                                    ToyGender.boy => 'Boys',
-                                    ToyGender.girl => 'Girls',
-                                    ToyGender.unisex => 'Both',
-                                    _ => 'Not Selected'
-                                  },
+                                  toyGender?.displayName ?? 'Not Selected',
                                   style: Theme.of(context)
                                       .textTheme
                                       .headlineMedium,
@@ -160,14 +146,7 @@ class ToyDetailsDisplayer extends StatelessWidget {
                                   onShakeComplete?.call();
                                 },
                                 child: Text(
-                                  switch (toyCondition) {
-                                    ToyCondition.brandNew => 'New',
-                                    ToyCondition.good => 'Good',
-                                    ToyCondition.normal => 'Normal',
-                                    ToyCondition.bad => 'Bad',
-                                    ToyCondition.broken => 'Broken',
-                                    _ => 'Not Selected'
-                                  },
+                                  toyCondition?.displayName ?? 'Not Selected',
                                   style: Theme.of(context)
                                       .textTheme
                                       .headlineMedium,

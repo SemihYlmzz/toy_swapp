@@ -8,8 +8,8 @@ import '../../app/app.dart';
 import '../create_toy.dart';
 
 class CreateToyValueUpdater extends StatelessWidget {
-  const CreateToyValueUpdater({super.key});
-
+  const CreateToyValueUpdater({required this.onChanged, super.key});
+  final VoidCallback onChanged;
   @override
   Widget build(BuildContext context) {
     final enterValueState = context.select(
@@ -19,9 +19,15 @@ class CreateToyValueUpdater extends StatelessWidget {
       CreateToyEnterValueState.name => const CreateToyNameUpdater(),
       CreateToyEnterValueState.description =>
         const CreateToyDescriptionUpdater(),
-      CreateToyEnterValueState.age => const CreateToyAgeUpdater(),
-      CreateToyEnterValueState.gender => const CreateToyGenderUpdater(),
-      CreateToyEnterValueState.condition => const CreateToyConditionUpdater(),
+      CreateToyEnterValueState.age => CreateToyAgeUpdater(
+          onChanged: onChanged,
+        ),
+      CreateToyEnterValueState.gender => CreateToyGenderUpdater(
+          onChanged: onChanged,
+        ),
+      CreateToyEnterValueState.condition => CreateToyConditionUpdater(
+          onChanged: onChanged,
+        ),
       CreateToyEnterValueState.done => const SizedBox.shrink(),
     };
   }
@@ -72,10 +78,8 @@ class CreateToyDescriptionUpdater extends StatelessWidget {
 }
 
 class CreateToyAgeUpdater extends StatelessWidget {
-  const CreateToyAgeUpdater({
-    super.key,
-  });
-
+  const CreateToyAgeUpdater({required this.onChanged, super.key});
+  final VoidCallback onChanged;
   @override
   Widget build(BuildContext context) {
     final createToyCubit = context.watch<CreateToyCubit>();
@@ -86,6 +90,7 @@ class CreateToyAgeUpdater extends StatelessWidget {
           for (int i = 0; i < ToyAge.values.length; i++)
             TouchRipple<void>(
               onTap: () {
+                onChanged();
                 createToyCubit.toyAgeChanged(ToyAge.values[i]);
               },
               child: AnimatedContainer(
@@ -99,7 +104,7 @@ class CreateToyAgeUpdater extends StatelessWidget {
                       : Colors.greenAccent.withOpacity(0.7),
                   borderRadius: SharedBorderRadius.circular8,
                 ),
-                child: Center(child: Text(ToyAge.values[i].name)),
+                child: Center(child: Text(ToyAge.values[i].displayName)),
               ),
             ),
         ],
@@ -109,10 +114,8 @@ class CreateToyAgeUpdater extends StatelessWidget {
 }
 
 class CreateToyGenderUpdater extends StatelessWidget {
-  const CreateToyGenderUpdater({
-    super.key,
-  });
-
+  const CreateToyGenderUpdater({required this.onChanged, super.key});
+  final VoidCallback onChanged;
   @override
   Widget build(BuildContext context) {
     final createToyCubit = context.watch<CreateToyCubit>();
@@ -123,6 +126,7 @@ class CreateToyGenderUpdater extends StatelessWidget {
           for (int i = 0; i < ToyGender.values.length; i++)
             TouchRipple<void>(
               onTap: () {
+                onChanged();
                 createToyCubit.toyGenderChanged(ToyGender.values[i]);
               },
               child: AnimatedContainer(
@@ -136,7 +140,7 @@ class CreateToyGenderUpdater extends StatelessWidget {
                       : Colors.greenAccent.withOpacity(0.7),
                   borderRadius: SharedBorderRadius.circular8,
                 ),
-                child: Center(child: Text(ToyGender.values[i].name)),
+                child: Center(child: Text(ToyGender.values[i].displayName)),
               ),
             ),
         ],
@@ -146,10 +150,8 @@ class CreateToyGenderUpdater extends StatelessWidget {
 }
 
 class CreateToyConditionUpdater extends StatelessWidget {
-  const CreateToyConditionUpdater({
-    super.key,
-  });
-
+  const CreateToyConditionUpdater({required this.onChanged, super.key});
+  final VoidCallback onChanged;
   @override
   Widget build(BuildContext context) {
     final createToyCubit = context.watch<CreateToyCubit>();
@@ -162,6 +164,7 @@ class CreateToyConditionUpdater extends StatelessWidget {
               for (int i = 0; i < ToyCondition.values.length; i++)
                 TouchRipple<void>(
                   onTap: () {
+                    onChanged();
                     createToyCubit.toyConditionChanged(ToyCondition.values[i]);
                   },
                   child: AnimatedContainer(
@@ -176,7 +179,8 @@ class CreateToyConditionUpdater extends StatelessWidget {
                           : Colors.greenAccent.withOpacity(0.7),
                       borderRadius: SharedBorderRadius.circular8,
                     ),
-                    child: Center(child: Text(ToyCondition.values[i].name)),
+                    child:
+                        Center(child: Text(ToyCondition.values[i].displayName)),
                   ),
                 ),
             ],

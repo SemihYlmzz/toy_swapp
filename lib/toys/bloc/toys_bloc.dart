@@ -52,8 +52,8 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
         emit(state.copyWith(fetchMoreFailure: null));
       },
       fetchLikeableToys: (value) async {
-        if(value.clearBeforeFetch){
-          emit(state.copyWith(toys: [],hasReachedMax: false));
+        if (value.clearBeforeFetch) {
+          emit(state.copyWith(toys: [], hasReachedMax: false));
         }
 
         // If reached max, do not fetch
@@ -76,13 +76,13 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
           beforeThisToy: oldestToy,
           // Do not fetch owned toys
           currentAuthId: state.currentAuth.id,
-
         );
         var newToys = <Toy>[];
         tryFetch.fold(
           (failure) {
             if (oldestToy == null) {
-              emit(state.copyWith(isInitializing: false));
+              emit(state.copyWith(
+                  isInitializing: false, initializingFailure: failure));
             } else {
               emit(state.copyWith(fetchMoreFailure: failure));
             }

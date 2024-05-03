@@ -20,6 +20,7 @@ class ToyImagesSelector extends StatelessWidget {
     return SizedBox(
       height: 75 + 8,
       child: ListView.builder(
+        cacheExtent: 75 * 10 + 8 * 10,
         scrollDirection: Axis.horizontal,
         itemCount: toyImagesList.fold(
           (urls) => urls.length,

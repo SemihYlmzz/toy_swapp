@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_touch_ripple/widgets/widget.dart';
+import 'package:shared_constants/shared_constants.dart';
 import 'package:toy_swapp/create_toy/create_toy.dart';
 
 class CreateToyContinueButton extends StatelessWidget {
   const CreateToyContinueButton({
+    required this.onPressed,
     super.key,
   });
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +63,7 @@ class CreateToyContinueButton extends StatelessWidget {
                 );
                 return;
             }
+            Future.delayed(SharedDurations.ms200, onPressed);
             context.read<CreateToyCubit>().hideObjectErrors();
             context.read<CreateToyCubit>().nextEnterValueState();
           },

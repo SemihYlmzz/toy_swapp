@@ -6,9 +6,10 @@ import '../create_toy.dart';
 
 class CreateToyBackButton extends StatelessWidget {
   const CreateToyBackButton({
+    required this.onPressed,
     super.key,
   });
-
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     final enterValueState = context.select(
@@ -31,6 +32,7 @@ class CreateToyBackButton extends StatelessWidget {
             Navigator.maybePop(context);
             return;
         }
+        onPressed();
         context.read<CreateToyCubit>().previousEnterValueState();
       },
       child: ColoredBox(
