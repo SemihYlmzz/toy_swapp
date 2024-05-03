@@ -95,6 +95,7 @@ class ToyRepository {
         isPublic: false,
         isLocked: false,
         likersConsumerIds: [],
+        safeToPublicMarkerSupportId: null,
       );
 
       _remoteDatabase.batchSetDoc(

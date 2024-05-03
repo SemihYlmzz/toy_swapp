@@ -30,6 +30,7 @@ mixin _$Toy {
   bool get isPublic => throw _privateConstructorUsedError;
   bool get isLocked => throw _privateConstructorUsedError;
   List<String> get likersConsumerIds => throw _privateConstructorUsedError;
+  String? get safeToPublicMarkerSupportId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +52,8 @@ abstract class $ToyCopyWith<$Res> {
       DateTime createdAt,
       bool isPublic,
       bool isLocked,
-      List<String> likersConsumerIds});
+      List<String> likersConsumerIds,
+      String? safeToPublicMarkerSupportId});
 
   $ToyDetailsCopyWith<$Res> get details;
 }
@@ -78,6 +80,7 @@ class _$ToyCopyWithImpl<$Res, $Val extends Toy> implements $ToyCopyWith<$Res> {
     Object? isPublic = null,
     Object? isLocked = null,
     Object? likersConsumerIds = null,
+    Object? safeToPublicMarkerSupportId = freezed,
   }) {
     return _then(_value.copyWith(
       ownerAuthId: null == ownerAuthId
@@ -120,6 +123,10 @@ class _$ToyCopyWithImpl<$Res, $Val extends Toy> implements $ToyCopyWith<$Res> {
           ? _value.likersConsumerIds
           : likersConsumerIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      safeToPublicMarkerSupportId: freezed == safeToPublicMarkerSupportId
+          ? _value.safeToPublicMarkerSupportId
+          : safeToPublicMarkerSupportId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -148,7 +155,8 @@ abstract class _$$ToyImplCopyWith<$Res> implements $ToyCopyWith<$Res> {
       DateTime createdAt,
       bool isPublic,
       bool isLocked,
-      List<String> likersConsumerIds});
+      List<String> likersConsumerIds,
+      String? safeToPublicMarkerSupportId});
 
   @override
   $ToyDetailsCopyWith<$Res> get details;
@@ -173,6 +181,7 @@ class __$$ToyImplCopyWithImpl<$Res> extends _$ToyCopyWithImpl<$Res, _$ToyImpl>
     Object? isPublic = null,
     Object? isLocked = null,
     Object? likersConsumerIds = null,
+    Object? safeToPublicMarkerSupportId = freezed,
   }) {
     return _then(_$ToyImpl(
       ownerAuthId: null == ownerAuthId
@@ -215,6 +224,10 @@ class __$$ToyImplCopyWithImpl<$Res> extends _$ToyCopyWithImpl<$Res, _$ToyImpl>
           ? _value._likersConsumerIds
           : likersConsumerIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      safeToPublicMarkerSupportId: freezed == safeToPublicMarkerSupportId
+          ? _value.safeToPublicMarkerSupportId
+          : safeToPublicMarkerSupportId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -232,7 +245,8 @@ class _$ToyImpl with DiagnosticableTreeMixin implements _Toy {
       required this.createdAt,
       required this.isPublic,
       required this.isLocked,
-      required final List<String> likersConsumerIds})
+      required final List<String> likersConsumerIds,
+      required this.safeToPublicMarkerSupportId})
       : _imageUrlList = imageUrlList,
         _likersConsumerIds = likersConsumerIds;
 
@@ -273,8 +287,11 @@ class _$ToyImpl with DiagnosticableTreeMixin implements _Toy {
   }
 
   @override
+  final String? safeToPublicMarkerSupportId;
+
+  @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Toy(ownerAuthId: $ownerAuthId, id: $id, name: $name, description: $description, imageUrlList: $imageUrlList, details: $details, createdAt: $createdAt, isPublic: $isPublic, isLocked: $isLocked, likersConsumerIds: $likersConsumerIds)';
+    return 'Toy(ownerAuthId: $ownerAuthId, id: $id, name: $name, description: $description, imageUrlList: $imageUrlList, details: $details, createdAt: $createdAt, isPublic: $isPublic, isLocked: $isLocked, likersConsumerIds: $likersConsumerIds, safeToPublicMarkerSupportId: $safeToPublicMarkerSupportId)';
   }
 
   @override
@@ -291,7 +308,9 @@ class _$ToyImpl with DiagnosticableTreeMixin implements _Toy {
       ..add(DiagnosticsProperty('createdAt', createdAt))
       ..add(DiagnosticsProperty('isPublic', isPublic))
       ..add(DiagnosticsProperty('isLocked', isLocked))
-      ..add(DiagnosticsProperty('likersConsumerIds', likersConsumerIds));
+      ..add(DiagnosticsProperty('likersConsumerIds', likersConsumerIds))
+      ..add(DiagnosticsProperty(
+          'safeToPublicMarkerSupportId', safeToPublicMarkerSupportId));
   }
 
   @override
@@ -315,7 +334,11 @@ class _$ToyImpl with DiagnosticableTreeMixin implements _Toy {
             (identical(other.isLocked, isLocked) ||
                 other.isLocked == isLocked) &&
             const DeepCollectionEquality()
-                .equals(other._likersConsumerIds, _likersConsumerIds));
+                .equals(other._likersConsumerIds, _likersConsumerIds) &&
+            (identical(other.safeToPublicMarkerSupportId,
+                    safeToPublicMarkerSupportId) ||
+                other.safeToPublicMarkerSupportId ==
+                    safeToPublicMarkerSupportId));
   }
 
   @JsonKey(ignore: true)
@@ -331,7 +354,8 @@ class _$ToyImpl with DiagnosticableTreeMixin implements _Toy {
       createdAt,
       isPublic,
       isLocked,
-      const DeepCollectionEquality().hash(_likersConsumerIds));
+      const DeepCollectionEquality().hash(_likersConsumerIds),
+      safeToPublicMarkerSupportId);
 
   @JsonKey(ignore: true)
   @override
@@ -358,7 +382,8 @@ abstract class _Toy implements Toy {
       required final DateTime createdAt,
       required final bool isPublic,
       required final bool isLocked,
-      required final List<String> likersConsumerIds}) = _$ToyImpl;
+      required final List<String> likersConsumerIds,
+      required final String? safeToPublicMarkerSupportId}) = _$ToyImpl;
 
   factory _Toy.fromJson(Map<String, dynamic> json) = _$ToyImpl.fromJson;
 
@@ -382,6 +407,8 @@ abstract class _Toy implements Toy {
   bool get isLocked;
   @override
   List<String> get likersConsumerIds;
+  @override
+  String? get safeToPublicMarkerSupportId;
   @override
   @JsonKey(ignore: true)
   _$$ToyImplCopyWith<_$ToyImpl> get copyWith =>

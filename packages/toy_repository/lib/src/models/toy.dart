@@ -19,6 +19,7 @@ class Toy with _$Toy {
     required bool isPublic,
     required bool isLocked,
     required List<String> likersConsumerIds,
+    required String? safeToPublicMarkerSupportId,
   }) = _Toy;
 
   factory Toy.fromJson(Map<String, Object?> json) => _$ToyFromJson(

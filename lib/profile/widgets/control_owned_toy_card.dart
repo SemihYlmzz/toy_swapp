@@ -34,6 +34,7 @@ class ControlOwnedToyCard extends StatelessWidget {
         ),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ClipRRect(
             borderRadius: SharedBorderRadius.circular12,
@@ -59,62 +60,94 @@ class ControlOwnedToyCard extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: SharedPaddings.horizontal4,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          if (ownedToy.safeToPublicMarkerSupportId == null)
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  children: [
-                    ShaderMask(
-                      blendMode: BlendMode.srcIn,
-                      shaderCallback: (bounds) => toyGradient.createShader(
-                        Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-                      ),
-                      child: const Icon(
-                        Icons.favorite,
-                        size: 32,
-                      ),
-                    ),
-                    Text(
-                      ownedToy.likersConsumerIds.length.toString(),
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                  ],
+                Icon(
+                  Icons.hourglass_top_sharp,
+                  color: Colors.white54,
                 ),
-                Flexible(
-                  child: Switch.adaptive(
-                    activeColor: toyColor,
-                    inactiveTrackColor: Colors.white12,
-                    thumbIcon: MaterialStateProperty.all(
-                      Icon(
-                        Icons.check,
-                        color: toyColor,
-                      ),
-                    ),
-                    value: ownedToy.isPublic,
-                    onChanged: (value) {
-                      if (value) {
-                        context.read<ProfileBloc>().add(
-                              ProfileEvent.openToyToPublic(
-                                toyId: ownedToy.id,
-                              ),
-                            );
-                        return;
-                      } else {
-                        context.read<ProfileBloc>().add(
-                              ProfileEvent.closeToyToPublic(
-                                toyId: ownedToy.id,
-                              ),
-                            );
-                        return;
-                      }
-                    },
-                  ),
-                ),
+                Text('In Review'),
               ],
+            )
+          else if (ownedToy.isLocked)
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.lock,
+                  color: Colors.white54,
+                ),
+                Text('Locked'),
+              ],
+            )
+          else
+            Padding(
+              padding: SharedPaddings.horizontal4,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // if (ownedToy.safeToPublicMarkerSupportId == null)
+                  //   const SizedBox()
+                  // else if (ownedToy.isLocked)
+                  //   const Icon(
+                  //     Icons.public,
+                  //     color: Colors.green,
+                  //   )
+                  // else
+                  Row(
+                    children: [
+                      ShaderMask(
+                        blendMode: BlendMode.srcIn,
+                        shaderCallback: (bounds) => toyGradient.createShader(
+                          Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+                        ),
+                        child: const Icon(
+                          Icons.favorite,
+                          size: 32,
+                        ),
+                      ),
+                      Text(
+                        ownedToy.likersConsumerIds.length.toString(),
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ],
+                  ),
+                  Flexible(
+                    child: Switch.adaptive(
+                      activeColor: toyColor,
+                      inactiveTrackColor: Colors.white12,
+                      thumbIcon: MaterialStateProperty.all(
+                        Icon(
+                          Icons.check,
+                          color: toyColor,
+                        ),
+                      ),
+                      value: ownedToy.isPublic,
+                      onChanged: (value) {
+                        if (value) {
+                          context.read<ProfileBloc>().add(
+                                ProfileEvent.openToyToPublic(
+                                  toyId: ownedToy.id,
+                                ),
+                              );
+                          return;
+                        } else {
+                          context.read<ProfileBloc>().add(
+                                ProfileEvent.closeToyToPublic(
+                                  toyId: ownedToy.id,
+                                ),
+                              );
+                          return;
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+          const SizedBox.shrink(),
         ],
       ),
     );

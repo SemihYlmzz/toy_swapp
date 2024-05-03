@@ -23,6 +23,8 @@ _$ToyImpl _$$ToyImplFromJson(Map json) => _$ToyImpl(
       likersConsumerIds: (json['likersConsumerIds'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
+      safeToPublicMarkerSupportId:
+          json['safeToPublicMarkerSupportId'] as String?,
     );
 
 Map<String, dynamic> _$$ToyImplToJson(_$ToyImpl instance) => <String, dynamic>{
@@ -36,4 +38,5 @@ Map<String, dynamic> _$$ToyImplToJson(_$ToyImpl instance) => <String, dynamic>{
       'isPublic': instance.isPublic,
       'isLocked': instance.isLocked,
       'likersConsumerIds': instance.likersConsumerIds,
+      'safeToPublicMarkerSupportId': instance.safeToPublicMarkerSupportId,
     };
