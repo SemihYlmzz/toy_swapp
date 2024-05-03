@@ -50,15 +50,19 @@ class _ProfileViewState extends State<ProfileView> {
           const ProfileSliverAppBar(),
           if (fetchLatestFailure != null)
             SliverFillRemaining(
-              child: Center(
-                child: TextButton(
-                  onPressed: () => context
-                      .read<ProfileBloc>()
-                      .add(const ProfileEvent.fetchOwnedToys()),
-                  child: const Text(
-                    'Error fetching latest toys. Tap to try again.',
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Oops! Something went wrong.'),
+                  TextButton(
+                    onPressed: () => context
+                        .read<ProfileBloc>()
+                        .add(const ProfileEvent.fetchOwnedToys()),
+                    child: const Text(
+                      'Tap to try again.',
+                    ),
                   ),
-                ),
+                ],
               ),
             )
           else
@@ -67,14 +71,8 @@ class _ProfileViewState extends State<ProfileView> {
                     child: Center(child: CircularProgressIndicator()),
                   )
                 : ownedToys.isEmpty
-                    ? const SliverToBoxAdapter(
-                        child: Center(
-                          child: SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: Text('empty'),
-                          ),
-                        ),
+                    ? const SliverFillRemaining(
+                        child: ProfileNoToyCreated(),
                       )
                     : OwnedToysGridViewDisplayer(
                         ownedToys: ownedToys,
@@ -82,13 +80,18 @@ class _ProfileViewState extends State<ProfileView> {
                       ),
           if (fetchMoreFailure != null)
             SliverToBoxAdapter(
-              child: TextButton(
-                onPressed: () => context.read<ProfileBloc>().add(
-                      const ProfileEvent.fetchMoreOwnedToys(),
+              child: Column(
+                children: [
+                  const Text('Oops! Something went wrong.'),
+                  TextButton(
+                    onPressed: () => context.read<ProfileBloc>().add(
+                          const ProfileEvent.fetchMoreOwnedToys(),
+                        ),
+                    child: const Text(
+                      'Tap to try again.',
                     ),
-                child: const Text(
-                  'Error fetching more toys. Tap to try again.',
-                ),
+                  ),
+                ],
               ),
             ),
         ],

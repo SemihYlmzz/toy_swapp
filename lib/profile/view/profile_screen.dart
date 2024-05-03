@@ -4,6 +4,9 @@ import 'package:shared_widgets/shared_widgets.dart';
 
 import '../profile.dart';
 
+//  Todo :
+// 0-22 arası oyuncakla kontrol yapılacak +
+//  Fetch more error ui kontrol.
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 

@@ -81,8 +81,12 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
         tryFetch.fold(
           (failure) {
             if (oldestToy == null) {
-              emit(state.copyWith(
-                  isInitializing: false, initializingFailure: failure));
+              emit(
+                state.copyWith(
+                  isInitializing: false,
+                  initializingFailure: failure,
+                ),
+              );
             } else {
               emit(state.copyWith(fetchMoreFailure: failure));
             }
