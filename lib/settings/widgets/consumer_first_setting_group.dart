@@ -18,7 +18,7 @@ class ConsumerFirstSettingGroup extends StatelessWidget {
     final currentConsumer = context.select(
       (SettingsBloc bloc) => bloc.state.currentConsumer,
     );
-    return currentConsumer.state == ConsumerState.hasData
+    return currentConsumer != null
         ? SettingGroup(
             settings: [
               accountSetting,

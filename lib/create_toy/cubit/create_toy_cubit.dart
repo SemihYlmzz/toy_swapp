@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:toy_repository/toy_repository.dart';
 import 'package:toy_swapp/errors/errors.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 
 part 'create_toy_state.dart';
 part 'create_toy_cubit.freezed.dart';

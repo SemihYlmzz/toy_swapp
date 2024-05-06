@@ -14,8 +14,7 @@ class UpdateAvatarView extends StatelessWidget {
           bloc.state.newAvatarImages?.value?.avatarImage512,
     );
     final currentConsumerAvatarUrl512 = context.select(
-      (AccountSettingsBloc bloc) =>
-          bloc.state.currentConsumer.avatarUrls.url512,
+      (AccountSettingsBloc bloc) => bloc.state.currentConsumer.avatarUrl512,
     );
     return BaseColumn(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

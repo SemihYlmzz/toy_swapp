@@ -247,8 +247,6 @@ abstract class _$$SettingsCurrentConsumerUpdatedImplCopyWith<$Res> {
       __$$SettingsCurrentConsumerUpdatedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Consumer updatedConsumer});
-
-  $ConsumerCopyWith<$Res> get updatedConsumer;
 }
 
 /// @nodoc
@@ -272,14 +270,6 @@ class __$$SettingsCurrentConsumerUpdatedImplCopyWithImpl<$Res>
           : updatedConsumer // ignore: cast_nullable_to_non_nullable
               as Consumer,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ConsumerCopyWith<$Res> get updatedConsumer {
-    return $ConsumerCopyWith<$Res>(_value.updatedConsumer, (value) {
-      return _then(_value.copyWith(updatedConsumer: value));
-    });
   }
 }
 
@@ -1123,7 +1113,7 @@ abstract class SettingsUpdateThemeMode implements SettingsEvent {
 /// @nodoc
 mixin _$SettingsState {
   AppMetadata get appMetadata => throw _privateConstructorUsedError;
-  Consumer get currentConsumer => throw _privateConstructorUsedError;
+  Consumer? get currentConsumer => throw _privateConstructorUsedError;
   Auth get currentAuth => throw _privateConstructorUsedError;
   bool get isSignOutCompleted => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
@@ -1142,14 +1132,13 @@ abstract class $SettingsStateCopyWith<$Res> {
   @useResult
   $Res call(
       {AppMetadata appMetadata,
-      Consumer currentConsumer,
+      Consumer? currentConsumer,
       Auth currentAuth,
       bool isSignOutCompleted,
       bool isLoading,
       Failure? failure});
 
   $AppMetadataCopyWith<$Res> get appMetadata;
-  $ConsumerCopyWith<$Res> get currentConsumer;
   $AuthCopyWith<$Res> get currentAuth;
 }
 
@@ -1167,7 +1156,7 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
   @override
   $Res call({
     Object? appMetadata = null,
-    Object? currentConsumer = null,
+    Object? currentConsumer = freezed,
     Object? currentAuth = null,
     Object? isSignOutCompleted = null,
     Object? isLoading = null,
@@ -1178,10 +1167,10 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
           ? _value.appMetadata
           : appMetadata // ignore: cast_nullable_to_non_nullable
               as AppMetadata,
-      currentConsumer: null == currentConsumer
+      currentConsumer: freezed == currentConsumer
           ? _value.currentConsumer
           : currentConsumer // ignore: cast_nullable_to_non_nullable
-              as Consumer,
+              as Consumer?,
       currentAuth: null == currentAuth
           ? _value.currentAuth
           : currentAuth // ignore: cast_nullable_to_non_nullable
@@ -1211,14 +1200,6 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
 
   @override
   @pragma('vm:prefer-inline')
-  $ConsumerCopyWith<$Res> get currentConsumer {
-    return $ConsumerCopyWith<$Res>(_value.currentConsumer, (value) {
-      return _then(_value.copyWith(currentConsumer: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $AuthCopyWith<$Res> get currentAuth {
     return $AuthCopyWith<$Res>(_value.currentAuth, (value) {
       return _then(_value.copyWith(currentAuth: value) as $Val);
@@ -1236,7 +1217,7 @@ abstract class _$$SettingsStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {AppMetadata appMetadata,
-      Consumer currentConsumer,
+      Consumer? currentConsumer,
       Auth currentAuth,
       bool isSignOutCompleted,
       bool isLoading,
@@ -1244,8 +1225,6 @@ abstract class _$$SettingsStateImplCopyWith<$Res>
 
   @override
   $AppMetadataCopyWith<$Res> get appMetadata;
-  @override
-  $ConsumerCopyWith<$Res> get currentConsumer;
   @override
   $AuthCopyWith<$Res> get currentAuth;
 }
@@ -1262,7 +1241,7 @@ class __$$SettingsStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? appMetadata = null,
-    Object? currentConsumer = null,
+    Object? currentConsumer = freezed,
     Object? currentAuth = null,
     Object? isSignOutCompleted = null,
     Object? isLoading = null,
@@ -1273,10 +1252,10 @@ class __$$SettingsStateImplCopyWithImpl<$Res>
           ? _value.appMetadata
           : appMetadata // ignore: cast_nullable_to_non_nullable
               as AppMetadata,
-      currentConsumer: null == currentConsumer
+      currentConsumer: freezed == currentConsumer
           ? _value.currentConsumer
           : currentConsumer // ignore: cast_nullable_to_non_nullable
-              as Consumer,
+              as Consumer?,
       currentAuth: null == currentAuth
           ? _value.currentAuth
           : currentAuth // ignore: cast_nullable_to_non_nullable
@@ -1311,7 +1290,7 @@ class _$SettingsStateImpl implements _SettingsState {
   @override
   final AppMetadata appMetadata;
   @override
-  final Consumer currentConsumer;
+  final Consumer? currentConsumer;
   @override
   final Auth currentAuth;
   @override
@@ -1360,7 +1339,7 @@ class _$SettingsStateImpl implements _SettingsState {
 abstract class _SettingsState implements SettingsState {
   const factory _SettingsState(
       {required final AppMetadata appMetadata,
-      required final Consumer currentConsumer,
+      required final Consumer? currentConsumer,
       required final Auth currentAuth,
       final bool isSignOutCompleted,
       final bool isLoading,
@@ -1369,7 +1348,7 @@ abstract class _SettingsState implements SettingsState {
   @override
   AppMetadata get appMetadata;
   @override
-  Consumer get currentConsumer;
+  Consumer? get currentConsumer;
   @override
   Auth get currentAuth;
   @override

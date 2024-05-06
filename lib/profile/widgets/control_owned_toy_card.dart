@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_constants/shared_constants.dart';
-import 'package:toy_repository/toy_repository.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 
 import '../../app/app.dart';
 import '../../toy_detail/toy_detail.dart';
@@ -15,12 +15,12 @@ class ControlOwnedToyCard extends StatelessWidget {
   final Toy ownedToy;
   @override
   Widget build(BuildContext context) {
-    final toyGradient = switch (ownedToy.details.gender) {
+    final toyGradient = switch (ownedToy.gender) {
       ToyGender.boy => AppColors.boyToyGradient,
       ToyGender.girl => AppColors.girlToyGradient,
       ToyGender.unisex => AppColors.unisexToyGradient,
     };
-    final toyColor = switch (ownedToy.details.gender) {
+    final toyColor = switch (ownedToy.gender) {
       ToyGender.boy => Colors.blueAccent,
       ToyGender.girl => Colors.pinkAccent,
       ToyGender.unisex => Colors.deepPurpleAccent,
@@ -60,7 +60,7 @@ class ControlOwnedToyCard extends StatelessWidget {
               ),
             ),
           ),
-          if (ownedToy.safeToPublicMarkerSupportId == null)
+          if (ownedToy.safeToPublicMarkerSupportID.isEmpty)
             const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -109,7 +109,7 @@ class ControlOwnedToyCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        ownedToy.likersConsumerIds.length.toString(),
+                        ownedToy.likersConsumerIDs.length.toString(),
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ],
@@ -129,14 +129,14 @@ class ControlOwnedToyCard extends StatelessWidget {
                         if (value) {
                           context.read<ProfileBloc>().add(
                                 ProfileEvent.openToyToPublic(
-                                  toyId: ownedToy.id,
+                                  toyID: ownedToy.id!,
                                 ),
                               );
                           return;
                         } else {
                           context.read<ProfileBloc>().add(
                                 ProfileEvent.closeToyToPublic(
-                                  toyId: ownedToy.id,
+                                  toyID: ownedToy.id!,
                                 ),
                               );
                           return;

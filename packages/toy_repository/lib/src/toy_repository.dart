@@ -2,17 +2,17 @@ import 'dart:async';
 
 import 'package:cloud_storage/cloud_storage.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:remote_database/remote_database.dart';
 import 'package:toy_swapp/errors/errors.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 
 import '../toy_repository.dart';
 import 'constants/constants.dart';
 
 class ToyRepository {
   ToyRepository({
-    required RemoteDatabase remoteDatabase,
+    required Client client,
     required CloudStorage cloudStorage,
-  })  : _remoteDatabase = remoteDatabase,
+  })  : _client = client,
         _cloudStorage = cloudStorage {
     ownedToysStream.listen((event) {
       ownedToys = event;
@@ -20,7 +20,7 @@ class ToyRepository {
   }
   // INSTANCES
   final CloudStorage _cloudStorage;
-  final RemoteDatabase _remoteDatabase;
+  final Client _client;
 
   // VARIABLES
   // Current Consumer
@@ -29,8 +29,8 @@ class ToyRepository {
   List<Toy>? ownedToys;
 
   // Functions
-  FutureEither<Toy> create({
-    required String ownerAuthId,
+  FutureEither<ToyAndConsumer> create({
+    required String ownerConsumerAuthID,
     required ToyName toyName,
     required ToyDescription toyDescription,
     required List<ToyImage> toyImageList,
@@ -47,9 +47,11 @@ class ToyRepository {
     }
     // Todo:
     // Add Uint8List length and size Checker value object
-    final id = DateTime.now().millisecondsSinceEpoch.toString() + ownerAuthId;
+
+    final toyID = DateTime.now().millisecondsSinceEpoch;
+
     final path = '${ToyRepositoryStrings.toysCollectionPath}'
-        '/$id'
+        '/$toyID'
         '/images';
     try {
       for (var i = 0; i < toyImageList.length; i++) {
@@ -79,52 +81,29 @@ class ToyRepository {
       if (uploadedToyImageUrls.length != toyImageList.length) {
         return const Left(ToyRepositoryException.unknown());
       }
-
-      final creatableToy = Toy(
-        ownerAuthId: ownerAuthId,
-        id: id,
-        name: toyName.value,
-        description: toyDescription.value,
-        imageUrlList: uploadedToyImageUrls,
-        details: ToyDetails(
-          age: toyAge,
-          gender: toyGender,
-          condition: toyCondition,
-        ),
-        createdAt: DateTime.now(),
-        isPublic: false,
-        isLocked: false,
-        likersConsumerIds: [],
-        safeToPublicMarkerSupportId: null,
+      final toyAndConsumer = await _client.toy.createToy(
+        toyAge,
+        toyGender,
+        toyCondition,
+        toyDescription.value,
+        uploadedToyImageUrls,
+        toyName.value,
+        ownerConsumerAuthID,
+        toyID,
       );
 
-      _remoteDatabase.batchSetDoc(
-        collectionID: ToyRepositoryStrings.toysCollectionPath,
-        documentID: id,
-        jsonData: creatableToy.toJson(),
-      );
-      return Right(creatableToy);
+      return Right(toyAndConsumer);
     } catch (exception) {
       return const Left(ToyRepositoryException.unknown());
     }
   }
 
   FutureEither<Toy> readToy({
-    required String toyId,
+    required int toyId,
   }) async {
     try {
-      final toyDoc = await _remoteDatabase.readDoc(
-        collectionID: ToyRepositoryStrings.toysCollectionPath,
-        documentID: toyId,
-      );
-      if (toyDoc == null) {
-        return const Left(ToyRepositoryException.unknown());
-      }
-      if (toyDoc.isEmpty) {
-        return const Left(ToyRepositoryException.unknown());
-      }
+      final readedToy = await _client.toy.readWithToyID(toyId);
 
-      final readedToy = Toy.fromJson(toyDoc);
       // If fetched toy is owned.
       // Update the ownedToy also.
       if (ownedToys?.contains(readedToy) ?? false) {
@@ -144,78 +123,80 @@ class ToyRepository {
   }
 
   FutureUnit openToPublic({
-    required String toyId,
+    required int toyID,
   }) async {
-    final updatableToy = ownedToys?.firstWhere(
-      (element) => element.id == toyId,
-    );
-    if (updatableToy == null) {
-      return const Left(ToyRepositoryException.unknown());
-    }
+    return const Right(unit);
+    // final updatableToy = ownedToys?.firstWhere(
+    //   (element) => element.id == toyId,
+    // );
+    // if (updatableToy == null) {
+    //   return const Left(ToyRepositoryException.unknown());
+    // }
 
-    final updatedToy = updatableToy.copyWith(isPublic: true);
+    // final updatedToy = updatableToy.copyWith(isPublic: true);
 
-    final updatedList = List<Toy>.from(ownedToys!);
-    final toyListIndex = updatedList.indexWhere(
-      (element) => element.id == toyId,
-    );
-    updatedList[toyListIndex] = updatedToy;
-    _ownedToysStreamController.sink.add(updatedList);
-    try {
-      await _remoteDatabase.updateDoc(
-        collectionID: ToyRepositoryStrings.toysCollectionPath,
-        documentID: toyId,
-        jsonData: updatedToy.toJson(),
-      );
-      return const Right(unit);
-    } catch (exception) {
-      final updatedList = List<Toy>.from(ownedToys!);
-      final toyListIndex = updatedList.indexWhere(
-        (element) => element.id == toyId,
-      );
-      updatedList[toyListIndex] = updatableToy.copyWith(isPublic: false);
-      _ownedToysStreamController.sink.add(updatedList);
-      return const Left(ToyRepositoryException.unknown());
-    }
+    // final updatedList = List<Toy>.from(ownedToys!);
+    // final toyListIndex = updatedList.indexWhere(
+    //   (element) => element.id == toyId,
+    // );
+    // updatedList[toyListIndex] = updatedToy;
+    // _ownedToysStreamController.sink.add(updatedList);
+    // try {
+    //   await _remoteDatabase.updateDoc(
+    //     collectionID: ToyRepositoryStrings.toysCollectionPath,
+    //     documentID: toyId,
+    //     jsonData: updatedToy.toJson(),
+    //   );
+    //   return const Right(unit);
+    // } catch (exception) {
+    //   final updatedList = List<Toy>.from(ownedToys!);
+    //   final toyListIndex = updatedList.indexWhere(
+    //     (element) => element.id == toyId,
+    //   );
+    //   updatedList[toyListIndex] = updatableToy.copyWith(isPublic: false);
+    //   _ownedToysStreamController.sink.add(updatedList);
+    //   return const Left(ToyRepositoryException.unknown());
+    // }
   }
 
   FutureUnit closeToPublic({
-    required String toyId,
+    required int toyID,
   }) async {
-    final updatableToy = ownedToys?.firstWhere(
-      (element) => element.id == toyId,
-    );
-    if (updatableToy == null) {
-      return const Left(ToyRepositoryException.unknown());
-    }
+    return const Right(unit);
+    // final updatableToy = ownedToys?.firstWhere(
+    //   (element) => element.id == toyId,
+    // );
+    // if (updatableToy == null) {
+    //   return const Left(ToyRepositoryException.unknown());
+    // }
 
-    final updatedToy = updatableToy.copyWith(isPublic: false);
+    // final updatedToy = updatableToy.copyWith(isPublic: false);
 
-    final updatedList = List<Toy>.from(ownedToys!);
-    final toyListIndex = updatedList.indexWhere(
-      (element) => element.id == toyId,
-    );
-    updatedList[toyListIndex] = updatedToy;
-    _ownedToysStreamController.sink.add(updatedList);
+    // final updatedList = List<Toy>.from(ownedToys!);
+    // final toyListIndex = updatedList.indexWhere(
+    //   (element) => element.id == toyId,
+    // );
+    // updatedList[toyListIndex] = updatedToy;
+    // _ownedToysStreamController.sink.add(updatedList);
 
-    try {
-      await _remoteDatabase.updateDoc(
-        collectionID: ToyRepositoryStrings.toysCollectionPath,
-        documentID: toyId,
-        jsonData: updatedToy.toJson(),
-      );
+    // try {
+    //   await _remoteDatabase.updateDoc(
+    //     collectionID: ToyRepositoryStrings.toysCollectionPath,
+    //     documentID: toyId,
+    //     jsonData: updatedToy.toJson(),
+    //   );
 
-      return const Right(unit);
-    } catch (exception) {
-      final updatedList = List<Toy>.from(ownedToys!);
-      final toyListIndex = updatedList.indexWhere(
-        (element) => element.id == toyId,
-      );
-      updatedList[toyListIndex] = updatableToy.copyWith(isPublic: true);
-      _ownedToysStreamController.sink.add(updatedList);
+    //   return const Right(unit);
+    // } catch (exception) {
+    //   final updatedList = List<Toy>.from(ownedToys!);
+    //   final toyListIndex = updatedList.indexWhere(
+    //     (element) => element.id == toyId,
+    //   );
+    //   updatedList[toyListIndex] = updatableToy.copyWith(isPublic: true);
+    //   _ownedToysStreamController.sink.add(updatedList);
 
-      return const Left(ToyRepositoryException.unknown());
-    }
+    //   return const Left(ToyRepositoryException.unknown());
+    // }
   }
 
   FutureUnit makeToyPrivate() async {
@@ -225,92 +206,94 @@ class ToyRepository {
   FutureEither<List<Toy>> fetchLastest12Owned({
     required String ownerAuthId,
   }) async {
-    try {
-      final toyDocs = await _remoteDatabase.readCollection(
-        collectionID: ToyRepositoryStrings.toysCollectionPath,
-        orderBy: 'createdAt',
-        limitToLast: 12,
-        fieldIsEqualToList: [
-          (field: 'ownerAuthId', value: ownerAuthId),
-        ],
-      );
+    return const Right([]);
+    // try {
+    //   final toyDocs = await _remoteDatabase.readCollection(
+    //     collectionID: ToyRepositoryStrings.toysCollectionPath,
+    //     orderBy: 'createdAt',
+    //     limitToLast: 12,
+    //     fieldIsEqualToList: [
+    //       (field: 'ownerAuthId', value: ownerAuthId),
+    //     ],
+    //   );
 
-      if (toyDocs == null || toyDocs.isEmpty) {
-        _ownedToysStreamController.sink.add([]);
-        return const Right([]);
-      }
+    //   if (toyDocs == null || toyDocs.isEmpty) {
+    //     _ownedToysStreamController.sink.add([]);
+    //     return const Right([]);
+    //   }
 
-      final toys = toyDocs.map(Toy.fromJson).toList();
-      _ownedToysStreamController.sink.add(toys);
-      return Right(toys);
-    } catch (exception) {
-      print(exception);
-      return const Left(ToyRepositoryException.unknown());
-    }
+    //   final toys = toyDocs.map(Toy.fromJson).toList();
+    //   _ownedToysStreamController.sink.add(toys);
+    //   return Right(toys);
+    // } catch (exception) {
+    //   print(exception);
+    //   return const Left(ToyRepositoryException.unknown());
+    // }
   }
 
   FutureEither<List<Toy>> fetch12BeforeOldestOwnedToy({
     required String ownerAuthId,
     required Toy oldestOwnedToy,
   }) async {
-    try {
-      final toyDocs = await _remoteDatabase.readCollection(
-        collectionID: ToyRepositoryStrings.toysCollectionPath,
-        fieldIsEqualToList: [(field: 'ownerAuthId', value: ownerAuthId)],
-        orderBy: 'createdAt',
-        limitToLast: 12,
-        endBefore: [oldestOwnedToy.createdAt.toIso8601String()],
-      );
-      if (toyDocs == null || toyDocs.isEmpty) {
-        return const Right([]);
-      }
+    return const Right([]);
+    // try {
+    //   final toyDocs = await _remoteDatabase.readCollection(
+    //     collectionID: ToyRepositoryStrings.toysCollectionPath,
+    //     fieldIsEqualToList: [(field: 'ownerAuthId', value: ownerAuthId)],
+    //     orderBy: 'createdAt',
+    //     limitToLast: 12,
+    //     endBefore: [oldestOwnedToy.createdAt.toIso8601String()],
+    //   );
+    //   if (toyDocs == null || toyDocs.isEmpty) {
+    //     return const Right([]);
+    //   }
 
-      final toys = toyDocs.map(Toy.fromJson).toList();
-      final newOwnedToysList = List<Toy>.from(toys)..addAll(ownedToys ?? []);
-      _ownedToysStreamController.sink.add(newOwnedToysList);
+    //   final toys = toyDocs.map(Toy.fromJson).toList();
+    //   final newOwnedToysList = List<Toy>.from(toys)..addAll(ownedToys ?? []);
+    //   _ownedToysStreamController.sink.add(newOwnedToysList);
 
-      return Right(toys);
-    } catch (exception) {
-      return const Left(ToyRepositoryException.unknown());
-    }
+    //   return Right(toys);
+    // } catch (exception) {
+    //   return const Left(ToyRepositoryException.unknown());
   }
 
   FutureEither<List<Toy>> fetch10LikeableToysLatest({
     required String currentAuthId,
     required Toy? beforeThisToy,
   }) async {
-    try {
-      final toyDocs = await _remoteDatabase.readCollection(
-        collectionID: ToyRepositoryStrings.toysCollectionPath,
-        fieldIsNotEqualTo: (
-          field: 'ownerAuthId',
-          value: currentAuthId,
-        ),
-        fieldIsEqualToList: [
-          (
-            field: 'isPublic',
-            value: true,
-          ),
-          (
-            field: 'isLocked',
-            value: false,
-          ),
-        ],
-        endBefore: beforeThisToy != null
-            ? [beforeThisToy.createdAt.toIso8601String()]
-            : null,
-        orderBy: 'createdAt',
-        limitToLast: 10,
-      );
+    return const Right([]);
+    // try {
+    //   final toyDocs = await _remoteDatabase.readCollection(
+    //     collectionID: ToyRepositoryStrings.toysCollectionPath,
+    //     fieldIsNotEqualTo: (
+    //       field: 'ownerAuthId',
+    //       value: currentAuthId,
+    //     ),
+    //     fieldIsEqualToList: [
+    //       (
+    //         field: 'isPublic',
+    //         value: true,
+    //       ),
+    //       (
+    //         field: 'isLocked',
+    //         value: false,
+    //       ),
+    //     ],
+    //     endBefore: beforeThisToy != null
+    //         ? [beforeThisToy.createdAt.toIso8601String()]
+    //         : null,
+    //     orderBy: 'createdAt',
+    //     limitToLast: 10,
+    //   );
 
-      if (toyDocs == null) {
-        return right([]);
-      }
-      final toys = toyDocs.map(Toy.fromJson).toList();
-      return Right(toys);
-    } catch (exception) {
-      return const Left(ToyRepositoryException.unknown());
-    }
+    //   if (toyDocs == null) {
+    //     return right([]);
+    //   }
+    //   final toys = toyDocs.map(Toy.fromJson).toList();
+    //   return Right(toys);
+    // } catch (exception) {
+    //   return const Left(ToyRepositoryException.unknown());
+    // }
   }
 
   void sinkAddOwnedToy(Toy addedToy) {

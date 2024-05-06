@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:toy_repository/toy_repository.dart';
 import 'package:toy_swapp/toys/models/models.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 
 import '../../errors/errors.dart';
 import '../toys.dart';
@@ -126,7 +127,7 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
     for (final toy in toys) {
       // Try Read Owner
       final tryRead = await _consumerRepository.readConsumer(
-        authId: toy.ownerAuthId,
+        authId: toy.ownerConsumerAuthID,
       );
       await tryRead.fold(
         // If Owner is not found, skip this toy

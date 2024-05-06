@@ -2,8 +2,8 @@ import 'package:auth_repository/auth_repository.dart';
 import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:remote_database/remote_database.dart';
 import 'package:toy_repository/toy_repository.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 import '../../errors/errors.dart';
 
 part 'create_toy_bloc.freezed.dart';
@@ -12,19 +12,14 @@ part 'create_toy_state.dart';
 
 class CreateToyBloc extends Bloc<CreateToyEvent, CreateToyState> {
   CreateToyBloc({
-    required RemoteDatabase remoteDatabase,
     required ToyRepository toyRepository,
     required ConsumerRepository consumerRepository,
     required AuthRepository authRepository,
   })  : _toyRepository = toyRepository,
-        _remoteDatabase = remoteDatabase,
         _consumerRepository = consumerRepository,
         super(CreateToyState(currentAuth: authRepository.currentAuth)) {
     on<CreateToyEvent>(_onCreateToyEvent);
   }
-
-  // APIS
-  final RemoteDatabase _remoteDatabase;
 
   // Repositories
   final ToyRepository _toyRepository;
@@ -42,7 +37,7 @@ class CreateToyBloc extends Bloc<CreateToyEvent, CreateToyState> {
           return;
         }
         final tryCreate = await _toyRepository.create(
-          ownerAuthId: state.currentAuth.id,
+          ownerConsumerAuthID: state.currentAuth.id,
           toyName: e.toyName,
           toyDescription: e.toyDescription,
           toyImageList: e.imageUrlList,
@@ -50,29 +45,14 @@ class CreateToyBloc extends Bloc<CreateToyEvent, CreateToyState> {
           toyGender: e.toyGender,
           toyCondition: e.toyCondition,
         );
-        final updatedConsumer = _consumerRepository.increaseOwnedToyCounter();
-        Toy? createdToy;
-        createdToy = tryCreate.getRight().toNullable();
-        if (createdToy == null) {
-          emit(state.copyWith(failure: tryCreate.getLeft().toNullable()));
-          return;
-        }
 
         tryCreate.fold(
           (failure) => emit(state.copyWith(failure: failure)),
-          (toy) => createdToy = toy,
-        );
-
-        if (createdToy == null) {
-          return;
-        }
-
-        final tryCommit = await _remoteDatabase.batchCommit();
-        tryCommit.fold(
-          (failure) => emit(state.copyWith(failure: failure)),
-          (success) {
-            _consumerRepository.sinkCurrentConsumer(consumer: updatedConsumer);
-            _toyRepository.sinkAddOwnedToy(createdToy!);
+          (newValues) {
+            _consumerRepository.sinkCurrentConsumer(
+              consumer: newValues.updatedConsumer,
+            );
+            _toyRepository.sinkAddOwnedToy(newValues.createdToy);
             emit(state.copyWith(isToyCreated: true));
           },
         );

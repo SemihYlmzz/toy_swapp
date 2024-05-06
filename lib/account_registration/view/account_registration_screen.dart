@@ -16,7 +16,6 @@ class AccountRegistrationScreen extends StatelessWidget {
           create: (context) => AccountRegistrationBloc(
             authRepository: context.read(),
             consumerRepository: context.read(),
-            remoteDatabase: context.read(),
           ),
         ),
         BlocProvider(

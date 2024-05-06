@@ -10,8 +10,7 @@ class UpdateAvatarViewDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final currentConsumerAvatarUrl128 = context.select(
-      (AccountSettingsBloc bloc) =>
-          bloc.state.currentConsumer.avatarUrls.url128,
+      (AccountSettingsBloc bloc) => bloc.state.currentConsumer.avatarUrl128,
     );
     return ListTile(
       title: const Text('Update Avatar'),

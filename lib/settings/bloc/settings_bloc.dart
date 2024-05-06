@@ -7,6 +7,7 @@ import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 import '../../errors/errors.dart';
 
 part 'settings_bloc.freezed.dart';
@@ -24,7 +25,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         super(
           SettingsState(
             appMetadata: appMetadataRepository.appMetadata,
-            currentConsumer: consumerRepository.currentConsumer,
+            currentConsumer: consumerRepository.currentConsumer!,
             currentAuth: authRepository.currentAuth,
           ),
         ) {
@@ -34,6 +35,9 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     // Listen Consumer Changes
     _currentConsumerSubcription =
         consumerRepository.currentConsumerStream.listen((consumer) {
+      if (consumer == null) {
+        return;
+      }
       add(SettingsEvent.currentConsumerUpdated(consumer));
     });
     // Listen Auth Changes
@@ -45,7 +49,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         appMetadataRepository.appMetadataStream.listen((appMetadata) {
       add(SettingsEvent.appMetadataUpdated(appMetadata));
     });
-
   }
 
   // Repositories
@@ -53,7 +56,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final AppPreferencesRepository _appPreferencesRepository;
 
   // Subcriptions
-  StreamSubscription<Consumer>? _currentConsumerSubcription;
+  StreamSubscription<Consumer?>? _currentConsumerSubcription;
   StreamSubscription<Auth>? _currentAuthSubscription;
   StreamSubscription<AppMetadata>? _appMetadataSubscription;
 

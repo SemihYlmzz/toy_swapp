@@ -61,38 +61,57 @@ class _ToysViewState extends State<ToysView> {
               ),
             )
           : !toysState.isInitializing
-              ? ListView.builder(
-                  controller: _scrollController,
-                  itemCount: toysList.length +
-                      (toysState.fetchMoreFailure != null ? 1 : 0),
-                  itemBuilder: (context, index) {
-                    if (fetchMoreFailure != null && index == toysList.length) {
-                      return GestureDetector(
-                        onTap: () {
-                          context
-                              .read<ToysBloc>()
-                              .add(const ToysEvent.clearFetchMoreFailure());
-                        },
-                        child: const SizedBox(
-                          height: 100,
-                          child: Center(
-                            child: Text(
-                              'Error Occured while fetching more toys.\n'
-                              'Tap to retry.',
-                              textAlign: TextAlign.center,
-                            ),
+              ? toysList.isEmpty
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('No toys found'),
+                          TextButton(
+                            onPressed: () {
+                              context
+                                  .read<ToysBloc>()
+                                  .add(const ToysEvent.fetchLikeableToys());
+                            },
+                            child: const Text('Retry'),
                           ),
-                        ),
-                      );
-                    }
-                    return Center(
-                      child: Padding(
-                        padding: SharedPaddings.bottom32,
-                        child: ToyCard(toyAndOwnerConsumer: toysList[index]),
+                        ],
                       ),
-                    );
-                  },
-                )
+                    )
+                  : ListView.builder(
+                      controller: _scrollController,
+                      itemCount: toysList.length +
+                          (toysState.fetchMoreFailure != null ? 1 : 0),
+                      itemBuilder: (context, index) {
+                        if (fetchMoreFailure != null &&
+                            index == toysList.length) {
+                          return GestureDetector(
+                            onTap: () {
+                              context
+                                  .read<ToysBloc>()
+                                  .add(const ToysEvent.clearFetchMoreFailure());
+                            },
+                            child: const SizedBox(
+                              height: 100,
+                              child: Center(
+                                child: Text(
+                                  'Error Occured while fetching more toys.\n'
+                                  'Tap to retry.',
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                        return Center(
+                          child: Padding(
+                            padding: SharedPaddings.bottom32,
+                            child:
+                                ToyCard(toyAndOwnerConsumer: toysList[index]),
+                          ),
+                        );
+                      },
+                    )
               : const Center(child: CircularProgressIndicator()),
     );
   }

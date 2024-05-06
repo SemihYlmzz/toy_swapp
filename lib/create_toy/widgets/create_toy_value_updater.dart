@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_touch_ripple/widgets/widget.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:toy_repository/toy_repository.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 
 import '../../app/app.dart';
 import '../create_toy.dart';
@@ -104,7 +105,7 @@ class CreateToyAgeUpdater extends StatelessWidget {
                       : Colors.greenAccent.withOpacity(0.7),
                   borderRadius: SharedBorderRadius.circular8,
                 ),
-                child: Center(child: Text(ToyAge.values[i].displayName)),
+                child: Center(child: Text(ToyAge.values[i].toString())),
               ),
             ),
         ],
@@ -140,7 +141,7 @@ class CreateToyGenderUpdater extends StatelessWidget {
                       : Colors.greenAccent.withOpacity(0.7),
                   borderRadius: SharedBorderRadius.circular8,
                 ),
-                child: Center(child: Text(ToyGender.values[i].displayName)),
+                child: Center(child: Text(ToyGender.values[i].toString())),
               ),
             ),
         ],
@@ -180,7 +181,7 @@ class CreateToyConditionUpdater extends StatelessWidget {
                       borderRadius: SharedBorderRadius.circular8,
                     ),
                     child:
-                        Center(child: Text(ToyCondition.values[i].displayName)),
+                        Center(child: Text(ToyCondition.values[i].toString())),
                   ),
                 ),
             ],

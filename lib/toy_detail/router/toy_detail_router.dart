@@ -1,7 +1,6 @@
-import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:toy_repository/toy_repository.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 import '../toy_detail.dart';
 
 class ToyDetailRouter {

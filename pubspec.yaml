@@ -20,7 +20,11 @@ dependencies:
       url: https://github.com/SemihYlmzz/shared_constants.git
       ref: main
   
-
+  # Client
+  toy_swapp_client:
+    path: ../toy_swapp_client
+  serverpod_flutter: 1.2.6
+  
   # Repositories
   app_metadata_repository:
     path: packages/app_metadata_repository
@@ -44,10 +48,6 @@ dependencies:
     path: packages/location_service
 
   # Apis
-  remote_database:
-    path: packages/remote_database
-  remote_database_cloud_firestore:
-    path: packages/remote_database_cloud_firestore
   cloud_storage:
     path: packages/cloud_storage
   cloud_storage_firebase_storage:

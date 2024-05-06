@@ -4,7 +4,7 @@ import 'package:auth_repository/auth_repository.dart';
 import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:remote_database/remote_database.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 import '../../errors/errors.dart';
 
 part 'account_settings_bloc.freezed.dart';
@@ -14,32 +14,34 @@ part 'account_settings_state.dart';
 class AccountSettingsBloc
     extends Bloc<AccountSettingsEvent, AccountSettingsState> {
   AccountSettingsBloc({
-    required RemoteDatabase remoteDatabase,
     required ConsumerRepository consumerRepository,
     required AuthRepository authRepository,
-  })  : _remoteDatabase = remoteDatabase,
-        _consumerRepository = consumerRepository,
+  })  : _consumerRepository = consumerRepository,
         _authRepository = authRepository,
         super(
           AccountSettingsState(
-            currentConsumer: consumerRepository.currentConsumer,
+            currentConsumer: consumerRepository.currentConsumer!,
           ),
         ) {
     on<AccountSettingsEvent>(_onAccountSettingsEvent);
 
     _consumerSubscription = _consumerRepository.currentConsumerStream.listen(
-      (consumer) => add(AccountSettingsEvent.currentConsumerUpdated(consumer)),
+      (consumer) {
+        if (consumer == null) {
+          return;
+        }
+        add(AccountSettingsEvent.currentConsumerUpdated(consumer));
+      },
     );
   }
   // Apis
-  final RemoteDatabase _remoteDatabase;
 
   // Repositories
   final ConsumerRepository _consumerRepository;
   final AuthRepository _authRepository;
 
   // Subscriptions
-  StreamSubscription<Consumer>? _consumerSubscription;
+  StreamSubscription<Consumer?>? _consumerSubscription;
 
   // Cancel Subscriptions
   @override
@@ -88,12 +90,12 @@ class AccountSettingsBloc
           // set failure
           return;
         }
-        final tryUpdate = await _remoteDatabase.batchCommit();
-        final tryUpdateFailure = tryUpdate.getLeft().toNullable();
-        if (tryUpdateFailure != null) {
-          emit(state.copyWith(failure: tryUpdateFailure));
-          return;
-        }
+        // final tryUpdate = await _remoteDatabase.batchCommit();
+        // final tryUpdateFailure = tryUpdate.getLeft().toNullable();
+        // if (tryUpdateFailure != null) {
+        //   emit(state.copyWith(failure: tryUpdateFailure));
+        //   return;
+        // }
         _consumerRepository.sinkCurrentConsumer(consumer: updatedCosumer);
         emit(state.copyWith(isValueUpdated: true));
       },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_constants/shared_constants.dart';
-import 'package:toy_repository/toy_repository.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 
 import '../../app.dart';
 
@@ -73,7 +73,7 @@ class ToyDetailsDisplayer extends StatelessWidget {
                               onShakeComplete?.call();
                             },
                             child: Text(
-                              toyAge?.displayName ?? 'Not Selected',
+                              toyAge?.toString() ?? 'Not Selected',
                               style: Theme.of(context).textTheme.headlineMedium,
                             ),
                           ),
@@ -108,7 +108,7 @@ class ToyDetailsDisplayer extends StatelessWidget {
                                   onShakeComplete?.call();
                                 },
                                 child: Text(
-                                  toyGender?.displayName ?? 'Not Selected',
+                                  toyGender?.toString() ?? 'Not Selected',
                                   style: Theme.of(context)
                                       .textTheme
                                       .headlineMedium,
@@ -146,7 +146,7 @@ class ToyDetailsDisplayer extends StatelessWidget {
                                   onShakeComplete?.call();
                                 },
                                 child: Text(
-                                  toyCondition?.displayName ?? 'Not Selected',
+                                  toyCondition?.toString() ?? 'Not Selected',
                                   style: Theme.of(context)
                                       .textTheme
                                       .headlineMedium,

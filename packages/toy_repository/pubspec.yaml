@@ -14,9 +14,11 @@ dependencies:
   toy_swapp:
     path: ../../
 
+  # Client
+  toy_swapp_client:
+    path: ../../../toy_swapp_client
+    
   # Apis
-  remote_database:
-    path: ../remote_database
   cloud_storage:
     path: ../cloud_storage
 

@@ -1,13 +1,11 @@
-import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_touch_ripple/flutter_touch_ripple.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
-import 'package:toy_repository/toy_repository.dart';
 import 'package:toy_swapp/app/app.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 
 class ToyDetailView extends StatelessWidget {
   const ToyDetailView({
@@ -24,7 +22,8 @@ class ToyDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isCurrentConsumerOwner = currentConsumer.authId == toy.ownerAuthId;
+    final isCurrentConsumerOwner =
+        currentConsumer.authId == toy.ownerConsumerAuthID;
 
     return BaseScaffold(
       safeArea: true,
@@ -65,9 +64,9 @@ class ToyDetailView extends StatelessWidget {
               ),
               SharedGap.gap20,
               ToyDetailsDisplayer(
-                toyAge: toy.details.age,
-                toyGender: toy.details.gender,
-                toyCondition: toy.details.condition,
+                toyAge: toy.age,
+                toyGender: toy.gender,
+                toyCondition: toy.condition,
               ),
               SharedGap.gap20,
               Stack(
@@ -115,15 +114,15 @@ class ToyDetailView extends StatelessWidget {
                     children: [
                       ConsumerCounterDisplayer(
                         counterName: 'Toys',
-                        counterValue: ownerConsumer.counters.ownedToy,
+                        counterValue: ownerConsumer.toyCount,
                       ),
                       ConsumerCounterDisplayer(
                         counterName: 'Switched',
-                        counterValue: ownerConsumer.counters.switchs,
+                        counterValue: ownerConsumer.swapCount,
                       ),
                       ConsumerCounterDisplayer(
                         counterName: 'Chance',
-                        counterValue: ownerConsumer.counters.switchChance,
+                        counterValue: ownerConsumer.switchChanceCount,
                       ),
                     ],
                   ),

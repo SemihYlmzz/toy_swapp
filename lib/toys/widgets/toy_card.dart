@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pinch_to_zoom_scrollable/pinch_to_zoom_scrollable.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:toy_repository/toy_repository.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 
 import '../../app/app.dart';
 import '../../toy_detail/toy_detail.dart';
@@ -22,7 +21,7 @@ class ToyCard extends StatelessWidget {
     final contextTheme = Theme.of(context);
     final toy = toyAndOwnerConsumer.toy;
     final ownerConsumer = toyAndOwnerConsumer.ownerConsumer;
-    final toyGradient = switch (toy.details.gender) {
+    final toyGradient = switch (toy.gender) {
       ToyGender.boy => AppColors.boyToyGradient,
       ToyGender.girl => AppColors.girlToyGradient,
       ToyGender.unisex => AppColors.unisexToyGradient,
@@ -62,7 +61,7 @@ class ToyCard extends StatelessWidget {
                           shape: BoxShape.circle,
                           image: DecorationImage(
                             image: NetworkImage(
-                              ownerConsumer.avatarUrls.url128,
+                              ownerConsumer.avatarUrl128,
                             ),
                             fit: BoxFit.cover,
                           ),

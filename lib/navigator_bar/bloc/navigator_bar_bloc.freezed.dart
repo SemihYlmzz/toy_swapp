@@ -65,8 +65,6 @@ abstract class $NavigatorBarEventCopyWith<$Res> {
       _$NavigatorBarEventCopyWithImpl<$Res, NavigatorBarEvent>;
   @useResult
   $Res call({Consumer updatedConsumer});
-
-  $ConsumerCopyWith<$Res> get updatedConsumer;
 }
 
 /// @nodoc
@@ -91,14 +89,6 @@ class _$NavigatorBarEventCopyWithImpl<$Res, $Val extends NavigatorBarEvent>
               as Consumer,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ConsumerCopyWith<$Res> get updatedConsumer {
-    return $ConsumerCopyWith<$Res>(_value.updatedConsumer, (value) {
-      return _then(_value.copyWith(updatedConsumer: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -111,9 +101,6 @@ abstract class _$$NavigatorBarCurrentConsumerUpdatedImplCopyWith<$Res>
   @override
   @useResult
   $Res call({Consumer updatedConsumer});
-
-  @override
-  $ConsumerCopyWith<$Res> get updatedConsumer;
 }
 
 /// @nodoc
@@ -266,8 +253,6 @@ abstract class $NavigatorBarStateCopyWith<$Res> {
       _$NavigatorBarStateCopyWithImpl<$Res, NavigatorBarState>;
   @useResult
   $Res call({Consumer currentConsumer, bool isLoading, Failure? failure});
-
-  $ConsumerCopyWith<$Res> get currentConsumer;
 }
 
 /// @nodoc
@@ -302,14 +287,6 @@ class _$NavigatorBarStateCopyWithImpl<$Res, $Val extends NavigatorBarState>
               as Failure?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ConsumerCopyWith<$Res> get currentConsumer {
-    return $ConsumerCopyWith<$Res>(_value.currentConsumer, (value) {
-      return _then(_value.copyWith(currentConsumer: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -321,9 +298,6 @@ abstract class _$$NavigatorBarStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({Consumer currentConsumer, bool isLoading, Failure? failure});
-
-  @override
-  $ConsumerCopyWith<$Res> get currentConsumer;
 }
 
 /// @nodoc

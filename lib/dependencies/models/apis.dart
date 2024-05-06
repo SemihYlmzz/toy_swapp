@@ -1,11 +1,11 @@
 import 'package:cloud_storage/cloud_storage.dart';
-import 'package:remote_database/remote_database.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 
 class Apis {
   const Apis({
-    required this.remoteDatabase,
+    required this.client,
     required this.cloudStorage,
   });
-  final RemoteDatabase remoteDatabase;
+  final Client client;
   final CloudStorage cloudStorage;
 }

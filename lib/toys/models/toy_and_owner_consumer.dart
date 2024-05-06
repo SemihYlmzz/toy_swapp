@@ -1,5 +1,4 @@
-import 'package:consumer_repository/consumer_repository.dart';
-import 'package:toy_repository/toy_repository.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 
 class ToyAndOwnerConsumer {
   const ToyAndOwnerConsumer({

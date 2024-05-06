@@ -291,6 +291,7 @@ abstract class AccountInitializerSignOut implements AccountInitializerEvent {
 mixin _$AccountInitializerState {
   Auth get currentAuth => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get consumerNeedsCreation => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
   Failure? get fetchAccountDataFailure => throw _privateConstructorUsedError;
 
@@ -308,6 +309,7 @@ abstract class $AccountInitializerStateCopyWith<$Res> {
   $Res call(
       {Auth currentAuth,
       bool isLoading,
+      bool consumerNeedsCreation,
       Failure? failure,
       Failure? fetchAccountDataFailure});
 
@@ -330,6 +332,7 @@ class _$AccountInitializerStateCopyWithImpl<$Res,
   $Res call({
     Object? currentAuth = null,
     Object? isLoading = null,
+    Object? consumerNeedsCreation = null,
     Object? failure = freezed,
     Object? fetchAccountDataFailure = freezed,
   }) {
@@ -341,6 +344,10 @@ class _$AccountInitializerStateCopyWithImpl<$Res,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      consumerNeedsCreation: null == consumerNeedsCreation
+          ? _value.consumerNeedsCreation
+          : consumerNeedsCreation // ignore: cast_nullable_to_non_nullable
               as bool,
       failure: freezed == failure
           ? _value.failure
@@ -374,6 +381,7 @@ abstract class _$$AccountInitializerStateImplCopyWith<$Res>
   $Res call(
       {Auth currentAuth,
       bool isLoading,
+      bool consumerNeedsCreation,
       Failure? failure,
       Failure? fetchAccountDataFailure});
 
@@ -396,6 +404,7 @@ class __$$AccountInitializerStateImplCopyWithImpl<$Res>
   $Res call({
     Object? currentAuth = null,
     Object? isLoading = null,
+    Object? consumerNeedsCreation = null,
     Object? failure = freezed,
     Object? fetchAccountDataFailure = freezed,
   }) {
@@ -407,6 +416,10 @@ class __$$AccountInitializerStateImplCopyWithImpl<$Res>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      consumerNeedsCreation: null == consumerNeedsCreation
+          ? _value.consumerNeedsCreation
+          : consumerNeedsCreation // ignore: cast_nullable_to_non_nullable
               as bool,
       failure: freezed == failure
           ? _value.failure
@@ -426,6 +439,7 @@ class _$AccountInitializerStateImpl implements _AccountInitializerState {
   const _$AccountInitializerStateImpl(
       {required this.currentAuth,
       this.isLoading = false,
+      this.consumerNeedsCreation = false,
       this.failure,
       this.fetchAccountDataFailure});
 
@@ -435,13 +449,16 @@ class _$AccountInitializerStateImpl implements _AccountInitializerState {
   @JsonKey()
   final bool isLoading;
   @override
+  @JsonKey()
+  final bool consumerNeedsCreation;
+  @override
   final Failure? failure;
   @override
   final Failure? fetchAccountDataFailure;
 
   @override
   String toString() {
-    return 'AccountInitializerState(currentAuth: $currentAuth, isLoading: $isLoading, failure: $failure, fetchAccountDataFailure: $fetchAccountDataFailure)';
+    return 'AccountInitializerState(currentAuth: $currentAuth, isLoading: $isLoading, consumerNeedsCreation: $consumerNeedsCreation, failure: $failure, fetchAccountDataFailure: $fetchAccountDataFailure)';
   }
 
   @override
@@ -453,6 +470,8 @@ class _$AccountInitializerStateImpl implements _AccountInitializerState {
                 other.currentAuth == currentAuth) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.consumerNeedsCreation, consumerNeedsCreation) ||
+                other.consumerNeedsCreation == consumerNeedsCreation) &&
             (identical(other.failure, failure) || other.failure == failure) &&
             (identical(
                     other.fetchAccountDataFailure, fetchAccountDataFailure) ||
@@ -460,8 +479,8 @@ class _$AccountInitializerStateImpl implements _AccountInitializerState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, currentAuth, isLoading, failure, fetchAccountDataFailure);
+  int get hashCode => Object.hash(runtimeType, currentAuth, isLoading,
+      consumerNeedsCreation, failure, fetchAccountDataFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -475,6 +494,7 @@ abstract class _AccountInitializerState implements AccountInitializerState {
   const factory _AccountInitializerState(
       {required final Auth currentAuth,
       final bool isLoading,
+      final bool consumerNeedsCreation,
       final Failure? failure,
       final Failure? fetchAccountDataFailure}) = _$AccountInitializerStateImpl;
 
@@ -482,6 +502,8 @@ abstract class _AccountInitializerState implements AccountInitializerState {
   Auth get currentAuth;
   @override
   bool get isLoading;
+  @override
+  bool get consumerNeedsCreation;
   @override
   Failure? get failure;
   @override

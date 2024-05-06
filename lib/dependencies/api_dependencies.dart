@@ -1,6 +1,7 @@
 import 'package:cloud_storage_firebase_storage/cloud_storage_firebase_storage.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:remote_database_cloud_firestore/remote_database_cloud_firestore.dart';
+import 'package:serverpod_flutter/serverpod_flutter.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 
 import 'models/models.dart';
 
@@ -11,17 +12,18 @@ class ApiDependencies {
   final FirebaseOptions _firebaseOptions;
 
   Future<Apis> init() async {
-    // Remote Database
-    final remoteDatabase = await CloudFirestoreInitializer.initialize(
-      firebaseOptions: _firebaseOptions,
-    );
+    // Client
+    final client = Client(
+      'http://localhost:8080/',
+    )..connectivityMonitor = FlutterConnectivityMonitor();
+
     // Cloud Storage
     final cloudStorage = await FirebaseStorageInitializer.initialize(
       firebaseOptions: _firebaseOptions,
     );
 
     return Apis(
-      remoteDatabase: remoteDatabase,
+      client: client,
       cloudStorage: cloudStorage,
     );
   }

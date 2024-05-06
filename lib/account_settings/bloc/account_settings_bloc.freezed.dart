@@ -125,8 +125,6 @@ abstract class _$$AccountSettingsCurrentConsumerUpdatedImplCopyWith<$Res> {
       __$$AccountSettingsCurrentConsumerUpdatedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Consumer updatedConsumer});
-
-  $ConsumerCopyWith<$Res> get updatedConsumer;
 }
 
 /// @nodoc
@@ -150,14 +148,6 @@ class __$$AccountSettingsCurrentConsumerUpdatedImplCopyWithImpl<$Res>
           : updatedConsumer // ignore: cast_nullable_to_non_nullable
               as Consumer,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ConsumerCopyWith<$Res> get updatedConsumer {
-    return $ConsumerCopyWith<$Res>(_value.updatedConsumer, (value) {
-      return _then(_value.copyWith(updatedConsumer: value));
-    });
   }
 }
 
@@ -1159,8 +1149,6 @@ abstract class $AccountSettingsStateCopyWith<$Res> {
       bool isValueUpdated,
       bool isLoading,
       Failure? failure});
-
-  $ConsumerCopyWith<$Res> get currentConsumer;
 }
 
 /// @nodoc
@@ -1201,14 +1189,6 @@ class _$AccountSettingsStateCopyWithImpl<$Res,
               as Failure?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ConsumerCopyWith<$Res> get currentConsumer {
-    return $ConsumerCopyWith<$Res>(_value.currentConsumer, (value) {
-      return _then(_value.copyWith(currentConsumer: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -1224,9 +1204,6 @@ abstract class _$$AccountSettingsStateImplCopyWith<$Res>
       bool isValueUpdated,
       bool isLoading,
       Failure? failure});
-
-  @override
-  $ConsumerCopyWith<$Res> get currentConsumer;
 }
 
 /// @nodoc

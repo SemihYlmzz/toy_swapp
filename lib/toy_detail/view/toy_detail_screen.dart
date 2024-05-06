@@ -17,7 +17,7 @@ class ToyDetailScreen extends StatelessWidget {
         toyRepository: context.read(),
       )..add(
           ToyDetailEvent.loadToyAndOwner(
-            toyId: requirements.toy.id,
+            toyId: requirements.toy.id!,
           ),
         ),
       child: MultiBlocListener(
@@ -37,7 +37,7 @@ class ToyDetailScreen extends StatelessWidget {
                   // final ownerConsumer = state.ownerConsumer;
 
                   return ToyDetailView(
-                    currentConsumer: currentConsumer,
+                    currentConsumer: currentConsumer!,
                     ownerConsumer:
                         requirements.ownerConsumer ?? currentConsumer,
                     toy: requirements.toy,

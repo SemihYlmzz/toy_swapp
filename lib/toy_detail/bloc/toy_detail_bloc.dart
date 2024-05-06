@@ -4,6 +4,7 @@ import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:toy_repository/toy_repository.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 import '../../errors/errors.dart';
 
 part 'toy_detail_bloc.freezed.dart';
@@ -33,7 +34,7 @@ class ToyDetailBloc extends Bloc<ToyDetailEvent, ToyDetailState> {
   final ToyRepository _toyRepository;
 
   // Stream Subscriptions
-  StreamSubscription<Consumer>? _currentConsumerSubscription;
+  StreamSubscription<Consumer?>? _currentConsumerSubscription;
 
   // Events
   Future<void> _onToyDetailEvent(
@@ -55,7 +56,7 @@ class ToyDetailBloc extends Bloc<ToyDetailEvent, ToyDetailState> {
           emit(state.copyWith(failure: tryRead.getLeft().toNullable()));
           return;
         }
-        if (fetchedToy.ownerAuthId == state.currentConsumer.authId) {
+        if (fetchedToy.ownerConsumerAuthID == state.currentConsumer?.authId) {
           emit(
             state.copyWith(
               toy: fetchedToy,
@@ -65,7 +66,7 @@ class ToyDetailBloc extends Bloc<ToyDetailEvent, ToyDetailState> {
           return;
         }
         final tryReadOwnerConsumer = await _consumerRepository.readConsumer(
-          authId: fetchedToy.ownerAuthId,
+          authId: fetchedToy.ownerConsumerAuthID,
         );
         tryReadOwnerConsumer.fold(
           (failure) => emit(state.copyWith(failure: failure, toy: fetchedToy)),

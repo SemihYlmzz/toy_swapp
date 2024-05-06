@@ -31,11 +31,11 @@ class RepositoryDependencies {
 
     final consumerRepository = ConsumerRepository(
       cloudStorage: apis.cloudStorage,
-      remoteDatabase: apis.remoteDatabase,
+      client: apis.client,
     );
     final toyRepository = ToyRepository(
       cloudStorage: apis.cloudStorage,
-      remoteDatabase: apis.remoteDatabase,
+      client: apis.client,
     );
 
     return Repositories(

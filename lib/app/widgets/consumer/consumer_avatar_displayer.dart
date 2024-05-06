@@ -1,5 +1,5 @@
-import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 
 class ConsumerAvatarDisplayer extends StatelessWidget {
   const ConsumerAvatarDisplayer({
@@ -20,7 +20,7 @@ class ConsumerAvatarDisplayer extends StatelessWidget {
         ),
         shape: BoxShape.circle,
         image: DecorationImage(
-          image: NetworkImage(consumer.avatarUrls.url128),
+          image: NetworkImage(consumer.avatarUrl128),
           fit: BoxFit.cover,
         ),
       ),

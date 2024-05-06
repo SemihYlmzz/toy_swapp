@@ -39,7 +39,12 @@ class AccountInitializerBloc
         );
         tryRead.fold(
           (l) => emit(state.copyWith(fetchAccountDataFailure: l)),
-          (r) => null,
+          (readedConsumer) {
+            if (readedConsumer != null) {
+              return;
+            }
+            emit(state.copyWith(consumerNeedsCreation: true));
+          },
         );
       },
       signOut: (e) async {

@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:toy_repository/toy_repository.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 import '../../errors/errors.dart';
 
 part 'profile_bloc.freezed.dart';
@@ -63,14 +64,14 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
     await event.map(
       openToyToPublic: (e) async {
-        final tryUpdate = await _toyRepository.openToPublic(toyId: e.toyId);
+        final tryUpdate = await _toyRepository.openToPublic(toyID: e.toyID);
         tryUpdate.fold(
           (l) => emit(state.copyWith(failure: l)),
           (r) => null,
         );
       },
       closeToyToPublic: (e) async {
-        final tryUpdate = await _toyRepository.closeToPublic(toyId: e.toyId);
+        final tryUpdate = await _toyRepository.closeToPublic(toyID: e.toyID);
         tryUpdate.fold(
           (l) => emit(state.copyWith(failure: l)),
           (r) => null,
@@ -94,13 +95,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         tryFetch.fold(
           (l) => emit(state.copyWith(fetchLatestToysFailure: l)),
           (fetchedToysList) {
-            if (fetchedToysList.isEmpty) {
-              emit(state.copyWith(hasReachedMax: true));
-              return;
-            }
             if (fetchedToysList.length < 12) {
               emit(state.copyWith(hasReachedMax: true));
             }
+            emit(state.copyWith(ownedToys: fetchedToysList));
           },
         );
       },

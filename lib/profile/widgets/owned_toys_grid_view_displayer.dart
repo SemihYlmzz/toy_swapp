@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toy_repository/toy_repository.dart';
+import 'package:toy_swapp_client/toy_swapp_client.dart';
 
 import '../profile.dart';
 
