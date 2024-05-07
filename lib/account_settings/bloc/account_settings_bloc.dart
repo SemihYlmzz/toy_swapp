@@ -96,7 +96,7 @@ class AccountSettingsBloc
         //   emit(state.copyWith(failure: tryUpdateFailure));
         //   return;
         // }
-        _consumerRepository.sinkCurrentConsumer(consumer: updatedCosumer);
+        _consumerRepository.sinkCurrentConsumer(updatedCosumer);
         emit(state.copyWith(isValueUpdated: true));
       },
       updateEmail: (e) async {

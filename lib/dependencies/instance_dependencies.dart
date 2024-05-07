@@ -1,5 +1,5 @@
 import 'package:toy_swapp/dependencies/dependencies.dart';
-import 'package:toy_swapp/router/app_router.dart';
+import 'package:toy_swapp/app_router/app_router.dart';
 
 import 'models/models.dart';
 

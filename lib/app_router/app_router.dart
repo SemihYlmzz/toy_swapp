@@ -79,22 +79,23 @@ class AppRouter {
           PermissionsRouter.instance.route,
         ],
         redirect: (BuildContext context, GoRouterState state) async {
-          final currentAuth = context.read<AuthRepository>().currentAuth;
-          final currentConsumer =
-              context.read<ConsumerRepository>().currentConsumer;
+          // Repositories
+          final authRepository = context.read<AuthRepository>();
+          final consumerRepository = context.read<ConsumerRepository>();
+          final toyRepository = context.read<ToyRepository>();
 
-          // [ClearConsumer] on [SignOut]
-          if (currentConsumer != null &&
-              currentAuth.state == AuthState.unAuth) {
-            context.read<ConsumerRepository>().clearCurrentConsumer();
-            context.read<ToyRepository>().clearOwnedToys();
+          // Current Values
+          final currentAuth = authRepository.currentAuth;
+          final currentConsumer = consumerRepository.currentConsumer;
+
+          //  on [SignOut]
+          if (currentAuth.state == AuthState.unAuth) {
+            // [ClearConsumer] if [ConsumerHasData]
+            if (currentConsumer != null) {
+              consumerRepository.sinkCurrentConsumer(null);
+              toyRepository.clearOwnedToys();
+            }
           }
-          // if (currentSupport.state != SupportState.empty) {
-          // clearSupport();
-          // }
-          // if (currentAdmin.state != AdminState.empty) {
-          // clearAdmin();
-          // }
 
           String? nonVerifiedSignedIn() {
             if (!_inEmailVerificationScreen(state)) {
@@ -109,60 +110,46 @@ class AppRouter {
               //   return ConsumerDataCalibrationRouter.instance.path;
               // }
 
-              print(10);
               if (!_inConsumerScreens(state)) {
-                print(11);
                 return ToysGoRoute.instance.path;
               }
-              print(12);
               return null;
             }
 
             if (currentConsumer != null) {
-              print(13);
               return consumerHasData();
             }
-            print(12);
             return null;
           }
 
           String? authNotSignedIn() {
             if (!_inAuthScreen(state)) {
-              print(3);
               return SignInRouter.instance.path;
             }
-            print(4);
             return null;
           }
 
           String? authSignedIn() {
-            print(2);
             if (!currentAuth.isEmailVerified) {
-              print(5);
               return nonVerifiedSignedIn();
             }
-            print(6);
             // [VerifiedSignIn]
             final nullablePath = verifiedSignedInCheckConsumer();
             // nullablePath ??= checkSupport();
             // nullablePath ??= checkAdmin();
             if (currentConsumer != null ||
                 (currentConsumer == null && nullablePath != null)) {
-              print(7);
               return nullablePath;
             }
 
             // [VerifiedSignIn] + [NoUser]
             if (!_inAccountInitializer(state)) {
-              print(8);
               return AccountInitializerRouter.instance.path;
             }
-            print(9);
             return null;
           }
 
           if (_inNoRuleScreens(state)) {
-            print(1);
             return null;
           }
           return switch (currentAuth.state) {
@@ -191,11 +178,9 @@ class AppRouter {
   // [AccountInitializerScreen]
   bool _inAccountInitializer(GoRouterState state) => [
         AccountInitializerRouter.instance.name,
-      ].contains(state.topRoute!.name);
-  // [AccountInitializerScreen]
-  bool _inAccountRegistration(GoRouterState state) => [
         AccountRegistrationRouter.instance.name,
       ].contains(state.topRoute!.name);
+
   // [ConsumerScreens]
   bool _inConsumerScreens(GoRouterState state) => [
         ToysGoRoute.instance.name,

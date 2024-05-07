@@ -30,7 +30,6 @@ class AccountInitializerBloc
     Emitter<AccountInitializerState> emit,
   ) async {
     emit(state.copyWith(isLoading: true));
-    // await Future<void>.delayed(const Duration(seconds: 8));
     await event.map(
       fetchAccountData: (e) async {
         emit(state.copyWith(fetchAccountDataFailure: null));
@@ -41,6 +40,7 @@ class AccountInitializerBloc
           (l) => emit(state.copyWith(fetchAccountDataFailure: l)),
           (readedConsumer) {
             if (readedConsumer != null) {
+              _consumerRepository.sinkCurrentConsumer(readedConsumer);
               return;
             }
             emit(state.copyWith(consumerNeedsCreation: true));

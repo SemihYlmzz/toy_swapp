@@ -108,10 +108,6 @@ class ConsumerRepository {
     }
   }
 
-  void clearCurrentConsumer() {
-    _currentConsumerStreamController.sink.add(null);
-  }
-
   FutureUnit updateAvatarImage({
     required AvatarImages avatarImages,
   }) async {
@@ -247,9 +243,12 @@ class ConsumerRepository {
     }
   }
 
-  void sinkCurrentConsumer({
-    required Consumer consumer,
-  }) {
+  void sinkCurrentConsumer(
+    Consumer? consumer,
+  ) {
+    if (currentConsumer != null) {
+      print('currentConsumer Sinked');
+    }
     _currentConsumerStreamController.sink.add(consumer);
   }
 }

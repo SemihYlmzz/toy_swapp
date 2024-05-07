@@ -49,9 +49,7 @@ class CreateToyBloc extends Bloc<CreateToyEvent, CreateToyState> {
         tryCreate.fold(
           (failure) => emit(state.copyWith(failure: failure)),
           (newValues) {
-            _consumerRepository.sinkCurrentConsumer(
-              consumer: newValues.updatedConsumer,
-            );
+            _consumerRepository.sinkCurrentConsumer(newValues.updatedConsumer);
             _toyRepository.sinkAddOwnedToy(newValues.createdToy);
             emit(state.copyWith(isToyCreated: true));
           },
