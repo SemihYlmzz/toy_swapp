@@ -33,7 +33,7 @@ class ConsumerRepository {
   Consumer? currentConsumer;
   // Cached Consumers
   final _cachedConsumers =
-      <String, ({DateTime endDate, Consumer cachedConsumer})>{};
+      <int, ({DateTime endDate, Consumer cachedConsumer})>{};
 
   // FUNCTIONS
   FutureEither<Consumer> createCurrentConsumer({
@@ -96,7 +96,7 @@ class ConsumerRepository {
     }
   }
 
-  FutureEither<Consumer?> initCurrentConsumer({
+  FutureEither<Consumer?> initCurrentConsumerWithAuthID({
     required String authId,
   }) async {
     try {
@@ -208,7 +208,7 @@ class ConsumerRepository {
   }
 
   FutureEither<Consumer> readConsumer({
-    required String authId,
+    required int consumerID,
   }) async {
     // Clear Cache
     _cachedConsumers.removeWhere(
@@ -216,24 +216,24 @@ class ConsumerRepository {
     );
 
     // Get from Cache
-    final thisConsumerCache = _cachedConsumers[authId];
+    final thisConsumerCache = _cachedConsumers[consumerID];
 
     // If Cache is not empty and not expired
     // Return from Cache
     if (thisConsumerCache != null) {
-      return Right(_cachedConsumers[authId]!.cachedConsumer);
+      return Right(_cachedConsumers[consumerID]!.cachedConsumer);
     }
 
     // If Cache is empty or expired
     // Get from Remote Database
     try {
-      final consumer = await _client.consumer.readWithAuthID(authId);
+      final consumer = await _client.consumer.readWithID(consumerID);
       if (consumer == null) {
         return const Left(ConsumerRepositoryException.unknown());
       }
       // Add to cache
       _cachedConsumers.addAll({
-        authId: (
+        consumerID: (
           cachedConsumer: consumer,
           endDate: DateTime.now().add(const Duration(minutes: 1)),
         ),

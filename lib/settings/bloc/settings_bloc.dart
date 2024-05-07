@@ -25,7 +25,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         super(
           SettingsState(
             appMetadata: appMetadataRepository.appMetadata,
-            currentConsumer: consumerRepository.currentConsumer!,
+            currentConsumer: consumerRepository.currentConsumer,
             currentAuth: authRepository.currentAuth,
           ),
         ) {

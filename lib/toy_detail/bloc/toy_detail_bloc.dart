@@ -56,7 +56,7 @@ class ToyDetailBloc extends Bloc<ToyDetailEvent, ToyDetailState> {
           emit(state.copyWith(failure: tryRead.getLeft().toNullable()));
           return;
         }
-        if (fetchedToy.ownerConsumerAuthID == state.currentConsumer?.authId) {
+        if (fetchedToy.ownerConsumerID == state.currentConsumer?.id) {
           emit(
             state.copyWith(
               toy: fetchedToy,
@@ -66,7 +66,7 @@ class ToyDetailBloc extends Bloc<ToyDetailEvent, ToyDetailState> {
           return;
         }
         final tryReadOwnerConsumer = await _consumerRepository.readConsumer(
-          authId: fetchedToy.ownerConsumerAuthID,
+          consumerID: fetchedToy.ownerConsumerID,
         );
         tryReadOwnerConsumer.fold(
           (failure) => emit(state.copyWith(failure: failure, toy: fetchedToy)),

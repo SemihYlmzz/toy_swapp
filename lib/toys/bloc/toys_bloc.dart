@@ -1,4 +1,3 @@
-import 'package:auth_repository/auth_repository.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,12 +24,11 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
 
 class ToysBloc extends Bloc<ToysEvent, ToysState> {
   ToysBloc({
-    required AuthRepository authRepository,
     required ConsumerRepository consumerRepository,
     required ToyRepository toyRepository,
   })  : _toyRepository = toyRepository,
         _consumerRepository = consumerRepository,
-        super(ToysState(currentAuth: authRepository.currentAuth)) {
+        super(ToysState(currentConsumer: consumerRepository.currentConsumer!)) {
     // Trigger Events
     on<ToysEvent>(
       _onToysEvent,
@@ -52,13 +50,59 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
       clearFetchMoreFailure: (value) async {
         emit(state.copyWith(fetchMoreFailure: null));
       },
+      // LIKE TOY
+      // EVENT
+      likeToy: (value) async {
+        final indexToyAndOwner = state.toys.indexWhere(
+          (element) => element.toy.id == value.toyID,
+        );
+        final oldToyAndOwner = state.toys[indexToyAndOwner];
+        final newToysAndOwnerList = List<ToyAndOwnerConsumer>.from(state.toys)
+          ..replaceRange(
+            indexToyAndOwner,
+            indexToyAndOwner + 1,
+            [
+              ToyAndOwnerConsumer(
+                toy: oldToyAndOwner.toy.copyWith(
+                  likes: [
+                    ...oldToyAndOwner.toy.likes ?? [],
+                    Like(
+                      toyId: oldToyAndOwner.toy.id!,
+                      consumerId: state.currentConsumer.id!,
+                    ),
+                  ],
+                ),
+                ownerConsumer: oldToyAndOwner.ownerConsumer,
+              ),
+            ],
+          );
+
+        emit(state.copyWith(toys: newToysAndOwnerList));
+        final tryLike = await _toyRepository.likeToy(
+          toyID: value.toyID,
+          currentConsumerID: _consumerRepository.currentConsumer!.id!,
+        );
+        tryLike.fold(
+          (l) {
+            final newToysAndOwnerList =
+                List<ToyAndOwnerConsumer>.from(state.toys)
+                  ..replaceRange(
+                    indexToyAndOwner,
+                    indexToyAndOwner + 1,
+                    [oldToyAndOwner],
+                  );
+
+            emit(state.copyWith(failure: l, toys: newToysAndOwnerList));
+          },
+          (_) => null,
+        );
+      },
       fetchLikeableToys: (value) async {
-        if (value.clearBeforeFetch) {
+        if (value.isStartOver) {
           emit(state.copyWith(toys: [], hasReachedMax: false));
         }
-
         // If reached max, do not fetch
-        if (state.hasReachedMax) return;
+        if (state.hasReachedMax && !value.isStartOver) return;
         // Get the oldest toy
         final oldestToy = state.toys.firstOrNull?.toy;
 
@@ -71,12 +115,9 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
         emit(state.copyWith(initializingFailure: null, fetchMoreFailure: null));
 
         // Fetch 10 likeable toys
-        final tryFetch = await _toyRepository.fetch10LikeableToysLatest(
-          // If oldest toy is null, fetch latest
-          // If not, fetch before this toy
-          beforeThisToy: oldestToy,
-          // Do not fetch owned toys
-          currentAuthId: state.currentAuth.id,
+        final tryFetch = await _toyRepository.fetchMoreLikeableToys(
+          currentConsumerID: state.currentConsumer.id!,
+          fetchedLikeableToysLength: state.toys.length,
         );
         var newToys = <Toy>[];
         tryFetch.fold(
@@ -127,7 +168,7 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
     for (final toy in toys) {
       // Try Read Owner
       final tryRead = await _consumerRepository.readConsumer(
-        authId: toy.ownerConsumerAuthID,
+        consumerID: toy.ownerConsumerID,
       );
       await tryRead.fold(
         // If Owner is not found, skip this toy

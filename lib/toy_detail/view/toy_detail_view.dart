@@ -22,8 +22,7 @@ class ToyDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isCurrentConsumerOwner =
-        currentConsumer.authId == toy.ownerConsumerAuthID;
+    final isCurrentConsumerOwner = currentConsumer.id == toy.ownerConsumerID;
 
     return BaseScaffold(
       safeArea: true,

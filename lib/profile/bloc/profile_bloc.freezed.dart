@@ -700,7 +700,7 @@ abstract class ProfileCloseToyToPublic implements ProfileEvent {
 
 /// @nodoc
 mixin _$ProfileState {
-  String get currentAuthId => throw _privateConstructorUsedError;
+  int get currentConsumerID => throw _privateConstructorUsedError;
   List<Toy>? get ownedToys => throw _privateConstructorUsedError;
   bool get hasReachedMax => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
@@ -721,7 +721,7 @@ abstract class $ProfileStateCopyWith<$Res> {
       _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
   $Res call(
-      {String currentAuthId,
+      {int currentConsumerID,
       List<Toy>? ownedToys,
       bool hasReachedMax,
       bool isLoading,
@@ -744,7 +744,7 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentAuthId = null,
+    Object? currentConsumerID = null,
     Object? ownedToys = freezed,
     Object? hasReachedMax = null,
     Object? isLoading = null,
@@ -754,10 +754,10 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
-      currentAuthId: null == currentAuthId
-          ? _value.currentAuthId
-          : currentAuthId // ignore: cast_nullable_to_non_nullable
-              as String,
+      currentConsumerID: null == currentConsumerID
+          ? _value.currentConsumerID
+          : currentConsumerID // ignore: cast_nullable_to_non_nullable
+              as int,
       ownedToys: freezed == ownedToys
           ? _value.ownedToys
           : ownedToys // ignore: cast_nullable_to_non_nullable
@@ -799,7 +799,7 @@ abstract class _$$ProfileStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String currentAuthId,
+      {int currentConsumerID,
       List<Toy>? ownedToys,
       bool hasReachedMax,
       bool isLoading,
@@ -820,7 +820,7 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentAuthId = null,
+    Object? currentConsumerID = null,
     Object? ownedToys = freezed,
     Object? hasReachedMax = null,
     Object? isLoading = null,
@@ -830,10 +830,10 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
     Object? failure = freezed,
   }) {
     return _then(_$ProfileStateImpl(
-      currentAuthId: null == currentAuthId
-          ? _value.currentAuthId
-          : currentAuthId // ignore: cast_nullable_to_non_nullable
-              as String,
+      currentConsumerID: null == currentConsumerID
+          ? _value.currentConsumerID
+          : currentConsumerID // ignore: cast_nullable_to_non_nullable
+              as int,
       ownedToys: freezed == ownedToys
           ? _value._ownedToys
           : ownedToys // ignore: cast_nullable_to_non_nullable
@@ -870,7 +870,7 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
 
 class _$ProfileStateImpl implements _ProfileState {
   const _$ProfileStateImpl(
-      {required this.currentAuthId,
+      {required this.currentConsumerID,
       required final List<Toy>? ownedToys,
       this.hasReachedMax = false,
       this.isLoading = false,
@@ -881,7 +881,7 @@ class _$ProfileStateImpl implements _ProfileState {
       : _ownedToys = ownedToys;
 
   @override
-  final String currentAuthId;
+  final int currentConsumerID;
   final List<Toy>? _ownedToys;
   @override
   List<Toy>? get ownedToys {
@@ -910,7 +910,7 @@ class _$ProfileStateImpl implements _ProfileState {
 
   @override
   String toString() {
-    return 'ProfileState(currentAuthId: $currentAuthId, ownedToys: $ownedToys, hasReachedMax: $hasReachedMax, isLoading: $isLoading, isInitializing: $isInitializing, fetchMoreFailure: $fetchMoreFailure, fetchLatestToysFailure: $fetchLatestToysFailure, failure: $failure)';
+    return 'ProfileState(currentConsumerID: $currentConsumerID, ownedToys: $ownedToys, hasReachedMax: $hasReachedMax, isLoading: $isLoading, isInitializing: $isInitializing, fetchMoreFailure: $fetchMoreFailure, fetchLatestToysFailure: $fetchLatestToysFailure, failure: $failure)';
   }
 
   @override
@@ -918,8 +918,8 @@ class _$ProfileStateImpl implements _ProfileState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProfileStateImpl &&
-            (identical(other.currentAuthId, currentAuthId) ||
-                other.currentAuthId == currentAuthId) &&
+            (identical(other.currentConsumerID, currentConsumerID) ||
+                other.currentConsumerID == currentConsumerID) &&
             const DeepCollectionEquality()
                 .equals(other._ownedToys, _ownedToys) &&
             (identical(other.hasReachedMax, hasReachedMax) ||
@@ -938,7 +938,7 @@ class _$ProfileStateImpl implements _ProfileState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      currentAuthId,
+      currentConsumerID,
       const DeepCollectionEquality().hash(_ownedToys),
       hasReachedMax,
       isLoading,
@@ -956,7 +956,7 @@ class _$ProfileStateImpl implements _ProfileState {
 
 abstract class _ProfileState implements ProfileState {
   const factory _ProfileState(
-      {required final String currentAuthId,
+      {required final int currentConsumerID,
       required final List<Toy>? ownedToys,
       final bool hasReachedMax,
       final bool isLoading,
@@ -966,7 +966,7 @@ abstract class _ProfileState implements ProfileState {
       final Failure? failure}) = _$ProfileStateImpl;
 
   @override
-  String get currentAuthId;
+  int get currentConsumerID;
   @override
   List<Toy>? get ownedToys;
   @override

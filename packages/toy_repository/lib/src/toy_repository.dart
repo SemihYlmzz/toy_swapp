@@ -30,7 +30,7 @@ class ToyRepository {
 
   // Functions
   FutureEither<ToyAndConsumer> create({
-    required String ownerConsumerAuthID,
+    required int ownerConsumerID,
     required ToyName toyName,
     required ToyDescription toyDescription,
     required List<ToyImage> toyImageList,
@@ -48,7 +48,7 @@ class ToyRepository {
     // Todo:
     // Add Uint8List length and size Checker value object
     final createdMillis = DateTime.now().millisecondsSinceEpoch;
-    final toyID = '$createdMillis$ownerConsumerAuthID';
+    final toyID = '$createdMillis$ownerConsumerID';
 
     final path = '${ToyRepositoryStrings.toysCollectionPath}'
         '/$toyID'
@@ -88,7 +88,7 @@ class ToyRepository {
         toyDescription.value,
         uploadedToyImageUrls,
         toyName.value,
-        ownerConsumerAuthID,
+        ownerConsumerID,
         toyID,
       );
 
@@ -199,12 +199,27 @@ class ToyRepository {
     // }
   }
 
+  FutureEither<Toy> likeToy({
+    required int toyID,
+    required int currentConsumerID,
+  }) async {
+    try {
+      final likedToy = await _client.toy.likeToy(
+        toyID,
+        currentConsumerID,
+      );
+      return Right(likedToy);
+    } catch (exception) {
+      return const Left(ToyRepositoryException.unknown());
+    }
+  }
+
   FutureUnit makeToyPrivate() async {
     return const Right(unit);
   }
 
   FutureEither<List<Toy>> fetchMoreOwnedToys({
-    required String currentAuthId,
+    required int currentConsumerID,
     required bool isStartOver,
   }) async {
     try {
@@ -213,7 +228,7 @@ class ToyRepository {
       }
 
       final fetchedToys = await _client.toy.read12WithOwnerConsumerID(
-        currentAuthId,
+        currentConsumerID,
         isStartOver || ownedToys == null ? 0 : ownedToys!.length,
       );
 
@@ -226,43 +241,19 @@ class ToyRepository {
     }
   }
 
-  FutureEither<List<Toy>> fetch10LikeableToysLatest({
-    required String currentAuthId,
-    required Toy? beforeThisToy,
+  FutureEither<List<Toy>> fetchMoreLikeableToys({
+    required int currentConsumerID,
+    required int fetchedLikeableToysLength,
   }) async {
-    return const Right([]);
-    // try {
-    //   final toyDocs = await _remoteDatabase.readCollection(
-    //     collectionID: ToyRepositoryStrings.toysCollectionPath,
-    //     fieldIsNotEqualTo: (
-    //       field: 'ownerAuthId',
-    //       value: currentAuthId,
-    //     ),
-    //     fieldIsEqualToList: [
-    //       (
-    //         field: 'isPublic',
-    //         value: true,
-    //       ),
-    //       (
-    //         field: 'isLocked',
-    //         value: false,
-    //       ),
-    //     ],
-    //     endBefore: beforeThisToy != null
-    //         ? [beforeThisToy.createdAt.toIso8601String()]
-    //         : null,
-    //     orderBy: 'createdAt',
-    //     limitToLast: 10,
-    //   );
-
-    //   if (toyDocs == null) {
-    //     return right([]);
-    //   }
-    //   final toys = toyDocs.map(Toy.fromJson).toList();
-    //   return Right(toys);
-    // } catch (exception) {
-    //   return const Left(ToyRepositoryException.unknown());
-    // }
+    try {
+      final newLikeableToys = await _client.toy.readLikeableToys(
+        currentConsumerID,
+        fetchedLikeableToysLength,
+      );
+      return Right(newLikeableToys.reversed.toList());
+    } catch (exception) {
+      return const Left(ToyRepositoryException.unknown());
+    }
   }
 
   void sinkAddOwnedToy(Toy addedToy) {

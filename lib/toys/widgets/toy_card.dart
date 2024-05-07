@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinch_to_zoom_scrollable/pinch_to_zoom_scrollable.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -21,6 +22,7 @@ class ToyCard extends StatelessWidget {
     final contextTheme = Theme.of(context);
     final toy = toyAndOwnerConsumer.toy;
     final ownerConsumer = toyAndOwnerConsumer.ownerConsumer;
+    final currentConsumer = context.read<ToysBloc>().state.currentConsumer;
     final toyGradient = switch (toy.gender) {
       ToyGender.boy => AppColors.boyToyGradient,
       ToyGender.girl => AppColors.girlToyGradient,
@@ -182,9 +184,22 @@ class ToyCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Icon(
-                      Icons.favorite_outline,
-                      size: 40,
+                    GestureDetector(
+                      onTap: () {
+                        context.read<ToysBloc>().add(
+                              ToysEvent.likeToy(toyID: toy.id!),
+                            );
+                      },
+                      child: Icon(
+                        toy.likes?.where(
+                                  (like) =>
+                                      like.consumerId == currentConsumer.id,
+                                ) ==
+                                null
+                            ? Icons.favorite_outline
+                            : Icons.favorite,
+                        size: 40,
+                      ),
                     ),
                     SharedGap.gap12,
                   ],

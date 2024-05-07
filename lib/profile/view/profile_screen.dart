@@ -16,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => ProfileBloc(
-        authRepository: context.read(),
+        consumerRepository: context.read(),
         toyRepository: context.read(),
       )..add(const ProfileEvent.fetchMoreOwnedToys()),
       child: MultiBlocListener(

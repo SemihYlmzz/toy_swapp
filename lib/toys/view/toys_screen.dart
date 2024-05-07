@@ -12,7 +12,6 @@ class ToysScreen extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => ToysBloc(
-        authRepository: context.read(),
         consumerRepository: context.read(),
         toyRepository: context.read(),
       )..add(const ToysEvent.fetchLikeableToys()),

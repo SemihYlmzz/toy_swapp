@@ -33,11 +33,17 @@ class CreateToyBloc extends Bloc<CreateToyEvent, CreateToyState> {
 
     await event.map(
       createOwnedToy: (e) async {
-        if (state.currentAuth == Auth.empty()) {
+        final currentConsumer = _consumerRepository.currentConsumer;
+        if (currentConsumer == null) {
           return;
         }
+        final currentConsumerID = currentConsumer.id;
+        if (currentConsumerID == null) {
+          return;
+        }
+
         final tryCreate = await _toyRepository.create(
-          ownerConsumerAuthID: state.currentAuth.id,
+          ownerConsumerID: currentConsumerID,
           toyName: e.toyName,
           toyDescription: e.toyDescription,
           toyImageList: e.imageUrlList,

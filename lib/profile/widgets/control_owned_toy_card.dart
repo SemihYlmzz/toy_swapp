@@ -109,7 +109,7 @@ class ControlOwnedToyCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        ownedToy.likersConsumerIDs.length.toString(),
+                        (ownedToy.likes?.length ?? 0).toString(),
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ],

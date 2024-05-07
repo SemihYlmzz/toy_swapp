@@ -39,7 +39,7 @@ class _ToysViewState extends State<ToysView> {
       onRefresh: () async {
         context.read<ToysBloc>().add(
               const ToysEvent.fetchLikeableToys(
-                clearBeforeFetch: true,
+                isStartOver: true,
               ),
             );
       },
@@ -51,9 +51,9 @@ class _ToysViewState extends State<ToysView> {
                   Text(initializingFailure.toString()),
                   TextButton(
                     onPressed: () {
-                      context
-                          .read<ToysBloc>()
-                          .add(const ToysEvent.fetchLikeableToys());
+                      context.read<ToysBloc>().add(
+                            const ToysEvent.fetchLikeableToys(),
+                          );
                     },
                     child: const Text('Retry'),
                   ),
@@ -69,9 +69,11 @@ class _ToysViewState extends State<ToysView> {
                           const Text('No toys found'),
                           TextButton(
                             onPressed: () {
-                              context
-                                  .read<ToysBloc>()
-                                  .add(const ToysEvent.fetchLikeableToys());
+                              context.read<ToysBloc>().add(
+                                    const ToysEvent.fetchLikeableToys(
+                                      isStartOver: true,
+                                    ),
+                                  );
                             },
                             child: const Text('Retry'),
                           ),
@@ -80,6 +82,7 @@ class _ToysViewState extends State<ToysView> {
                     )
                   : ListView.builder(
                       controller: _scrollController,
+                      physics: const AlwaysScrollableScrollPhysics(),
                       itemCount: toysList.length +
                           (toysState.fetchMoreFailure != null ? 1 : 0),
                       itemBuilder: (context, index) {

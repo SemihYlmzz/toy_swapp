@@ -33,7 +33,7 @@ class AccountInitializerBloc
     await event.map(
       fetchAccountData: (e) async {
         emit(state.copyWith(fetchAccountDataFailure: null));
-        final tryRead = await _consumerRepository.initCurrentConsumer(
+        final tryRead = await _consumerRepository.initCurrentConsumerWithAuthID(
           authId: state.currentAuth.id,
         );
         tryRead.fold(
