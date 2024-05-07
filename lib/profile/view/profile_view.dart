@@ -39,7 +39,11 @@ class _ProfileViewState extends State<ProfileView> {
     final isInitializing = profileState.isInitializing;
     return RefreshIndicator(
       onRefresh: () async {
-        context.read<ProfileBloc>().add(const ProfileEvent.fetchOwnedToys());
+        context.read<ProfileBloc>().add(
+              const ProfileEvent.fetchMoreOwnedToys(
+                startOver: true,
+              ),
+            );
       },
       displacement: 20,
       edgeOffset: 160,
@@ -57,7 +61,7 @@ class _ProfileViewState extends State<ProfileView> {
                   TextButton(
                     onPressed: () => context
                         .read<ProfileBloc>()
-                        .add(const ProfileEvent.fetchOwnedToys()),
+                        .add(const ProfileEvent.fetchMoreOwnedToys()),
                     child: const Text(
                       'Tap to try again.',
                     ),

@@ -46,14 +46,14 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       transformer: throttleDroppable(duration),
     );
     _ownedToysSubscription = _toyRepository.ownedToysStream.listen(
-      (ownedToys) => add(ProfileEvent.ownedToysUpdated(ownedToys)),
+      (ownedToys) => add(ProfileEvent.ownedToysUpdated(ownedToys ?? [])),
     );
   }
   // Repositories
   final ToyRepository _toyRepository;
 
   // Subscriptions
-  StreamSubscription<List<Toy>>? _ownedToysSubscription;
+  StreamSubscription<List<Toy>?>? _ownedToysSubscription;
 
   // Events
   Future<void> _onProfileEvent(
@@ -80,44 +80,33 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       ownedToysUpdated: (e) async {
         emit(state.copyWith(ownedToys: e.updatedOwnedToys));
       },
-      fetchOwnedToys: (e) async {
+      fetchMoreOwnedToys: (e) async {
+        if (e.startOver) {
+          emit(state.copyWith(hasReachedMax: false));
+        }
+        if (state.hasReachedMax) return;
+        final isInitializing = state.ownedToys?.isEmpty ?? true;
         emit(
           state.copyWith(
-            hasReachedMax: false,
-            isInitializing: true,
-            isLoading: false,
             fetchLatestToysFailure: null,
+            isInitializing: isInitializing,
+            fetchMoreFailure: null,
           ),
         );
-        final tryFetch = await _toyRepository.fetchLastest12Owned(
-          ownerAuthId: state.currentAuthId,
+        final tryFetch = await _toyRepository.fetchMoreOwnedToys(
+          currentAuthId: state.currentAuthId,
+          isStartOver: e.startOver,
         );
         tryFetch.fold(
-          (l) => emit(state.copyWith(fetchLatestToysFailure: l)),
+          (l) {
+            if (isInitializing) {
+              emit(state.copyWith(fetchLatestToysFailure: l));
+            } else {
+              emit(state.copyWith(fetchMoreFailure: l));
+            }
+          },
           (fetchedToysList) {
             if (fetchedToysList.length < 12) {
-              emit(state.copyWith(hasReachedMax: true));
-            }
-            emit(state.copyWith(ownedToys: fetchedToysList));
-          },
-        );
-      },
-      fetchMoreOwnedToys: (e) async {
-        emit(state.copyWith(fetchMoreFailure: null));
-        if (state.hasReachedMax) return;
-
-        final ownedToys = state.ownedToys;
-        if (ownedToys == null) return;
-        if (ownedToys.isEmpty) return;
-        final tryFetch = await _toyRepository.fetch12BeforeOldestOwnedToy(
-          ownerAuthId: state.currentAuthId,
-          oldestOwnedToy: ownedToys.first,
-        );
-
-        tryFetch.fold(
-          (l) => emit(state.copyWith(fetchMoreFailure: l)),
-          (newOwnedToys) {
-            if (newOwnedToys.isEmpty || newOwnedToys.length < 12) {
               emit(state.copyWith(hasReachedMax: true));
             }
           },

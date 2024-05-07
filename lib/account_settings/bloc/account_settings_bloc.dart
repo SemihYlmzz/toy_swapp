@@ -81,23 +81,14 @@ class AccountSettingsBloc
           emit(state.copyWith(failure: tryReauthFailure));
           return;
         }
-        final updatedCosumer = _consumerRepository.updateFullName(
+        final tryUpdateFullname = await _consumerRepository.updateFullName(
           firstNameObject: e.firstNameObject,
           lastNameObject: e.lastNameObject,
         );
-        if (updatedCosumer == null) {
-          // Todo
-          // set failure
-          return;
-        }
-        // final tryUpdate = await _remoteDatabase.batchCommit();
-        // final tryUpdateFailure = tryUpdate.getLeft().toNullable();
-        // if (tryUpdateFailure != null) {
-        //   emit(state.copyWith(failure: tryUpdateFailure));
-        //   return;
-        // }
-        _consumerRepository.sinkCurrentConsumer(updatedCosumer);
-        emit(state.copyWith(isValueUpdated: true));
+        tryUpdateFullname.fold(
+          (l) => emit(state.copyWith(failure: l)),
+          (r) => emit(state.copyWith(isValueUpdated: true)),
+        );
       },
       updateEmail: (e) async {
         final tryReauthFailure = await _tryReauth(e.currentPassword);
@@ -108,8 +99,13 @@ class AccountSettingsBloc
         final tryUpdate = await _authRepository.sendEmailUpdateVerification(
           emailObject: e.emailObject,
         );
+
         tryUpdate.fold(
           (failure) => emit(state.copyWith(failure: failure)),
+          // todo
+          // Display done message to user
+          // "A verification email has been sent to ${e.emailObject.value}"
+          // If the email is not registered before.
           (consumer) => emit(state.copyWith(isValueUpdated: true)),
         );
       },

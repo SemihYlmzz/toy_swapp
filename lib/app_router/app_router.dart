@@ -106,9 +106,9 @@ class AppRouter {
 
           String? verifiedSignedInCheckConsumer() {
             String? consumerHasData() {
-              // if (currentAuth.email != currentConsumer?.email) {
-              //   return ConsumerDataCalibrationRouter.instance.path;
-              // }
+              if (currentAuth.email != currentConsumer?.email) {
+                return ConsumerDataCalibrationRouter.instance.path;
+              }
 
               if (!_inConsumerScreens(state)) {
                 return ToysGoRoute.instance.path;

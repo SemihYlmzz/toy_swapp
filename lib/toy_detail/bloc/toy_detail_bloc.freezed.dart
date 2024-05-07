@@ -19,19 +19,19 @@ mixin _$ToyDetailEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Consumer? updatedConsumer) currentConsumerUpdated,
-    required TResult Function(int toyId) loadToyAndOwner,
+    required TResult Function(String toyID) loadToyAndOwner,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Consumer? updatedConsumer)? currentConsumerUpdated,
-    TResult? Function(int toyId)? loadToyAndOwner,
+    TResult? Function(String toyID)? loadToyAndOwner,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Consumer? updatedConsumer)? currentConsumerUpdated,
-    TResult Function(int toyId)? loadToyAndOwner,
+    TResult Function(String toyID)? loadToyAndOwner,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -149,7 +149,7 @@ class _$ToyDetailCurrentConsumerUpdatedImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Consumer? updatedConsumer) currentConsumerUpdated,
-    required TResult Function(int toyId) loadToyAndOwner,
+    required TResult Function(String toyID) loadToyAndOwner,
   }) {
     return currentConsumerUpdated(updatedConsumer);
   }
@@ -158,7 +158,7 @@ class _$ToyDetailCurrentConsumerUpdatedImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Consumer? updatedConsumer)? currentConsumerUpdated,
-    TResult? Function(int toyId)? loadToyAndOwner,
+    TResult? Function(String toyID)? loadToyAndOwner,
   }) {
     return currentConsumerUpdated?.call(updatedConsumer);
   }
@@ -167,7 +167,7 @@ class _$ToyDetailCurrentConsumerUpdatedImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Consumer? updatedConsumer)? currentConsumerUpdated,
-    TResult Function(int toyId)? loadToyAndOwner,
+    TResult Function(String toyID)? loadToyAndOwner,
     required TResult orElse(),
   }) {
     if (currentConsumerUpdated != null) {
@@ -229,7 +229,7 @@ abstract class _$$ToyDetailLoadToyAndOwnerImplCopyWith<$Res> {
           $Res Function(_$ToyDetailLoadToyAndOwnerImpl) then) =
       __$$ToyDetailLoadToyAndOwnerImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int toyId});
+  $Res call({String toyID});
 }
 
 /// @nodoc
@@ -244,13 +244,13 @@ class __$$ToyDetailLoadToyAndOwnerImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? toyId = null,
+    Object? toyID = null,
   }) {
     return _then(_$ToyDetailLoadToyAndOwnerImpl(
-      toyId: null == toyId
-          ? _value.toyId
-          : toyId // ignore: cast_nullable_to_non_nullable
-              as int,
+      toyID: null == toyID
+          ? _value.toyID
+          : toyID // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -258,14 +258,14 @@ class __$$ToyDetailLoadToyAndOwnerImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ToyDetailLoadToyAndOwnerImpl implements ToyDetailLoadToyAndOwner {
-  const _$ToyDetailLoadToyAndOwnerImpl({required this.toyId});
+  const _$ToyDetailLoadToyAndOwnerImpl({required this.toyID});
 
   @override
-  final int toyId;
+  final String toyID;
 
   @override
   String toString() {
-    return 'ToyDetailEvent.loadToyAndOwner(toyId: $toyId)';
+    return 'ToyDetailEvent.loadToyAndOwner(toyID: $toyID)';
   }
 
   @override
@@ -273,11 +273,11 @@ class _$ToyDetailLoadToyAndOwnerImpl implements ToyDetailLoadToyAndOwner {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ToyDetailLoadToyAndOwnerImpl &&
-            (identical(other.toyId, toyId) || other.toyId == toyId));
+            (identical(other.toyID, toyID) || other.toyID == toyID));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, toyId);
+  int get hashCode => Object.hash(runtimeType, toyID);
 
   @JsonKey(ignore: true)
   @override
@@ -290,29 +290,29 @@ class _$ToyDetailLoadToyAndOwnerImpl implements ToyDetailLoadToyAndOwner {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Consumer? updatedConsumer) currentConsumerUpdated,
-    required TResult Function(int toyId) loadToyAndOwner,
+    required TResult Function(String toyID) loadToyAndOwner,
   }) {
-    return loadToyAndOwner(toyId);
+    return loadToyAndOwner(toyID);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Consumer? updatedConsumer)? currentConsumerUpdated,
-    TResult? Function(int toyId)? loadToyAndOwner,
+    TResult? Function(String toyID)? loadToyAndOwner,
   }) {
-    return loadToyAndOwner?.call(toyId);
+    return loadToyAndOwner?.call(toyID);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Consumer? updatedConsumer)? currentConsumerUpdated,
-    TResult Function(int toyId)? loadToyAndOwner,
+    TResult Function(String toyID)? loadToyAndOwner,
     required TResult orElse(),
   }) {
     if (loadToyAndOwner != null) {
-      return loadToyAndOwner(toyId);
+      return loadToyAndOwner(toyID);
     }
     return orElse();
   }
@@ -353,10 +353,10 @@ class _$ToyDetailLoadToyAndOwnerImpl implements ToyDetailLoadToyAndOwner {
 }
 
 abstract class ToyDetailLoadToyAndOwner implements ToyDetailEvent {
-  const factory ToyDetailLoadToyAndOwner({required final int toyId}) =
+  const factory ToyDetailLoadToyAndOwner({required final String toyID}) =
       _$ToyDetailLoadToyAndOwnerImpl;
 
-  int get toyId;
+  String get toyID;
   @JsonKey(ignore: true)
   _$$ToyDetailLoadToyAndOwnerImplCopyWith<_$ToyDetailLoadToyAndOwnerImpl>
       get copyWith => throw _privateConstructorUsedError;

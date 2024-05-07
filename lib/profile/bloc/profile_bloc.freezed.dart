@@ -18,27 +18,24 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchOwnedToys,
     required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
-    required TResult Function() fetchMoreOwnedToys,
+    required TResult Function(bool startOver) fetchMoreOwnedToys,
     required TResult Function(int toyID) openToyToPublic,
     required TResult Function(int toyID) closeToyToPublic,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchOwnedToys,
     TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
-    TResult? Function()? fetchMoreOwnedToys,
+    TResult? Function(bool startOver)? fetchMoreOwnedToys,
     TResult? Function(int toyID)? openToyToPublic,
     TResult? Function(int toyID)? closeToyToPublic,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchOwnedToys,
     TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
-    TResult Function()? fetchMoreOwnedToys,
+    TResult Function(bool startOver)? fetchMoreOwnedToys,
     TResult Function(int toyID)? openToyToPublic,
     TResult Function(int toyID)? closeToyToPublic,
     required TResult orElse(),
@@ -46,7 +43,6 @@ mixin _$ProfileEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ProfileFetchOwnedToys value) fetchOwnedToys,
     required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
     required TResult Function(ProfileFetchMoreOwnedToys value)
         fetchMoreOwnedToys,
@@ -56,7 +52,6 @@ mixin _$ProfileEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
     TResult? Function(ProfileOpenToyToPublic value)? openToyToPublic,
@@ -65,7 +60,6 @@ mixin _$ProfileEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
     TResult Function(ProfileOpenToyToPublic value)? openToyToPublic,
@@ -91,129 +85,6 @@ class _$ProfileEventCopyWithImpl<$Res, $Val extends ProfileEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$ProfileFetchOwnedToysImplCopyWith<$Res> {
-  factory _$$ProfileFetchOwnedToysImplCopyWith(
-          _$ProfileFetchOwnedToysImpl value,
-          $Res Function(_$ProfileFetchOwnedToysImpl) then) =
-      __$$ProfileFetchOwnedToysImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ProfileFetchOwnedToysImplCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res, _$ProfileFetchOwnedToysImpl>
-    implements _$$ProfileFetchOwnedToysImplCopyWith<$Res> {
-  __$$ProfileFetchOwnedToysImplCopyWithImpl(_$ProfileFetchOwnedToysImpl _value,
-      $Res Function(_$ProfileFetchOwnedToysImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ProfileFetchOwnedToysImpl implements ProfileFetchOwnedToys {
-  const _$ProfileFetchOwnedToysImpl();
-
-  @override
-  String toString() {
-    return 'ProfileEvent.fetchOwnedToys()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProfileFetchOwnedToysImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() fetchOwnedToys,
-    required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
-    required TResult Function() fetchMoreOwnedToys,
-    required TResult Function(int toyID) openToyToPublic,
-    required TResult Function(int toyID) closeToyToPublic,
-  }) {
-    return fetchOwnedToys();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchOwnedToys,
-    TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
-    TResult? Function()? fetchMoreOwnedToys,
-    TResult? Function(int toyID)? openToyToPublic,
-    TResult? Function(int toyID)? closeToyToPublic,
-  }) {
-    return fetchOwnedToys?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchOwnedToys,
-    TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
-    TResult Function()? fetchMoreOwnedToys,
-    TResult Function(int toyID)? openToyToPublic,
-    TResult Function(int toyID)? closeToyToPublic,
-    required TResult orElse(),
-  }) {
-    if (fetchOwnedToys != null) {
-      return fetchOwnedToys();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProfileFetchOwnedToys value) fetchOwnedToys,
-    required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
-    required TResult Function(ProfileFetchMoreOwnedToys value)
-        fetchMoreOwnedToys,
-    required TResult Function(ProfileOpenToyToPublic value) openToyToPublic,
-    required TResult Function(ProfileCloseToyToPublic value) closeToyToPublic,
-  }) {
-    return fetchOwnedToys(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
-    TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
-    TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
-    TResult? Function(ProfileOpenToyToPublic value)? openToyToPublic,
-    TResult? Function(ProfileCloseToyToPublic value)? closeToyToPublic,
-  }) {
-    return fetchOwnedToys?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
-    TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
-    TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
-    TResult Function(ProfileOpenToyToPublic value)? openToyToPublic,
-    TResult Function(ProfileCloseToyToPublic value)? closeToyToPublic,
-    required TResult orElse(),
-  }) {
-    if (fetchOwnedToys != null) {
-      return fetchOwnedToys(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ProfileFetchOwnedToys implements ProfileEvent {
-  const factory ProfileFetchOwnedToys() = _$ProfileFetchOwnedToysImpl;
 }
 
 /// @nodoc
@@ -292,9 +163,8 @@ class _$ProfileOwnedToysUpdatedImpl implements ProfileOwnedToysUpdated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchOwnedToys,
     required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
-    required TResult Function() fetchMoreOwnedToys,
+    required TResult Function(bool startOver) fetchMoreOwnedToys,
     required TResult Function(int toyID) openToyToPublic,
     required TResult Function(int toyID) closeToyToPublic,
   }) {
@@ -304,9 +174,8 @@ class _$ProfileOwnedToysUpdatedImpl implements ProfileOwnedToysUpdated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchOwnedToys,
     TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
-    TResult? Function()? fetchMoreOwnedToys,
+    TResult? Function(bool startOver)? fetchMoreOwnedToys,
     TResult? Function(int toyID)? openToyToPublic,
     TResult? Function(int toyID)? closeToyToPublic,
   }) {
@@ -316,9 +185,8 @@ class _$ProfileOwnedToysUpdatedImpl implements ProfileOwnedToysUpdated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchOwnedToys,
     TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
-    TResult Function()? fetchMoreOwnedToys,
+    TResult Function(bool startOver)? fetchMoreOwnedToys,
     TResult Function(int toyID)? openToyToPublic,
     TResult Function(int toyID)? closeToyToPublic,
     required TResult orElse(),
@@ -332,7 +200,6 @@ class _$ProfileOwnedToysUpdatedImpl implements ProfileOwnedToysUpdated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ProfileFetchOwnedToys value) fetchOwnedToys,
     required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
     required TResult Function(ProfileFetchMoreOwnedToys value)
         fetchMoreOwnedToys,
@@ -345,7 +212,6 @@ class _$ProfileOwnedToysUpdatedImpl implements ProfileOwnedToysUpdated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
     TResult? Function(ProfileOpenToyToPublic value)? openToyToPublic,
@@ -357,7 +223,6 @@ class _$ProfileOwnedToysUpdatedImpl implements ProfileOwnedToysUpdated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
     TResult Function(ProfileOpenToyToPublic value)? openToyToPublic,
@@ -387,6 +252,8 @@ abstract class _$$ProfileFetchMoreOwnedToysImplCopyWith<$Res> {
           _$ProfileFetchMoreOwnedToysImpl value,
           $Res Function(_$ProfileFetchMoreOwnedToysImpl) then) =
       __$$ProfileFetchMoreOwnedToysImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool startOver});
 }
 
 /// @nodoc
@@ -397,64 +264,87 @@ class __$$ProfileFetchMoreOwnedToysImplCopyWithImpl<$Res>
       _$ProfileFetchMoreOwnedToysImpl _value,
       $Res Function(_$ProfileFetchMoreOwnedToysImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? startOver = null,
+  }) {
+    return _then(_$ProfileFetchMoreOwnedToysImpl(
+      startOver: null == startOver
+          ? _value.startOver
+          : startOver // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ProfileFetchMoreOwnedToysImpl implements ProfileFetchMoreOwnedToys {
-  const _$ProfileFetchMoreOwnedToysImpl();
+  const _$ProfileFetchMoreOwnedToysImpl({this.startOver = false});
+
+  @override
+  @JsonKey()
+  final bool startOver;
 
   @override
   String toString() {
-    return 'ProfileEvent.fetchMoreOwnedToys()';
+    return 'ProfileEvent.fetchMoreOwnedToys(startOver: $startOver)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProfileFetchMoreOwnedToysImpl);
+            other is _$ProfileFetchMoreOwnedToysImpl &&
+            (identical(other.startOver, startOver) ||
+                other.startOver == startOver));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, startOver);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProfileFetchMoreOwnedToysImplCopyWith<_$ProfileFetchMoreOwnedToysImpl>
+      get copyWith => __$$ProfileFetchMoreOwnedToysImplCopyWithImpl<
+          _$ProfileFetchMoreOwnedToysImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchOwnedToys,
     required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
-    required TResult Function() fetchMoreOwnedToys,
+    required TResult Function(bool startOver) fetchMoreOwnedToys,
     required TResult Function(int toyID) openToyToPublic,
     required TResult Function(int toyID) closeToyToPublic,
   }) {
-    return fetchMoreOwnedToys();
+    return fetchMoreOwnedToys(startOver);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchOwnedToys,
     TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
-    TResult? Function()? fetchMoreOwnedToys,
+    TResult? Function(bool startOver)? fetchMoreOwnedToys,
     TResult? Function(int toyID)? openToyToPublic,
     TResult? Function(int toyID)? closeToyToPublic,
   }) {
-    return fetchMoreOwnedToys?.call();
+    return fetchMoreOwnedToys?.call(startOver);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchOwnedToys,
     TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
-    TResult Function()? fetchMoreOwnedToys,
+    TResult Function(bool startOver)? fetchMoreOwnedToys,
     TResult Function(int toyID)? openToyToPublic,
     TResult Function(int toyID)? closeToyToPublic,
     required TResult orElse(),
   }) {
     if (fetchMoreOwnedToys != null) {
-      return fetchMoreOwnedToys();
+      return fetchMoreOwnedToys(startOver);
     }
     return orElse();
   }
@@ -462,7 +352,6 @@ class _$ProfileFetchMoreOwnedToysImpl implements ProfileFetchMoreOwnedToys {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ProfileFetchOwnedToys value) fetchOwnedToys,
     required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
     required TResult Function(ProfileFetchMoreOwnedToys value)
         fetchMoreOwnedToys,
@@ -475,7 +364,6 @@ class _$ProfileFetchMoreOwnedToysImpl implements ProfileFetchMoreOwnedToys {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
     TResult? Function(ProfileOpenToyToPublic value)? openToyToPublic,
@@ -487,7 +375,6 @@ class _$ProfileFetchMoreOwnedToysImpl implements ProfileFetchMoreOwnedToys {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
     TResult Function(ProfileOpenToyToPublic value)? openToyToPublic,
@@ -502,7 +389,13 @@ class _$ProfileFetchMoreOwnedToysImpl implements ProfileFetchMoreOwnedToys {
 }
 
 abstract class ProfileFetchMoreOwnedToys implements ProfileEvent {
-  const factory ProfileFetchMoreOwnedToys() = _$ProfileFetchMoreOwnedToysImpl;
+  const factory ProfileFetchMoreOwnedToys({final bool startOver}) =
+      _$ProfileFetchMoreOwnedToysImpl;
+
+  bool get startOver;
+  @JsonKey(ignore: true)
+  _$$ProfileFetchMoreOwnedToysImplCopyWith<_$ProfileFetchMoreOwnedToysImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -572,9 +465,8 @@ class _$ProfileOpenToyToPublicImpl implements ProfileOpenToyToPublic {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchOwnedToys,
     required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
-    required TResult Function() fetchMoreOwnedToys,
+    required TResult Function(bool startOver) fetchMoreOwnedToys,
     required TResult Function(int toyID) openToyToPublic,
     required TResult Function(int toyID) closeToyToPublic,
   }) {
@@ -584,9 +476,8 @@ class _$ProfileOpenToyToPublicImpl implements ProfileOpenToyToPublic {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchOwnedToys,
     TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
-    TResult? Function()? fetchMoreOwnedToys,
+    TResult? Function(bool startOver)? fetchMoreOwnedToys,
     TResult? Function(int toyID)? openToyToPublic,
     TResult? Function(int toyID)? closeToyToPublic,
   }) {
@@ -596,9 +487,8 @@ class _$ProfileOpenToyToPublicImpl implements ProfileOpenToyToPublic {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchOwnedToys,
     TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
-    TResult Function()? fetchMoreOwnedToys,
+    TResult Function(bool startOver)? fetchMoreOwnedToys,
     TResult Function(int toyID)? openToyToPublic,
     TResult Function(int toyID)? closeToyToPublic,
     required TResult orElse(),
@@ -612,7 +502,6 @@ class _$ProfileOpenToyToPublicImpl implements ProfileOpenToyToPublic {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ProfileFetchOwnedToys value) fetchOwnedToys,
     required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
     required TResult Function(ProfileFetchMoreOwnedToys value)
         fetchMoreOwnedToys,
@@ -625,7 +514,6 @@ class _$ProfileOpenToyToPublicImpl implements ProfileOpenToyToPublic {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
     TResult? Function(ProfileOpenToyToPublic value)? openToyToPublic,
@@ -637,7 +525,6 @@ class _$ProfileOpenToyToPublicImpl implements ProfileOpenToyToPublic {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
     TResult Function(ProfileOpenToyToPublic value)? openToyToPublic,
@@ -728,9 +615,8 @@ class _$ProfileCloseToyToPublicImpl implements ProfileCloseToyToPublic {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchOwnedToys,
     required TResult Function(List<Toy> updatedOwnedToys) ownedToysUpdated,
-    required TResult Function() fetchMoreOwnedToys,
+    required TResult Function(bool startOver) fetchMoreOwnedToys,
     required TResult Function(int toyID) openToyToPublic,
     required TResult Function(int toyID) closeToyToPublic,
   }) {
@@ -740,9 +626,8 @@ class _$ProfileCloseToyToPublicImpl implements ProfileCloseToyToPublic {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchOwnedToys,
     TResult? Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
-    TResult? Function()? fetchMoreOwnedToys,
+    TResult? Function(bool startOver)? fetchMoreOwnedToys,
     TResult? Function(int toyID)? openToyToPublic,
     TResult? Function(int toyID)? closeToyToPublic,
   }) {
@@ -752,9 +637,8 @@ class _$ProfileCloseToyToPublicImpl implements ProfileCloseToyToPublic {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchOwnedToys,
     TResult Function(List<Toy> updatedOwnedToys)? ownedToysUpdated,
-    TResult Function()? fetchMoreOwnedToys,
+    TResult Function(bool startOver)? fetchMoreOwnedToys,
     TResult Function(int toyID)? openToyToPublic,
     TResult Function(int toyID)? closeToyToPublic,
     required TResult orElse(),
@@ -768,7 +652,6 @@ class _$ProfileCloseToyToPublicImpl implements ProfileCloseToyToPublic {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ProfileFetchOwnedToys value) fetchOwnedToys,
     required TResult Function(ProfileOwnedToysUpdated value) ownedToysUpdated,
     required TResult Function(ProfileFetchMoreOwnedToys value)
         fetchMoreOwnedToys,
@@ -781,7 +664,6 @@ class _$ProfileCloseToyToPublicImpl implements ProfileCloseToyToPublic {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult? Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult? Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
     TResult? Function(ProfileOpenToyToPublic value)? openToyToPublic,
@@ -793,7 +675,6 @@ class _$ProfileCloseToyToPublicImpl implements ProfileCloseToyToPublic {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProfileFetchOwnedToys value)? fetchOwnedToys,
     TResult Function(ProfileOwnedToysUpdated value)? ownedToysUpdated,
     TResult Function(ProfileFetchMoreOwnedToys value)? fetchMoreOwnedToys,
     TResult Function(ProfileOpenToyToPublic value)? openToyToPublic,

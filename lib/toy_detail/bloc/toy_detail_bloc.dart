@@ -49,7 +49,7 @@ class ToyDetailBloc extends Bloc<ToyDetailEvent, ToyDetailState> {
       },
       loadToyAndOwner: (e) async {
         final tryRead = await _toyRepository.readToy(
-          toyId: e.toyId,
+          toyID: e.toyID,
         );
         final fetchedToy = tryRead.getRight().toNullable();
         if (fetchedToy == null) {

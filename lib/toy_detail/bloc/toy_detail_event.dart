@@ -6,6 +6,6 @@ sealed class ToyDetailEvent with _$ToyDetailEvent {
     Consumer? updatedConsumer,
   ) = ToyDetailCurrentConsumerUpdated;
   const factory ToyDetailEvent.loadToyAndOwner({
-    required int toyId,
+    required String toyID,
   }) = ToyDetailLoadToyAndOwner;
 }

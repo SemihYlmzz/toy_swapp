@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_touch_ripple/widgets/widget.dart';
 import 'package:shared_constants/shared_constants.dart';
-import 'package:toy_repository/toy_repository.dart';
 import 'package:toy_swapp_client/toy_swapp_client.dart';
 
 import '../../app/app.dart';
@@ -141,7 +140,15 @@ class CreateToyGenderUpdater extends StatelessWidget {
                       : Colors.greenAccent.withOpacity(0.7),
                   borderRadius: SharedBorderRadius.circular8,
                 ),
-                child: Center(child: Text(ToyGender.values[i].toString())),
+                child: Center(
+                  child: Text(
+                    switch (ToyGender.values[i]) {
+                      ToyGender.boy => 'Boys',
+                      ToyGender.girl => 'Girls',
+                      ToyGender.unisex => 'Unisex',
+                    },
+                  ),
+                ),
               ),
             ),
         ],
@@ -180,8 +187,17 @@ class CreateToyConditionUpdater extends StatelessWidget {
                           : Colors.greenAccent.withOpacity(0.7),
                       borderRadius: SharedBorderRadius.circular8,
                     ),
-                    child:
-                        Center(child: Text(ToyCondition.values[i].toString())),
+                    child: Center(
+                      child: Text(
+                        switch (ToyCondition.values[i]) {
+                          ToyCondition.bad => 'Bad',
+                          ToyCondition.brandNew => 'New',
+                          ToyCondition.broken => 'Broken',
+                          ToyCondition.good => 'Good',
+                          ToyCondition.normal => 'Normal',
+                        },
+                      ),
+                    ),
                   ),
                 ),
             ],

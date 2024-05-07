@@ -43,24 +43,20 @@ class ConsumerDataCalibrationBloc
         emit(state.copyWith(currentAuth: e.updatedAuth));
       },
       updateConsumerEmail: (e) async {
-        // final currentAuthEmail = state.currentAuth.email;
-        // if (currentAuthEmail == null || currentAuthEmail.isEmpty) {
-        //   return;
-        // }
+        final currentAuthEmail = state.currentAuth.email;
+        if (currentAuthEmail == null || currentAuthEmail.isEmpty) {
+          return;
+        }
 
-        // final updatedConsumerValue = _consumerRepository.updateEmail(
-        //   email: currentAuthEmail,
-        // );
-        // final tryUpdate = await _remoteDatabase.batchCommit();
-        // final tryUpdateFailure = tryUpdate.getLeft().toNullable();
-        // if (tryUpdateFailure != null) {
-        //   emit(state.copyWith(updateEmailFailure: tryUpdateFailure));
-        //   return;
-        // }
-        // _consumerRepository.sinkCurrentConsumer(
-        //    consumer: updatedConsumerValue
-        //);
-        // emit(state.copyWith(successUpdatedConsumerEmail: currentAuthEmail));
+        final tryUpdate = await _consumerRepository.updateEmail(
+          newEmail: currentAuthEmail,
+        );
+        tryUpdate.fold(
+          (failure) => emit(state.copyWith(updateEmailFailure: failure)),
+          (success) => emit(
+            state.copyWith(successUpdatedConsumerEmail: currentAuthEmail),
+          ),
+        );
       },
     );
 

@@ -24,8 +24,8 @@ class ToyRepository {
 
   // VARIABLES
   // Current Consumer
-  final _ownedToysStreamController = StreamController<List<Toy>>.broadcast();
-  Stream<List<Toy>> get ownedToysStream => _ownedToysStreamController.stream;
+  final _ownedToysStreamController = StreamController<List<Toy>?>.broadcast();
+  Stream<List<Toy>?> get ownedToysStream => _ownedToysStreamController.stream;
   List<Toy>? ownedToys;
 
   // Functions
@@ -47,8 +47,8 @@ class ToyRepository {
     }
     // Todo:
     // Add Uint8List length and size Checker value object
-
-    final toyID = DateTime.now().millisecondsSinceEpoch;
+    final createdMillis = DateTime.now().millisecondsSinceEpoch;
+    final toyID = '$createdMillis$ownerConsumerAuthID';
 
     final path = '${ToyRepositoryStrings.toysCollectionPath}'
         '/$toyID'
@@ -99,17 +99,17 @@ class ToyRepository {
   }
 
   FutureEither<Toy> readToy({
-    required int toyId,
+    required String toyID,
   }) async {
     try {
-      final readedToy = await _client.toy.readWithToyID(toyId);
+      final readedToy = await _client.toy.readWithToyID(toyID);
 
       // If fetched toy is owned.
       // Update the ownedToy also.
       if (ownedToys?.contains(readedToy) ?? false) {
         final updatedList = List<Toy>.from(ownedToys!);
         final toyListIndex = updatedList.indexWhere(
-          (element) => element.id == toyId,
+          (element) => element.toyID == toyID,
         );
         updatedList[toyListIndex] = readedToy;
         _ownedToysStreamController.sink.add(updatedList);
@@ -203,58 +203,27 @@ class ToyRepository {
     return const Right(unit);
   }
 
-  FutureEither<List<Toy>> fetchLastest12Owned({
-    required String ownerAuthId,
+  FutureEither<List<Toy>> fetchMoreOwnedToys({
+    required String currentAuthId,
+    required bool isStartOver,
   }) async {
-    return const Right([]);
-    // try {
-    //   final toyDocs = await _remoteDatabase.readCollection(
-    //     collectionID: ToyRepositoryStrings.toysCollectionPath,
-    //     orderBy: 'createdAt',
-    //     limitToLast: 12,
-    //     fieldIsEqualToList: [
-    //       (field: 'ownerAuthId', value: ownerAuthId),
-    //     ],
-    //   );
+    try {
+      if (isStartOver) {
+        clearOwnedToys();
+      }
 
-    //   if (toyDocs == null || toyDocs.isEmpty) {
-    //     _ownedToysStreamController.sink.add([]);
-    //     return const Right([]);
-    //   }
+      final fetchedToys = await _client.toy.read12WithOwnerConsumerID(
+        currentAuthId,
+        isStartOver || ownedToys == null ? 0 : ownedToys!.length,
+      );
 
-    //   final toys = toyDocs.map(Toy.fromJson).toList();
-    //   _ownedToysStreamController.sink.add(toys);
-    //   return Right(toys);
-    // } catch (exception) {
-    //   print(exception);
-    //   return const Left(ToyRepositoryException.unknown());
-    // }
-  }
-
-  FutureEither<List<Toy>> fetch12BeforeOldestOwnedToy({
-    required String ownerAuthId,
-    required Toy oldestOwnedToy,
-  }) async {
-    return const Right([]);
-    // try {
-    //   final toyDocs = await _remoteDatabase.readCollection(
-    //     collectionID: ToyRepositoryStrings.toysCollectionPath,
-    //     fieldIsEqualToList: [(field: 'ownerAuthId', value: ownerAuthId)],
-    //     orderBy: 'createdAt',
-    //     limitToLast: 12,
-    //     endBefore: [oldestOwnedToy.createdAt.toIso8601String()],
-    //   );
-    //   if (toyDocs == null || toyDocs.isEmpty) {
-    //     return const Right([]);
-    //   }
-
-    //   final toys = toyDocs.map(Toy.fromJson).toList();
-    //   final newOwnedToysList = List<Toy>.from(toys)..addAll(ownedToys ?? []);
-    //   _ownedToysStreamController.sink.add(newOwnedToysList);
-
-    //   return Right(toys);
-    // } catch (exception) {
-    //   return const Left(ToyRepositoryException.unknown());
+      final newOwnedToys = List<Toy>.from(fetchedToys.reversed)
+        ..addAll(ownedToys ?? []);
+      _ownedToysStreamController.sink.add(newOwnedToys);
+      return Right(fetchedToys);
+    } catch (exception) {
+      return const Left(ToyRepositoryException.unknown());
+    }
   }
 
   FutureEither<List<Toy>> fetch10LikeableToysLatest({
@@ -302,6 +271,6 @@ class ToyRepository {
   }
 
   void clearOwnedToys() {
-    _ownedToysStreamController.sink.add([]);
+    _ownedToysStreamController.sink.add(null);
   }
 }

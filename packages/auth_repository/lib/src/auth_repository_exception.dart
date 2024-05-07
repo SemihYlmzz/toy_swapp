@@ -10,3 +10,4 @@ class AuthRepositoryInvalidInput extends AuthRepositoryException {}
 
 class AuthRepositoryReAuthenticateInvalidCredential
     extends AuthRepositoryException {}
+class AuthRepositoryEmailAlreadyInUse extends AuthRepositoryException {}

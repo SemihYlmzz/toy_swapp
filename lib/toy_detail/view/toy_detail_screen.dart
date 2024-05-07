@@ -16,9 +16,7 @@ class ToyDetailScreen extends StatelessWidget {
         consumerRepository: context.read(),
         toyRepository: context.read(),
       )..add(
-          ToyDetailEvent.loadToyAndOwner(
-            toyId: requirements.toy.id!,
-          ),
+          ToyDetailEvent.loadToyAndOwner(toyID: requirements.toy.toyID),
         ),
       child: MultiBlocListener(
         listeners: [

@@ -84,6 +84,7 @@ class ConsumerRepository {
         avatarUrls.url256,
         avatarUrls.url512,
         avatarUrls.url1024,
+        email,
       );
       _currentConsumerStreamController.sink.add(createdConsumer);
       return Right(createdConsumer);
@@ -123,87 +124,87 @@ class ConsumerRepository {
         '/${currentConsumer!.authId}'
         '/avatarImages';
     try {
-      // final avatarUrls = AvatarUrls(
-      //   url128: await _cloudStorage.uploadImageGetUrl(
-      //     path: '$avatarImagePath/avatarImage128',
-      //     image: avatarImagesValue.avatarImage128,
-      //   ),
-      //   url256: await _cloudStorage.uploadImageGetUrl(
-      //     path: '$avatarImagePath/avatarImage256',
-      //     image: avatarImagesValue.avatarImage256,
-      //   ),
-      //   url512: await _cloudStorage.uploadImageGetUrl(
-      //     path: '$avatarImagePath/avatarImage512',
-      //     image: avatarImagesValue.avatarImage512,
-      //   ),
-      //   url1024: await _cloudStorage.uploadImageGetUrl(
-      //     path: '$avatarImagePath/avatarImage1024',
-      //     image: avatarImagesValue.avatarImage1024,
-      //   ),
-      // );
-
-      // final updatedConsumer = currentConsumer.copyWith(
-      //   avatarUrls: avatarUrls,
-      // );
-
-      // // Todo:
-      // // Add json {'specific':field}
-      // _remoteDatabase.batchUpdateDoc(
-      //   collectionID: ConsumerRepositoryStrings.consumerCollectionPath,
-      //   documentID: currentConsumer.authId,
-      //   jsonData: updatedConsumer.toJson(),
-      // );
-
+      final avatarUrls = AvatarUrls(
+        url128: await _cloudStorage.uploadImageGetUrl(
+          path: '$avatarImagePath/avatarImage128',
+          image: avatarImagesValue.avatarImage128,
+        ),
+        url256: await _cloudStorage.uploadImageGetUrl(
+          path: '$avatarImagePath/avatarImage256',
+          image: avatarImagesValue.avatarImage256,
+        ),
+        url512: await _cloudStorage.uploadImageGetUrl(
+          path: '$avatarImagePath/avatarImage512',
+          image: avatarImagesValue.avatarImage512,
+        ),
+        url1024: await _cloudStorage.uploadImageGetUrl(
+          path: '$avatarImagePath/avatarImage1024',
+          image: avatarImagesValue.avatarImage1024,
+        ),
+      );
+      final updatedConsumer = await _client.consumer.updateAvatarUrls(
+        currentConsumer!.authId,
+        avatarUrls.url128,
+        avatarUrls.url256,
+        avatarUrls.url512,
+        avatarUrls.url1024,
+      );
+      sinkCurrentConsumer(updatedConsumer);
       return const Right(unit);
     } catch (exception) {
-      // if (exception is FirebaseException) {
-      //   throw _firebaseExceptionToUserException(exception);
-      // }
       return const Left(ConsumerRepositoryException.unknown());
     }
   }
 
-  Consumer? updateFullName({
+  FutureUnit updateFullName({
     required FirstName firstNameObject,
     required LastName lastNameObject,
-  }) {
-    return null;
-    // if (currentConsumer == Consumer.empty()) {
-    //   return null;
-    // }
-    // if (firstNameObject.isNotValid && lastNameObject.isNotValid) {
-    //   return null;
-    // }
-    // final newFirstName = firstNameObject.isValid
-    //     ? firstNameObject.value.newFirstName
-    //     : currentConsumer.firstName;
+  }) async {
+    try {
+      if (currentConsumer == null) {
+        return const Left(
+          ConsumerRepositoryException.nonEmptyConsumerRequired(),
+        );
+      }
+      if (firstNameObject.isNotValid && lastNameObject.isNotValid) {
+        return const Left(ConsumerRepositoryException.invalidInput());
+      }
+      final newFirstName = firstNameObject.isValid
+          ? firstNameObject.value.newFirstName
+          : currentConsumer!.firstName;
 
-    // final newLastName = lastNameObject.isValid
-    //     ? lastNameObject.value.newLastName
-    //     : currentConsumer.lastName;
-    // final updatedConsumer = currentConsumer.copyWith(
-    //   firstName: newFirstName,
-    //   lastName: newLastName,
-    // );
-    // _remoteDatabase.batchUpdateDoc(
-    //   collectionID: ConsumerRepositoryStrings.consumerCollectionPath,
-    //   documentID: currentConsumer.authId,
-    //   jsonData: updatedConsumer.toJson(),
-    // );
-    // return updatedConsumer;
+      final newLastName = lastNameObject.isValid
+          ? lastNameObject.value.newLastName
+          : currentConsumer!.lastName;
+      final updatedConsumer = await _client.consumer.updateFullName(
+        currentConsumer!.authId,
+        newFirstName,
+        newLastName,
+      );
+
+      sinkCurrentConsumer(updatedConsumer);
+      return const Right(unit);
+    } catch (exception) {
+      return const Left(ConsumerRepositoryException.unknown());
+    }
   }
 
-  Consumer updateEmail({
-    required String email,
-  }) {
-    return currentConsumer!;
-    // final updatedConsumer = currentConsumer.copyWith(email: email);
-    // _remoteDatabase.batchUpdateDoc(
-    //   collectionID: ConsumerRepositoryStrings.consumerCollectionPath,
-    //   documentID: currentConsumer.authId,
-    //   jsonData: updatedConsumer.toJson(),
-    // );
-    // return updatedConsumer;
+  FutureUnit updateEmail({
+    required String newEmail,
+  }) async {
+    if (currentConsumer?.authId == null) {
+      return const Left(ConsumerRepositoryException.nonEmptyConsumerRequired());
+    }
+    try {
+      final updatedConsumer = await _client.consumer.updateEmail(
+        currentConsumer!.authId,
+        newEmail,
+      );
+      sinkCurrentConsumer(updatedConsumer);
+      return const Right(unit);
+    } catch (exception) {
+      return const Left(ConsumerRepositoryException.unknown());
+    }
   }
 
   FutureEither<Consumer> readConsumer({
@@ -246,9 +247,6 @@ class ConsumerRepository {
   void sinkCurrentConsumer(
     Consumer? consumer,
   ) {
-    if (currentConsumer != null) {
-      print('currentConsumer Sinked');
-    }
     _currentConsumerStreamController.sink.add(consumer);
   }
 }
