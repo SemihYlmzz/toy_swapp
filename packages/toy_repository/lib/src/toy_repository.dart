@@ -122,6 +122,24 @@ class ToyRepository {
     }
   }
 
+  FutureUnit deleteToy({
+    required int toyID,
+    required int currentConsumerID,
+  }) async {
+    try {
+      await _client.toy.deleteToy(toyID, currentConsumerID);
+      final updatedList = List<Toy>.from(ownedToys!);
+      final toyListIndex = updatedList.indexWhere(
+        (element) => element.id == toyID,
+      );
+      updatedList.removeAt(toyListIndex);
+      _ownedToysStreamController.sink.add(updatedList);
+      return const Right(unit);
+    } catch (exception) {
+      return const Left(ToyRepositoryException.unknown());
+    }
+  }
+
   FutureUnit openToPublic({
     required int toyID,
   }) async {

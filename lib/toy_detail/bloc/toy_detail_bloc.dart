@@ -44,6 +44,16 @@ class ToyDetailBloc extends Bloc<ToyDetailEvent, ToyDetailState> {
     emit(state.copyWith(isLoading: true));
 
     await event.map(
+      deleteOwnedToy: (event) async {
+       final tryDelete = await _toyRepository.deleteToy(
+          toyID: event.toyID,
+          currentConsumerID: state.currentConsumer!.id!,
+        );
+        tryDelete.fold(
+          (failure) => emit(state.copyWith(failure: failure)),
+          (_) => emit(state.copyWith(isToyDeleted: true)),
+        );
+      },
       currentConsumerUpdated: (e) async {
         emit(state.copyWith(currentConsumer: e.updatedConsumer));
       },

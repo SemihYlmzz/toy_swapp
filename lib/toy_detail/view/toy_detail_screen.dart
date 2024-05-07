@@ -21,6 +21,7 @@ class ToyDetailScreen extends StatelessWidget {
       child: MultiBlocListener(
         listeners: [
           toyDetailBlocListeners.errorDisplayer(),
+          toyDetailBlocListeners.popOnToyDelete(),
         ],
         child: BlocSelector<ToyDetailBloc, ToyDetailState, bool>(
           selector: (state) => state.isLoading,

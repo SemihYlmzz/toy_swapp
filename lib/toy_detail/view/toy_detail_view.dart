@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_touch_ripple/flutter_touch_ripple.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 import 'package:toy_swapp/app/app.dart';
 import 'package:toy_swapp_client/toy_swapp_client.dart';
+
+import '../toy_detail.dart';
 
 class ToyDetailView extends StatelessWidget {
   const ToyDetailView({
@@ -221,7 +224,26 @@ class ToyDetailView extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                   child: TouchRipple<void>(
-                    onTap: () {},
+                    onTap: () async {
+                      final isDelete = await showDialog<bool>(
+                        context: context,
+                        builder: (context) {
+                          return const DeleteOwnedToyPopUp();
+                        },
+                      );
+                      if (isDelete == null) {
+                        return;
+                      }
+                      if (!isDelete) {
+                        return;
+                      }
+                      if (!context.mounted) {
+                        return;
+                      }
+                      context.read<ToyDetailBloc>().add(
+                            ToyDetailEvent.deleteOwnedToy(toyID: toy.id!),
+                          );
+                    },
                     borderRadius: SharedBorderRadius.circular32,
                     child: const Center(
                       child: Icon(Icons.delete),

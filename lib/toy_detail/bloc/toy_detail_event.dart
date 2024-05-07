@@ -8,4 +8,7 @@ sealed class ToyDetailEvent with _$ToyDetailEvent {
   const factory ToyDetailEvent.loadToyAndOwner({
     required String toyID,
   }) = ToyDetailLoadToyAndOwner;
+  const factory ToyDetailEvent.deleteOwnedToy({
+    required int toyID,
+  }) = ToyDetailDeleteOwnedToy;
 }
