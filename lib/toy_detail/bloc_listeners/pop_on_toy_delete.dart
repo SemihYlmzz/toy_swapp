@@ -14,7 +14,6 @@ extension ToyDetailPopOnToyDelete on ToyDetailBlocListeners {
         if (!context.canPop()) {
           return;
         }
-
         context.pop();
       },
     );
