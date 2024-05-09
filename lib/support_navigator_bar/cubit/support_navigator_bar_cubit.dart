@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:go_router/go_router.dart';
@@ -25,12 +23,10 @@ class SupportNavigatorBarCubit extends Cubit<SupportNavigatorBarCubitState> {
         .where((element) => element.name == goRouterState.topRoute!.name)
         .firstOrNull;
     if (subRoute == null) {
-      print('1');
       return;
     }
-    print('2');
     emit(
       state.copyWith(goRouterState: goRouterState, selectedSubRoute: subRoute),
-    );
+    );  
   }
 }

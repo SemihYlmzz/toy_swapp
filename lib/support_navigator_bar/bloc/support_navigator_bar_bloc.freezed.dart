@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SupportNavigatorBarEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() authSignOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? authSignOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? authSignOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SupportNavigatorBarFetch value) fetch,
+    required TResult Function(SupportNavigatorBarAuthSignOut value) authSignOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SupportNavigatorBarFetch value)? fetch,
+    TResult? Function(SupportNavigatorBarAuthSignOut value)? authSignOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SupportNavigatorBarFetch value)? fetch,
+    TResult Function(SupportNavigatorBarAuthSignOut value)? authSignOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,39 +70,40 @@ class _$SupportNavigatorBarEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$SupportNavigatorBarFetchImplCopyWith<$Res> {
-  factory _$$SupportNavigatorBarFetchImplCopyWith(
-          _$SupportNavigatorBarFetchImpl value,
-          $Res Function(_$SupportNavigatorBarFetchImpl) then) =
-      __$$SupportNavigatorBarFetchImplCopyWithImpl<$Res>;
+abstract class _$$SupportNavigatorBarAuthSignOutImplCopyWith<$Res> {
+  factory _$$SupportNavigatorBarAuthSignOutImplCopyWith(
+          _$SupportNavigatorBarAuthSignOutImpl value,
+          $Res Function(_$SupportNavigatorBarAuthSignOutImpl) then) =
+      __$$SupportNavigatorBarAuthSignOutImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SupportNavigatorBarFetchImplCopyWithImpl<$Res>
+class __$$SupportNavigatorBarAuthSignOutImplCopyWithImpl<$Res>
     extends _$SupportNavigatorBarEventCopyWithImpl<$Res,
-        _$SupportNavigatorBarFetchImpl>
-    implements _$$SupportNavigatorBarFetchImplCopyWith<$Res> {
-  __$$SupportNavigatorBarFetchImplCopyWithImpl(
-      _$SupportNavigatorBarFetchImpl _value,
-      $Res Function(_$SupportNavigatorBarFetchImpl) _then)
+        _$SupportNavigatorBarAuthSignOutImpl>
+    implements _$$SupportNavigatorBarAuthSignOutImplCopyWith<$Res> {
+  __$$SupportNavigatorBarAuthSignOutImplCopyWithImpl(
+      _$SupportNavigatorBarAuthSignOutImpl _value,
+      $Res Function(_$SupportNavigatorBarAuthSignOutImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SupportNavigatorBarFetchImpl implements SupportNavigatorBarFetch {
-  const _$SupportNavigatorBarFetchImpl();
+class _$SupportNavigatorBarAuthSignOutImpl
+    implements SupportNavigatorBarAuthSignOut {
+  const _$SupportNavigatorBarAuthSignOutImpl();
 
   @override
   String toString() {
-    return 'SupportNavigatorBarEvent.fetch()';
+    return 'SupportNavigatorBarEvent.authSignOut()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SupportNavigatorBarFetchImpl);
+            other is _$SupportNavigatorBarAuthSignOutImpl);
   }
 
   @override
@@ -111,27 +112,27 @@ class _$SupportNavigatorBarFetchImpl implements SupportNavigatorBarFetch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function() authSignOut,
   }) {
-    return fetch();
+    return authSignOut();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function()? authSignOut,
   }) {
-    return fetch?.call();
+    return authSignOut?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function()? authSignOut,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch();
+    if (authSignOut != null) {
+      return authSignOut();
     }
     return orElse();
   }
@@ -139,34 +140,36 @@ class _$SupportNavigatorBarFetchImpl implements SupportNavigatorBarFetch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SupportNavigatorBarFetch value) fetch,
+    required TResult Function(SupportNavigatorBarAuthSignOut value) authSignOut,
   }) {
-    return fetch(this);
+    return authSignOut(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SupportNavigatorBarFetch value)? fetch,
+    TResult? Function(SupportNavigatorBarAuthSignOut value)? authSignOut,
   }) {
-    return fetch?.call(this);
+    return authSignOut?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SupportNavigatorBarFetch value)? fetch,
+    TResult Function(SupportNavigatorBarAuthSignOut value)? authSignOut,
     required TResult orElse(),
   }) {
-    if (fetch != null) {
-      return fetch(this);
+    if (authSignOut != null) {
+      return authSignOut(this);
     }
     return orElse();
   }
 }
 
-abstract class SupportNavigatorBarFetch implements SupportNavigatorBarEvent {
-  const factory SupportNavigatorBarFetch() = _$SupportNavigatorBarFetchImpl;
+abstract class SupportNavigatorBarAuthSignOut
+    implements SupportNavigatorBarEvent {
+  const factory SupportNavigatorBarAuthSignOut() =
+      _$SupportNavigatorBarAuthSignOutImpl;
 }
 
 /// @nodoc

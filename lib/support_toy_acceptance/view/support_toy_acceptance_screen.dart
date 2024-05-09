@@ -9,15 +9,17 @@ class SupportToyAcceptanceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final supportToyAcceptanceBlocListeners = SupportToyAcceptanceBlocListeners();
-  
+    final supportToyAcceptanceBlocListeners =
+        SupportToyAcceptanceBlocListeners();
+
     return BlocProvider(
       create: (context) => SupportToyAcceptanceBloc(),
       child: MultiBlocListener(
         listeners: [
           supportToyAcceptanceBlocListeners.errorDisplayer(),
         ],
-        child: BlocSelector<SupportToyAcceptanceBloc, SupportToyAcceptanceState, bool>(
+        child: BlocSelector<SupportToyAcceptanceBloc, SupportToyAcceptanceState,
+            bool>(
           selector: (state) => state.isLoading,
           builder: (context, isLoading) {
             return LoadingScreen(

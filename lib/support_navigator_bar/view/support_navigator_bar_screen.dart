@@ -24,7 +24,9 @@ class SupportNavigatorBarScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => SupportNavigatorBarBloc(),
+          create: (context) => SupportNavigatorBarBloc(
+            authRepository: context.read(),
+          ),
         ),
         BlocProvider(
           create: (context) => SupportNavigatorBarCubit(

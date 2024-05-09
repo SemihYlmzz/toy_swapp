@@ -6,23 +6,22 @@ part 'support_toy_acceptance_bloc.freezed.dart';
 part 'support_toy_acceptance_event.dart';
 part 'support_toy_acceptance_state.dart';
 
-class SupportToyAcceptanceBloc extends Bloc<SupportToyAcceptanceEvent, SupportToyAcceptanceState> {
+class SupportToyAcceptanceBloc
+    extends Bloc<SupportToyAcceptanceEvent, SupportToyAcceptanceState> {
   SupportToyAcceptanceBloc() : super(const SupportToyAcceptanceState()) {
     on<SupportToyAcceptanceEvent>(_onSupportToyAcceptanceEvent);
   }
-  
+
   Future<void> _onSupportToyAcceptanceEvent(
     SupportToyAcceptanceEvent event,
     Emitter<SupportToyAcceptanceState> emit,
-    ) async {
+  ) async {
     emit(state.copyWith(isLoading: true));
-    
+
     await event.map(
-      fetch: (e) async {
-        print('Fetching data...');
-      },
+      fetch: (e) async {},
     );
-    
+
     emit(state.copyWith(isLoading: false, failure: null));
   }
 }

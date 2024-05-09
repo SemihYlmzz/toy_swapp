@@ -191,22 +191,40 @@ class ToyCard extends StatelessWidget {
                           (ToysBloc bloc) =>
                               bloc.state.likedToyIDs.contains(toy.id),
                         );
-                        return GestureDetector(
-                          onTap: isLiked
-                              ? () {
-                                  context.read<ToysBloc>().add(
-                                        ToysEvent.unlikeToy(toyID: toy.id!),
-                                      );
-                                }
-                              : () {
-                                  context.read<ToysBloc>().add(
-                                        ToysEvent.likeToy(toyID: toy.id!),
-                                      );
-                                },
-                          child: Icon(
-                            !isLiked ? Icons.favorite_outline : Icons.favorite,
-                            size: 40,
-                          ),
+                        final toyLikedCount =
+                            isLiked ? toy.likeCount + 1 : toy.likeCount;
+                        return Row(
+                          children: [
+                            Text(
+                              toyLikedCount.toString(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                            SharedGap.gap4,
+                            GestureDetector(
+                              onTap: isLiked
+                                  ? () {
+                                      context.read<ToysBloc>().add(
+                                            ToysEvent.unlikeToy(toyID: toy.id!),
+                                          );
+                                    }
+                                  : () {
+                                      context.read<ToysBloc>().add(
+                                            ToysEvent.likeToy(toyID: toy.id!),
+                                          );
+                                    },
+                              child: Icon(
+                                !isLiked
+                                    ? Icons.favorite_outline
+                                    : Icons.favorite,
+                                size: 40,
+                              ),
+                            ),
+                          ],
                         );
                       },
                     ),

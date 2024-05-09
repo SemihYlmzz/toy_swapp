@@ -111,13 +111,17 @@ class AppRouter {
           final currentAuth = authRepository.currentAuth;
           final currentConsumer = consumerRepository.currentConsumer;
           final currentSupport = supportRepository.currentSupport;
-
+          
           //  on [SignOut]
           if (currentAuth.state == AuthState.unAuth) {
             // [ClearConsumer] if [ConsumerHasData]
             if (currentConsumer != null) {
               consumerRepository.sinkCurrentConsumer(null);
               toyRepository.clearOwnedToys();
+            }
+            // [ClearSupport] if [SupportHasData]
+            if (currentSupport != null) {
+              supportRepository.sinkCurrentSupport(null);
             }
           }
 

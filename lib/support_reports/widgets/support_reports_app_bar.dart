@@ -9,7 +9,7 @@ class SupportReportsAppBar extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text('Support Reports View'),
+      title: const Text('Support Reports View'),
       centerTitle: true,
       forceMaterialTransparency: true,
       backgroundColor: Theme.of(context).colorScheme.background,

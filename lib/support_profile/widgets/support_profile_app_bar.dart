@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../support_navigator_bar/support_navigator_bar.dart';
 
 class SupportProfileAppBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -13,6 +16,16 @@ class SupportProfileAppBar extends StatelessWidget
       centerTitle: true,
       forceMaterialTransparency: true,
       backgroundColor: Theme.of(context).colorScheme.background,
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.logout),
+          onPressed: () {
+            context.read<SupportNavigatorBarBloc>().add(
+                  const SupportNavigatorBarEvent.authSignOut(),
+                );
+          },
+        ),
+      ],
     );
   }
 

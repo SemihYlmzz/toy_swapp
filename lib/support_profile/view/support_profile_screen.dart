@@ -10,7 +10,7 @@ class SupportProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final supportProfileBlocListeners = SupportProfileBlocListeners();
-  
+
     return BlocProvider(
       create: (context) => SupportProfileBloc(),
       child: MultiBlocListener(
