@@ -19,10 +19,11 @@ class ToyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final contextTheme = Theme.of(context);
-    final toy = toyAndOwnerConsumer.toy;
+    // final currentConsumer = context.read<ToysBloc>().state.currentConsumer;
     final ownerConsumer = toyAndOwnerConsumer.ownerConsumer;
-    final currentConsumer = context.read<ToysBloc>().state.currentConsumer;
+    final toy = toyAndOwnerConsumer.toy;
+    final contextTheme = Theme.of(context);
+
     final toyGradient = switch (toy.gender) {
       ToyGender.boy => AppColors.boyToyGradient,
       ToyGender.girl => AppColors.girlToyGradient,
@@ -184,22 +185,30 @@ class ToyCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        context.read<ToysBloc>().add(
-                              ToysEvent.likeToy(toyID: toy.id!),
-                            );
+                    Builder(
+                      builder: (context) {
+                        final isLiked = context.select(
+                          (ToysBloc bloc) =>
+                              bloc.state.likedToyIDs.contains(toy.id),
+                        );
+                        return GestureDetector(
+                          onTap: isLiked
+                              ? () {
+                                  context.read<ToysBloc>().add(
+                                        ToysEvent.unlikeToy(toyID: toy.id!),
+                                      );
+                                }
+                              : () {
+                                  context.read<ToysBloc>().add(
+                                        ToysEvent.likeToy(toyID: toy.id!),
+                                      );
+                                },
+                          child: Icon(
+                            !isLiked ? Icons.favorite_outline : Icons.favorite,
+                            size: 40,
+                          ),
+                        );
                       },
-                      child: Icon(
-                        toy.likes?.where(
-                                  (like) =>
-                                      like.consumerId == currentConsumer.id,
-                                ) ==
-                                null
-                            ? Icons.favorite_outline
-                            : Icons.favorite,
-                        size: 40,
-                      ),
                     ),
                     SharedGap.gap12,
                   ],

@@ -4,11 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:toy_repository/toy_repository.dart';
-import 'package:toy_swapp/toys/models/models.dart';
 import 'package:toy_swapp_client/toy_swapp_client.dart';
 
 import '../../errors/errors.dart';
-import '../toys.dart';
 
 part 'toys_bloc.freezed.dart';
 part 'toys_event.dart';
@@ -50,50 +48,33 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
       clearFetchMoreFailure: (value) async {
         emit(state.copyWith(fetchMoreFailure: null));
       },
-      // LIKE TOY
-      // EVENT
       likeToy: (value) async {
-        final indexToyAndOwner = state.toys.indexWhere(
-          (element) => element.toy.id == value.toyID,
+        final oldLikedToyIDs = state.likedToyIDs;
+        emit(
+          state.copyWith(likedToyIDs: [...oldLikedToyIDs, value.toyID]),
         );
-        final oldToyAndOwner = state.toys[indexToyAndOwner];
-        final newToysAndOwnerList = List<ToyAndOwnerConsumer>.from(state.toys)
-          ..replaceRange(
-            indexToyAndOwner,
-            indexToyAndOwner + 1,
-            [
-              ToyAndOwnerConsumer(
-                toy: oldToyAndOwner.toy.copyWith(
-                  likes: [
-                    ...oldToyAndOwner.toy.likes ?? [],
-                    Like(
-                      toyId: oldToyAndOwner.toy.id!,
-                      consumerId: state.currentConsumer.id!,
-                    ),
-                  ],
-                ),
-                ownerConsumer: oldToyAndOwner.ownerConsumer,
-              ),
-            ],
-          );
-
-        emit(state.copyWith(toys: newToysAndOwnerList));
         final tryLike = await _toyRepository.likeToy(
           toyID: value.toyID,
           currentConsumerID: _consumerRepository.currentConsumer!.id!,
         );
         tryLike.fold(
-          (l) {
-            final newToysAndOwnerList =
-                List<ToyAndOwnerConsumer>.from(state.toys)
-                  ..replaceRange(
-                    indexToyAndOwner,
-                    indexToyAndOwner + 1,
-                    [oldToyAndOwner],
-                  );
+          (l) => emit(state.copyWith(failure: l, likedToyIDs: oldLikedToyIDs)),
+          (_) => null,
+        );
+      },
+      unlikeToy: (value) async {
+        final oldLikedToyIDs = state.likedToyIDs;
+        final updatedLikedToyIDs =
+            oldLikedToyIDs.where((id) => id != value.toyID).toList();
+            
+        emit(state.copyWith(likedToyIDs: updatedLikedToyIDs));
 
-            emit(state.copyWith(failure: l, toys: newToysAndOwnerList));
-          },
+        final tryUnlike = await _toyRepository.unlikeToy(
+          toyID: value.toyID,
+          currentConsumerID: _consumerRepository.currentConsumer!.id!,
+        );
+        tryUnlike.fold(
+          (l) => emit(state.copyWith(failure: l, likedToyIDs: oldLikedToyIDs)),
           (_) => null,
         );
       },
@@ -104,7 +85,7 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
         // If reached max, do not fetch
         if (state.hasReachedMax && !value.isStartOver) return;
         // Get the oldest toy
-        final oldestToy = state.toys.firstOrNull?.toy;
+        final oldestToy = state.toys.firstOrNull;
 
         // If there is no toy,
         if (oldestToy == null) {
@@ -119,7 +100,6 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
           currentConsumerID: state.currentConsumer.id!,
           fetchedLikeableToysLength: state.toys.length,
         );
-        var newToys = <Toy>[];
         tryFetch.fold(
           (failure) {
             if (oldestToy == null) {
@@ -133,57 +113,18 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
               emit(state.copyWith(fetchMoreFailure: failure));
             }
           },
-          (fetchedToys) => newToys = fetchedToys,
-        );
-
-        if (state.initializingFailure != null ||
-            state.fetchMoreFailure != null) {
-          return;
-        }
-        // If there is no failure,
-        // less than 10 toys are fetched means there are no more toys to fetch
-        if (newToys.length < 10) {
-          emit(state.copyWith(hasReachedMax: true));
-        }
-        // Get the owners of the toys
-        final fetchedToysAndOwners = await _toysToToyAndOwnerConsumers(newToys);
-        // Add old toys
-        fetchedToysAndOwners.addAll(state.toys);
-        emit(
-          state.copyWith(
-            toys: fetchedToysAndOwners,
-            isInitializing: false,
-          ),
+          (fetchedToys) {
+            emit(
+              state.copyWith(
+                toys: fetchedToys,
+                isInitializing: false,
+                hasReachedMax: fetchedToys.length < 10,
+              ),
+            );
+          },
         );
       },
     );
     emit(state.copyWith(isLoading: false, failure: null));
-  }
-
-  // Toys Specific Functions
-  Future<List<ToyAndOwnerConsumer>> _toysToToyAndOwnerConsumers(
-    List<Toy> toys,
-  ) async {
-    final givenToysAndOwners = <ToyAndOwnerConsumer>[];
-    for (final toy in toys) {
-      // Try Read Owner
-      final tryRead = await _consumerRepository.readConsumer(
-        consumerID: toy.ownerConsumerID,
-      );
-      await tryRead.fold(
-        // If Owner is not found, skip this toy
-        (l) => null,
-        // If Owner is found, add to list
-        (toyOwnerConsumer) async {
-          givenToysAndOwners.add(
-            ToyAndOwnerConsumer(
-              toy: toy,
-              ownerConsumer: toyOwnerConsumer,
-            ),
-          );
-        },
-      );
-    }
-    return givenToysAndOwners;
   }
 }

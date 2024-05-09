@@ -31,6 +31,7 @@ class AppScreen extends StatelessWidget {
         RepositoryProvider(create: (context) => repositories.appMetadata),
         RepositoryProvider(create: (context) => repositories.consumer),
         RepositoryProvider(create: (context) => repositories.toy),
+        RepositoryProvider(create: (context) => repositories.support),
         // Apis
         RepositoryProvider(create: (context) => apis.client),
         // Bloc

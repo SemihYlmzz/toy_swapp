@@ -4,6 +4,7 @@ import 'package:auth_repository/auth_repository.dart';
 import 'package:consumer_repository/consumer_repository.dart';
 import 'package:device_metadata_repository/device_metadata_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:support_repository/support_repository.dart';
 import 'package:toy_repository/toy_repository.dart';
 
 import 'models/models.dart';
@@ -37,6 +38,9 @@ class RepositoryDependencies {
       cloudStorage: apis.cloudStorage,
       client: apis.client,
     );
+    final supportRepository = SupportRepository(
+      client: apis.client,
+    );
 
     return Repositories(
       deviceMetadata: deviceMetadataRepository,
@@ -45,6 +49,7 @@ class RepositoryDependencies {
       appPreferences: appPreferencesRepository,
       auth: authRepository,
       toy: toyRepository,
+      support: supportRepository,
     );
   }
 }

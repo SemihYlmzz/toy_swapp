@@ -19,21 +19,21 @@ mixin _$ToyDetailEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Consumer? updatedConsumer) currentConsumerUpdated,
-    required TResult Function(String toyID) loadToyAndOwner,
+    required TResult Function(int toyID) loadToyAndOwner,
     required TResult Function(int toyID) deleteOwnedToy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Consumer? updatedConsumer)? currentConsumerUpdated,
-    TResult? Function(String toyID)? loadToyAndOwner,
+    TResult? Function(int toyID)? loadToyAndOwner,
     TResult? Function(int toyID)? deleteOwnedToy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Consumer? updatedConsumer)? currentConsumerUpdated,
-    TResult Function(String toyID)? loadToyAndOwner,
+    TResult Function(int toyID)? loadToyAndOwner,
     TResult Function(int toyID)? deleteOwnedToy,
     required TResult orElse(),
   }) =>
@@ -155,7 +155,7 @@ class _$ToyDetailCurrentConsumerUpdatedImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Consumer? updatedConsumer) currentConsumerUpdated,
-    required TResult Function(String toyID) loadToyAndOwner,
+    required TResult Function(int toyID) loadToyAndOwner,
     required TResult Function(int toyID) deleteOwnedToy,
   }) {
     return currentConsumerUpdated(updatedConsumer);
@@ -165,7 +165,7 @@ class _$ToyDetailCurrentConsumerUpdatedImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Consumer? updatedConsumer)? currentConsumerUpdated,
-    TResult? Function(String toyID)? loadToyAndOwner,
+    TResult? Function(int toyID)? loadToyAndOwner,
     TResult? Function(int toyID)? deleteOwnedToy,
   }) {
     return currentConsumerUpdated?.call(updatedConsumer);
@@ -175,7 +175,7 @@ class _$ToyDetailCurrentConsumerUpdatedImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Consumer? updatedConsumer)? currentConsumerUpdated,
-    TResult Function(String toyID)? loadToyAndOwner,
+    TResult Function(int toyID)? loadToyAndOwner,
     TResult Function(int toyID)? deleteOwnedToy,
     required TResult orElse(),
   }) {
@@ -241,7 +241,7 @@ abstract class _$$ToyDetailLoadToyAndOwnerImplCopyWith<$Res> {
           $Res Function(_$ToyDetailLoadToyAndOwnerImpl) then) =
       __$$ToyDetailLoadToyAndOwnerImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String toyID});
+  $Res call({int toyID});
 }
 
 /// @nodoc
@@ -262,7 +262,7 @@ class __$$ToyDetailLoadToyAndOwnerImplCopyWithImpl<$Res>
       toyID: null == toyID
           ? _value.toyID
           : toyID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
@@ -273,7 +273,7 @@ class _$ToyDetailLoadToyAndOwnerImpl implements ToyDetailLoadToyAndOwner {
   const _$ToyDetailLoadToyAndOwnerImpl({required this.toyID});
 
   @override
-  final String toyID;
+  final int toyID;
 
   @override
   String toString() {
@@ -302,7 +302,7 @@ class _$ToyDetailLoadToyAndOwnerImpl implements ToyDetailLoadToyAndOwner {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Consumer? updatedConsumer) currentConsumerUpdated,
-    required TResult Function(String toyID) loadToyAndOwner,
+    required TResult Function(int toyID) loadToyAndOwner,
     required TResult Function(int toyID) deleteOwnedToy,
   }) {
     return loadToyAndOwner(toyID);
@@ -312,7 +312,7 @@ class _$ToyDetailLoadToyAndOwnerImpl implements ToyDetailLoadToyAndOwner {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Consumer? updatedConsumer)? currentConsumerUpdated,
-    TResult? Function(String toyID)? loadToyAndOwner,
+    TResult? Function(int toyID)? loadToyAndOwner,
     TResult? Function(int toyID)? deleteOwnedToy,
   }) {
     return loadToyAndOwner?.call(toyID);
@@ -322,7 +322,7 @@ class _$ToyDetailLoadToyAndOwnerImpl implements ToyDetailLoadToyAndOwner {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Consumer? updatedConsumer)? currentConsumerUpdated,
-    TResult Function(String toyID)? loadToyAndOwner,
+    TResult Function(int toyID)? loadToyAndOwner,
     TResult Function(int toyID)? deleteOwnedToy,
     required TResult orElse(),
   }) {
@@ -371,10 +371,10 @@ class _$ToyDetailLoadToyAndOwnerImpl implements ToyDetailLoadToyAndOwner {
 }
 
 abstract class ToyDetailLoadToyAndOwner implements ToyDetailEvent {
-  const factory ToyDetailLoadToyAndOwner({required final String toyID}) =
+  const factory ToyDetailLoadToyAndOwner({required final int toyID}) =
       _$ToyDetailLoadToyAndOwnerImpl;
 
-  String get toyID;
+  int get toyID;
   @JsonKey(ignore: true)
   _$$ToyDetailLoadToyAndOwnerImplCopyWith<_$ToyDetailLoadToyAndOwnerImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -448,7 +448,7 @@ class _$ToyDetailDeleteOwnedToyImpl implements ToyDetailDeleteOwnedToy {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Consumer? updatedConsumer) currentConsumerUpdated,
-    required TResult Function(String toyID) loadToyAndOwner,
+    required TResult Function(int toyID) loadToyAndOwner,
     required TResult Function(int toyID) deleteOwnedToy,
   }) {
     return deleteOwnedToy(toyID);
@@ -458,7 +458,7 @@ class _$ToyDetailDeleteOwnedToyImpl implements ToyDetailDeleteOwnedToy {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Consumer? updatedConsumer)? currentConsumerUpdated,
-    TResult? Function(String toyID)? loadToyAndOwner,
+    TResult? Function(int toyID)? loadToyAndOwner,
     TResult? Function(int toyID)? deleteOwnedToy,
   }) {
     return deleteOwnedToy?.call(toyID);
@@ -468,7 +468,7 @@ class _$ToyDetailDeleteOwnedToyImpl implements ToyDetailDeleteOwnedToy {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Consumer? updatedConsumer)? currentConsumerUpdated,
-    TResult Function(String toyID)? loadToyAndOwner,
+    TResult Function(int toyID)? loadToyAndOwner,
     TResult Function(int toyID)? deleteOwnedToy,
     required TResult orElse(),
   }) {

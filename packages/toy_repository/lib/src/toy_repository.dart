@@ -29,7 +29,7 @@ class ToyRepository {
   List<Toy>? ownedToys;
 
   // Functions
-  FutureEither<ToyAndConsumer> create({
+  FutureEither<ToyAndOwnerConsumer> create({
     required int ownerConsumerID,
     required ToyName toyName,
     required ToyDescription toyDescription,
@@ -48,10 +48,11 @@ class ToyRepository {
     // Todo:
     // Add Uint8List length and size Checker value object
     final createdMillis = DateTime.now().millisecondsSinceEpoch;
-    final toyID = '$createdMillis$ownerConsumerID';
+    final toyIDString = '$createdMillis$ownerConsumerID';
+    final toyID = int.parse(toyIDString);
 
     final path = '${ToyRepositoryStrings.toysCollectionPath}'
-        '/$toyID'
+        '/$toyIDString'
         '/images';
     try {
       for (var i = 0; i < toyImageList.length; i++) {
@@ -99,7 +100,7 @@ class ToyRepository {
   }
 
   FutureEither<Toy> readToy({
-    required String toyID,
+    required int toyID,
   }) async {
     try {
       final readedToy = await _client.toy.readWithToyID(toyID);
@@ -109,7 +110,7 @@ class ToyRepository {
       if (ownedToys?.contains(readedToy) ?? false) {
         final updatedList = List<Toy>.from(ownedToys!);
         final toyListIndex = updatedList.indexWhere(
-          (element) => element.toyID == toyID,
+          (element) => element.id == toyID,
         );
         updatedList[toyListIndex] = readedToy;
         _ownedToysStreamController.sink.add(updatedList);
@@ -127,8 +128,10 @@ class ToyRepository {
     required int currentConsumerID,
   }) async {
     try {
-      final updatedConsumer =
-          await _client.toy.deleteToy(toyID, currentConsumerID);
+      final updatedConsumer = await _client.toy.deleteToy(
+        toyID,
+        currentConsumerID,
+      );
       final updatedList = List<Toy>.from(ownedToys!);
       final toyListIndex = updatedList.indexWhere(
         (element) => element.id == toyID,
@@ -233,6 +236,21 @@ class ToyRepository {
     }
   }
 
+  FutureEither<Toy> unlikeToy({
+    required int toyID,
+    required int currentConsumerID,
+  }) async {
+    try {
+      final unlikedToy = await _client.toy.unlikeToy(
+        toyID,
+        currentConsumerID,
+      );
+      return Right(unlikedToy);
+    } catch (exception) {
+      return const Left(ToyRepositoryException.unknown());
+    }
+  }
+
   FutureUnit makeToyPrivate() async {
     return const Right(unit);
   }
@@ -260,12 +278,13 @@ class ToyRepository {
     }
   }
 
-  FutureEither<List<Toy>> fetchMoreLikeableToys({
+  FutureEither<List<ToyAndOwnerConsumer>> fetchMoreLikeableToys({
     required int currentConsumerID,
     required int fetchedLikeableToysLength,
   }) async {
     try {
-      final newLikeableToys = await _client.toy.readLikeableToys(
+      final newLikeableToys =
+          await _client.toy.readLikeableToysWithOwnerConsumer(
         currentConsumerID,
         fetchedLikeableToysLength,
       );

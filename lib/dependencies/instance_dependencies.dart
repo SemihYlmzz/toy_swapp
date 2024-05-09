@@ -13,6 +13,7 @@ class InstanceDependencies {
     final goRouter = AppRouter().router(
       repositories.auth.currentAuthStream,
       repositories.consumer.currentConsumerStream,
+      repositories.support.currentSupportStream,
     );
     final appPreferences = await repositories.appPreferences.read();
     final appMetadata = await repositories.appMetadata.read();

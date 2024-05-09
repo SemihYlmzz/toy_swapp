@@ -1,7 +1,9 @@
 import 'package:auth_repository/auth_repository.dart';
 import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:support_repository/support_repository.dart';
 import '../../errors/errors.dart';
 
 part 'account_initializer_bloc.freezed.dart';
@@ -12,8 +14,10 @@ class AccountInitializerBloc
     extends Bloc<AccountInitializerEvent, AccountInitializerState> {
   AccountInitializerBloc({
     required ConsumerRepository consumerRepository,
+    required SupportRepository supportRepository,
     required AuthRepository authRepository,
   })  : _consumerRepository = consumerRepository,
+        _supportRepository = supportRepository,
         _authRepository = authRepository,
         super(
           AccountInitializerState(currentAuth: authRepository.currentAuth),
@@ -22,6 +26,7 @@ class AccountInitializerBloc
   }
   // Repositories
   final ConsumerRepository _consumerRepository;
+  final SupportRepository _supportRepository;
   final AuthRepository _authRepository;
 
   // Events
@@ -33,19 +38,35 @@ class AccountInitializerBloc
     await event.map(
       fetchAccountData: (e) async {
         emit(state.copyWith(fetchAccountDataFailure: null));
-        final tryRead = await _consumerRepository.initCurrentConsumerWithAuthID(
+        final tryReadConsumer =
+            await _consumerRepository.initCurrentConsumerWithAuthID(
           authId: state.currentAuth.id,
         );
-        tryRead.fold(
-          (l) => emit(state.copyWith(fetchAccountDataFailure: l)),
-          (readedConsumer) {
-            if (readedConsumer != null) {
-              _consumerRepository.sinkCurrentConsumer(readedConsumer);
-              return;
-            }
-            emit(state.copyWith(consumerNeedsCreation: true));
-          },
+        final readConsumerFailure = tryReadConsumer.getLeft().toNullable();
+        if (readConsumerFailure != null) {
+          emit(state.copyWith(fetchAccountDataFailure: readConsumerFailure));
+          return;
+        }
+        final readedConsumer = tryReadConsumer.getRight().toNullable();
+        if (readedConsumer != null) {
+          _consumerRepository.sinkCurrentConsumer(readedConsumer);
+          return;
+        }
+        final tryReadSupport =
+            await _supportRepository.initCurrentSupportWithAuthID(
+          authId: state.currentAuth.id,
         );
+        final readSupportFailure = tryReadSupport.getLeft().toNullable();
+        if (readSupportFailure != null) {
+          emit(state.copyWith(fetchAccountDataFailure: readSupportFailure));
+          return;
+        }
+        final readedSupport = tryReadSupport.getRight().toNullable();
+        if (readedSupport != null) {
+          return;
+        }
+
+        emit(state.copyWith(consumerNeedsCreation: true));
       },
       signOut: (e) async {
         final trySignOut = await _authRepository.signOut();

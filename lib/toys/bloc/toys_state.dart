@@ -5,6 +5,7 @@ class ToysState with _$ToysState {
   const factory ToysState({
     required Consumer currentConsumer,
     @Default([]) List<ToyAndOwnerConsumer> toys,
+    @Default([]) List<int> likedToyIDs,
     @Default(false) bool hasReachedMax,
     @Default(true) bool isInitializing,
     @Default(false) bool isLoading,

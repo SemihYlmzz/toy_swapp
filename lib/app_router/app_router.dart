@@ -3,9 +3,11 @@ import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:support_repository/support_repository.dart';
 import 'package:toy_repository/toy_repository.dart';
 import 'package:toy_swapp/account_settings/router/router.dart';
 import 'package:toy_swapp/liked_toys/liked_toys.dart';
+import 'package:toy_swapp/support_toy_acceptance/support_toy_acceptance.dart';
 import 'package:toy_swapp/toy_detail/toy_detail.dart';
 
 import '../account_initializer/account_initializer.dart';
@@ -22,6 +24,9 @@ import '../settings/settings.dart';
 import '../sign_in/sign_in.dart';
 import '../sign_up/sign_up.dart';
 import '../sub_matches/sub_matches.dart';
+import '../support_navigator_bar/support_navigator_bar.dart';
+import '../support_profile/support_profile.dart';
+import '../support_reports/support_reports.dart';
 import '../terms_acceptance/terms_acceptance.dart';
 import '../toys/toys.dart';
 import 'router.dart';
@@ -41,6 +46,12 @@ class AppRouter {
     [MatchesGoRoute.instance],
     [ProfileGoRoute.instance],
   ];
+  final List<List<SupportNavigatorBarSubGoRoute>>
+      _supportNavigatorBarMainRoutes = [
+    [SupportToyAcceptanceGoRoute.instance],
+    [SupportReportsGoRoute.instance],
+    [SupportProfileGoRoute.instance],
+  ];
 
   List<StatefulShellBranch> _createStatefulShelBranches(
     List<List<GoRoute>> routes,
@@ -48,7 +59,11 @@ class AppRouter {
     return routes.map((e) => StatefulShellBranch(routes: e)).toList();
   }
 
-  GoRouter router(Stream<dynamic> authStream, Stream<dynamic> userStream) =>
+  GoRouter router(
+    Stream<dynamic> authStream,
+    Stream<dynamic> userStream,
+    Stream<dynamic> supportStream,
+  ) =>
       GoRouter(
         debugLogDiagnostics: true,
         initialLocation: TermsAcceptanceRouter.instance.path,
@@ -73,6 +88,13 @@ class AppRouter {
           AccountSettingsRouter.instance.route,
           ToyDetailRouter.instance.route,
           LikedToysRouter.instance.route,
+          // [SignedIn] + [Verified] + User: [SupportHasData]
+          SupportNavigatorBarRouter.instance.shellRoute(
+            _createStatefulShelBranches(_supportNavigatorBarMainRoutes),
+            SupportNavigatorBarRouter.instance.getSubRoutes(
+              _supportNavigatorBarMainRoutes,
+            ),
+          ),
           // [NoRule]
           SettingsRouter.instance.route,
           TermsAcceptanceRouter.instance.route,
@@ -83,10 +105,12 @@ class AppRouter {
           final authRepository = context.read<AuthRepository>();
           final consumerRepository = context.read<ConsumerRepository>();
           final toyRepository = context.read<ToyRepository>();
+          final supportRepository = context.read<SupportRepository>();
 
           // Current Values
           final currentAuth = authRepository.currentAuth;
           final currentConsumer = consumerRepository.currentConsumer;
+          final currentSupport = supportRepository.currentSupport;
 
           //  on [SignOut]
           if (currentAuth.state == AuthState.unAuth) {
@@ -100,6 +124,20 @@ class AppRouter {
           String? nonVerifiedSignedIn() {
             if (!_inEmailVerificationScreen(state)) {
               return EmailVerificationRouter.instance.path;
+            }
+            return null;
+          }
+
+          String? verifiedSignedInCheckSupport() {
+            String? supportHasData() {
+              if (!_inSupportScreens(state)) {
+                return SupportToyAcceptanceGoRoute.instance.path;
+              }
+              return null;
+            }
+
+            if (currentSupport != null) {
+              return supportHasData();
             }
             return null;
           }
@@ -134,11 +172,11 @@ class AppRouter {
               return nonVerifiedSignedIn();
             }
             // [VerifiedSignIn]
-            final nullablePath = verifiedSignedInCheckConsumer();
-            // nullablePath ??= checkSupport();
+            var nullablePath = verifiedSignedInCheckConsumer();
+            nullablePath ??= verifiedSignedInCheckSupport();
             // nullablePath ??= checkAdmin();
-            if (currentConsumer != null ||
-                (currentConsumer == null && nullablePath != null)) {
+
+            if (currentConsumer != null || currentSupport != null) {
               return nullablePath;
             }
 
@@ -160,6 +198,7 @@ class AppRouter {
         refreshListenable: GoRouterRefreshStream(
           stream1: authStream,
           stream2: userStream,
+          stream3: supportStream,
         ),
       );
 
@@ -192,6 +231,13 @@ class AppRouter {
         ConsumerDataCalibrationRouter.instance.name,
         ToyDetailRouter.instance.name,
         LikedToysRouter.instance.name,
+      ].contains(state.topRoute!.name);
+
+  // [SupportScreens]
+  bool _inSupportScreens(GoRouterState state) => [
+        SupportToyAcceptanceGoRoute.instance.name,
+        SupportProfileGoRoute.instance.name,
+        SupportReportsGoRoute.instance.name,
       ].contains(state.topRoute!.name);
 
   bool _inNoRuleScreens(GoRouterState state) => [

@@ -14,6 +14,7 @@ class AccountInitializerScreen extends StatelessWidget {
       create: (context) => AccountInitializerBloc(
         authRepository: context.read(),
         consumerRepository: context.read(),
+        supportRepository: context.read(),
       )..add(const AccountInitializerEvent.fetchAccountData()),
       child: MultiBlocListener(
         listeners: [

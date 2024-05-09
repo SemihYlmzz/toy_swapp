@@ -38,6 +38,8 @@ dependencies:
     path: packages/device_metadata_repository
   toy_repository:
     path: packages/toy_repository
+  support_repository:
+    path: packages/support_repository
 
   # Services
   permission_service:

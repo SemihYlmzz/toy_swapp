@@ -14,10 +14,12 @@ class ProfileGoRoute extends NavigatorBarSubGoRoute {
 
   static const String _path = '/profile';
   static const String _name = 'profile';
+
   static GoRouterPageBuilder get _pageBuilder =>
       (context, state) => const NoTransitionPage(
             child: ProfileScreen(),
           );
+
 
   @override
   Widget? get endDrawer => const ProfileDrawer();
