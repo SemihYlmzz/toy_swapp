@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:toy_swapp/profile/profile.dart';
 import '../toy_detail.dart';
 
 extension ToyDetailPopOnToyDelete on ToyDetailBlocListeners {
@@ -14,7 +15,7 @@ extension ToyDetailPopOnToyDelete on ToyDetailBlocListeners {
         if (!context.canPop()) {
           return;
         }
-        context.pop();
+        ProfileGoRoute.instance.go(context);
       },
     );
   }
