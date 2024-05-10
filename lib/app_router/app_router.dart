@@ -111,7 +111,7 @@ class AppRouter {
           final currentAuth = authRepository.currentAuth;
           final currentConsumer = consumerRepository.currentConsumer;
           final currentSupport = supportRepository.currentSupport;
-          
+
           //  on [SignOut]
           if (currentAuth.state == AuthState.unAuth) {
             // [ClearConsumer] if [ConsumerHasData]
@@ -140,6 +140,7 @@ class AppRouter {
               return null;
             }
 
+            print(currentSupport);
             if (currentSupport != null) {
               return supportHasData();
             }

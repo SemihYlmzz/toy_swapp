@@ -24,13 +24,13 @@ class SupportRepository {
       _currentSupportStreamController.stream;
   Support? currentSupport;
 
-  FutureUnit initCurrentSupportWithAuthID({
+  FutureEither<Support?> initCurrentSupportWithAuthID({
     required String authId,
   }) async {
     try {
       final support = await _client.support.readWithAuthID(authId);
       _currentSupportStreamController.sink.add(support);
-      return const Right(unit);
+      return Right(support);
     } catch (exception) {
       return const Left(SupportRepositoryException.unknown());
     }

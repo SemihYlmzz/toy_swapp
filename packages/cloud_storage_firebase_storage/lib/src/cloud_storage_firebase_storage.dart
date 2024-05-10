@@ -20,6 +20,7 @@ class CloudStorageFirebaseStorage extends CloudStorage {
       final task = await storageRef.putData(image);
       return task.ref.getDownloadURL();
     } catch (exception) {
+      if (exception is FirebaseException) {}
       throw Exception();
     }
   }

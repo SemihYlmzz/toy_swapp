@@ -73,7 +73,6 @@ class ConsumerRepository {
           image: avatarImage1024,
         ),
       );
-
       final createdConsumer = await _client.consumer.createConsumer(
         authId,
         firstName,

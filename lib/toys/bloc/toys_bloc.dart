@@ -66,7 +66,7 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
         final oldLikedToyIDs = state.likedToyIDs;
         final updatedLikedToyIDs =
             oldLikedToyIDs.where((id) => id != value.toyID).toList();
-            
+
         emit(state.copyWith(likedToyIDs: updatedLikedToyIDs));
 
         final tryUnlike = await _toyRepository.unlikeToy(
@@ -80,7 +80,7 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
       },
       fetchLikeableToys: (value) async {
         if (value.isStartOver) {
-          emit(state.copyWith(toys: [], hasReachedMax: false));
+          emit(state.copyWith(toys: [], hasReachedMax: false, likedToyIDs: []));
         }
         // If reached max, do not fetch
         if (state.hasReachedMax && !value.isStartOver) return;

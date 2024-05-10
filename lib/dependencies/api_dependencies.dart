@@ -14,7 +14,7 @@ class ApiDependencies {
   Future<Apis> init() async {
     // Client
     final client = Client(
-      'http://localhost:8080/',
+      'https://serverpod-api-ihtf6wdrna-nw.a.run.app/',
     )..connectivityMonitor = FlutterConnectivityMonitor();
 
     // Cloud Storage
