@@ -1,0 +1,9 @@
+
+
+class: ToyImageUrls
+
+fields:
+  url1024: String
+  url128: String
+  url256: String
+  url512: String

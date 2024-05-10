@@ -1,0 +1,7 @@
+enum: ToyCondition
+values:
+ - brandNew
+ - good
+ - normal
+ - bad
+ - broken

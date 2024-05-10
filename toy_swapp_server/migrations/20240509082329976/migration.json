@@ -1,0 +1,126 @@
+{
+  "actions": [
+    {
+      "type": "deleteTable",
+      "deleteTable": "toys"
+    },
+    {
+      "type": "createTable",
+      "createTable": {
+        "name": "toys",
+        "dartName": "Toy",
+        "module": "toy_swapp",
+        "schema": "public",
+        "columns": [
+          {
+            "name": "id",
+            "columnType": 2,
+            "isNullable": false,
+            "columnDefault": "nextval('toys_id_seq'::regclass)",
+            "dartType": "int?"
+          },
+          {
+            "name": "ownerConsumerID",
+            "columnType": 2,
+            "isNullable": false,
+            "dartType": "int"
+          },
+          {
+            "name": "name",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "description",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "imageUrlList",
+            "columnType": 8,
+            "isNullable": false,
+            "dartType": "List<protocol:ToyImageUrls>"
+          },
+          {
+            "name": "age",
+            "columnType": 2,
+            "isNullable": false,
+            "dartType": "protocol:ToyAge"
+          },
+          {
+            "name": "gender",
+            "columnType": 2,
+            "isNullable": false,
+            "dartType": "protocol:ToyGender"
+          },
+          {
+            "name": "condition",
+            "columnType": 2,
+            "isNullable": false,
+            "dartType": "protocol:ToyCondition"
+          },
+          {
+            "name": "createdAt",
+            "columnType": 4,
+            "isNullable": false,
+            "dartType": "DateTime"
+          },
+          {
+            "name": "isPublic",
+            "columnType": 1,
+            "isNullable": false,
+            "dartType": "bool"
+          },
+          {
+            "name": "isLocked",
+            "columnType": 1,
+            "isNullable": false,
+            "dartType": "bool"
+          },
+          {
+            "name": "likeCount",
+            "columnType": 2,
+            "isNullable": false,
+            "dartType": "int"
+          },
+          {
+            "name": "safeToPublicMarkerSupportID",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          }
+        ],
+        "foreignKeys": [],
+        "indexes": [
+          {
+            "indexName": "toys_pkey",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "id"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": true
+          }
+        ],
+        "managed": true
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "type": "tableDropped",
+      "message": "One or more columns are added to table \"toys\" which cannot be added in a table migration. The complete table will be deleted and recreated.",
+      "table": "toys",
+      "columns": [
+        "likeCount"
+      ],
+      "destrucive": true
+    }
+  ],
+  "migrationApiVersion": 1
+}

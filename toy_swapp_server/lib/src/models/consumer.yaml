@@ -1,0 +1,19 @@
+class: Consumer
+table: consumers
+
+fields:
+  authId: String
+  firstName: String
+  lastName: String
+  currentLatitude: double
+  currentLongitude: double
+  avatarUrl128: String
+  avatarUrl256: String
+  avatarUrl512: String
+  avatarUrl1024: String
+  toyCount: int
+  swapCount: int
+  switchChanceCount: int
+  isDeletingAccount: bool
+  email: String?
+  likes: List<Like>?, relation(name=consumer_likes)

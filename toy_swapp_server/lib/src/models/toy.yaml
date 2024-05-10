@@ -1,0 +1,19 @@
+
+
+class: Toy
+table: toys
+
+fields:
+  ownerConsumerID: int
+  name: String
+  description: String
+  imageUrlList: List<ToyImageUrls>
+  age: ToyAge
+  gender: ToyGender
+  condition: ToyCondition
+  createdAt: DateTime
+  isPublic: bool
+  isLocked: bool
+  likes: List<Like>?, relation(name=toy_likes)
+  likeCount: int
+  safeToPublicMarkerSupportID: String

@@ -1,0 +1,6 @@
+
+enum: ToyGender
+values:
+ - unisex
+ - boy
+ - girl

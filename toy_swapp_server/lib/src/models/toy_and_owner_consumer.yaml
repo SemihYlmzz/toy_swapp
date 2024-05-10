@@ -1,0 +1,5 @@
+class: ToyAndOwnerConsumer
+
+fields:
+  toy: Toy
+  ownerConsumer: Consumer

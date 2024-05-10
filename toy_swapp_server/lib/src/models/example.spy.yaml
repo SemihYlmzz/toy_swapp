@@ -1,0 +1,5 @@
+
+class: Example
+fields:
+  name: String
+  data: int

@@ -1,0 +1,10 @@
+# enrollment.yaml
+class: Like
+table: likes
+fields:
+  toy: Toy?, relation(name=toy_likes)
+  consumer: Consumer?, relation(name=consumer_likes)
+indexes:
+  enrollment_index_idx:
+    fields: toyId, consumerId
+    unique: true

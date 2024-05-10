@@ -1,0 +1,7 @@
+class: Support
+table: supports
+
+fields:
+  authId: String
+  firstName: String
+  lastName: String

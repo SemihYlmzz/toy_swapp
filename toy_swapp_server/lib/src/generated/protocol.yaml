@@ -1,0 +1,17 @@
+consumer:
+  - readWithID:
+  - readWithAuthID:
+  - createConsumer:
+  - updateAvatarUrls:
+  - updateFullName:
+  - updateEmail:
+support:
+  - readWithAuthID:
+toy:
+  - read12WithOwnerConsumerID:
+  - readWithToyID:
+  - createToy:
+  - readLikeableToysWithOwnerConsumer:
+  - likeToy:
+  - unlikeToy:
+  - deleteToy:
