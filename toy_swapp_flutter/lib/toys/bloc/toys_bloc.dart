@@ -114,9 +114,10 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
             }
           },
           (fetchedToys) {
+            final newFetchToys = [...fetchedToys, ...state.toys];
             emit(
               state.copyWith(
-                toys: fetchedToys,
+                toys: newFetchToys,
                 isInitializing: false,
                 hasReachedMax: fetchedToys.length < 10,
               ),
