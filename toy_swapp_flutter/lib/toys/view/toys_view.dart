@@ -1,3 +1,4 @@
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,15 +6,63 @@ import 'package:shared_constants/shared_constants.dart';
 
 import '../toys.dart';
 
-class ToysView extends StatefulWidget {
+class ToysView extends StatelessWidget {
   const ToysView({super.key});
 
   @override
-  State<ToysView> createState() => _ToysViewState();
+  Widget build(BuildContext context) {
+    final toysState = context.select((ToysBloc bloc) => bloc.state);
+    final toysList = toysState.toys.reversed.toList();
+    return InfiniteScrollable(
+      fetchMoreItems: () {
+        context.read<ToysBloc>().add(const ToysEvent.fetchLikeableToys());
+      },
+      hasReachedMax: toysState.hasReachedMax,
+      isFetching: toysState.isLoading,
+      itemCount: toysList.length,
+      onRefresh: () {
+        context.read<ToysBloc>().add(
+              const ToysEvent.fetchLikeableToys(isStartOver: true),
+            );
+      },
+      fetchFailure: toysState.fetchFailure?.toString(),
+      itemBuilder: (context, index) {
+        return Center(
+          child: Padding(
+            padding: SharedPaddings.bottom32,
+            child: ToyCard(toyAndOwnerConsumer: toysList[index]),
+          ),
+        );
+      },
+    );
+  }
 }
 
-class _ToysViewState extends State<ToysView> {
+class InfiniteScrollable extends StatefulWidget {
+  const InfiniteScrollable({
+    required this.itemCount,
+    required this.onRefresh,
+    required this.isFetching,
+    required this.fetchFailure,
+    required this.hasReachedMax,
+    required this.fetchMoreItems,
+    required this.itemBuilder,
+    super.key,
+  });
+  final int itemCount;
+  final bool isFetching;
+  final String? fetchFailure;
+  final bool hasReachedMax;
+  final void Function() fetchMoreItems;
+  final void Function() onRefresh;
+  final Widget? Function(BuildContext, int) itemBuilder;
+  @override
+  State<InfiniteScrollable> createState() => _InfiniteScrollableState();
+}
+
+class _InfiniteScrollableState extends State<InfiniteScrollable> {
   final _scrollController = ScrollController();
+  bool isFakeFetching = false;
 
   @override
   void initState() {
@@ -31,109 +80,76 @@ class _ToysViewState extends State<ToysView> {
 
   @override
   Widget build(BuildContext context) {
-    final toysState = context.select((ToysBloc bloc) => bloc.state);
-    final toysList = toysState.toys.reversed.toList();
-    final fetchMoreFailure = toysState.fetchMoreFailure;
-    final initializingFailure = toysState.initializingFailure;
     return RefreshIndicator(
       onRefresh: () async {
-        context.read<ToysBloc>().add(
-              const ToysEvent.fetchLikeableToys(
-                isStartOver: true,
-              ),
-            );
+        widget.onRefresh();
       },
-      child: initializingFailure != null
-          ? Center(
+      child: !(widget.fetchFailure != null && widget.itemCount == 0)
+          ? !(widget.isFetching && widget.itemCount == 0)
+              ? ListView.builder(
+                  controller: _scrollController,
+                  physics: widget.itemCount != 0
+                      ? const AlwaysScrollableScrollPhysics()
+                      : null,
+                  itemCount: widget.fetchFailure != null ||
+                          isFakeFetching ||
+                          widget.isFetching ||
+                          widget.hasReachedMax
+                      ? widget.itemCount + 1
+                      : widget.itemCount,
+                  padding: SharedPaddings.bottom64,
+                  itemBuilder: (context, index) {
+                    if (widget.fetchFailure != null) {
+                      if (index == widget.itemCount) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                              'Something went wrong. Please try again.',
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                widget.fetchMoreItems();
+                              },
+                              child: const Text('Tap to retry'),
+                            ),
+                          ],
+                        );
+                      }
+                    }
+
+                    if ((widget.isFetching || isFakeFetching) &&
+                        index == widget.itemCount) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    if (widget.hasReachedMax && index == widget.itemCount) {
+                      return const Center(
+                        child: Text('No more items to show'),
+                      );
+                    }
+                    return widget.itemBuilder(context, index);
+                  },
+                )
+              : const Center(
+                  child: CircularProgressIndicator(),
+                )
+          : Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(initializingFailure.toString()),
-                  TextButton(
+                  const Text('Oops! Something went wrong'),
+                  ElevatedButton(
                     onPressed: () {
-                      context.read<ToysBloc>().add(
-                            const ToysEvent.fetchLikeableToys(),
-                          );
+                      widget.onRefresh();
                     },
-                    child: const Text('Retry'),
+                    child: const Text('Tap to retry'),
                   ),
                 ],
               ),
-            )
-          : !toysState.isInitializing
-              ? toysList.isEmpty
-                  ? Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('No toys found'),
-                          TextButton(
-                            onPressed: () {
-                              context.read<ToysBloc>().add(
-                                    const ToysEvent.fetchLikeableToys(
-                                      isStartOver: true,
-                                    ),
-                                  );
-                            },
-                            child: const Text('Retry'),
-                          ),
-                        ],
-                      ),
-                    )
-                  : ListView.builder(
-                      controller: _scrollController,
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      itemCount: toysList.length +
-                          (toysState.fetchMoreFailure != null ? 1 : 0),
-                      itemBuilder: (context, index) {
-                        if (fetchMoreFailure != null &&
-                            index == toysList.length) {
-                          return GestureDetector(
-                            onTap: () {
-                              context
-                                  .read<ToysBloc>()
-                                  .add(const ToysEvent.clearFetchMoreFailure());
-                            },
-                            child: const SizedBox(
-                              height: 100,
-                              child: Center(
-                                child: Text(
-                                  'Error Occured while fetching more toys.\n'
-                                  'Tap to retry.',
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          );
-                        }
-                        return Center(
-                          child: Padding(
-                            padding: SharedPaddings.bottom32,
-                            child:
-                                ToyCard(toyAndOwnerConsumer: toysList[index]),
-                          ),
-                        );
-                      },
-                    )
-              : const Center(child: CircularProgressIndicator()),
+            ),
     );
-  }
-
-  void _fetchMoreOnScroll() {
-    final toysState = context.read<ToysBloc>().state;
-    if (!_isBottom) {
-      return;
-    }
-    if (toysState.isLoading) {
-      return;
-    }
-    if (toysState.fetchMoreFailure != null) {
-      return;
-    }
-    if (toysState.hasReachedMax) {
-      return;
-    }
-    context.read<ToysBloc>().add(const ToysEvent.fetchLikeableToys());
   }
 
   bool get _isBottom {
@@ -149,5 +165,30 @@ class _ToysViewState extends State<ToysView> {
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.offset;
     return currentScroll >= (maxScroll - MediaQuery.sizeOf(context).height);
+  }
+
+  void _fetchMoreOnScroll() {
+    if (!_isBottom) {
+      return;
+    }
+    if (widget.isFetching) {
+      return;
+    }
+    if (widget.fetchFailure != null) {
+      return;
+    }
+    if (widget.hasReachedMax) {
+      return;
+    }
+    isFakeFetching = true;
+    setState(() {});
+    EasyDebounce.debounce(
+      'fetchMore',
+      const Duration(milliseconds: 500),
+      () {
+        isFakeFetching = false;
+        widget.fetchMoreItems();
+      },
+    );
   }
 }

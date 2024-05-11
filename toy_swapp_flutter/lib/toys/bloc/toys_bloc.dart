@@ -45,9 +45,6 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
   ) async {
     emit(state.copyWith(isLoading: true));
     await event.map(
-      clearFetchMoreFailure: (value) async {
-        emit(state.copyWith(fetchMoreFailure: null));
-      },
       likeToy: (value) async {
         final oldLikedToyIDs = state.likedToyIDs;
         emit(
@@ -84,16 +81,9 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
         }
         // If reached max, do not fetch
         if (state.hasReachedMax && !value.isStartOver) return;
-        // Get the oldest toy
-        final oldestToy = state.toys.firstOrNull;
 
-        // If there is no toy,
-        if (oldestToy == null) {
-          // set it is initializing
-          emit(state.copyWith(isInitializing: true));
-        }
         // No failure while fetching
-        emit(state.copyWith(initializingFailure: null, fetchMoreFailure: null));
+        emit(state.copyWith(fetchFailure: null));
 
         // Fetch 10 likeable toys
         final tryFetch = await _toyRepository.fetchMoreLikeableToys(
@@ -101,24 +91,12 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
           fetchedLikeableToysLength: state.toys.length,
         );
         tryFetch.fold(
-          (failure) {
-            if (oldestToy == null) {
-              emit(
-                state.copyWith(
-                  isInitializing: false,
-                  initializingFailure: failure,
-                ),
-              );
-            } else {
-              emit(state.copyWith(fetchMoreFailure: failure));
-            }
-          },
+          (failure) => emit(state.copyWith(fetchFailure: failure)),
           (fetchedToys) {
             final newFetchToys = [...fetchedToys, ...state.toys];
             emit(
               state.copyWith(
                 toys: newFetchToys,
-                isInitializing: false,
                 hasReachedMax: fetchedToys.length < 10,
               ),
             );

@@ -33,3 +33,48 @@ void main() async {
     ),
   );
 }
+// import 'package:flutter/material.dart';
+// import 'package:flutter/rendering.dart';
+// import 'package:flutter/widgets.dart';
+
+// void main() {
+//   runApp(const App());
+// }
+
+// class App extends StatelessWidget {
+//   const App({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       darkTheme: ThemeData.dark(),
+//       home: const ListScreen(),
+//     );
+//   }
+// }
+
+// class ListScreen extends StatelessWidget {
+//   const ListScreen({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('List Screen'),
+//       ),
+//       body: InfiniteScrollable(
+//         isFetching: false,
+//         fetchFailure: null,
+//         hasReachedMax: false,
+//         fetchMoreItems: () {},
+//         onRefresh: () {},
+//         itemCount: 1,
+//         itemBuilder: (context, index) {
+//           return ListTile(
+//             title: Text('Item $index'),
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }
