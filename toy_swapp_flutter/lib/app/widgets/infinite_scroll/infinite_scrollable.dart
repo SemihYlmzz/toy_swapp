@@ -177,6 +177,7 @@ class _InfiniteScrollableState extends State<InfiniteScrollable> {
       () {
         isFakeFetching = false;
         widget.fetchMoreItems();
+        setState(() {});
       },
     );
   }

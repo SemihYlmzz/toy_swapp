@@ -29,17 +29,29 @@ class SupportToyAcceptanceBloc
     emit(state.copyWith(isLoading: true));
 
     await event.map(
-      startWatchAcceptableToys: (value) async {
-        unawaited(_toyRepository.watchAcceptableToys());
-      },
-      stopWatchAcceptableToys: (value) async {
-        await _toyRepository.stopWatchAcceptableToys();
-      },
-      updateAcceptableToys: (e) async {
-        emit(state.copyWith(acceptableToys: e.updatedAcceptableToys));
+      fetchAcceptableToys: (value) async {
+        // No failure while fetching
+        emit(state.copyWith(fetchFailure: null, isFetching: true));
+
+        // Fetch 10 likeable toys
+        final tryFetch = await _toyRepository.fetchMoreAcceptableToys(
+          fetchedAcceptableToysLength: state.acceptableToys.length,
+        );
+        tryFetch.fold(
+          (failure) => emit(state.copyWith(fetchFailure: failure)),
+          (fetchedToys) {
+            final newFetchToys = [...fetchedToys, ...state.acceptableToys];
+            emit(
+              state.copyWith(
+                hasReachedMax: fetchedToys.length < 10,
+                acceptableToys: newFetchToys,
+              ),
+            );
+          },
+        );
       },
     );
 
-    emit(state.copyWith(isLoading: false, failure: null));
+    emit(state.copyWith(isLoading: false, failure: null, isFetching: false));
   }
 }

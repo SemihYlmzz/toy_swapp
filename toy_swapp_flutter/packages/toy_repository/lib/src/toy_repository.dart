@@ -294,21 +294,17 @@ class ToyRepository {
     }
   }
 
-  Future<void> watchAcceptableToys() async {
-    connectionHandler = StreamingConnectionHandler(
-      client: _client,
-      listener: (state) {
-        print('watchAcceptableToys: $state');
-      },
-    );
-    connectionHandler?.connect();
-    await for (final message in _client.toy.stream) {
-      print('message: $message');
+  FutureEither<List<ToyAndOwnerConsumer>> fetchMoreAcceptableToys({
+    required int fetchedAcceptableToysLength,
+  }) async {
+    try {
+      final newAcceptableToys = await _client.toy.fetchMoreAcceptableToys(
+        fetchedAcceptableToysLength,
+      );
+      return Right(newAcceptableToys);
+    } catch (exception) {
+      return const Left(ToyRepositoryException.unknown());
     }
-  }
-
-  Future<void> stopWatchAcceptableToys() async {
-    connectionHandler?.close();
   }
 
   void sinkAddOwnedToy(Toy addedToy) {

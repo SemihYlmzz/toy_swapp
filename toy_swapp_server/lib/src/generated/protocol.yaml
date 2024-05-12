@@ -15,4 +15,4 @@ toy:
   - likeToy:
   - unlikeToy:
   - deleteToy:
-  - readAcceptableToysWithOwnerConsumer:
+  - fetchMoreAcceptableToys:

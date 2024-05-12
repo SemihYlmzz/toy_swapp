@@ -18,60 +18,37 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SupportToyAcceptanceEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<ToyAndOwnerConsumer> updatedAcceptableToys)
-        updateAcceptableToys,
-    required TResult Function() startWatchAcceptableToys,
-    required TResult Function() stopWatchAcceptableToys,
+    required TResult Function() fetchAcceptableToys,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ToyAndOwnerConsumer> updatedAcceptableToys)?
-        updateAcceptableToys,
-    TResult? Function()? startWatchAcceptableToys,
-    TResult? Function()? stopWatchAcceptableToys,
+    TResult? Function()? fetchAcceptableToys,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ToyAndOwnerConsumer> updatedAcceptableToys)?
-        updateAcceptableToys,
-    TResult Function()? startWatchAcceptableToys,
-    TResult Function()? stopWatchAcceptableToys,
+    TResult Function()? fetchAcceptableToys,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(
-            SupportToyAcceptanceEventUpdateAcceptableToys value)
-        updateAcceptableToys,
-    required TResult Function(
             SupportToyAcceptanceEventStartWatchAcceptableToys value)
-        startWatchAcceptableToys,
-    required TResult Function(
-            SupportToyAcceptanceEventStopWatchAcceptableToys value)
-        stopWatchAcceptableToys,
+        fetchAcceptableToys,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SupportToyAcceptanceEventUpdateAcceptableToys value)?
-        updateAcceptableToys,
     TResult? Function(SupportToyAcceptanceEventStartWatchAcceptableToys value)?
-        startWatchAcceptableToys,
-    TResult? Function(SupportToyAcceptanceEventStopWatchAcceptableToys value)?
-        stopWatchAcceptableToys,
+        fetchAcceptableToys,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SupportToyAcceptanceEventUpdateAcceptableToys value)?
-        updateAcceptableToys,
     TResult Function(SupportToyAcceptanceEventStartWatchAcceptableToys value)?
-        startWatchAcceptableToys,
-    TResult Function(SupportToyAcceptanceEventStopWatchAcceptableToys value)?
-        stopWatchAcceptableToys,
+        fetchAcceptableToys,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -94,185 +71,6 @@ class _$SupportToyAcceptanceEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$SupportToyAcceptanceEventUpdateAcceptableToysImplCopyWith<
-    $Res> {
-  factory _$$SupportToyAcceptanceEventUpdateAcceptableToysImplCopyWith(
-          _$SupportToyAcceptanceEventUpdateAcceptableToysImpl value,
-          $Res Function(_$SupportToyAcceptanceEventUpdateAcceptableToysImpl)
-              then) =
-      __$$SupportToyAcceptanceEventUpdateAcceptableToysImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<ToyAndOwnerConsumer> updatedAcceptableToys});
-}
-
-/// @nodoc
-class __$$SupportToyAcceptanceEventUpdateAcceptableToysImplCopyWithImpl<$Res>
-    extends _$SupportToyAcceptanceEventCopyWithImpl<$Res,
-        _$SupportToyAcceptanceEventUpdateAcceptableToysImpl>
-    implements
-        _$$SupportToyAcceptanceEventUpdateAcceptableToysImplCopyWith<$Res> {
-  __$$SupportToyAcceptanceEventUpdateAcceptableToysImplCopyWithImpl(
-      _$SupportToyAcceptanceEventUpdateAcceptableToysImpl _value,
-      $Res Function(_$SupportToyAcceptanceEventUpdateAcceptableToysImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? updatedAcceptableToys = null,
-  }) {
-    return _then(_$SupportToyAcceptanceEventUpdateAcceptableToysImpl(
-      null == updatedAcceptableToys
-          ? _value._updatedAcceptableToys
-          : updatedAcceptableToys // ignore: cast_nullable_to_non_nullable
-              as List<ToyAndOwnerConsumer>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SupportToyAcceptanceEventUpdateAcceptableToysImpl
-    implements SupportToyAcceptanceEventUpdateAcceptableToys {
-  const _$SupportToyAcceptanceEventUpdateAcceptableToysImpl(
-      final List<ToyAndOwnerConsumer> updatedAcceptableToys)
-      : _updatedAcceptableToys = updatedAcceptableToys;
-
-  final List<ToyAndOwnerConsumer> _updatedAcceptableToys;
-  @override
-  List<ToyAndOwnerConsumer> get updatedAcceptableToys {
-    if (_updatedAcceptableToys is EqualUnmodifiableListView)
-      return _updatedAcceptableToys;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_updatedAcceptableToys);
-  }
-
-  @override
-  String toString() {
-    return 'SupportToyAcceptanceEvent.updateAcceptableToys(updatedAcceptableToys: $updatedAcceptableToys)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SupportToyAcceptanceEventUpdateAcceptableToysImpl &&
-            const DeepCollectionEquality()
-                .equals(other._updatedAcceptableToys, _updatedAcceptableToys));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_updatedAcceptableToys));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SupportToyAcceptanceEventUpdateAcceptableToysImplCopyWith<
-          _$SupportToyAcceptanceEventUpdateAcceptableToysImpl>
-      get copyWith =>
-          __$$SupportToyAcceptanceEventUpdateAcceptableToysImplCopyWithImpl<
-                  _$SupportToyAcceptanceEventUpdateAcceptableToysImpl>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<ToyAndOwnerConsumer> updatedAcceptableToys)
-        updateAcceptableToys,
-    required TResult Function() startWatchAcceptableToys,
-    required TResult Function() stopWatchAcceptableToys,
-  }) {
-    return updateAcceptableToys(updatedAcceptableToys);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ToyAndOwnerConsumer> updatedAcceptableToys)?
-        updateAcceptableToys,
-    TResult? Function()? startWatchAcceptableToys,
-    TResult? Function()? stopWatchAcceptableToys,
-  }) {
-    return updateAcceptableToys?.call(updatedAcceptableToys);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ToyAndOwnerConsumer> updatedAcceptableToys)?
-        updateAcceptableToys,
-    TResult Function()? startWatchAcceptableToys,
-    TResult Function()? stopWatchAcceptableToys,
-    required TResult orElse(),
-  }) {
-    if (updateAcceptableToys != null) {
-      return updateAcceptableToys(updatedAcceptableToys);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(
-            SupportToyAcceptanceEventUpdateAcceptableToys value)
-        updateAcceptableToys,
-    required TResult Function(
-            SupportToyAcceptanceEventStartWatchAcceptableToys value)
-        startWatchAcceptableToys,
-    required TResult Function(
-            SupportToyAcceptanceEventStopWatchAcceptableToys value)
-        stopWatchAcceptableToys,
-  }) {
-    return updateAcceptableToys(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SupportToyAcceptanceEventUpdateAcceptableToys value)?
-        updateAcceptableToys,
-    TResult? Function(SupportToyAcceptanceEventStartWatchAcceptableToys value)?
-        startWatchAcceptableToys,
-    TResult? Function(SupportToyAcceptanceEventStopWatchAcceptableToys value)?
-        stopWatchAcceptableToys,
-  }) {
-    return updateAcceptableToys?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SupportToyAcceptanceEventUpdateAcceptableToys value)?
-        updateAcceptableToys,
-    TResult Function(SupportToyAcceptanceEventStartWatchAcceptableToys value)?
-        startWatchAcceptableToys,
-    TResult Function(SupportToyAcceptanceEventStopWatchAcceptableToys value)?
-        stopWatchAcceptableToys,
-    required TResult orElse(),
-  }) {
-    if (updateAcceptableToys != null) {
-      return updateAcceptableToys(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SupportToyAcceptanceEventUpdateAcceptableToys
-    implements SupportToyAcceptanceEvent {
-  const factory SupportToyAcceptanceEventUpdateAcceptableToys(
-          final List<ToyAndOwnerConsumer> updatedAcceptableToys) =
-      _$SupportToyAcceptanceEventUpdateAcceptableToysImpl;
-
-  List<ToyAndOwnerConsumer> get updatedAcceptableToys;
-  @JsonKey(ignore: true)
-  _$$SupportToyAcceptanceEventUpdateAcceptableToysImplCopyWith<
-          _$SupportToyAcceptanceEventUpdateAcceptableToysImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -308,7 +106,7 @@ class _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl
 
   @override
   String toString() {
-    return 'SupportToyAcceptanceEvent.startWatchAcceptableToys()';
+    return 'SupportToyAcceptanceEvent.fetchAcceptableToys()';
   }
 
   @override
@@ -324,36 +122,27 @@ class _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<ToyAndOwnerConsumer> updatedAcceptableToys)
-        updateAcceptableToys,
-    required TResult Function() startWatchAcceptableToys,
-    required TResult Function() stopWatchAcceptableToys,
+    required TResult Function() fetchAcceptableToys,
   }) {
-    return startWatchAcceptableToys();
+    return fetchAcceptableToys();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ToyAndOwnerConsumer> updatedAcceptableToys)?
-        updateAcceptableToys,
-    TResult? Function()? startWatchAcceptableToys,
-    TResult? Function()? stopWatchAcceptableToys,
+    TResult? Function()? fetchAcceptableToys,
   }) {
-    return startWatchAcceptableToys?.call();
+    return fetchAcceptableToys?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ToyAndOwnerConsumer> updatedAcceptableToys)?
-        updateAcceptableToys,
-    TResult Function()? startWatchAcceptableToys,
-    TResult Function()? stopWatchAcceptableToys,
+    TResult Function()? fetchAcceptableToys,
     required TResult orElse(),
   }) {
-    if (startWatchAcceptableToys != null) {
-      return startWatchAcceptableToys();
+    if (fetchAcceptableToys != null) {
+      return fetchAcceptableToys();
     }
     return orElse();
   }
@@ -362,44 +151,30 @@ class _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(
-            SupportToyAcceptanceEventUpdateAcceptableToys value)
-        updateAcceptableToys,
-    required TResult Function(
             SupportToyAcceptanceEventStartWatchAcceptableToys value)
-        startWatchAcceptableToys,
-    required TResult Function(
-            SupportToyAcceptanceEventStopWatchAcceptableToys value)
-        stopWatchAcceptableToys,
+        fetchAcceptableToys,
   }) {
-    return startWatchAcceptableToys(this);
+    return fetchAcceptableToys(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SupportToyAcceptanceEventUpdateAcceptableToys value)?
-        updateAcceptableToys,
     TResult? Function(SupportToyAcceptanceEventStartWatchAcceptableToys value)?
-        startWatchAcceptableToys,
-    TResult? Function(SupportToyAcceptanceEventStopWatchAcceptableToys value)?
-        stopWatchAcceptableToys,
+        fetchAcceptableToys,
   }) {
-    return startWatchAcceptableToys?.call(this);
+    return fetchAcceptableToys?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SupportToyAcceptanceEventUpdateAcceptableToys value)?
-        updateAcceptableToys,
     TResult Function(SupportToyAcceptanceEventStartWatchAcceptableToys value)?
-        startWatchAcceptableToys,
-    TResult Function(SupportToyAcceptanceEventStopWatchAcceptableToys value)?
-        stopWatchAcceptableToys,
+        fetchAcceptableToys,
     required TResult orElse(),
   }) {
-    if (startWatchAcceptableToys != null) {
-      return startWatchAcceptableToys(this);
+    if (fetchAcceptableToys != null) {
+      return fetchAcceptableToys(this);
     }
     return orElse();
   }
@@ -409,141 +184,6 @@ abstract class SupportToyAcceptanceEventStartWatchAcceptableToys
     implements SupportToyAcceptanceEvent {
   const factory SupportToyAcceptanceEventStartWatchAcceptableToys() =
       _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl;
-}
-
-/// @nodoc
-abstract class _$$SupportToyAcceptanceEventStopWatchAcceptableToysImplCopyWith<
-    $Res> {
-  factory _$$SupportToyAcceptanceEventStopWatchAcceptableToysImplCopyWith(
-          _$SupportToyAcceptanceEventStopWatchAcceptableToysImpl value,
-          $Res Function(_$SupportToyAcceptanceEventStopWatchAcceptableToysImpl)
-              then) =
-      __$$SupportToyAcceptanceEventStopWatchAcceptableToysImplCopyWithImpl<
-          $Res>;
-}
-
-/// @nodoc
-class __$$SupportToyAcceptanceEventStopWatchAcceptableToysImplCopyWithImpl<$Res>
-    extends _$SupportToyAcceptanceEventCopyWithImpl<$Res,
-        _$SupportToyAcceptanceEventStopWatchAcceptableToysImpl>
-    implements
-        _$$SupportToyAcceptanceEventStopWatchAcceptableToysImplCopyWith<$Res> {
-  __$$SupportToyAcceptanceEventStopWatchAcceptableToysImplCopyWithImpl(
-      _$SupportToyAcceptanceEventStopWatchAcceptableToysImpl _value,
-      $Res Function(_$SupportToyAcceptanceEventStopWatchAcceptableToysImpl)
-          _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$SupportToyAcceptanceEventStopWatchAcceptableToysImpl
-    implements SupportToyAcceptanceEventStopWatchAcceptableToys {
-  const _$SupportToyAcceptanceEventStopWatchAcceptableToysImpl();
-
-  @override
-  String toString() {
-    return 'SupportToyAcceptanceEvent.stopWatchAcceptableToys()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SupportToyAcceptanceEventStopWatchAcceptableToysImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<ToyAndOwnerConsumer> updatedAcceptableToys)
-        updateAcceptableToys,
-    required TResult Function() startWatchAcceptableToys,
-    required TResult Function() stopWatchAcceptableToys,
-  }) {
-    return stopWatchAcceptableToys();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ToyAndOwnerConsumer> updatedAcceptableToys)?
-        updateAcceptableToys,
-    TResult? Function()? startWatchAcceptableToys,
-    TResult? Function()? stopWatchAcceptableToys,
-  }) {
-    return stopWatchAcceptableToys?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ToyAndOwnerConsumer> updatedAcceptableToys)?
-        updateAcceptableToys,
-    TResult Function()? startWatchAcceptableToys,
-    TResult Function()? stopWatchAcceptableToys,
-    required TResult orElse(),
-  }) {
-    if (stopWatchAcceptableToys != null) {
-      return stopWatchAcceptableToys();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(
-            SupportToyAcceptanceEventUpdateAcceptableToys value)
-        updateAcceptableToys,
-    required TResult Function(
-            SupportToyAcceptanceEventStartWatchAcceptableToys value)
-        startWatchAcceptableToys,
-    required TResult Function(
-            SupportToyAcceptanceEventStopWatchAcceptableToys value)
-        stopWatchAcceptableToys,
-  }) {
-    return stopWatchAcceptableToys(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SupportToyAcceptanceEventUpdateAcceptableToys value)?
-        updateAcceptableToys,
-    TResult? Function(SupportToyAcceptanceEventStartWatchAcceptableToys value)?
-        startWatchAcceptableToys,
-    TResult? Function(SupportToyAcceptanceEventStopWatchAcceptableToys value)?
-        stopWatchAcceptableToys,
-  }) {
-    return stopWatchAcceptableToys?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SupportToyAcceptanceEventUpdateAcceptableToys value)?
-        updateAcceptableToys,
-    TResult Function(SupportToyAcceptanceEventStartWatchAcceptableToys value)?
-        startWatchAcceptableToys,
-    TResult Function(SupportToyAcceptanceEventStopWatchAcceptableToys value)?
-        stopWatchAcceptableToys,
-    required TResult orElse(),
-  }) {
-    if (stopWatchAcceptableToys != null) {
-      return stopWatchAcceptableToys(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SupportToyAcceptanceEventStopWatchAcceptableToys
-    implements SupportToyAcceptanceEvent {
-  const factory SupportToyAcceptanceEventStopWatchAcceptableToys() =
-      _$SupportToyAcceptanceEventStopWatchAcceptableToysImpl;
 }
 
 /// @nodoc

@@ -247,11 +247,11 @@ class EndpointToy extends _i1.EndpointRef {
         },
       );
 
-  _i2.Future<List<_i6.ToyAndOwnerConsumer>> readAcceptableToysWithOwnerConsumer(
+  _i2.Future<List<_i6.ToyAndOwnerConsumer>> fetchMoreAcceptableToys(
           int offset) =>
       caller.callServerEndpoint<List<_i6.ToyAndOwnerConsumer>>(
         'toy',
-        'readAcceptableToysWithOwnerConsumer',
+        'fetchMoreAcceptableToys',
         {'offset': offset},
       );
 }

@@ -256,7 +256,7 @@ class ToyEndpoint extends Endpoint {
     return updatedConsumer;
   }
 
-  Future<List<ToyAndOwnerConsumer>> readAcceptableToysWithOwnerConsumer(
+  Future<List<ToyAndOwnerConsumer>> fetchMoreAcceptableToys(
     Session session,
     int offset,
   ) async {
@@ -265,7 +265,7 @@ class ToyEndpoint extends Endpoint {
       where: (toys) => toys.safeToPublicMarkerSupportID.equals(''),
       limit: 12,
       orderBy: (table) => table.createdAt,
-      orderDescending: true,
+      // orderDescending: true,
       offset: offset,
     );
     List<ToyAndOwnerConsumer> toyAndOwnerConsumerList = [];

@@ -478,8 +478,8 @@ class Endpoints extends _i1.EndpointDispatch {
             params['currentConsumerID'],
           ),
         ),
-        'readAcceptableToysWithOwnerConsumer': _i1.MethodConnector(
-          name: 'readAcceptableToysWithOwnerConsumer',
+        'fetchMoreAcceptableToys': _i1.MethodConnector(
+          name: 'fetchMoreAcceptableToys',
           params: {
             'offset': _i1.ParameterDescription(
               name: 'offset',
@@ -491,8 +491,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['toy'] as _i4.ToyEndpoint)
-                  .readAcceptableToysWithOwnerConsumer(
+              (endpoints['toy'] as _i4.ToyEndpoint).fetchMoreAcceptableToys(
             session,
             params['offset'],
           ),
