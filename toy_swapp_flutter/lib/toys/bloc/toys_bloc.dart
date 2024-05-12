@@ -83,7 +83,7 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
         if (state.hasReachedMax && !value.isStartOver) return;
 
         // No failure while fetching
-        emit(state.copyWith(fetchFailure: null));
+        emit(state.copyWith(fetchFailure: null, isFetching: true));
 
         // Fetch 10 likeable toys
         final tryFetch = await _toyRepository.fetchMoreLikeableToys(
@@ -104,6 +104,6 @@ class ToysBloc extends Bloc<ToysEvent, ToysState> {
         );
       },
     );
-    emit(state.copyWith(isLoading: false, failure: null));
+    emit(state.copyWith(isLoading: false, failure: null, isFetching: false));
   }
 }

@@ -136,13 +136,12 @@ class _$ToyDetailCurrentConsumerUpdatedImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ToyDetailCurrentConsumerUpdatedImpl &&
-            const DeepCollectionEquality()
-                .equals(other.updatedConsumer, updatedConsumer));
+            (identical(other.updatedConsumer, updatedConsumer) ||
+                other.updatedConsumer == updatedConsumer));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(updatedConsumer));
+  int get hashCode => Object.hash(runtimeType, updatedConsumer);
 
   @JsonKey(ignore: true)
   @override
@@ -705,11 +704,11 @@ class _$ToyDetailStateImpl implements _ToyDetailState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ToyDetailStateImpl &&
-            const DeepCollectionEquality()
-                .equals(other.currentConsumer, currentConsumer) &&
+            (identical(other.currentConsumer, currentConsumer) ||
+                other.currentConsumer == currentConsumer) &&
             (identical(other.toy, toy) || other.toy == toy) &&
-            const DeepCollectionEquality()
-                .equals(other.ownerConsumer, ownerConsumer) &&
+            (identical(other.ownerConsumer, ownerConsumer) ||
+                other.ownerConsumer == ownerConsumer) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isToyDeleted, isToyDeleted) ||
@@ -718,14 +717,8 @@ class _$ToyDetailStateImpl implements _ToyDetailState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(currentConsumer),
-      toy,
-      const DeepCollectionEquality().hash(ownerConsumer),
-      isLoading,
-      isToyDeleted,
-      failure);
+  int get hashCode => Object.hash(runtimeType, currentConsumer, toy,
+      ownerConsumer, isLoading, isToyDeleted, failure);
 
   @JsonKey(ignore: true)
   @override

@@ -140,7 +140,6 @@ class AppRouter {
               return null;
             }
 
-            print(currentSupport);
             if (currentSupport != null) {
               return supportHasData();
             }

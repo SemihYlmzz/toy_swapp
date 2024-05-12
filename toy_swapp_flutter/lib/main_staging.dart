@@ -12,6 +12,7 @@ void main() async {
   // Dependencies
   final apiDependencies = ApiDependencies(
     firebaseOptions: DefaultFirebaseOptions.currentPlatform,
+    clientHost: 'https://serverpod-api-ihtf6wdrna-nw.a.run.app/',
   );
   const configDependencies = ConfigDependencies();
   const loggerDependencies = LoggerDependencies();

@@ -21,7 +21,7 @@ class ToyRepository {
   // INSTANCES
   final CloudStorage _cloudStorage;
   final Client _client;
-
+  StreamingConnectionHandler? connectionHandler;
   // VARIABLES
   // Current Consumer
   final _ownedToysStreamController = StreamController<List<Toy>?>.broadcast();
@@ -292,6 +292,23 @@ class ToyRepository {
     } catch (exception) {
       return const Left(ToyRepositoryException.unknown());
     }
+  }
+
+  Future<void> watchAcceptableToys() async {
+    connectionHandler = StreamingConnectionHandler(
+      client: _client,
+      listener: (state) {
+        print('watchAcceptableToys: $state');
+      },
+    );
+    connectionHandler?.connect();
+    await for (final message in _client.toy.stream) {
+      print('message: $message');
+    }
+  }
+
+  Future<void> stopWatchAcceptableToys() async {
+    connectionHandler?.close();
   }
 
   void sinkAddOwnedToy(Toy addedToy) {

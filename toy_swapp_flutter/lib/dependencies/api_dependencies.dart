@@ -8,13 +8,15 @@ import 'models/models.dart';
 class ApiDependencies {
   const ApiDependencies({
     required FirebaseOptions firebaseOptions,
-  }) : _firebaseOptions = firebaseOptions;
+    required String clientHost,
+  }) : _firebaseOptions = firebaseOptions,
+       _clientHost = clientHost ;
   final FirebaseOptions _firebaseOptions;
-
+  final String _clientHost;
   Future<Apis> init() async {
     // Client
     final client = Client(
-      'https://serverpod-api-ihtf6wdrna-nw.a.run.app/',
+      _clientHost,
     )..connectivityMonitor = FlutterConnectivityMonitor();
 
     // Cloud Storage

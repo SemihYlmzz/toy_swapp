@@ -507,6 +507,7 @@ mixin _$ToysState {
   List<ToyAndOwnerConsumer> get toys => throw _privateConstructorUsedError;
   List<int> get likedToyIDs => throw _privateConstructorUsedError;
   bool get hasReachedMax => throw _privateConstructorUsedError;
+  bool get isFetching => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Failure? get fetchFailure => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
@@ -526,6 +527,7 @@ abstract class $ToysStateCopyWith<$Res> {
       List<ToyAndOwnerConsumer> toys,
       List<int> likedToyIDs,
       bool hasReachedMax,
+      bool isFetching,
       bool isLoading,
       Failure? fetchFailure,
       Failure? failure});
@@ -548,6 +550,7 @@ class _$ToysStateCopyWithImpl<$Res, $Val extends ToysState>
     Object? toys = null,
     Object? likedToyIDs = null,
     Object? hasReachedMax = null,
+    Object? isFetching = null,
     Object? isLoading = null,
     Object? fetchFailure = freezed,
     Object? failure = freezed,
@@ -568,6 +571,10 @@ class _$ToysStateCopyWithImpl<$Res, $Val extends ToysState>
       hasReachedMax: null == hasReachedMax
           ? _value.hasReachedMax
           : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isFetching: null == isFetching
+          ? _value.isFetching
+          : isFetching // ignore: cast_nullable_to_non_nullable
               as bool,
       isLoading: null == isLoading
           ? _value.isLoading
@@ -598,6 +605,7 @@ abstract class _$$ToysStateImplCopyWith<$Res>
       List<ToyAndOwnerConsumer> toys,
       List<int> likedToyIDs,
       bool hasReachedMax,
+      bool isFetching,
       bool isLoading,
       Failure? fetchFailure,
       Failure? failure});
@@ -618,6 +626,7 @@ class __$$ToysStateImplCopyWithImpl<$Res>
     Object? toys = null,
     Object? likedToyIDs = null,
     Object? hasReachedMax = null,
+    Object? isFetching = null,
     Object? isLoading = null,
     Object? fetchFailure = freezed,
     Object? failure = freezed,
@@ -638,6 +647,10 @@ class __$$ToysStateImplCopyWithImpl<$Res>
       hasReachedMax: null == hasReachedMax
           ? _value.hasReachedMax
           : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isFetching: null == isFetching
+          ? _value.isFetching
+          : isFetching // ignore: cast_nullable_to_non_nullable
               as bool,
       isLoading: null == isLoading
           ? _value.isLoading
@@ -663,6 +676,7 @@ class _$ToysStateImpl implements _ToysState {
       final List<ToyAndOwnerConsumer> toys = const [],
       final List<int> likedToyIDs = const [],
       this.hasReachedMax = false,
+      this.isFetching = false,
       this.isLoading = false,
       this.fetchFailure,
       this.failure})
@@ -694,6 +708,9 @@ class _$ToysStateImpl implements _ToysState {
   final bool hasReachedMax;
   @override
   @JsonKey()
+  final bool isFetching;
+  @override
+  @JsonKey()
   final bool isLoading;
   @override
   final Failure? fetchFailure;
@@ -702,7 +719,7 @@ class _$ToysStateImpl implements _ToysState {
 
   @override
   String toString() {
-    return 'ToysState(currentConsumer: $currentConsumer, toys: $toys, likedToyIDs: $likedToyIDs, hasReachedMax: $hasReachedMax, isLoading: $isLoading, fetchFailure: $fetchFailure, failure: $failure)';
+    return 'ToysState(currentConsumer: $currentConsumer, toys: $toys, likedToyIDs: $likedToyIDs, hasReachedMax: $hasReachedMax, isFetching: $isFetching, isLoading: $isLoading, fetchFailure: $fetchFailure, failure: $failure)';
   }
 
   @override
@@ -717,6 +734,8 @@ class _$ToysStateImpl implements _ToysState {
                 .equals(other._likedToyIDs, _likedToyIDs) &&
             (identical(other.hasReachedMax, hasReachedMax) ||
                 other.hasReachedMax == hasReachedMax) &&
+            (identical(other.isFetching, isFetching) ||
+                other.isFetching == isFetching) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.fetchFailure, fetchFailure) ||
@@ -731,6 +750,7 @@ class _$ToysStateImpl implements _ToysState {
       const DeepCollectionEquality().hash(_toys),
       const DeepCollectionEquality().hash(_likedToyIDs),
       hasReachedMax,
+      isFetching,
       isLoading,
       fetchFailure,
       failure);
@@ -748,6 +768,7 @@ abstract class _ToysState implements ToysState {
       final List<ToyAndOwnerConsumer> toys,
       final List<int> likedToyIDs,
       final bool hasReachedMax,
+      final bool isFetching,
       final bool isLoading,
       final Failure? fetchFailure,
       final Failure? failure}) = _$ToysStateImpl;
@@ -760,6 +781,8 @@ abstract class _ToysState implements ToysState {
   List<int> get likedToyIDs;
   @override
   bool get hasReachedMax;
+  @override
+  bool get isFetching;
   @override
   bool get isLoading;
   @override

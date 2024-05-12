@@ -196,14 +196,14 @@ class EndpointToy extends _i1.EndpointRef {
       );
 
   _i2.Future<List<_i6.ToyAndOwnerConsumer>> readLikeableToysWithOwnerConsumer(
-    int ownerConsumerID,
+    int currentConsumerID,
     int offset,
   ) =>
       caller.callServerEndpoint<List<_i6.ToyAndOwnerConsumer>>(
         'toy',
         'readLikeableToysWithOwnerConsumer',
         {
-          'ownerConsumerID': ownerConsumerID,
+          'currentConsumerID': currentConsumerID,
           'offset': offset,
         },
       );
@@ -245,6 +245,14 @@ class EndpointToy extends _i1.EndpointRef {
           'toyID': toyID,
           'currentConsumerID': currentConsumerID,
         },
+      );
+
+  _i2.Future<List<_i6.ToyAndOwnerConsumer>> readAcceptableToysWithOwnerConsumer(
+          int offset) =>
+      caller.callServerEndpoint<List<_i6.ToyAndOwnerConsumer>>(
+        'toy',
+        'readAcceptableToysWithOwnerConsumer',
+        {'offset': offset},
       );
 }
 

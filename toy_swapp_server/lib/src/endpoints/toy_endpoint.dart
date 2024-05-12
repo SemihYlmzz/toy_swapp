@@ -1,6 +1,8 @@
 import 'package:serverpod/serverpod.dart';
 import 'package:toy_swapp_server/src/generated/protocol.dart';
 
+const acceptableToyChannel = "acceptable-toy-channel";
+
 class ToyEndpoint extends Endpoint {
   // Read Newest 12 Toys or Newest 12 Toys after the given toyID
   Future<List<Toy>> read12WithOwnerConsumerID(
@@ -101,17 +103,17 @@ class ToyEndpoint extends Endpoint {
 
   Future<List<ToyAndOwnerConsumer>> readLikeableToysWithOwnerConsumer(
     Session session,
-    int ownerConsumerID,
+    int currentConsumerID,
     int offset,
   ) async {
     final toyList = await Toy.db.find(
       session,
       where: (toys) =>
-          toys.ownerConsumerID.notEquals(ownerConsumerID) &
+          toys.ownerConsumerID.notEquals(currentConsumerID) &
           toys.isPublic.equals(true) &
           toys.isLocked.equals(false) &
           toys.likes.none(
-            (likers) => likers.consumerId.equals(ownerConsumerID),
+            (likers) => likers.consumerId.equals(currentConsumerID),
           ),
       limit: 12,
       orderBy: (table) => table.createdAt,
@@ -252,5 +254,35 @@ class ToyEndpoint extends Endpoint {
       return updatedConsumer;
     });
     return updatedConsumer;
+  }
+
+  Future<List<ToyAndOwnerConsumer>> readAcceptableToysWithOwnerConsumer(
+    Session session,
+    int offset,
+  ) async {
+    final toyList = await Toy.db.find(
+      session,
+      where: (toys) => toys.safeToPublicMarkerSupportID.equals(''),
+      limit: 12,
+      orderBy: (table) => table.createdAt,
+      orderDescending: true,
+      offset: offset,
+    );
+    List<ToyAndOwnerConsumer> toyAndOwnerConsumerList = [];
+    for (var toy in toyList) {
+      final ownerConsumer = await Consumer.db.findById(
+        session,
+        toy.ownerConsumerID,
+      );
+      if (ownerConsumer == null) {
+        throw Exception('no-owner-found');
+      }
+      toyAndOwnerConsumerList.add(ToyAndOwnerConsumer(
+        ownerConsumer: ownerConsumer,
+        toy: toy,
+      ));
+    }
+
+    return toyAndOwnerConsumerList;
   }
 }

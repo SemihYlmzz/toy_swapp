@@ -384,8 +384,8 @@ class Endpoints extends _i1.EndpointDispatch {
         'readLikeableToysWithOwnerConsumer': _i1.MethodConnector(
           name: 'readLikeableToysWithOwnerConsumer',
           params: {
-            'ownerConsumerID': _i1.ParameterDescription(
-              name: 'ownerConsumerID',
+            'currentConsumerID': _i1.ParameterDescription(
+              name: 'currentConsumerID',
               type: _i1.getType<int>(),
               nullable: false,
             ),
@@ -402,7 +402,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (endpoints['toy'] as _i4.ToyEndpoint)
                   .readLikeableToysWithOwnerConsumer(
             session,
-            params['ownerConsumerID'],
+            params['currentConsumerID'],
             params['offset'],
           ),
         ),
@@ -476,6 +476,25 @@ class Endpoints extends _i1.EndpointDispatch {
             session,
             params['toyID'],
             params['currentConsumerID'],
+          ),
+        ),
+        'readAcceptableToysWithOwnerConsumer': _i1.MethodConnector(
+          name: 'readAcceptableToysWithOwnerConsumer',
+          params: {
+            'offset': _i1.ParameterDescription(
+              name: 'offset',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['toy'] as _i4.ToyEndpoint)
+                  .readAcceptableToysWithOwnerConsumer(
+            session,
+            params['offset'],
           ),
         ),
       },

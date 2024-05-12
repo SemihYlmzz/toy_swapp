@@ -9,7 +9,6 @@ class ConsumerEndpoint extends Endpoint {
   }
 
   Future<Consumer?> readWithAuthID(Session session, String authID) async {
-    print('TEST');
     final consumer = await Consumer.db.findFirstRow(
       session,
       where: (toyTable) {
