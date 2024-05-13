@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_constants/shared_constants.dart';
 import 'package:toy_swapp/app/app.dart';
 
 import '../support_toy_acceptance.dart';
@@ -13,13 +14,33 @@ class SupportToyAcceptanceView extends StatelessWidget {
     return InfiniteScrollable(
       itemCount: state.acceptableToys.length,
       onRefresh: () {},
-      isFetching: false,
-      fetchFailure: null,
-      hasReachedMax: false,
-      fetchMoreItems: () {},
-      itemBuilder: (context, index) => Text(
-        state.acceptableToys[index].toy.name,
-      ),
+      isFetching: state.isFetching,
+      fetchFailure: state.fetchFailure?.toString(),
+      hasReachedMax: state.hasReachedMax,
+      fetchMoreItems: () {
+      },
+      itemBuilder: (context, index) {
+        final toy = state.acceptableToys[index].toy;
+        return Container(
+          padding: SharedPaddings.all12,
+          margin: SharedPaddings.all12,
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.white),
+          ),
+          child: Column(
+            children: [
+              Text(toy.name),
+              Text(toy.description),
+              Row(
+                children: [
+                  const Text('Waiting Time:'),
+                  Text(toy.createdAt.toString()),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
