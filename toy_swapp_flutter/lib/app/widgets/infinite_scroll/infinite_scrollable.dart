@@ -13,10 +13,12 @@ class InfiniteScrollable extends StatefulWidget {
     required this.hasReachedMax,
     required this.fetchMoreItems,
     required this.itemBuilder,
+    this.isBottomToTopScroll = false,
     super.key,
   });
   final int itemCount;
   final bool isFetching;
+  final bool isBottomToTopScroll;
   final String? fetchFailure;
   final bool hasReachedMax;
   final void Function() fetchMoreItems;
@@ -54,6 +56,7 @@ class _InfiniteScrollableState extends State<InfiniteScrollable> {
           ? !(widget.isFetching && widget.itemCount == 0)
               ? !(widget.itemCount == 0 && widget.hasReachedMax)
                   ? ListView.builder(
+                      reverse: widget.isBottomToTopScroll,
                       controller: _scrollController,
                       physics: widget.itemCount != 0
                           ? const AlwaysScrollableScrollPhysics()
@@ -64,7 +67,9 @@ class _InfiniteScrollableState extends State<InfiniteScrollable> {
                               widget.hasReachedMax
                           ? widget.itemCount + 1
                           : widget.itemCount,
-                      padding: SharedPaddings.bottom64,
+                      padding: !widget.isBottomToTopScroll
+                          ? SharedPaddings.bottom64
+                          : SharedPaddings.top64,
                       itemBuilder: (context, index) {
                         if (widget.fetchFailure != null) {
                           if (index == widget.itemCount) {

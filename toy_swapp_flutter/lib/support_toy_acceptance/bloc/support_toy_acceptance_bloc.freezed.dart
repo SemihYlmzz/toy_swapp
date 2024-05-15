@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SupportToyAcceptanceEvent {
+  bool get isRefresh => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchAcceptableToys,
+    required TResult Function(bool isRefresh) fetchAcceptableToys,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchAcceptableToys,
+    TResult? Function(bool isRefresh)? fetchAcceptableToys,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchAcceptableToys,
+    TResult Function(bool isRefresh)? fetchAcceptableToys,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -52,6 +53,10 @@ mixin _$SupportToyAcceptanceEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SupportToyAcceptanceEventCopyWith<SupportToyAcceptanceEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -59,6 +64,8 @@ abstract class $SupportToyAcceptanceEventCopyWith<$Res> {
   factory $SupportToyAcceptanceEventCopyWith(SupportToyAcceptanceEvent value,
           $Res Function(SupportToyAcceptanceEvent) then) =
       _$SupportToyAcceptanceEventCopyWithImpl<$Res, SupportToyAcceptanceEvent>;
+  @useResult
+  $Res call({bool isRefresh});
 }
 
 /// @nodoc
@@ -71,17 +78,33 @@ class _$SupportToyAcceptanceEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isRefresh = null,
+  }) {
+    return _then(_value.copyWith(
+      isRefresh: null == isRefresh
+          ? _value.isRefresh
+          : isRefresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
 abstract class _$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWith<
-    $Res> {
+    $Res> implements $SupportToyAcceptanceEventCopyWith<$Res> {
   factory _$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWith(
           _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl value,
           $Res Function(_$SupportToyAcceptanceEventStartWatchAcceptableToysImpl)
               then) =
       __$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWithImpl<
           $Res>;
+  @override
+  @useResult
+  $Res call({bool isRefresh});
 }
 
 /// @nodoc
@@ -96,53 +119,83 @@ class __$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWithImpl<
       $Res Function(_$SupportToyAcceptanceEventStartWatchAcceptableToysImpl)
           _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isRefresh = null,
+  }) {
+    return _then(_$SupportToyAcceptanceEventStartWatchAcceptableToysImpl(
+      isRefresh: null == isRefresh
+          ? _value.isRefresh
+          : isRefresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl
     implements SupportToyAcceptanceEventStartWatchAcceptableToys {
-  const _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl();
+  const _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl(
+      {this.isRefresh = false});
+
+  @override
+  @JsonKey()
+  final bool isRefresh;
 
   @override
   String toString() {
-    return 'SupportToyAcceptanceEvent.fetchAcceptableToys()';
+    return 'SupportToyAcceptanceEvent.fetchAcceptableToys(isRefresh: $isRefresh)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl);
+            other is _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl &&
+            (identical(other.isRefresh, isRefresh) ||
+                other.isRefresh == isRefresh));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isRefresh);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWith<
+          _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl>
+      get copyWith =>
+          __$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWithImpl<
+                  _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchAcceptableToys,
+    required TResult Function(bool isRefresh) fetchAcceptableToys,
   }) {
-    return fetchAcceptableToys();
+    return fetchAcceptableToys(isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchAcceptableToys,
+    TResult? Function(bool isRefresh)? fetchAcceptableToys,
   }) {
-    return fetchAcceptableToys?.call();
+    return fetchAcceptableToys?.call(isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchAcceptableToys,
+    TResult Function(bool isRefresh)? fetchAcceptableToys,
     required TResult orElse(),
   }) {
     if (fetchAcceptableToys != null) {
-      return fetchAcceptableToys();
+      return fetchAcceptableToys(isRefresh);
     }
     return orElse();
   }
@@ -182,8 +235,17 @@ class _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl
 
 abstract class SupportToyAcceptanceEventStartWatchAcceptableToys
     implements SupportToyAcceptanceEvent {
-  const factory SupportToyAcceptanceEventStartWatchAcceptableToys() =
+  const factory SupportToyAcceptanceEventStartWatchAcceptableToys(
+          {final bool isRefresh}) =
       _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl;
+
+  @override
+  bool get isRefresh;
+  @override
+  @JsonKey(ignore: true)
+  _$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWith<
+          _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

@@ -30,9 +30,16 @@ class SupportToyAcceptanceBloc
 
     await event.map(
       fetchAcceptableToys: (value) async {
-        // No failure while fetching
-        emit(state.copyWith(fetchFailure: null, isFetching: true));
+        if (value.isRefresh && !state.hasReachedMax) return;
 
+        // No failure while fetching
+        emit(
+          state.copyWith(
+            fetchFailure: null,
+            isFetching: true,
+            hasReachedMax: false,
+          ),
+        );
         // Fetch 10 likeable toys
         final tryFetch = await _toyRepository.fetchMoreAcceptableToys(
           fetchedAcceptableToysLength: state.acceptableToys.length,
@@ -40,7 +47,10 @@ class SupportToyAcceptanceBloc
         tryFetch.fold(
           (failure) => emit(state.copyWith(fetchFailure: failure)),
           (fetchedToys) {
-            final newFetchToys = [...fetchedToys, ...state.acceptableToys];
+            final newFetchToys = [
+              ...state.acceptableToys,
+              ...fetchedToys,
+            ];
             emit(
               state.copyWith(
                 hasReachedMax: fetchedToys.length < 10,
