@@ -15,7 +15,7 @@ class SupportProfileAppBar extends StatelessWidget
       title: const Text('Support Profile View'),
       centerTitle: true,
       forceMaterialTransparency: true,
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       actions: [
         IconButton(
           icon: const Icon(Icons.logout),

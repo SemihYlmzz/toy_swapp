@@ -26,7 +26,7 @@ class DeleteOwnedToyPopUp extends StatelessWidget {
                   child: Text(
                     'Delete',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.onBackground,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                 ),

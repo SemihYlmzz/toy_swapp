@@ -12,7 +12,7 @@ class SupportReportsAppBar extends StatelessWidget
       title: const Text('Support Reports View'),
       centerTitle: true,
       forceMaterialTransparency: true,
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
     );
   }
 

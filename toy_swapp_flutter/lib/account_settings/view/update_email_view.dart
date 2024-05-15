@@ -52,7 +52,7 @@ class UpdateEmailView extends StatelessWidget {
               textAlign: TextAlign.center,
               TextSpan(
                 style: contextTheme.textTheme.labelLarge?.copyWith(
-                  color: contextTheme.colorScheme.onBackground.withOpacity(0.4),
+                  color: contextTheme.colorScheme.onSurface.withOpacity(0.4),
                 ),
                 children: [
                   const TextSpan(

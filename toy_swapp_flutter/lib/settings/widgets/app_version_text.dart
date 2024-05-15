@@ -16,7 +16,7 @@ class AppVersionText extends StatelessWidget {
     return Text(
       'Version: $appVersion',
       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
           ),
     );
   }

@@ -14,15 +14,13 @@ class ToyDetailsDividerText extends StatelessWidget {
       children: [
         const Divider(thickness: 0.1),
         Container(
-          color: Theme.of(context).colorScheme.background,
+          color: Theme.of(context).colorScheme.surface,
           padding: SharedPaddings.all20,
           child: Text(
             'Toy Details',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .onBackground
-                      .withOpacity(0.4),
+                  color:
+                      Theme.of(context).colorScheme.onSurface.withOpacity(0.4),
                 ),
           ),
         ),

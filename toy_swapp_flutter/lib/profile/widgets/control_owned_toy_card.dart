@@ -118,7 +118,7 @@ class ControlOwnedToyCard extends StatelessWidget {
                     child: Switch.adaptive(
                       activeColor: toyColor,
                       inactiveTrackColor: Colors.white12,
-                      thumbIcon: MaterialStateProperty.all(
+                      thumbIcon: WidgetStateProperty.all(
                         Icon(
                           Icons.check,
                           color: toyColor,

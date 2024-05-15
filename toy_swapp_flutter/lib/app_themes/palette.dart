@@ -15,10 +15,8 @@ abstract class Palette {
 
   // Color Scheme
   Color get colorSchemePrimary;
-  Color get colorSchemeBackground;
   Color get colorSchemeSurface;
   Color get colorSchemeOnSurface;
-  Color get colorSchemeOnBackground;
   Color get colorSchemeError;
   Color get colorSchemeOnPrimary;
 

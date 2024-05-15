@@ -49,10 +49,10 @@ class _ToySwappTextFieldState extends State<ToySwappTextField> {
           decoration: InputDecoration(
             labelText: widget.labelText,
             labelStyle: TextStyle(
-              color: Theme.of(context).colorScheme.onBackground,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
             floatingLabelStyle: TextStyle(
-              color: Theme.of(context).colorScheme.onBackground,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
             errorText: widget.errorText,
             focusedBorder: OutlineInputBorder(

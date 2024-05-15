@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_constants/shared_constants.dart';
 
-
 class ToyDescriptionDisplayer extends StatelessWidget {
   const ToyDescriptionDisplayer({
     required this.toyDescription,
@@ -16,7 +15,7 @@ class ToyDescriptionDisplayer extends StatelessWidget {
       child: Text(
         toyDescription,
         style: contextTheme.textTheme.bodyLarge?.copyWith(
-          color: contextTheme.colorScheme.onBackground.withOpacity(0.6),
+          color: contextTheme.colorScheme.onSurface.withOpacity(0.6),
         ),
       ),
     );

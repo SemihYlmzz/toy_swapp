@@ -22,15 +22,11 @@ class DefaultDarkPalette implements Palette {
 
   // Color Scheme
   @override
-  Color get colorSchemeBackground => const Color(0xFF111111);
-  @override
-  Color get colorSchemeOnBackground => Colors.white;
-  @override
   Color get colorSchemeOnSurface => Colors.white;
   @override
   Color get colorSchemePrimary => Colors.deepOrangeAccent;
   @override
-  Color get colorSchemeSurface => Colors.purple;
+  Color get colorSchemeSurface => const Color(0xFF111111);
   @override
   Color get colorSchemeError => Colors.red.shade900;
   @override

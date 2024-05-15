@@ -23,7 +23,7 @@ class ThemeModePickerDropdownButton extends StatelessWidget {
       (AppBloc bloc) => bloc.state.appPreferences.themeMode,
     );
     return DropdownButton(
-      dropdownColor: Theme.of(context).colorScheme.background,
+      dropdownColor: Theme.of(context).colorScheme.surface,
       menuMaxHeight: 300,
       value: themeMode,
       items: ThemeMode.values.map((ThemeMode theme) {

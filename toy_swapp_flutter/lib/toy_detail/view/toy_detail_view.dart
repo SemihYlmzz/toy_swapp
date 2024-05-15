@@ -59,7 +59,7 @@ class ToyDetailView extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: Theme.of(context)
                             .colorScheme
-                            .onBackground
+                            .onSurface
                             .withOpacity(0.6),
                       ),
                 ),
@@ -76,7 +76,7 @@ class ToyDetailView extends StatelessWidget {
                 children: [
                   const Divider(thickness: 0.1),
                   Container(
-                    color: Theme.of(context).colorScheme.background,
+                    color: Theme.of(context).colorScheme.surface,
                     padding: SharedPaddings.horizontal20,
                     child: ConsumerAvatarDisplayer(consumer: ownerConsumer),
                   ),
