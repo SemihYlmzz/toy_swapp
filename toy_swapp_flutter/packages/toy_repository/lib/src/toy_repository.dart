@@ -146,39 +146,38 @@ class ToyRepository {
 
   FutureUnit openToPublic({
     required int toyID,
+    required String requestorAuthID,
   }) async {
-    return const Right(unit);
-    // final updatableToy = ownedToys?.firstWhere(
-    //   (element) => element.id == toyId,
-    // );
-    // if (updatableToy == null) {
-    //   return const Left(ToyRepositoryException.unknown());
-    // }
+    final updatableToy = ownedToys?.firstWhere(
+      (element) => element.id == toyID,
+    );
+    if (updatableToy == null) {
+      return const Left(ToyRepositoryException.unknown());
+    }
+    final updatedToy = updatableToy.copyWith(isPublic: true);
+    final updatedList = List<Toy>.from(ownedToys!);
 
-    // final updatedToy = updatableToy.copyWith(isPublic: true);
+    final toyListIndex = updatedList.indexWhere(
+      (element) => element.id == toyID,
+    );
+    updatedList[toyListIndex] = updatedToy;
+    _ownedToysStreamController.sink.add(updatedList);
 
-    // final updatedList = List<Toy>.from(ownedToys!);
-    // final toyListIndex = updatedList.indexWhere(
-    //   (element) => element.id == toyId,
-    // );
-    // updatedList[toyListIndex] = updatedToy;
-    // _ownedToysStreamController.sink.add(updatedList);
-    // try {
-    //   await _remoteDatabase.updateDoc(
-    //     collectionID: ToyRepositoryStrings.toysCollectionPath,
-    //     documentID: toyId,
-    //     jsonData: updatedToy.toJson(),
-    //   );
-    //   return const Right(unit);
-    // } catch (exception) {
-    //   final updatedList = List<Toy>.from(ownedToys!);
-    //   final toyListIndex = updatedList.indexWhere(
-    //     (element) => element.id == toyId,
-    //   );
-    //   updatedList[toyListIndex] = updatableToy.copyWith(isPublic: false);
-    //   _ownedToysStreamController.sink.add(updatedList);
-    //   return const Left(ToyRepositoryException.unknown());
-    // }
+    try {
+      await _client.toy.openPublic(
+        toyID,
+        requestorAuthID,
+      );
+      return const Right(unit);
+    } catch (exception) {
+      final updatedList = List<Toy>.from(ownedToys!);
+      final toyListIndex = updatedList.indexWhere(
+        (element) => element.id == toyID,
+      );
+      updatedList[toyListIndex] = updatableToy.copyWith(isPublic: false);
+      _ownedToysStreamController.sink.add(updatedList);
+      return const Left(ToyRepositoryException.unknown());
+    }
   }
 
   FutureUnit closeToPublic({

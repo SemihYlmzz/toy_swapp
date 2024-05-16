@@ -4,9 +4,6 @@ import 'package:shared_widgets/shared_widgets.dart';
 
 import '../profile.dart';
 
-//  Todo :
-// 0-22 arası oyuncakla kontrol yapılacak +
-//  Fetch more error ui kontrol.
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -16,6 +13,7 @@ class ProfileScreen extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => ProfileBloc(
+        authRepository: context.read(),
         consumerRepository: context.read(),
         toyRepository: context.read(),
       )..add(const ProfileEvent.fetchMoreOwnedToys()),

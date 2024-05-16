@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auth_repository/auth_repository.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:consumer_repository/consumer_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,11 +24,13 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc({
+    required AuthRepository authRepository,
     required ConsumerRepository consumerRepository,
     required ToyRepository toyRepository,
   })  : _toyRepository = toyRepository,
         super(
           ProfileState(
+            currentAuthID: authRepository.currentAuth.id,
             currentConsumerID: consumerRepository.currentConsumer!.id!,
             ownedToys: toyRepository.ownedToys,
           ),
@@ -64,7 +67,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
     await event.map(
       openToyToPublic: (e) async {
-        final tryUpdate = await _toyRepository.openToPublic(toyID: e.toyID);
+        final tryUpdate = await _toyRepository.openToPublic(
+          toyID: e.toyID,
+          requestorAuthID: state.currentAuthID,
+        );
         tryUpdate.fold(
           (l) => emit(state.copyWith(failure: l)),
           (r) => null,

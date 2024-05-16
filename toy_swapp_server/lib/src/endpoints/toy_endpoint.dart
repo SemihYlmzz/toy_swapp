@@ -137,6 +137,39 @@ class ToyEndpoint extends Endpoint {
     return toyAndOwnerConsumerList;
   }
 
+  Future<void> openPublic(
+    Session session,
+    int toyID,
+    String requestorAuthID,
+  ) async {
+    var toy = await Toy.db.findById(
+      session,
+      toyID,
+    );
+    var requestorConsumer = await Consumer.db.findFirstRow(
+      session,
+      where: (consumerTable) => consumerTable.authId.equals(requestorAuthID),
+    );
+    if (requestorConsumer == null) {
+      throw Exception('no-consumer-found');
+    }
+    if (toy == null) {
+      throw Exception('no-toy-found');
+    }
+    if (toy.isLocked) {
+      throw Exception('toy-locked');
+    }
+    if (toy.ownerConsumerID != requestorConsumer.id) {
+      throw Exception('not-toy-owner');
+    }
+    if (toy.isPublic) {
+      return;
+    }
+    toy.isPublic = true;
+    await Toy.db.updateRow(session, toy);
+    return;
+  }
+
   Future<Toy> likeToy(
     Session session,
     int toyID,

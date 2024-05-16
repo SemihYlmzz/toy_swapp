@@ -3,6 +3,7 @@ part of 'profile_bloc.dart';
 @freezed
 class ProfileState with _$ProfileState {
   const factory ProfileState({
+    required String currentAuthID,
     required int currentConsumerID,
     required List<Toy>? ownedToys,
     @Default(false) bool hasReachedMax,
