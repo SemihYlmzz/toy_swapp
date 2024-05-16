@@ -1,0 +1,379 @@
+{
+  "moduleName": "toy_swapp",
+  "tables": [
+    {
+      "name": "consumers",
+      "dartName": "Consumer",
+      "module": "toy_swapp",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "id",
+          "columnType": 2,
+          "isNullable": false,
+          "columnDefault": "nextval('consumers_id_seq'::regclass)",
+          "dartType": "int?"
+        },
+        {
+          "name": "authId",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "name": "firstName",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "name": "lastName",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "name": "currentLatitude",
+          "columnType": 3,
+          "isNullable": false,
+          "dartType": "double"
+        },
+        {
+          "name": "currentLongitude",
+          "columnType": 3,
+          "isNullable": false,
+          "dartType": "double"
+        },
+        {
+          "name": "avatarUrl128",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "name": "avatarUrl256",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "name": "avatarUrl512",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "name": "avatarUrl1024",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "name": "toyCount",
+          "columnType": 2,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "name": "swapCount",
+          "columnType": 2,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "name": "switchChanceCount",
+          "columnType": 2,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "name": "isDeletingAccount",
+          "columnType": 1,
+          "isNullable": false,
+          "dartType": "bool"
+        },
+        {
+          "name": "email",
+          "columnType": 0,
+          "isNullable": true,
+          "dartType": "String?"
+        }
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "indexName": "consumers_pkey",
+          "elements": [
+            {
+              "type": 0,
+              "definition": "id"
+            }
+          ],
+          "type": "btree",
+          "isUnique": true,
+          "isPrimary": true
+        }
+      ],
+      "managed": true
+    },
+    {
+      "name": "likes",
+      "dartName": "Like",
+      "module": "toy_swapp",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "id",
+          "columnType": 2,
+          "isNullable": false,
+          "columnDefault": "nextval('likes_id_seq'::regclass)",
+          "dartType": "int?"
+        },
+        {
+          "name": "toyId",
+          "columnType": 2,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "name": "consumerId",
+          "columnType": 2,
+          "isNullable": false,
+          "dartType": "int"
+        }
+      ],
+      "foreignKeys": [
+        {
+          "constraintName": "likes_fk_0",
+          "columns": [
+            "toyId"
+          ],
+          "referenceTable": "toys",
+          "referenceTableSchema": "public",
+          "referenceColumns": [
+            "id"
+          ],
+          "onUpdate": 3,
+          "onDelete": 3
+        },
+        {
+          "constraintName": "likes_fk_1",
+          "columns": [
+            "consumerId"
+          ],
+          "referenceTable": "consumers",
+          "referenceTableSchema": "public",
+          "referenceColumns": [
+            "id"
+          ],
+          "onUpdate": 3,
+          "onDelete": 3
+        }
+      ],
+      "indexes": [
+        {
+          "indexName": "likes_pkey",
+          "elements": [
+            {
+              "type": 0,
+              "definition": "id"
+            }
+          ],
+          "type": "btree",
+          "isUnique": true,
+          "isPrimary": true
+        },
+        {
+          "indexName": "enrollment_index_idx",
+          "elements": [
+            {
+              "type": 0,
+              "definition": "toyId"
+            },
+            {
+              "type": 0,
+              "definition": "consumerId"
+            }
+          ],
+          "type": "btree",
+          "isUnique": true,
+          "isPrimary": false
+        }
+      ],
+      "managed": true
+    },
+    {
+      "name": "supports",
+      "dartName": "Support",
+      "module": "toy_swapp",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "id",
+          "columnType": 2,
+          "isNullable": false,
+          "columnDefault": "nextval('supports_id_seq'::regclass)",
+          "dartType": "int?"
+        },
+        {
+          "name": "authId",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "name": "firstName",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "name": "lastName",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        }
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "indexName": "supports_pkey",
+          "elements": [
+            {
+              "type": 0,
+              "definition": "id"
+            }
+          ],
+          "type": "btree",
+          "isUnique": true,
+          "isPrimary": true
+        }
+      ],
+      "managed": true
+    },
+    {
+      "name": "toys",
+      "dartName": "Toy",
+      "module": "toy_swapp",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "id",
+          "columnType": 2,
+          "isNullable": false,
+          "columnDefault": "nextval('toys_id_seq'::regclass)",
+          "dartType": "int?"
+        },
+        {
+          "name": "ownerConsumerID",
+          "columnType": 2,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "name": "name",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "name": "description",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "name": "imageUrlList",
+          "columnType": 8,
+          "isNullable": false,
+          "dartType": "List<protocol:ToyImageUrls>"
+        },
+        {
+          "name": "age",
+          "columnType": 2,
+          "isNullable": false,
+          "dartType": "protocol:ToyAge"
+        },
+        {
+          "name": "gender",
+          "columnType": 2,
+          "isNullable": false,
+          "dartType": "protocol:ToyGender"
+        },
+        {
+          "name": "condition",
+          "columnType": 2,
+          "isNullable": false,
+          "dartType": "protocol:ToyCondition"
+        },
+        {
+          "name": "createdAt",
+          "columnType": 4,
+          "isNullable": false,
+          "dartType": "DateTime"
+        },
+        {
+          "name": "isPublic",
+          "columnType": 1,
+          "isNullable": false,
+          "dartType": "bool"
+        },
+        {
+          "name": "isLocked",
+          "columnType": 1,
+          "isNullable": false,
+          "dartType": "bool"
+        },
+        {
+          "name": "likeCount",
+          "columnType": 2,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "name": "acceptDeciderSupportID",
+          "columnType": 2,
+          "isNullable": true,
+          "dartType": "int?"
+        },
+        {
+          "name": "isAccepted",
+          "columnType": 1,
+          "isNullable": true,
+          "dartType": "bool?"
+        }
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "indexName": "toys_pkey",
+          "elements": [
+            {
+              "type": 0,
+              "definition": "id"
+            }
+          ],
+          "type": "btree",
+          "isUnique": true,
+          "isPrimary": true
+        }
+      ],
+      "managed": true
+    }
+  ],
+  "installedModules": [
+    {
+      "module": "serverpod",
+      "version": "20240115074235544"
+    },
+    {
+      "module": "serverpod_auth",
+      "version": "20240115074239642"
+    },
+    {
+      "module": "toy_swapp",
+      "version": "20240510105012964"
+    }
+  ],
+  "migrationApiVersion": 1
+}

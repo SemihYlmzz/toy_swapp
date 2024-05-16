@@ -27,7 +27,8 @@ abstract class Toy extends _i1.TableRow {
     required this.isLocked,
     this.likes,
     required this.likeCount,
-    required this.safeToPublicMarkerSupportID,
+    this.acceptDeciderSupportID,
+    this.isAccepted,
   }) : super(id);
 
   factory Toy({
@@ -44,7 +45,8 @@ abstract class Toy extends _i1.TableRow {
     required bool isLocked,
     List<_i2.Like>? likes,
     required int likeCount,
-    required String safeToPublicMarkerSupportID,
+    int? acceptDeciderSupportID,
+    bool? isAccepted,
   }) = _ToyImpl;
 
   factory Toy.fromJson(
@@ -76,8 +78,10 @@ abstract class Toy extends _i1.TableRow {
           .deserialize<List<_i2.Like>?>(jsonSerialization['likes']),
       likeCount:
           serializationManager.deserialize<int>(jsonSerialization['likeCount']),
-      safeToPublicMarkerSupportID: serializationManager.deserialize<String>(
-          jsonSerialization['safeToPublicMarkerSupportID']),
+      acceptDeciderSupportID: serializationManager
+          .deserialize<int?>(jsonSerialization['acceptDeciderSupportID']),
+      isAccepted: serializationManager
+          .deserialize<bool?>(jsonSerialization['isAccepted']),
     );
   }
 
@@ -109,7 +113,9 @@ abstract class Toy extends _i1.TableRow {
 
   int likeCount;
 
-  String safeToPublicMarkerSupportID;
+  int? acceptDeciderSupportID;
+
+  bool? isAccepted;
 
   @override
   _i1.Table get table => t;
@@ -128,7 +134,8 @@ abstract class Toy extends _i1.TableRow {
     bool? isLocked,
     List<_i2.Like>? likes,
     int? likeCount,
-    String? safeToPublicMarkerSupportID,
+    int? acceptDeciderSupportID,
+    bool? isAccepted,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -146,7 +153,9 @@ abstract class Toy extends _i1.TableRow {
       'isLocked': isLocked,
       if (likes != null) 'likes': likes?.toJson(valueToJson: (v) => v.toJson()),
       'likeCount': likeCount,
-      'safeToPublicMarkerSupportID': safeToPublicMarkerSupportID,
+      if (acceptDeciderSupportID != null)
+        'acceptDeciderSupportID': acceptDeciderSupportID,
+      if (isAccepted != null) 'isAccepted': isAccepted,
     };
   }
 
@@ -166,7 +175,8 @@ abstract class Toy extends _i1.TableRow {
       'isPublic': isPublic,
       'isLocked': isLocked,
       'likeCount': likeCount,
-      'safeToPublicMarkerSupportID': safeToPublicMarkerSupportID,
+      'acceptDeciderSupportID': acceptDeciderSupportID,
+      'isAccepted': isAccepted,
     };
   }
 
@@ -187,7 +197,9 @@ abstract class Toy extends _i1.TableRow {
       if (likes != null)
         'likes': likes?.toJson(valueToJson: (v) => v.allToJson()),
       'likeCount': likeCount,
-      'safeToPublicMarkerSupportID': safeToPublicMarkerSupportID,
+      if (acceptDeciderSupportID != null)
+        'acceptDeciderSupportID': acceptDeciderSupportID,
+      if (isAccepted != null) 'isAccepted': isAccepted,
     };
   }
 
@@ -234,8 +246,11 @@ abstract class Toy extends _i1.TableRow {
       case 'likeCount':
         likeCount = value;
         return;
-      case 'safeToPublicMarkerSupportID':
-        safeToPublicMarkerSupportID = value;
+      case 'acceptDeciderSupportID':
+        acceptDeciderSupportID = value;
+        return;
+      case 'isAccepted':
+        isAccepted = value;
         return;
       default:
         throw UnimplementedError();
@@ -409,7 +424,8 @@ class _ToyImpl extends Toy {
     required bool isLocked,
     List<_i2.Like>? likes,
     required int likeCount,
-    required String safeToPublicMarkerSupportID,
+    int? acceptDeciderSupportID,
+    bool? isAccepted,
   }) : super._(
           id: id,
           ownerConsumerID: ownerConsumerID,
@@ -424,7 +440,8 @@ class _ToyImpl extends Toy {
           isLocked: isLocked,
           likes: likes,
           likeCount: likeCount,
-          safeToPublicMarkerSupportID: safeToPublicMarkerSupportID,
+          acceptDeciderSupportID: acceptDeciderSupportID,
+          isAccepted: isAccepted,
         );
 
   @override
@@ -442,7 +459,8 @@ class _ToyImpl extends Toy {
     bool? isLocked,
     Object? likes = _Undefined,
     int? likeCount,
-    String? safeToPublicMarkerSupportID,
+    Object? acceptDeciderSupportID = _Undefined,
+    Object? isAccepted = _Undefined,
   }) {
     return Toy(
       id: id is int? ? id : this.id,
@@ -458,8 +476,10 @@ class _ToyImpl extends Toy {
       isLocked: isLocked ?? this.isLocked,
       likes: likes is List<_i2.Like>? ? likes : this.likes?.clone(),
       likeCount: likeCount ?? this.likeCount,
-      safeToPublicMarkerSupportID:
-          safeToPublicMarkerSupportID ?? this.safeToPublicMarkerSupportID,
+      acceptDeciderSupportID: acceptDeciderSupportID is int?
+          ? acceptDeciderSupportID
+          : this.acceptDeciderSupportID,
+      isAccepted: isAccepted is bool? ? isAccepted : this.isAccepted,
     );
   }
 }
@@ -513,8 +533,12 @@ class ToyTable extends _i1.Table {
       'likeCount',
       this,
     );
-    safeToPublicMarkerSupportID = _i1.ColumnString(
-      'safeToPublicMarkerSupportID',
+    acceptDeciderSupportID = _i1.ColumnInt(
+      'acceptDeciderSupportID',
+      this,
+    );
+    isAccepted = _i1.ColumnBool(
+      'isAccepted',
       this,
     );
   }
@@ -545,7 +569,9 @@ class ToyTable extends _i1.Table {
 
   late final _i1.ColumnInt likeCount;
 
-  late final _i1.ColumnString safeToPublicMarkerSupportID;
+  late final _i1.ColumnInt acceptDeciderSupportID;
+
+  late final _i1.ColumnBool isAccepted;
 
   _i2.LikeTable get __likes {
     if (___likes != null) return ___likes!;
@@ -592,7 +618,8 @@ class ToyTable extends _i1.Table {
         isPublic,
         isLocked,
         likeCount,
-        safeToPublicMarkerSupportID,
+        acceptDeciderSupportID,
+        isAccepted,
       ];
 
   @override

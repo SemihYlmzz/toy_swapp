@@ -496,6 +496,30 @@ class Endpoints extends _i1.EndpointDispatch {
             params['offset'],
           ),
         ),
+        'acceptToy': _i1.MethodConnector(
+          name: 'acceptToy',
+          params: {
+            'acceptedToyID': _i1.ParameterDescription(
+              name: 'acceptedToyID',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'accepterAuthID': _i1.ParameterDescription(
+              name: 'accepterAuthID',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['toy'] as _i4.ToyEndpoint).acceptToy(
+            session,
+            params['acceptedToyID'],
+            params['accepterAuthID'],
+          ),
+        ),
       },
     );
     modules['serverpod_auth'] = _i9.Endpoints()..initializeEndpoints(server);

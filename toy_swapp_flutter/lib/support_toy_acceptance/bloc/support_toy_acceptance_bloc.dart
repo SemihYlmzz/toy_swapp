@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auth_repository/auth_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:toy_repository/toy_repository.dart';
@@ -13,9 +14,12 @@ part 'support_toy_acceptance_state.dart';
 class SupportToyAcceptanceBloc
     extends Bloc<SupportToyAcceptanceEvent, SupportToyAcceptanceState> {
   SupportToyAcceptanceBloc({
+    required AuthRepository authRepository,
     required ToyRepository toyRepository,
   })  : _toyRepository = toyRepository,
-        super(const SupportToyAcceptanceState()) {
+        super(
+          SupportToyAcceptanceState(authID: authRepository.currentAuth.id),
+        ) {
     on<SupportToyAcceptanceEvent>(_onSupportToyAcceptanceEvent);
   }
   // Repositories
@@ -29,6 +33,10 @@ class SupportToyAcceptanceBloc
     emit(state.copyWith(isLoading: true));
 
     await event.map(
+      acceptToy: (value) => _toyRepository.acceptToy(
+        value.toy,
+        state.authID,
+      ),
       fetchAcceptableToys: (value) async {
         if (value.isRefresh && !state.hasReachedMax) return;
 

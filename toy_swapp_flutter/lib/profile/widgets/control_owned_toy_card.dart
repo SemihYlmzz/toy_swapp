@@ -60,7 +60,7 @@ class ControlOwnedToyCard extends StatelessWidget {
               ),
             ),
           ),
-          if (ownedToy.safeToPublicMarkerSupportID.isEmpty)
+          if (ownedToy.isAccepted == null)
             const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

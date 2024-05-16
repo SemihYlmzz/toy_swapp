@@ -254,6 +254,19 @@ class EndpointToy extends _i1.EndpointRef {
         'fetchMoreAcceptableToys',
         {'offset': offset},
       );
+
+  _i2.Future<void> acceptToy(
+    int acceptedToyID,
+    String accepterAuthID,
+  ) =>
+      caller.callServerEndpoint<void>(
+        'toy',
+        'acceptToy',
+        {
+          'acceptedToyID': acceptedToyID,
+          'accepterAuthID': accepterAuthID,
+        },
+      );
 }
 
 class _Modules {

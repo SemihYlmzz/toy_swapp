@@ -16,3 +16,4 @@ toy:
   - unlikeToy:
   - deleteToy:
   - fetchMoreAcceptableToys:
+  - acceptToy:

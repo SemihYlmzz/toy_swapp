@@ -9,7 +9,7 @@ class SupportToyAcceptanceAppBar extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Support Toy Acceptance View'),
+      title: const Text('Support Toy Acceptance'),
       centerTitle: true,
       forceMaterialTransparency: true,
       backgroundColor: Theme.of(context).colorScheme.surface,

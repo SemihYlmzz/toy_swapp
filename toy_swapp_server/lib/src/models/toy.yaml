@@ -16,4 +16,5 @@ fields:
   isLocked: bool
   likes: List<Like>?, relation(name=toy_likes)
   likeCount: int
-  safeToPublicMarkerSupportID: String
+  acceptDeciderSupportID: int?
+  isAccepted: bool?

@@ -70,7 +70,6 @@ class ToyEndpoint extends Endpoint {
       isLocked: false,
       likeCount: 0,
       likes: [],
-      safeToPublicMarkerSupportID: '',
       id: toyID,
     );
 
@@ -262,7 +261,7 @@ class ToyEndpoint extends Endpoint {
   ) async {
     final toyList = await Toy.db.find(
       session,
-      where: (toys) => toys.safeToPublicMarkerSupportID.equals(''),
+      where: (toys) => toys.acceptDeciderSupportID.equals(null),
       limit: 12,
       orderBy: (table) => table.createdAt,
       // orderDescending: true,
@@ -284,5 +283,36 @@ class ToyEndpoint extends Endpoint {
     }
 
     return toyAndOwnerConsumerList;
+  }
+
+  Future<void> acceptToy(
+    Session session,
+    int acceptedToyID,
+    String accepterAuthID,
+  ) async {
+    var accepterSupport = await Support.db.findFirstRow(
+      session,
+      where: (supportTable) => supportTable.authId.equals(accepterAuthID),
+    );
+    if (accepterSupport == null) {
+      throw Exception('wrong-support-id');
+    }
+    var acceptableToy = await Toy.db.findById(session, acceptedToyID);
+    if (acceptableToy == null) {
+      throw Exception('no-toy-found');
+    }
+    if (acceptableToy.isLocked) {
+      throw Exception('toy-locked');
+    }
+    if (acceptableToy.acceptDeciderSupportID != null) {
+      throw Exception('already-decided');
+    }
+
+    await session.dbNext.transaction((transaction) async {
+      acceptableToy.isAccepted = true;
+      acceptableToy.acceptDeciderSupportID = accepterSupport.id!;
+
+      Toy.db.updateRow(session, acceptableToy, transaction: transaction);
+    });
   }
 }

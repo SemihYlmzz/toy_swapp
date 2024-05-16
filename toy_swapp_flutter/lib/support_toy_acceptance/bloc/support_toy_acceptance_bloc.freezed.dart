@@ -16,46 +16,48 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SupportToyAcceptanceEvent {
-  bool get isRefresh => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isRefresh) fetchAcceptableToys,
+    required TResult Function(Toy toy) acceptToy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isRefresh)? fetchAcceptableToys,
+    TResult? Function(Toy toy)? acceptToy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isRefresh)? fetchAcceptableToys,
+    TResult Function(Toy toy)? acceptToy,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(
-            SupportToyAcceptanceEventStartWatchAcceptableToys value)
+            SupportToyAcceptanceEventFetchAcceptableToys value)
         fetchAcceptableToys,
+    required TResult Function(SupportToyAcceptanceEventAcceptToy value)
+        acceptToy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SupportToyAcceptanceEventStartWatchAcceptableToys value)?
+    TResult? Function(SupportToyAcceptanceEventFetchAcceptableToys value)?
         fetchAcceptableToys,
+    TResult? Function(SupportToyAcceptanceEventAcceptToy value)? acceptToy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SupportToyAcceptanceEventStartWatchAcceptableToys value)?
+    TResult Function(SupportToyAcceptanceEventFetchAcceptableToys value)?
         fetchAcceptableToys,
+    TResult Function(SupportToyAcceptanceEventAcceptToy value)? acceptToy,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $SupportToyAcceptanceEventCopyWith<SupportToyAcceptanceEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -64,8 +66,6 @@ abstract class $SupportToyAcceptanceEventCopyWith<$Res> {
   factory $SupportToyAcceptanceEventCopyWith(SupportToyAcceptanceEvent value,
           $Res Function(SupportToyAcceptanceEvent) then) =
       _$SupportToyAcceptanceEventCopyWithImpl<$Res, SupportToyAcceptanceEvent>;
-  @useResult
-  $Res call({bool isRefresh});
 }
 
 /// @nodoc
@@ -78,46 +78,29 @@ class _$SupportToyAcceptanceEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isRefresh = null,
-  }) {
-    return _then(_value.copyWith(
-      isRefresh: null == isRefresh
-          ? _value.isRefresh
-          : isRefresh // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWith<
-    $Res> implements $SupportToyAcceptanceEventCopyWith<$Res> {
-  factory _$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWith(
-          _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl value,
-          $Res Function(_$SupportToyAcceptanceEventStartWatchAcceptableToysImpl)
+abstract class _$$SupportToyAcceptanceEventFetchAcceptableToysImplCopyWith<
+    $Res> {
+  factory _$$SupportToyAcceptanceEventFetchAcceptableToysImplCopyWith(
+          _$SupportToyAcceptanceEventFetchAcceptableToysImpl value,
+          $Res Function(_$SupportToyAcceptanceEventFetchAcceptableToysImpl)
               then) =
-      __$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWithImpl<
-          $Res>;
-  @override
+      __$$SupportToyAcceptanceEventFetchAcceptableToysImplCopyWithImpl<$Res>;
   @useResult
   $Res call({bool isRefresh});
 }
 
 /// @nodoc
-class __$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWithImpl<
-        $Res>
+class __$$SupportToyAcceptanceEventFetchAcceptableToysImplCopyWithImpl<$Res>
     extends _$SupportToyAcceptanceEventCopyWithImpl<$Res,
-        _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl>
+        _$SupportToyAcceptanceEventFetchAcceptableToysImpl>
     implements
-        _$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWith<$Res> {
-  __$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWithImpl(
-      _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl _value,
-      $Res Function(_$SupportToyAcceptanceEventStartWatchAcceptableToysImpl)
-          _then)
+        _$$SupportToyAcceptanceEventFetchAcceptableToysImplCopyWith<$Res> {
+  __$$SupportToyAcceptanceEventFetchAcceptableToysImplCopyWithImpl(
+      _$SupportToyAcceptanceEventFetchAcceptableToysImpl _value,
+      $Res Function(_$SupportToyAcceptanceEventFetchAcceptableToysImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -125,7 +108,7 @@ class __$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWithImpl<
   $Res call({
     Object? isRefresh = null,
   }) {
-    return _then(_$SupportToyAcceptanceEventStartWatchAcceptableToysImpl(
+    return _then(_$SupportToyAcceptanceEventFetchAcceptableToysImpl(
       isRefresh: null == isRefresh
           ? _value.isRefresh
           : isRefresh // ignore: cast_nullable_to_non_nullable
@@ -136,9 +119,9 @@ class __$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWithImpl<
 
 /// @nodoc
 
-class _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl
-    implements SupportToyAcceptanceEventStartWatchAcceptableToys {
-  const _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl(
+class _$SupportToyAcceptanceEventFetchAcceptableToysImpl
+    implements SupportToyAcceptanceEventFetchAcceptableToys {
+  const _$SupportToyAcceptanceEventFetchAcceptableToysImpl(
       {this.isRefresh = false});
 
   @override
@@ -154,7 +137,7 @@ class _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl &&
+            other is _$SupportToyAcceptanceEventFetchAcceptableToysImpl &&
             (identical(other.isRefresh, isRefresh) ||
                 other.isRefresh == isRefresh));
   }
@@ -165,17 +148,18 @@ class _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWith<
-          _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl>
+  _$$SupportToyAcceptanceEventFetchAcceptableToysImplCopyWith<
+          _$SupportToyAcceptanceEventFetchAcceptableToysImpl>
       get copyWith =>
-          __$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWithImpl<
-                  _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl>(
+          __$$SupportToyAcceptanceEventFetchAcceptableToysImplCopyWithImpl<
+                  _$SupportToyAcceptanceEventFetchAcceptableToysImpl>(
               this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isRefresh) fetchAcceptableToys,
+    required TResult Function(Toy toy) acceptToy,
   }) {
     return fetchAcceptableToys(isRefresh);
   }
@@ -184,6 +168,7 @@ class _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isRefresh)? fetchAcceptableToys,
+    TResult? Function(Toy toy)? acceptToy,
   }) {
     return fetchAcceptableToys?.call(isRefresh);
   }
@@ -192,6 +177,7 @@ class _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isRefresh)? fetchAcceptableToys,
+    TResult Function(Toy toy)? acceptToy,
     required TResult orElse(),
   }) {
     if (fetchAcceptableToys != null) {
@@ -204,8 +190,10 @@ class _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(
-            SupportToyAcceptanceEventStartWatchAcceptableToys value)
+            SupportToyAcceptanceEventFetchAcceptableToys value)
         fetchAcceptableToys,
+    required TResult Function(SupportToyAcceptanceEventAcceptToy value)
+        acceptToy,
   }) {
     return fetchAcceptableToys(this);
   }
@@ -213,8 +201,9 @@ class _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SupportToyAcceptanceEventStartWatchAcceptableToys value)?
+    TResult? Function(SupportToyAcceptanceEventFetchAcceptableToys value)?
         fetchAcceptableToys,
+    TResult? Function(SupportToyAcceptanceEventAcceptToy value)? acceptToy,
   }) {
     return fetchAcceptableToys?.call(this);
   }
@@ -222,8 +211,9 @@ class _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SupportToyAcceptanceEventStartWatchAcceptableToys value)?
+    TResult Function(SupportToyAcceptanceEventFetchAcceptableToys value)?
         fetchAcceptableToys,
+    TResult Function(SupportToyAcceptanceEventAcceptToy value)? acceptToy,
     required TResult orElse(),
   }) {
     if (fetchAcceptableToys != null) {
@@ -233,23 +223,169 @@ class _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl
   }
 }
 
-abstract class SupportToyAcceptanceEventStartWatchAcceptableToys
+abstract class SupportToyAcceptanceEventFetchAcceptableToys
     implements SupportToyAcceptanceEvent {
-  const factory SupportToyAcceptanceEventStartWatchAcceptableToys(
+  const factory SupportToyAcceptanceEventFetchAcceptableToys(
           {final bool isRefresh}) =
-      _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl;
+      _$SupportToyAcceptanceEventFetchAcceptableToysImpl;
+
+  bool get isRefresh;
+  @JsonKey(ignore: true)
+  _$$SupportToyAcceptanceEventFetchAcceptableToysImplCopyWith<
+          _$SupportToyAcceptanceEventFetchAcceptableToysImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SupportToyAcceptanceEventAcceptToyImplCopyWith<$Res> {
+  factory _$$SupportToyAcceptanceEventAcceptToyImplCopyWith(
+          _$SupportToyAcceptanceEventAcceptToyImpl value,
+          $Res Function(_$SupportToyAcceptanceEventAcceptToyImpl) then) =
+      __$$SupportToyAcceptanceEventAcceptToyImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Toy toy});
+}
+
+/// @nodoc
+class __$$SupportToyAcceptanceEventAcceptToyImplCopyWithImpl<$Res>
+    extends _$SupportToyAcceptanceEventCopyWithImpl<$Res,
+        _$SupportToyAcceptanceEventAcceptToyImpl>
+    implements _$$SupportToyAcceptanceEventAcceptToyImplCopyWith<$Res> {
+  __$$SupportToyAcceptanceEventAcceptToyImplCopyWithImpl(
+      _$SupportToyAcceptanceEventAcceptToyImpl _value,
+      $Res Function(_$SupportToyAcceptanceEventAcceptToyImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? toy = null,
+  }) {
+    return _then(_$SupportToyAcceptanceEventAcceptToyImpl(
+      null == toy
+          ? _value.toy
+          : toy // ignore: cast_nullable_to_non_nullable
+              as Toy,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SupportToyAcceptanceEventAcceptToyImpl
+    implements SupportToyAcceptanceEventAcceptToy {
+  const _$SupportToyAcceptanceEventAcceptToyImpl(this.toy);
 
   @override
-  bool get isRefresh;
+  final Toy toy;
+
   @override
+  String toString() {
+    return 'SupportToyAcceptanceEvent.acceptToy(toy: $toy)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SupportToyAcceptanceEventAcceptToyImpl &&
+            (identical(other.toy, toy) || other.toy == toy));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, toy);
+
   @JsonKey(ignore: true)
-  _$$SupportToyAcceptanceEventStartWatchAcceptableToysImplCopyWith<
-          _$SupportToyAcceptanceEventStartWatchAcceptableToysImpl>
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SupportToyAcceptanceEventAcceptToyImplCopyWith<
+          _$SupportToyAcceptanceEventAcceptToyImpl>
+      get copyWith => __$$SupportToyAcceptanceEventAcceptToyImplCopyWithImpl<
+          _$SupportToyAcceptanceEventAcceptToyImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isRefresh) fetchAcceptableToys,
+    required TResult Function(Toy toy) acceptToy,
+  }) {
+    return acceptToy(toy);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isRefresh)? fetchAcceptableToys,
+    TResult? Function(Toy toy)? acceptToy,
+  }) {
+    return acceptToy?.call(toy);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isRefresh)? fetchAcceptableToys,
+    TResult Function(Toy toy)? acceptToy,
+    required TResult orElse(),
+  }) {
+    if (acceptToy != null) {
+      return acceptToy(toy);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(
+            SupportToyAcceptanceEventFetchAcceptableToys value)
+        fetchAcceptableToys,
+    required TResult Function(SupportToyAcceptanceEventAcceptToy value)
+        acceptToy,
+  }) {
+    return acceptToy(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SupportToyAcceptanceEventFetchAcceptableToys value)?
+        fetchAcceptableToys,
+    TResult? Function(SupportToyAcceptanceEventAcceptToy value)? acceptToy,
+  }) {
+    return acceptToy?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SupportToyAcceptanceEventFetchAcceptableToys value)?
+        fetchAcceptableToys,
+    TResult Function(SupportToyAcceptanceEventAcceptToy value)? acceptToy,
+    required TResult orElse(),
+  }) {
+    if (acceptToy != null) {
+      return acceptToy(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SupportToyAcceptanceEventAcceptToy
+    implements SupportToyAcceptanceEvent {
+  const factory SupportToyAcceptanceEventAcceptToy(final Toy toy) =
+      _$SupportToyAcceptanceEventAcceptToyImpl;
+
+  Toy get toy;
+  @JsonKey(ignore: true)
+  _$$SupportToyAcceptanceEventAcceptToyImplCopyWith<
+          _$SupportToyAcceptanceEventAcceptToyImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$SupportToyAcceptanceState {
+  String get authID => throw _privateConstructorUsedError;
   List<ToyAndOwnerConsumer> get acceptableToys =>
       throw _privateConstructorUsedError;
   bool get isFetching => throw _privateConstructorUsedError;
@@ -270,7 +406,8 @@ abstract class $SupportToyAcceptanceStateCopyWith<$Res> {
       _$SupportToyAcceptanceStateCopyWithImpl<$Res, SupportToyAcceptanceState>;
   @useResult
   $Res call(
-      {List<ToyAndOwnerConsumer> acceptableToys,
+      {String authID,
+      List<ToyAndOwnerConsumer> acceptableToys,
       bool isFetching,
       bool hasReachedMax,
       bool isLoading,
@@ -292,6 +429,7 @@ class _$SupportToyAcceptanceStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? authID = null,
     Object? acceptableToys = null,
     Object? isFetching = null,
     Object? hasReachedMax = null,
@@ -300,6 +438,10 @@ class _$SupportToyAcceptanceStateCopyWithImpl<$Res,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
+      authID: null == authID
+          ? _value.authID
+          : authID // ignore: cast_nullable_to_non_nullable
+              as String,
       acceptableToys: null == acceptableToys
           ? _value.acceptableToys
           : acceptableToys // ignore: cast_nullable_to_non_nullable
@@ -338,7 +480,8 @@ abstract class _$$SupportToyAcceptanceStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<ToyAndOwnerConsumer> acceptableToys,
+      {String authID,
+      List<ToyAndOwnerConsumer> acceptableToys,
       bool isFetching,
       bool hasReachedMax,
       bool isLoading,
@@ -359,6 +502,7 @@ class __$$SupportToyAcceptanceStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? authID = null,
     Object? acceptableToys = null,
     Object? isFetching = null,
     Object? hasReachedMax = null,
@@ -367,6 +511,10 @@ class __$$SupportToyAcceptanceStateImplCopyWithImpl<$Res>
     Object? failure = freezed,
   }) {
     return _then(_$SupportToyAcceptanceStateImpl(
+      authID: null == authID
+          ? _value.authID
+          : authID // ignore: cast_nullable_to_non_nullable
+              as String,
       acceptableToys: null == acceptableToys
           ? _value._acceptableToys
           : acceptableToys // ignore: cast_nullable_to_non_nullable
@@ -399,7 +547,8 @@ class __$$SupportToyAcceptanceStateImplCopyWithImpl<$Res>
 
 class _$SupportToyAcceptanceStateImpl implements _SupportToyAcceptanceState {
   const _$SupportToyAcceptanceStateImpl(
-      {final List<ToyAndOwnerConsumer> acceptableToys = const [],
+      {required this.authID,
+      final List<ToyAndOwnerConsumer> acceptableToys = const [],
       this.isFetching = false,
       this.hasReachedMax = false,
       this.isLoading = false,
@@ -407,6 +556,8 @@ class _$SupportToyAcceptanceStateImpl implements _SupportToyAcceptanceState {
       this.failure})
       : _acceptableToys = acceptableToys;
 
+  @override
+  final String authID;
   final List<ToyAndOwnerConsumer> _acceptableToys;
   @override
   @JsonKey()
@@ -432,7 +583,7 @@ class _$SupportToyAcceptanceStateImpl implements _SupportToyAcceptanceState {
 
   @override
   String toString() {
-    return 'SupportToyAcceptanceState(acceptableToys: $acceptableToys, isFetching: $isFetching, hasReachedMax: $hasReachedMax, isLoading: $isLoading, fetchFailure: $fetchFailure, failure: $failure)';
+    return 'SupportToyAcceptanceState(authID: $authID, acceptableToys: $acceptableToys, isFetching: $isFetching, hasReachedMax: $hasReachedMax, isLoading: $isLoading, fetchFailure: $fetchFailure, failure: $failure)';
   }
 
   @override
@@ -440,6 +591,7 @@ class _$SupportToyAcceptanceStateImpl implements _SupportToyAcceptanceState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SupportToyAcceptanceStateImpl &&
+            (identical(other.authID, authID) || other.authID == authID) &&
             const DeepCollectionEquality()
                 .equals(other._acceptableToys, _acceptableToys) &&
             (identical(other.isFetching, isFetching) ||
@@ -456,6 +608,7 @@ class _$SupportToyAcceptanceStateImpl implements _SupportToyAcceptanceState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      authID,
       const DeepCollectionEquality().hash(_acceptableToys),
       isFetching,
       hasReachedMax,
@@ -473,13 +626,16 @@ class _$SupportToyAcceptanceStateImpl implements _SupportToyAcceptanceState {
 
 abstract class _SupportToyAcceptanceState implements SupportToyAcceptanceState {
   const factory _SupportToyAcceptanceState(
-      {final List<ToyAndOwnerConsumer> acceptableToys,
+      {required final String authID,
+      final List<ToyAndOwnerConsumer> acceptableToys,
       final bool isFetching,
       final bool hasReachedMax,
       final bool isLoading,
       final Failure? fetchFailure,
       final Failure? failure}) = _$SupportToyAcceptanceStateImpl;
 
+  @override
+  String get authID;
   @override
   List<ToyAndOwnerConsumer> get acceptableToys;
   @override

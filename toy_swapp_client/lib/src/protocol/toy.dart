@@ -26,7 +26,8 @@ abstract class Toy extends _i1.SerializableEntity {
     required this.isLocked,
     this.likes,
     required this.likeCount,
-    required this.safeToPublicMarkerSupportID,
+    this.acceptDeciderSupportID,
+    this.isAccepted,
   });
 
   factory Toy({
@@ -43,7 +44,8 @@ abstract class Toy extends _i1.SerializableEntity {
     required bool isLocked,
     List<_i2.Like>? likes,
     required int likeCount,
-    required String safeToPublicMarkerSupportID,
+    int? acceptDeciderSupportID,
+    bool? isAccepted,
   }) = _ToyImpl;
 
   factory Toy.fromJson(
@@ -75,8 +77,10 @@ abstract class Toy extends _i1.SerializableEntity {
           .deserialize<List<_i2.Like>?>(jsonSerialization['likes']),
       likeCount:
           serializationManager.deserialize<int>(jsonSerialization['likeCount']),
-      safeToPublicMarkerSupportID: serializationManager.deserialize<String>(
-          jsonSerialization['safeToPublicMarkerSupportID']),
+      acceptDeciderSupportID: serializationManager
+          .deserialize<int?>(jsonSerialization['acceptDeciderSupportID']),
+      isAccepted: serializationManager
+          .deserialize<bool?>(jsonSerialization['isAccepted']),
     );
   }
 
@@ -109,7 +113,9 @@ abstract class Toy extends _i1.SerializableEntity {
 
   int likeCount;
 
-  String safeToPublicMarkerSupportID;
+  int? acceptDeciderSupportID;
+
+  bool? isAccepted;
 
   Toy copyWith({
     int? id,
@@ -125,7 +131,8 @@ abstract class Toy extends _i1.SerializableEntity {
     bool? isLocked,
     List<_i2.Like>? likes,
     int? likeCount,
-    String? safeToPublicMarkerSupportID,
+    int? acceptDeciderSupportID,
+    bool? isAccepted,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -143,7 +150,9 @@ abstract class Toy extends _i1.SerializableEntity {
       'isLocked': isLocked,
       if (likes != null) 'likes': likes?.toJson(valueToJson: (v) => v.toJson()),
       'likeCount': likeCount,
-      'safeToPublicMarkerSupportID': safeToPublicMarkerSupportID,
+      if (acceptDeciderSupportID != null)
+        'acceptDeciderSupportID': acceptDeciderSupportID,
+      if (isAccepted != null) 'isAccepted': isAccepted,
     };
   }
 }
@@ -165,7 +174,8 @@ class _ToyImpl extends Toy {
     required bool isLocked,
     List<_i2.Like>? likes,
     required int likeCount,
-    required String safeToPublicMarkerSupportID,
+    int? acceptDeciderSupportID,
+    bool? isAccepted,
   }) : super._(
           id: id,
           ownerConsumerID: ownerConsumerID,
@@ -180,7 +190,8 @@ class _ToyImpl extends Toy {
           isLocked: isLocked,
           likes: likes,
           likeCount: likeCount,
-          safeToPublicMarkerSupportID: safeToPublicMarkerSupportID,
+          acceptDeciderSupportID: acceptDeciderSupportID,
+          isAccepted: isAccepted,
         );
 
   @override
@@ -198,7 +209,8 @@ class _ToyImpl extends Toy {
     bool? isLocked,
     Object? likes = _Undefined,
     int? likeCount,
-    String? safeToPublicMarkerSupportID,
+    Object? acceptDeciderSupportID = _Undefined,
+    Object? isAccepted = _Undefined,
   }) {
     return Toy(
       id: id is int? ? id : this.id,
@@ -214,8 +226,10 @@ class _ToyImpl extends Toy {
       isLocked: isLocked ?? this.isLocked,
       likes: likes is List<_i2.Like>? ? likes : this.likes?.clone(),
       likeCount: likeCount ?? this.likeCount,
-      safeToPublicMarkerSupportID:
-          safeToPublicMarkerSupportID ?? this.safeToPublicMarkerSupportID,
+      acceptDeciderSupportID: acceptDeciderSupportID is int?
+          ? acceptDeciderSupportID
+          : this.acceptDeciderSupportID,
+      isAccepted: isAccepted is bool? ? isAccepted : this.isAccepted,
     );
   }
 }

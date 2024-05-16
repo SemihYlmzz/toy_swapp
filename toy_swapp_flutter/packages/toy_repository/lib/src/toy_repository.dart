@@ -307,6 +307,18 @@ class ToyRepository {
     }
   }
 
+  FutureUnit acceptToy(Toy acceptedToy, String accepterSupportAuthID) async {
+    try {
+      await _client.toy.acceptToy(
+        acceptedToy.id!,
+        accepterSupportAuthID,
+      );
+      return const Right(unit);
+    } catch (exception) {
+      return const Left(ToyRepositoryException.unknown());
+    }
+  }
+
   void sinkAddOwnedToy(Toy addedToy) {
     final updatedList = List<Toy>.from(ownedToys ?? [])..add(addedToy);
     _ownedToysStreamController.sink.add(updatedList);

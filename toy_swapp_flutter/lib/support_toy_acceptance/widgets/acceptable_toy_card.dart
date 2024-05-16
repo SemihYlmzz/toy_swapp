@@ -1,10 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart' hide State;
 import 'package:shared_constants/shared_constants.dart';
 import 'package:toy_swapp/app/app.dart';
 import 'package:toy_swapp_client/toy_swapp_client.dart';
+
+import '../bloc/support_toy_acceptance_bloc.dart';
 
 class AcceptableToyCard extends StatelessWidget {
   const AcceptableToyCard({
@@ -75,7 +78,22 @@ class AcceptableToyCard extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(
+                            const SnackBar(
+                              duration: SharedDurations.ms500,
+                              backgroundColor: Color.fromARGB(255, 32, 47, 91),
+                              content: Text('Hold to Accept.'),
+                            ),
+                          );
+                      },
+                      onLongPress: () {
+                        context.read<SupportToyAcceptanceBloc>().add(
+                              SupportToyAcceptanceEvent.acceptToy(toy),
+                            );
+                      },
                     ),
                   ],
                 ),

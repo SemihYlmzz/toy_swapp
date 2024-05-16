@@ -14,6 +14,7 @@ class SupportToyAcceptanceScreen extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => SupportToyAcceptanceBloc(
+        authRepository: context.read(),
         toyRepository: context.read(),
       )..add(const SupportToyAcceptanceEvent.fetchAcceptableToys()),
       child: MultiBlocListener(
