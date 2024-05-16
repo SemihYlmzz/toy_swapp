@@ -13,6 +13,7 @@ toy:
   - createToy:
   - readLikeableToysWithOwnerConsumer:
   - openPublic:
+  - closePublic:
   - likeToy:
   - unlikeToy:
   - deleteToy:

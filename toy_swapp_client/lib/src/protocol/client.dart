@@ -221,6 +221,19 @@ class EndpointToy extends _i1.EndpointRef {
         },
       );
 
+  _i2.Future<void> closePublic(
+    int toyID,
+    String requestorAuthID,
+  ) =>
+      caller.callServerEndpoint<void>(
+        'toy',
+        'closePublic',
+        {
+          'toyID': toyID,
+          'requestorAuthID': requestorAuthID,
+        },
+      );
+
   _i2.Future<_i5.Toy> likeToy(
     int toyID,
     int likerConsumerID,

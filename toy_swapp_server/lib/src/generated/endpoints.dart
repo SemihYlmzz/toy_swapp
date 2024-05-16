@@ -430,6 +430,30 @@ class Endpoints extends _i1.EndpointDispatch {
             params['requestorAuthID'],
           ),
         ),
+        'closePublic': _i1.MethodConnector(
+          name: 'closePublic',
+          params: {
+            'toyID': _i1.ParameterDescription(
+              name: 'toyID',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'requestorAuthID': _i1.ParameterDescription(
+              name: 'requestorAuthID',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['toy'] as _i4.ToyEndpoint).closePublic(
+            session,
+            params['toyID'],
+            params['requestorAuthID'],
+          ),
+        ),
         'likeToy': _i1.MethodConnector(
           name: 'likeToy',
           params: {

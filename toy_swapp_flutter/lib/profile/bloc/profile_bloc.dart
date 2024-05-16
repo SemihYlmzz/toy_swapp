@@ -77,7 +77,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         );
       },
       closeToyToPublic: (e) async {
-        final tryUpdate = await _toyRepository.closeToPublic(toyID: e.toyID);
+        final tryUpdate = await _toyRepository.closeToPublic(
+          toyID: e.toyID,
+          requestorAuthID: state.currentAuthID,
+        );
         tryUpdate.fold(
           (l) => emit(state.copyWith(failure: l)),
           (r) => null,
