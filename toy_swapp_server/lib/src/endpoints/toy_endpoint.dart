@@ -381,4 +381,36 @@ class ToyEndpoint extends Endpoint {
       Toy.db.updateRow(session, acceptableToy, transaction: transaction);
     });
   }
+
+  Future<void> declineToy(
+    Session session,
+    int acceptedToyID,
+    String reason,
+    String accepterAuthID,
+  ) async {
+    var deciderSupport = await Support.db.findFirstRow(
+      session,
+      where: (supportTable) => supportTable.authId.equals(accepterAuthID),
+    );
+    if (deciderSupport == null) {
+      throw Exception('wrong-support-id');
+    }
+    var decliningToy = await Toy.db.findById(session, acceptedToyID);
+    if (decliningToy == null) {
+      throw Exception('no-toy-found');
+    }
+    if (decliningToy.isLocked) {
+      throw Exception('toy-locked');
+    }
+    if (decliningToy.acceptDeciderSupportID != null) {
+      throw Exception('already-decided');
+    }
+
+    await session.dbNext.transaction((transaction) async {
+      decliningToy.isAccepted = false;
+      decliningToy.acceptDeciderSupportID = deciderSupport.id!;
+      decliningToy.declineReason = reason;
+      Toy.db.updateRow(session, decliningToy, transaction: transaction);
+    });
+  }
 }

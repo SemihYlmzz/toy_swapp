@@ -20,18 +20,21 @@ mixin _$SupportToyAcceptanceEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isRefresh) fetchAcceptableToys,
     required TResult Function(Toy toy) acceptToy,
+    required TResult Function(Toy toy, String reason) declineToy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isRefresh)? fetchAcceptableToys,
     TResult? Function(Toy toy)? acceptToy,
+    TResult? Function(Toy toy, String reason)? declineToy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isRefresh)? fetchAcceptableToys,
     TResult Function(Toy toy)? acceptToy,
+    TResult Function(Toy toy, String reason)? declineToy,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,6 +45,8 @@ mixin _$SupportToyAcceptanceEvent {
         fetchAcceptableToys,
     required TResult Function(SupportToyAcceptanceEventAcceptToy value)
         acceptToy,
+    required TResult Function(SupportToyAcceptanceEventDeclineToy value)
+        declineToy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,6 +54,7 @@ mixin _$SupportToyAcceptanceEvent {
     TResult? Function(SupportToyAcceptanceEventFetchAcceptableToys value)?
         fetchAcceptableToys,
     TResult? Function(SupportToyAcceptanceEventAcceptToy value)? acceptToy,
+    TResult? Function(SupportToyAcceptanceEventDeclineToy value)? declineToy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +62,7 @@ mixin _$SupportToyAcceptanceEvent {
     TResult Function(SupportToyAcceptanceEventFetchAcceptableToys value)?
         fetchAcceptableToys,
     TResult Function(SupportToyAcceptanceEventAcceptToy value)? acceptToy,
+    TResult Function(SupportToyAcceptanceEventDeclineToy value)? declineToy,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -160,6 +167,7 @@ class _$SupportToyAcceptanceEventFetchAcceptableToysImpl
   TResult when<TResult extends Object?>({
     required TResult Function(bool isRefresh) fetchAcceptableToys,
     required TResult Function(Toy toy) acceptToy,
+    required TResult Function(Toy toy, String reason) declineToy,
   }) {
     return fetchAcceptableToys(isRefresh);
   }
@@ -169,6 +177,7 @@ class _$SupportToyAcceptanceEventFetchAcceptableToysImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isRefresh)? fetchAcceptableToys,
     TResult? Function(Toy toy)? acceptToy,
+    TResult? Function(Toy toy, String reason)? declineToy,
   }) {
     return fetchAcceptableToys?.call(isRefresh);
   }
@@ -178,6 +187,7 @@ class _$SupportToyAcceptanceEventFetchAcceptableToysImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isRefresh)? fetchAcceptableToys,
     TResult Function(Toy toy)? acceptToy,
+    TResult Function(Toy toy, String reason)? declineToy,
     required TResult orElse(),
   }) {
     if (fetchAcceptableToys != null) {
@@ -194,6 +204,8 @@ class _$SupportToyAcceptanceEventFetchAcceptableToysImpl
         fetchAcceptableToys,
     required TResult Function(SupportToyAcceptanceEventAcceptToy value)
         acceptToy,
+    required TResult Function(SupportToyAcceptanceEventDeclineToy value)
+        declineToy,
   }) {
     return fetchAcceptableToys(this);
   }
@@ -204,6 +216,7 @@ class _$SupportToyAcceptanceEventFetchAcceptableToysImpl
     TResult? Function(SupportToyAcceptanceEventFetchAcceptableToys value)?
         fetchAcceptableToys,
     TResult? Function(SupportToyAcceptanceEventAcceptToy value)? acceptToy,
+    TResult? Function(SupportToyAcceptanceEventDeclineToy value)? declineToy,
   }) {
     return fetchAcceptableToys?.call(this);
   }
@@ -214,6 +227,7 @@ class _$SupportToyAcceptanceEventFetchAcceptableToysImpl
     TResult Function(SupportToyAcceptanceEventFetchAcceptableToys value)?
         fetchAcceptableToys,
     TResult Function(SupportToyAcceptanceEventAcceptToy value)? acceptToy,
+    TResult Function(SupportToyAcceptanceEventDeclineToy value)? declineToy,
     required TResult orElse(),
   }) {
     if (fetchAcceptableToys != null) {
@@ -308,6 +322,7 @@ class _$SupportToyAcceptanceEventAcceptToyImpl
   TResult when<TResult extends Object?>({
     required TResult Function(bool isRefresh) fetchAcceptableToys,
     required TResult Function(Toy toy) acceptToy,
+    required TResult Function(Toy toy, String reason) declineToy,
   }) {
     return acceptToy(toy);
   }
@@ -317,6 +332,7 @@ class _$SupportToyAcceptanceEventAcceptToyImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isRefresh)? fetchAcceptableToys,
     TResult? Function(Toy toy)? acceptToy,
+    TResult? Function(Toy toy, String reason)? declineToy,
   }) {
     return acceptToy?.call(toy);
   }
@@ -326,6 +342,7 @@ class _$SupportToyAcceptanceEventAcceptToyImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isRefresh)? fetchAcceptableToys,
     TResult Function(Toy toy)? acceptToy,
+    TResult Function(Toy toy, String reason)? declineToy,
     required TResult orElse(),
   }) {
     if (acceptToy != null) {
@@ -342,6 +359,8 @@ class _$SupportToyAcceptanceEventAcceptToyImpl
         fetchAcceptableToys,
     required TResult Function(SupportToyAcceptanceEventAcceptToy value)
         acceptToy,
+    required TResult Function(SupportToyAcceptanceEventDeclineToy value)
+        declineToy,
   }) {
     return acceptToy(this);
   }
@@ -352,6 +371,7 @@ class _$SupportToyAcceptanceEventAcceptToyImpl
     TResult? Function(SupportToyAcceptanceEventFetchAcceptableToys value)?
         fetchAcceptableToys,
     TResult? Function(SupportToyAcceptanceEventAcceptToy value)? acceptToy,
+    TResult? Function(SupportToyAcceptanceEventDeclineToy value)? declineToy,
   }) {
     return acceptToy?.call(this);
   }
@@ -362,6 +382,7 @@ class _$SupportToyAcceptanceEventAcceptToyImpl
     TResult Function(SupportToyAcceptanceEventFetchAcceptableToys value)?
         fetchAcceptableToys,
     TResult Function(SupportToyAcceptanceEventAcceptToy value)? acceptToy,
+    TResult Function(SupportToyAcceptanceEventDeclineToy value)? declineToy,
     required TResult orElse(),
   }) {
     if (acceptToy != null) {
@@ -380,6 +401,171 @@ abstract class SupportToyAcceptanceEventAcceptToy
   @JsonKey(ignore: true)
   _$$SupportToyAcceptanceEventAcceptToyImplCopyWith<
           _$SupportToyAcceptanceEventAcceptToyImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SupportToyAcceptanceEventDeclineToyImplCopyWith<$Res> {
+  factory _$$SupportToyAcceptanceEventDeclineToyImplCopyWith(
+          _$SupportToyAcceptanceEventDeclineToyImpl value,
+          $Res Function(_$SupportToyAcceptanceEventDeclineToyImpl) then) =
+      __$$SupportToyAcceptanceEventDeclineToyImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Toy toy, String reason});
+}
+
+/// @nodoc
+class __$$SupportToyAcceptanceEventDeclineToyImplCopyWithImpl<$Res>
+    extends _$SupportToyAcceptanceEventCopyWithImpl<$Res,
+        _$SupportToyAcceptanceEventDeclineToyImpl>
+    implements _$$SupportToyAcceptanceEventDeclineToyImplCopyWith<$Res> {
+  __$$SupportToyAcceptanceEventDeclineToyImplCopyWithImpl(
+      _$SupportToyAcceptanceEventDeclineToyImpl _value,
+      $Res Function(_$SupportToyAcceptanceEventDeclineToyImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? toy = null,
+    Object? reason = null,
+  }) {
+    return _then(_$SupportToyAcceptanceEventDeclineToyImpl(
+      toy: null == toy
+          ? _value.toy
+          : toy // ignore: cast_nullable_to_non_nullable
+              as Toy,
+      reason: null == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SupportToyAcceptanceEventDeclineToyImpl
+    implements SupportToyAcceptanceEventDeclineToy {
+  const _$SupportToyAcceptanceEventDeclineToyImpl(
+      {required this.toy, required this.reason});
+
+  @override
+  final Toy toy;
+  @override
+  final String reason;
+
+  @override
+  String toString() {
+    return 'SupportToyAcceptanceEvent.declineToy(toy: $toy, reason: $reason)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SupportToyAcceptanceEventDeclineToyImpl &&
+            (identical(other.toy, toy) || other.toy == toy) &&
+            (identical(other.reason, reason) || other.reason == reason));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, toy, reason);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SupportToyAcceptanceEventDeclineToyImplCopyWith<
+          _$SupportToyAcceptanceEventDeclineToyImpl>
+      get copyWith => __$$SupportToyAcceptanceEventDeclineToyImplCopyWithImpl<
+          _$SupportToyAcceptanceEventDeclineToyImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isRefresh) fetchAcceptableToys,
+    required TResult Function(Toy toy) acceptToy,
+    required TResult Function(Toy toy, String reason) declineToy,
+  }) {
+    return declineToy(toy, reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isRefresh)? fetchAcceptableToys,
+    TResult? Function(Toy toy)? acceptToy,
+    TResult? Function(Toy toy, String reason)? declineToy,
+  }) {
+    return declineToy?.call(toy, reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isRefresh)? fetchAcceptableToys,
+    TResult Function(Toy toy)? acceptToy,
+    TResult Function(Toy toy, String reason)? declineToy,
+    required TResult orElse(),
+  }) {
+    if (declineToy != null) {
+      return declineToy(toy, reason);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(
+            SupportToyAcceptanceEventFetchAcceptableToys value)
+        fetchAcceptableToys,
+    required TResult Function(SupportToyAcceptanceEventAcceptToy value)
+        acceptToy,
+    required TResult Function(SupportToyAcceptanceEventDeclineToy value)
+        declineToy,
+  }) {
+    return declineToy(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SupportToyAcceptanceEventFetchAcceptableToys value)?
+        fetchAcceptableToys,
+    TResult? Function(SupportToyAcceptanceEventAcceptToy value)? acceptToy,
+    TResult? Function(SupportToyAcceptanceEventDeclineToy value)? declineToy,
+  }) {
+    return declineToy?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SupportToyAcceptanceEventFetchAcceptableToys value)?
+        fetchAcceptableToys,
+    TResult Function(SupportToyAcceptanceEventAcceptToy value)? acceptToy,
+    TResult Function(SupportToyAcceptanceEventDeclineToy value)? declineToy,
+    required TResult orElse(),
+  }) {
+    if (declineToy != null) {
+      return declineToy(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SupportToyAcceptanceEventDeclineToy
+    implements SupportToyAcceptanceEvent {
+  const factory SupportToyAcceptanceEventDeclineToy(
+          {required final Toy toy, required final String reason}) =
+      _$SupportToyAcceptanceEventDeclineToyImpl;
+
+  Toy get toy;
+  String get reason;
+  @JsonKey(ignore: true)
+  _$$SupportToyAcceptanceEventDeclineToyImplCopyWith<
+          _$SupportToyAcceptanceEventDeclineToyImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 

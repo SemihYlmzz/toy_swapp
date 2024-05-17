@@ -9,4 +9,8 @@ sealed class SupportToyAcceptanceEvent with _$SupportToyAcceptanceEvent {
   const factory SupportToyAcceptanceEvent.acceptToy(
     Toy toy,
   ) = SupportToyAcceptanceEventAcceptToy;
+  const factory SupportToyAcceptanceEvent.declineToy({
+    required Toy toy,
+    required String reason,
+ } ) = SupportToyAcceptanceEventDeclineToy;
 }

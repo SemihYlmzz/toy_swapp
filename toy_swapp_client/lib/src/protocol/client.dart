@@ -293,6 +293,21 @@ class EndpointToy extends _i1.EndpointRef {
           'accepterAuthID': accepterAuthID,
         },
       );
+
+  _i2.Future<void> declineToy(
+    int acceptedToyID,
+    String reason,
+    String accepterAuthID,
+  ) =>
+      caller.callServerEndpoint<void>(
+        'toy',
+        'declineToy',
+        {
+          'acceptedToyID': acceptedToyID,
+          'reason': reason,
+          'accepterAuthID': accepterAuthID,
+        },
+      );
 }
 
 class _Modules {

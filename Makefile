@@ -1,6 +1,6 @@
 # Flutter App
 fr:
-	cd toy_swapp_flutter && flutter run --flavor development -t lib/main_development.dart 
+	cd toy_swapp_flutter && flutter run --flavor development -t lib/main_development.dart --enable-impeller 
 fg:
 	cd toy_swapp_flutter && dart run build_runner build --delete-conflicting-outputs
 sm:

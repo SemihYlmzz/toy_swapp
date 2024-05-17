@@ -19,3 +19,4 @@ toy:
   - deleteToy:
   - fetchMoreAcceptableToys:
   - acceptToy:
+  - declineToy:

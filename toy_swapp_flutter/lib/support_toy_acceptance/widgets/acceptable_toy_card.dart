@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart' hide State;
+import 'package:go_router/go_router.dart';
 import 'package:shared_constants/shared_constants.dart';
 import 'package:toy_swapp/app/app.dart';
 import 'package:toy_swapp_client/toy_swapp_client.dart';
@@ -71,7 +72,15 @@ class AcceptableToyCard extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog<void>(
+                          context: context,
+                          builder: (dialogContext) => DeclineToyDialog(
+                            declinedToy: toy,
+                            bloc: context.read<SupportToyAcceptanceBloc>(),
+                          ),
+                        );
+                      },
                     ),
                     ElevatedButton.icon(
                       label: const Icon(Icons.done),
@@ -157,6 +166,53 @@ class _AcceptableToyWaitingTimerState extends State<AcceptableToyWaitingTimer> {
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Text(durationToHumanLanguage(widget.createdDateTime)),
+      ),
+    );
+  }
+}
+
+class DeclineToyDialog extends StatelessWidget {
+  const DeclineToyDialog({
+    required this.declinedToy,
+    required this.bloc,
+    super.key,
+  });
+  final Toy declinedToy;
+  final SupportToyAcceptanceBloc bloc;
+
+  @override
+  Widget build(BuildContext context) {
+    var reason = '';
+    return Dialog(
+      child: Container(
+        padding: SharedPaddings.all12,
+        width: 320,
+        height: 320,
+        child: Column(
+          children: [
+            ToySwappTextField(
+              minLines: 1,
+              maxLines: 7,
+              maxLength: 300,
+              labelText: 'Enter a Reason',
+              onChanged: (value) => reason = value,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (context.canPop()) {
+                  context.pop();
+                  bloc.add(
+                    SupportToyAcceptanceEvent.declineToy(
+                      toy: declinedToy,
+                      reason: reason,
+                    ),
+                  );
+                }
+              },
+              child: const Text('Send'),
+            ),
+          ],
+        ),
       ),
     );
   }

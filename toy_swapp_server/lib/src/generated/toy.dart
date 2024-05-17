@@ -18,6 +18,7 @@ abstract class Toy extends _i1.TableRow {
     required this.ownerConsumerID,
     required this.name,
     required this.description,
+    this.declineReason,
     required this.imageUrlList,
     required this.age,
     required this.gender,
@@ -36,6 +37,7 @@ abstract class Toy extends _i1.TableRow {
     required int ownerConsumerID,
     required String name,
     required String description,
+    String? declineReason,
     required List<_i2.ToyImageUrls> imageUrlList,
     required _i2.ToyAge age,
     required _i2.ToyGender gender,
@@ -60,6 +62,8 @@ abstract class Toy extends _i1.TableRow {
       name: serializationManager.deserialize<String>(jsonSerialization['name']),
       description: serializationManager
           .deserialize<String>(jsonSerialization['description']),
+      declineReason: serializationManager
+          .deserialize<String?>(jsonSerialization['declineReason']),
       imageUrlList: serializationManager.deserialize<List<_i2.ToyImageUrls>>(
           jsonSerialization['imageUrlList']),
       age: serializationManager
@@ -95,6 +99,8 @@ abstract class Toy extends _i1.TableRow {
 
   String description;
 
+  String? declineReason;
+
   List<_i2.ToyImageUrls> imageUrlList;
 
   _i2.ToyAge age;
@@ -125,6 +131,7 @@ abstract class Toy extends _i1.TableRow {
     int? ownerConsumerID,
     String? name,
     String? description,
+    String? declineReason,
     List<_i2.ToyImageUrls>? imageUrlList,
     _i2.ToyAge? age,
     _i2.ToyGender? gender,
@@ -144,6 +151,7 @@ abstract class Toy extends _i1.TableRow {
       'ownerConsumerID': ownerConsumerID,
       'name': name,
       'description': description,
+      if (declineReason != null) 'declineReason': declineReason,
       'imageUrlList': imageUrlList.toJson(valueToJson: (v) => v.toJson()),
       'age': age.toJson(),
       'gender': gender.toJson(),
@@ -167,6 +175,7 @@ abstract class Toy extends _i1.TableRow {
       'ownerConsumerID': ownerConsumerID,
       'name': name,
       'description': description,
+      'declineReason': declineReason,
       'imageUrlList': imageUrlList,
       'age': age,
       'gender': gender,
@@ -187,6 +196,7 @@ abstract class Toy extends _i1.TableRow {
       'ownerConsumerID': ownerConsumerID,
       'name': name,
       'description': description,
+      if (declineReason != null) 'declineReason': declineReason,
       'imageUrlList': imageUrlList.toJson(valueToJson: (v) => v.allToJson()),
       'age': age.toJson(),
       'gender': gender.toJson(),
@@ -221,6 +231,9 @@ abstract class Toy extends _i1.TableRow {
         return;
       case 'description':
         description = value;
+        return;
+      case 'declineReason':
+        declineReason = value;
         return;
       case 'imageUrlList':
         imageUrlList = value;
@@ -415,6 +428,7 @@ class _ToyImpl extends Toy {
     required int ownerConsumerID,
     required String name,
     required String description,
+    String? declineReason,
     required List<_i2.ToyImageUrls> imageUrlList,
     required _i2.ToyAge age,
     required _i2.ToyGender gender,
@@ -431,6 +445,7 @@ class _ToyImpl extends Toy {
           ownerConsumerID: ownerConsumerID,
           name: name,
           description: description,
+          declineReason: declineReason,
           imageUrlList: imageUrlList,
           age: age,
           gender: gender,
@@ -450,6 +465,7 @@ class _ToyImpl extends Toy {
     int? ownerConsumerID,
     String? name,
     String? description,
+    Object? declineReason = _Undefined,
     List<_i2.ToyImageUrls>? imageUrlList,
     _i2.ToyAge? age,
     _i2.ToyGender? gender,
@@ -467,6 +483,8 @@ class _ToyImpl extends Toy {
       ownerConsumerID: ownerConsumerID ?? this.ownerConsumerID,
       name: name ?? this.name,
       description: description ?? this.description,
+      declineReason:
+          declineReason is String? ? declineReason : this.declineReason,
       imageUrlList: imageUrlList ?? this.imageUrlList.clone(),
       age: age ?? this.age,
       gender: gender ?? this.gender,
@@ -496,6 +514,10 @@ class ToyTable extends _i1.Table {
     );
     description = _i1.ColumnString(
       'description',
+      this,
+    );
+    declineReason = _i1.ColumnString(
+      'declineReason',
       this,
     );
     imageUrlList = _i1.ColumnSerializable(
@@ -548,6 +570,8 @@ class ToyTable extends _i1.Table {
   late final _i1.ColumnString name;
 
   late final _i1.ColumnString description;
+
+  late final _i1.ColumnString declineReason;
 
   late final _i1.ColumnSerializable imageUrlList;
 
@@ -610,6 +634,7 @@ class ToyTable extends _i1.Table {
         ownerConsumerID,
         name,
         description,
+        declineReason,
         imageUrlList,
         age,
         gender,

@@ -33,10 +33,37 @@ class SupportToyAcceptanceBloc
     emit(state.copyWith(isLoading: true));
 
     await event.map(
-      acceptToy: (value) => _toyRepository.acceptToy(
-        value.toy,
-        state.authID,
-      ),
+      acceptToy: (value) async {
+        final tryAccept = await _toyRepository.acceptToy(
+          value.toy,
+          state.authID,
+        );
+        tryAccept.fold(
+          (l) => emit(state.copyWith(failure: l)),
+          (r) {
+            final acceptedToyRemovedToys =
+                List<ToyAndOwnerConsumer>.from(state.acceptableToys)
+                  ..removeWhere((item) => item.toy.id! == value.toy.id!);
+            emit(state.copyWith(acceptableToys: acceptedToyRemovedToys));
+          },
+        );
+      },
+      declineToy: (e) async {
+        final tryAccept = await _toyRepository.declineToy(
+          e.toy,
+          e.reason,
+          state.authID,
+        );
+        tryAccept.fold(
+          (l) => emit(state.copyWith(failure: l)),
+          (r) {
+            final acceptedToyRemovedToys =
+                List<ToyAndOwnerConsumer>.from(state.acceptableToys)
+                  ..removeWhere((item) => item.toy.id! == e.toy.id!);
+            emit(state.copyWith(acceptableToys: acceptedToyRemovedToys));
+          },
+        );
+      },
       fetchAcceptableToys: (value) async {
         if (value.isRefresh && !state.hasReachedMax) return;
 
