@@ -10,7 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 
-abstract class ToyImageUrls extends _i1.SerializableEntity {
+abstract class ToyImageUrls implements _i1.SerializableModel {
   ToyImageUrls._({
     required this.url1024,
     required this.url128,
@@ -25,19 +25,12 @@ abstract class ToyImageUrls extends _i1.SerializableEntity {
     required String url512,
   }) = _ToyImageUrlsImpl;
 
-  factory ToyImageUrls.fromJson(
-    Map<String, dynamic> jsonSerialization,
-    _i1.SerializationManager serializationManager,
-  ) {
+  factory ToyImageUrls.fromJson(Map<String, dynamic> jsonSerialization) {
     return ToyImageUrls(
-      url1024: serializationManager
-          .deserialize<String>(jsonSerialization['url1024']),
-      url128:
-          serializationManager.deserialize<String>(jsonSerialization['url128']),
-      url256:
-          serializationManager.deserialize<String>(jsonSerialization['url256']),
-      url512:
-          serializationManager.deserialize<String>(jsonSerialization['url512']),
+      url1024: jsonSerialization['url1024'] as String,
+      url128: jsonSerialization['url128'] as String,
+      url256: jsonSerialization['url256'] as String,
+      url512: jsonSerialization['url512'] as String,
     );
   }
 
@@ -63,6 +56,11 @@ abstract class ToyImageUrls extends _i1.SerializableEntity {
       'url256': url256,
       'url512': url512,
     };
+  }
+
+  @override
+  String toString() {
+    return _i1.SerializationManager.encode(this);
   }
 }
 

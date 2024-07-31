@@ -25,7 +25,7 @@ import 'package:toy_swapp_client/src/protocol/toy.dart' as _i13;
 import 'package:toy_swapp_client/src/protocol/toy_image_urls.dart' as _i14;
 import 'package:toy_swapp_client/src/protocol/toy_and_owner_consumer.dart'
     as _i15;
-import 'package:serverpod_auth_client/module.dart' as _i16;
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i16;
 export 'consumer.dart';
 export 'example.dart';
 export 'like.dart';
@@ -43,8 +43,6 @@ class Protocol extends _i1.SerializationManager {
 
   factory Protocol() => _instance;
 
-  static final Map<Type, _i1.constructor> customConstructors = {};
-
   static final Protocol _instance = Protocol._();
 
   @override
@@ -53,29 +51,26 @@ class Protocol extends _i1.SerializationManager {
     Type? t,
   ]) {
     t ??= T;
-    if (customConstructors.containsKey(t)) {
-      return customConstructors[t]!(data, this) as T;
-    }
     if (t == _i2.Consumer) {
-      return _i2.Consumer.fromJson(data, this) as T;
+      return _i2.Consumer.fromJson(data) as T;
     }
     if (t == _i3.Example) {
-      return _i3.Example.fromJson(data, this) as T;
+      return _i3.Example.fromJson(data) as T;
     }
     if (t == _i4.Like) {
-      return _i4.Like.fromJson(data, this) as T;
+      return _i4.Like.fromJson(data) as T;
     }
     if (t == _i5.Support) {
-      return _i5.Support.fromJson(data, this) as T;
+      return _i5.Support.fromJson(data) as T;
     }
     if (t == _i6.Toy) {
-      return _i6.Toy.fromJson(data, this) as T;
+      return _i6.Toy.fromJson(data) as T;
     }
     if (t == _i7.ToyAge) {
       return _i7.ToyAge.fromJson(data) as T;
     }
     if (t == _i8.ToyAndOwnerConsumer) {
-      return _i8.ToyAndOwnerConsumer.fromJson(data, this) as T;
+      return _i8.ToyAndOwnerConsumer.fromJson(data) as T;
     }
     if (t == _i9.ToyCondition) {
       return _i9.ToyCondition.fromJson(data) as T;
@@ -84,30 +79,29 @@ class Protocol extends _i1.SerializationManager {
       return _i10.ToyGender.fromJson(data) as T;
     }
     if (t == _i11.ToyImageUrls) {
-      return _i11.ToyImageUrls.fromJson(data, this) as T;
+      return _i11.ToyImageUrls.fromJson(data) as T;
     }
     if (t == _i1.getType<_i2.Consumer?>()) {
-      return (data != null ? _i2.Consumer.fromJson(data, this) : null) as T;
+      return (data != null ? _i2.Consumer.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i3.Example?>()) {
-      return (data != null ? _i3.Example.fromJson(data, this) : null) as T;
+      return (data != null ? _i3.Example.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i4.Like?>()) {
-      return (data != null ? _i4.Like.fromJson(data, this) : null) as T;
+      return (data != null ? _i4.Like.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i5.Support?>()) {
-      return (data != null ? _i5.Support.fromJson(data, this) : null) as T;
+      return (data != null ? _i5.Support.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i6.Toy?>()) {
-      return (data != null ? _i6.Toy.fromJson(data, this) : null) as T;
+      return (data != null ? _i6.Toy.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i7.ToyAge?>()) {
       return (data != null ? _i7.ToyAge.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i8.ToyAndOwnerConsumer?>()) {
-      return (data != null
-          ? _i8.ToyAndOwnerConsumer.fromJson(data, this)
-          : null) as T;
+      return (data != null ? _i8.ToyAndOwnerConsumer.fromJson(data) : null)
+          as T;
     }
     if (t == _i1.getType<_i9.ToyCondition?>()) {
       return (data != null ? _i9.ToyCondition.fromJson(data) : null) as T;
@@ -116,8 +110,7 @@ class Protocol extends _i1.SerializationManager {
       return (data != null ? _i10.ToyGender.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i11.ToyImageUrls?>()) {
-      return (data != null ? _i11.ToyImageUrls.fromJson(data, this) : null)
-          as T;
+      return (data != null ? _i11.ToyImageUrls.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<List<_i12.Like>?>()) {
       return (data != null
@@ -150,7 +143,7 @@ class Protocol extends _i1.SerializationManager {
     }
     try {
       return _i16.Protocol().deserialize<T>(data, t);
-    } catch (_) {}
+    } on _i1.DeserializationTypeNotFoundException catch (_) {}
     return super.deserialize<T>(data, t);
   }
 

@@ -11,7 +11,7 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'protocol.dart' as _i2;
 
-abstract class Consumer extends _i1.SerializableEntity {
+abstract class Consumer implements _i1.SerializableModel {
   Consumer._({
     this.id,
     required this.authId,
@@ -50,42 +50,27 @@ abstract class Consumer extends _i1.SerializableEntity {
     List<_i2.Like>? likes,
   }) = _ConsumerImpl;
 
-  factory Consumer.fromJson(
-    Map<String, dynamic> jsonSerialization,
-    _i1.SerializationManager serializationManager,
-  ) {
+  factory Consumer.fromJson(Map<String, dynamic> jsonSerialization) {
     return Consumer(
-      id: serializationManager.deserialize<int?>(jsonSerialization['id']),
-      authId:
-          serializationManager.deserialize<String>(jsonSerialization['authId']),
-      firstName: serializationManager
-          .deserialize<String>(jsonSerialization['firstName']),
-      lastName: serializationManager
-          .deserialize<String>(jsonSerialization['lastName']),
-      currentLatitude: serializationManager
-          .deserialize<double>(jsonSerialization['currentLatitude']),
-      currentLongitude: serializationManager
-          .deserialize<double>(jsonSerialization['currentLongitude']),
-      avatarUrl128: serializationManager
-          .deserialize<String>(jsonSerialization['avatarUrl128']),
-      avatarUrl256: serializationManager
-          .deserialize<String>(jsonSerialization['avatarUrl256']),
-      avatarUrl512: serializationManager
-          .deserialize<String>(jsonSerialization['avatarUrl512']),
-      avatarUrl1024: serializationManager
-          .deserialize<String>(jsonSerialization['avatarUrl1024']),
-      toyCount:
-          serializationManager.deserialize<int>(jsonSerialization['toyCount']),
-      swapCount:
-          serializationManager.deserialize<int>(jsonSerialization['swapCount']),
-      switchChanceCount: serializationManager
-          .deserialize<int>(jsonSerialization['switchChanceCount']),
-      isDeletingAccount: serializationManager
-          .deserialize<bool>(jsonSerialization['isDeletingAccount']),
-      email:
-          serializationManager.deserialize<String?>(jsonSerialization['email']),
-      likes: serializationManager
-          .deserialize<List<_i2.Like>?>(jsonSerialization['likes']),
+      id: jsonSerialization['id'] as int?,
+      authId: jsonSerialization['authId'] as String,
+      firstName: jsonSerialization['firstName'] as String,
+      lastName: jsonSerialization['lastName'] as String,
+      currentLatitude: (jsonSerialization['currentLatitude'] as num).toDouble(),
+      currentLongitude:
+          (jsonSerialization['currentLongitude'] as num).toDouble(),
+      avatarUrl128: jsonSerialization['avatarUrl128'] as String,
+      avatarUrl256: jsonSerialization['avatarUrl256'] as String,
+      avatarUrl512: jsonSerialization['avatarUrl512'] as String,
+      avatarUrl1024: jsonSerialization['avatarUrl1024'] as String,
+      toyCount: jsonSerialization['toyCount'] as int,
+      swapCount: jsonSerialization['swapCount'] as int,
+      switchChanceCount: jsonSerialization['switchChanceCount'] as int,
+      isDeletingAccount: jsonSerialization['isDeletingAccount'] as bool,
+      email: jsonSerialization['email'] as String?,
+      likes: (jsonSerialization['likes'] as List?)
+          ?.map((e) => _i2.Like.fromJson((e as Map<String, dynamic>)))
+          .toList(),
     );
   }
 
@@ -162,6 +147,11 @@ abstract class Consumer extends _i1.SerializableEntity {
       if (email != null) 'email': email,
       if (likes != null) 'likes': likes?.toJson(valueToJson: (v) => v.toJson()),
     };
+  }
+
+  @override
+  String toString() {
+    return _i1.SerializationManager.encode(this);
   }
 }
 

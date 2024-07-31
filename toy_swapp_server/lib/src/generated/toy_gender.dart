@@ -10,12 +10,12 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
 
-enum ToyGender with _i1.SerializableEntity {
+enum ToyGender implements _i1.SerializableModel {
   unisex,
   boy,
   girl;
 
-  static ToyGender? fromJson(int index) {
+  static ToyGender fromJson(int index) {
     switch (index) {
       case 0:
         return unisex;
@@ -24,10 +24,13 @@ enum ToyGender with _i1.SerializableEntity {
       case 2:
         return girl;
       default:
-        return null;
+        throw ArgumentError(
+            'Value "$index" cannot be converted to "ToyGender"');
     }
   }
 
   @override
   int toJson() => index;
+  @override
+  String toString() => name;
 }

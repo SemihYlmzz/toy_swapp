@@ -11,7 +11,7 @@
 import 'package:serverpod/serverpod.dart' as _i1;
 import 'protocol.dart' as _i2;
 
-abstract class Like extends _i1.TableRow {
+abstract class Like extends _i1.TableRow implements _i1.ProtocolSerialization {
   Like._({
     int? id,
     required this.toyId,
@@ -28,18 +28,19 @@ abstract class Like extends _i1.TableRow {
     _i2.Consumer? consumer,
   }) = _LikeImpl;
 
-  factory Like.fromJson(
-    Map<String, dynamic> jsonSerialization,
-    _i1.SerializationManager serializationManager,
-  ) {
+  factory Like.fromJson(Map<String, dynamic> jsonSerialization) {
     return Like(
-      id: serializationManager.deserialize<int?>(jsonSerialization['id']),
-      toyId: serializationManager.deserialize<int>(jsonSerialization['toyId']),
-      toy: serializationManager.deserialize<_i2.Toy?>(jsonSerialization['toy']),
-      consumerId: serializationManager
-          .deserialize<int>(jsonSerialization['consumerId']),
-      consumer: serializationManager
-          .deserialize<_i2.Consumer?>(jsonSerialization['consumer']),
+      id: jsonSerialization['id'] as int?,
+      toyId: jsonSerialization['toyId'] as int,
+      toy: jsonSerialization['toy'] == null
+          ? null
+          : _i2.Toy.fromJson(
+              (jsonSerialization['toy'] as Map<String, dynamic>)),
+      consumerId: jsonSerialization['consumerId'] as int,
+      consumer: jsonSerialization['consumer'] == null
+          ? null
+          : _i2.Consumer.fromJson(
+              (jsonSerialization['consumer'] as Map<String, dynamic>)),
     );
   }
 
@@ -77,170 +78,14 @@ abstract class Like extends _i1.TableRow {
   }
 
   @override
-  @Deprecated('Will be removed in 2.0.0')
-  Map<String, dynamic> toJsonForDatabase() {
-    return {
-      'id': id,
-      'toyId': toyId,
-      'consumerId': consumerId,
-    };
-  }
-
-  @override
-  Map<String, dynamic> allToJson() {
+  Map<String, dynamic> toJsonForProtocol() {
     return {
       if (id != null) 'id': id,
       'toyId': toyId,
-      if (toy != null) 'toy': toy?.allToJson(),
+      if (toy != null) 'toy': toy?.toJsonForProtocol(),
       'consumerId': consumerId,
-      if (consumer != null) 'consumer': consumer?.allToJson(),
+      if (consumer != null) 'consumer': consumer?.toJsonForProtocol(),
     };
-  }
-
-  @override
-  @Deprecated('Will be removed in 2.0.0')
-  void setColumn(
-    String columnName,
-    value,
-  ) {
-    switch (columnName) {
-      case 'id':
-        id = value;
-        return;
-      case 'toyId':
-        toyId = value;
-        return;
-      case 'consumerId':
-        consumerId = value;
-        return;
-      default:
-        throw UnimplementedError();
-    }
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.find instead.')
-  static Future<List<Like>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<LikeTable>? where,
-    int? limit,
-    int? offset,
-    _i1.Column? orderBy,
-    List<_i1.Order>? orderByList,
-    bool orderDescending = false,
-    bool useCache = true,
-    _i1.Transaction? transaction,
-    LikeInclude? include,
-  }) async {
-    return session.db.find<Like>(
-      where: where != null ? where(Like.t) : null,
-      limit: limit,
-      offset: offset,
-      orderBy: orderBy,
-      orderByList: orderByList,
-      orderDescending: orderDescending,
-      useCache: useCache,
-      transaction: transaction,
-      include: include,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.findRow instead.')
-  static Future<Like?> findSingleRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<LikeTable>? where,
-    int? offset,
-    _i1.Column? orderBy,
-    bool orderDescending = false,
-    bool useCache = true,
-    _i1.Transaction? transaction,
-    LikeInclude? include,
-  }) async {
-    return session.db.findSingleRow<Like>(
-      where: where != null ? where(Like.t) : null,
-      offset: offset,
-      orderBy: orderBy,
-      orderDescending: orderDescending,
-      useCache: useCache,
-      transaction: transaction,
-      include: include,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.findById instead.')
-  static Future<Like?> findById(
-    _i1.Session session,
-    int id, {
-    LikeInclude? include,
-  }) async {
-    return session.db.findById<Like>(
-      id,
-      include: include,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.deleteWhere instead.')
-  static Future<int> delete(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<LikeTable> where,
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.delete<Like>(
-      where: where(Like.t),
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.deleteRow instead.')
-  static Future<bool> deleteRow(
-    _i1.Session session,
-    Like row, {
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.deleteRow(
-      row,
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.update instead.')
-  static Future<bool> update(
-    _i1.Session session,
-    Like row, {
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.update(
-      row,
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated(
-      'Will be removed in 2.0.0. Use: db.insert instead. Important note: In db.insert, the object you pass in is no longer modified, instead a new copy with the added row is returned which contains the inserted id.')
-  static Future<void> insert(
-    _i1.Session session,
-    Like row, {
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.insert(
-      row,
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.count instead.')
-  static Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<LikeTable>? where,
-    int? limit,
-    bool useCache = true,
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.count<Like>(
-      where: where != null ? where(Like.t) : null,
-      limit: limit,
-      useCache: useCache,
-      transaction: transaction,
-    );
   }
 
   static LikeInclude include({
@@ -271,6 +116,11 @@ abstract class Like extends _i1.TableRow {
       orderByList: orderByList?.call(Like.t),
       include: include,
     );
+  }
+
+  @override
+  String toString() {
+    return _i1.SerializationManager.encode(this);
   }
 }
 
@@ -375,9 +225,6 @@ class LikeTable extends _i1.Table {
   }
 }
 
-@Deprecated('Use LikeTable.t instead.')
-LikeTable tLike = LikeTable();
-
 class LikeInclude extends _i1.IncludeObject {
   LikeInclude._({
     _i2.ToyInclude? toy,
@@ -437,7 +284,7 @@ class LikeRepository {
     _i1.Transaction? transaction,
     LikeInclude? include,
   }) async {
-    return session.dbNext.find<Like>(
+    return session.db.find<Like>(
       where: where?.call(Like.t),
       orderBy: orderBy?.call(Like.t),
       orderByList: orderByList?.call(Like.t),
@@ -459,7 +306,7 @@ class LikeRepository {
     _i1.Transaction? transaction,
     LikeInclude? include,
   }) async {
-    return session.dbNext.findFirstRow<Like>(
+    return session.db.findFirstRow<Like>(
       where: where?.call(Like.t),
       orderBy: orderBy?.call(Like.t),
       orderByList: orderByList?.call(Like.t),
@@ -476,7 +323,7 @@ class LikeRepository {
     _i1.Transaction? transaction,
     LikeInclude? include,
   }) async {
-    return session.dbNext.findById<Like>(
+    return session.db.findById<Like>(
       id,
       transaction: transaction,
       include: include,
@@ -488,7 +335,7 @@ class LikeRepository {
     List<Like> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.insert<Like>(
+    return session.db.insert<Like>(
       rows,
       transaction: transaction,
     );
@@ -499,7 +346,7 @@ class LikeRepository {
     Like row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.insertRow<Like>(
+    return session.db.insertRow<Like>(
       row,
       transaction: transaction,
     );
@@ -511,7 +358,7 @@ class LikeRepository {
     _i1.ColumnSelections<LikeTable>? columns,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.update<Like>(
+    return session.db.update<Like>(
       rows,
       columns: columns?.call(Like.t),
       transaction: transaction,
@@ -524,41 +371,41 @@ class LikeRepository {
     _i1.ColumnSelections<LikeTable>? columns,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.updateRow<Like>(
+    return session.db.updateRow<Like>(
       row,
       columns: columns?.call(Like.t),
       transaction: transaction,
     );
   }
 
-  Future<List<int>> delete(
+  Future<List<Like>> delete(
     _i1.Session session,
     List<Like> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.delete<Like>(
+    return session.db.delete<Like>(
       rows,
       transaction: transaction,
     );
   }
 
-  Future<int> deleteRow(
+  Future<Like> deleteRow(
     _i1.Session session,
     Like row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.deleteRow<Like>(
+    return session.db.deleteRow<Like>(
       row,
       transaction: transaction,
     );
   }
 
-  Future<List<int>> deleteWhere(
+  Future<List<Like>> deleteWhere(
     _i1.Session session, {
     required _i1.WhereExpressionBuilder<LikeTable> where,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.deleteWhere<Like>(
+    return session.db.deleteWhere<Like>(
       where: where(Like.t),
       transaction: transaction,
     );
@@ -570,7 +417,7 @@ class LikeRepository {
     int? limit,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.count<Like>(
+    return session.db.count<Like>(
       where: where?.call(Like.t),
       limit: limit,
       transaction: transaction,
@@ -594,7 +441,7 @@ class LikeAttachRowRepository {
     }
 
     var $like = like.copyWith(toyId: toy.id);
-    await session.dbNext.updateRow<Like>(
+    await session.db.updateRow<Like>(
       $like,
       columns: [Like.t.toyId],
     );
@@ -613,7 +460,7 @@ class LikeAttachRowRepository {
     }
 
     var $like = like.copyWith(consumerId: consumer.id);
-    await session.dbNext.updateRow<Like>(
+    await session.db.updateRow<Like>(
       $like,
       columns: [Like.t.consumerId],
     );

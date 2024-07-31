@@ -10,7 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 
-abstract class Support extends _i1.SerializableEntity {
+abstract class Support implements _i1.SerializableModel {
   Support._({
     this.id,
     required this.authId,
@@ -25,18 +25,12 @@ abstract class Support extends _i1.SerializableEntity {
     required String lastName,
   }) = _SupportImpl;
 
-  factory Support.fromJson(
-    Map<String, dynamic> jsonSerialization,
-    _i1.SerializationManager serializationManager,
-  ) {
+  factory Support.fromJson(Map<String, dynamic> jsonSerialization) {
     return Support(
-      id: serializationManager.deserialize<int?>(jsonSerialization['id']),
-      authId:
-          serializationManager.deserialize<String>(jsonSerialization['authId']),
-      firstName: serializationManager
-          .deserialize<String>(jsonSerialization['firstName']),
-      lastName: serializationManager
-          .deserialize<String>(jsonSerialization['lastName']),
+      id: jsonSerialization['id'] as int?,
+      authId: jsonSerialization['authId'] as String,
+      firstName: jsonSerialization['firstName'] as String,
+      lastName: jsonSerialization['lastName'] as String,
     );
   }
 
@@ -65,6 +59,11 @@ abstract class Support extends _i1.SerializableEntity {
       'firstName': firstName,
       'lastName': lastName,
     };
+  }
+
+  @override
+  String toString() {
+    return _i1.SerializationManager.encode(this);
   }
 }
 

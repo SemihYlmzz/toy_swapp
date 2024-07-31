@@ -11,7 +11,8 @@
 import 'package:serverpod/serverpod.dart' as _i1;
 import 'protocol.dart' as _i2;
 
-abstract class ToyAndOwnerConsumer extends _i1.SerializableEntity {
+abstract class ToyAndOwnerConsumer
+    implements _i1.SerializableModel, _i1.ProtocolSerialization {
   ToyAndOwnerConsumer._({
     required this.toy,
     required this.ownerConsumer,
@@ -22,14 +23,11 @@ abstract class ToyAndOwnerConsumer extends _i1.SerializableEntity {
     required _i2.Consumer ownerConsumer,
   }) = _ToyAndOwnerConsumerImpl;
 
-  factory ToyAndOwnerConsumer.fromJson(
-    Map<String, dynamic> jsonSerialization,
-    _i1.SerializationManager serializationManager,
-  ) {
+  factory ToyAndOwnerConsumer.fromJson(Map<String, dynamic> jsonSerialization) {
     return ToyAndOwnerConsumer(
-      toy: serializationManager.deserialize<_i2.Toy>(jsonSerialization['toy']),
-      ownerConsumer: serializationManager
-          .deserialize<_i2.Consumer>(jsonSerialization['ownerConsumer']),
+      toy: _i2.Toy.fromJson((jsonSerialization['toy'] as Map<String, dynamic>)),
+      ownerConsumer: _i2.Consumer.fromJson(
+          (jsonSerialization['ownerConsumer'] as Map<String, dynamic>)),
     );
   }
 
@@ -50,11 +48,16 @@ abstract class ToyAndOwnerConsumer extends _i1.SerializableEntity {
   }
 
   @override
-  Map<String, dynamic> allToJson() {
+  Map<String, dynamic> toJsonForProtocol() {
     return {
-      'toy': toy.allToJson(),
-      'ownerConsumer': ownerConsumer.allToJson(),
+      'toy': toy.toJsonForProtocol(),
+      'ownerConsumer': ownerConsumer.toJsonForProtocol(),
     };
+  }
+
+  @override
+  String toString() {
+    return _i1.SerializationManager.encode(this);
   }
 }
 

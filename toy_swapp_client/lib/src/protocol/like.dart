@@ -11,7 +11,7 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'protocol.dart' as _i2;
 
-abstract class Like extends _i1.SerializableEntity {
+abstract class Like implements _i1.SerializableModel {
   Like._({
     this.id,
     required this.toyId,
@@ -28,18 +28,19 @@ abstract class Like extends _i1.SerializableEntity {
     _i2.Consumer? consumer,
   }) = _LikeImpl;
 
-  factory Like.fromJson(
-    Map<String, dynamic> jsonSerialization,
-    _i1.SerializationManager serializationManager,
-  ) {
+  factory Like.fromJson(Map<String, dynamic> jsonSerialization) {
     return Like(
-      id: serializationManager.deserialize<int?>(jsonSerialization['id']),
-      toyId: serializationManager.deserialize<int>(jsonSerialization['toyId']),
-      toy: serializationManager.deserialize<_i2.Toy?>(jsonSerialization['toy']),
-      consumerId: serializationManager
-          .deserialize<int>(jsonSerialization['consumerId']),
-      consumer: serializationManager
-          .deserialize<_i2.Consumer?>(jsonSerialization['consumer']),
+      id: jsonSerialization['id'] as int?,
+      toyId: jsonSerialization['toyId'] as int,
+      toy: jsonSerialization['toy'] == null
+          ? null
+          : _i2.Toy.fromJson(
+              (jsonSerialization['toy'] as Map<String, dynamic>)),
+      consumerId: jsonSerialization['consumerId'] as int,
+      consumer: jsonSerialization['consumer'] == null
+          ? null
+          : _i2.Consumer.fromJson(
+              (jsonSerialization['consumer'] as Map<String, dynamic>)),
     );
   }
 
@@ -72,6 +73,11 @@ abstract class Like extends _i1.SerializableEntity {
       'consumerId': consumerId,
       if (consumer != null) 'consumer': consumer?.toJson(),
     };
+  }
+
+  @override
+  String toString() {
+    return _i1.SerializationManager.encode(this);
   }
 }
 

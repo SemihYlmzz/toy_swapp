@@ -19,7 +19,7 @@ import 'package:toy_swapp_client/src/protocol/toy_age.dart' as _i7;
 import 'package:toy_swapp_client/src/protocol/toy_gender.dart' as _i8;
 import 'package:toy_swapp_client/src/protocol/toy_condition.dart' as _i9;
 import 'package:toy_swapp_client/src/protocol/toy_image_urls.dart' as _i10;
-import 'package:serverpod_auth_client/module.dart' as _i11;
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i11;
 import 'protocol.dart' as _i12;
 
 /// Can throw [Exception] with the following message:
@@ -325,6 +325,12 @@ class Client extends _i1.ServerpodClient {
     _i1.AuthenticationKeyManager? authenticationKeyManager,
     Duration? streamingConnectionTimeout,
     Duration? connectionTimeout,
+    Function(
+      _i1.MethodCallContext,
+      Object,
+      StackTrace,
+    )? onFailedCall,
+    Function(_i1.MethodCallContext)? onSucceededCall,
   }) : super(
           host,
           _i12.Protocol(),
@@ -332,6 +338,8 @@ class Client extends _i1.ServerpodClient {
           authenticationKeyManager: authenticationKeyManager,
           streamingConnectionTimeout: streamingConnectionTimeout,
           connectionTimeout: connectionTimeout,
+          onFailedCall: onFailedCall,
+          onSucceededCall: onSucceededCall,
         ) {
     consumer = EndpointConsumer(this);
     support = EndpointSupport(this);

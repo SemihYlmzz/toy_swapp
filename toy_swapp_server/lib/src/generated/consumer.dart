@@ -12,7 +12,8 @@ import 'package:serverpod/serverpod.dart' as _i1;
 import 'protocol.dart' as _i2;
 import 'package:serverpod_serialization/serverpod_serialization.dart';
 
-abstract class Consumer extends _i1.TableRow {
+abstract class Consumer extends _i1.TableRow
+    implements _i1.ProtocolSerialization {
   Consumer._({
     int? id,
     required this.authId,
@@ -51,42 +52,27 @@ abstract class Consumer extends _i1.TableRow {
     List<_i2.Like>? likes,
   }) = _ConsumerImpl;
 
-  factory Consumer.fromJson(
-    Map<String, dynamic> jsonSerialization,
-    _i1.SerializationManager serializationManager,
-  ) {
+  factory Consumer.fromJson(Map<String, dynamic> jsonSerialization) {
     return Consumer(
-      id: serializationManager.deserialize<int?>(jsonSerialization['id']),
-      authId:
-          serializationManager.deserialize<String>(jsonSerialization['authId']),
-      firstName: serializationManager
-          .deserialize<String>(jsonSerialization['firstName']),
-      lastName: serializationManager
-          .deserialize<String>(jsonSerialization['lastName']),
-      currentLatitude: serializationManager
-          .deserialize<double>(jsonSerialization['currentLatitude']),
-      currentLongitude: serializationManager
-          .deserialize<double>(jsonSerialization['currentLongitude']),
-      avatarUrl128: serializationManager
-          .deserialize<String>(jsonSerialization['avatarUrl128']),
-      avatarUrl256: serializationManager
-          .deserialize<String>(jsonSerialization['avatarUrl256']),
-      avatarUrl512: serializationManager
-          .deserialize<String>(jsonSerialization['avatarUrl512']),
-      avatarUrl1024: serializationManager
-          .deserialize<String>(jsonSerialization['avatarUrl1024']),
-      toyCount:
-          serializationManager.deserialize<int>(jsonSerialization['toyCount']),
-      swapCount:
-          serializationManager.deserialize<int>(jsonSerialization['swapCount']),
-      switchChanceCount: serializationManager
-          .deserialize<int>(jsonSerialization['switchChanceCount']),
-      isDeletingAccount: serializationManager
-          .deserialize<bool>(jsonSerialization['isDeletingAccount']),
-      email:
-          serializationManager.deserialize<String?>(jsonSerialization['email']),
-      likes: serializationManager
-          .deserialize<List<_i2.Like>?>(jsonSerialization['likes']),
+      id: jsonSerialization['id'] as int?,
+      authId: jsonSerialization['authId'] as String,
+      firstName: jsonSerialization['firstName'] as String,
+      lastName: jsonSerialization['lastName'] as String,
+      currentLatitude: (jsonSerialization['currentLatitude'] as num).toDouble(),
+      currentLongitude:
+          (jsonSerialization['currentLongitude'] as num).toDouble(),
+      avatarUrl128: jsonSerialization['avatarUrl128'] as String,
+      avatarUrl256: jsonSerialization['avatarUrl256'] as String,
+      avatarUrl512: jsonSerialization['avatarUrl512'] as String,
+      avatarUrl1024: jsonSerialization['avatarUrl1024'] as String,
+      toyCount: jsonSerialization['toyCount'] as int,
+      swapCount: jsonSerialization['swapCount'] as int,
+      switchChanceCount: jsonSerialization['switchChanceCount'] as int,
+      isDeletingAccount: jsonSerialization['isDeletingAccount'] as bool,
+      email: jsonSerialization['email'] as String?,
+      likes: (jsonSerialization['likes'] as List?)
+          ?.map((e) => _i2.Like.fromJson((e as Map<String, dynamic>)))
+          .toList(),
     );
   }
 
@@ -168,29 +154,7 @@ abstract class Consumer extends _i1.TableRow {
   }
 
   @override
-  @Deprecated('Will be removed in 2.0.0')
-  Map<String, dynamic> toJsonForDatabase() {
-    return {
-      'id': id,
-      'authId': authId,
-      'firstName': firstName,
-      'lastName': lastName,
-      'currentLatitude': currentLatitude,
-      'currentLongitude': currentLongitude,
-      'avatarUrl128': avatarUrl128,
-      'avatarUrl256': avatarUrl256,
-      'avatarUrl512': avatarUrl512,
-      'avatarUrl1024': avatarUrl1024,
-      'toyCount': toyCount,
-      'swapCount': swapCount,
-      'switchChanceCount': switchChanceCount,
-      'isDeletingAccount': isDeletingAccount,
-      'email': email,
-    };
-  }
-
-  @override
-  Map<String, dynamic> allToJson() {
+  Map<String, dynamic> toJsonForProtocol() {
     return {
       if (id != null) 'id': id,
       'authId': authId,
@@ -208,190 +172,8 @@ abstract class Consumer extends _i1.TableRow {
       'isDeletingAccount': isDeletingAccount,
       if (email != null) 'email': email,
       if (likes != null)
-        'likes': likes?.toJson(valueToJson: (v) => v.allToJson()),
+        'likes': likes?.toJson(valueToJson: (v) => v.toJsonForProtocol()),
     };
-  }
-
-  @override
-  @Deprecated('Will be removed in 2.0.0')
-  void setColumn(
-    String columnName,
-    value,
-  ) {
-    switch (columnName) {
-      case 'id':
-        id = value;
-        return;
-      case 'authId':
-        authId = value;
-        return;
-      case 'firstName':
-        firstName = value;
-        return;
-      case 'lastName':
-        lastName = value;
-        return;
-      case 'currentLatitude':
-        currentLatitude = value;
-        return;
-      case 'currentLongitude':
-        currentLongitude = value;
-        return;
-      case 'avatarUrl128':
-        avatarUrl128 = value;
-        return;
-      case 'avatarUrl256':
-        avatarUrl256 = value;
-        return;
-      case 'avatarUrl512':
-        avatarUrl512 = value;
-        return;
-      case 'avatarUrl1024':
-        avatarUrl1024 = value;
-        return;
-      case 'toyCount':
-        toyCount = value;
-        return;
-      case 'swapCount':
-        swapCount = value;
-        return;
-      case 'switchChanceCount':
-        switchChanceCount = value;
-        return;
-      case 'isDeletingAccount':
-        isDeletingAccount = value;
-        return;
-      case 'email':
-        email = value;
-        return;
-      default:
-        throw UnimplementedError();
-    }
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.find instead.')
-  static Future<List<Consumer>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ConsumerTable>? where,
-    int? limit,
-    int? offset,
-    _i1.Column? orderBy,
-    List<_i1.Order>? orderByList,
-    bool orderDescending = false,
-    bool useCache = true,
-    _i1.Transaction? transaction,
-    ConsumerInclude? include,
-  }) async {
-    return session.db.find<Consumer>(
-      where: where != null ? where(Consumer.t) : null,
-      limit: limit,
-      offset: offset,
-      orderBy: orderBy,
-      orderByList: orderByList,
-      orderDescending: orderDescending,
-      useCache: useCache,
-      transaction: transaction,
-      include: include,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.findRow instead.')
-  static Future<Consumer?> findSingleRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ConsumerTable>? where,
-    int? offset,
-    _i1.Column? orderBy,
-    bool orderDescending = false,
-    bool useCache = true,
-    _i1.Transaction? transaction,
-    ConsumerInclude? include,
-  }) async {
-    return session.db.findSingleRow<Consumer>(
-      where: where != null ? where(Consumer.t) : null,
-      offset: offset,
-      orderBy: orderBy,
-      orderDescending: orderDescending,
-      useCache: useCache,
-      transaction: transaction,
-      include: include,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.findById instead.')
-  static Future<Consumer?> findById(
-    _i1.Session session,
-    int id, {
-    ConsumerInclude? include,
-  }) async {
-    return session.db.findById<Consumer>(
-      id,
-      include: include,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.deleteWhere instead.')
-  static Future<int> delete(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<ConsumerTable> where,
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.delete<Consumer>(
-      where: where(Consumer.t),
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.deleteRow instead.')
-  static Future<bool> deleteRow(
-    _i1.Session session,
-    Consumer row, {
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.deleteRow(
-      row,
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.update instead.')
-  static Future<bool> update(
-    _i1.Session session,
-    Consumer row, {
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.update(
-      row,
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated(
-      'Will be removed in 2.0.0. Use: db.insert instead. Important note: In db.insert, the object you pass in is no longer modified, instead a new copy with the added row is returned which contains the inserted id.')
-  static Future<void> insert(
-    _i1.Session session,
-    Consumer row, {
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.insert(
-      row,
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.count instead.')
-  static Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ConsumerTable>? where,
-    int? limit,
-    bool useCache = true,
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.count<Consumer>(
-      where: where != null ? where(Consumer.t) : null,
-      limit: limit,
-      useCache: useCache,
-      transaction: transaction,
-    );
   }
 
   static ConsumerInclude include({_i2.LikeIncludeList? likes}) {
@@ -416,6 +198,11 @@ abstract class Consumer extends _i1.TableRow {
       orderByList: orderByList?.call(Consumer.t),
       include: include,
     );
+  }
+
+  @override
+  String toString() {
+    return _i1.SerializationManager.encode(this);
   }
 }
 
@@ -649,9 +436,6 @@ class ConsumerTable extends _i1.Table {
   }
 }
 
-@Deprecated('Use ConsumerTable.t instead.')
-ConsumerTable tConsumer = ConsumerTable();
-
 class ConsumerInclude extends _i1.IncludeObject {
   ConsumerInclude._({_i2.LikeIncludeList? likes}) {
     _likes = likes;
@@ -708,7 +492,7 @@ class ConsumerRepository {
     _i1.Transaction? transaction,
     ConsumerInclude? include,
   }) async {
-    return session.dbNext.find<Consumer>(
+    return session.db.find<Consumer>(
       where: where?.call(Consumer.t),
       orderBy: orderBy?.call(Consumer.t),
       orderByList: orderByList?.call(Consumer.t),
@@ -730,7 +514,7 @@ class ConsumerRepository {
     _i1.Transaction? transaction,
     ConsumerInclude? include,
   }) async {
-    return session.dbNext.findFirstRow<Consumer>(
+    return session.db.findFirstRow<Consumer>(
       where: where?.call(Consumer.t),
       orderBy: orderBy?.call(Consumer.t),
       orderByList: orderByList?.call(Consumer.t),
@@ -747,7 +531,7 @@ class ConsumerRepository {
     _i1.Transaction? transaction,
     ConsumerInclude? include,
   }) async {
-    return session.dbNext.findById<Consumer>(
+    return session.db.findById<Consumer>(
       id,
       transaction: transaction,
       include: include,
@@ -759,7 +543,7 @@ class ConsumerRepository {
     List<Consumer> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.insert<Consumer>(
+    return session.db.insert<Consumer>(
       rows,
       transaction: transaction,
     );
@@ -770,7 +554,7 @@ class ConsumerRepository {
     Consumer row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.insertRow<Consumer>(
+    return session.db.insertRow<Consumer>(
       row,
       transaction: transaction,
     );
@@ -782,7 +566,7 @@ class ConsumerRepository {
     _i1.ColumnSelections<ConsumerTable>? columns,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.update<Consumer>(
+    return session.db.update<Consumer>(
       rows,
       columns: columns?.call(Consumer.t),
       transaction: transaction,
@@ -795,41 +579,41 @@ class ConsumerRepository {
     _i1.ColumnSelections<ConsumerTable>? columns,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.updateRow<Consumer>(
+    return session.db.updateRow<Consumer>(
       row,
       columns: columns?.call(Consumer.t),
       transaction: transaction,
     );
   }
 
-  Future<List<int>> delete(
+  Future<List<Consumer>> delete(
     _i1.Session session,
     List<Consumer> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.delete<Consumer>(
+    return session.db.delete<Consumer>(
       rows,
       transaction: transaction,
     );
   }
 
-  Future<int> deleteRow(
+  Future<Consumer> deleteRow(
     _i1.Session session,
     Consumer row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.deleteRow<Consumer>(
+    return session.db.deleteRow<Consumer>(
       row,
       transaction: transaction,
     );
   }
 
-  Future<List<int>> deleteWhere(
+  Future<List<Consumer>> deleteWhere(
     _i1.Session session, {
     required _i1.WhereExpressionBuilder<ConsumerTable> where,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.deleteWhere<Consumer>(
+    return session.db.deleteWhere<Consumer>(
       where: where(Consumer.t),
       transaction: transaction,
     );
@@ -841,7 +625,7 @@ class ConsumerRepository {
     int? limit,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.count<Consumer>(
+    return session.db.count<Consumer>(
       where: where?.call(Consumer.t),
       limit: limit,
       transaction: transaction,
@@ -865,7 +649,7 @@ class ConsumerAttachRepository {
     }
 
     var $like = like.map((e) => e.copyWith(consumerId: consumer.id)).toList();
-    await session.dbNext.update<_i2.Like>(
+    await session.db.update<_i2.Like>(
       $like,
       columns: [_i2.Like.t.consumerId],
     );
@@ -888,7 +672,7 @@ class ConsumerAttachRowRepository {
     }
 
     var $like = like.copyWith(consumerId: consumer.id);
-    await session.dbNext.updateRow<_i2.Like>(
+    await session.db.updateRow<_i2.Like>(
       $like,
       columns: [_i2.Like.t.consumerId],
     );
@@ -907,7 +691,7 @@ class ConsumerDetachRepository {
     }
 
     var $like = like.map((e) => e.copyWith(consumerId: null)).toList();
-    await session.dbNext.update<_i2.Like>(
+    await session.db.update<_i2.Like>(
       $like,
       columns: [_i2.Like.t.consumerId],
     );
@@ -926,7 +710,7 @@ class ConsumerDetachRowRepository {
     }
 
     var $like = like.copyWith(consumerId: null);
-    await session.dbNext.updateRow<_i2.Like>(
+    await session.db.updateRow<_i2.Like>(
       $like,
       columns: [_i2.Like.t.consumerId],
     );

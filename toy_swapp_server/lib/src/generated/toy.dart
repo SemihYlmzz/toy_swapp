@@ -12,7 +12,7 @@ import 'package:serverpod/serverpod.dart' as _i1;
 import 'protocol.dart' as _i2;
 import 'package:serverpod_serialization/serverpod_serialization.dart';
 
-abstract class Toy extends _i1.TableRow {
+abstract class Toy extends _i1.TableRow implements _i1.ProtocolSerialization {
   Toy._({
     int? id,
     required this.ownerConsumerID,
@@ -51,41 +51,31 @@ abstract class Toy extends _i1.TableRow {
     bool? isAccepted,
   }) = _ToyImpl;
 
-  factory Toy.fromJson(
-    Map<String, dynamic> jsonSerialization,
-    _i1.SerializationManager serializationManager,
-  ) {
+  factory Toy.fromJson(Map<String, dynamic> jsonSerialization) {
     return Toy(
-      id: serializationManager.deserialize<int?>(jsonSerialization['id']),
-      ownerConsumerID: serializationManager
-          .deserialize<int>(jsonSerialization['ownerConsumerID']),
-      name: serializationManager.deserialize<String>(jsonSerialization['name']),
-      description: serializationManager
-          .deserialize<String>(jsonSerialization['description']),
-      declineReason: serializationManager
-          .deserialize<String?>(jsonSerialization['declineReason']),
-      imageUrlList: serializationManager.deserialize<List<_i2.ToyImageUrls>>(
-          jsonSerialization['imageUrlList']),
-      age: serializationManager
-          .deserialize<_i2.ToyAge>(jsonSerialization['age']),
-      gender: serializationManager
-          .deserialize<_i2.ToyGender>(jsonSerialization['gender']),
-      condition: serializationManager
-          .deserialize<_i2.ToyCondition>(jsonSerialization['condition']),
-      createdAt: serializationManager
-          .deserialize<DateTime>(jsonSerialization['createdAt']),
-      isPublic:
-          serializationManager.deserialize<bool>(jsonSerialization['isPublic']),
-      isLocked:
-          serializationManager.deserialize<bool>(jsonSerialization['isLocked']),
-      likes: serializationManager
-          .deserialize<List<_i2.Like>?>(jsonSerialization['likes']),
-      likeCount:
-          serializationManager.deserialize<int>(jsonSerialization['likeCount']),
-      acceptDeciderSupportID: serializationManager
-          .deserialize<int?>(jsonSerialization['acceptDeciderSupportID']),
-      isAccepted: serializationManager
-          .deserialize<bool?>(jsonSerialization['isAccepted']),
+      id: jsonSerialization['id'] as int?,
+      ownerConsumerID: jsonSerialization['ownerConsumerID'] as int,
+      name: jsonSerialization['name'] as String,
+      description: jsonSerialization['description'] as String,
+      declineReason: jsonSerialization['declineReason'] as String?,
+      imageUrlList: (jsonSerialization['imageUrlList'] as List)
+          .map((e) => _i2.ToyImageUrls.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      age: _i2.ToyAge.fromJson((jsonSerialization['age'] as int)),
+      gender: _i2.ToyGender.fromJson((jsonSerialization['gender'] as int)),
+      condition:
+          _i2.ToyCondition.fromJson((jsonSerialization['condition'] as int)),
+      createdAt:
+          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['createdAt']),
+      isPublic: jsonSerialization['isPublic'] as bool,
+      isLocked: jsonSerialization['isLocked'] as bool,
+      likes: (jsonSerialization['likes'] as List?)
+          ?.map((e) => _i2.Like.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      likeCount: jsonSerialization['likeCount'] as int,
+      acceptDeciderSupportID:
+          jsonSerialization['acceptDeciderSupportID'] as int?,
+      isAccepted: jsonSerialization['isAccepted'] as bool?,
     );
   }
 
@@ -168,36 +158,15 @@ abstract class Toy extends _i1.TableRow {
   }
 
   @override
-  @Deprecated('Will be removed in 2.0.0')
-  Map<String, dynamic> toJsonForDatabase() {
-    return {
-      'id': id,
-      'ownerConsumerID': ownerConsumerID,
-      'name': name,
-      'description': description,
-      'declineReason': declineReason,
-      'imageUrlList': imageUrlList,
-      'age': age,
-      'gender': gender,
-      'condition': condition,
-      'createdAt': createdAt,
-      'isPublic': isPublic,
-      'isLocked': isLocked,
-      'likeCount': likeCount,
-      'acceptDeciderSupportID': acceptDeciderSupportID,
-      'isAccepted': isAccepted,
-    };
-  }
-
-  @override
-  Map<String, dynamic> allToJson() {
+  Map<String, dynamic> toJsonForProtocol() {
     return {
       if (id != null) 'id': id,
       'ownerConsumerID': ownerConsumerID,
       'name': name,
       'description': description,
       if (declineReason != null) 'declineReason': declineReason,
-      'imageUrlList': imageUrlList.toJson(valueToJson: (v) => v.allToJson()),
+      'imageUrlList':
+          imageUrlList.toJson(valueToJson: (v) => v.toJsonForProtocol()),
       'age': age.toJson(),
       'gender': gender.toJson(),
       'condition': condition.toJson(),
@@ -205,194 +174,12 @@ abstract class Toy extends _i1.TableRow {
       'isPublic': isPublic,
       'isLocked': isLocked,
       if (likes != null)
-        'likes': likes?.toJson(valueToJson: (v) => v.allToJson()),
+        'likes': likes?.toJson(valueToJson: (v) => v.toJsonForProtocol()),
       'likeCount': likeCount,
       if (acceptDeciderSupportID != null)
         'acceptDeciderSupportID': acceptDeciderSupportID,
       if (isAccepted != null) 'isAccepted': isAccepted,
     };
-  }
-
-  @override
-  @Deprecated('Will be removed in 2.0.0')
-  void setColumn(
-    String columnName,
-    value,
-  ) {
-    switch (columnName) {
-      case 'id':
-        id = value;
-        return;
-      case 'ownerConsumerID':
-        ownerConsumerID = value;
-        return;
-      case 'name':
-        name = value;
-        return;
-      case 'description':
-        description = value;
-        return;
-      case 'declineReason':
-        declineReason = value;
-        return;
-      case 'imageUrlList':
-        imageUrlList = value;
-        return;
-      case 'age':
-        age = value;
-        return;
-      case 'gender':
-        gender = value;
-        return;
-      case 'condition':
-        condition = value;
-        return;
-      case 'createdAt':
-        createdAt = value;
-        return;
-      case 'isPublic':
-        isPublic = value;
-        return;
-      case 'isLocked':
-        isLocked = value;
-        return;
-      case 'likeCount':
-        likeCount = value;
-        return;
-      case 'acceptDeciderSupportID':
-        acceptDeciderSupportID = value;
-        return;
-      case 'isAccepted':
-        isAccepted = value;
-        return;
-      default:
-        throw UnimplementedError();
-    }
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.find instead.')
-  static Future<List<Toy>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ToyTable>? where,
-    int? limit,
-    int? offset,
-    _i1.Column? orderBy,
-    List<_i1.Order>? orderByList,
-    bool orderDescending = false,
-    bool useCache = true,
-    _i1.Transaction? transaction,
-    ToyInclude? include,
-  }) async {
-    return session.db.find<Toy>(
-      where: where != null ? where(Toy.t) : null,
-      limit: limit,
-      offset: offset,
-      orderBy: orderBy,
-      orderByList: orderByList,
-      orderDescending: orderDescending,
-      useCache: useCache,
-      transaction: transaction,
-      include: include,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.findRow instead.')
-  static Future<Toy?> findSingleRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ToyTable>? where,
-    int? offset,
-    _i1.Column? orderBy,
-    bool orderDescending = false,
-    bool useCache = true,
-    _i1.Transaction? transaction,
-    ToyInclude? include,
-  }) async {
-    return session.db.findSingleRow<Toy>(
-      where: where != null ? where(Toy.t) : null,
-      offset: offset,
-      orderBy: orderBy,
-      orderDescending: orderDescending,
-      useCache: useCache,
-      transaction: transaction,
-      include: include,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.findById instead.')
-  static Future<Toy?> findById(
-    _i1.Session session,
-    int id, {
-    ToyInclude? include,
-  }) async {
-    return session.db.findById<Toy>(
-      id,
-      include: include,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.deleteWhere instead.')
-  static Future<int> delete(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<ToyTable> where,
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.delete<Toy>(
-      where: where(Toy.t),
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.deleteRow instead.')
-  static Future<bool> deleteRow(
-    _i1.Session session,
-    Toy row, {
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.deleteRow(
-      row,
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.update instead.')
-  static Future<bool> update(
-    _i1.Session session,
-    Toy row, {
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.update(
-      row,
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated(
-      'Will be removed in 2.0.0. Use: db.insert instead. Important note: In db.insert, the object you pass in is no longer modified, instead a new copy with the added row is returned which contains the inserted id.')
-  static Future<void> insert(
-    _i1.Session session,
-    Toy row, {
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.insert(
-      row,
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.count instead.')
-  static Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<ToyTable>? where,
-    int? limit,
-    bool useCache = true,
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.count<Toy>(
-      where: where != null ? where(Toy.t) : null,
-      limit: limit,
-      useCache: useCache,
-      transaction: transaction,
-    );
   }
 
   static ToyInclude include({_i2.LikeIncludeList? likes}) {
@@ -417,6 +204,11 @@ abstract class Toy extends _i1.TableRow {
       orderByList: orderByList?.call(Toy.t),
       include: include,
     );
+  }
+
+  @override
+  String toString() {
+    return _i1.SerializationManager.encode(this);
   }
 }
 
@@ -656,9 +448,6 @@ class ToyTable extends _i1.Table {
   }
 }
 
-@Deprecated('Use ToyTable.t instead.')
-ToyTable tToy = ToyTable();
-
 class ToyInclude extends _i1.IncludeObject {
   ToyInclude._({_i2.LikeIncludeList? likes}) {
     _likes = likes;
@@ -711,7 +500,7 @@ class ToyRepository {
     _i1.Transaction? transaction,
     ToyInclude? include,
   }) async {
-    return session.dbNext.find<Toy>(
+    return session.db.find<Toy>(
       where: where?.call(Toy.t),
       orderBy: orderBy?.call(Toy.t),
       orderByList: orderByList?.call(Toy.t),
@@ -733,7 +522,7 @@ class ToyRepository {
     _i1.Transaction? transaction,
     ToyInclude? include,
   }) async {
-    return session.dbNext.findFirstRow<Toy>(
+    return session.db.findFirstRow<Toy>(
       where: where?.call(Toy.t),
       orderBy: orderBy?.call(Toy.t),
       orderByList: orderByList?.call(Toy.t),
@@ -750,7 +539,7 @@ class ToyRepository {
     _i1.Transaction? transaction,
     ToyInclude? include,
   }) async {
-    return session.dbNext.findById<Toy>(
+    return session.db.findById<Toy>(
       id,
       transaction: transaction,
       include: include,
@@ -762,7 +551,7 @@ class ToyRepository {
     List<Toy> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.insert<Toy>(
+    return session.db.insert<Toy>(
       rows,
       transaction: transaction,
     );
@@ -773,7 +562,7 @@ class ToyRepository {
     Toy row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.insertRow<Toy>(
+    return session.db.insertRow<Toy>(
       row,
       transaction: transaction,
     );
@@ -785,7 +574,7 @@ class ToyRepository {
     _i1.ColumnSelections<ToyTable>? columns,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.update<Toy>(
+    return session.db.update<Toy>(
       rows,
       columns: columns?.call(Toy.t),
       transaction: transaction,
@@ -798,41 +587,41 @@ class ToyRepository {
     _i1.ColumnSelections<ToyTable>? columns,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.updateRow<Toy>(
+    return session.db.updateRow<Toy>(
       row,
       columns: columns?.call(Toy.t),
       transaction: transaction,
     );
   }
 
-  Future<List<int>> delete(
+  Future<List<Toy>> delete(
     _i1.Session session,
     List<Toy> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.delete<Toy>(
+    return session.db.delete<Toy>(
       rows,
       transaction: transaction,
     );
   }
 
-  Future<int> deleteRow(
+  Future<Toy> deleteRow(
     _i1.Session session,
     Toy row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.deleteRow<Toy>(
+    return session.db.deleteRow<Toy>(
       row,
       transaction: transaction,
     );
   }
 
-  Future<List<int>> deleteWhere(
+  Future<List<Toy>> deleteWhere(
     _i1.Session session, {
     required _i1.WhereExpressionBuilder<ToyTable> where,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.deleteWhere<Toy>(
+    return session.db.deleteWhere<Toy>(
       where: where(Toy.t),
       transaction: transaction,
     );
@@ -844,7 +633,7 @@ class ToyRepository {
     int? limit,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.count<Toy>(
+    return session.db.count<Toy>(
       where: where?.call(Toy.t),
       limit: limit,
       transaction: transaction,
@@ -868,7 +657,7 @@ class ToyAttachRepository {
     }
 
     var $like = like.map((e) => e.copyWith(toyId: toy.id)).toList();
-    await session.dbNext.update<_i2.Like>(
+    await session.db.update<_i2.Like>(
       $like,
       columns: [_i2.Like.t.toyId],
     );
@@ -891,7 +680,7 @@ class ToyAttachRowRepository {
     }
 
     var $like = like.copyWith(toyId: toy.id);
-    await session.dbNext.updateRow<_i2.Like>(
+    await session.db.updateRow<_i2.Like>(
       $like,
       columns: [_i2.Like.t.toyId],
     );

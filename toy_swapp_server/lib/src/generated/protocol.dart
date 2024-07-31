@@ -11,7 +11,7 @@ library protocol; // ignore_for_file: no_leading_underscores_for_library_prefixe
 
 import 'package:serverpod/serverpod.dart' as _i1;
 import 'package:serverpod/protocol.dart' as _i2;
-import 'package:serverpod_auth_server/module.dart' as _i3;
+import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i3;
 import 'consumer.dart' as _i4;
 import 'example.dart' as _i5;
 import 'like.dart' as _i6;
@@ -43,8 +43,6 @@ class Protocol extends _i1.SerializationManagerServer {
 
   factory Protocol() => _instance;
 
-  static final Map<Type, _i1.constructor> customConstructors = {};
-
   static final Protocol _instance = Protocol._();
 
   static final List<_i2.TableDefinition> targetTableDefinitions = [
@@ -56,7 +54,7 @@ class Protocol extends _i1.SerializationManagerServer {
       columns: [
         _i2.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int?',
           columnDefault: 'nextval(\'consumers_id_seq\'::regclass)',
@@ -117,19 +115,19 @@ class Protocol extends _i1.SerializationManagerServer {
         ),
         _i2.ColumnDefinition(
           name: 'toyCount',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
         ),
         _i2.ColumnDefinition(
           name: 'swapCount',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
         ),
         _i2.ColumnDefinition(
           name: 'switchChanceCount',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
         ),
@@ -172,20 +170,20 @@ class Protocol extends _i1.SerializationManagerServer {
       columns: [
         _i2.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int?',
           columnDefault: 'nextval(\'likes_id_seq\'::regclass)',
         ),
         _i2.ColumnDefinition(
           name: 'toyId',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
         ),
         _i2.ColumnDefinition(
           name: 'consumerId',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
         ),
@@ -254,7 +252,7 @@ class Protocol extends _i1.SerializationManagerServer {
       columns: [
         _i2.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int?',
           columnDefault: 'nextval(\'supports_id_seq\'::regclass)',
@@ -304,14 +302,14 @@ class Protocol extends _i1.SerializationManagerServer {
       columns: [
         _i2.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int?',
           columnDefault: 'nextval(\'toys_id_seq\'::regclass)',
         ),
         _i2.ColumnDefinition(
           name: 'ownerConsumerID',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
         ),
@@ -341,19 +339,19 @@ class Protocol extends _i1.SerializationManagerServer {
         ),
         _i2.ColumnDefinition(
           name: 'age',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'protocol:ToyAge',
         ),
         _i2.ColumnDefinition(
           name: 'gender',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'protocol:ToyGender',
         ),
         _i2.ColumnDefinition(
           name: 'condition',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'protocol:ToyCondition',
         ),
@@ -377,13 +375,13 @@ class Protocol extends _i1.SerializationManagerServer {
         ),
         _i2.ColumnDefinition(
           name: 'likeCount',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
         ),
         _i2.ColumnDefinition(
           name: 'acceptDeciderSupportID',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: true,
           dartType: 'int?',
         ),
@@ -422,29 +420,26 @@ class Protocol extends _i1.SerializationManagerServer {
     Type? t,
   ]) {
     t ??= T;
-    if (customConstructors.containsKey(t)) {
-      return customConstructors[t]!(data, this) as T;
-    }
     if (t == _i4.Consumer) {
-      return _i4.Consumer.fromJson(data, this) as T;
+      return _i4.Consumer.fromJson(data) as T;
     }
     if (t == _i5.Example) {
-      return _i5.Example.fromJson(data, this) as T;
+      return _i5.Example.fromJson(data) as T;
     }
     if (t == _i6.Like) {
-      return _i6.Like.fromJson(data, this) as T;
+      return _i6.Like.fromJson(data) as T;
     }
     if (t == _i7.Support) {
-      return _i7.Support.fromJson(data, this) as T;
+      return _i7.Support.fromJson(data) as T;
     }
     if (t == _i8.Toy) {
-      return _i8.Toy.fromJson(data, this) as T;
+      return _i8.Toy.fromJson(data) as T;
     }
     if (t == _i9.ToyAge) {
       return _i9.ToyAge.fromJson(data) as T;
     }
     if (t == _i10.ToyAndOwnerConsumer) {
-      return _i10.ToyAndOwnerConsumer.fromJson(data, this) as T;
+      return _i10.ToyAndOwnerConsumer.fromJson(data) as T;
     }
     if (t == _i11.ToyCondition) {
       return _i11.ToyCondition.fromJson(data) as T;
@@ -453,30 +448,29 @@ class Protocol extends _i1.SerializationManagerServer {
       return _i12.ToyGender.fromJson(data) as T;
     }
     if (t == _i13.ToyImageUrls) {
-      return _i13.ToyImageUrls.fromJson(data, this) as T;
+      return _i13.ToyImageUrls.fromJson(data) as T;
     }
     if (t == _i1.getType<_i4.Consumer?>()) {
-      return (data != null ? _i4.Consumer.fromJson(data, this) : null) as T;
+      return (data != null ? _i4.Consumer.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i5.Example?>()) {
-      return (data != null ? _i5.Example.fromJson(data, this) : null) as T;
+      return (data != null ? _i5.Example.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i6.Like?>()) {
-      return (data != null ? _i6.Like.fromJson(data, this) : null) as T;
+      return (data != null ? _i6.Like.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i7.Support?>()) {
-      return (data != null ? _i7.Support.fromJson(data, this) : null) as T;
+      return (data != null ? _i7.Support.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i8.Toy?>()) {
-      return (data != null ? _i8.Toy.fromJson(data, this) : null) as T;
+      return (data != null ? _i8.Toy.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i9.ToyAge?>()) {
       return (data != null ? _i9.ToyAge.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i10.ToyAndOwnerConsumer?>()) {
-      return (data != null
-          ? _i10.ToyAndOwnerConsumer.fromJson(data, this)
-          : null) as T;
+      return (data != null ? _i10.ToyAndOwnerConsumer.fromJson(data) : null)
+          as T;
     }
     if (t == _i1.getType<_i11.ToyCondition?>()) {
       return (data != null ? _i11.ToyCondition.fromJson(data) : null) as T;
@@ -485,8 +479,7 @@ class Protocol extends _i1.SerializationManagerServer {
       return (data != null ? _i12.ToyGender.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i13.ToyImageUrls?>()) {
-      return (data != null ? _i13.ToyImageUrls.fromJson(data, this) : null)
-          as T;
+      return (data != null ? _i13.ToyImageUrls.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<List<_i14.Like>?>()) {
       return (data != null
@@ -519,10 +512,10 @@ class Protocol extends _i1.SerializationManagerServer {
     }
     try {
       return _i3.Protocol().deserialize<T>(data, t);
-    } catch (_) {}
+    } on _i1.DeserializationTypeNotFoundException catch (_) {}
     try {
       return _i2.Protocol().deserialize<T>(data, t);
-    } catch (_) {}
+    } on _i1.DeserializationTypeNotFoundException catch (_) {}
     return super.deserialize<T>(data, t);
   }
 

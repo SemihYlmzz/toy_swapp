@@ -10,14 +10,14 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 
-enum ToyCondition with _i1.SerializableEntity {
+enum ToyCondition implements _i1.SerializableModel {
   brandNew,
   good,
   normal,
   bad,
   broken;
 
-  static ToyCondition? fromJson(int index) {
+  static ToyCondition fromJson(int index) {
     switch (index) {
       case 0:
         return brandNew;
@@ -30,10 +30,13 @@ enum ToyCondition with _i1.SerializableEntity {
       case 4:
         return broken;
       default:
-        return null;
+        throw ArgumentError(
+            'Value "$index" cannot be converted to "ToyCondition"');
     }
   }
 
   @override
   int toJson() => index;
+  @override
+  String toString() => name;
 }

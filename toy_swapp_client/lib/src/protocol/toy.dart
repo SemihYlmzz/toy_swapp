@@ -11,7 +11,7 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'protocol.dart' as _i2;
 
-abstract class Toy extends _i1.SerializableEntity {
+abstract class Toy implements _i1.SerializableModel {
   Toy._({
     this.id,
     required this.ownerConsumerID,
@@ -50,41 +50,31 @@ abstract class Toy extends _i1.SerializableEntity {
     bool? isAccepted,
   }) = _ToyImpl;
 
-  factory Toy.fromJson(
-    Map<String, dynamic> jsonSerialization,
-    _i1.SerializationManager serializationManager,
-  ) {
+  factory Toy.fromJson(Map<String, dynamic> jsonSerialization) {
     return Toy(
-      id: serializationManager.deserialize<int?>(jsonSerialization['id']),
-      ownerConsumerID: serializationManager
-          .deserialize<int>(jsonSerialization['ownerConsumerID']),
-      name: serializationManager.deserialize<String>(jsonSerialization['name']),
-      description: serializationManager
-          .deserialize<String>(jsonSerialization['description']),
-      declineReason: serializationManager
-          .deserialize<String?>(jsonSerialization['declineReason']),
-      imageUrlList: serializationManager.deserialize<List<_i2.ToyImageUrls>>(
-          jsonSerialization['imageUrlList']),
-      age: serializationManager
-          .deserialize<_i2.ToyAge>(jsonSerialization['age']),
-      gender: serializationManager
-          .deserialize<_i2.ToyGender>(jsonSerialization['gender']),
-      condition: serializationManager
-          .deserialize<_i2.ToyCondition>(jsonSerialization['condition']),
-      createdAt: serializationManager
-          .deserialize<DateTime>(jsonSerialization['createdAt']),
-      isPublic:
-          serializationManager.deserialize<bool>(jsonSerialization['isPublic']),
-      isLocked:
-          serializationManager.deserialize<bool>(jsonSerialization['isLocked']),
-      likes: serializationManager
-          .deserialize<List<_i2.Like>?>(jsonSerialization['likes']),
-      likeCount:
-          serializationManager.deserialize<int>(jsonSerialization['likeCount']),
-      acceptDeciderSupportID: serializationManager
-          .deserialize<int?>(jsonSerialization['acceptDeciderSupportID']),
-      isAccepted: serializationManager
-          .deserialize<bool?>(jsonSerialization['isAccepted']),
+      id: jsonSerialization['id'] as int?,
+      ownerConsumerID: jsonSerialization['ownerConsumerID'] as int,
+      name: jsonSerialization['name'] as String,
+      description: jsonSerialization['description'] as String,
+      declineReason: jsonSerialization['declineReason'] as String?,
+      imageUrlList: (jsonSerialization['imageUrlList'] as List)
+          .map((e) => _i2.ToyImageUrls.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      age: _i2.ToyAge.fromJson((jsonSerialization['age'] as int)),
+      gender: _i2.ToyGender.fromJson((jsonSerialization['gender'] as int)),
+      condition:
+          _i2.ToyCondition.fromJson((jsonSerialization['condition'] as int)),
+      createdAt:
+          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['createdAt']),
+      isPublic: jsonSerialization['isPublic'] as bool,
+      isLocked: jsonSerialization['isLocked'] as bool,
+      likes: (jsonSerialization['likes'] as List?)
+          ?.map((e) => _i2.Like.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      likeCount: jsonSerialization['likeCount'] as int,
+      acceptDeciderSupportID:
+          jsonSerialization['acceptDeciderSupportID'] as int?,
+      isAccepted: jsonSerialization['isAccepted'] as bool?,
     );
   }
 
@@ -162,6 +152,11 @@ abstract class Toy extends _i1.SerializableEntity {
         'acceptDeciderSupportID': acceptDeciderSupportID,
       if (isAccepted != null) 'isAccepted': isAccepted,
     };
+  }
+
+  @override
+  String toString() {
+    return _i1.SerializationManager.encode(this);
   }
 }
 

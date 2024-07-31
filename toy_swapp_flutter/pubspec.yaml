@@ -23,7 +23,7 @@ dependencies:
   # Client
   toy_swapp_client:
     path: ../toy_swapp_client
-  serverpod_flutter: 1.2.6
+  serverpod_flutter: 2.0.2
   
   # Repositories
   app_metadata_repository:

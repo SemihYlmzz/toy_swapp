@@ -74,7 +74,7 @@ class ToyEndpoint extends Endpoint {
     );
 
     Consumer? updatedConsumer;
-    final isSuccess = await session.dbNext.transaction((transaction) async {
+    final isSuccess = await session.db.transaction((transaction) async {
       toy = await Toy.db.insertRow(session, toy, transaction: transaction);
 
       final ownerConsumer = await Consumer.db.findById(
@@ -239,7 +239,7 @@ class ToyEndpoint extends Endpoint {
       throw Exception('no-liker-found');
     }
 
-    final updatedToy = await session.dbNext.transaction((transaction) async {
+    final updatedToy = await session.db.transaction((transaction) async {
       final like = Like(consumerId: likerConsumerID, toyId: toyID);
       await Like.db.insertRow(session, like, transaction: transaction);
       toy.likeCount = toy.likeCount + 1;
@@ -268,7 +268,7 @@ class ToyEndpoint extends Endpoint {
       throw Exception('no-toy-found');
     }
 
-    final updatedToy = await session.dbNext.transaction((transaction) async {
+    final updatedToy = await session.db.transaction((transaction) async {
       await Like.db.deleteRow(session, like, transaction: transaction);
       toy.likeCount = toy.likeCount - 1;
       return await Toy.db.updateRow(session, toy, transaction: transaction);
@@ -290,7 +290,7 @@ class ToyEndpoint extends Endpoint {
       throw Exception('not-owner');
     }
     final updatedConsumer =
-        await session.dbNext.transaction((transaction) async {
+        await session.db.transaction((transaction) async {
       await Like.db.deleteWhere(
         session,
         where: (likes) => likes.toyId.equals(toyID),
@@ -374,7 +374,7 @@ class ToyEndpoint extends Endpoint {
       throw Exception('already-decided');
     }
 
-    await session.dbNext.transaction((transaction) async {
+    await session.db.transaction((transaction) async {
       acceptableToy.isAccepted = true;
       acceptableToy.acceptDeciderSupportID = accepterSupport.id!;
 
@@ -406,7 +406,7 @@ class ToyEndpoint extends Endpoint {
       throw Exception('already-decided');
     }
 
-    await session.dbNext.transaction((transaction) async {
+    await session.db.transaction((transaction) async {
       decliningToy.isAccepted = false;
       decliningToy.acceptDeciderSupportID = deciderSupport.id!;
       decliningToy.declineReason = reason;

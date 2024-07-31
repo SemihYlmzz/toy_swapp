@@ -16,7 +16,7 @@ import 'package:toy_swapp_server/src/generated/toy_age.dart' as _i5;
 import 'package:toy_swapp_server/src/generated/toy_gender.dart' as _i6;
 import 'package:toy_swapp_server/src/generated/toy_condition.dart' as _i7;
 import 'package:toy_swapp_server/src/generated/toy_image_urls.dart' as _i8;
-import 'package:serverpod_auth_server/module.dart' as _i9;
+import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i9;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
